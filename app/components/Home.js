@@ -1,33 +1,21 @@
+// @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators} from 'redux';
-import { actionCreators } from '../actions/school';
-import styles from './styles/Home.css';
-import School from './counter';
-import  { db } from '../database';
+import { Link } from 'react-router-dom';
+import routes from '../constants/routes.json';
+import styles from './Home.css';
 
-db.findOne({ first: 'Digi' }, (err, doc) => {
-  console.log('Found user:', doc.first);
-});
+type Props = {};
 
-
-class Home extends Component {
+export default class Home extends Component<Props> {
+  props: Props;
 
   render() {
     return (
       <div className={styles.container} data-tid="container">
-      <h1>Testing</h1>
-        <Login/>
+        <h2>Home</h2>
+        <Link to={routes.COUNTER}>to Counter</Link>
+        <Link to={routes.SCHOOL}>to School</Link>
       </div>
     );
   }
 }
-
-
-const mapStateToProps = (state) => ({
-      registering: 'test'
-    })
-
-const mapDispatchToProps = (dispatch) => ({ actions: bindActionCreators(actionCreators, dispatch) })
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);

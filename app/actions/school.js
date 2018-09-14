@@ -1,5 +1,1 @@
-
-export const actionCreators = {
-
-
-}
+import type { GetState, Dispatch } from '../reducers/types';

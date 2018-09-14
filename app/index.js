@@ -20,7 +20,6 @@ if (module.hot) {
     render(
       <AppContainer>
         <NextRoot store={store} history={history} />
-
       </AppContainer>,
       document.getElementById('root')
     );
