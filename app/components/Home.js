@@ -14,7 +14,6 @@ export default class Home extends Component<Props> {
     return (
       <div className={styles.container} data-tid="container">
         <SideMenu/>
-        <Link to={routes.SCHOOL}>to School</Link>
       </div>
     );
   }

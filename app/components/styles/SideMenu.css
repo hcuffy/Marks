@@ -2,9 +2,12 @@
   float: left;
   width: 100px;
   display: block;
+  margin: 0px 5px 0px 0px;
+  height: 800px;
 }
 
 .menu_btn {
   float: left;
   width: 100px;
+  height: 90px;
 }
