@@ -4,11 +4,12 @@ import { bindActionCreators} from 'redux';
 import { actionCreators } from '../actions/index';
 import routes from '../constants/routes.json';
 import { Link } from 'react-router-dom';
+import SideMenu from './SideMenu';
 
 const School = () => (
 
     <div className="form-wrapper">
-      <Link to={routes.HOME}>  <i className="fa fa-arrow-left fa-3x" /></Link>
+      <SideMenu/>
         <form method="POST" >
         <h2>School</h2>
           <input name="email" type="text" placeholder="Enter your email"/>

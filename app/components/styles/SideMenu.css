@@ -1,0 +1,10 @@
+.menu_div {
+  float: left;
+  width: 100px;
+  display: block;
+}
+
+.menu_btn {
+  float: left;
+  width: 100px;
+}
