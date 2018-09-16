@@ -52,6 +52,7 @@ app.on('window-all-closed', () => {
   }
 });
 
+
 app.on('ready', async () => {
   if (
     process.env.NODE_ENV === 'development' ||

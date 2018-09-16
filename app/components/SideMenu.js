@@ -9,10 +9,10 @@ import styles from './styles/SideMenu.css';
 const SideMenu = () => (
 
     <div className={styles.menu_div}>
-      <Link to={routes.SCHOOL}><button className={styles.menu_btn}><i className="fa fa-school fa-3x"/></button></Link>
-      <button className={styles.menu_btn}><i className="fa fa-users fa-4x" /></button>
-      <button className={styles.menu_btn}><i className="fa fa-eraser fa-5x" /></button>
-      <button className={styles.menu_btn}><i className="fa fa-list-ol fa-5x" /></button>
+      <Link to={routes.SCHOOL}><i className="fa fa-school fa-3x"/></Link>
+      <i className="fa fa-users fa-3x" />
+      <i className="fa fa-eraser fa-3x" />
+      <i className="fa fa-list-ol fa-3x" />
     </div>
   );
 
