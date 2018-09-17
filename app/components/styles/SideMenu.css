@@ -1,13 +1,15 @@
 .menu_div {
   float: left;
-  width: 90px;
+  width: 101px;
   display: block;
   margin: 0px 5px 0px 0px;
   height: 800px;
+  border-right: 1px solid #b7b7b7;
+  padding-top: 20px;
 }
 
 .menu_btn {
   width: 100px;
   padding: 10px 10px 10px 10px;
-  background-color:
+  border: none;
 }
