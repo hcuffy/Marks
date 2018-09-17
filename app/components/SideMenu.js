@@ -9,6 +9,7 @@ import styles from './styles/SideMenu.css';
 const SideMenu = () => (
 
     <div className={styles.menu_div}>
+      <Link to={routes.HOME}><i className="fa fa-home fa-3x"/></Link>
       <Link to={routes.SCHOOL}><i className="fa fa-school fa-3x"/></Link>
       <i className="fa fa-users fa-3x" />
       <i className="fa fa-eraser fa-3x" />
@@ -16,9 +17,4 @@ const SideMenu = () => (
     </div>
   );
 
-const mapStateToProps = (state) => ({
-    })
-
-const mapDispatchToProps = (dispatch) => ({ actions: bindActionCreators(actionCreators, dispatch) })
-
-export default connect(mapStateToProps, mapDispatchToProps)(SideMenu);
+export default SideMenu;
