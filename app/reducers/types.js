@@ -4,8 +4,6 @@ export type Action = {
   +type: string
 };
 
-export type GetState = () => counterStateType;
-
 export type Dispatch = ReduxDispatch<Action>;
 
 export type Store = ReduxStore<GetState, Action>;
