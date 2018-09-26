@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import School from '../components/School';
-import * as SchoolActions from '../actions/school';
+import * as SchoolActions from '../actions/schoolAction';
 
 function mapStateToProps(state) {
   return {
