@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import { actionCreators } from '../actions/index';
-import routes from '../constants/routes.json';
-import { Link } from 'react-router-dom';
 import SideMenu from './SideMenu';
 
 const School = () => (
@@ -12,12 +10,13 @@ const School = () => (
       <SideMenu/>
         <form method="POST" >
         <h2>School</h2>
-          <input name="email" type="text" placeholder="Enter your email"/>
-          <input name="password" type="password" placeholder="Enter your password"/>
+          <input name="title" type="text" placeholder="Enter your school's name."/>
+          <input name="street" type="text" placeholder="Enter the street."/>
+          <input name="state" type="text" placeholder="Enter the state."/>
+          <input name="country" type="text" placeholder="Enter the country."/>
+          <input name="year" type="number" min="2000" max="2050" placeholder="Enter the country."/>
           <button className="custom-btn">Login</button>
         </form>
-
-        <span className="register">Register</span>
     </div>
   );
 
