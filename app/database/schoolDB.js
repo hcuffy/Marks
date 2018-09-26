@@ -7,8 +7,8 @@ const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const schoolDB = new Datastore({ filename: path.join(userDataPath, 'school.db') , autoload: true, timestampData: true })
 
 
-exports.getMyPolls = (data) => {
-
+exports.addSchoolData = (data) => {
+  console.log('in here');
   schoolDB.insert(data, (err, document) => {
     if (err) {
     return err

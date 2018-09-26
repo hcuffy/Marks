@@ -1,5 +1,6 @@
 import type { GetState, Dispatch } from '../reducers/types';
 import { HANDLE_SCHOOL_DATA } from './actionTypes';
+import { addSchoolData } from '../database/schoolDB';
 
 const handleSchoolData = (event) => {
   event.preventDefault();
@@ -12,6 +13,9 @@ const handleSchoolData = (event) => {
     year: event.target.year.value
   };
  console.log(formData);
+
+addSchoolData(formData)
+
  return {
       type: HANDLE_SCHOOL_DATA,
       payload: formData

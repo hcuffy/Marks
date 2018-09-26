@@ -5,8 +5,7 @@ const handleSchoolReducer = (state: number = 0, action: Action) => {
 
   switch (action.type) {
     case HANDLE_SCHOOL_DATA:
-    console.log(state.number);
-      return {};
+    console.log('test');
     default:
       return state;
   }
