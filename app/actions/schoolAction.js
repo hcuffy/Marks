@@ -9,8 +9,7 @@ const handleSchoolData = (event) => {
     title: event.target.title.value,
     street: event.target.street.value,
     state: event.target.state.value,
-    country: event.target.country.value,
-    year: event.target.year.value
+    country: event.target.country.value
   };
  console.log(formData);
 

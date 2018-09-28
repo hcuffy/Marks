@@ -14,7 +14,6 @@ const School = ({actions}) => (
           <input name="street" type="text" placeholder="Enter the street."/>
           <input name="state" type="text" placeholder="Enter the state."/>
           <input name="country" type="text" placeholder="Enter the country."/>
-          <input name="year" type="number" min="2000" max="2050" placeholder="Enter the country."/>
           <button className="custom-btn">Save</button>
         </form>
     </div>
