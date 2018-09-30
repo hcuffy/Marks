@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import type { GetState, Dispatch } from '../reducers/types';
 import { HANDLE_SCHOOL_DATA } from './actionTypes';
 import { addSchoolData } from '../database/schoolDB';
@@ -13,7 +14,7 @@ const handleSchoolData = (event) => {
   };
 
 addSchoolData(formData)
-
+toast.success("Error Notification !")
  return {
       type: HANDLE_SCHOOL_DATA,
       payload: formData
