@@ -11,7 +11,6 @@ const handleSchoolData = (event) => {
     state: event.target.state.value,
     country: event.target.country.value
   };
- console.log(formData);
 
 addSchoolData(formData)
 
