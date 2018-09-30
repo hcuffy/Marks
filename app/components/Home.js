@@ -16,7 +16,7 @@ export default class Home extends Component<Props> {
     return (
       <div className={styles.container} data-tid="container">
         <SideMenu/>
-        <button onClick={() => toast.error("Error Notification !")}>test</button>
+        <button onClick={generalSuccess()}>test</button>
 
       </div>
     );
