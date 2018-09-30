@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { actionCreators } from '../actions/index';
 import routes from '../constants/routes.json';
 import styles from './styles/SideMenu.css';
+import { ToastContainer } from 'react-toastify';
 
 const SideMenu = () => (
 
@@ -14,6 +15,7 @@ const SideMenu = () => (
       <button className={styles.menu_btn} ><i className= "fa fa-users fa-3x"/></button>
       <button className={styles.menu_btn} ><i className="fa fa-eraser fa-3x"/></button>
       <button className={styles.menu_btn} ><i className="fa fa-list-ol fa-3x"/></button>
+      <ToastContainer />
     </div>
   );
 
