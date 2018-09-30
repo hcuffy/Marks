@@ -13,6 +13,6 @@ exports.addSchoolData = (data) => {
     if (err) {
     return err
   }
-      console.log('Dcoumnet inserted successfully');
+      console.log('Document inserted successfully');
   });
 };
