@@ -1,6 +1,9 @@
-import handleSchoolData from './schoolAction';
-
+import {
+  handleSchoolData,
+  handleSchoolDataDisplay
+ }from './schoolAction';
 
 export const actionCreators = {
-  handleSchoolData
+  handleSchoolData,
+  handleSchoolDataDisplay
 };

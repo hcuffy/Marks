@@ -1,9 +1,12 @@
 import { toast } from 'react-toastify';
 import type { GetState, Dispatch } from '../reducers/types';
-import { HANDLE_SCHOOL_DATA } from './actionTypes';
-import { addSchoolData } from '../database/schoolDB';
+import {
+         HANDLE_SCHOOL_DATA ,
+         HANDLE_SCHOOL_DATA_DISPLAY
+       } from './actionTypes';
+import { addSchoolData, getSchoolData } from '../database/schoolDB';
 
-const handleSchoolData = (event) => {
+export const handleSchoolData = (event) => {
   event.preventDefault();
 
   const formData = {
@@ -14,12 +17,18 @@ const handleSchoolData = (event) => {
   };
 
 addSchoolData(formData)
-toast.success("Error Notification !")
- return {
-      type: HANDLE_SCHOOL_DATA,
-      payload: formData
-}
+
+   return {
+        type: HANDLE_SCHOOL_DATA,
+        payload: formData
+    }
 };
 
+export const handleSchoolDataDisplay = () => {
+  const schoolData = getSchoolData()
 
-export default handleSchoolData;
+ return {
+      type: HANDLE_SCHOOL_DATA_DISPLAY,
+      payload: schoolData
+}
+};
