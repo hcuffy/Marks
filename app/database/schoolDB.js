@@ -8,11 +8,19 @@ const schoolDB = new Datastore({ filename: path.join(userDataPath, 'school.db') 
 
 
 exports.addSchoolData = (data) => {
-  console.log('in here');
   schoolDB.insert(data, (err, document) => {
     if (err) {
-    return err
-  }
-      console.log('Document inserted successfully');
+      return err
+    }
   });
+};
+
+exports.getSchoolData = () => {
+  schoolDB.find({}, (err, entry) => {
+      if (err) {
+        return err
+        console.log(entry);
+
+      }
+    });
 };
