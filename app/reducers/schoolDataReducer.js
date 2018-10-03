@@ -10,7 +10,6 @@ const initialLoadState = {
 }
 
 const handleDataSchoolReducer = (state = initialLoadState, action) => {
-
   switch (action.type) {
     case HANDLE_SCHOOL_DATA_DISPLAY:
         const { title, street, state, country, year } = action.payload;

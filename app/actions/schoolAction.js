@@ -17,7 +17,6 @@ export const handleSchoolData = (event) => {
   };
 
 addSchoolData(formData)
-
    return {
         type: HANDLE_SCHOOL_DATA,
         payload: formData
@@ -26,9 +25,9 @@ addSchoolData(formData)
 
 export const handleSchoolDataDisplay = () => {
   const schoolData = getSchoolData()
-
+ console.log(schoolData);
  return {
       type: HANDLE_SCHOOL_DATA_DISPLAY,
-      payload: schoolData
-}
+      payload: {schoolData:'kjkjhk'}
+    }
 };
