@@ -23,11 +23,11 @@ addSchoolData(formData)
     }
 };
 
-export const handleSchoolDataDisplay = () => {
-  const schoolData = getSchoolData()
- console.log(schoolData);
+export const handleSchoolDataDisplay =  () => {
+const info = getSchoolData()
+console.log(info);
  return {
       type: HANDLE_SCHOOL_DATA_DISPLAY,
-      payload: {schoolData:'kjkjhk'}
+      payload: {schoolData: info}
     }
 };

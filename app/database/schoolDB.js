@@ -15,12 +15,14 @@ exports.addSchoolData = (data) => {
     }
   });
 };
-
-exports.getSchoolData = () => {
-  schoolDB.find({}, (err, entry) => {
+// TODO: Send DB data
+exports.getSchoolData =  () => {
+ const schoolAddress = {}
+  schoolDB.find({},  (err, entry) => {
       if (err) {
         return err
       }
-      return entry;
+    schoolAddress.info = entry;
     });
+  return schoolAddress;
 };
