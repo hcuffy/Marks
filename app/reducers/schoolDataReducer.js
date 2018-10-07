@@ -14,7 +14,7 @@ const handleDataSchoolReducer = (state = initialLoadState, action) => {
   switch (action.type) {
     case HANDLE_SCHOOL_DATA_DISPLAY:
 
-        const { title, street, state, country, year } = action.payload.schoolData.info[0];
+        const { title, street, state, country, year } = action.payload;
         return Object.assign({}, state, { title, street, state, country, year });
     default:
 

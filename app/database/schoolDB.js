@@ -6,9 +6,10 @@ const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 
 const schoolDB = new Datastore({ filename: path.join(userDataPath, 'school.db') , autoload: true, timestampData: true })
 
+export const LoadState = schoolDB;
 
 exports.addSchoolData = (data) => {
-  schoolDB.insert(data, (err, document) => {
+  schoolDB.insert(data, (err, entry) => {
     if (err) {
 
       return err
@@ -17,12 +18,13 @@ exports.addSchoolData = (data) => {
 };
 // TODO: Send DB data
 exports.getSchoolData =  () => {
- const schoolAddress = {}
-  schoolDB.find({},  (err, entry) => {
+const schoolAddress = {}
+schoolDB.find({},  (err, entry) => {
       if (err) {
         return err
       }
     schoolAddress.info = entry;
     });
+    console.log(schoolAddress);
   return schoolAddress;
 };
