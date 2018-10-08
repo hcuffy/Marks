@@ -23,9 +23,9 @@ addSchoolData(formData)
     }
 };
 
-export const handleSchoolDataDisplay = async () => {
-const info = await getSchoolData()
-console.log("Insidestuff", info);
+export const handleSchoolDataDisplay = () => {
+const info =  getSchoolData()
+console.log(info);
  return {
       type: HANDLE_SCHOOL_DATA_DISPLAY,
       payload: {schoolData: info}

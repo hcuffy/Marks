@@ -15,7 +15,9 @@ export default class Home extends Component<Props> {
   render() {
     return (
       <div className={styles.container} data-tid="container">
+       <button></button>
         <SideMenu/>
+
         <SchoolInfo/>
       </div>
     );
