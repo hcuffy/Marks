@@ -19,12 +19,14 @@ exports.addSchoolData = (data) => {
 // TODO: Send DB data
 exports.getSchoolData =  () => {
 const schoolAddress = {}
-schoolDB.find({},  (err, entry) => {
-      if (err) {
-        return err
-      }
-    schoolAddress.info = entry;
-    });
-    console.log(schoolAddress);
-  return schoolAddress;
+  schoolDB.find({},  (err, entry) => {
+        if (err) {
+          return err
+        }
+      schoolAddress.info = entry;
+      
+        return schoolAddress;
+      });
+
+
 };
