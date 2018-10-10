@@ -23,11 +23,13 @@ addSchoolData(formData)
     }
 };
 
-export const handleSchoolDataDisplay =  () => {
-const info = getSchoolData()
-console.log(info);
- return {
-      type: HANDLE_SCHOOL_DATA_DISPLAY,
-      payload: {schoolData: info}
-    }
-};
+exports.handleSchoolDataDisplay = () => async (dispatch) => {
+   const info = await getSchoolData()
+   setTimeout(() => {
+     dispatch({
+       type: HANDLE_SCHOOL_DATA_DISPLAY,
+       payload: {schoolData: info}
+     })
+   }, 2000);
+
+ }
