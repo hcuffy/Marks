@@ -5,5 +5,4 @@ export type Action = {
 };
 
 export type Dispatch = ReduxDispatch<Action>;
-
 export type Store = ReduxStore<GetState, Action>;

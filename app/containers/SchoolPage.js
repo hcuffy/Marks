@@ -8,24 +8,15 @@ import SideMenu from '../components/SideMenu';
 export class School extends Component {
   constructor(props) {
     super(props)
-        this.state = {
-          title: '',
-          street: '',
-          state: '',
-          country: ''
-        };
-
       this.handleForm = this.handleForm.bind(this);
     }
 
-handleForm(event) {
+handleForm({actions},event) {
   event.preventDefault();
-
   const formData = {
     title: event.target.title.value,
     street: event.target.street.value,
     state: event.target.state.value,
-
     country: event.target.country.value
   }
     actions.handleSchoolData(formData)

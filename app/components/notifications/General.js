@@ -1,7 +1,5 @@
 import { toast } from 'react-toastify';
 
-export function generalSuccess(){
-
-  toast.success('it works')
-
+export function saveSuccess(){
+  toast.success('Data was saved successfully.')
 }
