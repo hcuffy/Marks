@@ -1,16 +1,16 @@
 /* eslint flowtype-errors/show-errors: 0 */
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import routes from './constants/routes.json';
+import {HOME, SCHOOL} from './constants/routes.json';
 import App from './containers/App';
-import HomePage from './containers/HomePage';
-import School from './containers/SchoolPage';
+import Home from './components/Home';
+import SchoolPage from './containers/SchoolPage';
 
 export default () => (
   <App>
     <Switch>
-      <Route path={routes.SCHOOL} component={School} />
-      <Route path={routes.HOME} component={HomePage} />
+      <Route path={SCHOOL} component={SchoolPage} />
+      <Route path={HOME} component={Home} />
     </Switch>
   </App>
 );

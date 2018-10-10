@@ -1,25 +1,23 @@
 import { toast } from 'react-toastify';
 import type { GetState, Dispatch } from '../reducers/types';
-import { HANDLE_SCHOOL_DATA } from './actionTypes';
-import { addSchoolData } from '../database/schoolDB';
+import {
+         HANDLE_SCHOOL_DATA ,
+         HANDLE_SCHOOL_DATA_DISPLAY
+       } from './actionTypes';
+import { addSchoolData, getSchoolData } from '../database/schoolDB';
 
-const handleSchoolData = (event) => {
-  event.preventDefault();
-
-  const formData = {
-    title: event.target.title.value,
-    street: event.target.street.value,
-    state: event.target.state.value,
-    country: event.target.country.value
-  };
-
+export const handleSchoolData = (formData) => {
 addSchoolData(formData)
-toast.success("Error Notification !")
- return {
-      type: HANDLE_SCHOOL_DATA,
-      payload: formData
-}
+   return {
+        type: HANDLE_SCHOOL_DATA,
+        payload: formData
+    }
 };
 
-
-export default handleSchoolData;
+export const handleSchoolDataDisplay = () => {
+const info =  getSchoolData()
+ return {
+      type: HANDLE_SCHOOL_DATA_DISPLAY,
+      payload: {schoolData: info}
+    }
+};
