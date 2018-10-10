@@ -6,7 +6,16 @@ import {
        } from './actionTypes';
 import { addSchoolData, getSchoolData } from '../database/schoolDB';
 
-export const handleSchoolData = (formData) => {
+export const handleSchoolData = (event) => {
+  event.preventDefault();
+
+  const formData = {
+    title: event.target.title.value,
+    street: event.target.street.value,
+    state: event.target.state.value,
+    country: event.target.country.value
+  }
+
 addSchoolData(formData)
    return {
         type: HANDLE_SCHOOL_DATA,
