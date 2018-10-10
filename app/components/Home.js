@@ -16,6 +16,7 @@ export default class Home extends Component<Props> {
        <button></button>
         <SideMenu/>
         <SchoolInfo/>
+
       </div>
     );
   }
