@@ -14,7 +14,7 @@ export const handleSchoolData = (event) => {
     street: event.target.street.value,
     state: event.target.state.value,
     country: event.target.country.value
-  };
+  }
 
 addSchoolData(formData)
    return {

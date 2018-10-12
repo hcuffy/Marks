@@ -8,11 +8,11 @@ import './app.global.css';
 const store = configureStore();
 
 render(
-  <AppContainer>
-    <Root store={store} history={history} />
-  </AppContainer>,
-  document.getElementById('root')
-);
+    <AppContainer>
+      <Root store={store} history={history} />
+    </AppContainer>,
+    document.getElementById('root')
+  );
 
 if (module.hot) {
   module.hot.accept('./containers/Root', () => {

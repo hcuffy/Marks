@@ -1,12 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import { actionCreators } from '../actions/index';
-import routes from '../constants/routes.json';
 import styles from './styles/SchoolData.css';
-import { getSchoolData } from '../database/schoolDB';
-
 
 const SchoolInfo = ({schoolData, actions}) => (
 

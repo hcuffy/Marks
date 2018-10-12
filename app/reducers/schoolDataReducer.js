@@ -17,8 +17,7 @@ const handleDataSchoolReducer = (state = initialLoadState, action) => {
         const { title, street, state, country, year } = action.payload;
         return Object.assign({}, state, { title, street, state, country, year });
     default:
-
-    return Object.assign({},initialLoadState);
+         return Object.assign({},initialLoadState);
   }
 }
 
