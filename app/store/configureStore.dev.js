@@ -4,7 +4,6 @@ import { createHashHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
-
 import * as schoolActions from '../actions/schoolAction';
 
 const history = createHashHistory();
@@ -52,8 +51,8 @@ const configureStore = (initialState) => {
   const enhancer = composeEnhancers(...enhancers);
 
   // Create Store
-  const store = createStore(rootReducer, initialState, enhancer);
-
+  const store = createStore(rootReducer, { schoolData: 'horse' }, enhancer);
+console.log(store.getState());
   if (module.hot) {
     module.hot.accept(
       '../reducers',

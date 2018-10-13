@@ -3,17 +3,13 @@ import React, { Component } from 'react';
 import routes from '../constants/routes.json';
 import styles from './styles/Home.css';
 import SideMenu from './SideMenu';
-import SchoolInfo from './SchoolData';
+import SchoolInfo from './SchoolInfo';
 
-type Props = {};
-
-export default class Home extends Component<Props> {
-  props: Props;
+export default class Home extends Component {
 
   render() {
     return (
       <div className={styles.container} data-tid="container">
-       <button></button>
         <SideMenu/>
         <SchoolInfo/>
 
