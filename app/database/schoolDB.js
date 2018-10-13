@@ -13,13 +13,11 @@ exports.addSchoolData = (data) => {
   });
 };
 
-exports.getSchoolData =  () => {
-const schoolAddress = {}
-  schoolDB.find({},  (err, entry) => {
+export function getSchoolData() {
+return new Promise(((resolve, reject) => schoolDB.find({},  (err, entry) => {
         if (err) {
-          return err
+          return reject(err)
         }
-      schoolAddress.info = entry;
-        return schoolAddress;
-      });
+        return resolve(entry);
+      })));
 };

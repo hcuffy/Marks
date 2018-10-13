@@ -25,11 +25,11 @@ addSchoolData(formData)
 
 exports.handleSchoolDataDisplay = () => async (dispatch) => {
    const info = await getSchoolData()
-   setTimeout(() => {
+   console.log(info);
+
      dispatch({
        type: HANDLE_SCHOOL_DATA_DISPLAY,
        payload: {schoolData: info}
      })
-   }, 2000);
 
  }
