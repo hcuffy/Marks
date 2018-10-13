@@ -1,3 +1,4 @@
+// @flow
 import { HANDLE_SCHOOL_DATA } from '../actions/actionTypes';
 import type { Action } from './types';
 

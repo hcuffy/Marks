@@ -1,3 +1,4 @@
+// @flow
 import { toast } from 'react-toastify';
 import type { GetState, Dispatch } from '../reducers/types';
 import {
@@ -23,13 +24,10 @@ addSchoolData(formData)
     }
 };
 
-exports.handleSchoolDataDisplay = () => async (dispatch) => {
-   const info = await getSchoolData()
-   console.log(info);
-
+export const handleSchoolDataDisplay = () => async (dispatch) => {
+   const data = await getSchoolData()
      dispatch({
        type: HANDLE_SCHOOL_DATA_DISPLAY,
-       payload: {schoolData: info}
+       payload: {schoolData: data}
      })
-
  }

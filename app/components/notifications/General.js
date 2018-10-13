@@ -1,5 +1,6 @@
+// @flow
 import { toast } from 'react-toastify';
 
-export function saveSuccess(){
+export const saveSuccess = () => {
   toast.success('Data was saved successfully.')
 }
