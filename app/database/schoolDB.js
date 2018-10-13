@@ -1,4 +1,8 @@
 // @flow
+import { saveSuccessful,
+         saveError
+        } from "../components/notifications/General";
+
 const Datastore = require('nedb')
 const electron = require('electron')
 const path = require('path')
@@ -10,8 +14,10 @@ autoload: true, timestampData: true })
 export const addSchoolData = (data) => {
   schoolDB.insert(data, (err, entry) => {
     if (err) {
+      saveError()
       return err
     }
+    saveSuccessful()
   });
 };
 

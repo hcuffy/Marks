@@ -17,11 +17,11 @@ export const handleSchoolData = (event) => {
     country: event.target.country.value
   }
 
-addSchoolData(formData)
-   return {
-        type: HANDLE_SCHOOL_DATA,
-        payload: formData
-    }
+  addSchoolData(formData)
+     return {
+          type: HANDLE_SCHOOL_DATA,
+          payload: formData
+      }
 };
 
 export const handleSchoolDataDisplay = () => async (dispatch) => {
