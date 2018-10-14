@@ -8,8 +8,8 @@ import { ToastContainer } from 'react-toastify';
 const SideMenu = () => (
 
     <div className={styles.menu_div}>
-      <button className={styles.menu_btn} ><Link to={HOME}><i className={styles.menu_btn,"fa fa-home fa-3x"}/></Link></button>
-      <button className={styles.menu_btn} ><Link to={SCHOOL}><i className={styles.menu_btn,"fa fa-school fa-3x"}/></Link></button>
+      <button className={styles.menu_btn} ><Link to={HOME}><i className={"fa fa-home fa-3x"}/></Link></button>
+      <button className={styles.menu_btn} ><Link to={SCHOOL}><i className={"fa fa-school fa-3x"}/></Link></button>
       <button className={styles.menu_btn} ><i className= "fa fa-users fa-3x"/></button>
       <button className={styles.menu_btn} ><i className="fa fa-eraser fa-3x"/></button>
       <button className={styles.menu_btn} ><i className="fa fa-list-ol fa-3x"/></button>
