@@ -8,7 +8,6 @@ import styles from './styles/SchoolData.css';
 
 const SchoolInfo = ({schoolData,initialS, actions}) => (
 
-
     <div className={styles.school_data_div}>
      <span>{schoolData.title}</span>
       <br />
@@ -19,9 +18,6 @@ const SchoolInfo = ({schoolData,initialS, actions}) => (
       <span>{schoolData.country}</span>
       <br />
       <span>{schoolData.year}</span>
-      <br />
-      <button onClick={actions.handleSchoolDataDisplay}>Test</button>
-
     </div>
 );
 
