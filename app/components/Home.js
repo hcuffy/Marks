@@ -10,14 +10,6 @@ import SchoolInfo from './SchoolInfo';
 import { getSchoolData } from '../database/schoolDB';
 import { handleSchoolDataDisplay } from '../actions/schoolAction'
 
-const initialLoadState = {
-  'title':'Initial',
-  'street':'Initial',
-  'state':'Initial',
-  'country':'Initial',
-  'year':'Initial'
-}
-
 class Home extends Component {
 
   componentWillMount () {

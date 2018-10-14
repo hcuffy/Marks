@@ -6,7 +6,7 @@ import { actionCreators } from '../actions/index';
 import styles from './styles/SchoolData.css';
 
 
-const SchoolInfo = ({schoolData,initialS, actions}) => (
+const SchoolInfo = ({schoolData, actions}) => (
 
     <div className={styles.school_data_div}>
      <span>{schoolData.title}</span>

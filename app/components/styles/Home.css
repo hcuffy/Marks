@@ -2,3 +2,9 @@
   position: absolute;
   text-align: center;
 }
+
+.center_header {
+  float: right;
+  width: 50%;
+  margin-right: 200px;
+}

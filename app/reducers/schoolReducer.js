@@ -3,11 +3,11 @@ import { HANDLE_SCHOOL_DATA } from '../actions/actionTypes';
 import type { Action } from './types';
 
 const initialLoadState = {
-  'title':'Test',
-  'street':'Test',
-  'state':'Test',
-  'country':'Test',
-  'year':'Test'
+  'title':'placeholder',
+  'street':'placeholder',
+  'state':'placeholder',
+  'country':'placeholder',
+  'year':'placeholder'
 }
 
 const handleSchoolReducer = (state = initialLoadState, action) => {
