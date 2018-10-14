@@ -12,7 +12,7 @@ const School = ({actions}) => (
     <div className="form-wrapper">
       <h2 className={styles.center_header}>School Information</h2>
       <SideMenu/>
-      <SchoolInfo/>
+      <SchoolInfo onLoad={actions.handleSchoolDataDisplay()}/>
         <form onSubmit={actions.handleSchoolData} method="POST" method="POST" >
           <input name="title" type="text" placeholder="Enter your school's name."/>
           <input name="street" type="text" placeholder="Enter the street."/>
@@ -24,8 +24,11 @@ const School = ({actions}) => (
     </div>
   );
 
-const mapStateToProps = (state) => ({
-    })
+  const mapStateToProps = (state) => {
+      return {
+
+      }
+  }
 
 const mapDispatchToProps = (dispatch) => ({ actions: bindActionCreators(actionCreators, dispatch) })
 

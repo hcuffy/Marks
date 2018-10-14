@@ -7,8 +7,6 @@ import { actionCreators } from '../actions/index';
 import styles from './styles/Home.css';
 import SideMenu from './SideMenu';
 import SchoolInfo from './SchoolInfo';
-import { getSchoolData } from '../database/schoolDB';
-import { handleSchoolDataDisplay } from '../actions/schoolAction'
 
 class Home extends Component {
 

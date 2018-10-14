@@ -5,10 +5,10 @@ import { bindActionCreators} from 'redux';
 import { actionCreators } from '../actions/index';
 import styles from './styles/SchoolData.css';
 
-
 const SchoolInfo = ({schoolData, actions}) => (
 
     <div className={styles.school_data_div}>
+      <p>Display Test</p>
      <span>{schoolData.title}</span>
       <br />
       <span>{schoolData.street}</span>
