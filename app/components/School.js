@@ -5,6 +5,7 @@ import { bindActionCreators} from 'redux';
 import { actionCreators } from '../actions/index';
 import SideMenu from './SideMenu';
 
+
 const School = ({actions}) => (
 
     <div className="form-wrapper">

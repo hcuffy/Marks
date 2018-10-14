@@ -26,7 +26,6 @@ const SchoolInfo = ({schoolData,initialS, actions}) => (
 );
 
   const mapStateToProps = (state) => {
-    console.log(state);
       return {
         schoolData: state.schoolData
       }

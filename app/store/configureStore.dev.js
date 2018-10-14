@@ -51,8 +51,7 @@ const configureStore = (initialState) => {
   const enhancer = composeEnhancers(...enhancers);
 
   // Create Store
-  const store = createStore(rootReducer, { schoolData: 'horse' }, enhancer);
-console.log(store.getState());
+  const store = createStore(rootReducer, initialState, enhancer);
   if (module.hot) {
     module.hot.accept(
       '../reducers',
