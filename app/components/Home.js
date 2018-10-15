@@ -1,23 +1,34 @@
 // @flow
 import React, { Component } from 'react';
 import routes from '../constants/routes.json';
+import { connect } from 'react-redux';
+import { bindActionCreators} from 'redux';
+import { actionCreators } from '../actions/index';
 import styles from './styles/Home.css';
 import SideMenu from './SideMenu';
-import SchoolInfo from './SchoolData';
+import SchoolInfo from './SchoolInfo';
 
-type Props = {};
+class Home extends Component {
 
-export default class Home extends Component<Props> {
-  props: Props;
+  componentWillMount () {
+     this.props.actions.handleSchoolDataDisplay()
+  }
+
 
   render() {
     return (
       <div className={styles.container} data-tid="container">
-       <button></button>
         <SideMenu/>
         <SchoolInfo/>
-
       </div>
     );
-  }
-}
+  };
+};
+
+
+const mapStateToProps = (state) => ({
+    })
+
+const mapDispatchToProps = (dispatch) => ({ actions: bindActionCreators(actionCreators, dispatch) })
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

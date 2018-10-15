@@ -1,3 +1,5 @@
+Developed using [**electron-react-boilerplate**](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
+
 ## Installation
 
 First, clone the repo via git:

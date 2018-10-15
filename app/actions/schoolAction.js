@@ -1,5 +1,6 @@
+// @flow
 import { toast } from 'react-toastify';
-import type { GetState, Dispatch } from '../reducers/types';
+import type { Dispatch } from '../reducers/types';
 import {
          HANDLE_SCHOOL_DATA ,
          HANDLE_SCHOOL_DATA_DISPLAY
@@ -13,20 +14,22 @@ export const handleSchoolData = (event) => {
     title: event.target.title.value,
     street: event.target.street.value,
     state: event.target.state.value,
-    country: event.target.country.value
+    country: event.target.country.value,
+    zip: event.target.zip.value,
+    year: event.target.year.value
   }
 
-addSchoolData(formData)
-   return {
-        type: HANDLE_SCHOOL_DATA,
-        payload: formData
-    }
+  addSchoolData(formData)
+     return {
+          type: HANDLE_SCHOOL_DATA,
+          payload: formData
+      }
 };
 
-export const handleSchoolDataDisplay = () => {
-const info =  getSchoolData()
- return {
-      type: HANDLE_SCHOOL_DATA_DISPLAY,
-      payload: {schoolData: info}
-    }
-};
+export const handleSchoolDataDisplay = () => async (dispatch) => {
+   const data = await getSchoolData()
+     dispatch({
+       type: HANDLE_SCHOOL_DATA_DISPLAY,
+       payload: {schoolData: data}
+     })
+ }
