@@ -7,28 +7,52 @@ import styles from './styles/Home.css';
 import SideMenu from './SideMenu';
 import SchoolInfo from './SchoolInfo';
 
-const School = ({actions}) => (
+const School = ({schoolData, actions}) => (
 
-    <div className="form-wrapper">
-      <h2 className={styles.center_header}>School Information</h2>
-      <SideMenu/>
-      <SchoolInfo onLoad={actions.handleSchoolDataDisplay()}/>
-        <form onSubmit={actions.handleSchoolData} method="POST" method="POST" >
-          <input name="title" type="text" placeholder="Enter your school's name."/>
-          <input name="street" type="text" placeholder="Enter the street."/>
-          <input name="state" type="text" placeholder="Enter the state."/>
-          <input name="country" type="text" placeholder="Enter the country."/>
-          <button className="custom-btn">Save</button>
-        </form>
+  <div className={styles.div_wrapper}>
+    <h2 className={styles.center_header}>School Information</h2>
+    <SideMenu/>
+    <form onSubmit={actions.handleSchoolData} method="POST" method="POST" >
+      <div className={styles.form_outer_div}>
+        <div className={styles.form_inner_div}>
+          <label htmlFor="school_name">School Name:</label>
+          <input name="title" id="school_name" type="text" defaultValue={schoolData.title}/>
+        </div>
+        <div className={styles.form_inner_div}>
+          <label htmlFor="school_street">Address:</label>
+          <input name="street" id="school_street" type="text" defaultValue={schoolData.street}/>
+        </div>
+        <div className={styles.form_inner_div}>
+          <label htmlFor="school_state">State:</label>
+          <input name="state" id="school_state" type="text" defaultValue={schoolData.state}/>
+        </div>
+        <div className={styles.form_inner_div}>
+          <label htmlFor="school_country">Country:</label>
+          <input name="country" id="school_country" type="text" defaultValue={schoolData.country}/>
+        </div>
+        <div className={styles.form_inner_div}>
+          <label htmlFor="school_zip">Zip Code:</label>
+          <input name="zip" id="school_zip" type="text" defaultValue={schoolData.zip}/>
+        </div>
+        <div className={styles.form_inner_div}>
+          <label htmlFor="school_year">Year:</label>
+          <input name="year" id="school_year" type="text" defaultValue={schoolData.year}/>
+        </div>
+          <div className={styles.form_inner_div, styles.save_btn}>
+              <button type="submit" className={"btn btn-success"}>Save</button>
+         </div>
+      </div>
 
-    </div>
-  );
+    </form>
+      <div>
+      </div>
+  </div>
 
-  const mapStateToProps = (state) => {
-      return {
+);
 
-      }
-  }
+const mapStateToProps = (state) => ({
+      schoolData: state.schoolData
+    })
 
 const mapDispatchToProps = (dispatch) => ({ actions: bindActionCreators(actionCreators, dispatch) })
 
