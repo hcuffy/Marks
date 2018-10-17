@@ -46,7 +46,6 @@ export const addSchoolData = data => {
       return err
     }
     if (entry.length > 0) {
-      console.log('here one')
       updateData(entry[0], data)
       return 'saved'
     }
