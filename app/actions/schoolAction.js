@@ -1,7 +1,7 @@
 // @flow
 import { toast } from 'react-toastify'
 import type { Dispatch } from '../reducers/types'
-import { HANDLE_SCHOOL_DATA, HANDLE_SCHOOL_DATA_DISPLAY } from './actionTypes'
+import { HANDLE_SCHOOL_DATA, DISPLAY_SCHOOL_DATA } from './actionTypes'
 import { addSchoolData, getSchoolData } from '../database/schoolDB'
 
 export const handleSchoolData = event => {
@@ -25,8 +25,10 @@ export const handleSchoolData = event => {
 
 export const displaySchoolData = () => async dispatch => {
   const data = await getSchoolData()
-  dispatch({
-    type: HANDLE_SCHOOL_DATA_DISPLAY,
-    payload: { schoolData: data }
-  })
+  if (data.length !== 0) {
+    dispatch({
+      type: DISPLAY_SCHOOL_DATA,
+      payload: { schoolData: data }
+    })
+  }
 }
