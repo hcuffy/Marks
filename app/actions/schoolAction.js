@@ -17,6 +17,7 @@ export const handleSchoolData = event => {
   }
 
   addSchoolData(formData)
+
   return {
     type: HANDLE_SCHOOL_DATA,
     payload: formData
