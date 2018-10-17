@@ -1,4 +1,4 @@
-import type { Dispatch as ReduxDispatch, Store as ReduxStore } from 'redux';
+import type { Dispatch as ReduxDispatch, Store as ReduxStore } from 'redux'
 
 export type Action = {
   +type: string

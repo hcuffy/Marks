@@ -35,14 +35,15 @@
     "import/no-unresolved": "error",
     "import/no-extraneous-dependencies": "off",
     "jsx-a11y/anchor-is-valid": "off",
-    "max-len": [2, 80, 4],
     "no-console": "off",
     "no-use-before-define": "off",
     "no-multi-assign": "off",
+    "object-curly-spacing": ["error", "always"],
     "promise/param-names": "error",
     "promise/always-return": "error",
     "promise/catch-or-return": "error",
     "promise/no-native": "off",
+    "semi": ["error", "never"],
     "react/sort-comp": [
       "error",
       {
@@ -58,7 +59,9 @@
     "react/jsx-no-bind": "off",
     "react/jsx-filename-extension": [
       "error",
-      { "extensions": [".js", ".jsx"] }
+      {
+        "extensions": [".js", ".jsx"]
+      }
     ],
     "react/prefer-stateless-function": "off"
   },

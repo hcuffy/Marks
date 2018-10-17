@@ -1,5 +1,5 @@
 // @flow
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
 export const saveSuccessful = () => {
   toast.success('Your data was saved successfully.',{
@@ -9,7 +9,7 @@ export const saveSuccessful = () => {
     closeOnClick: true,
     pauseOnHover: false,
     draggable: false
-  });
+  })
 }
 
 export const saveError = () => {
@@ -20,5 +20,5 @@ export const saveError = () => {
     closeOnClick: true,
     pauseOnHover: false,
     draggable: false
-  });
+  })
 }

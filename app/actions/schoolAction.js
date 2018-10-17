@@ -1,14 +1,11 @@
 // @flow
-import { toast } from 'react-toastify';
-import type { Dispatch } from '../reducers/types';
-import {
-         HANDLE_SCHOOL_DATA ,
-         HANDLE_SCHOOL_DATA_DISPLAY
-       } from './actionTypes';
-import { addSchoolData, getSchoolData } from '../database/schoolDB';
+import { toast } from 'react-toastify'
+import type { Dispatch } from '../reducers/types'
+import { HANDLE_SCHOOL_DATA, HANDLE_SCHOOL_DATA_DISPLAY } from './actionTypes'
+import { addSchoolData, getSchoolData } from '../database/schoolDB'
 
-export const handleSchoolData = (event) => {
-  event.preventDefault();
+export const handleSchoolData = event => {
+  event.preventDefault()
 
   const formData = {
     title: event.target.title.value,
@@ -20,16 +17,16 @@ export const handleSchoolData = (event) => {
   }
 
   addSchoolData(formData)
-     return {
-          type: HANDLE_SCHOOL_DATA,
-          payload: formData
-      }
-};
+  return {
+    type: HANDLE_SCHOOL_DATA,
+    payload: formData
+  }
+}
 
-export const handleSchoolDataDisplay = () => async (dispatch) => {
-   const data = await getSchoolData()
-     dispatch({
-       type: HANDLE_SCHOOL_DATA_DISPLAY,
-       payload: {schoolData: data}
-     })
- }
+export const displaySchoolData = () => async dispatch => {
+  const data = await getSchoolData()
+  dispatch({
+    type: HANDLE_SCHOOL_DATA_DISPLAY,
+    payload: { schoolData: data }
+  })
+}
