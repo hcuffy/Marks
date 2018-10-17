@@ -10,7 +10,7 @@ import SchoolInfo from './SchoolInfo'
 
 class Home extends Component {
   componentWillMount() {
-    this.props.actions.handleSchoolDataDisplay()
+    this.props.actions.displaySchoolData()
   }
 
   render() {

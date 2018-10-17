@@ -1,6 +1,6 @@
-import { handleSchoolData, handleSchoolDataDisplay } from './schoolAction'
+import { handleSchoolData, displaySchoolData } from './schoolAction'
 
 export const actionCreators = {
   handleSchoolData,
-  handleSchoolDataDisplay
+  displaySchoolData
 }
