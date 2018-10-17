@@ -23,8 +23,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  schoolData: state.schoolData
-})
+    schoolData: state.schoolData
+  })
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)

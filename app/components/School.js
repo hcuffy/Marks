@@ -11,7 +11,7 @@ const School = ({ schoolData, actions }) => (
   <div className={styles.div_wrapper}>
     <h2 className={styles.center_header}>School Information</h2>
     <SideMenu />
-    <form onSubmit={actions.handleSchoolData} method="POST" method="POST">
+    <form onSubmit={actions.handleSchoolData} method="POST">
       <div className={styles.form_outer_div}>
         <div className={styles.form_inner_div}>
           <label htmlFor="school_name">School Name:</label>
@@ -78,9 +78,10 @@ const School = ({ schoolData, actions }) => (
   </div>
 )
 
-const mapStateToProps = state => ({
-  schoolData: state.schoolData
-})
+const mapStateToProps = state => {
+  console.log(state)
+  return { schoolData: state.schoolData }
+}
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)

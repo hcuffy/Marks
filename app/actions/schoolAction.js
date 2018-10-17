@@ -20,7 +20,7 @@ export const handleSchoolData = event => {
 
   return {
     type: HANDLE_SCHOOL_DATA,
-    payload: formData
+    payload: { schoolData: data }
   }
 }
 
