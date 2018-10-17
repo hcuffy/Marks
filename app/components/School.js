@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
-import styles from './styles/Home.css'
+import styles from './styles/home.css'
 import SideMenu from './SideMenu'
 import SchoolInfo from './SchoolInfo'
 
@@ -79,8 +79,8 @@ const School = ({ schoolData, actions }) => (
 )
 
 const mapStateToProps = state => ({
-    schoolData: state.schoolData
-  })
+  schoolData: state.schoolData
+})
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)

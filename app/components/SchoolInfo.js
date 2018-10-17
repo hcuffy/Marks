@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
-import styles from './styles/SchoolData.css'
+import styles from './styles/schoolData.css'
 
 const SchoolInfo = ({ schoolData, actions }) => (
   <div className={styles.school_data_div}>

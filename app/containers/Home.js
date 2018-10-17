@@ -2,11 +2,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import routes from '../constants/routes.json'
 import { actionCreators } from '../actions/index'
-import styles from './styles/home.css'
-import SideMenu from './SideMenu'
-import SchoolInfo from './SchoolInfo'
+import routes from '../constants/routes.json'
+import SideMenu from '../components/SideMenu'
+import SchoolInfo from '../components/SchoolInfo'
 
 class Home extends Component {
   componentWillMount() {
@@ -15,7 +14,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className={styles.container} data-tid="container">
+      <div data-tid="container">
         <SideMenu />
         <SchoolInfo />
       </div>
