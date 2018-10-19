@@ -12,7 +12,7 @@ const SchoolInfo = ({ schoolData, actions }) => (
     <br />
     <span>{schoolData.street}</span>
     <br />
-    <span>{schoolData.state}</span>
+    <span>{schoolData.schoolstate}</span>
     <br />
     <span>{schoolData.country}</span>
     <br />

@@ -17,13 +17,13 @@ const schoolDB = new Datastore({
 })
 
 function updateData(previous, current) {
-  const { title, street, state, country, zip, year } = current
+  const { title, street, schoolstate, country, zip, year } = current
   schoolDB.update(
     { title: previous.title },
     {
       title,
       street,
-      state,
+      schoolstate,
       country,
       zip,
       year

@@ -34,10 +34,10 @@ const School = ({ schoolData, actions }) => (
         <div className={styles.form_inner_div}>
           <label htmlFor="school_state">State:</label>
           <input
-            name="state"
+            name="schoolstate"
             id="school_state"
             type="text"
-            defaultValue={schoolData.state}
+            defaultValue={schoolData.schoolstate}
           />
         </div>
         <div className={styles.form_inner_div}>

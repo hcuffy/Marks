@@ -5,12 +5,19 @@ import type { Action } from './types'
 const initialLoadState = {}
 
 const handleSchoolReducer = (state = initialLoadState, action) => {
+  console.log(state)
   switch (action.type) {
     case HANDLE_SCHOOL_DATA:
-      const { title, street, state, country, zip, year } = action.payload
-      return Object.assign({}, state, { title, street, state, country, year })
+      const { title, schoolstate, state, country, zip, year } = action.payload
+      return Object.assign({}, state, {
+        title,
+        street,
+        schoolstate,
+        country,
+        year
+      })
     default:
-      return state
+      return Object.assign({}, initialLoadState)
   }
 }
 

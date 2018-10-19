@@ -11,7 +11,7 @@ const displaySchoolData = (state = initialLoadState, action) => {
       const {
         title,
         street,
-        state,
+        schoolstate,
         country,
         zip,
         year
@@ -19,13 +19,13 @@ const displaySchoolData = (state = initialLoadState, action) => {
       return Object.assign({}, state, {
         title,
         street,
-        state,
+        schoolstate,
         country,
         zip,
         year
       })
     default:
-      return state
+      return Object.assign({}, initialLoadState)
   }
 }
 
