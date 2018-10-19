@@ -5,7 +5,6 @@ import type { Action } from './types'
 const initialLoadState = {}
 
 const handleSchoolReducer = (state = initialLoadState, action) => {
-  console.log(state)
   switch (action.type) {
     case HANDLE_SCHOOL_DATA:
       const { title, schoolstate, state, country, zip, year } = action.payload

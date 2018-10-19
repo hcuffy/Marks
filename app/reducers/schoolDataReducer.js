@@ -1,5 +1,5 @@
 // @flow
-import { DISPLAY_SCHOOL_DATA } from '../actions/actionTypes'
+import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../actions/actionTypes'
 import type { Action } from './types'
 import { getSchoolData } from '../database/schoolDB'
 
@@ -25,7 +25,7 @@ const displaySchoolData = (state = initialLoadState, action) => {
         year
       })
     default:
-      return Object.assign({}, initialLoadState)
+      return state
   }
 }
 

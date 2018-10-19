@@ -8,6 +8,17 @@ import SideMenu from '../components/SideMenu'
 import SchoolInfo from '../components/SchoolInfo'
 
 class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      title: '',
+      street: '',
+      schoolstate: '',
+      country: '',
+      year: ''
+    }
+  }
+
   componentDidMount() {
     this.props.actions.displaySchoolData()
   }

@@ -10,7 +10,7 @@ export const handleSchoolData = event => {
   const formData = {
     title: event.target.title.value,
     street: event.target.street.value,
-    state: event.target.state.value,
+    schoolstate: event.target.schoolstate.value,
     country: event.target.country.value,
     zip: event.target.zip.value,
     year: event.target.year.value
@@ -20,7 +20,7 @@ export const handleSchoolData = event => {
 
   return {
     type: HANDLE_SCHOOL_DATA,
-    payload: { schoolData: data }
+    payload: { schoolData: formData }
   }
 }
 
