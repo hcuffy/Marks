@@ -5,20 +5,9 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import routes from '../constants/routes.json'
 import SideMenu from '../components/SideMenu'
-import SchoolInfo from '../components/SchoolInfo'
+import SchoolPage from '../components/SchoolPage'
 
 class Home extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      title: '',
-      street: '',
-      schoolstate: '',
-      country: '',
-      year: ''
-    }
-  }
-
   componentDidMount() {
     this.props.actions.displaySchoolData()
   }
@@ -27,7 +16,7 @@ class Home extends Component {
     return (
       <div data-tid="container">
         <SideMenu />
-        <SchoolInfo />
+        <SchoolPage />
       </div>
     )
   }

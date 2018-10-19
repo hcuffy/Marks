@@ -3,6 +3,8 @@ import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../actions/actionTypes'
 import type { Action } from './types'
 import { getSchoolData } from '../database/schoolDB'
 
+const _ = require('lodash')
+
 const initialLoadState = {}
 
 const displaySchoolData = (state = initialLoadState, action) => {
@@ -16,7 +18,7 @@ const displaySchoolData = (state = initialLoadState, action) => {
         zip,
         year
       } = action.payload.schoolData[0]
-      return Object.assign({}, state, {
+      return _.assign({}, state, {
         title,
         street,
         schoolstate,

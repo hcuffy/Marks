@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { actionCreators } from '../actions/index'
-import { HOME, SCHOOL } from '../constants/routes.json'
+import { HOME, SCHOOLINFO } from '../constants/routes.json'
 import styles from './styles/sideMenu.css'
 
 const SideMenu = ({ actions }) => (
@@ -16,7 +16,7 @@ const SideMenu = ({ actions }) => (
       </Link>
     </button>
     <button className={styles.menu_btn}>
-      <Link to={SCHOOL}>
+      <Link to={SCHOOLINFO}>
         <i className="fa fa-school fa-3x" />
       </Link>
     </button>
