@@ -5,20 +5,19 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import styles from './styles/schoolData.css'
 
-const SchoolPage = ({ schoolData, actions }) => (
-  <div className={styles.school_data_div}>
-    <p>Display Test</p>
-    <span>{schoolData.title}</span>
-    <br />
-    <span>{schoolData.street}</span>
-    <br />
-    <span>{schoolData.schoolstate}</span>
-    <br />
-    <span>{schoolData.country}</span>
-    <br />
-    <span>{schoolData.year}</span>
-  </div>
-)
+const _ = require('lodash')
+
+const SchoolPage = ({ schoolData, actions }) => {
+  const entry = _.values(schoolData).map((data, idx) => (
+    <li key={idx}>{data}</li>
+  ))
+  return (
+    <div className={styles.school_data_div}>
+      <p>Display Test</p>
+      <span>{entry}</span>
+    </div>
+  )
+}
 
 const mapStateToProps = state => ({
   schoolData: state.schoolData
