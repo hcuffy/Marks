@@ -1,6 +1,5 @@
 // @flow
 import { toast } from 'react-toastify'
-import type { Dispatch } from '../reducers/types'
 import { HANDLE_SCHOOL_DATA, DISPLAY_SCHOOL_DATA } from './actionTypes'
 import { addSchoolData, getSchoolData } from '../database/schoolDB'
 
