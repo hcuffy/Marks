@@ -25,7 +25,7 @@ const displaySchoolData = (state = initialLoadState, action) => {
         year
       })
     default:
-      return Object.assign({}, initialLoadState)
+      return state
   }
 }
 
