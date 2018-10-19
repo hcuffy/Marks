@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { actionCreators } from '../actions/index'
-import { HOME, SCHOOL } from '../constants/routes.json'
-import styles from './styles/SideMenu.css'
+import { HOME, SCHOOLINFO } from '../constants/routes.json'
+import styles from './styles/sideMenu.css'
 
 const SideMenu = ({ actions }) => (
   <div className={styles.menu_div}>
@@ -15,8 +15,8 @@ const SideMenu = ({ actions }) => (
         <i className="fa fa-home fa-3x" />
       </Link>
     </button>
-    <button className={styles.menu_btn} onClick={actions.displaySchoolData}>
-      <Link to={SCHOOL}>
+    <button className={styles.menu_btn}>
+      <Link to={SCHOOLINFO}>
         <i className="fa fa-school fa-3x" />
       </Link>
     </button>
@@ -33,13 +33,11 @@ const SideMenu = ({ actions }) => (
   </div>
 )
 
-const mapStateToProps = state => ({})
-
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(SideMenu)

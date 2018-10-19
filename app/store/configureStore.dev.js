@@ -8,7 +8,7 @@ import * as schoolActions from '../actions/schoolAction'
 
 const history = createHashHistory()
 
-const configureStore = (initialState) => {
+const configureStore = () => {
   // Redux Configuration
   const middleware = []
   const enhancers = []
@@ -51,7 +51,7 @@ const configureStore = (initialState) => {
   const enhancer = composeEnhancers(...enhancers)
 
   // Create Store
-  const store = createStore(rootReducer, initialState, enhancer)
+  const store = createStore(rootReducer, {}, enhancer)
   if (module.hot) {
     module.hot.accept(
       '../reducers',

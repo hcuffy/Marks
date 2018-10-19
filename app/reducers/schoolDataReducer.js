@@ -1,24 +1,34 @@
 // @flow
-import { HANDLE_SCHOOL_DATA_DISPLAY } from '../actions/actionTypes'
+import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../actions/actionTypes'
 import type { Action } from './types'
 import { getSchoolData } from '../database/schoolDB'
 
+const _ = require('lodash')
+
 const initialLoadState = {}
 
-const handleDataSchoolReducer = (state = initialLoadState, action) => {
+const displaySchoolData = (state = initialLoadState, action) => {
   switch (action.type) {
-    case HANDLE_SCHOOL_DATA_DISPLAY:
+    case DISPLAY_SCHOOL_DATA:
       const {
         title,
         street,
-        state,
+        schoolstate,
         country,
+        zip,
         year
       } = action.payload.schoolData[0]
-      return Object.assign({}, state, { title, street, state, country, year })
+      return _.assign({}, state, {
+        title,
+        street,
+        schoolstate,
+        country,
+        zip,
+        year
+      })
     default:
-      return Object.assign({}, initialLoadState)
+      return state
   }
 }
 
-export default handleDataSchoolReducer
+export default displaySchoolData
