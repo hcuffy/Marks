@@ -8,7 +8,7 @@ import SideMenu from '../components/SideMenu'
 import SchoolInfo from '../components/SchoolInfo'
 
 class Home extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.displaySchoolData()
   }
 
@@ -22,15 +22,11 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-    schoolData: state.schoolData
-  })
-
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Home)

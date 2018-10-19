@@ -15,7 +15,7 @@ const SideMenu = ({ actions }) => (
         <i className="fa fa-home fa-3x" />
       </Link>
     </button>
-    <button className={styles.menu_btn} onClick={actions.displaySchoolData}>
+    <button className={styles.menu_btn}>
       <Link to={SCHOOL}>
         <i className="fa fa-school fa-3x" />
       </Link>
@@ -33,13 +33,11 @@ const SideMenu = ({ actions }) => (
   </div>
 )
 
-const mapStateToProps = state => ({})
-
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(SideMenu)

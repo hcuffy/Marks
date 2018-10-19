@@ -78,10 +78,7 @@ const School = ({ schoolData, actions }) => (
   </div>
 )
 
-const mapStateToProps = state => {
-  console.log(state)
-  return { schoolData: state.schoolData }
-}
+const mapStateToProps = state => ({ schoolData: state.schoolData })
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
