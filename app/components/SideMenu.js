@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { actionCreators } from '../actions/index'
-import { HOME, SCHOOLINFO } from '../constants/routes.json'
+import { HOME, SCHOOLINFO, CLASSROOM } from '../constants/routes.json'
 import styles from './styles/sideMenu.css'
 
 const SideMenu = ({ actions }) => (

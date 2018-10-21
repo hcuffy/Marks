@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/SideMenu'
 import SchoolPage from '../components/SchoolPage'
+import routes from '../constants/routes.json'
 
 class Home extends Component {
   componentDidMount() {
@@ -13,7 +14,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div data-tid="home_container">
+      <div data-tid="container">
         <SideMenu />
         <SchoolPage />
       </div>
