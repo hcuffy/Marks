@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/SideMenu'
 import SchoolPage from '../components/SchoolPage'
-import routes from '../constants/routes.json'
 
 class Home extends Component {
   componentDidMount() {

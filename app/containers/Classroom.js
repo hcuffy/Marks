@@ -10,7 +10,7 @@ class Classroom extends Component {
     return (
       <div data-tid="classroom_container">
         <SideMenu />
-        <p>Testing</p>
+        <h1>Testing Display</h1>
       </div>
     )
   }

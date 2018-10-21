@@ -24,7 +24,9 @@ const SideMenu = ({ actions }) => (
       <i className="fa fa-users fa-3x" />
     </button>
     <button className={styles.menu_btn}>
-      <i className="fa fa-eraser fa-3x" />
+      <Link to={CLASSROOM}>
+        <i className="fa fa-eraser fa-3x" />
+      </Link>
     </button>
     <button className={styles.menu_btn}>
       <i className="fa fa-list-ol fa-3x" />
