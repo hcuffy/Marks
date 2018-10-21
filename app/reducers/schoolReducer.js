@@ -9,14 +9,7 @@ const initialLoadState = {}
 const handleSchoolReducer = (state = initialLoadState, action) => {
   switch (action.type) {
     case HANDLE_SCHOOL_DATA:
-      const { title, schoolstate, state, country, zip, year } = action.payload
-      return _.assign({}, state, {
-        title,
-        street,
-        schoolstate,
-        country,
-        year
-      })
+      return _.assign({}, state, action.payload)
     default:
       return state
   }

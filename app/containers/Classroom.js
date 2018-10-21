@@ -4,18 +4,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/SideMenu'
-import SchoolPage from '../components/SchoolPage'
 
-class Home extends Component {
-  componentDidMount() {
-    this.props.actions.displaySchoolData()
-  }
-
+class Classroom extends Component {
   render() {
     return (
-      <div data-tid="home_container">
+      <div data-tid="classroom_container">
         <SideMenu />
-        <SchoolPage />
+        <p>Testing</p>
       </div>
     )
   }
@@ -28,4 +23,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps
-)(Home)
+)(Classroom)
