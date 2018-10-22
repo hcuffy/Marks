@@ -9,7 +9,7 @@ const initialLoadState = {
   tabTwoTitle: 'Exams/Tests',
   subjectTab: true,
   testTab: false,
-  subjectIsActive: 'Active',
+  subjectIsActive: 'active',
   testIsActive: ''
 }
 

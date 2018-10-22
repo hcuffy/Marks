@@ -6,13 +6,14 @@ function changeTab(tabTitle) {
 
   newState.subjectTab = tabTitle == 'Subjects'
   newState.testTab = tabTitle == 'Exams/Tests'
-  newState.subjectIsActive = tabTitle == 'Subjects' ? 'Active' : ''
-  newState.testIsActive = tabTitle == 'Exams/Tests' ? 'Active' : ''
+  newState.subjectIsActive = tabTitle == 'Subjects' ? 'active' : ''
+  newState.testIsActive = tabTitle == 'Exams/Tests' ? 'active' : ''
 
   return newState
 }
 
 export const changeClassroomTab = event => {
+  console.log(event.target)
   const clickedTabTitle = event.target.value
   const clickedTabState = event.target.className.split(' ')[1]
 
@@ -22,5 +23,9 @@ export const changeClassroomTab = event => {
       type: CHANGE_CLASSROOM_TAB,
       payload: { tabStatus: tabState }
     }
+  }
+  return {
+    type: '',
+    payload: {}
   }
 }

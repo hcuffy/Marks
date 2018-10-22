@@ -8,13 +8,19 @@ const NavBar = ({ tabStatus, actions }) => (
   <div>
     <ul className="nav nav-pills justify-content-center">
       <li className="nav-item">
-        <a className="nav-link active" onClick={actions.changeClassroomTab}>
-          subs
+        <a
+          className={`nav-link ${tabStatus.subjectIsActive}`}
+          onClick={actions.changeClassroomTab}
+        >
+          {tabStatus.tabOneTitle}
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" onClick={actions.changeClassroomTab}>
-          Tests
+        <a
+          className={`nav-link ${tabStatus.testIsActive}`}
+          onClick={actions.changeClassroomTab}
+        >
+          {tabStatus.tabTwoTitle}
         </a>
       </li>
     </ul>
