@@ -4,24 +4,23 @@ import { CHANGE_CLASSROOM_TAB } from './actionTypes'
 function changeTab(tabTitle) {
   const newState = {}
 
-  newState.subjectTab = tabTitle == 'Subjects'
+  newState.classTab = tabTitle == 'Classes'
   newState.testTab = tabTitle == 'Exams/Tests'
-  newState.subjectIsActive = tabTitle == 'Subjects' ? 'active' : ''
-  newState.testIsActive = tabTitle == 'Exams/Tests' ? 'active' : ''
+  newState.subjectClass = tabTitle == 'Classes' ? 'active' : ''
+  newState.testClass = tabTitle == 'Exams/Tests' ? 'active' : ''
 
   return newState
 }
 
 export const changeClassroomTab = event => {
-  console.log(event.target)
-  const clickedTabTitle = event.target.value
+  const clickedTabTitle = event.target.text
   const clickedTabState = event.target.className.split(' ')[1]
 
   if (clickedTabState !== 'active') {
     const tabState = changeTab(clickedTabTitle)
     return {
       type: CHANGE_CLASSROOM_TAB,
-      payload: { tabStatus: tabState }
+      payload: { tabState }
     }
   }
   return {

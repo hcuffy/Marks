@@ -9,7 +9,7 @@ const NavBar = ({ tabStatus, actions }) => (
     <ul className="nav nav-pills justify-content-center">
       <li className="nav-item">
         <a
-          className={`nav-link ${tabStatus.subjectIsActive}`}
+          className={`nav-link ${tabStatus.subjectClass}`}
           onClick={actions.changeClassroomTab}
         >
           {tabStatus.tabOneTitle}
@@ -17,7 +17,7 @@ const NavBar = ({ tabStatus, actions }) => (
       </li>
       <li className="nav-item">
         <a
-          className={`nav-link ${tabStatus.testIsActive}`}
+          className={`nav-link ${tabStatus.testClass}`}
           onClick={actions.changeClassroomTab}
         >
           {tabStatus.tabTwoTitle}
@@ -27,10 +27,7 @@ const NavBar = ({ tabStatus, actions }) => (
   </div>
 )
 
-const mapStateToProps = state => {
-  console.log(state)
-  return { tabStatus: state.tabStatus }
-}
+const mapStateToProps = state => ({ tabStatus: state.tabStatus })
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)

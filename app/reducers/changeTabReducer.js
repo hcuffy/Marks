@@ -5,12 +5,12 @@ import type { Action } from './types'
 const _ = require('lodash')
 
 const initialLoadState = {
-  tabOneTitle: 'Subjects',
+  tabOneTitle: 'Classes',
   tabTwoTitle: 'Exams/Tests',
   subjectTab: true,
   testTab: false,
-  subjectIsActive: 'active',
-  testIsActive: ''
+  subjectClass: 'active',
+  testClass: ''
 }
 
 const handleTabChange = (state = initialLoadState, action) => {
@@ -19,15 +19,15 @@ const handleTabChange = (state = initialLoadState, action) => {
       const {
         subjectTab,
         testTab,
-        subjectIsActive,
-        testIsActive
-      } = action.payload
+        subjectClass,
+        testClass
+      } = action.payload.tabState
+
       return _.assign({}, state, {
-        title,
-        street,
-        schoolstate,
-        country,
-        year
+        subjectTab,
+        testTab,
+        subjectClass,
+        testClass
       })
     default:
       return state
