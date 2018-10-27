@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import styles from './styles/home.css'
-import SideMenu from './SideMenu'
 
 const _ = require('lodash')
 
@@ -27,7 +26,6 @@ const SchoolInfo = ({ schoolData, actions }) => {
   return (
     <div className={styles.div_wrapper}>
       <h2 className={styles.center_header}>School Information</h2>
-      <SideMenu />
       <form onSubmit={actions.handleSchoolData} method="POST">
         <div className={styles.form_outer_div}>
           {entry}
