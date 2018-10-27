@@ -3,9 +3,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
+import styles from './styles/navbar.css'
 
 const NavBar = ({ tabStatus, actions }) => (
-  <div>
+  <div className={styles.navbar_div}>
     <ul className="nav nav-pills justify-content-center">
       <li className="nav-item">
         <a
