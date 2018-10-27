@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/SideMenu'
 import NavBar from '../components/NavBar'
+import Classes from '../components/Classes'
 
 class Classroom extends Component {
   render() {
@@ -12,6 +13,7 @@ class Classroom extends Component {
       <div data-tid="classroom_container">
         <SideMenu />
         <NavBar />
+        <Classes />
       </div>
     )
   }
