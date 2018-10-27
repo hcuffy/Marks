@@ -10,16 +10,19 @@ const _ = require('lodash')
 
 const SchoolInfo = ({ schoolData, actions }) => {
   const entry = _.keys(schoolData).map((data, idx) => (
-      <div key={idx} className={styles.form_inner_div}>
-        <label htmlFor={`school${data}`}>School {data}:</label>
-        <input
-          name={data}
-          id={`school${data}`}
-          type="text"
-          defaultValue={schoolData[data]}
-        />
-      </div>
-    ))
+    <div key={idx} className={styles.form_inner_div}>
+      <label className={styles.form_label} htmlFor={`school${data}`}>
+        School {data}:
+      </label>
+      <input
+        name={data}
+        className="form-control"
+        id={`school${data}`}
+        type="text"
+        defaultValue={schoolData[data]}
+      />
+    </div>
+  ))
 
   return (
     <div className={styles.div_wrapper}>
