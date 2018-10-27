@@ -16,7 +16,6 @@
 input[type='text'] {
   border: 0;
   outline: 0;
-  background: transparent;
   border-bottom: 1px solid white;
   width: 200px;
 }
@@ -35,4 +34,11 @@ input[type='text'] {
 .save_btn {
   float: right;
   margin: 10px 0 0 200px;
+}
+
+.form_label {
+  float: left;
+  margin-right: 5px;
+  vertical-align: bottom;
+  line-height: 32px;
 }

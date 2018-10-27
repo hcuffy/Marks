@@ -3,6 +3,39 @@
 }
 
 .room_div {
-  border-style: solid;
-  border-width: 1px;
+  white-space: 800px;
+  border-top: 1px solid;
+}
+
+.form_div {
+  white-space: nowrap;
+  float: right;
+  margin: 10px 20px 0 0;
+}
+
+input[type='text'] {
+  border: 0;
+  outline: 0;
+  float: left;
+  background: transparent;
+  border-bottom: 1px solid white;
+  width: 200px;
+}
+
+.save_btn {
+  float: right;
+  margin: 10px 0 0 200px;
+}
+
+.form_outer_div {
+  float: right;
+  height: 350px;
+  width: 500px;
+}
+
+.form_label {
+  float: left;
+  margin-right: 5px;
+  vertical-align: bottom;
+  line-height: 32px;
 }
