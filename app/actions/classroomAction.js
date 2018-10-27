@@ -18,6 +18,7 @@ export const changeClassroomTab = event => {
 
   if (clickedTabState !== 'active') {
     const tabState = changeTab(clickedTabTitle)
+    console.log(tabState)
     return {
       type: CHANGE_CLASSROOM_TAB,
       payload: { tabState }
