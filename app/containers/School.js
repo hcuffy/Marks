@@ -6,7 +6,15 @@ import { actionCreators } from '../actions/index'
 import SideMenu from '../components/SideMenu'
 import SchoolInfo from '../components/SchoolInfo'
 
+const _ = require('lodash')
+
 class School extends Component {
+  componentDidMount() {
+    if (_.isEmpty(this.props.schoolData)) {
+      this.props.actions.displaySchoolData()
+    }
+  }
+
   render() {
     return (
       <div data-tid="school_container">
@@ -17,11 +25,13 @@ class School extends Component {
   }
 }
 
+const mapStateToProps = state => ({ schoolData: state.schoolData })
+
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(School)

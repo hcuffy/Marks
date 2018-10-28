@@ -10,8 +10,6 @@ import Exam from '../components/Exam'
 
 class Classroom extends Component {
   render() {
-    console.log(this.props.classesActive)
-    console.log(this.props.examActive)
     return (
       <div data-tid="classroom_container">
         <SideMenu />
