@@ -17,16 +17,14 @@ const classroomCollection = new Datastore({
 })
 
 function updateData(previous, current) {
-  const { title, street, schoolstate, country, zip, year } = current
+  const { Name, Teacher, Code, Subject_Teacher } = current
   classroomCollection.update(
-    { title: previous.title },
+    { Name: previous.Name },
     {
-      title,
-      street,
-      schoolstate,
-      country,
-      zip,
-      year
+      Name,
+      Teacher,
+      Code,
+      Subject_Teacher
     },
     {},
     (err, entry) => {

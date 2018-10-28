@@ -41,6 +41,7 @@ const Classes = () => (
             type="text"
             className="form-control"
             id="classCode"
+            name="Code"
             defaultValue="test"
           />
         </div>
@@ -52,7 +53,7 @@ const Classes = () => (
             type="text"
             className="form-control"
             id="subjectTeacher"
-            name="(Subject_Teacher)"
+            name="Subject_Teacher"
             defaultValue="test"
           />
         </div>
