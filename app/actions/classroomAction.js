@@ -1,6 +1,10 @@
 // @flow
 import { toast } from 'react-toastify'
-import { CHANGE_CLASSROOM_TAB, ADD_CLASSROOM_DATA } from './actionTypes'
+import {
+  CHANGE_CLASSROOM_TAB,
+  ADD_CLASSROOM_DATA,
+  GET_CLASSROOM_DATA
+} from './actionTypes'
 import {
   addClassroomData,
   getClassroomData
@@ -56,8 +60,8 @@ export const displayClassData = () => async dispatch => {
   const data = await getClassroomData()
   if (data.length !== 0) {
     dispatch({
-      type: DISPLAY_SCHOOL_DATA,
-      payload: { schoolData: data }
+      type: GET_CLASSROOM_DATA,
+      payload: { classData: data }
     })
   }
 }
