@@ -1,5 +1,10 @@
 // @flow
-import { CHANGE_CLASSROOM_TAB } from './actionTypes'
+import { toast } from 'react-toastify'
+import { CHANGE_CLASSROOM_TAB, ADD_CLASSROOM_DATA } from './actionTypes'
+import {
+  addClassroomData,
+  getClassroomData
+} from '../database/classroomCollection'
 
 function changeTab(tabTitle) {
   const newState = {}
@@ -18,7 +23,6 @@ export const changeClassroomTab = event => {
 
   if (clickedTabState !== 'active') {
     const tabState = changeTab(clickedTabTitle)
-    console.log(tabState)
     return {
       type: CHANGE_CLASSROOM_TAB,
       payload: { tabState }
@@ -27,5 +31,33 @@ export const changeClassroomTab = event => {
   return {
     type: '',
     payload: {}
+  }
+}
+
+export const handleClassData = event => {
+  event.preventDefault()
+
+  const formData = {
+    Name: event.target.Name.value,
+    Teacher: event.target.Teacher.value,
+    Code: event.target.Code.value,
+    Subject_Teacher: event.target.Subject_Teacher.value
+  }
+
+  addClassroomData(formData)
+
+  return {
+    type: ADD_CLASSROOM_DATA,
+    payload: { classData: formData }
+  }
+}
+
+export const displayClassData = () => async dispatch => {
+  const data = await getClassroomData()
+  if (data.length !== 0) {
+    dispatch({
+      type: DISPLAY_SCHOOL_DATA,
+      payload: { schoolData: data }
+    })
   }
 }

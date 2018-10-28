@@ -1,8 +1,14 @@
 import { handleSchoolData, displaySchoolData } from './schoolAction'
-import { changeClassroomTab } from './classroomAction'
+import {
+  changeClassroomTab,
+  handleClassData,
+  displayClassData
+} from './classroomAction'
 
 export const actionCreators = {
   handleSchoolData,
   displaySchoolData,
-  changeClassroomTab
+  changeClassroomTab,
+  handleClassData,
+  displayClassData
 }
