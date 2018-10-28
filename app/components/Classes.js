@@ -22,12 +22,34 @@ const Classes = () => (
         </div>
         <div className={styles.form_div}>
           <label className={styles.form_label} htmlFor="classTeacher">
-            Teacher:
+            Class Teacher:
           </label>
           <input
             type="text"
             className="form-control"
             id="classTeacher"
+            defaultValue="test"
+          />
+        </div>
+        <div className={styles.form_div}>
+          <label className={styles.form_label} htmlFor="classCode">
+            Class Code:
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="classCode"
+            defaultValue="test"
+          />
+        </div>
+        <div className={styles.form_div}>
+          <label className={styles.form_label} htmlFor="subjectTeacher">
+            Subject Teacher:
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="subjectTeacher"
             defaultValue="test"
           />
         </div>

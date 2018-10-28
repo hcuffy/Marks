@@ -1,6 +1,5 @@
 // @flow
 import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../actions/actionTypes'
-import { getSchoolData } from '../database/schoolDB'
 
 const _ = require('lodash')
 

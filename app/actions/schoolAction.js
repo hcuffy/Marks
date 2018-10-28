@@ -1,18 +1,18 @@
 // @flow
 import { toast } from 'react-toastify'
 import { HANDLE_SCHOOL_DATA, DISPLAY_SCHOOL_DATA } from './actionTypes'
-import { addSchoolData, getSchoolData } from '../database/schoolDB'
+import { addSchoolData, getSchoolData } from '../database/schoolCollection'
 
 export const handleSchoolData = event => {
   event.preventDefault()
 
   const formData = {
-    Title: event.target.title.value,
-    Street: event.target.street.value,
-    Province: event.target.schoolstate.value,
-    Country: event.target.country.value,
-    Zip: event.target.zip.value,
-    Year: event.target.year.value
+    Title: event.target.Title.value,
+    Street: event.target.Street.value,
+    Province: event.target.Province.value,
+    Country: event.target.Country.value,
+    Zip: event.target.Zip.value,
+    Year: event.target.Year.value
   }
 
   addSchoolData(formData)

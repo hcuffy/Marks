@@ -10,7 +10,7 @@ const electron = require('electron')
 const path = require('path')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
-const schoolDB = new Datastore({
+const schoolCollection = new Datastore({
   filename: path.join(userDataPath, 'school.db'),
   autoload: true,
   timestampData: true
@@ -18,7 +18,7 @@ const schoolDB = new Datastore({
 
 function updateData(previous, current) {
   const { title, street, schoolstate, country, zip, year } = current
-  schoolDB.update(
+  schoolCollection.update(
     { title: previous.title },
     {
       title,
@@ -40,7 +40,7 @@ function updateData(previous, current) {
 }
 
 export const addSchoolData = data => {
-  schoolDB.find({}, (err, entry) => {
+  schoolCollection.find({}, (err, entry) => {
     if (err) {
       saveError()
       return err
@@ -49,7 +49,7 @@ export const addSchoolData = data => {
       updateData(entry[0], data)
       return 'saved'
     }
-    schoolDB.insert(data, (err, entry) => {
+    schoolCollection.insert(data, (err, entry) => {
       if (err) {
         saveError()
         return err
@@ -62,7 +62,7 @@ export const addSchoolData = data => {
 
 export const getSchoolData = () =>
   new Promise((resolve, reject) =>
-    schoolDB.find({}, (err, entry) => {
+    schoolCollection.find({}, (err, entry) => {
       if (err) {
         unableToRetrieve()
         return reject(err)
