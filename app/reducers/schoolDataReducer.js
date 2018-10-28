@@ -10,20 +10,20 @@ const displaySchoolData = (state = initialLoadState, action) => {
   switch (action.type) {
     case DISPLAY_SCHOOL_DATA:
       const {
-        title,
-        street,
-        schoolstate,
-        country,
-        zip,
-        year
+        Title,
+        Street,
+        Province,
+        Country,
+        Zip,
+        Year
       } = action.payload.schoolData[0]
       return _.assign({}, state, {
-        title,
-        street,
-        schoolstate,
-        country,
-        zip,
-        year
+        Title,
+        Street,
+        Province,
+        Country,
+        Zip,
+        Year
       })
     default:
       return state

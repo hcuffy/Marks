@@ -7,12 +7,12 @@ export const handleSchoolData = event => {
   event.preventDefault()
 
   const formData = {
-    title: event.target.title.value,
-    street: event.target.street.value,
-    schoolstate: event.target.schoolstate.value,
-    country: event.target.country.value,
-    zip: event.target.zip.value,
-    year: event.target.year.value
+    Title: event.target.title.value,
+    Street: event.target.street.value,
+    Province: event.target.schoolstate.value,
+    Country: event.target.country.value,
+    Zip: event.target.zip.value,
+    Year: event.target.year.value
   }
 
   addSchoolData(formData)
