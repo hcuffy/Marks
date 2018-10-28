@@ -5,9 +5,9 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import styles from './styles/classroom.css'
 
-const Classes = () => (
+const Classes = ({ actions }) => (
   <div className={styles.room_div}>
-    <form method="POST">
+    <form onSubmit={actions.handleClassData} method="POST">
       <div className={styles.form_outer_div}>
         <div className={styles.form_div}>
           <label className={styles.form_label} htmlFor="classId">
