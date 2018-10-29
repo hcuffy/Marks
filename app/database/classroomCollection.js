@@ -38,7 +38,7 @@ function updateData(previous, current) {
 }
 
 export const addClassroomData = data => {
-  classroomCollection.find({}, (err, entry) => {
+  classroomCollection.find({ Name: data.Name }, (err, entry) => {
     if (err) {
       saveError()
       return err
@@ -47,6 +47,7 @@ export const addClassroomData = data => {
       updateData(entry[0], data)
       return 'saved'
     }
+    data.Subjects = []
     classroomCollection.insert(data, (err, entry) => {
       if (err) {
         saveError()

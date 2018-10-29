@@ -18,7 +18,6 @@ const Classes = ({ classData, actions }) => {
         className="form-control"
         id={`${data}Id`}
         type="text"
-        defaultValue={classData[data]}
       />
     </div>
   ))
