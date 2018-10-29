@@ -7,39 +7,49 @@ import styles from './styles/list.css'
 
 const _ = require('lodash')
 
-const List = ({ listData, actions }) => (
-  <div>
-    <h4 className={styles.center_header}>List of Classes</h4>
-    <div className="list-group list-group-flush">
-      <button
-        type="button"
-        className="list-group-item list-group-item-action active"
-      >
-        Cras justo odio
-      </button>
-      <button
-        type="button"
-        className="list-group-item list-group-item-action active"
-      >
-        Dapibus ac facilisis in
-        <span className="badge badge-warning badge-pill">14</span>
-      </button>
-      <button type="button" className="list-group-item list-group-item-action">
-        Morbi leo risus
-      </button>
-      <button type="button" className="list-group-item list-group-item-action">
-        Porta ac consectetur ac
-      </button>
-      <button
-        type="button"
-        className={`list-group-item list-group-item-action ${styles.list_btn}`}
-      >
-        Vestibulum at eros
-      </button>
+const List = ({ listData, actions }) => {
+  console.log('in list')
+  return (
+    <div>
+      <h4 className={styles.center_header}>List of Classes</h4>
+      <div className="list-group list-group-flush">
+        <button
+          type="button"
+          className="list-group-item list-group-item-action active"
+        >
+          Cras justo odio
+        </button>
+        <button
+          type="button"
+          className="list-group-item list-group-item-action active"
+        >
+          Dapibus ac facilisis in
+          <span className="badge badge-warning badge-pill">14</span>
+        </button>
+        <button
+          type="button"
+          className="list-group-item list-group-item-action"
+        >
+          Morbi leo risus
+        </button>
+        <button
+          type="button"
+          className="list-group-item list-group-item-action"
+        >
+          Porta ac consectetur ac
+        </button>
+        <button
+          type="button"
+          className={`list-group-item list-group-item-action ${
+            styles.list_btn
+          }`}
+        >
+          Vestibulum at eros
+        </button>
+      </div>
     </div>
-  </div>
-)
-
+  )
+}
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 })

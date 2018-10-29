@@ -37,7 +37,7 @@ const Classes = ({ classData, actions }) => {
         </div>
       </form>
       <div>
-        <List />
+        <List listData={classData} />
       </div>
     </div>
   )

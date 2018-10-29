@@ -58,6 +58,7 @@ export const handleClassData = event => {
 
 export const displayClassData = () => async dispatch => {
   const data = await getClassroomData()
+  console.log(data)
   if (data.length !== 0) {
     dispatch({
       type: GET_CLASSROOM_DATA,

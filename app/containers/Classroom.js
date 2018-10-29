@@ -8,7 +8,15 @@ import NavBar from '../components/NavBar'
 import Classes from '../components/Classes'
 import Exam from '../components/Exam'
 
+const _ = require('lodash')
+
 class Classroom extends Component {
+  componentDidMount() {
+    if (this.props.classData) {
+      this.props.actions.displayClassData()
+    }
+  }
+
   render() {
     return (
       <div data-tid="classroom_container">
@@ -23,7 +31,8 @@ class Classroom extends Component {
 
 const mapStateToProps = state => ({
   classesActive: state.tabStatus.classTab,
-  examActive: state.tabStatus.testTab
+  examActive: state.tabStatus.testTab,
+  classData: state.classData
 })
 
 const mapDispatchToProps = dispatch => ({
