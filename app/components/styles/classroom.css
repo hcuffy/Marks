@@ -40,3 +40,7 @@ input[type='text'] {
   vertical-align: bottom;
   line-height: 32px;
 }
+
+.center_header {
+  text-align: center;
+}

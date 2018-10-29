@@ -5,72 +5,78 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import styles from './styles/classroom.css'
 
-const Classes = ({ actions }) => (
-  <div className={styles.room_div}>
-    <form onSubmit={actions.handleClassData} method="POST">
-      <div className={styles.form_outer_div}>
-        <div className={styles.form_div}>
-          <label className={styles.form_label} htmlFor="classId">
-            Class Name:
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="classId"
-            name="Name"
-            defaultValue="test"
-          />
+const _ = require('lodash')
+
+const Classes = ({ classData, actions }) => {
+  const form_inputs = _.keys(classData).map((data, idx) => (
+    <div key={idx} className={styles.form_div}>
+      <label className={styles.form_label} htmlFor={`${data}Id`}>
+        {data}:
+      </label>
+      <input
+        name={data}
+        className="form-control"
+        id={`${data}Id`}
+        type="text"
+        defaultValue={classData[data]}
+      />
+    </div>
+  ))
+
+  return (
+    <div className={styles.room_div}>
+      <form onSubmit={actions.handleClassData} method="POST">
+        <div className={styles.form_outer_div}>
+          <h4 className={styles.center_header}>Add a Class</h4>
+          {form_inputs}
+          <div className={(styles.form_div, styles.save_btn)}>
+            <button type="submit" className="btn btn-success">
+              Add
+            </button>
+          </div>
         </div>
-        <div className={styles.form_div}>
-          <label className={styles.form_label} htmlFor="classTeacher">
-            Class Teacher:
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="classTeacher"
-            name="Teacher"
-            defaultValue="test"
-          />
-        </div>
-        <div className={styles.form_div}>
-          <label className={styles.form_label} htmlFor="classCode">
-            Class Code:
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="classCode"
-            name="Code"
-            defaultValue="test"
-          />
-        </div>
-        <div className={styles.form_div}>
-          <label className={styles.form_label} htmlFor="subjectTeacher">
-            Subject Teacher:
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="subjectTeacher"
-            name="Subject_Teacher"
-            defaultValue="test"
-          />
-        </div>
-        <div className={(styles.form_div, styles.save_btn)}>
-          <button type="submit" className="btn btn-success">
-            Save
+      </form>
+      <div>
+        <p>Test</p>
+        <div className="list-group list-group-flush">
+          <button
+            type="button"
+            className="list-group-item list-group-item-action active"
+          >
+            Cras justo odio
+          </button>
+          <button
+            type="button"
+            className="list-group-item list-group-item-action active"
+          >
+            Dapibus ac facilisis in
+            <span className="badge badge-warning badge-pill">14</span>
+          </button>
+          <button
+            type="button"
+            className="list-group-item list-group-item-action"
+          >
+            Morbi leo risus
+          </button>
+          <button
+            type="button"
+            className="list-group-item list-group-item-action"
+          >
+            Porta ac consectetur ac
+          </button>
+          <button
+            type="button"
+            className="list-group-item list-group-item-action"
+            style={{ height: `${30}px` }}
+          >
+            Vestibulum at eros
           </button>
         </div>
       </div>
-    </form>
-    <div>
-      <p>Test</p>
     </div>
-  </div>
-)
-
-const mapStateToProps = state => ({})
+  )
+}
+const mapStateToProps = state => ({ classData: state.classData })
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
