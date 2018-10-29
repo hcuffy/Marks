@@ -8,45 +8,22 @@ import styles from './styles/list.css'
 const _ = require('lodash')
 
 const List = ({ listData, actions }) => {
-  console.log('in list')
+  const selectedProp = _.pick(listData, ['allClassData'])
+  console.log(selectedProp)
+  const list_inputs = _.keys(selectedProp.allClassData).map((data, idx) => (
+    <button
+      key={idx}
+      type="button"
+      className={`list-group-item list-group-item-action ${styles.list_btn}`}
+    >
+      {data}
+      <span className="badge badge-warning badge-pill">14</span>
+    </button>
+  ))
   return (
     <div>
       <h4 className={styles.center_header}>List of Classes</h4>
-      <div className="list-group list-group-flush">
-        <button
-          type="button"
-          className="list-group-item list-group-item-action active"
-        >
-          Cras justo odio
-        </button>
-        <button
-          type="button"
-          className="list-group-item list-group-item-action active"
-        >
-          Dapibus ac facilisis in
-          <span className="badge badge-warning badge-pill">14</span>
-        </button>
-        <button
-          type="button"
-          className="list-group-item list-group-item-action"
-        >
-          Morbi leo risus
-        </button>
-        <button
-          type="button"
-          className="list-group-item list-group-item-action"
-        >
-          Porta ac consectetur ac
-        </button>
-        <button
-          type="button"
-          className={`list-group-item list-group-item-action ${
-            styles.list_btn
-          }`}
-        >
-          Vestibulum at eros
-        </button>
-      </div>
+      <div className="list-group list-group-flush">{list_inputs}</div>
     </div>
   )
 }

@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   router,
   schoolData: displaySchoolData,
   tabStatus: handleTabChange,
-  classData: displayClassData
+  allClassData: displayClassData
 })
 
 export default rootReducer

@@ -28,12 +28,9 @@ export const addedClassData = (state = initialLoadState, action) => {
 const displayClassData = (state = initialLoadState, action) => {
   switch (action.type) {
     case GET_CLASSROOM_DATA:
-      const { Name, Teacher, Code, Subject_Teacher } = action.payload.classData
+      const { allClassData } = action.payload
       return _.assign({}, state, {
-        Name,
-        Teacher,
-        Code,
-        Subject_Teacher
+        allClassData
       })
     default:
       return state

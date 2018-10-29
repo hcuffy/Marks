@@ -8,8 +8,9 @@ import List from './List'
 
 const _ = require('lodash')
 
-const Classes = ({ classData, actions }) => {
-  const form_inputs = _.keys(classData).map((data, idx) => (
+const Classes = ({ allClassData, actions }) => {
+  const removedAProp = _.omit(allClassData, ['allClassData'])
+  const form_inputs = _.keys(removedAProp).map((data, idx) => (
     <div key={idx} className={styles.form_div}>
       <label className={styles.form_label} htmlFor={`${data}Id`}>
         {data}:
@@ -37,12 +38,14 @@ const Classes = ({ classData, actions }) => {
         </div>
       </form>
       <div>
-        <List listData={classData} />
+        <List listData={allClassData} />
       </div>
     </div>
   )
 }
-const mapStateToProps = state => ({ classData: state.classData })
+const mapStateToProps = state => ({
+  allClassData: state.allClassData
+})
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
