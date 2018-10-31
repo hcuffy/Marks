@@ -9,14 +9,13 @@ const _ = require('lodash')
 
 const List = ({ listData, actions }) => {
   const selectedProp = _.pick(listData, ['allClassData'])
-  console.log(selectedProp)
-  const list_inputs = _.keys(selectedProp.allClassData).map((data, idx) => (
+  const list_inputs = selectedProp.allClassData.map((data, idx) => (
     <button
       key={idx}
       type="button"
       className={`list-group-item list-group-item-action ${styles.list_btn}`}
     >
-      {data}
+      {data.Name}
       <span className="badge badge-warning badge-pill">14</span>
     </button>
   ))
