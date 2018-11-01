@@ -33,3 +33,14 @@ export const unableToRetrieve = () => {
     draggable: false
   })
 }
+
+export const entryAlreadyExists = () => {
+  toast.erro('Entry already exists in database.', {
+    position: 'top-right',
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false
+  })
+}
