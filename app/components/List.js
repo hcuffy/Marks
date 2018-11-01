@@ -7,9 +7,16 @@ import styles from './styles/list.css'
 
 const _ = require('lodash')
 
+function cleanAndSortData(clean) {
+  const requiredProp = _.pick(clean, ['classData'])
+  const sortedProp = _.sortBy(requiredProp.classData, ['Name'], ['asc'])
+
+  return sortedProp
+}
+
 const List = ({ listData, actions }) => {
-  const selectedData = _.pick(listData, ['classData'])
-  const list_inputs = selectedData.classData.map((data, idx) => (
+  const cleanedData = cleanAndSortData(listData)
+  const list_inputs = cleanedData.map((data, idx) => (
     <button
       key={idx}
       type="button"
