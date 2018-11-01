@@ -5,6 +5,8 @@ import displaySchoolData from './schoolDataReducer'
 import handleTabChange from './changeTabReducer'
 import displayClassData from './classDataReducer'
 
+const _ = require('lodash')
+
 const rootReducer = combineReducers({
   router,
   schoolData: displaySchoolData,

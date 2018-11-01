@@ -8,6 +8,13 @@ import List from './List'
 
 const _ = require('lodash')
 
+function checkChange(allClassData, actions) {
+  console.log(allClassData.Check)
+  if (allClassData.Check) {
+    actions.displayClassData()
+  }
+}
+
 const Classes = ({ allClassData, actions }) => {
   const formLabels = _.omit(allClassData, ['classData'])
   const form_inputs = _.keys(formLabels).map((data, idx) => (
@@ -20,10 +27,11 @@ const Classes = ({ allClassData, actions }) => {
         className="form-control"
         id={`${data}Id`}
         type="text"
+        defaultValue=""
       />
     </div>
   ))
-
+  checkChange(allClassData, actions)
   return (
     <div className={styles.room_div}>
       <form onSubmit={actions.handleClassData} method="POST">

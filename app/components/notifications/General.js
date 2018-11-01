@@ -35,7 +35,7 @@ export const unableToRetrieve = () => {
 }
 
 export const entryAlreadyExists = () => {
-  toast.erro('Entry already exists in database.', {
+  toast.error('Entry already exists in database.', {
     position: 'top-right',
     autoClose: 2000,
     hideProgressBar: false,
