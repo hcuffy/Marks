@@ -52,7 +52,7 @@ export const handleClassData = event => {
 
   return {
     type: ADD_CLASSROOM_DATA,
-    payload: { classData: formData }
+    payload: { inputData: formData }
   }
 }
 

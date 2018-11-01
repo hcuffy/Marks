@@ -14,7 +14,7 @@ const initialLoadState = {
 export const addedClassData = (state = initialLoadState, action) => {
   switch (action.type) {
     case ADD_CLASSROOM_DATA:
-      const { Name, Teacher, Code, Subject_Teacher } = action.payload.classData
+      const { Name, Teacher, Code, Subject_Teacher } = action.payload.inputData
       return _.assign({}, state, {
         Name,
         Teacher,
