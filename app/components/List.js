@@ -8,20 +8,21 @@ import styles from './styles/list.css'
 const _ = require('lodash')
 
 const List = ({ listData, actions }) => {
-  const selectedProp = _.pick(listData, ['allClassData'])
-  const list_inputs = selectedProp.allClassData.map((data, idx) => (
+  const selectedData = _.pick(listData, ['classData'])
+  const list_inputs = selectedData.classData.map((data, idx) => (
     <button
       key={idx}
       type="button"
       className={`list-group-item list-group-item-action ${styles.list_btn}`}
     >
       {data.Name}
-      <span className="badge badge-warning badge-pill">14</span>
+      <span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
+        {data.Subjects.length}
+      </span>
     </button>
   ))
   return (
     <div>
-      <h4 className={styles.center_header}>List of Classes</h4>
       <div className="list-group list-group-flush">{list_inputs}</div>
     </div>
   )
