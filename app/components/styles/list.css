@@ -1,3 +1,8 @@
+.list_div {
+  height: 230px;
+  overflow: scroll;
+}
+
 .list_btn {
   display: inline-flex;
   align-items: flex-start;

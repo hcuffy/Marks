@@ -22,7 +22,7 @@ const List = ({ listData, actions }) => {
     </button>
   ))
   return (
-    <div>
+    <div className={styles.list_div}>
       <div className="list-group list-group-flush">{list_inputs}</div>
     </div>
   )
