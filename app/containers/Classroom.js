@@ -10,7 +10,7 @@ import Exam from '../components/Exam'
 
 class Classroom extends Component {
   componentDidMount() {
-    if (this.props.allClassData) {
+    if (this.props.classData) {
       this.props.actions.displayClassData()
     }
   }
@@ -30,7 +30,7 @@ class Classroom extends Component {
 const mapStateToProps = state => ({
   classesActive: state.tabStatus.classTab,
   examActive: state.tabStatus.testTab,
-  allClassData: state.allClassData
+  classData: state.allClassData.classData
 })
 
 const mapDispatchToProps = dispatch => ({

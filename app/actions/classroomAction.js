@@ -61,7 +61,7 @@ export const displayClassData = () => async dispatch => {
   if (data.length !== 0) {
     dispatch({
       type: GET_CLASSROOM_DATA,
-      payload: { allClassData: data }
+      payload: { classData: data }
     })
   }
 }

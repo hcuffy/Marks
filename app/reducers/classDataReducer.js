@@ -7,7 +7,8 @@ const initialLoadState = {
   Name: '',
   Teacher: '',
   Code: '',
-  Subject_Teacher: ''
+  Subject_Teacher: '',
+  classData: [{ Name: '', Subjects: [] }]
 }
 
 export const addedClassData = (state = initialLoadState, action) => {
@@ -28,9 +29,9 @@ export const addedClassData = (state = initialLoadState, action) => {
 const displayClassData = (state = initialLoadState, action) => {
   switch (action.type) {
     case GET_CLASSROOM_DATA:
-      const { allClassData } = action.payload
+      const { classData } = action.payload
       return _.assign({}, state, {
-        allClassData
+        classData
       })
     default:
       return state
