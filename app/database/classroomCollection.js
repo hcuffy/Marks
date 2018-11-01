@@ -2,7 +2,8 @@
 import {
   saveSuccessful,
   saveError,
-  unableToRetrieve
+  unableToRetrieve,
+  entryAlreadyExists
 } from '../components/notifications/general'
 
 const Datastore = require('nedb')
@@ -44,8 +45,8 @@ export const addClassroomData = data => {
       return err
     }
     if (entry.length > 0) {
-      updateData(entry[0], data)
-      return 'saved'
+      entryAlreadyExists()
+      return
     }
     data.Subjects = []
     classroomCollection.insert(data, (err, entry) => {
