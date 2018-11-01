@@ -13,7 +13,6 @@ const initialLoadState = {
 }
 
 const displayClassData = (state = initialLoadState, action) => {
-  console.log(state)
   switch (action.type) {
     case ADD_CLASSROOM_DATA:
       return _.assign({}, state, {
