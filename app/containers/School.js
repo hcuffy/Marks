@@ -10,7 +10,7 @@ const _ = require('lodash')
 
 class School extends Component {
   componentDidMount() {
-    if (_.isEmpty(this.props.schoolData)) {
+    if (_.isNull(this.props.schoolData.Title)) {
       this.props.actions.displaySchoolData()
     }
   }
