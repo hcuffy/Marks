@@ -1,0 +1,54 @@
+// @flow
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  Input
+} from 'reactstrap'
+import { actionCreators } from '../../actions/index'
+
+const _ = require('lodash')
+
+const Room = ({ modalData, actions }) => {
+  const clickedRoom = _.keys(modalData).map((data, idx) => (
+    <div key={idx}>
+      <label htmlFor="test">test:</label>
+      <input
+        name="test"
+        className="form-control"
+        id="test"
+        type="text"
+        defaultValue="test"
+      />
+    </div>
+  ))
+  return (
+    <div>
+      <Modal isOpen backdrop>
+        <ModalHeader>Modal title</ModalHeader>
+        <ModalBody>{clickedRoom}</ModalBody>
+        <ModalFooter>
+          <Button color="danger">Delete</Button>
+          <Button color="primary">Save</Button>
+          <Button color="secondary">Cancel</Button>
+        </ModalFooter>
+      </Modal>
+    </div>
+  )
+}
+
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actionCreators, dispatch)
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Room)

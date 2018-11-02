@@ -7,6 +7,7 @@ import SideMenu from '../components/SideMenu'
 import NavBar from '../components/NavBar'
 import Classes from '../components/Classes'
 import Exam from '../components/Exam'
+import Room from '../components/Modals/Room'
 
 class Classroom extends Component {
   componentDidMount() {
