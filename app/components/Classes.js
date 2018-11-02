@@ -9,14 +9,13 @@ import List from './List'
 const _ = require('lodash')
 
 function checkChange(allClassData, actions) {
-  //  console.log(allClassData.Check)
   if (allClassData.Check) {
     actions.displayClassData()
   }
 }
 
 const Classes = ({ allClassData, actions }) => {
-  const formLabels = _.omit(allClassData, ['classData'])
+  const formLabels = _.omit(allClassData, ['classData', 'Check'])
   const form_inputs = _.keys(formLabels).map((data, idx) => (
     <div key={idx} className={styles.form_div}>
       <label className={styles.form_label} htmlFor={`${data}Id`}>
@@ -27,7 +26,7 @@ const Classes = ({ allClassData, actions }) => {
         className="form-control"
         id={`${data}Id`}
         type="text"
-        value={formLabels.data}
+        defaultValue={formLabels[data]}
       />
     </div>
   ))

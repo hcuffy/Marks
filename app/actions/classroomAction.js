@@ -47,7 +47,7 @@ export const handleClassData = event => async dispatch => {
     Code: event.target.Code.value,
     Subject_Teacher: event.target.Subject_Teacher.value
   }
-
+  event.target.reset()
   addClassroomData(formData)
   const data = await getClassroomData()
 
