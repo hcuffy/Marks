@@ -4,7 +4,8 @@ import { createHashHistory } from 'history'
 import { routerMiddleware, routerActions } from 'react-router-redux'
 import { createLogger } from 'redux-logger'
 import rootReducer from '../reducers'
-import * as schoolActions from '../actions/schoolAction'
+import * as schoolActions from '../actions/schoolActions'
+import * as classroomActions from '../actions/classroomActions'
 
 const history = createHashHistory()
 
@@ -33,6 +34,7 @@ const configureStore = () => {
 
   // Redux DevTools Configuration
   const actionCreators = {
+    ...classroomActions,
     ...schoolActions,
     ...routerActions
   }
