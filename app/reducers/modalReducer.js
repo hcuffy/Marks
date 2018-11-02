@@ -9,7 +9,6 @@ const initialLoadState = {
 }
 
 const handleClassModal = (state = initialLoadState, action) => {
-  console.log(state)
   switch (action.type) {
     case DISPLAY_ROOM_MODAL:
       const { id, showModal } = action.payload

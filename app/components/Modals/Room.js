@@ -15,6 +15,8 @@ import { actionCreators } from '../../actions/index'
 const _ = require('lodash')
 
 const Room = ({ modalData, roomModal, actions }) => {
+  const selectedRoom = _.find(modalData, { _id: roomModal.id })
+  console.log(selectedRoom)
   const clickedRoom = _.keys(modalData).map((data, idx) => (
     <div key={idx}>
       <label htmlFor="test">test:</label>

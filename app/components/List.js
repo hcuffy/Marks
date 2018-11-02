@@ -33,7 +33,7 @@ const List = ({ listData, actions }) => {
   ))
   return (
     <div className={styles.list_div}>
-      <Room modalData={listData} />
+      <Room modalData={cleanedData} />
       <div className="list-group list-group-flush">{list_inputs}</div>
     </div>
   )

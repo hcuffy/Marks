@@ -8,7 +8,6 @@ export const handleRoomData = event => {
   }
 
   classData.showModal = true
-  console.log(classData)
   return {
     type: DISPLAY_ROOM_MODAL,
     payload: classData
