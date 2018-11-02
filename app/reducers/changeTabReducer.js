@@ -14,7 +14,7 @@ const initialLoadState = {
 
 const handleTabChange = (state = initialLoadState, action) => {
   switch (action.type) {
-    case CHANGE_CLASSROOM_TAB:
+    case CHANGE_CLASSROOM_TAB: {
       const {
         classTab,
         testTab,
@@ -28,6 +28,7 @@ const handleTabChange = (state = initialLoadState, action) => {
         subjectClass,
         testClass
       })
+    }
     default:
       return state
   }

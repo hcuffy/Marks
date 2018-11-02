@@ -14,7 +14,7 @@ const initialLoadState = {
 
 export const handleSchoolReducer = (state = initialLoadState, action) => {
   switch (action.type) {
-    case HANDLE_SCHOOL_DATA:
+    case HANDLE_SCHOOL_DATA: {
       const { Title, Street, Province, Country, Zip, Year } = action.payload
       return _.assign({}, state, {
         Title,
@@ -24,6 +24,7 @@ export const handleSchoolReducer = (state = initialLoadState, action) => {
         Zip,
         Year
       })
+    }
     default:
       return state
   }
@@ -31,7 +32,7 @@ export const handleSchoolReducer = (state = initialLoadState, action) => {
 
 const displaySchoolData = (state = initialLoadState, action) => {
   switch (action.type) {
-    case DISPLAY_SCHOOL_DATA:
+    case DISPLAY_SCHOOL_DATA: {
       const {
         Title,
         Street,
@@ -48,6 +49,7 @@ const displaySchoolData = (state = initialLoadState, action) => {
         Zip,
         Year
       })
+    }
     default:
       return state
   }
