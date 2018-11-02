@@ -14,7 +14,7 @@ import { actionCreators } from '../../actions/index'
 
 const _ = require('lodash')
 
-const Room = ({ modalData, actions }) => {
+const Room = ({ modalData, roomModal, actions }) => {
   const clickedRoom = _.keys(modalData).map((data, idx) => (
     <div key={idx}>
       <label htmlFor="test">test:</label>
@@ -29,7 +29,7 @@ const Room = ({ modalData, actions }) => {
   ))
   return (
     <div>
-      <Modal isOpen backdrop>
+      <Modal isOpen={roomModal.showModal} backdrop>
         <ModalHeader>Modal title</ModalHeader>
         <ModalBody>{clickedRoom}</ModalBody>
         <ModalFooter>
@@ -42,7 +42,7 @@ const Room = ({ modalData, actions }) => {
   )
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({ roomModal: state.roomModal })
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)

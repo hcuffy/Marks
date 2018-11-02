@@ -23,6 +23,7 @@ const List = ({ listData, actions }) => {
       id={data._id}
       type="button"
       className={`list-group-item list-group-item-action ${styles.list_btn}`}
+      onClick={actions.handleRoomData}
     >
       {data.Name}
       <span className={`badge badge-warning badge-pill ${styles.badge_number}`}>

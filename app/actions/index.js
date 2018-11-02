@@ -1,4 +1,5 @@
 import { handleSchoolData, displaySchoolData } from './schoolActions'
+import { handleRoomData } from './modalActions'
 import {
   changeClassroomTab,
   handleClassData,
@@ -10,5 +11,6 @@ export const actionCreators = {
   displaySchoolData,
   changeClassroomTab,
   handleClassData,
-  displayClassData
+  displayClassData,
+  handleRoomData
 }

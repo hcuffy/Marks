@@ -1,18 +1,16 @@
 import { toast } from 'react-toastify'
 import { DISPLAY_ROOM_MODAL } from './actionTypes'
 
-export const handleClassData = event => async dispatch => {
+export const handleRoomData = event => {
   event.preventDefault()
-
   const classData = {
-    Name: event.target.Name.value,
-    Teacher: event.target.Teacher.value,
-    Code: event.target.Code.value,
-    Subject_Teacher: event.target.Subject_Teacher.value
+    id: event.target.id
   }
 
-  dispatch({
+  classData.showModal = true
+  console.log(classData)
+  return {
     type: DISPLAY_ROOM_MODAL,
-    payload: { classData }
-  })
+    payload: classData
+  }
 }
