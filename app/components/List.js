@@ -19,6 +19,7 @@ const List = ({ listData, actions }) => {
   const list_inputs = cleanedData.map((data, idx) => (
     <button
       key={idx}
+      id={data._id}
       type="button"
       className={`list-group-item list-group-item-action ${styles.list_btn}`}
     >

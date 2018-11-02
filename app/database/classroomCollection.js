@@ -39,29 +39,25 @@ function updateData(previous, current) {
 }
 
 export const addClassroomData = data => {
-  new Promise((resolve, reject) =>
-    classroomCollection.find({ Name: data.Name }, (err, entry) => {
+  classroomCollection.find({ Name: data.Name }, (err, entry) => {
+    if (err) {
+      saveError()
+      return err
+    }
+    if (entry.length > 0) {
+      entryAlreadyExists()
+      return
+    }
+    data.Subjects = []
+    classroomCollection.insert(data, (err, entry) => {
       if (err) {
         saveError()
         return err
       }
-      if (entry.length > 0) {
-        entryAlreadyExists()
-        return
-      }
-      data.Subjects = []
-
-      classroomCollection.insert(data, (err, entry) => {
-        if (err) {
-          saveError()
-          return reject(err)
-        }
-        saveSuccessful()
-
-        return resolve(entry)
-      })
+      saveSuccessful()
+      return entry
     })
-  )
+  })
 }
 
 export const getClassroomData = () =>

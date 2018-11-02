@@ -38,7 +38,7 @@ export const changeClassroomTab = event => {
   }
 }
 
-export const handleClassData = event => {
+export const handleClassData = event => async dispatch => {
   event.preventDefault()
 
   const formData = {
@@ -49,11 +49,12 @@ export const handleClassData = event => {
   }
 
   addClassroomData(formData)
+  const data = await getClassroomData()
 
-  return {
+  dispatch({
     type: ADD_CLASSROOM_DATA,
-    payload: { inputData: formData }
-  }
+    payload: { inputData: data }
+  })
 }
 
 export const displayClassData = () => async dispatch => {

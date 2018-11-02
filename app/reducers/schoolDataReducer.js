@@ -4,12 +4,12 @@ import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../actions/actionTypes'
 const _ = require('lodash')
 
 const initialLoadState = {
-  Title: '',
-  Street: '',
-  Province: '',
-  Country: '',
-  Zip: '',
-  Year: ''
+  Title: null,
+  Street: null,
+  Province: null,
+  Country: null,
+  Zip: null,
+  Year: null
 }
 
 export const handleSchoolReducer = (state = initialLoadState, action) => {

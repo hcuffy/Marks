@@ -9,7 +9,7 @@ import List from './List'
 const _ = require('lodash')
 
 function checkChange(allClassData, actions) {
-  console.log(allClassData.Check)
+  //  console.log(allClassData.Check)
   if (allClassData.Check) {
     actions.displayClassData()
   }
@@ -27,7 +27,7 @@ const Classes = ({ allClassData, actions }) => {
         className="form-control"
         id={`${data}Id`}
         type="text"
-        defaultValue=""
+        value={formLabels.data}
       />
     </div>
   ))
