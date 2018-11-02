@@ -10,7 +10,6 @@ export const handleClassData = event => async dispatch => {
     Code: event.target.Code.value,
     Subject_Teacher: event.target.Subject_Teacher.value
   }
-  event.target.reset()
 
   dispatch({
     type: DISPLAY_ROOM_MODAL,
