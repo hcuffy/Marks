@@ -6,18 +6,16 @@ import { actionCreators } from '../actions/index'
 import styles from './styles/classroom.css'
 
 const Exam = () => (
-  <div className={styles.room_div}>
-    <p>In Exams</p>
-  </div>
+	<div className={styles.room_div}>
+		<p>In Exams</p>
+	</div>
 )
 
-const mapStateToProps = state => ({})
-
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch)
+	actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+	null,
+	mapDispatchToProps
 )(Exam)

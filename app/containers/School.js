@@ -9,29 +9,29 @@ import SchoolInfo from '../components/SchoolInfo'
 const _ = require('lodash')
 
 class School extends Component {
-  componentDidMount() {
-    if (_.isNull(this.props.schoolData.Title)) {
-      this.props.actions.displaySchoolData()
-    }
-  }
+	componentDidMount() {
+		if (_.isNull(this.props.schoolData.Title)) {
+			this.props.actions.displaySchoolData()
+		}
+	}
 
-  render() {
-    return (
-      <div data-tid="school_container">
-        <SideMenu />
-        <SchoolInfo />
-      </div>
-    )
-  }
+	render() {
+		return (
+			<div data-tid="school_container">
+				<SideMenu />
+				<SchoolInfo />
+			</div>
+		)
+	}
 }
 
 const mapStateToProps = state => ({ schoolData: state.schoolData })
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch)
+	actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(School)

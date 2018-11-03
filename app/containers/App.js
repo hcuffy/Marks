@@ -2,14 +2,14 @@
 import React, { Component, Fragment, Node } from 'react'
 
 type Props = {
-  children: Node
+	children: Node
 };
 
 export default class App extends Component<Props> {
-  props: Props
+	props: Props
 
-  render() {
-    const { children } = this.props
-    return <Fragment>{children}</Fragment>
-  }
+	render() {
+		const { children } = this.props
+		return <Fragment>{children}</Fragment>
+	}
 }

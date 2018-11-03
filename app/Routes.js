@@ -8,13 +8,13 @@ import Classroom from './containers/Classroom'
 import School from './containers/School'
 
 export default () => (
-  <App>
-    <Switch>
-      {[
-        <Route exact key="1" path={SCHOOL} component={School} />,
-        <Route exact key="1" path={HOME} component={Home} />,
-        <Route exact key="1" path={CLASSROOM} component={Classroom} />
-      ]}
-    </Switch>
-  </App>
+	<App>
+		<Switch>
+			{[
+				<Route exact key="1" path={SCHOOL} component={School} />,
+				<Route exact key="1" path={HOME} component={Home} />,
+				<Route exact key="1" path={CLASSROOM} component={Classroom} />
+			]}
+		</Switch>
+	</App>
 )

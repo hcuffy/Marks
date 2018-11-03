@@ -6,14 +6,12 @@ import handleTabChange from './changeTabReducer'
 import displayClassData from './classDataReducer'
 import handleClassModal from './modalReducer'
 
-const _ = require('lodash')
-
 const rootReducer = combineReducers({
-  router,
-  schoolData: displaySchoolData,
-  tabStatus: handleTabChange,
-  allClassData: displayClassData,
-  roomModal: handleClassModal
+	router,
+	schoolData: displaySchoolData,
+	tabStatus: handleTabChange,
+	allClassData: displayClassData,
+	roomModal: handleClassModal
 })
 
 export default rootReducer

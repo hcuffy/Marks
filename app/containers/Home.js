@@ -7,25 +7,25 @@ import SideMenu from '../components/SideMenu'
 import SchoolPage from '../components/SchoolPage'
 
 class Home extends Component {
-  componentDidMount() {
-    this.props.actions.displaySchoolData()
-  }
+	componentDidMount() {
+		this.props.actions.displaySchoolData()
+	}
 
-  render() {
-    return (
-      <div data-tid="container">
-        <SideMenu />
-        <SchoolPage />
-      </div>
-    )
-  }
+	render() {
+		return (
+			<div data-tid="container">
+				<SideMenu />
+				<SchoolPage />
+			</div>
+		)
+	}
 }
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch)
+	actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-  null,
-  mapDispatchToProps
+	null,
+	mapDispatchToProps
 )(Home)
