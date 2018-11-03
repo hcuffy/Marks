@@ -6,10 +6,9 @@ import {
   displayClassData
 } from './classroomActions'
 
-export const actionCreators = {
-  handleSchoolData,
-  displaySchoolData,
-  changeClassroomTab,
+export const actionCreators = { 
+  handleSchoolData, 
+  displaySchoolData, changeClassroomTab,
   handleClassData,
   displayClassData,
   handleRoomData

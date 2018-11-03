@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify'
 import { DISPLAY_ROOM_MODAL } from './actionTypes'
 
 export const handleRoomData = event => {

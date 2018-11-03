@@ -1,5 +1,4 @@
-// @flow
-import { toast } from 'react-toastify'
+// @flow 
 import { HANDLE_SCHOOL_DATA, DISPLAY_SCHOOL_DATA } from './actionTypes'
 import { addSchoolData, getSchoolData } from '../database/schoolCollection'
 

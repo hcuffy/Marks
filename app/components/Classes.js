@@ -16,7 +16,7 @@ function checkChange(allClassData, actions) {
 
 const Classes = ({ allClassData, actions }) => {
   const formLabels = _.omit(allClassData, ['classData', 'Check'])
-  const form_inputs = _.keys(formLabels).map((data, idx) => (
+  const formInputs = _.keys(formLabels).map((data, idx) => (
     <div key={idx} className={styles.form_div}>
       <label className={styles.form_label} htmlFor={`${data}Id`}>
         {data}:
@@ -36,7 +36,7 @@ const Classes = ({ allClassData, actions }) => {
       <form onSubmit={actions.handleClassData} method="POST">
         <div className={styles.form_outer_div}>
           <h4 className={styles.center_header}>Add a Class</h4>
-          {form_inputs}
+          {formInputs}
           <div className={(styles.form_div, styles.save_btn)}>
             <button type="submit" className="btn btn-success">
               Add

@@ -1,5 +1,4 @@
 // @flow
-import { toast } from 'react-toastify'
 import {
   CHANGE_CLASSROOM_TAB,
   ADD_CLASSROOM_DATA,
