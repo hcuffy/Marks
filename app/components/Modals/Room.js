@@ -18,14 +18,12 @@ function cleanAndFilterData(objectToClean, roomToClean) {
 const Room = ({ modalData, roomModal }) => {
 	const selectedRoom = cleanAndFilterData(modalData, roomModal)
 	const clickedRoom = _.keys(selectedRoom).map((data, idx) => (
-		<div key={idx}>
-			<label className={styles.form.label} htmlFor={`${data}Id`}>
-				{data}:
-			</label>
+		<div className={styles.form_label} key={idx}>
+			<label htmlFor={`${data}_Id`}>{data}:</label>
 			<Input
 				name={data}
 				className="form-control"
-				id={`${data}Id`}
+				id={`${data}_Id`}
 				type="text"
 				defaultValue={selectedRoom[data]}
 			/>
