@@ -9,7 +9,7 @@ const _ = require('lodash')
 
 function cleanAndFilterData(objectToClean, roomToClean) {
 	const requiredProp = _.find(objectToClean, { _id: roomToClean.id })
-	const cleanedData = _.omit(requiredProp, ['_id'])
+	const cleanedData = _.omit(requiredProp, ['_id', 'createdAt', 'updatedAt'])
 
 	return cleanedData
 }
@@ -32,7 +32,7 @@ const Room = ({ modalData, roomModal }) => {
 	return (
 		<div>
 			<Modal isOpen={roomModal.showModal} backdrop>
-				<ModalHeader>{selectedRoom.Name}</ModalHeader>
+				<ModalHeader>{`Edit: ${selectedRoom.Name}`}</ModalHeader>
 				<ModalBody>{clickedRoom}</ModalBody>
 				<ModalFooter>
 					<Button color="danger">Delete</Button>
