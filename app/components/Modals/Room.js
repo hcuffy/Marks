@@ -7,25 +7,32 @@ import { actionCreators } from '../../actions/index'
 
 const _ = require('lodash')
 
+function cleanAndFilterData(objectToClean, roomToClean) {
+	const requiredProp = _.find(objectToClean, { _id: roomToClean.id })
+	const cleanedData = _.omit(requiredProp, ['_id'])
+
+	return cleanedData
+}
+
 const Room = ({ modalData, roomModal }) => {
-	const selectedRoom = _.find(modalData, { _id: roomModal.id })
+	const selectedRoom = cleanAndFilterData(modalData, roomModal)
 	console.log(selectedRoom)
-	const clickedRoom = _.keys(modalData).map((data, idx) => (
+	const clickedRoom = _.keys(selectedRoom).map((data, idx) => (
 		<div key={idx}>
-			<label htmlFor="test">test:</label>
+			<label htmlFor={`${data}Id`}>{data}:</label>
 			<Input
-				name="test"
+				name={data}
 				className="form-control"
-				id="test"
+				id={`${data}Id`}
 				type="text"
-				defaultValue="test"
+				defaultValue={selectedRoom[data]}
 			/>
 		</div>
 	))
 	return (
 		<div>
 			<Modal isOpen={roomModal.showModal} backdrop>
-				<ModalHeader>Modal title</ModalHeader>
+				<ModalHeader>{selectedRoom.Name}</ModalHeader>
 				<ModalBody>{clickedRoom}</ModalBody>
 				<ModalFooter>
 					<Button color="danger">Delete</Button>
