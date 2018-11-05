@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Input } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
+import styles from '../styles/classroom.css'
 
 const _ = require('lodash')
 
@@ -16,10 +17,11 @@ function cleanAndFilterData(objectToClean, roomToClean) {
 
 const Room = ({ modalData, roomModal }) => {
 	const selectedRoom = cleanAndFilterData(modalData, roomModal)
-	console.log(selectedRoom)
 	const clickedRoom = _.keys(selectedRoom).map((data, idx) => (
 		<div key={idx}>
-			<label htmlFor={`${data}Id`}>{data}:</label>
+			<label className={styles.form.label} htmlFor={`${data}Id`}>
+				{data}:
+			</label>
 			<Input
 				name={data}
 				className="form-control"
