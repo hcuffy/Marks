@@ -10,6 +10,7 @@
     "node": true
   },
   "rules": {
+    "array-element-newline": ["error", { "minItems": 3 }],
     "arrow-parens": ["off"],
     "compat/compat": "error",
     "consistent-return": "off",
