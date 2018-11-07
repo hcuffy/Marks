@@ -12,6 +12,7 @@
   "rules": {
     "array-element-newline": ["error", { "minItems": 3 }],
     "arrow-parens": ["off"],
+    "camelcase": [0, { "properties": "never" }],
     "compat/compat": "error",
     "consistent-return": "off",
     "comma-dangle": "off",

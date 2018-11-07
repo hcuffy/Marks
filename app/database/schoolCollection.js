@@ -29,7 +29,7 @@ function updateData(previous, current) {
 			Year
 		},
 		{},
-		(err, entry) => {
+		err => {
 			if (err) {
 				saveError()
 				return err
@@ -49,10 +49,10 @@ export const addSchoolData = data => {
 			updateData(entry[0], data)
 			return 'saved'
 		}
-		schoolCollection.insert(data, (err, entry) => {
-			if (err) {
+		schoolCollection.insert(data, error => {
+			if (error) {
 				saveError()
-				return err
+				return error
 			}
 			saveSuccessful()
 			return 'Saved'

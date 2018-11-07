@@ -40,10 +40,22 @@ const Room = ({ modalData, roomModal, actions }) => {
 				<ModalHeader>{`Edit: ${selectedRoom.Name}`}</ModalHeader>
 				<ModalBody>{clickedRoom}</ModalBody>
 				<ModalFooter>
-					<Button id={roomModal.id} onClick={actions.removeRoom} color="danger">
+					<Button
+						type="button"
+						id={roomModal.id}
+						onClick={actions.removeRoom}
+						color="danger"
+					>
 						Delete
 					</Button>
-					<Button color="primary">Save</Button>
+					<Button
+						type="button"
+						id={selectedRoom.Name}
+						onClick={actions.updateRoom}
+						color="primary"
+					>
+						Update
+					</Button>
 					<Button color="secondary">Cancel</Button>
 				</ModalFooter>
 			</Modal>

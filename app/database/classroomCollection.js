@@ -65,3 +65,44 @@ export const getRemoveClassroom = data =>
 			})
 		})
 	)
+
+function updateRoomData(previous, current) {
+	const { Name, Teacher, Code, Subject_Teacher } = current
+	classroomCollection.update(
+		{ Name: previous.Name },
+		{
+			Name,
+			Teacher,
+			Code,
+			Subject_Teacher
+		},
+		{},
+		err => {
+			if (err) {
+				saveError()
+				return err
+			}
+			saveSuccessful()
+		}
+	)
+}
+
+export const updataRoom = data => {
+	classroomCollection.find({ Name: data.Name }, (err, entry) => {
+		if (err) {
+			return err
+		}
+		if (entry.length > 0) {
+			updateRoomData(entry[0], data)
+			return 'saved'
+		}
+		classroomCollection.insert(data, error => {
+			if (error) {
+				saveError()
+				return error
+			}
+			saveSuccessful()
+			return 'Saved'
+		})
+	})
+}

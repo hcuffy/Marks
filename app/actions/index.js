@@ -1,5 +1,5 @@
 import { handleSchoolData, displaySchoolData } from './schoolActions'
-import { handleRoomData, removeRoom } from './modalActions'
+import { handleRoomData, removeRoom, updateRoom } from './modalActions'
 import { changeClassroomTab, handleClassData, displayClassData } from './classroomActions'
 
 export const actionCreators = {
@@ -9,5 +9,6 @@ export const actionCreators = {
 	handleClassData,
 	displayClassData,
 	handleRoomData,
-	removeRoom
+	removeRoom,
+	updateRoom
 }
