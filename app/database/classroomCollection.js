@@ -14,6 +14,7 @@ const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const classroomCollection = new Datastore({
 	filename: path.join(userDataPath, 'classroom.db'),
 	autoload: true,
+	corruptAlertThreshold: 1,
 	timestampData: true
 })
 
@@ -66,15 +67,18 @@ export const getRemoveClassroom = data =>
 		})
 	)
 
-function updateRoomData(previous, current) {
+function updateSinlgeDoc(previous, current) {
 	const { Name, Teacher, Code, Subject_Teacher } = current
+	const { Subjects } = previous
+	console.log(Subjects)
 	classroomCollection.update(
 		{ Name: previous.Name },
 		{
 			Name,
 			Teacher,
 			Code,
-			Subject_Teacher
+			Subject_Teacher,
+			Subjects
 		},
 		{},
 		err => {
@@ -87,22 +91,21 @@ function updateRoomData(previous, current) {
 	)
 }
 
-export const updataRoom = data => {
-	classroomCollection.find({ Name: data.Name }, (err, entry) => {
-		if (err) {
-			return err
-		}
-		if (entry.length > 0) {
-			updateRoomData(entry[0], data)
-			return 'saved'
-		}
-		classroomCollection.insert(data, error => {
-			if (error) {
-				saveError()
-				return error
+export const updateRoomData = data =>
+	new Promise((resolve, reject) =>
+		classroomCollection.find({ Name: data.OldName }, (err, entry) => {
+			if (err) {
+				return err
 			}
-			saveSuccessful()
-			return 'Saved'
+			if (entry.length > 0) {
+				console.log(entry)
+				updateSinlgeDoc(entry[0], data)
+				classroomCollection.find({}, (error, docs) => {
+					if (error) {
+						return reject(error)
+					}
+					return resolve(docs)
+				})
+			}
 		})
-	})
-}
+	)

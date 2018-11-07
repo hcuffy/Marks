@@ -38,26 +38,27 @@ const Room = ({ modalData, roomModal, actions }) => {
 		<div>
 			<Modal isOpen={roomModal.showModal} backdrop>
 				<ModalHeader>{`Edit: ${selectedRoom.Name}`}</ModalHeader>
-				<ModalBody>{clickedRoom}</ModalBody>
-				<ModalFooter>
-					<Button
-						type="button"
-						id={roomModal.id}
-						onClick={actions.removeRoom}
-						color="danger"
-					>
-						Delete
-					</Button>
-					<Button
-						type="button"
-						id={selectedRoom.Name}
-						onClick={actions.updateRoom}
-						color="primary"
-					>
-						Update
-					</Button>
-					<Button color="secondary">Cancel</Button>
-				</ModalFooter>
+				<form onSubmit={actions.updateRoom} method="POST">
+					<ModalBody>
+						{' '}
+						{clickedRoom}
+						<input type="hidden" name="OldName" id={selectedRoom.Name} />
+					</ModalBody>
+					<ModalFooter>
+						<Button
+							type="button"
+							id={roomModal.id}
+							onClick={actions.removeRoom}
+							color="danger"
+						>
+							Delete
+						</Button>
+						<Button type="submit" color="primary">
+							Update
+						</Button>
+						<Button color="secondary">Cancel</Button>
+					</ModalFooter>
+				</form>
 			</Modal>
 		</div>
 	)
