@@ -1,5 +1,5 @@
 // @flow
-import { DISPLAY_ROOM_MODAL, REMOVE_CLASSROOM } from '../actions/actionTypes'
+import { DISPLAY_ROOM_MODAL, UPDATE_CLASSROOM } from '../actions/actionTypes'
 
 const _ = require('lodash')
 
@@ -17,7 +17,7 @@ const handleClassModal = (state = initialLoadState, action) => {
 			showModal
 		})
 	}
-	case REMOVE_CLASSROOM: {
+	case UPDATE_CLASSROOM: {
 		const { id, showModal } = action.payload
 		return _.assign({}, state, {
 			id,
