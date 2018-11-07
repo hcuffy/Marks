@@ -18,7 +18,7 @@ function cleanAndFilterData(objectToClean, roomToClean) {
 	return cleanedData
 }
 
-const Room = ({ modalData, roomModal }) => {
+const Room = ({ modalData, roomModal, actions }) => {
 	const selectedRoom = cleanAndFilterData(modalData, roomModal)
 	const clickedRoom = _.keys(selectedRoom).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
@@ -40,7 +40,9 @@ const Room = ({ modalData, roomModal }) => {
 				<ModalHeader>{`Edit: ${selectedRoom.Name}`}</ModalHeader>
 				<ModalBody>{clickedRoom}</ModalBody>
 				<ModalFooter>
-					<Button color="danger">Delete</Button>
+					<Button id={roomModal.id} onClick={actions.removeRoom} color="danger">
+						Delete
+					</Button>
 					<Button color="primary">Save</Button>
 					<Button color="secondary">Cancel</Button>
 				</ModalFooter>
