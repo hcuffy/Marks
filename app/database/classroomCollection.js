@@ -53,10 +53,15 @@ export const getClassroomData = () =>
 
 export const getRemoveClassroom = data =>
 	new Promise((resolve, reject) =>
-		classroomCollection.remove({ _id: data.id }, (err, entry) => {
+		classroomCollection.remove({ _id: data.id }, err => {
 			if (err) {
 				return reject(err)
 			}
-			return resolve(entry)
+			classroomCollection.find({}, (error, docs) => {
+				if (err) {
+					return reject(err)
+				}
+				return resolve(docs)
+			})
 		})
 	)

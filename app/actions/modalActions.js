@@ -1,4 +1,4 @@
-import { DISPLAY_ROOM_MODAL, REMOVE_CLASSROOM } from './actionTypes'
+import { DISPLAY_ROOM_MODAL, REMOVE_CLASSROOM, GET_CLASSROOM_DATA } from './actionTypes'
 import { getRemoveClassroom } from '../database/classroomCollection'
 
 export const handleRoomData = event => {
@@ -20,10 +20,14 @@ export const removeRoom = event => async dispatch => {
 		showModal: true
 	}
 
-	const numOfRemovedRoom = await getRemoveClassroom(roomData)
+	const docs = await getRemoveClassroom(roomData)
 
-	if (numOfRemovedRoom) {
+	if (docs) {
 		roomData.showModal = false
+		dispatch({
+			type: GET_CLASSROOM_DATA,
+			payload: { classData: docs }
+		})
 	}
 
 	dispatch({
