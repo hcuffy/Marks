@@ -4,18 +4,15 @@ import {
 	ADD_CLASSROOM_DATA,
 	GET_CLASSROOM_DATA
 } from './actionTypes'
-import {
-	addClassroomData,
-	getClassroomData
-} from '../database/classroomCollection'
+import { addClassroomData, getClassroomData } from '../database/classroomCollection'
 
 function changeTab(tabTitle) {
 	const newState = {}
 
-	newState.classTab = tabTitle == 'Classes'
-	newState.testTab = tabTitle == 'Exams/Tests'
-	newState.subjectClass = tabTitle == 'Classes' ? 'active' : ''
-	newState.testClass = tabTitle == 'Exams/Tests' ? 'active' : ''
+	newState.classTab = tabTitle === 'Classes'
+	newState.testTab = tabTitle === 'Exams/Tests'
+	newState.subjectClass = tabTitle === 'Classes' ? 'active' : ''
+	newState.testClass = tabTitle === 'Exams/Tests' ? 'active' : ''
 
 	return newState
 }
