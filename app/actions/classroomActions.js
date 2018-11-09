@@ -1,4 +1,3 @@
-// @flow
 import {
 	CHANGE_CLASSROOM_TAB,
 	ADD_CLASSROOM_DATA,
