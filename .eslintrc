@@ -10,7 +10,9 @@
     "node": true
   },
   "rules": {
+    "array-element-newline": ["error", { "minItems": 3 }],
     "arrow-parens": ["off"],
+    "camelcase": [0, { "properties": "never" }],
     "compat/compat": "error",
     "consistent-return": "off",
     "comma-dangle": "off",
@@ -34,10 +36,19 @@
     "generator-star-spacing": "off",
     "import/no-unresolved": "error",
     "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "indent": ["error", "tab"],
     "jsx-a11y/anchor-is-valid": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 90
+      }
+    ],
     "no-console": "off",
     "no-use-before-define": "off",
     "no-multi-assign": "off",
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     "object-curly-spacing": ["error", "always"],
     "promise/param-names": "error",
     "promise/always-return": "error",
@@ -57,13 +68,25 @@
       }
     ],
     "react/jsx-no-bind": "off",
+    "react/no-array-index-key": "off",
+    "react/prop-types": "off",
     "react/jsx-filename-extension": [
       "error",
       {
         "extensions": [".js", ".jsx"]
       }
     ],
-    "react/prefer-stateless-function": "off"
+    "react/prefer-stateless-function": "off",
+    "react/destructuring-assignment": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ]
   },
   "plugins": ["flowtype", "import", "promise", "compat", "react"],
   "settings": {

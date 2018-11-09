@@ -1,34 +1,50 @@
-// @flow
 import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../actions/actionTypes'
-import type { Action } from './types'
-import { getSchoolData } from '../database/schoolDB'
 
 const _ = require('lodash')
 
-const initialLoadState = {}
+const initialLoadState = {
+	Title: null,
+	Street: null,
+	Province: null,
+	Country: null,
+	Zip: null,
+	Year: null
+}
+
+export const handleSchoolReducer = (state = initialLoadState, action) => {
+	switch (action.type) {
+	case HANDLE_SCHOOL_DATA: {
+		const { Title, Street, Province, Country, Zip, Year } = action.payload
+		return _.assign({}, state, {
+			Title,
+			Street,
+			Province,
+			Country,
+			Zip,
+			Year
+		})
+	}
+	default:
+		return state
+	}
+}
 
 const displaySchoolData = (state = initialLoadState, action) => {
-  switch (action.type) {
-    case DISPLAY_SCHOOL_DATA:
-      const {
-        title,
-        street,
-        schoolstate,
-        country,
-        zip,
-        year
-      } = action.payload.schoolData[0]
-      return _.assign({}, state, {
-        title,
-        street,
-        schoolstate,
-        country,
-        zip,
-        year
-      })
-    default:
-      return state
-  }
+	switch (action.type) {
+	case DISPLAY_SCHOOL_DATA: {
+		const { Title, Street, Province, Country, Zip, Year } = action.payload
+		return _.assign({}, state, {
+			Title,
+			Street,
+			Province,
+			Country,
+			Zip,
+			Year
+		})
+	}
+	default:
+		return state
+	}
 }
 
 export default displaySchoolData

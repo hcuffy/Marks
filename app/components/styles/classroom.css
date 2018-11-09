@@ -1,34 +1,26 @@
-.container {
-  position: absolute;
-  text-align: center;
+.navbar_div {
+  padding: 30px 0 5px 0;
 }
 
-.div_wrapper {
+.room_div {
   white-space: 800px;
+  border-top: 1px solid;
+  padding: 0 20px 0 0;
 }
 
-.center_header {
+.form_div {
+  white-space: nowrap;
   float: right;
-  width: 50%;
-  margin-right: 200px;
+  margin: 10px 0 0 0;
 }
 
 input[type='text'] {
   border: 0;
   outline: 0;
+  float: left;
+  background: transparent;
   border-bottom: 1px solid white;
   width: 200px;
-}
-
-.form_inner_div {
-  white-space: nowrap;
-  float: right;
-}
-
-.form_outer_div {
-  height: 350px;
-  width: 500px;
-  padding: 50px 20px 0 0;
 }
 
 .save_btn {
@@ -36,9 +28,19 @@ input[type='text'] {
   margin: 10px 0 0 200px;
 }
 
+.form_outer_div {
+  float: right;
+  height: 350px;
+  width: 500px;
+}
+
 .form_label {
   float: left;
   margin-right: 5px;
   vertical-align: bottom;
   line-height: 32px;
+}
+
+.center_header {
+  text-align: center;
 }
