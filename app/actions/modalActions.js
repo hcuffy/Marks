@@ -22,7 +22,6 @@ export const removeRoom = event => async dispatch => {
 	const docs = await getRemoveClassroom(roomData)
 
 	if (docs) {
-		roomData.showModal = false
 		dispatch({
 			type: GET_CLASSROOM_DATA,
 			payload: { classData: docs }
@@ -48,7 +47,6 @@ export const updateRoom = event => async dispatch => {
 	}
 
 	const docs = await updateRoomData(roomData)
-	console.log(docs)
 	if (docs) {
 		roomData.showModal = false
 		dispatch({

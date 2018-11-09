@@ -57,7 +57,14 @@ const Room = ({ modalData, roomModal, actions }) => {
 						<Button type="submit" color="primary">
 							Update
 						</Button>
-						<Button color="secondary">Close</Button>
+						<Button
+							type="button"
+							id={roomModal.id}
+							onClick={actions.handleRoomData}
+							color="secondary"
+						>
+							Close
+						</Button>
 					</ModalFooter>
 				</form>
 			</Modal>
