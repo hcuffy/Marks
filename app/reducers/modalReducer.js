@@ -1,4 +1,3 @@
-// @flow
 import { DISPLAY_ROOM_MODAL, UPDATE_CLASSROOM } from '../actions/actionTypes'
 
 const _ = require('lodash')

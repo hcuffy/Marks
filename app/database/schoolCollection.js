@@ -13,6 +13,7 @@ const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const schoolCollection = new Datastore({
 	filename: path.join(userDataPath, 'school.db'),
 	autoload: true,
+	corruptAlertThreshold: 1,
 	timestampData: true
 })
 

@@ -1,4 +1,3 @@
-// @flow
 import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../actions/actionTypes'
 
 const _ = require('lodash')

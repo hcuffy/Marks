@@ -1,4 +1,3 @@
-// @flow
 import { CHANGE_CLASSROOM_TAB } from '../actions/actionTypes'
 
 const _ = require('lodash')

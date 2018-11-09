@@ -1,4 +1,3 @@
-// @flow
 import { ADD_CLASSROOM_DATA, GET_CLASSROOM_DATA } from '../actions/actionTypes'
 
 const _ = require('lodash')

@@ -3,7 +3,11 @@ import {
 	saveSuccessful,
 	saveError,
 	unableToRetrieve,
-	entryAlreadyExists
+	entryAlreadyExists,
+	deleteSuccessful,
+	deleteClassFailed,
+	updateSuccessful,
+	updateFailed
 } from '../components/notifications/General'
 
 const Datastore = require('nedb')
@@ -56,12 +60,15 @@ export const getRemoveClassroom = data =>
 	new Promise((resolve, reject) =>
 		classroomCollection.remove({ _id: data.id }, err => {
 			if (err) {
+				deleteClassFailed()
 				return reject(err)
 			}
 			classroomCollection.find({}, (error, docs) => {
 				if (err) {
+					deleteClassFailed()
 					return reject(err)
 				}
+				deleteSuccessful()
 				return resolve(docs)
 			})
 		})
@@ -70,7 +77,6 @@ export const getRemoveClassroom = data =>
 function updateSinlgeDoc(previous, current) {
 	const { Name, Teacher, Code, Subject_Teacher } = current
 	const { Subjects } = previous
-	console.log(Subjects)
 	classroomCollection.update(
 		{ Name: previous.Name },
 		{
@@ -83,10 +89,10 @@ function updateSinlgeDoc(previous, current) {
 		{},
 		err => {
 			if (err) {
-				saveError()
+				updateFailed()
 				return err
 			}
-			saveSuccessful()
+			updateSuccessful()
 		}
 	)
 }
@@ -95,15 +101,17 @@ export const updateRoomData = data =>
 	new Promise((resolve, reject) =>
 		classroomCollection.find({ Name: data.OldName }, (err, entry) => {
 			if (err) {
+				updateFailed()
 				return err
 			}
 			if (entry.length > 0) {
-				console.log(entry)
 				updateSinlgeDoc(entry[0], data)
 				classroomCollection.find({}, (error, docs) => {
 					if (error) {
+						updateFailed()
 						return reject(error)
 					}
+					updateSuccessful()
 					return resolve(docs)
 				})
 			}
