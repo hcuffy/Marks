@@ -4,8 +4,7 @@ import { getRemoveClassroom, updateRoomData } from '../database/classroomCollect
 export const handleRoomData = event => {
 	event.preventDefault()
 	const classData = {
-		id: event.target.id,
-		showModal: true
+		id: event.target.id
 	}
 
 	return {
