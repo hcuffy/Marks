@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/room.css'
+import styles from './styles/room.css'
 
 const _ = require('lodash')
 
@@ -37,7 +37,7 @@ const Room = ({ modalData, roomModal, actions }) => {
 	return (
 		<div>
 			<Modal isOpen={roomModal.showModal} backdrop>
-				<ModalHeader>{`Edit: ${selectedRoom.Name}`}</ModalHeader>
+				<ModalHeader charCode="Y">{`Edit: ${selectedRoom.Name}`}</ModalHeader>
 				<form onSubmit={actions.updateRoom} method="POST">
 					<ModalBody>
 						{' '}
@@ -53,10 +53,11 @@ const Room = ({ modalData, roomModal, actions }) => {
 						>
 							Delete
 						</Button>
+
 						<Button type="submit" color="primary">
 							Update
 						</Button>
-						<Button color="secondary">Cancel</Button>
+						<Button color="secondary">Close</Button>
 					</ModalFooter>
 				</form>
 			</Modal>
