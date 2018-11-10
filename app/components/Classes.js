@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import styles from './styles/classroom.css'
 import List from './List'
+import Subjects from './Subjects'
 
 const _ = require('lodash')
 
@@ -47,6 +48,7 @@ const Classes = ({ allClassData, actions }) => {
 				<h4 className={styles.center_header}>List of Classes</h4>
 				<List listData={allClassData} />
 			</div>
+			<Subjects />
 		</div>
 	)
 }
