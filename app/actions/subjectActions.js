@@ -1,6 +1,6 @@
 import { UPDATE_SUBJECT_LIST } from './actionTypes'
 
-export const openSubjectDropdown = event => {
+export const openClassList = event => {
 	event.preventDefault()
 
 	return {
