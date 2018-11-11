@@ -4,13 +4,13 @@ import { bindActionCreators } from 'redux'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { actionCreators } from '../actions/index'
 
-const Subjects = ({ allClassData }) => {
+const Subjects = ({ allClassData, actions }) => {
 	console.log(allClassData)
 	return (
 		<div>
 			<h4>Class & Subjects</h4>
 
-			<Dropdown isOpen toggle>
+			<Dropdown isOpen toggle={actions.openSubjectDropdown}>
 				<DropdownToggle caret>Select Class</DropdownToggle>
 				<DropdownMenu>
 					<DropdownItem>Another Action</DropdownItem>
