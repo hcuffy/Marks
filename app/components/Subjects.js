@@ -1,13 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { actionCreators } from '../actions/index'
 
-const Subjects = () => (
-	<div>
-		<p>In subjects</p>
-	</div>
-)
+const Subjects = ({ allClassData }) => {
+	console.log(allClassData)
+	return (
+		<div>
+			<h4>Class & Subjects</h4>
+
+			<Dropdown isOpen toggle>
+				<DropdownToggle caret>Select Class</DropdownToggle>
+				<DropdownMenu>
+					<DropdownItem>Another Action</DropdownItem>
+					<DropdownItem>Another Action</DropdownItem>
+				</DropdownMenu>
+			</Dropdown>
+		</div>
+	)
+}
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)

@@ -48,7 +48,7 @@ const Classes = ({ allClassData, actions }) => {
 				<h4 className={styles.center_header}>List of Classes</h4>
 				<List listData={allClassData} />
 			</div>
-			<Subjects />
+			<Subjects allClassData={allClassData} />
 		</div>
 	)
 }
