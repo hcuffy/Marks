@@ -4,7 +4,7 @@ import displaySchoolData from './schoolDataReducer'
 import handleTabChange from './changeTabReducer'
 import displayClassData from './classDataReducer'
 import handleClassModal from './modalReducer'
-import openDropdownList from './subjectReducer'
+import openClassList from './subjectReducer'
 
 const rootReducer = combineReducers({
 	router,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
 	tabStatus: handleTabChange,
 	allClassData: displayClassData,
 	roomModal: handleClassModal,
-	subjectSelect: openDropdownList
+	selectClass: openClassList
 })
 
 export default rootReducer
