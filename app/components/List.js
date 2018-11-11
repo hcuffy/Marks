@@ -7,7 +7,7 @@ import Room from './Modals/Room'
 
 const _ = require('lodash')
 
-function cleanAndSortData(clean) {
+export function cleanAndSortData(clean) {
 	const requiredProp = _.pick(clean, ['classData'])
 	const sortedProp = _.sortBy(requiredProp.classData, ['Name'], ['asc'])
 
