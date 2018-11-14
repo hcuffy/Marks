@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { actionCreators } from '../actions/index'
 import { cleanAndSortData } from './List'
+import styles from './styles/subjects.css'
 
 const _ = require('lodash')
 
@@ -27,7 +28,7 @@ const Subjects = ({ allClassData, selectClass, actions }) => {
 	))
 	return (
 		<div>
-			<h4>Class & Subjects</h4>
+			<h4 className={styles.main_div}>Subjects</h4>
 			<Dropdown isOpen={selectClass.openModal} toggle={actions.openClassList}>
 				<DropdownToggle color="info" caret>
 					Select Class
