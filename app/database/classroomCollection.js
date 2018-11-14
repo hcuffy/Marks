@@ -111,7 +111,6 @@ export const updateRoomData = data =>
 						updateFailed()
 						return reject(error)
 					}
-					updateSuccessful()
 					return resolve(docs)
 				})
 			}
