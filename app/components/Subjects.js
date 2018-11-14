@@ -7,17 +7,19 @@ import { cleanAndSortData } from './List'
 
 const _ = require('lodash')
 
-function findSubject(allClasses, specificClass) {
-	console.log(specificClass)
-	if (allClasses.length <= 0 || allClasses === null || specificClass === undefined) {
+function findSubject(allClasses, chosenClass) {
+	if (_.isNil(allClasses) || _.isNil(chosenClass) || chosenClass === 'Select Class') {
 		return 'No Data To Show'
 	}
-	const chosenSubject = _.find(allClasses, ['Name', specificClass])
+	const chosenSubject = _.find(allClasses, ['Name', chosenClass])
+
 	return chosenSubject.Name
 }
 const Subjects = ({ allClassData, selectClass, actions }) => {
 	const subjects = cleanAndSortData(allClassData)
+
 	const classSubjects = findSubject(subjects, selectClass.subject)
+
 	const subjectOptions = subjects.map((data, idx) => (
 		<DropdownItem key={idx} name={data.Name} onClick={actions.showSubject}>
 			{data.Name}
