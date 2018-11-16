@@ -18,6 +18,7 @@ const openDropdownList = (state = initialLoadState, action) => {
 		})
 	}
 	case GET_SUBJECT_LIST: {
+		const openModal = !state.openModal
 		const subject = action.payload
 		return _.assign({}, state, { subject })
 	}
