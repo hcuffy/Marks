@@ -27,15 +27,20 @@ const Subjects = ({ allClassData, selectClass, actions }) => {
 		</DropdownItem>
 	))
 	return (
-		<div>
-			<h4 className={styles.main_div}>Subjects</h4>
-			<Dropdown isOpen={selectClass.openModal} toggle={actions.openClassList}>
-				<DropdownToggle color="info" caret>
-					Select Class
-				</DropdownToggle>
-				<DropdownMenu>{subjectOptions}</DropdownMenu>
-			</Dropdown>
-			<h5>{classSubjects}</h5>
+		<div className={styles.main_div}>
+			<div className={styles.subject_left}>
+				<h4>Subjects</h4>
+				<Dropdown isOpen={selectClass.openModal} toggle={actions.openClassList}>
+					<DropdownToggle color="info" caret>
+						Select Class
+					</DropdownToggle>
+					<DropdownMenu>{subjectOptions}</DropdownMenu>
+				</Dropdown>
+				<h5>{classSubjects}</h5>
+			</div>
+			<div className={styles.subject_right}>
+				<h4>Add Subjects</h4>
+			</div>
 		</div>
 	)
 }

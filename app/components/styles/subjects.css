@@ -2,3 +2,12 @@
   margin-top: 30px;
   border-top: 1px solid;
 }
+
+.subject_left {
+  float: left;
+}
+
+.subject_right {
+  position: absolute;
+  right: 20px;
+}
