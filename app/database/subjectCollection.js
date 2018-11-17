@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 // @flow
 import {
 	saveSuccessful,
@@ -6,6 +7,7 @@ import {
 } from '../components/notifications/General'
 import { getClassroomData } from './classroomCollection'
 
+const _ = require('lodash')
 const Datastore = require('nedb')
 const electron = require('electron')
 const path = require('path')
@@ -18,31 +20,31 @@ const subjectCollection = new Datastore({
 	timestampData: true
 })
 
-async function getSubjects() {
+async function getSubjects(subjectData) {
 	const data = await getClassroomData()
-	console.log(data)
+	const selectedClass = _.find(data, ['Name', subjectData.Room])
+	if (!_.includes(selectedClass.Subjects, subjectData.Name)) {
+		return selectedClass
+	}
+	return true
 }
 
-export const addSubjectData = data => {
-	subjectCollection.find({ Name: data.Name }, (err, entry) => {
-		if (err) {
+export const addSubjectData = async data => {
+	const subjectState = await getSubjects(data)
+
+	if (subjectState === true) {
+		entryAlreadyExists()
+		return -1
+	}
+
+	const newData = _.merge(data, { Tests: [], ClassroomId: subjectState._id })
+
+	subjectCollection.insert(newData, (error, doc) => {
+		if (error) {
 			saveError()
-			return err
+			return error
 		}
-		if (entry.length > 0) {
-			entryAlreadyExists()
-			return
-		}
-		const newData = data
-		newData.Tests = []
-		getSubjects()
-		// subjectCollection.insert(newData, (error, doc) => {
-		// 	if (error) {
-		// 		saveError()
-		// 		return error
-		// 	}
-		// 	saveSuccessful()
-		// 	return doc
-		// })
+		saveSuccessful()
+		return doc
 	})
 }
