@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from '../styles/classroom.css'
 
-const SubjectForm = () => (
+const SubjectForm = ({ actions }) => (
 	<div>
-		<form>
+		<form onSubmit={actions.addNewSubject} method="POST">
 			<div className={styles.form_div}>
 				<label className={styles.form_label} htmlFor="Input1">
 					Name:
@@ -35,10 +35,15 @@ const SubjectForm = () => (
 				<label className={styles.form_label} htmlFor="classSelect">
 					Select Class:
 				</label>
-				<select type="text" name="room" className="form-control" id="classSelect">
+				<select type="text" name="Room" className="form-control" id="classSelect">
 					<option>Class 1</option>
 					<option>Class 2</option>
 				</select>
+			</div>
+			<div className={styles.subject_save}>
+				<button type="submit" className="btn btn-success">
+					Add
+				</button>
 			</div>
 		</form>
 	</div>

@@ -1,7 +1,7 @@
 import { handleSchoolData, displaySchoolData } from './schoolActions'
 import { handleRoomData, removeRoom, updateRoom } from './modalActions'
 import { changeClassroomTab, handleClassData, displayClassData } from './classroomActions'
-import { openClassList, showSubject } from './subjectActions'
+import { openClassList, showSubject, addNewSubject } from './subjectActions'
 
 export const actionCreators = {
 	handleSchoolData,
@@ -13,5 +13,6 @@ export const actionCreators = {
 	removeRoom,
 	updateRoom,
 	openClassList,
-	showSubject
+	showSubject,
+	addNewSubject
 }
