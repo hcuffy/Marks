@@ -5,6 +5,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 import { actionCreators } from '../actions/index'
 import { cleanAndSortData } from './List'
 import styles from './styles/subjects.css'
+import SubjectForm from './Modals/SubjectForm'
 
 const _ = require('lodash')
 
@@ -29,7 +30,7 @@ const Subjects = ({ allClassData, selectClass, actions }) => {
 	return (
 		<div className={styles.main_div}>
 			<div className={styles.subject_left}>
-				<h4>Subjects</h4>
+				<h4 className={styles.center_header}>Subjects</h4>
 				<Dropdown isOpen={selectClass.openModal} toggle={actions.openClassList}>
 					<DropdownToggle color="info" caret>
 						Select Class
@@ -39,7 +40,8 @@ const Subjects = ({ allClassData, selectClass, actions }) => {
 				<h5>{classSubjects}</h5>
 			</div>
 			<div className={styles.subject_right}>
-				<h4>Add Subjects</h4>
+				<h4 className={styles.center_header}>Add Subjects</h4>
+				<SubjectForm />
 			</div>
 		</div>
 	)

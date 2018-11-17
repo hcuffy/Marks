@@ -8,6 +8,13 @@
 }
 
 .subject_right {
+  width: 40%;
+  height: 300px;
   position: absolute;
   right: 20px;
+  overflow: scroll;
+}
+
+.center_header {
+  text-align: center;
 }
