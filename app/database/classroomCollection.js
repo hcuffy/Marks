@@ -77,6 +77,9 @@ export const getRemoveClassroom = data =>
 function updateSinlgeDoc(previous, current) {
 	const { Name, Teacher, Code, Subject_Teacher } = current
 	const { Subjects } = previous
+	if (current.Subjects.length > 0) {
+		Subjects.push(current.Subjects[0])
+	}
 	classroomCollection.update(
 		{ Name: previous.Name },
 		{
