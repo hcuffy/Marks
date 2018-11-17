@@ -30,8 +30,6 @@ export const addNewSubject = event => {
 
 	event.target.reset()
 	addSubjectData(formData)
-	console.log(formData)
-
 	return {
 		type: ADD_NEW_SUBJECT,
 		payload: {}
