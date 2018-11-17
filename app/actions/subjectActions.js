@@ -1,4 +1,5 @@
-import { UPDATE_CLASS_LIST, GET_SUBJECT_LIST } from './actionTypes'
+import { UPDATE_CLASS_LIST, GET_SUBJECT_LIST, ADD_NEW_SUBJECT } from './actionTypes'
+import { addSubjectData } from '../database/subjectCollection'
 
 export const openClassList = event => {
 	event.preventDefault()
@@ -15,5 +16,24 @@ export const showSubject = event => {
 	return {
 		type: GET_SUBJECT_LIST,
 		payload: subject
+	}
+}
+
+export const addNewSubject = event => {
+	event.preventDefault()
+
+	const formData = {
+		Name: event.target.Name.value,
+		Abbrivation: event.target.Abbrivation.value,
+		Room: event.target.Room.value
+	}
+
+	event.target.reset()
+	addSubjectData(formData)
+	console.log(formData)
+
+	return {
+		type: ADD_NEW_SUBJECT,
+		payload: {}
 	}
 }
