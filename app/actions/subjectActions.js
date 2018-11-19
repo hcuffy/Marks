@@ -1,6 +1,5 @@
 import { UPDATE_CLASS_LIST, GET_SUBJECT_LIST, ADD_NEW_SUBJECT } from './actionTypes'
 import { addSubjectData } from '../database/subjectCollection'
-import { updateRoomData } from '../database/classroomCollection'
 
 export const openClassList = event => {
 	event.preventDefault()
