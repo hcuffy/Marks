@@ -10,6 +10,7 @@ import {
 	updateFailed
 } from '../components/notifications/General'
 
+const _ = require('lodash')
 const Datastore = require('nedb')
 const electron = require('electron')
 const path = require('path')
@@ -74,12 +75,23 @@ export const getRemoveClassroom = data =>
 		})
 	)
 
+function checkSubject(checkingCurrent) {
+	if (_.isNil(checkingCurrent.Subjects)) {
+		return false
+	}
+	if (checkingCurrent.Subjects.length > 0) {
+		return true
+	}
+}
+
 function updateSinlgeDoc(previous, current) {
 	const { Name, Teacher, Code, Subject_Teacher } = current
 	const { Subjects } = previous
-	if (current.Subjects.length > 0) {
+
+	if (checkSubject(current) === true) {
 		Subjects.push(current.Subjects[0])
 	}
+
 	classroomCollection.update(
 		{ Name: previous.Name },
 		{
@@ -119,3 +131,22 @@ export const updateRoomData = data =>
 			}
 		})
 	)
+
+export const updateSubjectArray = data => {
+	classroomCollection.find({ Name: data.Name }, (err, entry) => {
+		if (err) {
+			updateFailed()
+			return err
+		}
+		if (entry.length > 0) {
+			updateSinlgeDoc(entry[0], data)
+			classroomCollection.find({}, (error, docs) => {
+				if (error) {
+					updateFailed()
+					return error
+				}
+				return docs
+			})
+		}
+	})
+}
