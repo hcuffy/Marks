@@ -5,11 +5,16 @@
 
 .subject_left {
   float: left;
+  width: 35%;
+  height: 330px;
+  position: absolute;
+  overflow: scroll;
+  margin-left: 110px;
 }
 
 .subject_right {
   width: 40%;
-  height: 300px;
+  height: 330px;
   position: absolute;
   right: 20px;
   overflow: scroll;
