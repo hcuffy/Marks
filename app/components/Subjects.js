@@ -41,7 +41,7 @@ const Subjects = ({ allClassData, selectClass, actions }) => {
 			</div>
 			<div className={styles.subject_right}>
 				<h4 className={styles.center_header}>Add Subjects</h4>
-				<SubjectForm />
+				<SubjectForm selectClass={selectClass} subjects={subjects} />
 			</div>
 		</div>
 	)
