@@ -5,9 +5,9 @@ const _ = require('lodash')
 const initialLoadState = {
 	openModal: false,
 	subject: 'Select Class',
-	Name: 'Name',
-	Abbrivation: 'Abbrivation',
-	Select_Class: 'Select Class'
+	name: 'Name',
+	abbrivation: 'Abbrivation',
+	select_Class: 'Select Class'
 }
 
 const openDropdownList = (state = initialLoadState, action) => {
