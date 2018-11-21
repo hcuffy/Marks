@@ -4,13 +4,16 @@ const _ = require('lodash')
 
 const initialLoadState = {
 	openModal: false,
-	subject: 'Select Class'
+	subject: 'Select Class',
+	Name: 'Name',
+	Abbrivation: 'Abbrivation',
+	Select_Class: 'Select Class'
 }
 
 const openDropdownList = (state = initialLoadState, action) => {
-	const openModal = !state.openModal
 	switch (action.type) {
 	case UPDATE_CLASS_LIST: {
+		const openModal = !state.openModal
 		const subject = action.payload
 		return _.assign({}, state, {
 			openModal,
@@ -18,7 +21,6 @@ const openDropdownList = (state = initialLoadState, action) => {
 		})
 	}
 	case GET_SUBJECT_LIST: {
-		const openModal = !state.openModal
 		const subject = action.payload
 		return _.assign({}, state, { subject })
 	}
