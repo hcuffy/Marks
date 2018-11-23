@@ -3,7 +3,8 @@
 import {
 	saveSuccessful,
 	saveError,
-	entryAlreadyExists
+	entryAlreadyExists,
+	unableToRetrieve
 } from '../components/notifications/General'
 import { getClassroomData, updateSubjectArray } from './classroomCollection'
 
@@ -23,7 +24,7 @@ const subjectCollection = new Datastore({
 async function getSubjects(subjectData) {
 	const data = await getClassroomData()
 	const selectedClass = _.find(data, ['Name', subjectData.Room])
-	if (!_.includes(selectedClass.Subjects, subjectData.Abbrivation)) {
+	if (!_.includes(selectedClass.Subjects, subjectData.Abbreviation)) {
 		return selectedClass
 	}
 	return true
@@ -38,7 +39,7 @@ export const addSubjectData = async data => {
 	}
 
 	const newSubject = _.merge(data, { Tests: [], ClassroomId: newRoom._id })
-	newRoom.Subjects.push(data.Abbrivation)
+	newRoom.Subjects.push(data.Abbreviation)
 
 	subjectCollection.insert(newSubject, (error, doc) => {
 		if (error) {
@@ -50,3 +51,14 @@ export const addSubjectData = async data => {
 		return doc
 	})
 }
+
+export const getAllSubjects = () =>
+	new Promise((resolve, reject) =>
+		subjectCollection.find({}, (err, entry) => {
+			if (err) {
+				unableToRetrieve()
+				return reject(err)
+			}
+			return resolve(entry)
+		})
+	)
