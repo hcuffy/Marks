@@ -1,4 +1,4 @@
-import { UPDATE_CLASS_LIST, GET_SUBJECT_LIST } from '../actions/actionTypes'
+import { UPDATE_CLASS_LIST, GET_SINGLE_SUBJECT } from '../actions/actionTypes'
 
 const _ = require('lodash')
 
@@ -20,7 +20,7 @@ const openDropdownList = (state = initialLoadState, action) => {
 			subject
 		})
 	}
-	case GET_SUBJECT_LIST: {
+	case GET_SINGLE_SUBJECT: {
 		const subject = action.payload
 		return _.assign({}, state, { subject })
 	}

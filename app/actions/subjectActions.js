@@ -1,4 +1,4 @@
-import { UPDATE_CLASS_LIST, GET_SUBJECT_LIST, ADD_NEW_SUBJECT } from './actionTypes'
+import { UPDATE_CLASS_LIST, GET_SINGLE_SUBJECT, ADD_NEW_SUBJECT } from './actionTypes'
 import { addSubjectData } from '../database/subjectCollection'
 
 export const openClassList = event => {
@@ -14,7 +14,7 @@ export const openClassList = event => {
 export const showSubject = event => {
 	const subject = event.target.innerText
 	return {
-		type: GET_SUBJECT_LIST,
+		type: GET_SINGLE_SUBJECT,
 		payload: subject
 	}
 }
