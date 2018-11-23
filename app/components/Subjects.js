@@ -3,27 +3,16 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { actionCreators } from '../actions/index'
-import { cleanAndSortData } from './List'
+import { cleanAndSortData } from './ClassList'
 import styles from './styles/subjects.css'
 import SubjectForm from './Modals/SubjectForm'
+import SubjectList from './SubjectList'
 
 const _ = require('lodash')
 
-function findSubject(allClasses, chosenClass) {
-	if (_.isNil(allClasses) || _.isNil(chosenClass) || chosenClass === 'Select Class') {
-		return 'No Data To Show'
-	}
-	const chosenSubject = _.chain(allClasses)
-		.find(['Name', chosenClass])
-		.pick(['Subjects'])
-		.value()
-	console.log(chosenSubject)
-	return chosenSubject.Name
-}
 const Subjects = ({ allClassData, selectClass, actions }) => {
 	const subjects = cleanAndSortData(allClassData)
-
-	const classSubjects = findSubject(subjects, selectClass.subject)
+	const selectedSubject = _.find(subjects, ['Name', selectClass.subject])
 
 	const subjectOptions = subjects.map((data, idx) => (
 		<DropdownItem key={idx} name={data.Name} onClick={actions.showSubject}>
@@ -40,7 +29,7 @@ const Subjects = ({ allClassData, selectClass, actions }) => {
 					</DropdownToggle>
 					<DropdownMenu>{subjectOptions}</DropdownMenu>
 				</Dropdown>
-				<h5>{classSubjects}</h5>
+				<SubjectList selectedSubject={selectedSubject} />
 			</div>
 			<div className={styles.subject_right}>
 				<h4 className={styles.center_header}>Add Subjects</h4>
