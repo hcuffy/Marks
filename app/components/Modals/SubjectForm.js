@@ -7,7 +7,7 @@ import styles from '../styles/classroom.css'
 const _ = require('lodash')
 
 const SubjectForm = ({ selectClass, subjects, actions }) => {
-	const formLabels = _.pick(selectClass, ['name', 'abbrivation'])
+	const formLabels = _.pick(selectClass, ['name', 'abbreviation'])
 	const formInputs = _.values(formLabels).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}Sid`}>
