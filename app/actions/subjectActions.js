@@ -1,5 +1,10 @@
-import { UPDATE_CLASS_LIST, GET_SINGLE_SUBJECT, ADD_NEW_SUBJECT } from './actionTypes'
-import { addSubjectData } from '../database/subjectCollection'
+import {
+	UPDATE_CLASS_LIST,
+	GET_SINGLE_SUBJECT,
+	ADD_NEW_SUBJECT,
+	GET_SUBJECT_LIST
+} from './actionTypes'
+import { addSubjectData, getAllSubjects } from '../database/subjectCollection'
 
 export const openClassList = event => {
 	event.preventDefault()
@@ -24,7 +29,7 @@ export const addNewSubject = event => {
 
 	const formData = {
 		Name: event.target.Name.value,
-		Abbrivation: event.target.Abbrivation.value,
+		Abbreviation: event.target.Abbreviation.value,
 		Room: event.target.Room.value
 	}
 
@@ -33,5 +38,15 @@ export const addNewSubject = event => {
 	return {
 		type: ADD_NEW_SUBJECT,
 		payload: {}
+	}
+}
+
+export const getSubjectData = () => async dispatch => {
+	const data = await getAllSubjects()
+	if (data.length !== 0) {
+		dispatch({
+			type: GET_SUBJECT_LIST,
+			payload: { data }
+		})
 	}
 }
