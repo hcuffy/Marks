@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import styles from './styles/classroom.css'
-import List from './List'
+import ClassList from './ClassList'
 import Subjects from './Subjects'
 
 const _ = require('lodash')
@@ -46,7 +46,7 @@ const Classes = ({ allClassData, actions }) => {
 			</form>
 			<div>
 				<h4 className={styles.center_header}>List of Classes</h4>
-				<List listData={allClassData} />
+				<ClassList listData={allClassData} />
 			</div>
 			<Subjects allClassData={allClassData} />
 		</div>

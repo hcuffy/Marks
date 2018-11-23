@@ -14,7 +14,7 @@ export function cleanAndSortData(clean) {
 	return sortedProp
 }
 
-const List = ({ listData, actions }) => {
+const ClassList = ({ listData, actions }) => {
 	const cleanedData = cleanAndSortData(listData)
 	const listInputs = cleanedData.map((data, idx) => (
 		<button
@@ -44,4 +44,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	null,
 	mapDispatchToProps
-)(List)
+)(ClassList)
