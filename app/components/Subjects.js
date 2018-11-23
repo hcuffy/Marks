@@ -13,8 +13,11 @@ function findSubject(allClasses, chosenClass) {
 	if (_.isNil(allClasses) || _.isNil(chosenClass) || chosenClass === 'Select Class') {
 		return 'No Data To Show'
 	}
-	const chosenSubject = _.find(allClasses, ['Name', chosenClass])
-
+	const chosenSubject = _.chain(allClasses)
+		.find(['Name', chosenClass])
+		.pick(['Subjects'])
+		.value()
+	console.log(chosenSubject)
 	return chosenSubject.Name
 }
 const Subjects = ({ allClassData, selectClass, actions }) => {
