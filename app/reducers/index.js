@@ -3,7 +3,8 @@ import { routerReducer as router } from 'react-router-redux'
 import displaySchoolData from './schoolDataReducer'
 import handleTabChange from './changeTabReducer'
 import displayClassData from './classDataReducer'
-import handleClassModal from './modalReducer'
+import handleClassModal from './roomModalReducer'
+import handleSubjectModal from './subjectModalReducer'
 import openClassList, { getSubjectData } from './subjectReducer'
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
 	allClassData: displayClassData,
 	roomModal: handleClassModal,
 	selectClass: openClassList,
-	subjectData: getSubjectData
+	subjectData: getSubjectData,
+	subjectModal: handleSubjectModal
 })
 
 export default rootReducer
