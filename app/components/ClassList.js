@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import styles from './styles/list.css'
-import Room from './Modals/Room'
+import RoomModal from './Modals/RoomModal'
 
 const _ = require('lodash')
 
@@ -32,7 +32,7 @@ const ClassList = ({ listData, actions }) => {
 	))
 	return (
 		<div className={styles.list_div}>
-			<Room modalData={cleanedData} />
+			<RoomModal modalData={cleanedData} />
 			<div className="list-group list-group-flush">{listInputs}</div>
 		</div>
 	)
