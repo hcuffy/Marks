@@ -18,7 +18,7 @@ function cleanAndFilterData(objectToClean, roomToClean) {
 	return cleanedData
 }
 
-const Room = ({ modalData, roomModal, actions }) => {
+const RoomModal = ({ modalData, roomModal, actions }) => {
 	const selectedRoom = cleanAndFilterData(modalData, roomModal)
 	const clickedRoom = _.keys(selectedRoom).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
@@ -40,7 +40,6 @@ const Room = ({ modalData, roomModal, actions }) => {
 				<ModalHeader charCode="Y">{`Edit: ${selectedRoom.Name}`}</ModalHeader>
 				<form onSubmit={actions.updateRoom} method="POST">
 					<ModalBody>
-						{' '}
 						{clickedRoom}
 						<input type="hidden" name="OldName" id={selectedRoom.Name} />
 					</ModalBody>
@@ -81,4 +80,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Room)
+)(RoomModal)
