@@ -1,4 +1,9 @@
-import { DISPLAY_ROOM_MODAL, GET_CLASSROOM_DATA, UPDATE_CLASSROOM } from './actionTypes'
+import {
+	DISPLAY_ROOM_MODAL,
+	GET_CLASSROOM_DATA,
+	UPDATE_CLASSROOM,
+	DISPLAY_SUBJECT_MODAL
+} from './actionTypes'
 import { getRemoveClassroom, updateRoomData } from '../database/classroomCollection'
 
 export const handleRoomData = event => {
@@ -59,4 +64,15 @@ export const updateRoom = event => async dispatch => {
 		type: UPDATE_CLASSROOM,
 		payload: roomData
 	})
+}
+
+export const updateSubject = event => {
+	event.preventDefault()
+	const selecteSubjectData = {
+		id: event.target.id
+	}
+	return {
+		type: DISPLAY_SUBJECT_MODAL,
+		payload: selecteSubjectData
+	}
 }
