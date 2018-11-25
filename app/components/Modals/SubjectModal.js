@@ -8,6 +8,13 @@ import styles from './styles/room.css'
 
 const _ = require('lodash')
 
+function getClassroomId(dataList) {
+	if (_.isEmpty(dataList) || _.isNil(dataList)) {
+		return []
+	}
+	return dataList[0].ClassroomId
+}
+
 const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 	const requiredSubject = cleanAndFilterData(filteredData, subjectModal)
 	const selectedSubject = _.keys(requiredSubject).map((data, idx) => (
@@ -24,15 +31,15 @@ const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 			/>
 		</div>
 	))
-
 	const ClassroomId = (
-		<input type="hidden" name="ClassroomId" value={requiredSubject.ClassroomId} />
+		<input type="hidden" name="ClassroomId" id={getClassroomId(filteredData)} />
 	)
+
 	return (
 		<div>
 			<Modal isOpen={subjectModal.showSubjectModal} backdrop>
 				<ModalHeader>{`Edit: ${requiredSubject.Abbreviation}`}</ModalHeader>
-				<form>
+				<form onSubmit={actions.updateSubject} method="POST">
 					<ModalBody>
 						{selectedSubject}
 						{ClassroomId}
