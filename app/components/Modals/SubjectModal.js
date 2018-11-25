@@ -3,18 +3,39 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
-// import styles from './styles/room.css'
+import { cleanAndFilterData } from './RoomModal'
+import styles from './styles/room.css'
 
-const SubjectModal = ({ filteredData, subjectModal }) => {
-	console.log(subjectModal)
+const _ = require('lodash')
 
+const SubjectModal = ({ filteredData, subjectModal, actions }) => {
+	const requiredSubject = cleanAndFilterData(filteredData, subjectModal)
+	const selectedSubject = _.keys(requiredSubject).map((data, idx) => (
+		<div key={idx} className={styles.form_div}>
+			<label className={styles.form_label} htmlFor={`${data}_Id`}>
+				{data}:
+			</label>
+			<input
+				name={data}
+				className={`${styles.form_input} form-control`}
+				id={`${data}_Id`}
+				type="text"
+				defaultValue={requiredSubject[data]}
+			/>
+		</div>
+	))
+
+	const ClassroomId = (
+		<input type="hidden" name="ClassroomId" value={requiredSubject.ClassroomId} />
+	)
 	return (
 		<div>
 			<Modal isOpen={subjectModal.showSubjectModal} backdrop>
-				<ModalHeader>Edit: </ModalHeader>
+				<ModalHeader>{`Edit: ${requiredSubject.Abbreviation}`}</ModalHeader>
 				<form>
 					<ModalBody>
-						<input type="text" name="OldName" />
+						{selectedSubject}
+						{ClassroomId}
 					</ModalBody>
 					<ModalFooter>
 						<Button type="button" color="danger">
@@ -24,7 +45,12 @@ const SubjectModal = ({ filteredData, subjectModal }) => {
 						<Button type="submit" color="primary">
 							Update
 						</Button>
-						<Button type="button" color="secondary">
+						<Button
+							type="button"
+							id={subjectModal.id}
+							onClick={actions.subjectModalDisplay}
+							color="secondary"
+						>
 							Close
 						</Button>
 					</ModalFooter>
