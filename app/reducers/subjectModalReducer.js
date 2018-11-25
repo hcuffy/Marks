@@ -1,4 +1,4 @@
-import { DISPLAY_SUBJECT_MODAL, UPDATE_SUBJECT } from '../actions/actionTypes'
+import { OPEN_CLOSE_SUBJECT_MODAL, UPDATE_SUBJECT } from '../actions/actionTypes'
 
 const _ = require('lodash')
 
@@ -10,9 +10,8 @@ const initialLoadState = {
 const handleSubjectModal = (state = initialLoadState, action) => {
 	const showSubjectModal = !state.showSubjectModal
 	switch (action.type) {
-	case DISPLAY_SUBJECT_MODAL: {
+	case OPEN_CLOSE_SUBJECT_MODAL: {
 		const { id } = action.payload
-		console.log(action.payload)
 		return _.assign({}, state, {
 			id,
 			showSubjectModal
