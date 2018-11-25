@@ -87,3 +87,14 @@ export const updateFailed = () => {
 		draggable: false
 	})
 }
+
+export const deleteSubjectFailed = () => {
+	toast.error('Failed to delete entry.', {
+		position: 'top-right',
+		autoClose: 2000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: false,
+		draggable: false
+	})
+}
