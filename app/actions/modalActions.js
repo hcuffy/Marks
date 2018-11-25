@@ -1,20 +1,20 @@
 import {
-	DISPLAY_ROOM_MODAL,
+	OPEN_CLOSE_ROOM_MODAL,
 	GET_CLASSROOM_DATA,
 	UPDATE_CLASSROOM,
-	DISPLAY_SUBJECT_MODAL
+	OPEN_CLOSE_SUBJECT_MODAL
 } from './actionTypes'
 import { getRemoveClassroom, updateRoomData } from '../database/classroomCollection'
 
-export const handleRoomData = event => {
+export const roomModalDisplay = event => {
 	event.preventDefault()
-	const classData = {
+	const roomId = {
 		id: event.target.id
 	}
 
 	return {
-		type: DISPLAY_ROOM_MODAL,
-		payload: classData
+		type: OPEN_CLOSE_ROOM_MODAL,
+		payload: roomId
 	}
 }
 
@@ -66,13 +66,25 @@ export const updateRoom = event => async dispatch => {
 	})
 }
 
+export const subjectModalDisplay = event => {
+	event.preventDefault()
+	const subjectId = {
+		id: event.target.id
+	}
+
+	return {
+		type: OPEN_CLOSE_SUBJECT_MODAL,
+		payload: subjectId
+	}
+}
+
 export const updateSubject = event => {
 	event.preventDefault()
 	const selecteSubjectData = {
 		id: event.target.id
 	}
 	return {
-		type: DISPLAY_SUBJECT_MODAL,
+		type: OPEN_CLOSE_SUBJECT_MODAL,
 		payload: selecteSubjectData
 	}
 }
