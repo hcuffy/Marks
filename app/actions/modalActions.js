@@ -80,11 +80,11 @@ export const subjectModalDisplay = event => {
 
 export const updateSubject = event => {
 	event.preventDefault()
-	const selecteSubjectData = {
-		id: event.target.id
+	const subjectData = {
+		Name: event.target.Name.value,
+		Abbreviation: event.target.Abbreviation.value,
+		ClassroomId: event.target.ClassroomId.id
 	}
-	return {
-		type: OPEN_CLOSE_SUBJECT_MODAL,
-		payload: selecteSubjectData
-	}
+
+	console.log(subjectData)
 }

@@ -4,7 +4,9 @@ import {
 	saveSuccessful,
 	saveError,
 	entryAlreadyExists,
-	unableToRetrieve
+	unableToRetrieve,
+	deleteSubjectFailed,
+	deleteSuccessful
 } from '../components/notifications/General'
 import { getClassroomData, updateSubjectArray } from './classroomCollection'
 
@@ -60,5 +62,23 @@ export const getAllSubjects = () =>
 				return reject(err)
 			}
 			return resolve(entry)
+		})
+	)
+
+export const removeSubject = data =>
+	new Promise((resolve, reject) =>
+		subjectCollection.remove({ _id: data.id }, err => {
+			if (err) {
+				deleteSubjectFailed()
+				return reject(err)
+			}
+			subjectCollection.find({}, (error, docs) => {
+				if (err) {
+					deleteSubjectFailed()
+					return reject(err)
+				}
+				deleteSuccessful()
+				return resolve(docs)
+			})
 		})
 	)
