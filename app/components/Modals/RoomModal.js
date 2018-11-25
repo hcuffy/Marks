@@ -8,12 +8,17 @@ import styles from './styles/room.css'
 
 const _ = require('lodash')
 
-function cleanAndFilterData(objectToClean, roomToClean) {
+export function cleanAndFilterData(objectToClean, roomToClean) {
 	const requiredProp = _.find(objectToClean, { _id: roomToClean.id })
-	const cleanedData = _.omit(requiredProp, ['_id',
+	const cleanedData = _.omit(requiredProp, [
+		'_id',
 		'createdAt',
 		'updatedAt',
-		'Subjects'])
+		'Subjects',
+		'Tests',
+		'ClassroomId',
+		'Room'
+	])
 
 	return cleanedData
 }
@@ -59,7 +64,7 @@ const RoomModal = ({ modalData, roomModal, actions }) => {
 						<Button
 							type="button"
 							id={roomModal.id}
-							onClick={actions.handleRoomData}
+							onClick={actions.roomModalDisplay}
 							color="secondary"
 						>
 							Close
