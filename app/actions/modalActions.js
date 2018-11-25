@@ -5,6 +5,7 @@ import {
 	OPEN_CLOSE_SUBJECT_MODAL
 } from './actionTypes'
 import { getRemoveClassroom, updateRoomData } from '../database/classroomCollection'
+import { deleteSubject } from '../database/subjectCollection'
 
 export const roomModalDisplay = event => {
 	event.preventDefault()
@@ -85,6 +86,17 @@ export const updateSubject = event => {
 		Abbreviation: event.target.Abbreviation.value,
 		ClassroomId: event.target.ClassroomId.id
 	}
+
+	console.log(subjectData)
+}
+
+export const removeSubject = event => async dispatch => {
+	const subjectData = {
+		id: event.target.id,
+		showModal: true
+	}
+
+	const docs = await deleteSubject(subjectData)
 
 	console.log(subjectData)
 }

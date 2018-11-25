@@ -4,7 +4,8 @@ import {
 	removeRoom,
 	updateRoom,
 	updateSubject,
-	subjectModalDisplay
+	subjectModalDisplay,
+	removeSubject
 } from './modalActions'
 import { changeClassroomTab, handleClassData, displayClassData } from './classroomActions'
 import {
@@ -28,5 +29,6 @@ export const actionCreators = {
 	addNewSubject,
 	getSubjectData,
 	updateSubject,
-	subjectModalDisplay
+	subjectModalDisplay,
+	removeSubject
 }

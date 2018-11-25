@@ -65,7 +65,7 @@ export const getAllSubjects = () =>
 		})
 	)
 
-export const removeSubject = data =>
+export const deleteSubject = data =>
 	new Promise((resolve, reject) =>
 		subjectCollection.remove({ _id: data.id }, err => {
 			if (err) {

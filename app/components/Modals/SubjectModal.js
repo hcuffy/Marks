@@ -45,7 +45,12 @@ const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 						{ClassroomId}
 					</ModalBody>
 					<ModalFooter>
-						<Button type="button" color="danger">
+						<Button
+							type="button"
+							id={subjectModal.id}
+							onClick={actions.removeSubject}
+							color="danger"
+						>
 							Delete
 						</Button>
 
