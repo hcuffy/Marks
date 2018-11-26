@@ -98,3 +98,14 @@ export const deleteSubjectFailed = () => {
 		draggable: false
 	})
 }
+
+export const noUpdate = () => {
+	toast.success('No dhanges were made.', {
+		position: 'top-right',
+		autoClose: 2000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: false,
+		draggable: false
+	})
+}
