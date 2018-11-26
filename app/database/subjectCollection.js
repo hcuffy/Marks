@@ -2,13 +2,19 @@
 // @flow
 import {
 	saveSuccessful,
+	updateSuccessful,
 	saveError,
 	entryAlreadyExists,
 	unableToRetrieve,
 	deleteSubjectFailed,
-	deleteSuccessful
+	deleteSuccessful,
+	updateFailed
 } from '../components/notifications/General'
-import { getClassroomData, updateSubjectArray } from './classroomCollection'
+import {
+	getClassroomData,
+	updateSubjectArray,
+	updateClassSubjectArray
+} from './classroomCollection'
 
 const _ = require('lodash')
 const Datastore = require('nedb')
@@ -80,5 +86,68 @@ export const deleteSubject = data =>
 				deleteSuccessful()
 				return resolve(docs)
 			})
+		})
+	)
+
+function checkSubjectChanges(prev, curr) {
+	const { Name, Abbreviation } = curr
+	if (_.isEqual(prev.Name, Name) && _.isEqual(prev.Abbreviation, Abbreviation)) {
+		return false
+	}
+	return true
+}
+
+function updateClassroomSubjects(subjectId, previousSubject, currentSubject) {
+	if (!_.isEqual(previousSubject, currentSubject)) {
+		console.log('here')
+		updateClassSubjectArray(subjectId, previousSubject, currentSubject)
+	}
+}
+
+function updateSinlgeSubject(previous, current) {
+	const { Name, Abbreviation } = current
+	const { Room, Tests, ClassroomId } = previous
+
+	const subjectUpdatable = checkSubjectChanges(previous, current)
+	if (subjectUpdatable) {
+		updateClassroomSubjects(ClassroomId, previous.Abbreviation, Abbreviation)
+		subjectCollection.update(
+			{ _id: previous._id },
+			{
+				Name,
+				Abbreviation,
+				Room,
+				Tests,
+				ClassroomId
+			},
+			{},
+			err => {
+				if (err) {
+					updateFailed()
+					return err
+				}
+				updateSuccessful()
+			}
+		)
+	}
+}
+
+export const updateSubjectData = data =>
+	new Promise((resolve, reject) =>
+		subjectCollection.find({ _id: data.SubjectId }, (err, entry) => {
+			if (err) {
+				updateFailed()
+				return err
+			}
+			if (entry.length > 0) {
+				updateSinlgeSubject(entry[0], data)
+				subjectCollection.find({ _id: data.SubjectId }, (error, docs) => {
+					if (error) {
+						updateFailed()
+						return reject(error)
+					}
+					return resolve(docs)
+				})
+			}
 		})
 	)
