@@ -2,10 +2,11 @@ import {
 	OPEN_CLOSE_ROOM_MODAL,
 	GET_CLASSROOM_DATA,
 	UPDATE_CLASSROOM,
-	OPEN_CLOSE_SUBJECT_MODAL
+	OPEN_CLOSE_SUBJECT_MODAL,
+	GET_SINGLE_SUBJECT
 } from './actionTypes'
 import { getRemoveClassroom, updateRoomData } from '../database/classroomCollection'
-import { deleteSubject } from '../database/subjectCollection'
+import { deleteSubject, updateSubjectData } from '../database/subjectCollection'
 
 export const roomModalDisplay = event => {
 	event.preventDefault()
@@ -79,24 +80,46 @@ export const subjectModalDisplay = event => {
 	}
 }
 
-export const updateSubject = event => {
+export const updateSubject = event => async dispatch => {
 	event.preventDefault()
 	const subjectData = {
 		Name: event.target.Name.value,
 		Abbreviation: event.target.Abbreviation.value,
-		ClassroomId: event.target.ClassroomId.id
+		ClassroomId: event.target.ClassroomId.id,
+		SubjectId: event.target.SubjectId.id
 	}
 
-	console.log(subjectData)
+	const subjectDoc = await updateSubjectData(subjectData)
+
+	dispatch({
+		type: OPEN_CLOSE_SUBJECT_MODAL,
+		payload: { id: subjectData.SubjectId }
+	})
+
+	if (subjectDoc.length > 0) {
+		dispatch({
+			type: GET_SINGLE_SUBJECT,
+			payload: { subject: subjectDoc[0].Room }
+		})
+	}
 }
 
 export const removeSubject = event => async dispatch => {
 	const subjectData = {
-		id: event.target.id,
-		showModal: true
+		id: event.target.id
 	}
 
-	const docs = await deleteSubject(subjectData)
+	const subjectDoc = await deleteSubject(subjectData)
 
-	console.log(subjectData)
+	dispatch({
+		type: OPEN_CLOSE_SUBJECT_MODAL,
+		payload: { id: subjectData.SubjectId }
+	})
+
+	if (subjectDoc.length > 0) {
+		dispatch({
+			type: GET_SINGLE_SUBJECT,
+			payload: { subject: subjectDoc[0].Room }
+		})
+	}
 }
