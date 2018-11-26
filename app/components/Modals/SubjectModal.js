@@ -31,9 +31,11 @@ const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 			/>
 		</div>
 	))
-	const ClassroomId = (
+	const classroomId = (
 		<input type="hidden" name="ClassroomId" id={getClassroomId(filteredData)} />
 	)
+
+	const subjectId = <input type="hidden" name="SubjectId" id={subjectModal.id} />
 
 	return (
 		<div>
@@ -42,7 +44,8 @@ const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 				<form onSubmit={actions.updateSubject} method="POST">
 					<ModalBody>
 						{selectedSubject}
-						{ClassroomId}
+						{classroomId}
+						{subjectId}
 					</ModalBody>
 					<ModalFooter>
 						<Button
