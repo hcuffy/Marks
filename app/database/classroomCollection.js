@@ -84,7 +84,7 @@ function checkSubject(checkingCurrent) {
 	}
 }
 
-function updateSinlgeDoc(previous, current) {
+function updateSinlgeClassroom(previous, current) {
 	const { Name, Teacher, Code, Subject_Teacher } = current
 	const { Subjects } = previous
 
@@ -120,7 +120,7 @@ export const updateRoomData = data =>
 				return err
 			}
 			if (entry.length > 0) {
-				updateSinlgeDoc(entry[0], data)
+				updateSinlgeClassroom(entry[0], data)
 				classroomCollection.find({}, (error, docs) => {
 					if (error) {
 						updateFailed()
@@ -139,7 +139,7 @@ export const updateSubjectArray = data => {
 			return err
 		}
 		if (entry.length > 0) {
-			updateSinlgeDoc(entry[0], data)
+			updateSinlgeClassroom(entry[0], data)
 			classroomCollection.find({}, (error, docs) => {
 				if (error) {
 					updateFailed()
@@ -149,4 +149,30 @@ export const updateSubjectArray = data => {
 			})
 		}
 	})
+}
+
+export const updateClassSubjectArray = (classroomId, oldSubject, newSubject) => {
+	classroomCollection.update(
+		{ _id: classroomId },
+		{ $push: { Subjects: newSubject } },
+		{},
+		err => {
+			if (err) {
+				updateFailed()
+				return err
+			}
+		}
+	)
+
+	classroomCollection.update(
+		{ _id: classroomId },
+		{ $pull: { Subjects: oldSubject } },
+		{},
+		err => {
+			if (err) {
+				updateFailed()
+				return err
+			}
+		}
+	)
 }
