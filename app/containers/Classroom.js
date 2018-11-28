@@ -12,6 +12,7 @@ class Classroom extends Component {
 	componentDidMount() {
 		if (this.props.classData) {
 			this.props.actions.displayClassData()
+			this.props.actions.getSubjectData()
 		}
 	}
 

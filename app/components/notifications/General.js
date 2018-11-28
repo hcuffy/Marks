@@ -87,3 +87,25 @@ export const updateFailed = () => {
 		draggable: false
 	})
 }
+
+export const deleteSubjectFailed = () => {
+	toast.error('Failed to delete entry.', {
+		position: 'top-right',
+		autoClose: 2000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: false,
+		draggable: false
+	})
+}
+
+export const noUpdate = () => {
+	toast.success('No dhanges were made.', {
+		position: 'top-right',
+		autoClose: 2000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: false,
+		draggable: false
+	})
+}

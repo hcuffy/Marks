@@ -28,6 +28,11 @@ input[type='text'] {
   margin: 10px 0 0 200px;
 }
 
+.subject_save {
+  float: right;
+  margin: 10px 0 0 230px;
+}
+
 .form_outer_div {
   float: right;
   height: 350px;

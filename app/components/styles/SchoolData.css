@@ -1,4 +1,13 @@
-.school_data_div {
-  position: static;
-  margin-left: 110px;
+.school_left_div {
+  margin: 30px 0 0 30px;
+  float: left;
+}
+
+.school_right_div {
+  margin: 30px 100px 0 0;
+  float: right;
+}
+
+.page_inner_div {
+  margin-top: 20vh;
 }

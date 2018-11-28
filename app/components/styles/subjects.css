@@ -1,0 +1,25 @@
+.main_div {
+  margin-top: 30px;
+  border-top: 1px solid;
+}
+
+.subject_left {
+  float: left;
+  width: 38%;
+  height: 330px;
+  position: absolute;
+  overflow: scroll;
+  margin-left: 110px;
+}
+
+.subject_right {
+  width: 40%;
+  height: 330px;
+  position: absolute;
+  right: 20px;
+  overflow: scroll;
+}
+
+.center_header {
+  text-align: center;
+}

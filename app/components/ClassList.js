@@ -3,18 +3,18 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import styles from './styles/list.css'
-import Room from './Modals/Room'
+import RoomModal from './Modals/RoomModal'
 
 const _ = require('lodash')
 
-function cleanAndSortData(clean) {
+export function cleanAndSortData(clean) {
 	const requiredProp = _.pick(clean, ['classData'])
 	const sortedProp = _.sortBy(requiredProp.classData, ['Name'], ['asc'])
 
 	return sortedProp
 }
 
-const List = ({ listData, actions }) => {
+const ClassList = ({ listData, actions }) => {
 	const cleanedData = cleanAndSortData(listData)
 	const listInputs = cleanedData.map((data, idx) => (
 		<button
@@ -22,7 +22,7 @@ const List = ({ listData, actions }) => {
 			id={data._id}
 			type="button"
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
-			onClick={actions.handleRoomData}
+			onClick={actions.roomModalDisplay}
 		>
 			{data.Name}
 			<span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
@@ -32,7 +32,7 @@ const List = ({ listData, actions }) => {
 	))
 	return (
 		<div className={styles.list_div}>
-			<Room modalData={cleanedData} />
+			<RoomModal modalData={cleanedData} />
 			<div className="list-group list-group-flush">{listInputs}</div>
 		</div>
 	)
@@ -44,4 +44,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	null,
 	mapDispatchToProps
-)(List)
+)(ClassList)

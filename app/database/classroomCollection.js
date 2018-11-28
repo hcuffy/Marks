@@ -10,6 +10,7 @@ import {
 	updateFailed
 } from '../components/notifications/General'
 
+const _ = require('lodash')
 const Datastore = require('nedb')
 const electron = require('electron')
 const path = require('path')
@@ -74,9 +75,23 @@ export const getRemoveClassroom = data =>
 		})
 	)
 
-function updateSinlgeDoc(previous, current) {
+function checkSubject(checkingCurrent) {
+	if (_.isNil(checkingCurrent.Subjects)) {
+		return false
+	}
+	if (checkingCurrent.Subjects.length > 0) {
+		return true
+	}
+}
+
+function updateSinlgeClassroom(previous, current) {
 	const { Name, Teacher, Code, Subject_Teacher } = current
 	const { Subjects } = previous
+
+	if (checkSubject(current) === true) {
+		Subjects.push(current.Subjects[0])
+	}
+
 	classroomCollection.update(
 		{ Name: previous.Name },
 		{
@@ -105,15 +120,59 @@ export const updateRoomData = data =>
 				return err
 			}
 			if (entry.length > 0) {
-				updateSinlgeDoc(entry[0], data)
+				updateSinlgeClassroom(entry[0], data)
 				classroomCollection.find({}, (error, docs) => {
 					if (error) {
 						updateFailed()
 						return reject(error)
 					}
-					updateSuccessful()
 					return resolve(docs)
 				})
 			}
 		})
 	)
+
+export const updateSubjectArray = data => {
+	classroomCollection.find({ Name: data.Name }, (err, entry) => {
+		if (err) {
+			updateFailed()
+			return err
+		}
+		if (entry.length > 0) {
+			updateSinlgeClassroom(entry[0], data)
+			classroomCollection.find({}, (error, docs) => {
+				if (error) {
+					updateFailed()
+					return error
+				}
+				return docs
+			})
+		}
+	})
+}
+
+export const updateClassSubjectArray = (classroomId, oldSubject, newSubject) => {
+	classroomCollection.update(
+		{ _id: classroomId },
+		{ $push: { Subjects: newSubject } },
+		{},
+		err => {
+			if (err) {
+				updateFailed()
+				return err
+			}
+		}
+	)
+
+	classroomCollection.update(
+		{ _id: classroomId },
+		{ $pull: { Subjects: oldSubject } },
+		{},
+		err => {
+			if (err) {
+				updateFailed()
+				return err
+			}
+		}
+	)
+}

@@ -1,26 +1,23 @@
-// @flow
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
+import { cleanAndFilterData } from './RoomModal'
 import styles from './styles/room.css'
 
 const _ = require('lodash')
 
-function cleanAndFilterData(objectToClean, roomToClean) {
-	const requiredProp = _.find(objectToClean, { _id: roomToClean.id })
-	const cleanedData = _.omit(requiredProp, ['_id',
-		'createdAt',
-		'updatedAt',
-		'Subjects'])
-
-	return cleanedData
+function getClassroomId(dataList) {
+	if (_.isEmpty(dataList) || _.isNil(dataList)) {
+		return []
+	}
+	return dataList[0].ClassroomId
 }
 
-const Room = ({ modalData, roomModal, actions }) => {
-	const selectedRoom = cleanAndFilterData(modalData, roomModal)
-	const clickedRoom = _.keys(selectedRoom).map((data, idx) => (
+const SubjectModal = ({ filteredData, subjectModal, actions }) => {
+	const requiredSubject = cleanAndFilterData(filteredData, subjectModal)
+	const selectedSubject = _.keys(requiredSubject).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}_Id`}>
 				{data}:
@@ -30,25 +27,31 @@ const Room = ({ modalData, roomModal, actions }) => {
 				className={`${styles.form_input} form-control`}
 				id={`${data}_Id`}
 				type="text"
-				defaultValue={selectedRoom[data]}
+				defaultValue={requiredSubject[data]}
 			/>
 		</div>
 	))
+	const classroomId = (
+		<input type="hidden" name="ClassroomId" id={getClassroomId(filteredData)} />
+	)
+
+	const subjectId = <input type="hidden" name="SubjectId" id={subjectModal.id} />
+
 	return (
 		<div>
-			<Modal isOpen={roomModal.showModal} backdrop>
-				<ModalHeader charCode="Y">{`Edit: ${selectedRoom.Name}`}</ModalHeader>
-				<form onSubmit={actions.updateRoom} method="POST">
+			<Modal isOpen={subjectModal.showSubjectModal} backdrop>
+				<ModalHeader>{`Edit: ${requiredSubject.Abbreviation}`}</ModalHeader>
+				<form onSubmit={actions.updateSubject} method="POST">
 					<ModalBody>
-						{' '}
-						{clickedRoom}
-						<input type="hidden" name="OldName" id={selectedRoom.Name} />
+						{selectedSubject}
+						{classroomId}
+						{subjectId}
 					</ModalBody>
 					<ModalFooter>
 						<Button
 							type="button"
-							id={roomModal.id}
-							onClick={actions.removeRoom}
+							id={subjectModal.id}
+							onClick={actions.removeSubject}
 							color="danger"
 						>
 							Delete
@@ -59,8 +62,8 @@ const Room = ({ modalData, roomModal, actions }) => {
 						</Button>
 						<Button
 							type="button"
-							id={roomModal.id}
-							onClick={actions.handleRoomData}
+							id={subjectModal.id}
+							onClick={actions.subjectModalDisplay}
 							color="secondary"
 						>
 							Close
@@ -72,7 +75,7 @@ const Room = ({ modalData, roomModal, actions }) => {
 	)
 }
 
-const mapStateToProps = state => ({ roomModal: state.roomModal })
+const mapStateToProps = state => ({ subjectModal: state.subjectModal })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
@@ -81,4 +84,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Room)
+)(SubjectModal)
