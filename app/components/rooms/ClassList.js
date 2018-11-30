@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from '../styles/list.css'
-import RoomModal from '../modals/RoomModal'
+import RoomModal from './RoomModal'
 
 const _ = require('lodash')
 
