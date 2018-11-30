@@ -9,7 +9,7 @@ import {
 	deleteSubjectFailed,
 	deleteSuccessful,
 	updateFailed
-} from '../components/notifications/General'
+} from '../notifications/general'
 import {
 	getClassroomData,
 	updateSubjectArray,

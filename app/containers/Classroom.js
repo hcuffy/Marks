@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/SideMenu'
 import Navbar from '../components/Navbar'
-import Classes from '../components/Classes'
-import Exam from '../components/Exam'
+import Classes from '../components/rooms/Classes'
+import Exams from '../components/exam/Exams'
 
 class Classroom extends Component {
 	componentDidMount() {
@@ -22,7 +22,7 @@ class Classroom extends Component {
 				<SideMenu />
 				<Navbar />
 				{this.props.classesActive && <Classes />}
-				{this.props.examActive && <Exam />}
+				{this.props.examActive && <Exams />}
 			</div>
 		)
 	}

@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { actionCreators } from '../actions/index'
-import styles from './styles/classroom.css'
+import { actionCreators } from '../../actions/index'
+import styles from '../styles/classroom.css'
 import ClassList from './ClassList'
-import Subjects from './Subjects'
+import Subjects from '../subject/Subjects'
 
 const _ = require('lodash')
 
