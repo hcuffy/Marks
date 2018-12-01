@@ -14,6 +14,7 @@ import {
 	addNewSubject,
 	getSubjectData
 } from './subjectActions'
+import { addNewExam } from './examActions'
 
 export const actionCreators = {
 	handleSchoolData,
@@ -30,5 +31,6 @@ export const actionCreators = {
 	getSubjectData,
 	updateSubject,
 	subjectModalDisplay,
-	removeSubject
+	removeSubject,
+	addNewExam
 }
