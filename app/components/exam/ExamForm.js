@@ -61,11 +61,15 @@ const ExamForm = ({ actions }) => (
 	</div>
 )
 
+const mapStateToProps = state => ({
+	selectClass: state.selectClass
+})
+
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(ExamForm)
