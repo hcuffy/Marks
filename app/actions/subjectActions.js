@@ -16,14 +16,6 @@ export const openClassList = event => {
 	}
 }
 
-export const showSubject = event => {
-	const subject = event.target.innerText
-	return {
-		type: GET_SINGLE_SUBJECT,
-		payload: subject
-	}
-}
-
 export const addNewSubject = event => {
 	event.preventDefault()
 
@@ -48,5 +40,14 @@ export const getSubjectData = () => async dispatch => {
 			type: GET_SUBJECT_LIST,
 			payload: { data }
 		})
+	}
+}
+
+export const showSubject = event => {
+	const subject = event.target.innerText
+	getSubjectData()
+	return {
+		type: GET_SINGLE_SUBJECT,
+		payload: subject
 	}
 }
