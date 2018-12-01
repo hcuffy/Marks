@@ -1,4 +1,4 @@
-// import { ADD_NEW_EXAM } from './actionTypes'
+import { GET_SELECTED_CLASS } from './actionTypes'
 
 export const addNewExam = event => {
 	event.preventDefault()
@@ -11,4 +11,12 @@ export const addNewExam = event => {
 	}
 
 	console.log(examData)
+}
+
+export const getSelectedSubject = event => {
+	const subject = event.target.value
+	return {
+		type: GET_SELECTED_CLASS,
+		payload: subject
+	}
 }
