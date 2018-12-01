@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/classroom.css'
+import styles from '../styles/exam.css'
 
 const ExamForm = () => (
 	<div>
@@ -31,16 +31,15 @@ const ExamForm = () => (
 					<option className="form-control dropdown">Subject2</option>
 				</select>
 			</div>
-			<div className="form-group row">
-				<label htmlFor="date-input" className="col-2 col-form-label">
+			<div className="form-group">
+				<label className={styles.form_label} htmlFor="date-input">
 					Date:
 				</label>
-				<div className="col-10">
-					<input className="form-control" type="date" id="date-input" />
-				</div>
+
+				<input className="form-control" type="date" id="date-input" />
 			</div>
-			<div className="form-group row">
-				<label htmlFor="number-input" className={styles.form_label}>
+			<div className={`${styles.form_div} form-group`}>
+				<label className={styles.form_label} htmlFor="number-input">
 					Number:
 				</label>
 
