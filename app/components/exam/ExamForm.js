@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from '../styles/classroom.css'
-import ExamForm from './ExamForm'
 
-const Exam = () => (
-	<div className={styles.room_div}>
-		<h4>Add Exam</h4>
-		<ExamForm />
+const ExamForm = () => (
+	<div>
+		<label className={styles.form_label} htmlFor="titleId">
+			Title:
+		</label>
+		<input name="Title" className="form-control" id="titleId" type="text" />
 	</div>
 )
 
@@ -19,4 +20,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	null,
 	mapDispatchToProps
-)(Exam)
+)(ExamForm)
