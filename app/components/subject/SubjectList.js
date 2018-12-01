@@ -7,7 +7,7 @@ import SubjectModal from './SubjectModal'
 
 const _ = require('lodash')
 
-function filterSubjects(subjectData, chosenClass) {
+export function filterSubjects(subjectData, chosenClass) {
 	if (_.isNil(subjectData) || _.isNil(chosenClass) || chosenClass === 'Select Class') {
 		return []
 	}
