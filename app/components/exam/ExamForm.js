@@ -17,11 +17,11 @@ function getClassList(classInfo) {
 	return selectOptions
 }
 
-function getSubjectList(subjectData, examData) {
-	if (examData.subject === '') {
-		return []
-	}
-	const filteredSubject = _.filter(subjectData.data, ['Room', examData.subject])
+function getSubjectList(subjectData, examData, cleanedClassList) {
+	const defaultSubject = cleanedClassList[1].Name
+	const subjectInfo = examData.subject ? examData.subject : defaultSubject
+
+	const filteredSubject = _.filter(subjectData.data, ['Room', subjectInfo])
 	const selectOptions = _.values(filteredSubject).map((data, idx) => (
 		<option className="form-control dropup" key={idx}>
 			{data.Abbreviation}
@@ -34,7 +34,7 @@ function getSubjectList(subjectData, examData) {
 const ExamForm = ({ classData, subjectData, examData, actions }) => {
 	const cleanedClassList = cleanAndSortData(classData)
 	const classOption = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList(subjectData, examData)
+	const subjectOptions = getSubjectList(subjectData, examData, cleanedClassList)
 
 	return (
 		<div>
