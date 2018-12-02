@@ -18,17 +18,16 @@ function getClassList(classInfo) {
 }
 
 function getSubjectList(subjectData, examData, cleanedClassList) {
-	const defaultSubject = cleanedClassList[1].Name
+	const defaultSubject = cleanedClassList[0].Name
 	const subjectInfo = examData.subject ? examData.subject : defaultSubject
-
 	const filteredSubject = _.filter(subjectData.data, ['Room', subjectInfo])
-	const selectOptions = _.values(filteredSubject).map((data, idx) => (
-		<option className="form-control dropup" key={idx}>
+	const selectedOptions = _.values(filteredSubject).map((data, idx) => (
+		<option className="form-control dropup" key={idx} id={data._id}>
 			{data.Abbreviation}
 		</option>
 	))
 
-	return selectOptions
+	return selectedOptions
 }
 
 const ExamForm = ({ classData, subjectData, examData, actions }) => {
@@ -40,10 +39,16 @@ const ExamForm = ({ classData, subjectData, examData, actions }) => {
 		<div>
 			<form className="form-inline" onSubmit={actions.addNewExam} method="POST">
 				<div>
-					<label className={styles.form_label} htmlFor="tiId">
-						Title:
+					<label className={styles.form_label} htmlFor="titleId">
+						Title*:
 					</label>
-					<input name="Title" className="form-control" id="tiId" type="text" />
+					<input
+						name="Title"
+						className="form-control"
+						required
+						id="titleId"
+						type="text"
+					/>
 				</div>
 				<div>
 					<label className={styles.form_label} htmlFor="classSelection">
@@ -72,7 +77,7 @@ const ExamForm = ({ classData, subjectData, examData, actions }) => {
 						{subjectOptions}
 					</select>
 				</div>
-				<div className="form-group">
+				<div className={`${styles.form_div} form-group`}>
 					<label className={styles.form_label} htmlFor="dateIn">
 						Date:
 					</label>

@@ -2,11 +2,11 @@ import { GET_SELECTED_CLASS } from './actionTypes'
 
 export const addNewExam = event => {
 	event.preventDefault()
-	console.log(event.target.Subject)
+	const selectedSubjectIndex = event.target.Subject.selectedIndex
 	const examData = {
 		Title: event.target.Title.value,
 		Room: event.target.Room.value,
-		SubjectId: event.target.Subject.id,
+		SubjectId: event.target.Subject.options[selectedSubjectIndex].id,
 		Date: event.target.Date.value,
 		Weight: event.target.Weight.value
 	}
