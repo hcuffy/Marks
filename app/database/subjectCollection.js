@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-// @flow
 import {
 	saveSuccessful,
 	updateSuccessful,
