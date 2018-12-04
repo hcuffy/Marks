@@ -1,4 +1,3 @@
-// @flow
 import {
 	saveSuccessful,
 	saveError,

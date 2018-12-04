@@ -1,4 +1,3 @@
-// @flow
 import { saveSuccessful, saveError, entryAlreadyExists } from '../notifications/general'
 
 const Datastore = require('nedb')
@@ -7,7 +6,7 @@ const path = require('path')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const examCollection = new Datastore({
-	filename: path.join(userDataPath, 'classroom.db'),
+	filename: path.join(userDataPath, 'examinations.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
 	timestampData: true
