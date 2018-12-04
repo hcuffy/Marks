@@ -24,13 +24,14 @@ export const addExamData = data => {
 			return
 		}
 		const newData = data
-		examCollection.insert(newData, (error, doc) => {
-			if (error) {
-				saveError()
-				return error
-			}
-			saveSuccessful()
-			return doc
-		})
+		console.log(newData)
+		// examCollection.insert(newData, (error, doc) => {
+		// 	if (error) {
+		// 		saveError()
+		// 		return error
+		// 	}
+		// 	saveSuccessful()
+		// 	return doc
+		// })
 	})
 }

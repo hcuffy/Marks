@@ -1,3 +1,4 @@
+// @flow
 import { saveSuccessful, saveError, unableToRetrieve } from '../notifications/general'
 
 const Datastore = require('nedb')
