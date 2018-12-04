@@ -1,3 +1,4 @@
+// @flow
 import {
 	UPDATE_CLASS_LIST,
 	GET_SINGLE_SUBJECT,

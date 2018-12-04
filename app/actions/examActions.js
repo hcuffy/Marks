@@ -1,4 +1,5 @@
 import { GET_SELECTED_CLASS } from './actionTypes'
+import { addExamData } from '../database/examCollection'
 
 export const addNewExam = event => {
 	event.preventDefault()
@@ -10,6 +11,8 @@ export const addNewExam = event => {
 		Date: event.target.Date.value,
 		Weight: event.target.Weight.value
 	}
+
+	addExamData(examData)
 
 	console.log(examData)
 }
