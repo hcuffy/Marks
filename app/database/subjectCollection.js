@@ -150,3 +150,12 @@ export const updateSubjectData = data =>
 			}
 		})
 	)
+
+export const addExamToSubjectArray = ({ SubjectId, Title }) =>
+	console.log(SubjectId, Title)
+subjectCollection.find({}, err => {
+	if (err) {
+		unableToRetrieve()
+		return err
+	}
+})
