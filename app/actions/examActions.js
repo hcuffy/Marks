@@ -6,7 +6,6 @@ export const addNewExam = event => {
 	const selectedSubjectIndex = event.target.Subject.selectedIndex
 	const examData = {
 		Title: event.target.Title.value,
-		Room: event.target.Room.value,
 		SubjectId: event.target.Subject.options[selectedSubjectIndex].id,
 		Date: event.target.Date.value,
 		Weight: event.target.Weight.value

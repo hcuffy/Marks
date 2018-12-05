@@ -1,4 +1,5 @@
 import { saveSuccessful, saveError, entryAlreadyExists } from '../notifications/general'
+import { addExamToSubjectArray } from './subjectCollection'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -23,7 +24,7 @@ export const addExamData = data => {
 			return
 		}
 		const newData = data
-		console.log(newData)
+		addExamToSubjectArray(newData)
 		// examCollection.insert(newData, (error, doc) => {
 		// 	if (error) {
 		// 		saveError()
