@@ -1,4 +1,4 @@
-import { GET_SELECTED_CLASS } from './actionTypes'
+import { GET_SELECTED_CLASS, ADD_NEW_EXAM } from './actionTypes'
 import { addExamData } from '../database/examCollection'
 
 export const addNewExam = event => {
@@ -10,10 +10,11 @@ export const addNewExam = event => {
 		Date: event.target.Date.value,
 		Weight: event.target.Weight.value
 	}
-
 	addExamData(examData)
-
-	console.log(examData)
+	return {
+		type: ADD_NEW_EXAM,
+		payload: {}
+	}
 }
 
 export const getSelectedSubject = event => {

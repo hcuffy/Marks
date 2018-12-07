@@ -98,7 +98,6 @@ function checkSubjectChanges(prev, curr) {
 
 function updateClassroomSubjects(subjectId, previousSubject, currentSubject) {
 	if (!_.isEqual(previousSubject, currentSubject)) {
-		console.log('here')
 		updateClassSubjectArray(subjectId, previousSubject, currentSubject)
 	}
 }
@@ -152,10 +151,25 @@ export const updateSubjectData = data =>
 	)
 
 export const addExamToSubjectArray = ({ SubjectId, Title }) =>
-	console.log(SubjectId, Title)
-subjectCollection.find({}, err => {
-	if (err) {
-		unableToRetrieve()
-		return err
-	}
-})
+	subjectCollection.find({ _id: SubjectId }, (err, doc) => {
+		if (err) {
+			unableToRetrieve()
+			return err
+		}
+		if (doc.length <= 0) {
+			return 'Exists'
+		}
+		if (!_.includes(doc.Tests, Title)) {
+			subjectCollection.update(
+				{ _id: SubjectId },
+				{ $push: { Tests: Title } },
+				{},
+				error => {
+					if (error) {
+						updateFailed()
+						return error
+					}
+				}
+			)
+		}
+	})

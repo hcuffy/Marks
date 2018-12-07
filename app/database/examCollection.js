@@ -24,14 +24,15 @@ export const addExamData = data => {
 			return
 		}
 		const newData = data
-		addExamToSubjectArray(newData)
-		// examCollection.insert(newData, (error, doc) => {
-		// 	if (error) {
-		// 		saveError()
-		// 		return error
-		// 	}
-		// 	saveSuccessful()
-		// 	return doc
-		// })
+
+		examCollection.insert(newData, (error, doc) => {
+			if (error) {
+				saveError()
+				return error
+			}
+			saveSuccessful()
+			addExamToSubjectArray(newData)
+			return doc
+		})
 	})
 }
