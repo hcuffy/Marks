@@ -2,9 +2,9 @@ import {
 	GET_SELECTED_CLASS,
 	ADD_NEW_EXAM,
 	UPDATE_DROPDOWN_CLASS_LIST,
-	UPDATE_DROPDOWN_SUBJECT_LIST
+	DISPLAY_SUBJECT_LIST
 } from './actionTypes'
-import { addExamData } from '../database/examCollection'
+import { addExamData, getExamData } from '../database/examCollection'
 
 export const addNewExam = event => {
 	event.preventDefault()
@@ -31,19 +31,20 @@ export const getSelectedSubject = event => {
 }
 
 export const openClassDropdownList = event => {
-	const subject = event.target.innerText
-
+	const classroom = event.target.innerText
 	return {
 		type: UPDATE_DROPDOWN_CLASS_LIST,
-		payload: subject
+		payload: classroom
 	}
 }
 
-export const openSubjectDropList = event => {
-	const subject = event.target.innerText
-
-	return {
-		type: UPDATE_DROPDOWN_SUBJECT_LIST,
-		payload: subject
+export const displayExamData = event => async dispatch => {
+	const subjectId = event.target.id
+	const exams = await getExamData()
+	if (exams.length !== 0) {
+		dispatch({
+			type: DISPLAY_SUBJECT_LIST,
+			payload: { exams, subjectId }
+		})
 	}
 }

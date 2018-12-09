@@ -18,7 +18,7 @@ import {
 	addNewExam,
 	getSelectedSubject,
 	openClassDropdownList,
-	openSubjectDropList
+	displayExamData
 } from './examActions'
 
 export const actionCreators = {
@@ -40,5 +40,5 @@ export const actionCreators = {
 	addNewExam,
 	getSelectedSubject,
 	openClassDropdownList,
-	openSubjectDropList
+	displayExamData
 }
