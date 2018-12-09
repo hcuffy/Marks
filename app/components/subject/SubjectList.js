@@ -11,11 +11,11 @@ export function filterSubjects(subjectData, chosenClass) {
 	if (_.isNil(subjectData) || _.isNil(chosenClass) || chosenClass === 'Select Class') {
 		return []
 	}
-
 	const chosenSubjects = _.chain(subjectData)
-		.filter(['Room', chosenClass.Name])
+		.filter(['Room', chosenClass.Name] || ['Room', chosenClass])
 		.orderBy(['Abbreviation'], [subJ => subJ.Abbreviation.toLowerCase()], ['asc'])
 		.value()
+
 	return chosenSubjects
 }
 
