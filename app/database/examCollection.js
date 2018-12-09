@@ -1,4 +1,9 @@
-import { saveSuccessful, saveError, entryAlreadyExists } from '../notifications/general'
+import {
+	saveSuccessful,
+	saveError,
+	entryAlreadyExists,
+	unableToRetrieve
+} from '../notifications/general'
 import { addExamToSubjectArray } from './subjectCollection'
 
 const Datastore = require('nedb')
@@ -36,3 +41,14 @@ export const addExamData = data => {
 		})
 	})
 }
+
+export const getExamData = () =>
+	new Promise((resolve, reject) =>
+		examCollection.find({}, (err, entry) => {
+			if (err) {
+				unableToRetrieve()
+				return reject(err)
+			}
+			return resolve(entry)
+		})
+	)
