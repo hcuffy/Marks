@@ -19,12 +19,9 @@ function getClassList(classlist) {
 }
 
 function getSubjectList(examData, subjectData) {
-	const selectedSubjects = _.filter(subjectData.data, [
-		'Room', examData.classDropdownSubject
-	])
-
+	const selectedSubjects = _.filter(subjectData.data, ['Room', examData.selectedRoom])
 	const items = selectedSubjects.map((data, idx) => (
-		<DropdownItem key={idx} name={data.Name}>
+		<DropdownItem key={idx} name={data.Name} id={data._id}>
 			{data.Name}
 		</DropdownItem>
 	))
@@ -34,7 +31,7 @@ function getSubjectList(examData, subjectData) {
 const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
 	const cleanedClassList = cleanAndSortData(classData)
 	const classOptions = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList(examData, subjectData)
+	const subjectOptions = getSubjectList(examData, subjectData, actions)
 
 	return (
 		<div className={styles.dropdown_main_div}>
@@ -50,10 +47,7 @@ const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
 				</Dropdown>
 			</div>
 			<div className={styles.dropdown_div}>
-				<Dropdown
-					isOpen={examData.openSubjectDropdown}
-					toggle={actions.openSubjectDropList}
-				>
+				<Dropdown isOpen={examData.openSubList} toggle={actions.displayExamData}>
 					<DropdownToggle color="info" caret>
 						Select Subject
 					</DropdownToggle>
