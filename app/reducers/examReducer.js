@@ -31,12 +31,12 @@ const filterExam = (state = initialLoadState, action) => {
 	}
 	case DISPLAY_SUBJECT_LIST: {
 		const openClassDropdown = false
-		const openSubjectDropdown = false
+		const openSubList = false
 		const { exams, subjectId } = action.payload
 
 		return _.assign({}, state, {
 			openClassDropdown,
-			openSubjectDropdown,
+			openSubList,
 			exams,
 			subjectId
 		})
