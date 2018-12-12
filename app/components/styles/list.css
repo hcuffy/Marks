@@ -12,3 +12,9 @@
 .badge_number {
   float: right;
 }
+
+.exam_div {
+  margin: 10px 10px 20px 10px;
+  height: 300px;
+  overflow: scroll;
+}
