@@ -5,6 +5,7 @@ import styles from '../styles/exam.css'
 import { actionCreators } from '../../actions/index'
 import ExamListDropdown from './ExamListDropdown'
 import ExamListInputs from './ExamListInputs'
+import ExamModal from './ExamModal'
 
 const ExamList = () => (
 	<div className={styles.main_div}>
@@ -14,6 +15,7 @@ const ExamList = () => (
 		</div>
 		<div>
 			<ExamListInputs />
+			<ExamModal />
 		</div>
 	</div>
 )

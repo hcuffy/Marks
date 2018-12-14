@@ -7,9 +7,9 @@ import { actionCreators } from '../../actions/index'
 
 // const _ = require('lodash')
 
-const ExamModal = () => (
+const ExamModal = ({ examModal, actions }) => (
 	<div>
-		<Modal isOpen={false} backdrop>
+		<Modal isOpen={examModal} backdrop>
 			<ModalHeader>Edit</ModalHeader>
 			<form method="POST">
 				<ModalBody />
@@ -21,14 +21,16 @@ const ExamModal = () => (
 					<Button type="submit" color="primary">
 						Update
 					</Button>
-					<Button color="secondary">Close</Button>
+					<Button onClick={actions.showSingleExam} color="secondary">
+						Close
+					</Button>
 				</ModalFooter>
 			</form>
 		</Modal>
 	</div>
 )
 
-const mapStateToProps = state => ({ subjectModal: state.subjectModal })
+const mapStateToProps = state => ({ examModal: state.examData.examModal })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)

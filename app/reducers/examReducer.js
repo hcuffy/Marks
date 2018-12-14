@@ -1,7 +1,8 @@
 import {
 	GET_SELECTED_CLASS,
 	UPDATE_DROPDOWN_CLASS_LIST,
-	DISPLAY_SUBJECT_LIST
+	DISPLAY_SUBJECT_LIST,
+	GET_SINGLE_EXAM
 } from '../actions/actionTypes'
 
 const _ = require('lodash')
@@ -10,7 +11,8 @@ const initialLoadState = {
 	subject: '',
 	openClassDropdown: false,
 	openSubList: false,
-	selectedRoom: ''
+	selectedRoom: '',
+	examModal: false
 }
 
 const filterExam = (state = initialLoadState, action) => {
@@ -28,6 +30,10 @@ const filterExam = (state = initialLoadState, action) => {
 			selectedRoom,
 			openSubList
 		})
+	}
+	case GET_SINGLE_EXAM: {
+		const examModal = !state.examModal
+		return _.assign({}, state, { examModal })
 	}
 	case DISPLAY_SUBJECT_LIST: {
 		const openClassDropdown = false
