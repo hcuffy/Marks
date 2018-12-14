@@ -2,7 +2,8 @@ import {
 	GET_SELECTED_CLASS,
 	ADD_NEW_EXAM,
 	UPDATE_DROPDOWN_CLASS_LIST,
-	DISPLAY_SUBJECT_LIST
+	DISPLAY_SUBJECT_LIST,
+	GET_SINGLE_EXAM
 } from './actionTypes'
 import { addExamData, getExamData } from '../database/examCollection'
 
@@ -46,5 +47,13 @@ export const displayExamData = event => async dispatch => {
 			type: DISPLAY_SUBJECT_LIST,
 			payload: { exams, subjectId }
 		})
+	}
+}
+
+export const showSingleExam = event => {
+	const exam = event.target.id
+	return {
+		type: GET_SINGLE_EXAM,
+		payload: exam
 	}
 }
