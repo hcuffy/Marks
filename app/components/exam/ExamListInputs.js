@@ -6,7 +6,7 @@ import styles from '../styles/list.css'
 
 const _ = require('lodash')
 
-const ExamListInputs = ({ exams, subjectId }) => {
+const ExamListInputs = ({ exams, subjectId, actions }) => {
 	const filteredExams = _.filter(exams, ['SubjectId', subjectId])
 	const examList = filteredExams.map((data, idx) => (
 		<button
@@ -14,10 +14,11 @@ const ExamListInputs = ({ exams, subjectId }) => {
 			id={data._id}
 			type="button"
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
+			onClick={actions.showSingleExam}
 		>
 			{data.Title}
 			<span className={`badge badge-light badge-pill ${styles.badge_number}`}>
-				<i className="fas fa-calendar-day" /> {data.Date}
+				<i className="fas fa-calendar" /> {data.Date}
 			</span>
 			<span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
 				<i className="fas fa-weight-hanging" /> {data.Weight}
