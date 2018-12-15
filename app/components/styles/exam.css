@@ -32,3 +32,20 @@
 .dropdown_main_div {
   text-align: center;
 }
+
+.form_label_edit {
+  float: left;
+  margin: 0 5px 0 5px;
+  vertical-align: bottom;
+  line-height: 36px;
+}
+
+.form_input {
+  float: right;
+}
+
+.form_div_edit {
+  margin-right: 40px;
+  width: 170px;
+  display: inline-block;
+}

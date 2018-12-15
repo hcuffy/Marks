@@ -19,7 +19,6 @@ export function cleanAndFilterData(objectToClean, roomToClean) {
 		'ClassroomId',
 		'Room'
 	])
-
 	return cleanedData
 }
 

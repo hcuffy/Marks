@@ -88,7 +88,7 @@ const ExamForm = ({ classData, subjectData, examData, actions }) => {
 						Number:
 					</label>
 					<input
-						className="form-control"
+						className={`${styles.weight_input} form-control`}
 						defaultValue="1"
 						name="Weight"
 						type="number"
