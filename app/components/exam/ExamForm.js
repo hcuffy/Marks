@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/exam.css'
 import { cleanAndSortData } from '../rooms/ClassList'
+import examForm from './ExamFormHelper'
 
 const _ = require('lodash')
 
@@ -34,78 +34,8 @@ const ExamForm = ({ classData, subjectData, examData, actions }) => {
 	const cleanedClassList = cleanAndSortData(classData)
 	const classOption = getClassList(cleanedClassList)
 	const subjectOptions = getSubjectList(subjectData, examData, cleanedClassList)
-
-	return (
-		<div>
-			<form className="form-inline" onSubmit={actions.addNewExam} method="POST">
-				<div>
-					<label className={styles.form_label} htmlFor="titleId">
-						Title*:
-					</label>
-					<input
-						name="Title"
-						className="form-control"
-						required
-						id="titleId"
-						type="text"
-					/>
-				</div>
-				<div>
-					<label className={styles.form_label} htmlFor="classSelection">
-						Select Classroom:
-					</label>
-					<select
-						onChange={actions.getSelectedSubject}
-						className="form-control"
-						name="Room"
-						id="classSelection"
-						type="text"
-					>
-						{classOption}
-					</select>
-				</div>
-				<div>
-					<label className={styles.form_label} htmlFor="subjectSelection">
-						Select Subject:
-					</label>
-					<select
-						className="form-control"
-						name="Subject"
-						id="subjectSelection"
-						type="text"
-					>
-						{subjectOptions}
-					</select>
-				</div>
-				<div className={`${styles.form_div} form-group`}>
-					<label className={styles.form_label} htmlFor="dateIn">
-						Date:
-					</label>
-					<input className="form-control" name="Date" type="date" id="dateIn" />
-				</div>
-				<div className={`${styles.form_div} form-group`}>
-					<label className={styles.form_label} htmlFor="number-input">
-						Number:
-					</label>
-					<input
-						className={`${styles.weight_input} form-control`}
-						defaultValue="1"
-						name="Weight"
-						type="number"
-						id="number-input"
-						min="1"
-						max="4"
-						step="0.5"
-					/>
-				</div>
-				<div className={styles.form_save_btn}>
-					<button type="submit" className="btn btn-success">
-						Add New Exam
-					</button>
-				</div>
-			</form>
-		</div>
-	)
+	const completeExamForm = examForm(subjectOptions, classOption, actions)
+	return <div>{completeExamForm}</div>
 }
 
 const mapStateToProps = state => ({
