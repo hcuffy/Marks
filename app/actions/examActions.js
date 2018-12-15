@@ -51,9 +51,9 @@ export const displayExamData = event => async dispatch => {
 }
 
 export const showSingleExam = event => {
-	const exam = event.target.id
+	const examId = event.target.id
 	return {
 		type: GET_SINGLE_EXAM,
-		payload: exam
+		payload: examId
 	}
 }

@@ -33,7 +33,8 @@ const filterExam = (state = initialLoadState, action) => {
 	}
 	case GET_SINGLE_EXAM: {
 		const examModal = !state.examModal
-		return _.assign({}, state, { examModal })
+		const examId = action.payload
+		return _.assign({}, state, { examModal, examId })
 	}
 	case DISPLAY_SUBJECT_LIST: {
 		const openClassDropdown = false
