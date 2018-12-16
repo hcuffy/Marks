@@ -2,7 +2,8 @@ import {
 	GET_SELECTED_CLASS,
 	UPDATE_DROPDOWN_CLASS_LIST,
 	DISPLAY_SUBJECT_LIST,
-	GET_SINGLE_EXAM
+	GET_SINGLE_EXAM,
+	UPDATE_EXAMS_LIST
 } from '../actions/actionTypes'
 
 const _ = require('lodash')
@@ -47,6 +48,10 @@ const filterExam = (state = initialLoadState, action) => {
 			exams,
 			subjectId
 		})
+	}
+	case UPDATE_EXAMS_LIST: {
+		const exams = action.payload
+		return _.assign({}, state, { exams })
 	}
 	default:
 		return state

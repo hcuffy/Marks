@@ -17,7 +17,12 @@ const ExamModal = ({ examModal, examId, exams, actions }) => {
 				<form method="POST">
 					<ModalBody>{examFormData}</ModalBody>
 					<ModalFooter>
-						<Button type="button" color="danger">
+						<Button
+							id={examId}
+							onClick={actions.removeSingleExam}
+							type="button"
+							color="danger"
+						>
 							Delete
 						</Button>
 

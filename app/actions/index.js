@@ -5,7 +5,8 @@ import {
 	updateRoom,
 	updateSubject,
 	subjectModalDisplay,
-	removeSubject
+	removeSubject,
+	removeSingleExam
 } from './modalActions'
 import { changeClassroomTab, handleClassData, displayClassData } from './classroomActions'
 import {
@@ -42,5 +43,6 @@ export const actionCreators = {
 	getSelectedSubject,
 	openClassDropdownList,
 	displayExamData,
-	showSingleExam
+	showSingleExam,
+	removeSingleExam
 }

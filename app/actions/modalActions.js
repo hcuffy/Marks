@@ -3,10 +3,13 @@ import {
 	GET_CLASSROOM_DATA,
 	UPDATE_CLASSROOM,
 	OPEN_CLOSE_SUBJECT_MODAL,
-	GET_SINGLE_SUBJECT
+	GET_SINGLE_SUBJECT,
+	GET_SINGLE_EXAM,
+	UPDATE_EXAMS_LIST
 } from './actionTypes'
 import { getRemoveClassroom, updateRoomData } from '../database/classroomCollection'
 import { deleteSubject, updateSubjectData } from '../database/subjectCollection'
+import { deleteExam } from '../database/examCollection'
 
 export const roomModalDisplay = event => {
 	event.preventDefault()
@@ -120,6 +123,26 @@ export const removeSubject = event => async dispatch => {
 		dispatch({
 			type: GET_SINGLE_SUBJECT,
 			payload: { subject: subjectDoc[0].Room }
+		})
+	}
+}
+
+export const removeSingleExam = event => async dispatch => {
+	const examId = {
+		id: event.target.id
+	}
+
+	const exams = await deleteExam(examId)
+
+	dispatch({
+		type: GET_SINGLE_EXAM,
+		payload: examId
+	})
+
+	if (exams.length > 0) {
+		dispatch({
+			type: UPDATE_EXAMS_LIST,
+			payload: exams
 		})
 	}
 }

@@ -2,7 +2,8 @@ import {
 	saveSuccessful,
 	saveError,
 	entryAlreadyExists,
-	unableToRetrieve
+	unableToRetrieve,
+	deleteSuccessful
 } from '../notifications/general'
 import { addExamToSubjectArray } from './subjectCollection'
 
@@ -50,5 +51,21 @@ export const getExamData = () =>
 				return reject(err)
 			}
 			return resolve(entry)
+		})
+	)
+
+export const deleteExam = data =>
+	new Promise((resolve, reject) =>
+		examCollection.remove({ _id: data.id }, err => {
+			if (err) {
+				return reject(err)
+			}
+			examCollection.find({}, (error, docs) => {
+				if (err) {
+					return reject(err)
+				}
+				deleteSuccessful()
+				return resolve(docs)
+			})
 		})
 	)
