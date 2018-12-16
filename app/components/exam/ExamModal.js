@@ -6,7 +6,7 @@ import { actionCreators } from '../../actions/index'
 import { cleanAndFilterData } from '../rooms/RoomModal'
 import generateFields from './ExamModalHelper'
 
-const ExamModal = ({ examModal, examId, exams, actions }) => {
+const ExamModal = ({ examModal, examId, exams, subjectId, actions }) => {
 	const requiredExam = cleanAndFilterData(exams, { id: examId })
 	const examFormData = generateFields(requiredExam)
 
@@ -19,6 +19,7 @@ const ExamModal = ({ examModal, examId, exams, actions }) => {
 					<ModalFooter>
 						<Button
 							id={examId}
+							name={subjectId}
 							onClick={actions.removeSingleExam}
 							type="button"
 							color="danger"
@@ -41,7 +42,8 @@ const ExamModal = ({ examModal, examId, exams, actions }) => {
 const mapStateToProps = state => ({
 	examModal: state.examData.examModal,
 	examId: state.examData.examId,
-	exams: state.examData.exams
+	exams: state.examData.exams,
+	subjectId: state.examData.subjectId
 })
 
 const mapDispatchToProps = dispatch => ({

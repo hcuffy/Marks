@@ -173,3 +173,27 @@ export const addExamToSubjectArray = ({ SubjectId, Title }) =>
 			)
 		}
 	})
+
+export const updateSubjecTestsArray = (subjectId, examTitle) =>
+	new Promise((resolve, reject) =>
+		subjectCollection.find({ _id: subjectId }, (err, entry) => {
+			if (err) {
+				updateFailed()
+				return err
+			}
+			if (entry.length > 0) {
+				subjectCollection.update(
+					{ _id: subjectId },
+					{ $pull: { Tests: examTitle } },
+					{},
+					(error, docs) => {
+						if (error) {
+							updateFailed()
+							return reject(error)
+						}
+						return resolve(docs)
+					}
+				)
+			}
+		})
+	)

@@ -128,15 +128,16 @@ export const removeSubject = event => async dispatch => {
 }
 
 export const removeSingleExam = event => async dispatch => {
-	const examId = {
-		id: event.target.id
+	const examData = {
+		examId: event.target.id,
+		subjectId: event.target.name
 	}
 
-	const exams = await deleteExam(examId)
+	const exams = await deleteExam(examData)
 
 	dispatch({
 		type: GET_SINGLE_EXAM,
-		payload: examId
+		payload: examData.examId
 	})
 
 	if (exams.length > 0) {
