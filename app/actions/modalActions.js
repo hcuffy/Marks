@@ -9,7 +9,7 @@ import {
 } from './actionTypes'
 import { getRemoveClassroom, updateRoomData } from '../database/classroomCollection'
 import { deleteSubject, updateSubjectData } from '../database/subjectCollection'
-import { deleteExam } from '../database/examCollection'
+import { deleteExam, updateExamData } from '../database/examCollection'
 
 export const roomModalDisplay = event => {
 	event.preventDefault()
@@ -138,6 +138,31 @@ export const removeSingleExam = event => async dispatch => {
 	dispatch({
 		type: GET_SINGLE_EXAM,
 		payload: examData.examId
+	})
+
+	if (exams.length > 0) {
+		dispatch({
+			type: UPDATE_EXAMS_LIST,
+			payload: exams
+		})
+	}
+}
+
+export const updateExam = event => async dispatch => {
+	event.preventDefault()
+	const examData = {
+		Title: event.target.Title.value,
+		Date: event.target.Date.value,
+		Weight: event.target.Weight.value,
+		SubjectId: event.target.SubjectId.id,
+		ExamId: event.target.ExamId.id
+	}
+
+	const exams = await updateExamData(examData)
+
+	dispatch({
+		type: GET_SINGLE_EXAM,
+		payload: examData.ExamId
 	})
 
 	if (exams.length > 0) {

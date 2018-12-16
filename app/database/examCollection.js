@@ -3,7 +3,9 @@ import {
 	saveError,
 	entryAlreadyExists,
 	unableToRetrieve,
-	deleteSuccessful
+	deleteSuccessful,
+	updateFailed,
+	updateSuccessful
 } from '../notifications/general'
 import { addExamToSubjectArray, updateSubjecTestsArray } from './subjectCollection'
 
@@ -55,13 +57,11 @@ export const getExamData = () =>
 	)
 
 function updateTestsArr(examId, subjectId) {
-	console.log(examId, subjectId)
 	examCollection.find({ _id: examId }, (err, entry) => {
 		if (err) {
 			return err
 		}
 		const examTitle = entry[0].Title
-		console.log(examTitle)
 		updateSubjecTestsArray(subjectId, examTitle)
 	})
 }
@@ -82,3 +82,45 @@ export const deleteExam = data =>
 			})
 		})
 	})
+
+function updateSinlgeExam(previous, current) {
+	console.log('herer')
+	const { Title, Date, Weight } = current
+	const { SubjectId } = previous
+
+	examCollection.update(
+		{ _id: previous._id },
+		{
+			Title,
+			Date,
+			Weight,
+			SubjectId
+		},
+		{},
+		err => {
+			if (err) {
+				updateFailed()
+				return err
+			}
+			updateSuccessful()
+		}
+	)
+}
+
+export const updateExamData = data =>
+	new Promise((resolve, reject) =>
+		examCollection.find({ _id: data.ExamId }, (err, entry) => {
+			if (err) {
+				return err
+			}
+			if (entry.length > 0) {
+				updateSinlgeExam(entry[0], data)
+				examCollection.find({}, (error, docs) => {
+					if (error) {
+						return reject(error)
+					}
+					return resolve(docs)
+				})
+			}
+		})
+	)

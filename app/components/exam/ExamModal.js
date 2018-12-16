@@ -14,8 +14,12 @@ const ExamModal = ({ examModal, examId, exams, subjectId, actions }) => {
 		<div>
 			<Modal isOpen={examModal} backdrop>
 				<ModalHeader>Edit:</ModalHeader>
-				<form method="POST">
-					<ModalBody>{examFormData}</ModalBody>
+				<form onSubmit={actions.updateExam} method="POST">
+					<ModalBody>
+						{examFormData}
+						<input type="hidden" name="SubjectId" id={subjectId} />
+						<input type="hidden" name="ExamId" id={examId} />
+					</ModalBody>
 					<ModalFooter>
 						<Button
 							id={examId}
