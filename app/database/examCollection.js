@@ -84,7 +84,6 @@ export const deleteExam = data =>
 	})
 
 function updateSinlgeExam(previous, current) {
-	console.log('herer')
 	const { Title, Date, Weight } = current
 	const { SubjectId } = previous
 
@@ -108,13 +107,17 @@ function updateSinlgeExam(previous, current) {
 }
 
 export const updateExamData = data =>
-	new Promise((resolve, reject) =>
-		examCollection.find({ _id: data.ExamId }, (err, entry) => {
+	new Promise((resolve, reject) => {
+		const { ExamId, SubjectId, Title } = data
+		examCollection.find({ _id: ExamId }, (err, entry) => {
 			if (err) {
 				return err
 			}
 			if (entry.length > 0) {
 				updateSinlgeExam(entry[0], data)
+
+				updateSubjecTestsArray(SubjectId, entry[0].Title)
+				addExamToSubjectArray({ SubjectId, Title })
 				examCollection.find({}, (error, docs) => {
 					if (error) {
 						return reject(error)
@@ -123,4 +126,4 @@ export const updateExamData = data =>
 				})
 			}
 		})
-	)
+	})

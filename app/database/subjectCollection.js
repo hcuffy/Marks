@@ -150,15 +150,18 @@ export const updateSubjectData = data =>
 		})
 	)
 
-export const addExamToSubjectArray = ({ SubjectId, Title }) =>
+export const addExamToSubjectArray = ({ SubjectId, Title }) => {
+	console.log(SubjectId)
 	subjectCollection.find({ _id: SubjectId }, (err, doc) => {
 		if (err) {
 			unableToRetrieve()
 			return err
 		}
+		console.log(doc)
 		if (doc.length <= 0) {
 			return 'Exists'
 		}
+
 		if (!_.includes(doc.Tests, Title)) {
 			subjectCollection.update(
 				{ _id: SubjectId },
@@ -173,7 +176,7 @@ export const addExamToSubjectArray = ({ SubjectId, Title }) =>
 			)
 		}
 	})
-
+}
 export const updateSubjecTestsArray = (subjectId, examTitle) =>
 	new Promise((resolve, reject) =>
 		subjectCollection.find({ _id: subjectId }, (err, entry) => {
