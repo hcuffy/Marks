@@ -1,4 +1,3 @@
-// @flow
 import {
 	saveSuccessful,
 	saveError,
@@ -8,7 +7,7 @@ import {
 	deleteClassFailed,
 	updateSuccessful,
 	updateFailed
-} from '../components/notifications/General'
+} from '../notifications/general'
 
 const _ = require('lodash')
 const Datastore = require('nedb')

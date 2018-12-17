@@ -1,9 +1,4 @@
-// @flow
-import {
-	saveSuccessful,
-	saveError,
-	unableToRetrieve
-} from '../components/notifications/General'
+import { saveSuccessful, saveError, unableToRetrieve } from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')

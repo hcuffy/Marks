@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-// @flow
 import {
 	saveSuccessful,
 	updateSuccessful,
@@ -9,7 +8,7 @@ import {
 	deleteSubjectFailed,
 	deleteSuccessful,
 	updateFailed
-} from '../components/notifications/General'
+} from '../notifications/general'
 import {
 	getClassroomData,
 	updateSubjectArray,
@@ -99,7 +98,6 @@ function checkSubjectChanges(prev, curr) {
 
 function updateClassroomSubjects(subjectId, previousSubject, currentSubject) {
 	if (!_.isEqual(previousSubject, currentSubject)) {
-		console.log('here')
 		updateClassSubjectArray(subjectId, previousSubject, currentSubject)
 	}
 }
@@ -148,6 +146,57 @@ export const updateSubjectData = data =>
 					}
 					return resolve(docs)
 				})
+			}
+		})
+	)
+
+export const addExamToSubjectArray = ({ SubjectId, Title }) => {
+	console.log(SubjectId)
+	subjectCollection.find({ _id: SubjectId }, (err, doc) => {
+		if (err) {
+			unableToRetrieve()
+			return err
+		}
+		console.log(doc)
+		if (doc.length <= 0) {
+			return 'Exists'
+		}
+
+		if (!_.includes(doc.Tests, Title)) {
+			subjectCollection.update(
+				{ _id: SubjectId },
+				{ $push: { Tests: Title } },
+				{},
+				error => {
+					if (error) {
+						updateFailed()
+						return error
+					}
+				}
+			)
+		}
+	})
+}
+export const updateSubjecTestsArray = (subjectId, examTitle) =>
+	new Promise((resolve, reject) =>
+		subjectCollection.find({ _id: subjectId }, (err, entry) => {
+			if (err) {
+				updateFailed()
+				return err
+			}
+			if (entry.length > 0) {
+				subjectCollection.update(
+					{ _id: subjectId },
+					{ $pull: { Tests: examTitle } },
+					{},
+					(error, docs) => {
+						if (error) {
+							updateFailed()
+							return reject(error)
+						}
+						return resolve(docs)
+					}
+				)
 			}
 		})
 	)

@@ -5,7 +5,9 @@ import {
 	updateRoom,
 	updateSubject,
 	subjectModalDisplay,
-	removeSubject
+	removeSubject,
+	removeSingleExam,
+	updateExam
 } from './modalActions'
 import { changeClassroomTab, handleClassData, displayClassData } from './classroomActions'
 import {
@@ -14,6 +16,13 @@ import {
 	addNewSubject,
 	getSubjectData
 } from './subjectActions'
+import {
+	addNewExam,
+	getSelectedSubject,
+	openClassDropdownList,
+	displayExamData,
+	showSingleExam
+} from './examActions'
 
 export const actionCreators = {
 	handleSchoolData,
@@ -30,5 +39,12 @@ export const actionCreators = {
 	getSubjectData,
 	updateSubject,
 	subjectModalDisplay,
-	removeSubject
+	removeSubject,
+	addNewExam,
+	getSelectedSubject,
+	openClassDropdownList,
+	displayExamData,
+	showSingleExam,
+	removeSingleExam,
+	updateExam
 }

@@ -1,21 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { actionCreators } from '../actions/index'
-import styles from './styles/list.css'
-import SubjectModal from './Modals/SubjectModal'
+import { actionCreators } from '../../actions/index'
+import styles from '../styles/list.css'
+import SubjectModal from './SubjectModal'
 
 const _ = require('lodash')
 
-function filterSubjects(subjectData, chosenClass) {
+export function filterSubjects(subjectData, chosenClass) {
 	if (_.isNil(subjectData) || _.isNil(chosenClass) || chosenClass === 'Select Class') {
 		return []
 	}
-
 	const chosenSubjects = _.chain(subjectData)
 		.filter(['Room', chosenClass.Name])
 		.orderBy(['Abbreviation'], [subJ => subJ.Abbreviation.toLowerCase()], ['asc'])
 		.value()
+
 	return chosenSubjects
 }
 

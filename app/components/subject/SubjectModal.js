@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
-import { cleanAndFilterData } from './RoomModal'
-import styles from './styles/room.css'
+import { cleanAndFilterData } from '../rooms/RoomModal'
+import styles from '../styles/room.css'
 
 const _ = require('lodash')
 

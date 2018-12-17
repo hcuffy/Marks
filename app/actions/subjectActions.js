@@ -1,3 +1,4 @@
+// @flow
 import {
 	UPDATE_CLASS_LIST,
 	GET_SINGLE_SUBJECT,
@@ -12,14 +13,6 @@ export const openClassList = event => {
 	const subject = event.target.innerText
 	return {
 		type: UPDATE_CLASS_LIST,
-		payload: subject
-	}
-}
-
-export const showSubject = event => {
-	const subject = event.target.innerText
-	return {
-		type: GET_SINGLE_SUBJECT,
 		payload: subject
 	}
 }
@@ -48,5 +41,14 @@ export const getSubjectData = () => async dispatch => {
 			type: GET_SUBJECT_LIST,
 			payload: { data }
 		})
+	}
+}
+
+export const showSubject = event => {
+	const subject = event.target.innerText
+	getSubjectData()
+	return {
+		type: GET_SINGLE_SUBJECT,
+		payload: subject
 	}
 }
