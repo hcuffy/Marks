@@ -9,7 +9,7 @@ import StudentList from '../components/students/StudentList'
 class Students extends Component {
 	render() {
 		return (
-			<div data-tid="school_container">
+			<div data-tid="students_container">
 				<SideMenu />
 				<StudentList />
 			</div>
