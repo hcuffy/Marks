@@ -6,7 +6,7 @@ import styles from '../styles/students.css'
 
 const _ = require('lodash')
 
-const StudentForm = ({ studentData }) => {
+const StudentForm = ({ studentData, actions }) => {
 	const formFields = _.keys(studentData).map((data, idx) => (
 		<div key={idx} className={styles.form_inner_div}>
 			<label className={styles.form_label} htmlFor={`${data}Id`}>
@@ -18,7 +18,7 @@ const StudentForm = ({ studentData }) => {
 
 	return (
 		<div className={styles.student_div}>
-			<form method="POST">
+			<form onSubmit={actions.addNewStudent} method="POST">
 				<div className={styles.form_outer_div}>
 					<h4 className={styles.center_header}>Add Student</h4>
 					{formFields}

@@ -24,6 +24,8 @@ import {
 	showSingleExam
 } from './examActions'
 
+import { addNewStudent } from './studentActions'
+
 export const actionCreators = {
 	handleSchoolData,
 	displaySchoolData,
@@ -46,5 +48,6 @@ export const actionCreators = {
 	displayExamData,
 	showSingleExam,
 	removeSingleExam,
-	updateExam
+	updateExam,
+	addNewStudent
 }
