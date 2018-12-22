@@ -32,3 +32,8 @@
   vertical-align: bottom;
   line-height: 32px;
 }
+
+.select_dropDown {
+  width: 300px;
+  float: right;
+}

@@ -4,9 +4,7 @@ const _ = require('lodash')
 
 const initialLoadState = {
 	First_Name: '',
-	Last_Name: '',
-	Gender: '',
-	Classroom: ''
+	Last_Name: ''
 }
 
 const handleStudentData = (state = initialLoadState, action) => {
@@ -14,9 +12,7 @@ const handleStudentData = (state = initialLoadState, action) => {
 	case ADD_NEW_STUDENT: {
 		return _.assign({}, state, {
 			First_Name: '',
-			Last_Name: '',
-			Gender: '',
-			Classroom: ''
+			Last_Name: ''
 		})
 	}
 	default:
