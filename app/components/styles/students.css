@@ -1,3 +1,34 @@
+.student_div {
+  white-space: 800px;
+  height: 350px;
+  border-top: 1px solid;
+  padding: 0 20px 0 0;
+}
+
 .center_header {
-    text-align: center;
-  }
+  text-align: center;
+}
+
+.form_inner_div {
+  white-space: nowrap;
+  float: right;
+  margin: 10px 0 0 0;
+}
+
+.form_outer_div {
+  float: right;
+  height: 350px;
+  width: 500px;
+}
+
+.save_btn {
+  float: right;
+  margin: 10px 0 0 200px;
+}
+
+.form_label {
+  float: left;
+  margin-right: 5px;
+  vertical-align: bottom;
+  line-height: 32px;
+}
