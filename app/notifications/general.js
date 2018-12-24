@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify'
 
 export const saveSuccessful = () => {
-	toast.success('Your data was saved successfully.', {
+	toast.success('The data was saved successfully.', {
 		position: 'top-right',
 		autoClose: 2000,
 		hideProgressBar: false,
@@ -11,8 +11,8 @@ export const saveSuccessful = () => {
 	})
 }
 
-export const saveError = () => {
-	toast.error('Your data could not be saved.', {
+export const saveFailed = () => {
+	toast.error('The data could not be saved.', {
 		position: 'top-right',
 		autoClose: 2000,
 		hideProgressBar: false,
@@ -23,7 +23,7 @@ export const saveError = () => {
 }
 
 export const unableToRetrieve = () => {
-	toast.success('Unable to retireve data from database', {
+	toast.success('Unable to retireve data from database.', {
 		position: 'top-right',
 		autoClose: 2000,
 		hideProgressBar: false,
@@ -34,7 +34,7 @@ export const unableToRetrieve = () => {
 }
 
 export const entryAlreadyExists = () => {
-	toast.error('Entry already exists in database.', {
+	toast.error('Data already exists in database.', {
 		position: 'top-right',
 		autoClose: 2000,
 		hideProgressBar: false,
@@ -44,7 +44,7 @@ export const entryAlreadyExists = () => {
 	})
 }
 
-export const deleteSuccessful = () => {
+export const deletionSuccessful = () => {
 	toast.success('Deletion was successful.', {
 		position: 'top-right',
 		autoClose: 2000,
@@ -55,8 +55,8 @@ export const deleteSuccessful = () => {
 	})
 }
 
-export const deleteClassFailed = () => {
-	toast.error('Failed to delete entry.', {
+export const deletionFailed = () => {
+	toast.error('Deletion attempt failed.', {
 		position: 'top-right',
 		autoClose: 2000,
 		hideProgressBar: false,
@@ -67,7 +67,7 @@ export const deleteClassFailed = () => {
 }
 
 export const updateSuccessful = () => {
-	toast.success('Data was Updated.', {
+	toast.success('Data update was successful.', {
 		position: 'top-right',
 		autoClose: 2000,
 		hideProgressBar: false,
@@ -78,18 +78,7 @@ export const updateSuccessful = () => {
 }
 
 export const updateFailed = () => {
-	toast.error('Failed to update.', {
-		position: 'top-right',
-		autoClose: 2000,
-		hideProgressBar: false,
-		closeOnClick: true,
-		pauseOnHover: false,
-		draggable: false
-	})
-}
-
-export const deleteSubjectFailed = () => {
-	toast.error('Failed to delete entry.', {
+	toast.error('Update attempt failed.', {
 		position: 'top-right',
 		autoClose: 2000,
 		hideProgressBar: false,
@@ -100,7 +89,7 @@ export const deleteSubjectFailed = () => {
 }
 
 export const noUpdate = () => {
-	toast.success('No dhanges were made.', {
+	toast.success('No data to update.', {
 		position: 'top-right',
 		autoClose: 2000,
 		hideProgressBar: false,

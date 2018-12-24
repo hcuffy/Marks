@@ -2,11 +2,11 @@
 import {
 	saveSuccessful,
 	updateSuccessful,
-	saveError,
+	saveFailed,
 	entryAlreadyExists,
 	unableToRetrieve,
-	deleteSubjectFailed,
-	deleteSuccessful,
+	deletionFailed,
+	deletionSuccessful,
 	updateFailed
 } from '../notifications/general'
 import {
@@ -50,7 +50,7 @@ export const addSubjectData = async data => {
 
 	subjectCollection.insert(newSubject, (error, doc) => {
 		if (error) {
-			saveError()
+			saveFailed()
 			return error
 		}
 		updateSubjectArray(newRoom)
@@ -74,15 +74,15 @@ export const deleteSubject = data =>
 	new Promise((resolve, reject) =>
 		subjectCollection.remove({ _id: data.id }, err => {
 			if (err) {
-				deleteSubjectFailed()
+				deletionFailed()
 				return reject(err)
 			}
 			subjectCollection.find({}, (error, docs) => {
 				if (err) {
-					deleteSubjectFailed()
+					deletionFailed()
 					return reject(err)
 				}
-				deleteSuccessful()
+				deletionSuccessful()
 				return resolve(docs)
 			})
 		})

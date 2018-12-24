@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { saveSuccessful, saveError } from '../notifications/general'
+import { saveSuccessful, saveFailed } from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -16,7 +16,7 @@ const studentCollection = new Datastore({
 export const addNewStudentData = data => {
 	studentCollection.insert(data, error => {
 		if (error) {
-			saveError()
+			saveFailed()
 			return error
 		}
 		saveSuccessful()
