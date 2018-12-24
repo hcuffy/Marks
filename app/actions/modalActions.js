@@ -6,7 +6,7 @@ import {
 	GET_SINGLE_SUBJECT,
 	GET_SINGLE_EXAM,
 	UPDATE_EXAMS_LIST
-} from './actionTypes'
+} from '../constants/actionTypes'
 import { getRemoveClassroom, updateRoomData } from '../database/classroomCollection'
 import { deleteSubject, updateSubjectData } from '../database/subjectCollection'
 import { deleteExam, updateExamData } from '../database/examCollection'

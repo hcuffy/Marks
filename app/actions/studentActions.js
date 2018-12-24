@@ -1,4 +1,4 @@
-import { ADD_NEW_STUDENT } from './actionTypes'
+import { ADD_NEW_STUDENT } from '../constants/actionTypes'
 import { addNewStudentData } from '../database/studentCollection'
 
 export const addNewStudent = event => {

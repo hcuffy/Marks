@@ -1,4 +1,4 @@
-import { ADD_CLASSROOM_DATA, GET_CLASSROOM_DATA } from '../actions/actionTypes'
+import { ADD_CLASSROOM_DATA, GET_CLASSROOM_DATA } from '../constants/actionTypes'
 
 const _ = require('lodash')
 

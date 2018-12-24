@@ -4,7 +4,7 @@ import {
 	GET_SINGLE_SUBJECT,
 	ADD_NEW_SUBJECT,
 	GET_SUBJECT_LIST
-} from './actionTypes'
+} from '../constants/actionTypes'
 import { addSubjectData, getAllSubjects } from '../database/subjectCollection'
 
 export const openClassList = event => {

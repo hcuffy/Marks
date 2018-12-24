@@ -1,4 +1,4 @@
-import { OPEN_CLOSE_SUBJECT_MODAL, UPDATE_SUBJECT } from '../actions/actionTypes'
+import { OPEN_CLOSE_SUBJECT_MODAL, UPDATE_SUBJECT } from '../constants/actionTypes'
 
 const _ = require('lodash')
 

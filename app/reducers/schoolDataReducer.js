@@ -1,4 +1,4 @@
-import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../actions/actionTypes'
+import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../constants/actionTypes'
 
 const _ = require('lodash')
 

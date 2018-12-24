@@ -1,4 +1,4 @@
-import { ADD_NEW_STUDENT } from '../actions/actionTypes'
+import { ADD_NEW_STUDENT } from '../constants/actionTypes'
 
 const _ = require('lodash')
 

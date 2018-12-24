@@ -4,7 +4,7 @@ import {
 	UPDATE_DROPDOWN_CLASS_LIST,
 	DISPLAY_SUBJECT_LIST,
 	GET_SINGLE_EXAM
-} from './actionTypes'
+} from '../constants/actionTypes'
 import { addExamData, getExamData } from '../database/examCollection'
 
 export const addNewExam = event => {

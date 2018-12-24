@@ -2,7 +2,7 @@ import {
 	UPDATE_CLASS_LIST,
 	GET_SINGLE_SUBJECT,
 	GET_SUBJECT_LIST
-} from '../actions/actionTypes'
+} from '../constants/actionTypes'
 
 const _ = require('lodash')
 
