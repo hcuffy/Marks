@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { saveSuccessful, saveFailed } from '../notifications/general'
+import { saveSuccessful, saveFailed, unableToRetrieve } from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -22,3 +22,14 @@ export const addNewStudentData = data => {
 		saveSuccessful()
 	})
 }
+
+export const getAllStudents = () =>
+	new Promise((resolve, reject) =>
+		studentCollection.find({}, (err, docs) => {
+			if (err) {
+				unableToRetrieve()
+				return reject(err)
+			}
+			return resolve(docs)
+		})
+	)

@@ -1,4 +1,4 @@
-import { ADD_NEW_STUDENT } from '../constants/actionTypes'
+import { ADD_NEW_STUDENT, GET_ALL_STUDENTS } from '../constants/actionTypes'
 
 const _ = require('lodash')
 
@@ -14,6 +14,9 @@ const handleStudentData = (state = initialLoadState, action) => {
 			First_Name: '',
 			Last_Name: ''
 		})
+	}
+	case GET_ALL_STUDENTS: {
+		return _.assign({}, state, action.payload)
 	}
 	default:
 		return state
