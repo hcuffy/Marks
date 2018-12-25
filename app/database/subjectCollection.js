@@ -61,12 +61,12 @@ export const addSubjectData = async data => {
 
 export const getAllSubjects = () =>
 	new Promise((resolve, reject) =>
-		subjectCollection.find({}, (err, entry) => {
+		subjectCollection.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
 				return reject(err)
 			}
-			return resolve(entry)
+			return resolve(docs)
 		})
 	)
 
