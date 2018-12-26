@@ -18,8 +18,12 @@ function generateStudentList(students) {
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
 		>
 			{`${data.FirstName} ${data.LastName}`}
-			<span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
-				{data.Gender}
+			<span className={`badge badge-info badge-pill ${styles.badge_number}`}>
+				{data.Gender === 'Male' ? (
+					<i className="fas fa-mars" />
+				) : (
+					<i className="fas fa-venus" />
+				)}
 			</span>
 		</button>
 	))
@@ -32,7 +36,10 @@ const StudentList = ({ students }) => {
 
 	return (
 		<div className={styles.list_div}>
-			<div className="list-group list-group-flush">{listData}</div>
+			<div className="list-group list-group-flush">
+				<h4 className={styles.center_sub_header}>List of Students</h4>
+				{listData}
+			</div>
 		</div>
 	)
 }

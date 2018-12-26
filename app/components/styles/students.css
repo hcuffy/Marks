@@ -1,11 +1,17 @@
 .student_div {
   white-space: 800px;
   height: 350px;
-  border-top: 1px solid;
+  width: 50%;
+  float: right;
   padding: 0 20px 0 0;
 }
 
 .center_header {
+  text-align: center;
+  border-bottom: 1px solid;
+}
+
+.center_sub_header {
   text-align: center;
 }
 
@@ -46,4 +52,9 @@
 
 .badge_number {
   float: right;
+}
+
+.list_div {
+  height: 230px;
+  overflow: scroll;
 }

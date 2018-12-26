@@ -9,8 +9,8 @@ import StudentList from './StudentList'
 const StudentsSection = () => (
 	<div>
 		<h2 className={styles.center_header}>Students</h2>
-		<StudentList />
 		<StudentForm />
+		<StudentList />
 	</div>
 )
 

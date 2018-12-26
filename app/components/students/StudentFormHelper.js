@@ -6,7 +6,7 @@ const studentForm = (selectOption, formFields, actions) => {
 		<div>
 			<form onSubmit={actions.addNewStudent} method="POST">
 				<div className={styles.form_outer_div}>
-					<h4 className={styles.center_header}>Add Student</h4>
+					<h4 className={styles.center_sub_header}>Add Student</h4>
 					{formFields}
 					<div className={`${styles.select_dropDown} ${styles.form_div}`}>
 						<label className={styles.form_label} htmlFor="gSelect">
