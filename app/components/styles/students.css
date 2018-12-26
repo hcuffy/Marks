@@ -37,3 +37,13 @@
   width: 300px;
   float: right;
 }
+
+.list_btn {
+  display: inline-flex;
+  align-items: flex-start;
+  height: 40px;
+}
+
+.badge_number {
+  float: right;
+}

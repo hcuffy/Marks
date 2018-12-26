@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/SideMenu'
-import StudentList from '../components/students/StudentList'
+import StudentsSection from '../components/students/StudentsSection'
 
 class Students extends Component {
 	componentDidMount() {
+		this.props.actions.getStudents()
 		if (this.props.classData[0].Name === '') {
-			console.log('herer')
 			this.props.actions.displayClassData()
 		}
 	}
@@ -18,7 +18,7 @@ class Students extends Component {
 		return (
 			<div data-tid="students_container">
 				<SideMenu />
-				<StudentList />
+				<StudentsSection />
 			</div>
 		)
 	}
