@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from '../styles/students.css'
+import StudentModal from './StudentModal'
 
 const _ = require('lodash')
 
@@ -40,6 +41,7 @@ const StudentList = ({ students }) => {
 				<h4 className={styles.center_sub_header}>List of Students</h4>
 				{listData}
 			</div>
+			<StudentModal />
 		</div>
 	)
 }
