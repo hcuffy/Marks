@@ -7,15 +7,14 @@ import RoomModal from './RoomModal'
 
 const _ = require('lodash')
 
-export function cleanAndSortData(clean) {
-	const requiredProp = _.pick(clean, ['classData'])
-	const sortedProp = _.sortBy(requiredProp.classData, ['Name'], ['asc'])
+export function sortData(clean) {
+	const sortedProp = _.sortBy(clean.classData, ['Name'], ['asc'])
 
 	return sortedProp
 }
 
 const ClassList = ({ listData, actions }) => {
-	const cleanedData = cleanAndSortData(listData)
+	const cleanedData = sortData(listData)
 	const listInputs = cleanedData.map((data, idx) => (
 		<button
 			key={idx}
