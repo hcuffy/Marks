@@ -7,8 +7,8 @@ import {
 const _ = require('lodash')
 
 const initialLoadState = {
-	First_Name: '',
-	Last_Name: '',
+	Firstname: '',
+	Lastname: '',
 	studentModal: false
 }
 
@@ -16,8 +16,8 @@ const handleStudentData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case ADD_NEW_STUDENT: {
 		return _.assign({}, state, {
-			First_Name: '',
-			Last_Name: ''
+			Firstname: '',
+			Lastname: ''
 		})
 	}
 	case GET_ALL_STUDENTS: {

@@ -3,17 +3,24 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
+import { cleanAndFilterData } from '../rooms/RoomModal'
+import generateFields from './StudentModalHelper'
 // import styles from '../styles/student.css'
 
-const StudentModal = ({ students, actions }) => {
-	console.log(students)
+const StudentModal = ({ students, classdata, actions }) => {
+	const requiredStudent = cleanAndFilterData(students.data, { id: students.studentId })
+	const { studentFields, dropDowns } = generateFields(requiredStudent, classdata)
 
 	return (
 		<div>
 			<Modal isOpen={students.studentModal} backdrop>
 				<ModalHeader>Edit:</ModalHeader>
 				<form method="POST">
-					<ModalBody />
+					<ModalBody>
+						{studentFields}
+						{dropDowns}
+						<input type="hidden" name="studentId" id={students.studentId} />
+					</ModalBody>
 					<ModalFooter>
 						<Button color="danger">Delete</Button>
 
@@ -30,7 +37,10 @@ const StudentModal = ({ students, actions }) => {
 	)
 }
 
-const mapStateToProps = state => ({ students: state.studentData })
+const mapStateToProps = state => ({
+	students: state.studentData,
+	classdata: state.allClassData.classData
+})
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
