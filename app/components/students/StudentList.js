@@ -7,7 +7,7 @@ import StudentModal from './StudentModal'
 
 const _ = require('lodash')
 
-function generateStudentList(students) {
+function generateStudentList(students, actions) {
 	if (_.isUndefined(students)) {
 		return []
 	}
@@ -17,6 +17,7 @@ function generateStudentList(students) {
 			id={data._id}
 			type="button"
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
+			onClick={actions.showStudentModal}
 		>
 			{`${data.FirstName} ${data.LastName}`}
 			<span className={`badge badge-info badge-pill ${styles.badge_number}`}>
@@ -32,8 +33,8 @@ function generateStudentList(students) {
 	return completeList
 }
 
-const StudentList = ({ students }) => {
-	const listData = generateStudentList(students)
+const StudentList = ({ students, actions }) => {
+	const listData = generateStudentList(students, actions)
 
 	return (
 		<div className={styles.list_div}>

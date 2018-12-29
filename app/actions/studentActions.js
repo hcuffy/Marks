@@ -1,4 +1,8 @@
-import { ADD_NEW_STUDENT, GET_ALL_STUDENTS } from '../constants/actionTypes'
+import {
+	ADD_NEW_STUDENT,
+	GET_ALL_STUDENTS,
+	GET_SINGLE_STUDENT
+} from '../constants/actionTypes'
 import { addNewStudentData, getAllStudents } from '../database/studentCollection'
 
 export const addNewStudent = event => {
@@ -26,5 +30,13 @@ export const getStudents = () => async dispatch => {
 			type: GET_ALL_STUDENTS,
 			payload: { data }
 		})
+	}
+}
+
+export const showStudentModal = event => {
+	const studentId = event.target.id
+	return {
+		type: GET_SINGLE_STUDENT,
+		payload: studentId
 	}
 }

@@ -5,24 +5,22 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 // import styles from '../styles/student.css'
 
-const StudentModal = ({ students }) => {
+const StudentModal = ({ students, actions }) => {
 	console.log(students)
 
 	return (
 		<div>
-			<Modal isOpen backdrop>
+			<Modal isOpen={students.studentModal} backdrop>
 				<ModalHeader>Edit:</ModalHeader>
 				<form method="POST">
 					<ModalBody />
 					<ModalFooter>
-						<Button type="button" color="danger">
-							Delete
-						</Button>
+						<Button color="danger">Delete</Button>
 
 						<Button type="submit" color="primary">
 							Update
 						</Button>
-						<Button type="button" color="secondary">
+						<Button onClick={actions.showStudentModal} color="secondary">
 							Close
 						</Button>
 					</ModalFooter>
@@ -32,7 +30,7 @@ const StudentModal = ({ students }) => {
 	)
 }
 
-const mapStateToProps = state => ({ students: state.studentData.Data })
+const mapStateToProps = state => ({ students: state.studentData })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
