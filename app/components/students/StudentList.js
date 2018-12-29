@@ -19,7 +19,7 @@ function generateStudentList(students, actions) {
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
 			onClick={actions.showStudentModal}
 		>
-			{`${data.FirstName} ${data.LastName}`}
+			{`${data.Firstname} ${data.Lastname}`}
 			<span className={`badge badge-info badge-pill ${styles.badge_number}`}>
 				{data.Gender === 'Male' ? (
 					<i className="fas fa-mars" />
@@ -35,7 +35,6 @@ function generateStudentList(students, actions) {
 
 const StudentList = ({ students, actions }) => {
 	const listData = generateStudentList(students, actions)
-
 	return (
 		<div className={styles.list_div}>
 			<div className="list-group list-group-flush">

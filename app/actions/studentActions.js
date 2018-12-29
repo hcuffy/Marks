@@ -9,8 +9,8 @@ export const addNewStudent = event => {
 	event.preventDefault()
 
 	const formData = {
-		FirstName: event.target.First_Name.value,
-		LastName: event.target.Last_Name.value,
+		Firstname: event.target.Firstname.value,
+		Lastname: event.target.Lastname.value,
 		Gender: event.target.Gender.value,
 		Classroom: event.target.Classroom.value
 	}

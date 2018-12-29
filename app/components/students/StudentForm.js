@@ -8,12 +8,11 @@ import studentForm from './StudentFormHelper'
 const _ = require('lodash')
 
 const StudentForm = ({ studentData, allClassData, actions }) => {
-	const formFields = _.keys(_.pick(studentData, ['First_Name', 'Last_Name'])).map(
+	const formFields = _.keys(_.pick(studentData, ['Firstname', 'Lastname'])).map(
 		(data, idx) => (
 			<div key={idx} className={styles.form_inner_div}>
 				<label className={styles.form_label} htmlFor={`${data}_Id`}>
-					{data}
-					*:
+					{`${data}*:`}
 				</label>
 				<input
 					name={data}
