@@ -5,7 +5,6 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import { cleanAndFilterData } from '../rooms/RoomModal'
 import generateFields from './StudentModalHelper'
-// import styles from '../styles/student.css'
 
 const StudentModal = ({ students, classdata, actions }) => {
 	const requiredStudent = cleanAndFilterData(students.data, { id: students.studentId })
