@@ -1,5 +1,11 @@
 /* eslint-disable no-underscore-dangle */
-import { saveSuccessful, saveFailed, unableToRetrieve } from '../notifications/general'
+import {
+	saveSuccessful,
+	saveFailed,
+	unableToRetrieve,
+	deletionFailed,
+	deletionSuccessful
+} from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -31,5 +37,23 @@ export const getAllStudents = () =>
 				return reject(err)
 			}
 			return resolve(docs)
+		})
+	)
+
+export const deleteStudent = data =>
+	new Promise((resolve, reject) =>
+		studentCollection.remove({ _id: data }, err => {
+			if (err) {
+				deletionFailed()
+				return reject(err)
+			}
+			studentCollection.find({}, (error, docs) => {
+				if (err) {
+					deletionFailed()
+					return reject(err)
+				}
+				deletionSuccessful()
+				return resolve(docs)
+			})
 		})
 	)

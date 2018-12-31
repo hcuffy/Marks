@@ -1,13 +1,14 @@
 import { handleSchoolData, displaySchoolData } from './schoolActions'
 import {
 	roomModalDisplay,
-	removeRoom,
+	deleteRoom,
 	updateRoom,
 	updateSubject,
 	subjectModalDisplay,
-	removeSubject,
-	removeSingleExam,
-	updateExam
+	deleteSingleSubject,
+	deleteSingleExam,
+	updateExam,
+	deleteSingleStudent
 } from './modalActions'
 import { changeClassroomTab, handleClassData, displayClassData } from './classroomActions'
 import {
@@ -33,7 +34,7 @@ export const actionCreators = {
 	handleClassData,
 	displayClassData,
 	roomModalDisplay,
-	removeRoom,
+	deleteRoom,
 	updateRoom,
 	openClassList,
 	showSubject,
@@ -41,15 +42,16 @@ export const actionCreators = {
 	getSubjectData,
 	updateSubject,
 	subjectModalDisplay,
-	removeSubject,
+	deleteSingleSubject,
 	addNewExam,
 	getSelectedSubject,
 	openClassDropdownList,
 	displayExamData,
 	showSingleExam,
-	removeSingleExam,
+	deleteSingleExam,
 	updateExam,
 	addNewStudent,
 	getStudents,
-	showStudentModal
+	showStudentModal,
+	deleteSingleStudent
 }

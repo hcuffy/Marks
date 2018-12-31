@@ -13,7 +13,7 @@ const StudentModal = ({ students, classdata, actions }) => {
 	return (
 		<div>
 			<Modal isOpen={students.studentModal} backdrop>
-				<ModalHeader>Edit:</ModalHeader>
+				<ModalHeader>Edit Student Data:</ModalHeader>
 				<form method="POST">
 					<ModalBody>
 						{studentFields}
@@ -21,7 +21,13 @@ const StudentModal = ({ students, classdata, actions }) => {
 						<input type="hidden" name="studentId" id={students.studentId} />
 					</ModalBody>
 					<ModalFooter>
-						<Button color="danger">Delete</Button>
+						<Button
+							id={students.studentId}
+							onClick={actions.deleteSingleStudent}
+							color="danger"
+						>
+							Delete
+						</Button>
 
 						<Button type="submit" color="primary">
 							Update
