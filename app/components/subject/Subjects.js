@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
-import { cleanAndSortData } from '../rooms/ClassList'
+import { sortData } from '../rooms/ClassList'
 import styles from '../styles/subjects.css'
 import SubjectForm from './SubjectForm'
 import SubjectList from './SubjectList'
@@ -11,7 +11,7 @@ import SubjectList from './SubjectList'
 const _ = require('lodash')
 
 const Subjects = ({ allClassData, selectClass, actions }) => {
-	const subjects = cleanAndSortData(allClassData)
+	const subjects = sortData(allClassData)
 	const selectedSubject = _.find(subjects, ['Name', selectClass.subject])
 
 	const subjectOptions = subjects.map((data, idx) => (

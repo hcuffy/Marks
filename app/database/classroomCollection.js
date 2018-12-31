@@ -56,7 +56,7 @@ export const getClassroomData = () =>
 		})
 	)
 
-export const getRemoveClassroom = data =>
+export const deleteClassroom = data =>
 	new Promise((resolve, reject) =>
 		classroomCollection.remove({ _id: data.id }, err => {
 			if (err) {

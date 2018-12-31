@@ -51,7 +51,7 @@ const RoomModal = ({ modalData, roomModal, actions }) => {
 						<Button
 							type="button"
 							id={roomModal.id}
-							onClick={actions.removeRoom}
+							onClick={actions.deleteRoom}
 							color="danger"
 						>
 							Delete
