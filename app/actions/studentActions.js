@@ -5,7 +5,7 @@ import {
 } from '../constants/actionTypes'
 import { addNewStudentData, getAllStudents } from '../database/studentCollection'
 
-export const addNewStudent = event => {
+export const addNewStudent = event => async dispatch => {
 	event.preventDefault()
 
 	const formData = {
@@ -16,19 +16,23 @@ export const addNewStudent = event => {
 	}
 	addNewStudentData(formData)
 	event.target.reset()
-
-	return {
+	const students = await getAllStudents()
+	dispatch({
 		type: ADD_NEW_STUDENT,
 		payload: {}
-	}
+	})
+	dispatch({
+		type: GET_ALL_STUDENTS,
+		payload: { students }
+	})
 }
 
 export const getStudents = () => async dispatch => {
-	const data = await getAllStudents()
-	if (data.length !== 0) {
+	const students = await getAllStudents()
+	if (students.length !== 0) {
 		dispatch({
 			type: GET_ALL_STUDENTS,
-			payload: { data }
+			payload: { students }
 		})
 	}
 }

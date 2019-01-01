@@ -188,7 +188,7 @@ export const deleteSingleStudent = event => async dispatch => {
 	if (students.length > 0) {
 		dispatch({
 			type: GET_ALL_STUDENTS,
-			payload: students
+			payload: { students }
 		})
 	}
 }
