@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Badge } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import styles from '../styles/students.css'
 import StudentModal from './StudentModal'
@@ -11,7 +12,8 @@ function generateStudentList(students, actions) {
 	if (_.isUndefined(students)) {
 		return []
 	}
-	const completeList = students.map((data, idx) => (
+	const sortedStudents = _.sortBy(students, ['Firstname'], ['asc'])
+	const completeList = sortedStudents.map((data, idx) => (
 		<button
 			key={idx}
 			id={data._id}
@@ -20,13 +22,16 @@ function generateStudentList(students, actions) {
 			onClick={actions.showStudentModal}
 		>
 			{`${data.Firstname} ${data.Lastname}`}
-			<span className={`badge badge-info badge-pill ${styles.badge_number}`}>
-				{data.Gender === 'Male' ? (
+
+			{data.Gender === 'Male' ? (
+				<Badge className={`badge-pill ${styles.badge_boy}`}>
 					<i className="fas fa-mars" />
-				) : (
+				</Badge>
+			) : (
+				<Badge className={`badge-pill ${styles.badge_girl}`}>
 					<i className="fas fa-venus" />
-				)}
-			</span>
+				</Badge>
+			)}
 		</button>
 	))
 
@@ -46,7 +51,7 @@ const StudentList = ({ students, actions }) => {
 	)
 }
 const mapStateToProps = state => ({
-	students: state.studentData.data
+	students: state.studentData.students
 })
 
 const mapDispatchToProps = dispatch => ({

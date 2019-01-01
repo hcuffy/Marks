@@ -52,8 +52,14 @@
   height: 40px;
 }
 
-.badge_number {
+.badge_girl {
   float: right;
+  background-color: #fc8dcc !important;
+}
+
+.badge_boy {
+  float: right;
+  background-color: #6a9ae8 !important;
 }
 
 .list_div {
