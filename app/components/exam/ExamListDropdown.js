@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import styles from '../styles/exam.css'
-import { cleanAndSortData } from '../rooms/ClassList'
+import { sortData } from '../rooms/ClassList'
 
 const _ = require('lodash')
 
@@ -29,7 +29,7 @@ function getSubjectList(examData, subjectData) {
 }
 
 const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
-	const cleanedClassList = cleanAndSortData(classData)
+	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
 	const subjectOptions = getSubjectList(examData, subjectData, actions)
 
