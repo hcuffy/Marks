@@ -7,7 +7,7 @@ Developed using [**electron-react-boilerplate**](https://github.com/electron-rea
   <a href="https://github.com/ReactTraining/react-router"><img src="./internals/img/react-router-padded-90.png" /></a>
   <a href="http://eslint.org/"><img src="./internals/img/eslint-padded-90.png" /></a>
   <a href="https://yarnpkg.com/"><img src="./internals/img/yarn-padded-90.png" /></a>
-   <a href="https://github.com/louischatriot/nedb"><img src="./internals/img/nedb.png" /></a>
+   <a href="https://github.com/louischatriot/nedb"><img src="./internals/img/neDB.png" /></a>
 </div>
 
 ## Installation
