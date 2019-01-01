@@ -1,5 +1,7 @@
 Developed using [**electron-react-boilerplate**](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
 
+<br>
+
 <div align="center">
   <a href="https://facebook.github.io/react/"><img src="./internals/img/react-padded-90.png" /></a>
   <a href="https://webpack.github.io/"><img src="./internals/img/webpack-padded-90.png" /></a>
@@ -7,8 +9,8 @@ Developed using [**electron-react-boilerplate**](https://github.com/electron-rea
   <a href="https://github.com/ReactTraining/react-router"><img src="./internals/img/react-router-padded-90.png" /></a>
   <a href="http://eslint.org/"><img src="./internals/img/eslint-padded-90.png" /></a>
   <a href="https://yarnpkg.com/"><img src="./internals/img/yarn-padded-90.png" /></a>
-   <a href="https://github.com/louischatriot/nedb"><img src="http://i.imgur.com/9O1xHFb.png" style="width: 25%; height: 25%;</a>
 </div>
+    
 
 ## Installation
 
