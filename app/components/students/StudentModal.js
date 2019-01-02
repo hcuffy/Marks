@@ -7,14 +7,15 @@ import { cleanAndFilterData } from '../rooms/RoomModal'
 import generateFields from './StudentModalHelper'
 
 const StudentModal = ({ students, classdata, actions }) => {
-	const requiredStudent = cleanAndFilterData(students.data, { id: students.studentId })
+	const requiredStudent = cleanAndFilterData(students.students, {
+		id: students.studentId
+	})
 	const { studentFields, dropDowns } = generateFields(requiredStudent, classdata)
-
 	return (
 		<div>
 			<Modal isOpen={students.studentModal} backdrop>
 				<ModalHeader>Edit Student Data:</ModalHeader>
-				<form method="POST">
+				<form onSubmit={actions.updateStudent} method="POST">
 					<ModalBody>
 						{studentFields}
 						{dropDowns}

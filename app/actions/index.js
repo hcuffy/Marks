@@ -8,7 +8,8 @@ import {
 	deleteSingleSubject,
 	deleteSingleExam,
 	updateExam,
-	deleteSingleStudent
+	deleteSingleStudent,
+	updateStudent
 } from './modalActions'
 import { changeClassroomTab, handleClassData, displayClassData } from './classroomActions'
 import {
@@ -53,5 +54,6 @@ export const actionCreators = {
 	addNewStudent,
 	getStudents,
 	showStudentModal,
-	deleteSingleStudent
+	deleteSingleStudent,
+	updateStudent
 }

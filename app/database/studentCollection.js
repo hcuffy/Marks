@@ -4,7 +4,9 @@ import {
 	saveFailed,
 	unableToRetrieve,
 	deletionFailed,
-	deletionSuccessful
+	deletionSuccessful,
+	updateFailed,
+	updateSuccessful
 } from '../notifications/general'
 
 const Datastore = require('nedb')
@@ -57,3 +59,37 @@ export const deleteStudent = data =>
 			})
 		})
 	)
+
+function updateSinlgStudent(previous) {
+	const { Firstname, Lastname, Gender, Classroom, Id } = previous
+
+	studentCollection.update(
+		{ _id: Id },
+		{
+			Firstname,
+			Lastname,
+			Gender,
+			Classroom
+		},
+		{},
+		err => {
+			if (err) {
+				updateFailed()
+				return err
+			}
+			updateSuccessful()
+		}
+	)
+}
+
+export const updateStudentData = data =>
+	new Promise((resolve, reject) => {
+		updateSinlgStudent(data)
+		studentCollection.find({}, (error, docs) => {
+			if (error) {
+				updateFailed()
+				return reject(error)
+			}
+			return resolve(docs)
+		})
+	})

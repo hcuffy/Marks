@@ -12,7 +12,7 @@ import {
 import { deleteClassroom, updateRoomData } from '../database/classroomCollection'
 import { deleteSubject, updateSubjectData } from '../database/subjectCollection'
 import { deleteExam, updateExamData } from '../database/examCollection'
-import { deleteStudent } from '../database/studentCollection'
+import { deleteStudent, updateStudentData } from '../database/studentCollection'
 
 export const roomModalDisplay = event => {
 	event.preventDefault()
@@ -178,13 +178,37 @@ export const updateExam = event => async dispatch => {
 
 export const deleteSingleStudent = event => async dispatch => {
 	const studentId = event.target.id
-
 	const students = await deleteStudent(studentId)
 
 	dispatch({
 		type: GET_SINGLE_STUDENT,
 		payload: studentId
 	})
+	if (students.length > 0) {
+		dispatch({
+			type: GET_ALL_STUDENTS,
+			payload: { students }
+		})
+	}
+}
+
+export const updateStudent = event => async dispatch => {
+	event.preventDefault()
+	const studentData = {
+		Firstname: event.target.Firstname.value,
+		Lastname: event.target.Lastname.value,
+		Gender: event.target.Gender.value,
+		Classroom: event.target.Classroom.value,
+		Id: event.target.studentId.id
+	}
+
+	const students = await updateStudentData(studentData)
+
+	dispatch({
+		type: GET_SINGLE_STUDENT,
+		payload: studentData.Id
+	})
+
 	if (students.length > 0) {
 		dispatch({
 			type: GET_ALL_STUDENTS,
