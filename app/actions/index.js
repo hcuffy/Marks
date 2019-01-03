@@ -1,13 +1,15 @@
 import { handleSchoolData, displaySchoolData } from './schoolActions'
 import {
 	roomModalDisplay,
-	removeRoom,
+	deleteRoom,
 	updateRoom,
 	updateSubject,
 	subjectModalDisplay,
-	removeSubject,
-	removeSingleExam,
-	updateExam
+	deleteSingleSubject,
+	deleteSingleExam,
+	updateExam,
+	deleteSingleStudent,
+	updateStudent
 } from './modalActions'
 import { changeClassroomTab, handleClassData, displayClassData } from './classroomActions'
 import {
@@ -24,6 +26,8 @@ import {
 	showSingleExam
 } from './examActions'
 
+import { addNewStudent, getStudents, showStudentModal } from './studentActions'
+
 export const actionCreators = {
 	handleSchoolData,
 	displaySchoolData,
@@ -31,7 +35,7 @@ export const actionCreators = {
 	handleClassData,
 	displayClassData,
 	roomModalDisplay,
-	removeRoom,
+	deleteRoom,
 	updateRoom,
 	openClassList,
 	showSubject,
@@ -39,12 +43,17 @@ export const actionCreators = {
 	getSubjectData,
 	updateSubject,
 	subjectModalDisplay,
-	removeSubject,
+	deleteSingleSubject,
 	addNewExam,
 	getSelectedSubject,
 	openClassDropdownList,
 	displayExamData,
 	showSingleExam,
-	removeSingleExam,
-	updateExam
+	deleteSingleExam,
+	updateExam,
+	addNewStudent,
+	getStudents,
+	showStudentModal,
+	deleteSingleStudent,
+	updateStudent
 }

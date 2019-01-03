@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { actionCreators } from '../actions/index'
-import styles from './styles/classroom.css'
+import { actionCreators } from '../../actions/index'
+import styles from '../styles/classroom.css'
 
 const NavBar = ({ tabStatus, actions }) => (
 	<div className={styles.navbar_div}>

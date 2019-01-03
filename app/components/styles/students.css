@@ -1,0 +1,89 @@
+.student_div {
+  white-space: 800px;
+  height: 350px;
+  width: 50%;
+  float: right;
+  padding: 0 20px 0 0;
+}
+
+.center_header {
+  text-align: center;
+  border-bottom: 1px solid;
+}
+
+.center_sub_header {
+  text-align: center;
+}
+
+.form_inner_div {
+  white-space: nowrap;
+  float: right;
+  margin: 10px 0 0 0;
+  width: 300px;
+}
+
+.form_outer_div {
+  float: right;
+  height: 350px;
+  width: 500px;
+}
+
+.save_btn {
+  float: right;
+  margin: 10px 0 0 200px;
+}
+
+.form_label {
+  float: left;
+  margin-right: 5px;
+  vertical-align: bottom;
+  line-height: 32px;
+}
+
+.select_dropDown {
+  width: 300px;
+  float: right;
+  margin-top: 5px;
+}
+
+.list_btn {
+  display: inline-flex;
+  align-items: flex-start;
+  height: 40px;
+}
+
+.badge_girl {
+  float: right;
+  background-color: #fc8dcc !important;
+}
+
+.badge_boy {
+  float: right;
+  background-color: #6a9ae8 !important;
+}
+
+.list_div {
+  height: 230px;
+  overflow: scroll;
+}
+
+select {
+  float: right;
+  width: 200px !important;
+}
+
+.form_label_edit {
+  float: left;
+  margin: 0 5px 0 5px;
+  vertical-align: bottom;
+  line-height: 36px;
+}
+
+.form_input {
+  float: right;
+}
+
+.form_div_edit {
+  width: 300px;
+  height: 50px;
+}

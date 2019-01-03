@@ -1,4 +1,4 @@
-import { HANDLE_SCHOOL_DATA, DISPLAY_SCHOOL_DATA } from './actionTypes'
+import { HANDLE_SCHOOL_DATA, DISPLAY_SCHOOL_DATA } from '../constants/actionTypes'
 import { addSchoolData, getSchoolData } from '../database/schoolCollection'
 
 export const handleSchoolData = event => {

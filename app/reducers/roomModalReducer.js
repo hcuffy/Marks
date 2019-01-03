@@ -1,4 +1,4 @@
-import { OPEN_CLOSE_ROOM_MODAL, UPDATE_CLASSROOM } from '../actions/actionTypes'
+import { OPEN_CLOSE_ROOM_MODAL, UPDATE_CLASSROOM } from '../constants/actionTypes'
 
 const _ = require('lodash')
 

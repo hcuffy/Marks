@@ -5,11 +5,14 @@ import {
 	OPEN_CLOSE_SUBJECT_MODAL,
 	GET_SINGLE_SUBJECT,
 	GET_SINGLE_EXAM,
-	UPDATE_EXAMS_LIST
-} from './actionTypes'
-import { getRemoveClassroom, updateRoomData } from '../database/classroomCollection'
+	UPDATE_EXAMS_LIST,
+	GET_SINGLE_STUDENT,
+	GET_ALL_STUDENTS
+} from '../constants/actionTypes'
+import { deleteClassroom, updateRoomData } from '../database/classroomCollection'
 import { deleteSubject, updateSubjectData } from '../database/subjectCollection'
 import { deleteExam, updateExamData } from '../database/examCollection'
+import { deleteStudent, updateStudentData } from '../database/studentCollection'
 
 export const roomModalDisplay = event => {
 	event.preventDefault()
@@ -23,13 +26,13 @@ export const roomModalDisplay = event => {
 	}
 }
 
-export const removeRoom = event => async dispatch => {
+export const deleteRoom = event => async dispatch => {
 	const roomData = {
 		id: event.target.id,
 		showModal: true
 	}
 
-	const docs = await getRemoveClassroom(roomData)
+	const docs = await deleteClassroom(roomData)
 
 	if (docs) {
 		dispatch({
@@ -107,7 +110,7 @@ export const updateSubject = event => async dispatch => {
 	}
 }
 
-export const removeSubject = event => async dispatch => {
+export const deleteSingleSubject = event => async dispatch => {
 	const subjectData = {
 		id: event.target.id
 	}
@@ -127,7 +130,7 @@ export const removeSubject = event => async dispatch => {
 	}
 }
 
-export const removeSingleExam = event => async dispatch => {
+export const deleteSingleExam = event => async dispatch => {
 	const examData = {
 		examId: event.target.id,
 		subjectId: event.target.name
@@ -169,6 +172,47 @@ export const updateExam = event => async dispatch => {
 		dispatch({
 			type: UPDATE_EXAMS_LIST,
 			payload: exams
+		})
+	}
+}
+
+export const deleteSingleStudent = event => async dispatch => {
+	const studentId = event.target.id
+	const students = await deleteStudent(studentId)
+
+	dispatch({
+		type: GET_SINGLE_STUDENT,
+		payload: studentId
+	})
+	if (students.length > 0) {
+		dispatch({
+			type: GET_ALL_STUDENTS,
+			payload: { students }
+		})
+	}
+}
+
+export const updateStudent = event => async dispatch => {
+	event.preventDefault()
+	const studentData = {
+		Firstname: event.target.Firstname.value,
+		Lastname: event.target.Lastname.value,
+		Gender: event.target.Gender.value,
+		Classroom: event.target.Classroom.value,
+		Id: event.target.studentId.id
+	}
+
+	const students = await updateStudentData(studentData)
+
+	dispatch({
+		type: GET_SINGLE_STUDENT,
+		payload: studentData.Id
+	})
+
+	if (students.length > 0) {
+		dispatch({
+			type: GET_ALL_STUDENTS,
+			payload: { students }
 		})
 	}
 }

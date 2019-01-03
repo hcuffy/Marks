@@ -4,7 +4,7 @@ import {
 	DISPLAY_SUBJECT_LIST,
 	GET_SINGLE_EXAM,
 	UPDATE_EXAMS_LIST
-} from '../actions/actionTypes'
+} from '../constants/actionTypes'
 
 const _ = require('lodash')
 

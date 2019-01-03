@@ -1,4 +1,4 @@
-import { CHANGE_CLASSROOM_TAB } from '../actions/actionTypes'
+import { CHANGE_CLASSROOM_TAB } from '../constants/actionTypes'
 
 const _ = require('lodash')
 

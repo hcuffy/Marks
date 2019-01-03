@@ -1,4 +1,4 @@
-import { saveSuccessful, saveError, unableToRetrieve } from '../notifications/general'
+import { saveSuccessful, saveFailed, unableToRetrieve } from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -27,7 +27,7 @@ function updateData(previous, current) {
 		{},
 		err => {
 			if (err) {
-				saveError()
+				saveFailed()
 				return err
 			}
 			saveSuccessful()
@@ -38,7 +38,7 @@ function updateData(previous, current) {
 export const addSchoolData = data => {
 	schoolCollection.find({}, (err, entry) => {
 		if (err) {
-			saveError()
+			saveFailed()
 			return err
 		}
 		if (entry.length > 0) {
@@ -47,7 +47,7 @@ export const addSchoolData = data => {
 		}
 		schoolCollection.insert(data, error => {
 			if (error) {
-				saveError()
+				saveFailed()
 				return error
 			}
 			saveSuccessful()

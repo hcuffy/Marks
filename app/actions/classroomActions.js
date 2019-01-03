@@ -2,7 +2,7 @@ import {
 	CHANGE_CLASSROOM_TAB,
 	ADD_CLASSROOM_DATA,
 	GET_CLASSROOM_DATA
-} from './actionTypes'
+} from '../constants/actionTypes'
 import { addClassroomData, getClassroomData } from '../database/classroomCollection'
 
 function changeTab(tabTitle) {

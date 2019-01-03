@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import { cleanAndSortData } from '../rooms/ClassList'
+import { sortData } from '../rooms/ClassList'
 import examForm from './ExamFormHelper'
 
 const _ = require('lodash')
@@ -31,7 +31,7 @@ function getSubjectList(subjectData, examData, cleanedClassList) {
 }
 
 const ExamForm = ({ classData, subjectData, examData, actions }) => {
-	const cleanedClassList = cleanAndSortData(classData)
+	const cleanedClassList = sortData(classData)
 	const classOption = getClassList(cleanedClassList)
 	const subjectOptions = getSubjectList(subjectData, examData, cleanedClassList)
 	const completeExamForm = examForm(subjectOptions, classOption, actions)

@@ -24,7 +24,7 @@ const ExamModal = ({ examModal, examId, exams, subjectId, actions }) => {
 						<Button
 							id={examId}
 							name={subjectId}
-							onClick={actions.removeSingleExam}
+							onClick={actions.deleteSingleExam}
 							type="button"
 							color="danger"
 						>

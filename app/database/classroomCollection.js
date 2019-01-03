@@ -1,10 +1,10 @@
 import {
 	saveSuccessful,
-	saveError,
+	saveFailed,
 	unableToRetrieve,
 	entryAlreadyExists,
-	deleteSuccessful,
-	deleteClassFailed,
+	deletionSuccessful,
+	deletionFailed,
 	updateSuccessful,
 	updateFailed
 } from '../notifications/general'
@@ -25,7 +25,7 @@ const classroomCollection = new Datastore({
 export const addClassroomData = data => {
 	classroomCollection.find({ Name: data.Name }, (err, entry) => {
 		if (err) {
-			saveError()
+			saveFailed()
 			return err
 		}
 		if (entry.length > 0) {
@@ -36,7 +36,7 @@ export const addClassroomData = data => {
 		newData.Subjects = []
 		classroomCollection.insert(newData, (error, doc) => {
 			if (error) {
-				saveError()
+				saveFailed()
 				return error
 			}
 			saveSuccessful()
@@ -56,19 +56,19 @@ export const getClassroomData = () =>
 		})
 	)
 
-export const getRemoveClassroom = data =>
+export const deleteClassroom = data =>
 	new Promise((resolve, reject) =>
 		classroomCollection.remove({ _id: data.id }, err => {
 			if (err) {
-				deleteClassFailed()
+				deletionFailed()
 				return reject(err)
 			}
 			classroomCollection.find({}, (error, docs) => {
 				if (err) {
-					deleteClassFailed()
+					deletionFailed()
 					return reject(err)
 				}
-				deleteSuccessful()
+				deletionSuccessful()
 				return resolve(docs)
 			})
 		})

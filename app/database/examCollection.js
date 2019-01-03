@@ -1,9 +1,9 @@
 import {
 	saveSuccessful,
-	saveError,
+	saveFailed,
 	entryAlreadyExists,
 	unableToRetrieve,
-	deleteSuccessful,
+	deletionSuccessful,
 	updateFailed,
 	updateSuccessful
 } from '../notifications/general'
@@ -24,7 +24,7 @@ const examCollection = new Datastore({
 export const addExamData = data => {
 	examCollection.find({ Name: data.Title }, (err, entry) => {
 		if (err) {
-			saveError()
+			saveFailed()
 			return err
 		}
 		if (entry.length > 0) {
@@ -35,7 +35,7 @@ export const addExamData = data => {
 
 		examCollection.insert(newData, (error, doc) => {
 			if (error) {
-				saveError()
+				saveFailed()
 				return error
 			}
 			saveSuccessful()
@@ -77,7 +77,7 @@ export const deleteExam = data =>
 				if (err) {
 					return reject(err)
 				}
-				deleteSuccessful()
+				deletionSuccessful()
 				return resolve(docs)
 			})
 		})

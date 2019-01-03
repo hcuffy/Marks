@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/SideMenu'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/rooms/Navbar'
 import Classes from '../components/rooms/Classes'
 import Exams from '../components/exam/Exams'
 
