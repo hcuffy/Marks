@@ -1,9 +1,11 @@
-.div_wrapper {
-  white-space: 800px;
+.center_header {
+  text-align: center;
 }
 
-.center_header {
-  float: right;
-  width: 50%;
-  margin-right: 200px;
+.div_wrapper {
+  width: 100%;
+}
+
+.table_wrapper {
+  height: 400px;
 }
