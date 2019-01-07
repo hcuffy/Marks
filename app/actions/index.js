@@ -27,6 +27,7 @@ import {
 } from './examActions'
 
 import { addNewStudent, getStudents, showStudentModal } from './studentActions'
+import { displayGradeData } from './gradeActions'
 
 export const actionCreators = {
 	handleSchoolData,
@@ -55,5 +56,6 @@ export const actionCreators = {
 	getStudents,
 	showStudentModal,
 	deleteSingleStudent,
-	updateStudent
+	updateStudent,
+	displayGradeData
 }
