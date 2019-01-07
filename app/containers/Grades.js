@@ -7,6 +7,13 @@ import SideMenu from '../components/SideMenu'
 import GradeTable from '../components/grades/GradeTable'
 
 class Grades extends Component {
+	componentDidMount() {
+		if (this.props.classData) {
+			this.props.actions.displayClassData()
+			this.props.actions.getSubjectData()
+		}
+	}
+
 	render() {
 		return (
 			<div data-tid="grades_container">
@@ -17,11 +24,15 @@ class Grades extends Component {
 	}
 }
 
+const mapStateToProps = state => ({
+	classData: state.allClassData.classData
+})
+
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(Grades)
