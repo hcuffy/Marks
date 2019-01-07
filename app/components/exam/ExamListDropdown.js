@@ -31,7 +31,7 @@ function getSubjectList(examData, subjectData) {
 const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList(examData, subjectData, actions)
+	const subjectOptions = getSubjectList(examData, subjectData)
 
 	return (
 		<div className={styles.dropdown_main_div}>
