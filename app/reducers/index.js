@@ -8,6 +8,7 @@ import handleSubjectModal from './subjectModalReducer'
 import openClassList, { getSubjectData } from './subjectReducer'
 import filterExam from './examReducer'
 import handleStudentData from './studentsReducer'
+import gradeData from './gradeTableReducer'
 
 const rootReducer = combineReducers({
 	router,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
 	subjectData: getSubjectData,
 	subjectModal: handleSubjectModal,
 	examData: filterExam,
-	studentData: handleStudentData
+	studentData: handleStudentData,
+	gradeData
 })
 
 export default rootReducer

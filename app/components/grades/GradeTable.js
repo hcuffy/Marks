@@ -7,30 +7,36 @@ import styles from '../styles/grades.css'
 import { GradeColumns } from './GradeColumns'
 import GradeDropdown from './GradeDropdown'
 
-const GradeTable = () => {
+const GradeTable = ({ gradeData }) => {
 	const data = []
 
 	return (
 		<div className={styles.div_wrapper}>
 			<h2 className={styles.center_header}>Grades</h2>
 			<GradeDropdown />
+			<h4 className={styles.center_header}>{`${gradeData.classroom} : ${
+				gradeData.subjectName
+			}`}</h4>
 			<ReactTable
 				data={data}
 				noDataText="No Data To Show"
 				columns={GradeColumns()}
 				className="-striped -highlight"
-				defaultPageSize={14}
-				style={{ height: '660px' }}
+				defaultPageSize={20}
+				style={{ height: '570px' }}
 			/>
 		</div>
 	)
 }
+const mapStateToProps = state => ({
+	gradeData: state.gradeData
+})
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(GradeTable)

@@ -28,17 +28,16 @@ function getSubjectList(examData, subjectData) {
 	return items
 }
 
-const GradeDropdown = ({ classData, examData, subjectData, actions }) => {
+const GradeDropdown = ({ classData, gradeData, examData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
 	const subjectOptions = getSubjectList(examData, subjectData, actions)
-
 	return (
 		<div className={styles.dropdown_main_div}>
 			<div className={styles.dropdown_div}>
 				<Dropdown
-					isOpen={examData.openClassDropdown}
-					toggle={actions.openClassDropdownList}
+					isOpen={gradeData.classroomDropdown}
+					toggle={actions.openGradeClassList}
 				>
 					<DropdownToggle color="info" caret>
 						Select Class
@@ -47,7 +46,7 @@ const GradeDropdown = ({ classData, examData, subjectData, actions }) => {
 				</Dropdown>
 			</div>
 			<div className={styles.dropdown_div}>
-				<Dropdown isOpen={examData.openSubList} toggle={actions.displayGradeData}>
+				<Dropdown isOpen={gradeData.subDrop} toggle={actions.displayGradeData}>
 					<DropdownToggle color="info" caret>
 						Select Subject
 					</DropdownToggle>
@@ -61,7 +60,8 @@ const GradeDropdown = ({ classData, examData, subjectData, actions }) => {
 const mapStateToProps = state => ({
 	classData: state.allClassData,
 	subjectData: state.subjectData,
-	examData: state.examData
+	examData: state.examData,
+	gradeData: state.gradeData
 })
 
 const mapDispatchToProps = dispatch => ({
