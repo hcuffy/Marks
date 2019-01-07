@@ -5,6 +5,7 @@ import ReactTable from 'react-table'
 import { actionCreators } from '../../actions/index'
 import styles from '../styles/grades.css'
 import { GradeColumns } from './GradeColumns'
+import GradeDropdown from './GradeDropdown'
 
 const GradeTable = () => {
 	const data = []
@@ -12,6 +13,7 @@ const GradeTable = () => {
 	return (
 		<div className={styles.div_wrapper}>
 			<h2 className={styles.center_header}>Grades</h2>
+			<GradeDropdown />
 			<ReactTable
 				data={data}
 				noDataText="No Data To Show"
