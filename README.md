@@ -28,7 +28,7 @@ $ cd marks
 $ yarn
 ```
 
-OR
+Then to launch the app
 
 ```bash
 $ yarn dev
