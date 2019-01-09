@@ -33,3 +33,8 @@ Then to launch the app
 ```bash
 $ yarn dev
 ```
+OR for production version
+
+```bash
+$ yarn start
+```
