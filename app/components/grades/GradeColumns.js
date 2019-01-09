@@ -8,12 +8,8 @@ export const GradeColumns = () => {
 				{
 					Header: 'Gender',
 					style: { width: '300px' }
-				},
-				{
-					Header: 'First Name'
-				},
-				{
-					Header: 'Last Name'
+				}, {
+					Header: 'Full Name'
 				}
 			]
 		}, {
