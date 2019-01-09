@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/exam.css'
+import styles from '../../styles/exam.css'
 
 const _ = require('lodash')
 

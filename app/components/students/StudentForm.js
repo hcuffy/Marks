@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from '../styles/students.css'
-import studentForm from './StudentFormHelper'
+import studentForm from './helpers/formHelper'
 
 const _ = require('lodash')
 

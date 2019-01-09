@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import ReactTable from 'react-table'
 import { actionCreators } from '../../actions/index'
 import styles from '../styles/grades.css'
-import { GradeColumns } from './GradeColumns'
+import { GradeColumns } from './helpers/gradeColumns'
 import GradeDropdown from './GradeDropdown'
 
 const GradeTable = ({ gradeData }) => {

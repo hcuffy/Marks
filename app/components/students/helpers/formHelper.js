@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/students.css'
+import styles from '../../styles/students.css'
 
 const studentForm = (selectOption, formFields, actions) => {
 	const studentFields = (

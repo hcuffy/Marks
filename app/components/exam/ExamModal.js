@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import { cleanAndFilterData } from '../rooms/RoomModal'
-import generateFields from './ExamModalHelper'
+import generateFields from './helpers/modalHelper'
 
 const ExamModal = ({ examModal, examId, exams, subjectId, actions }) => {
 	const requiredExam = cleanAndFilterData(exams, { id: examId })
