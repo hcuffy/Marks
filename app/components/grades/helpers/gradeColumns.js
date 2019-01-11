@@ -1,6 +1,6 @@
 import React from 'react'
-// TODO: This funciton should take a variable
 
+const ts = () => console.log('Test change')
 export const gradeColumns = () => {
 	const columns = [
 		{
@@ -10,11 +10,13 @@ export const gradeColumns = () => {
 					Header: <i className="fas fa-user" />,
 					accessor: 'gender',
 					width: 40,
-					style: { textAlign: 'center' }
+					style: { textAlign: 'center' },
+					Cell: props => <input defaultValue={props.row.gender} onChange={ts} />
 				}, {
 					Header: 'Full Name',
+					accessor: 'name',
 					width: 200,
-					accessor: 'name'
+					Cell: props => <input defaultValue={props.row.name} onChange={ts} />
 				}
 			]
 		}, {
