@@ -8,7 +8,7 @@ import { sortData } from '../rooms/ClassList'
 
 const _ = require('lodash')
 
-function getClassList(classlist) {
+const getClassList = classlist => {
 	const items = classlist.map((data, idx) => (
 		<DropdownItem key={idx} name={data.Name}>
 			{data.Name}
@@ -18,7 +18,7 @@ function getClassList(classlist) {
 	return items
 }
 
-function getSubjectList(examData, subjectData) {
+const getSubjectList = (examData, subjectData) => {
 	const selectedSubjects = _.filter(subjectData.data, ['Room', examData.selectedRoom])
 	const items = selectedSubjects.map((data, idx) => (
 		<DropdownItem key={idx} name={data.Name} id={data._id}>

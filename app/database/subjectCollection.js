@@ -28,7 +28,7 @@ const subjectCollection = new Datastore({
 	timestampData: true
 })
 
-async function getSubjects(subjectData) {
+const getSubjects = async subjectData => {
 	const data = await getClassroomData()
 	const selectedClass = _.find(data, ['Name', subjectData.Room])
 	if (!_.includes(selectedClass.Subjects, subjectData.Abbreviation)) {
@@ -88,7 +88,7 @@ export const deleteSubject = data =>
 		})
 	)
 
-function checkSubjectChanges(prev, curr) {
+const checkSubjectChanges = (prev, curr) => {
 	const { Name, Abbreviation } = curr
 	if (_.isEqual(prev.Name, Name) && _.isEqual(prev.Abbreviation, Abbreviation)) {
 		return false
@@ -96,13 +96,13 @@ function checkSubjectChanges(prev, curr) {
 	return true
 }
 
-function updateClassroomSubjects(subjectId, previousSubject, currentSubject) {
+const updateClassroomSubjects = (subjectId, previousSubject, currentSubject) => {
 	if (!_.isEqual(previousSubject, currentSubject)) {
 		updateClassSubjectArray(subjectId, previousSubject, currentSubject)
 	}
 }
 
-function updateSinlgeSubject(previous, current) {
+const updateSinlgeSubject = (previous, current) => {
 	const { Name, Abbreviation } = current
 	const { Room, Tests, ClassroomId } = previous
 

@@ -12,7 +12,7 @@ const schoolCollection = new Datastore({
 	timestampData: true
 })
 
-function updateData(previous, current) {
+const updateData = (previous, current) => {
 	const { Title, Street, Province, Country, Zip, Year } = current
 	schoolCollection.update(
 		{ Title: previous.Title },

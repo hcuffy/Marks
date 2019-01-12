@@ -60,7 +60,7 @@ export const deleteStudent = data =>
 		})
 	)
 
-function updateSinlgStudent(previous) {
+const updateSinlgStudent = previous => {
 	const { Firstname, Lastname, Gender, Classroom, Id } = previous
 
 	studentCollection.update(

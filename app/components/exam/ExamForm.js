@@ -7,7 +7,7 @@ import examForm from './helpers/formHelper'
 
 const _ = require('lodash')
 
-function getClassList(classInfo) {
+const getClassList = classInfo => {
 	const selectOptions = _.values(classInfo).map((data, idx) => (
 		<option className="form-control dropup" key={idx}>
 			{data.Name}
@@ -17,7 +17,7 @@ function getClassList(classInfo) {
 	return selectOptions
 }
 
-function getSubjectList(subjectData, examData, cleanedClassList) {
+const getSubjectList = (subjectData, examData, cleanedClassList) => {
 	const defaultSubject = cleanedClassList[0].Name
 	const subjectInfo = examData.subject ? examData.subject : defaultSubject
 	const filteredSubject = _.filter(subjectData.data, ['Room', subjectInfo])

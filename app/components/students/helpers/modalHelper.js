@@ -3,7 +3,7 @@ import styles from '../../styles/students.css'
 
 const _ = require('lodash')
 
-function dropDownFields(chosenStudent, classdata) {
+const dropDownFields = (chosenStudent, classdata) => {
 	const classroomOptions = _.values(classdata).map((data, idx) => (
 		<option key={idx} className="form-control dropdown">
 			{data.Name}

@@ -56,7 +56,7 @@ export const getExamData = () =>
 		})
 	)
 
-function updateTestsArr(examId, subjectId) {
+const updateTestsArr = (examId, subjectId) => {
 	examCollection.find({ _id: examId }, (err, entry) => {
 		if (err) {
 			return err
@@ -83,7 +83,7 @@ export const deleteExam = data =>
 		})
 	})
 
-function updateSinlgeExam(previous, current) {
+const updateSinlgeExam = (previous, current) => {
 	const { Title, Date, Weight } = current
 	const { SubjectId } = previous
 

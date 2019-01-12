@@ -7,7 +7,7 @@ import RoomModal from './RoomModal'
 
 const _ = require('lodash')
 
-export function sortData(clean) {
+export const sortData = clean => {
 	const sortedProp = _.sortBy(clean.classData, ['Name'], ['asc'])
 
 	return sortedProp

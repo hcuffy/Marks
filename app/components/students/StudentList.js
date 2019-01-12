@@ -8,7 +8,7 @@ import StudentModal from './StudentModal'
 
 const _ = require('lodash')
 
-function generateStudentList(students, actions) {
+const generateStudentList = (students, actions) => {
 	if (_.isUndefined(students)) {
 		return []
 	}

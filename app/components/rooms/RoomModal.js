@@ -8,7 +8,7 @@ import styles from '../styles/room.css'
 
 const _ = require('lodash')
 
-export function cleanAndFilterData(objectToClean, roomToClean) {
+export const cleanAndFilterData = (objectToClean, roomToClean) => {
 	const requiredProp = _.find(objectToClean, { _id: roomToClean.id })
 	const cleanedData = _.omit(requiredProp, [
 		'_id',

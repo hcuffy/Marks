@@ -8,7 +8,7 @@ import styles from '../styles/room.css'
 
 const _ = require('lodash')
 
-function getClassroomId(dataList) {
+const getClassroomId = dataList => {
 	if (_.isEmpty(dataList) || _.isNil(dataList)) {
 		return []
 	}

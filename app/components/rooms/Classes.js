@@ -8,7 +8,7 @@ import Subjects from '../subject/Subjects'
 
 const _ = require('lodash')
 
-function checkChange(allClassData, actions) {
+const checkChange = (allClassData, actions) => {
 	if (allClassData.Check) {
 		actions.displayClassData()
 	}
