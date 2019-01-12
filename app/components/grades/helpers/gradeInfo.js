@@ -5,7 +5,29 @@ export const gradeInfo = () => {
 		{
 			name: 'Sara Smith',
 			gender: 'F',
-			date: '2018-12-13'
+			grades: [
+				{ date: '2018-12-13', score: 2, weight: 1 },
+				{ date: '2018-12-15', score: 4, weight: 2 },
+				{ date: '2018-12-25', score: 1, weight: 3 }
+			]
+		},
+		{
+			name: 'Bob Johnson',
+			gender: 'M',
+			grades: [
+				{ date: '2018-12-13', score: 1, weight: 1 },
+				{ date: '2018-12-15', score: 1, weight: 2 },
+				{ date: '2018-12-25', score: 1, weight: 3 }
+			]
+		},
+		{
+			name: 'John Ludwig',
+			gender: 'M',
+			grades: [
+				{ date: '2018-12-13', score: 0, weight: 1 },
+				{ date: '2018-12-15', score: 0, weight: 2 },
+				{ date: '2018-12-25', score: 0, weight: 3 }
+			]
 		}
 	]
 

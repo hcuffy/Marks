@@ -18,7 +18,7 @@ const GradeTable = ({ gradeData }) => (
 		<ReactTable
 			data={gradeInfo()}
 			noDataText="No Data To Show"
-			columns={gradeColumns()}
+			columns={gradeColumns({ newData: gradeInfo() })}
 			className="-striped -highlight"
 			defaultPageSize={20}
 			style={{ height: '570px' }}
