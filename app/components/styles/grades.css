@@ -18,3 +18,11 @@
 .dropdown_main_div {
   text-align: center;
 }
+
+.badge_date {
+  float: right;
+}
+
+.badge_weight {
+  float: left;
+}

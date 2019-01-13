@@ -1,13 +1,18 @@
 /* eslint-disable no-plusplus */
 import React from 'react'
+import styles from '../../styles/grades.css'
 
 const customCell = (props, actions) => (
 	<input defaultValue={props.value} onChange={actions.addGrade} />
 )
 const customHeader = (props, date, weight) => (
 	<div>
-		{`${weight} `}
-		<i className="fas fa-weight-hanging">{` ${date}`}</i>
+		<span className={`badge badge-warning badge-pill ${styles.badge_weight}`}>
+			<i className="fas fa-weight-hanging" /> {weight}
+		</span>
+		<span className={`badge badge-light badge-pill ${styles.badge_date}`}>
+			<i className="fas fa-calendar" /> {date}
+		</span>
 	</div>
 )
 const customColumn = (data, actions) => {
@@ -18,6 +23,7 @@ const customColumn = (data, actions) => {
 		columnData.push({
 			Header: props => customHeader(props, date, weight),
 			accessor: `grades[${i}].score`,
+			width: 150,
 			Cell: props => customCell(props, actions)
 		})
 	}
@@ -37,7 +43,8 @@ export const gradeColumns = ({ newData, actions }) => {
 				}, {
 					Header: 'Full Name',
 					accessor: 'name',
-					width: 200
+					width: 150,
+					headerStyle: { textAlign: 'left' }
 				}
 			]
 		}, {
