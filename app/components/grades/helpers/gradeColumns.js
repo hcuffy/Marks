@@ -1,17 +1,16 @@
 /* eslint-disable no-plusplus */
-/* eslint-disable no-underscore-dangle */
 import React from 'react'
 
-const ts = () => console.log('Test change')
-
-const customCell = props => <input defaultValue={props.value} onChange={ts} />
+const customCell = (props, actions) => (
+	<input defaultValue={props.value} onChange={actions.addGrade} />
+)
 const customHeader = (props, date, weight) => (
 	<div>
 		{`${weight} `}
 		<i className="fas fa-weight-hanging">{` ${date}`}</i>
 	</div>
 )
-const customColumn = data => {
+const customColumn = (data, actions) => {
 	const columnData = new Array(data[0].grades.length)
 
 	for (let i = 0; i < data[0].grades.length; i++) {
@@ -19,13 +18,13 @@ const customColumn = data => {
 		columnData.push({
 			Header: props => customHeader(props, date, weight),
 			accessor: `grades[${i}].score`,
-			Cell: props => customCell(props)
+			Cell: props => customCell(props, actions)
 		})
 	}
 	return columnData
 }
 
-export const gradeColumns = ({ newData }) => {
+export const gradeColumns = ({ newData, actions }) => {
 	const columns = [
 		{
 			Header: 'Student Data',
@@ -43,7 +42,7 @@ export const gradeColumns = ({ newData }) => {
 			]
 		}, {
 			Header: 'Examinations & Tests',
-			columns: customColumn(newData)
+			columns: customColumn(newData, actions)
 		}
 	]
 

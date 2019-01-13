@@ -1,4 +1,4 @@
-import { saveSuccessful, saveFailed } from '../notifications/general'
+import { saveSuccessful, saveFailed, unableToRetrieve } from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -12,7 +12,7 @@ const gradeCollection = new Datastore({
 	timestampData: true
 })
 
-export const addExamData = data => {
+export const addGradeData = data => {
 	gradeCollection.insert(data, (error, doc) => {
 		if (error) {
 			saveFailed()
@@ -22,3 +22,14 @@ export const addExamData = data => {
 		return doc
 	})
 }
+
+export const getAllGrades = () =>
+	new Promise((resolve, reject) =>
+		gradeCollection.find({}, (err, docs) => {
+			if (err) {
+				unableToRetrieve()
+				return reject(err)
+			}
+			return resolve(docs)
+		})
+	)

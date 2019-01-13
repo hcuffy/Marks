@@ -8,7 +8,7 @@ import { gradeColumns } from './helpers/gradeColumns'
 import { gradeInfo } from './helpers/gradeInfo'
 import GradeDropdown from './GradeDropdown'
 
-const GradeTable = ({ gradeData }) => (
+const GradeTable = ({ gradeData, actions }) => (
 	<div className={styles.div_wrapper}>
 		<h2 className={styles.center_header}>Grades</h2>
 		<GradeDropdown />
@@ -18,7 +18,7 @@ const GradeTable = ({ gradeData }) => (
 		<ReactTable
 			data={gradeInfo()}
 			noDataText="No Data To Show"
-			columns={gradeColumns({ newData: gradeInfo() })}
+			columns={gradeColumns({ newData: gradeInfo(), actions })}
 			className="-striped -highlight"
 			defaultPageSize={20}
 			style={{ height: '570px' }}
