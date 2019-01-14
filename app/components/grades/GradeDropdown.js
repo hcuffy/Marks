@@ -1,37 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import styles from '../styles/grades.css'
 import { sortData } from '../rooms/ClassList'
+import { getClassList, getSubjectList } from '../helpers/dropdowns'
 
-const _ = require('lodash')
-
-const getClassList = classlist => {
-	const items = classlist.map((data, idx) => (
-		<DropdownItem key={idx} name={data.Name}>
-			{data.Name}
-		</DropdownItem>
-	))
-
-	return items
-}
-
-const getSubjectList = (examData, subjectData) => {
-	const selectedSubjects = _.filter(subjectData.data, ['Room', examData.selectedRoom])
-	const items = selectedSubjects.map((data, idx) => (
-		<DropdownItem key={idx} name={data.Name} id={data._id}>
-			{data.Name}
-		</DropdownItem>
-	))
-	return items
-}
-
-const GradeDropdown = ({ classData, gradeData, examData, subjectData, actions }) => {
+const GradeDropdown = ({ classData, gradeData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList(examData, subjectData, actions)
+	const subjectOptions = getSubjectList(
+		{ selectedRoom: gradeData.classroom },
+		subjectData
+	)
 	return (
 		<div className={styles.dropdown_main_div}>
 			<div className={styles.dropdown_div}>
