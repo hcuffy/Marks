@@ -2,10 +2,17 @@
 import React from 'react'
 import styles from '../../styles/grades.css'
 
-const customCell = (props, actions) => (
-	<input defaultValue={props.value} onChange={actions.addGrade} />
+const customCell = (props, { studentId, examId, date, weight }, actions) => (
+	<input
+		defaultValue={props.value}
+		data-studentid={studentId}
+		data-examid={examId}
+		data-date={date}
+		data-weight={weight}
+		onChange={actions.addGrade}
+	/>
 )
-const customHeader = (props, date, weight) => (
+const customHeader = (props, { date, weight }) => (
 	<div>
 		<span className={`badge badge-warning badge-pill ${styles.badge_weight}`}>
 			<i className="fas fa-weight-hanging" /> {weight}
@@ -19,12 +26,12 @@ const customColumn = (data, actions) => {
 	const columnData = new Array(data[0].grades.length)
 
 	for (let i = 0; i < data[0].grades.length; i++) {
-		const { date, weight } = data[0].grades[i]
+		const gradeProps = data[0].grades[i]
 		columnData.push({
-			Header: props => customHeader(props, date, weight),
+			Header: props => customHeader(props, gradeProps),
 			accessor: `grades[${i}].score`,
 			width: 150,
-			Cell: props => customCell(props, actions)
+			Cell: props => customCell(props, gradeProps, actions)
 		})
 	}
 	return columnData

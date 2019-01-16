@@ -43,6 +43,13 @@ export const getGrades = () => async dispatch => {
 
 export const addGrade = event => {
 	event.preventDefault()
-	const test = event.target.value
-	console.log(test)
+	const gradeData = {
+		grade: event.target.value,
+		examId: event.target.getAttribute('data-examid'),
+		studentId: event.target.getAttribute('data-studentid'),
+		date: event.target.getAttribute('data-date'),
+		weight: event.target.getAttribute('data-weight')
+	}
+
+	console.log(gradeData)
 }
