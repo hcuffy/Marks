@@ -12,19 +12,28 @@ const customCell = (props, { studentId, examId, date, weight }, actions) => (
 		onChange={actions.addGrade}
 	/>
 )
-const customHeader = (props, { date, weight }) => (
-	<div>
-		<span className={`badge badge-warning badge-pill ${styles.badge_weight}`}>
-			<i className="fas fa-weight-hanging" /> {weight}
-		</span>
-		<span className={`badge badge-light badge-pill ${styles.badge_date}`}>
-			<i className="fas fa-calendar" /> {date}
-		</span>
-	</div>
-)
+const customHeader = (props, { date, weight }) => {
+	const badgeColor = weight > 1 ? 'badge-warning' : ' badge-success'
+	return (
+		<div>
+			<span className={`badge badge-pill ${badgeColor} ${styles.badge_weight}`}>
+				<i className="fas fa-weight-hanging" /> {weight}
+			</span>
+			<span className={`badge badge-light badge-pill ${styles.badge_date}`}>
+				<i className="fas fa-calendar" /> {date}
+			</span>
+		</div>
+	)
+}
+
+const averageColumn = () => ({
+	Header: 'Average',
+	accessor: 'average',
+	width: 150
+})
+
 const customColumn = (data, actions) => {
 	const columnData = new Array(data[0].grades.length)
-
 	for (let i = 0; i < data[0].grades.length; i++) {
 		const gradeProps = data[0].grades[i]
 		columnData.push({
@@ -34,6 +43,7 @@ const customColumn = (data, actions) => {
 			Cell: props => customCell(props, gradeProps, actions)
 		})
 	}
+	columnData.push(averageColumn())
 	return columnData
 }
 

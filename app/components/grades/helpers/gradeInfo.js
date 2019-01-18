@@ -15,7 +15,8 @@ export const gradeInfo = () => {
 					studentId: 'jDcYe7d0WVoaEGks',
 					examId: 'IyeMhhtFCFMruWlc'
 				}
-			]
+			],
+			average: 4
 		},
 		{
 			name: 'Bob Johnson',
