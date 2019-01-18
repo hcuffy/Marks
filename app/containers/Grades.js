@@ -25,7 +25,7 @@ class Grades extends Component {
 }
 
 const mapStateToProps = state => ({
-	classData: state.allClassData.classData
+	classData: state.classData.classData
 })
 
 const mapDispatchToProps = dispatch => ({

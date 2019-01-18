@@ -40,7 +40,7 @@ const GradeDropdown = ({ classData, gradeData, subjectData, actions }) => {
 }
 
 const mapStateToProps = state => ({
-	classData: state.allClassData,
+	classData: state.classData,
 	subjectData: state.subjectData,
 	examData: state.examData,
 	gradeData: state.gradeData

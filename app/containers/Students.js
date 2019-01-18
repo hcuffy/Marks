@@ -24,7 +24,7 @@ class Students extends Component {
 	}
 }
 
-const mapStateToProps = state => ({ classData: state.allClassData.classData })
+const mapStateToProps = state => ({ classData: state.classData.classData })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)

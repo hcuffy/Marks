@@ -45,7 +45,7 @@ const StudentModal = ({ students, classdata, actions }) => {
 
 const mapStateToProps = state => ({
 	students: state.studentData,
-	classdata: state.allClassData.classData
+	classdata: state.classData.classData
 })
 
 const mapDispatchToProps = dispatch => ({

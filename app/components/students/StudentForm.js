@@ -7,7 +7,7 @@ import studentForm from './helpers/formHelper'
 
 const _ = require('lodash')
 
-const StudentForm = ({ studentData, allClassData, actions }) => {
+const StudentForm = ({ studentData, classData, actions }) => {
 	const formFields = _.keys(_.pick(studentData, ['Firstname', 'Lastname'])).map(
 		(data, idx) => (
 			<div key={idx} className={styles.form_inner_div}>
@@ -24,7 +24,7 @@ const StudentForm = ({ studentData, allClassData, actions }) => {
 			</div>
 		)
 	)
-	const selectOption = _.values(allClassData.classData).map((data, idx) => (
+	const selectOption = _.values(classData.classData).map((data, idx) => (
 		<option className="form-control dropdown" key={idx}>
 			{data.Name}
 		</option>
@@ -35,7 +35,7 @@ const StudentForm = ({ studentData, allClassData, actions }) => {
 }
 const mapStateToProps = state => ({
 	studentData: state.studentData,
-	allClassData: state.allClassData
+	classData: state.classData
 })
 
 const mapDispatchToProps = dispatch => ({

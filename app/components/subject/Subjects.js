@@ -10,8 +10,8 @@ import SubjectList from './SubjectList'
 
 const _ = require('lodash')
 
-const Subjects = ({ allClassData, selectClass, actions }) => {
-	const subjects = sortData(allClassData)
+const Subjects = ({ classData, selectClass, actions }) => {
+	const subjects = sortData(classData)
 	const selectedSubject = _.find(subjects, ['Name', selectClass.subject])
 
 	const subjectOptions = subjects.map((data, idx) => (

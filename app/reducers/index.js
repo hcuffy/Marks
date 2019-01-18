@@ -13,14 +13,14 @@ import gradeData from './gradeTableReducer'
 const rootReducer = combineReducers({
 	router,
 	schoolData: displaySchoolData,
-	tabStatus: handleTabChange,
-	allClassData: displayClassData,
-	roomModal: handleClassModal,
-	selectClass: openClassList,
+	classData: displayClassData,
 	subjectData: getSubjectData,
-	subjectModal: handleSubjectModal,
-	examData: filterExam,
 	studentData: handleStudentData,
+	examData: filterExam,
+	selectClass: openClassList,
+	tabStatus: handleTabChange,
+	roomModal: handleClassModal,
+	subjectModal: handleSubjectModal,
 	gradeData
 })
 

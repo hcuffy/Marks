@@ -8,14 +8,14 @@ import Subjects from '../subject/Subjects'
 
 const _ = require('lodash')
 
-const checkChange = (allClassData, actions) => {
-	if (allClassData.Check) {
+const checkChange = (classData, actions) => {
+	if (classData.Check) {
 		actions.displayClassData()
 	}
 }
 
-const Classes = ({ allClassData, actions }) => {
-	const formLabels = _.omit(allClassData, ['classData', 'Check'])
+const Classes = ({ classData, actions }) => {
+	const formLabels = _.omit(classData, ['classData', 'Check'])
 	const formInputs = _.keys(formLabels).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}Id`}>
@@ -30,7 +30,7 @@ const Classes = ({ allClassData, actions }) => {
 			/>
 		</div>
 	))
-	checkChange(allClassData, actions)
+	checkChange(classData, actions)
 	return (
 		<div className={styles.room_div}>
 			<form onSubmit={actions.handleClassData} method="POST">
@@ -46,14 +46,14 @@ const Classes = ({ allClassData, actions }) => {
 			</form>
 			<div>
 				<h4 className={styles.center_header}>List of Classes</h4>
-				<ClassList listData={allClassData} />
+				<ClassList listData={classData} />
 			</div>
-			<Subjects allClassData={allClassData} />
+			<Subjects classData={classData} />
 		</div>
 	)
 }
 const mapStateToProps = state => ({
-	allClassData: state.allClassData
+	classData: state.classData
 })
 
 const mapDispatchToProps = dispatch => ({
