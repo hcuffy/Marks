@@ -27,3 +27,7 @@
   float: left;
   color: black !important;
 }
+
+input[type='number'] {
+  width: 140px;
+}

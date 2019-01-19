@@ -2,6 +2,8 @@
 import React from 'react'
 import styles from '../../styles/grades.css'
 
+const _ = require('lodash')
+
 const customCell = (props, { studentId, examId, date, weight }, actions) => (
 	<input
 		defaultValue={props.value}
@@ -9,10 +11,11 @@ const customCell = (props, { studentId, examId, date, weight }, actions) => (
 		data-examid={examId}
 		data-date={date}
 		data-weight={weight}
+		type="number"
 		onChange={actions.addGrade}
 	/>
 )
-const customHeader = (props, { date, weight }) => {
+const customHeader = ({ date, weight }) => {
 	const badgeColor = weight > 1 ? 'badge-warning' : ' badge-success'
 	return (
 		<div>
@@ -32,15 +35,28 @@ const averageColumn = () => ({
 	width: 150
 })
 
+const customFooter = (data, id) => {
+	const grades = []
+	for (let i = 0; i < data.length; i++) {
+		const temp = data[i]
+		grades.push(temp[id])
+	}
+	return (
+		<span>
+			<strong>Avg:</strong> {_.round(_.mean(grades), 2)}
+		</span>
+	)
+}
 const customColumn = (data, actions) => {
 	const columnData = new Array(data[0].grades.length)
 	for (let i = 0; i < data[0].grades.length; i++) {
 		const gradeProps = data[0].grades[i]
 		columnData.push({
-			Header: props => customHeader(props, gradeProps),
+			Header: customHeader(gradeProps),
 			accessor: `grades[${i}].score`,
 			width: 150,
-			Cell: props => customCell(props, gradeProps, actions)
+			Cell: props => customCell(props, gradeProps, actions),
+			Footer: props => customFooter(props.data, props.column.id)
 		})
 	}
 	columnData.push(averageColumn())
