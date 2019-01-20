@@ -1,43 +1,53 @@
-// TODO: This funciton should take a variable
+const _ = require('lodash')
 
-export const gradeInfo = () => {
-	const data = [
-		{
-			name: 'Sara Smith',
-			gender: 'F',
-			grades: [
-				{ date: '2018-12-13', score: 2, weight: 1 },
-				{ date: '2018-12-15', score: 4, weight: 2 },
-				{
-					date: '2018-12-25',
-					score: 1,
-					weight: 3,
-					gradeId: 'TzLrkreYcDRKMSeU',
-					studentId: 'jDcYe7d0WVoaEGks',
-					examId: 'IyeMhhtFCFMruWlc'
-				}
-			],
-			average: 4
-		},
-		{
-			name: 'Bob Johnson',
-			gender: 'M',
-			grades: [
-				{ date: '2018-12-13', score: 1, weight: 1 },
-				{ date: '2018-12-15', score: 1, weight: 2 },
-				{ date: '2018-12-25', score: 1, weight: 3 }
-			]
-		},
-		{
-			name: 'John Ludwig',
-			gender: 'M',
-			grades: [
-				{ date: '2018-12-13', score: 0, weight: 1 },
-				{ date: '2018-12-15', score: 0, weight: 2 },
-				{ date: '2018-12-25', score: 0, weight: 3 }
-			]
-		}
-	]
+const getPersonalInfo = student => ({
+	name: `${student.Lastname}, ${student.Firstname}`,
+	gender: student.Gender === 'Male' ? 'M' : 'F'
+})
 
+const getGradeInfo = (student, gradeData) => {
+	const grade = []
+	const studentId = student._id
+	const { exams, grades } = gradeData
+	if (_.isUndefined(exams) || _.isUndefined(grades)) {
+		return []
+	}
+
+	for (let i = 0; i < exams.length; i += 1) {
+		const assembledInfo = {}
+		assembledInfo.studentId = studentId
+		assembledInfo.examId = exams[i]._id
+		assembledInfo.weight = exams[i].Weight
+		assembledInfo.date = exams[i].Date
+		const score = _.filter(grades, { examId: exams[i]._id, studentId })
+		const revisedScore = _.isUndefined(score[0]) ? 0 : score[0].grade
+		assembledInfo.score = revisedScore
+		grade.push(assembledInfo)
+	}
+	return grade
+}
+
+const getAverage = grades => {
+	const total = _.reduce(grades, (sum, n) => sum + parseInt(n.score, 10), 0)
+
+	return { average: _.round(total / grades.length, 2) }
+}
+
+export const gradeInfo = (gradeData, students) => {
+	const data = []
+	if (_.isUndefined(gradeData) || _.isUndefined(students)) {
+		return []
+	}
+	for (let i = 0; i < students.length; i += 1) {
+		const personalData = getPersonalInfo(students[i])
+		const gradesData = getGradeInfo(students[i], gradeData)
+		const average = getAverage(gradesData)
+		const studentData = _.assign({}, personalData, { grades: gradesData }, average)
+
+		data.push(studentData)
+	}
+	if (_.isNaN(data[0].average)) {
+		return []
+	}
 	return data
 }
