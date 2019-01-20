@@ -15,19 +15,31 @@ const customCell = (props, { studentId, examId, date, weight, gradeId }, actions
 		onChange={actions.updateGrade}
 	/>
 )
-const customHeader = ({ date, weight }) => {
-	const badgeColor = weight > 1 ? 'badge-warning' : ' badge-success'
-	return (
-		<div>
-			<span className={`badge badge-pill ${badgeColor} ${styles.badge_weight}`}>
-				<i className="fas fa-weight-hanging" /> {weight}
-			</span>
-			<span className={`badge badge-light badge-pill ${styles.badge_date}`}>
-				<i className="fas fa-calendar" /> {date}
-			</span>
-		</div>
-	)
+
+const badgeColor = weight => {
+	switch (true) {
+	case weight <= 1: {
+		return 'badge-success'
+	}
+	case weight > 2: {
+		return 'badge-primary'
+	}
+	default: {
+		return 'badge-warning'
+	}
+	}
 }
+
+const customHeader = ({ date, weight }) => (
+	<div>
+		<span className={`badge badge-pill ${badgeColor(weight)} ${styles.badge_weight}`}>
+			<i className="fas fa-weight-hanging" /> {weight}
+		</span>
+		<span className={`badge badge-light badge-pill ${styles.badge_date}`}>
+			<i className="fas fa-calendar" /> {date}
+		</span>
+	</div>
+)
 
 const averageColumn = () => ({
 	Header: 'Average',
