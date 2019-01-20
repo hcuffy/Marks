@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import React from 'react'
 import styles from '../../styles/grades.css'
 
@@ -38,7 +37,7 @@ const averageColumn = () => ({
 
 const customFooter = (data, id) => {
 	const grades = []
-	for (let i = 0; i < data.length; i++) {
+	for (let i = 0; i < data.length; i += 1) {
 		const temp = data[i]
 		grades.push(temp[id])
 	}
@@ -50,7 +49,7 @@ const customFooter = (data, id) => {
 }
 const customColumn = (data, actions) => {
 	const columnData = new Array(data[0].grades.length)
-	for (let i = 0; i < data[0].grades.length; i++) {
+	for (let i = 0; i < data[0].grades.length; i += 1) {
 		const gradeProps = data[0].grades[i]
 		columnData.push({
 			Header: customHeader(gradeProps),

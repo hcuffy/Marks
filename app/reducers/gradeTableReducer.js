@@ -13,8 +13,9 @@ const gradeData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case DISPLAY_EXAM_TABLE: {
 		const { subjectName, subjectId } = action.payload.subjectData
+		const { exams, grades } = action.payload
 		const subDrop = !state.subDrop
-		return _.assign({}, state, { subjectName, subjectId, subDrop })
+		return _.assign({}, state, { subjectName, subjectId, subDrop, exams, grades })
 	}
 	case OPEN_CLASS_LIST: {
 		const classroomDropdown = !state.classroomDropdown

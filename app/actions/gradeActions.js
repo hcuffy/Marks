@@ -1,8 +1,4 @@
-import {
-	DISPLAY_EXAM_TABLE,
-	OPEN_CLASS_LIST,
-	GET_ALL_GRADES
-} from '../constants/actionTypes'
+import { DISPLAY_EXAM_TABLE, OPEN_CLASS_LIST } from '../constants/actionTypes'
 import { getExamData } from '../database/examCollection'
 import { getAllGrades, addGradeData, updateGradeData } from '../database/gradeCollection'
 
@@ -16,6 +12,15 @@ export const openGradeClassList = event => {
 	}
 }
 
+const filterTheGrades = async exams => {
+	const filteredGrades = []
+	const allGrades = await getAllGrades()
+	for (let i = 0; i < exams.length; i += 1) {
+		filteredGrades.push(..._.filter(allGrades, ['examId', exams[i]._id]))
+	}
+	return filteredGrades
+}
+
 export const displayGradeData = event => async dispatch => {
 	const subjectData = {
 		subjectId: event.target.id,
@@ -24,19 +29,10 @@ export const displayGradeData = event => async dispatch => {
 
 	const exams = _.filter(await getExamData(), ['SubjectId', subjectData.subjectId])
 	if (exams.length !== 0) {
+		const grades = await filterTheGrades(exams)
 		dispatch({
 			type: DISPLAY_EXAM_TABLE,
-			payload: { exams, subjectData }
-		})
-	}
-}
-
-export const getGrades = () => async dispatch => {
-	const grades = await getAllGrades()
-	if (grades.length !== 0) {
-		dispatch({
-			type: GET_ALL_GRADES,
-			payload: { grades }
+			payload: { exams, grades, subjectData }
 		})
 	}
 }

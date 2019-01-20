@@ -27,12 +27,7 @@ import {
 } from './examActions'
 
 import { addNewStudent, getStudents, showStudentModal } from './studentActions'
-import {
-	displayGradeData,
-	openGradeClassList,
-	getGrades,
-	updateGrade
-} from './gradeActions'
+import { displayGradeData, openGradeClassList, updateGrade } from './gradeActions'
 
 export const actionCreators = {
 	handleSchoolData,
@@ -64,6 +59,5 @@ export const actionCreators = {
 	updateStudent,
 	displayGradeData,
 	openGradeClassList,
-	getGrades,
 	updateGrade
 }
