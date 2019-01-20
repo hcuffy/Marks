@@ -51,7 +51,7 @@ const customFooter = (data, id) => {
 	const grades = []
 	for (let i = 0; i < data.length; i += 1) {
 		const temp = data[i]
-		grades.push(temp[id])
+		grades.push(parseInt(temp[id], 10))
 	}
 	return (
 		<span>
