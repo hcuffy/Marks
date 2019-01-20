@@ -21,8 +21,9 @@ const electron = require('electron')
 const path = require('path')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
+const collectionsPath = path.join(userDataPath, 'collections')
 const subjectCollection = new Datastore({
-	filename: path.join(userDataPath, 'subject.db'),
+	filename: path.join(collectionsPath, 'subject.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
 	timestampData: true
