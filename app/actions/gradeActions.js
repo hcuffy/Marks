@@ -4,7 +4,7 @@ import {
 	GET_ALL_GRADES
 } from '../constants/actionTypes'
 import { getExamData } from '../database/examCollection'
-import { getAllGrades, addGradeData } from '../database/gradeCollection'
+import { getAllGrades, addGradeData, updateGradeData } from '../database/gradeCollection'
 
 const _ = require('lodash')
 
@@ -53,6 +53,6 @@ export const updateGrade = event => {
 	if (id === '') {
 		addGradeData(gradeData)
 	} else {
-		console.log(false)
+		updateGradeData(gradeData, id)
 	}
 }

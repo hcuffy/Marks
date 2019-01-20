@@ -12,6 +12,7 @@ export const gradeInfo = () => {
 					date: '2018-12-25',
 					score: 1,
 					weight: 3,
+					gradeId: 'TzLrkreYcDRKMSeU',
 					studentId: 'jDcYe7d0WVoaEGks',
 					examId: 'IyeMhhtFCFMruWlc'
 				}
