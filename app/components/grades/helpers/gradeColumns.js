@@ -60,7 +60,10 @@ const customFooter = (data, id) => {
 	)
 }
 const customColumn = (data, actions) => {
-	const columnData = new Array(data[0].grades.length)
+	const columnData = []
+	if (_.isUndefined(data[0])) {
+		return
+	}
 	for (let i = 0; i < data[0].grades.length; i += 1) {
 		const gradeProps = data[0].grades[i]
 		columnData.push({
