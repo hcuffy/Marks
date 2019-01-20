@@ -4,15 +4,16 @@ import styles from '../../styles/grades.css'
 
 const _ = require('lodash')
 
-const customCell = (props, { studentId, examId, date, weight }, actions) => (
+const customCell = (props, { studentId, examId, date, weight, gradeId }, actions) => (
 	<input
 		defaultValue={props.value}
 		data-studentid={studentId}
 		data-examid={examId}
 		data-date={date}
 		data-weight={weight}
+		id={gradeId}
 		type="number"
-		onChange={actions.addGrade}
+		onChange={actions.updateGrade}
 	/>
 )
 const customHeader = ({ date, weight }) => {
@@ -43,7 +44,7 @@ const customFooter = (data, id) => {
 	}
 	return (
 		<span>
-			<strong>Avg:</strong> {_.round(_.mean(grades), 2)}
+			<strong>Ø:</strong> {_.round(_.mean(grades), 2)}
 		</span>
 	)
 }

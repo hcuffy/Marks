@@ -4,7 +4,7 @@ import {
 	GET_ALL_GRADES
 } from '../constants/actionTypes'
 import { getExamData } from '../database/examCollection'
-import { getAllGrades } from '../database/gradeCollection'
+import { getAllGrades, addGradeData } from '../database/gradeCollection'
 
 const _ = require('lodash')
 
@@ -41,8 +41,8 @@ export const getGrades = () => async dispatch => {
 	}
 }
 
-export const addGrade = event => {
-	event.preventDefault()
+export const updateGrade = event => {
+	const { id } = event.target
 	const gradeData = {
 		grade: event.target.value,
 		examId: event.target.getAttribute('data-examid'),
@@ -50,6 +50,9 @@ export const addGrade = event => {
 		date: event.target.getAttribute('data-date'),
 		weight: event.target.getAttribute('data-weight')
 	}
-
-	console.log(gradeData)
+	if (id === '') {
+		addGradeData(gradeData)
+	} else {
+		console.log(false)
+	}
 }
