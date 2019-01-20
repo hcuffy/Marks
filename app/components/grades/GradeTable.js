@@ -8,25 +8,30 @@ import { gradeColumns } from './helpers/gradeColumns'
 import { gradeInfo } from './helpers/gradeInfo'
 import GradeDropdown from './GradeDropdown'
 
-const GradeTable = ({ gradeData, actions }) => (
-	<div className={styles.div_wrapper}>
-		<h2 className={styles.center_header}>Grades</h2>
-		<GradeDropdown />
-		<h4 className={styles.center_header}>{`${gradeData.classroom} : ${
-			gradeData.subjectName
-		}`}</h4>
-		<ReactTable
-			data={gradeInfo()}
-			noDataText="No Data To Show"
-			columns={gradeColumns({ newData: gradeInfo(), actions })}
-			className="-striped -highlight"
-			defaultPageSize={20}
-			style={{ height: '570px' }}
-		/>
-	</div>
-)
+const GradeTable = ({ gradeData, students, actions }) => {
+	const data = gradeInfo(gradeData, students)
+
+	return (
+		<div className={styles.div_wrapper}>
+			<h2 className={styles.center_header}>Grades</h2>
+			<GradeDropdown />
+			<h4 className={styles.center_header}>{`${gradeData.classroom} : ${
+				gradeData.subjectName
+			}`}</h4>
+			<ReactTable
+				data={data}
+				noDataText="No Data To Show"
+				columns={gradeColumns({ newData: data, actions })}
+				className="-striped -highlight"
+				defaultPageSize={20}
+				style={{ height: '570px' }}
+			/>
+		</div>
+	)
+}
 const mapStateToProps = state => ({
-	gradeData: state.gradeData
+	gradeData: state.gradeData,
+	students: state.studentData.students
 })
 
 const mapDispatchToProps = dispatch => ({
