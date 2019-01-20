@@ -152,13 +152,11 @@ export const updateSubjectData = data =>
 	)
 
 export const addExamToSubjectArray = ({ SubjectId, Title }) => {
-	console.log(SubjectId)
 	subjectCollection.find({ _id: SubjectId }, (err, doc) => {
 		if (err) {
 			unableToRetrieve()
 			return err
 		}
-		console.log(doc)
 		if (doc.length <= 0) {
 			return 'Exists'
 		}
