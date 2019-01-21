@@ -8,6 +8,8 @@ import { gradeColumns } from './helpers/gradeColumns'
 import { gradeInfo } from './helpers/gradeInfo'
 import GradeDropdown from './GradeDropdown'
 
+const _ = require('lodash')
+
 const GradeTable = ({ gradeData, students, actions }) => {
 	const data = gradeInfo(gradeData, students)
 
@@ -19,7 +21,7 @@ const GradeTable = ({ gradeData, students, actions }) => {
 				gradeData.subjectName
 			}`}</h4>
 			<ReactTable
-				data={data}
+				data={_.sortBy(data, ['name'], ['asc'])}
 				noDataText="No Data To Show"
 				columns={gradeColumns({ newData: data, actions })}
 				className="-striped -highlight"
