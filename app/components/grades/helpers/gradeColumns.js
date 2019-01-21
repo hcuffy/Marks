@@ -3,14 +3,14 @@ import styles from '../../styles/grades.css'
 
 const _ = require('lodash')
 
-const customCell = (props, { studentId, examId, date, weight, gradeId }, actions) => (
+const customCell = (props, actions) => (
 	<input
-		defaultValue={props.value}
-		data-studentid={studentId}
-		data-examid={examId}
-		data-date={date}
-		data-weight={weight}
-		id={gradeId}
+		defaultValue={props.value.score}
+		data-studentid={props.value.studentId}
+		data-examid={props.value.examId}
+		data-date={props.value.date}
+		data-weight={props.value.weight}
+		id={props.value.gradeId}
 		type="number"
 		onChange={actions.updateGrade}
 	/>
@@ -68,9 +68,9 @@ const customColumn = (data, actions) => {
 		const gradeProps = data[0].grades[i]
 		columnData.push({
 			Header: customHeader(gradeProps),
-			accessor: `grades[${i}].score`,
+			accessor: `grades[${i}]`,
 			width: 150,
-			Cell: props => customCell(props, gradeProps, actions),
+			Cell: props => customCell(props, actions),
 			Footer: props => customFooter(props.data, props.column.id)
 		})
 	}

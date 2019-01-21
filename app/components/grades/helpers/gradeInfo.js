@@ -5,6 +5,12 @@ const getPersonalInfo = student => ({
 	gender: student.Gender === 'Male' ? 'M' : 'F'
 })
 
+const checkGradeId = grade => {
+	if (_.isUndefined(grade)) {
+		return null
+	}
+	return grade._id
+}
 const getGradeInfo = (student, gradeData) => {
 	const grade = []
 	const studentId = student._id
@@ -20,8 +26,9 @@ const getGradeInfo = (student, gradeData) => {
 		assembledInfo.weight = exams[i].Weight
 		assembledInfo.date = exams[i].Date
 		const score = _.filter(grades, { examId: exams[i]._id, studentId })
-		const revisedScore = _.isUndefined(score[0]) ? 0 : score[0].grade
-		assembledInfo.score = revisedScore
+		assembledInfo.gradeId = checkGradeId(score[0])
+		const adjustedScore = _.isUndefined(score[0]) ? 0 : score[0].grade
+		assembledInfo.score = adjustedScore
 		grade.push(assembledInfo)
 	}
 	return grade
