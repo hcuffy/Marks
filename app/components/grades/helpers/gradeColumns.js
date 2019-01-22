@@ -65,7 +65,7 @@ const customColumn = (data, actions) => {
 		return
 	}
 	for (let i = 0; i < data[0].grades.length; i += 1) {
-		const gradeProps = data[0].grades[i]
+		const gradeProps = data[i].grades[i]
 		columnData.push({
 			Header: customHeader(gradeProps),
 			accessor: `grades[${i}]`,
