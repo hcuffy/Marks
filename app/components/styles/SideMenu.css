@@ -14,4 +14,12 @@
   width: 100px;
   padding: 10px 10px 10px 10px;
   border: none;
+  background: #007bff;
+}
+
+a:hover,
+a:active,
+a:focus,
+a {
+  color: black;
 }

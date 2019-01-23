@@ -26,7 +26,7 @@ const filterExams = async subjectData =>
 
 export const displayGradeData = event => async dispatch => {
 	const subjectData = {
-		subjectId: event.target.id,
+		subjectId: event.target.getAttribute('data-id'),
 		subjectName: event.target.innerText
 	}
 

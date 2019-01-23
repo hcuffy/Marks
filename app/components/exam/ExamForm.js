@@ -22,7 +22,7 @@ const getSubjectList = (subjectData, examData, cleanedClassList) => {
 	const subjectInfo = examData.subject ? examData.subject : defaultSubject
 	const filteredSubject = _.filter(subjectData.data, ['Room', subjectInfo])
 	const selectedOptions = _.values(filteredSubject).map((data, idx) => (
-		<option className="form-control dropup" key={idx} id={data._id}>
+		<option className="form-control dropup" key={idx} data-id={data._id}>
 			{data.Abbreviation}
 		</option>
 	))

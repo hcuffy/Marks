@@ -32,7 +32,7 @@ const RoomModal = ({ modalData, roomModal, actions }) => {
 			<input
 				name={data}
 				className={`${styles.form_input} form-control`}
-				id={`${data}_Id`}
+				data-id={`${data}_Id`}
 				type="text"
 				defaultValue={selectedRoom[data]}
 			/>
@@ -45,12 +45,12 @@ const RoomModal = ({ modalData, roomModal, actions }) => {
 				<form onSubmit={actions.updateRoom} method="POST">
 					<ModalBody>
 						{clickedRoom}
-						<input type="hidden" name="OldName" id={selectedRoom.Name} />
+						<input type="hidden" name="OldName" data-id={selectedRoom.Name} />
 					</ModalBody>
 					<ModalFooter>
 						<Button
 							type="button"
-							id={roomModal.id}
+							data-id={roomModal.id}
 							onClick={actions.deleteRoom}
 							color="danger"
 						>
@@ -62,7 +62,7 @@ const RoomModal = ({ modalData, roomModal, actions }) => {
 						</Button>
 						<Button
 							type="button"
-							id={roomModal.id}
+							data-id={roomModal.id}
 							onClick={actions.roomModalDisplay}
 							color="secondary"
 						>

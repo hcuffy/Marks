@@ -16,7 +16,7 @@ const generateStudentList = (students, actions) => {
 	const completeList = sortedStudents.map((data, idx) => (
 		<button
 			key={idx}
-			id={data._id}
+			data-id={data._id}
 			type="button"
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
 			onClick={actions.showStudentModal}

@@ -16,7 +16,7 @@ const SideMenu = () => (
 			</Link>
 		</button>
 		<button type="button" className={styles.menu_btn}>
-			<Link to={SCHOOL}>
+			<Link style={{ color: 'black' }} to={SCHOOL}>
 				<i className="fa fa-school fa-3x" />
 			</Link>
 		</button>

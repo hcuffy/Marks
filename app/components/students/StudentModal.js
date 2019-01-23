@@ -11,6 +11,7 @@ const StudentModal = ({ students, classdata, actions }) => {
 		id: students.studentId
 	})
 	const { studentFields, dropDowns } = generateFields(requiredStudent, classdata)
+	const idField = <input type="hidden" name="studentId" data-id={students.studentId} />
 	return (
 		<div>
 			<Modal isOpen={students.studentModal} backdrop>
@@ -19,11 +20,11 @@ const StudentModal = ({ students, classdata, actions }) => {
 					<ModalBody>
 						{studentFields}
 						{dropDowns}
-						<input type="hidden" name="studentId" id={students.studentId} />
+						{idField}
 					</ModalBody>
 					<ModalFooter>
 						<Button
-							id={students.studentId}
+							data-id={students.studentId}
 							onClick={actions.deleteSingleStudent}
 							color="danger"
 						>

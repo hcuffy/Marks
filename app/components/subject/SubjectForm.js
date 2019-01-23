@@ -13,7 +13,8 @@ const SubjectForm = ({ selectClass, subjects, actions }) => {
 			<label className={styles.form_label} htmlFor={`${data}Sid`}>
 				{data}:
 			</label>
-			<input name={data} className="form-control" id={`${data}Sid`} type="text" />
+			{/* eslint-disable-next-line max-len */}
+			<input name={data} className="form-control" data-id={`${data}Sid`} type="text" />
 		</div>
 	))
 

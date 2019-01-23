@@ -18,7 +18,7 @@ const StudentForm = ({ studentData, classData, actions }) => {
 					name={data}
 					required
 					className="form-control"
-					id={`${data}_Id`}
+					data-id={`${data}_Id`}
 					type="text"
 				/>
 			</div>
