@@ -12,7 +12,7 @@ export const openGradeClassList = event => {
 	}
 }
 
-const filterTheGrades = async exams => {
+const filterGrades = async exams => {
 	const filteredGrades = []
 	const allGrades = await getAllGrades()
 	for (let i = 0; i < exams.length; i += 1) {
@@ -21,23 +21,24 @@ const filterTheGrades = async exams => {
 	return filteredGrades
 }
 
+const filterExams = async subjectData =>
+	_.filter(await getExamData(), ['SubjectId', subjectData.subjectId])
+
 export const displayGradeData = event => async dispatch => {
 	const subjectData = {
 		subjectId: event.target.id,
 		subjectName: event.target.innerText
 	}
 
-	const exams = _.filter(await getExamData(), ['SubjectId', subjectData.subjectId])
-	if (exams.length !== 0) {
-		const grades = await filterTheGrades(exams)
-		dispatch({
-			type: DISPLAY_EXAM_TABLE,
-			payload: { exams, grades, subjectData }
-		})
-	}
+	const exams = await filterExams(subjectData)
+	const grades = await filterGrades(exams)
+	dispatch({
+		type: DISPLAY_EXAM_TABLE,
+		payload: { exams, grades, subjectData }
+	})
 }
 
-export const updateGrade = event => {
+export const updateGrade = event => async dispatch => {
 	const { id } = event.target
 	const gradeData = {
 		grade: event.target.value,
@@ -46,9 +47,17 @@ export const updateGrade = event => {
 		date: event.target.getAttribute('data-date'),
 		weight: event.target.getAttribute('data-weight')
 	}
+
 	if (id === '') {
 		addGradeData(gradeData)
 	} else {
 		updateGradeData(gradeData, id)
 	}
+
+	const exams = await filterExams(gradeData)
+	const grades = await filterGrades(exams)
+	dispatch({
+		type: DISPLAY_EXAM_TABLE,
+		payload: { exams, grades }
+	})
 }
