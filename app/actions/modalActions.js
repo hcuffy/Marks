@@ -7,17 +7,22 @@ import {
 	GET_SINGLE_EXAM,
 	UPDATE_EXAMS_LIST,
 	GET_SINGLE_STUDENT,
-	GET_ALL_STUDENTS
+	GET_ALL_STUDENTS,
+	GET_SUBJECT_LIST
 } from '../constants/actionTypes'
 import { deleteClassroom, updateRoomData } from '../database/classroomCollection'
-import { deleteSubject, updateSubjectData } from '../database/subjectCollection'
+import {
+	deleteSubject,
+	updateSubjectData,
+	getAllSubjects
+} from '../database/subjectCollection'
 import { deleteExam, updateExamData } from '../database/examCollection'
 import { deleteStudent, updateStudentData } from '../database/studentCollection'
 
 export const roomModalDisplay = event => {
 	event.preventDefault()
 	const roomId = {
-		id: event.target.id
+		id: event.target.getAttribute('data-id')
 	}
 
 	return {
@@ -28,7 +33,7 @@ export const roomModalDisplay = event => {
 
 export const deleteRoom = event => async dispatch => {
 	const roomData = {
-		id: event.target.id,
+		id: event.target.getAttribute('data-id'),
 		showModal: true
 	}
 
@@ -54,7 +59,7 @@ export const updateRoom = event => async dispatch => {
 		Teacher: event.target.Teacher.value,
 		Code: event.target.Code.value,
 		Subject_Teacher: event.target.Subject_Teacher.value,
-		OldName: event.target.OldName.id,
+		OldName: event.target.OldName.getAttribute('data-id'),
 		id: '',
 		showModal: true
 	}
@@ -77,7 +82,7 @@ export const updateRoom = event => async dispatch => {
 export const subjectModalDisplay = event => {
 	event.preventDefault()
 	const subjectId = {
-		id: event.target.id
+		id: event.target.getAttribute('data-id')
 	}
 
 	return {
@@ -91,11 +96,12 @@ export const updateSubject = event => async dispatch => {
 	const subjectData = {
 		Name: event.target.Name.value,
 		Abbreviation: event.target.Abbreviation.value,
-		ClassroomId: event.target.ClassroomId.id,
-		SubjectId: event.target.SubjectId.id
+		ClassroomId: event.target.ClassroomId.getAttribute('data-id'),
+		SubjectId: event.target.SubjectId.getAttribute('data-id')
 	}
 
 	const subjectDoc = await updateSubjectData(subjectData)
+	const data = await getAllSubjects()
 
 	dispatch({
 		type: OPEN_CLOSE_SUBJECT_MODAL,
@@ -108,11 +114,15 @@ export const updateSubject = event => async dispatch => {
 			payload: { subject: subjectDoc[0].Room }
 		})
 	}
+	dispatch({
+		type: GET_SUBJECT_LIST,
+		payload: { data }
+	})
 }
 
 export const deleteSingleSubject = event => async dispatch => {
 	const subjectData = {
-		id: event.target.id
+		id: event.target.getAttribute('data-id')
 	}
 
 	const subjectDoc = await deleteSubject(subjectData)
@@ -132,7 +142,7 @@ export const deleteSingleSubject = event => async dispatch => {
 
 export const deleteSingleExam = event => async dispatch => {
 	const examData = {
-		examId: event.target.id,
+		examId: event.target.getAttribute('data-id'),
 		subjectId: event.target.name
 	}
 
@@ -157,8 +167,8 @@ export const updateExam = event => async dispatch => {
 		Title: event.target.Title.value,
 		Date: event.target.Date.value,
 		Weight: event.target.Weight.value,
-		SubjectId: event.target.SubjectId.id,
-		ExamId: event.target.ExamId.id
+		SubjectId: event.target.SubjectId.getAttribute('data-id'),
+		ExamId: event.target.ExamId.getAttribute('data-id')
 	}
 
 	const exams = await updateExamData(examData)
@@ -177,7 +187,7 @@ export const updateExam = event => async dispatch => {
 }
 
 export const deleteSingleStudent = event => async dispatch => {
-	const studentId = event.target.id
+	const studentId = event.target.getAttribute('data-id')
 	const students = await deleteStudent(studentId)
 
 	dispatch({
@@ -199,14 +209,14 @@ export const updateStudent = event => async dispatch => {
 		Lastname: event.target.Lastname.value,
 		Gender: event.target.Gender.value,
 		Classroom: event.target.Classroom.value,
-		Id: event.target.studentId.id
+		Id: event.target.studentId.getAttribute('data-id')
 	}
 
 	const students = await updateStudentData(studentData)
 
 	dispatch({
 		type: GET_SINGLE_STUDENT,
-		payload: studentData.Id
+		payload: studentData.getAttribute('data-id')
 	})
 
 	if (students.length > 0) {
