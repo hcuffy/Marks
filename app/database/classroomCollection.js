@@ -13,10 +13,17 @@ const _ = require('lodash')
 const Datastore = require('nedb')
 const electron = require('electron')
 const path = require('path')
+const fs = require('fs')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
+const collectionsPath = path.join(userDataPath, 'collections')
+
+if (!fs.existsSync(collectionsPath)) {
+	fs.mkdirSync(collectionsPath)
+}
+
 const classroomCollection = new Datastore({
-	filename: path.join(userDataPath, 'classroom.db'),
+	filename: path.join(collectionsPath, 'classroom.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
 	timestampData: true
@@ -74,7 +81,7 @@ export const deleteClassroom = data =>
 		})
 	)
 
-function checkSubject(checkingCurrent) {
+const checkSubject = checkingCurrent => {
 	if (_.isNil(checkingCurrent.Subjects)) {
 		return false
 	}
@@ -83,7 +90,7 @@ function checkSubject(checkingCurrent) {
 	}
 }
 
-function updateSinlgeClassroom(previous, current) {
+const updateSinlgeClassroom = (previous, current) => {
 	const { Name, Teacher, Code, Subject_Teacher } = current
 	const { Subjects } = previous
 

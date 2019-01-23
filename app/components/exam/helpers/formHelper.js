@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/exam.css'
+import styles from '../../styles/exam.css'
 
 const examForm = (subjectOptions, classOption, actions) => {
 	const examFields = (
@@ -13,7 +13,7 @@ const examForm = (subjectOptions, classOption, actions) => {
 						name="Title"
 						className="form-control"
 						required
-						id="titleId"
+						data-id="titleId"
 						type="text"
 					/>
 				</div>
@@ -25,7 +25,7 @@ const examForm = (subjectOptions, classOption, actions) => {
 						onChange={actions.getSelectedSubject}
 						className="form-control"
 						name="Room"
-						id="classSelection"
+						data-id="classSelection"
 						type="text"
 					>
 						{classOption}
@@ -38,7 +38,7 @@ const examForm = (subjectOptions, classOption, actions) => {
 					<select
 						className="form-control"
 						name="Subject"
-						id="subjectSelection"
+						data-id="subjectSelection"
 						type="text"
 					>
 						{subjectOptions}
@@ -48,7 +48,8 @@ const examForm = (subjectOptions, classOption, actions) => {
 					<label className={styles.form_label} htmlFor="dateIn">
 						Date:
 					</label>
-					<input className="form-control" name="Date" type="date" id="dateIn" />
+					{/* eslint-disable-next-line max-len */}
+					<input className="form-control" name="Date" type="date" data-id="dateIn" />
 				</div>
 				<div className={`${styles.form_div} form-group`}>
 					<label className={styles.form_label} htmlFor="number-input">
@@ -59,7 +60,7 @@ const examForm = (subjectOptions, classOption, actions) => {
 						defaultValue="1"
 						name="Weight"
 						type="number"
-						id="number-input"
+						data-id="number-input"
 						min="1"
 						max="4"
 						step="0.5"

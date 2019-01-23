@@ -8,18 +8,20 @@ import handleSubjectModal from './subjectModalReducer'
 import openClassList, { getSubjectData } from './subjectReducer'
 import filterExam from './examReducer'
 import handleStudentData from './studentsReducer'
+import gradeData from './gradeTableReducer'
 
 const rootReducer = combineReducers({
 	router,
 	schoolData: displaySchoolData,
-	tabStatus: handleTabChange,
-	allClassData: displayClassData,
-	roomModal: handleClassModal,
-	selectClass: openClassList,
+	classData: displayClassData,
 	subjectData: getSubjectData,
-	subjectModal: handleSubjectModal,
+	studentData: handleStudentData,
 	examData: filterExam,
-	studentData: handleStudentData
+	selectClass: openClassList,
+	tabStatus: handleTabChange,
+	roomModal: handleClassModal,
+	subjectModal: handleSubjectModal,
+	gradeData
 })
 
 export default rootReducer

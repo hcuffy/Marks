@@ -1,0 +1,33 @@
+.center_header {
+  text-align: center;
+}
+
+.div_wrapper {
+  width: 100%;
+}
+
+.table_wrapper {
+  height: 200px;
+}
+
+.dropdown_div {
+  display: inline-block;
+  margin: 0 0 15px 15px;
+}
+
+.dropdown_main_div {
+  text-align: center;
+}
+
+.badge_date {
+  float: right;
+}
+
+.badge_weight {
+  float: left;
+  color: black !important;
+}
+
+input[type='number'] {
+  width: 140px;
+}

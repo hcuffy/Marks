@@ -5,7 +5,7 @@ import {
 } from '../constants/actionTypes'
 import { addClassroomData, getClassroomData } from '../database/classroomCollection'
 
-function changeTab(tabTitle) {
+const changeTab = tabTitle => {
 	const newState = {}
 
 	newState.classTab = tabTitle === 'Classes'

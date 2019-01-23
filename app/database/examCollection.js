@@ -14,8 +14,10 @@ const electron = require('electron')
 const path = require('path')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
+const collectionsPath = path.join(userDataPath, 'collections')
+
 const examCollection = new Datastore({
-	filename: path.join(userDataPath, 'examinations.db'),
+	filename: path.join(collectionsPath, 'examinations.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
 	timestampData: true
@@ -56,7 +58,7 @@ export const getExamData = () =>
 		})
 	)
 
-function updateTestsArr(examId, subjectId) {
+const updateTestsArr = (examId, subjectId) => {
 	examCollection.find({ _id: examId }, (err, entry) => {
 		if (err) {
 			return err
@@ -83,7 +85,7 @@ export const deleteExam = data =>
 		})
 	})
 
-function updateSinlgeExam(previous, current) {
+const updateSinlgeExam = (previous, current) => {
 	const { Title, Date, Weight } = current
 	const { SubjectId } = previous
 

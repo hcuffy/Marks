@@ -3,21 +3,23 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/exam.css'
+import styles from '../styles/grades.css'
 import { sortData } from '../rooms/ClassList'
 import { getClassList, getSubjectList } from '../helpers/dropdowns'
 
-const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
+const GradeDropdown = ({ classData, gradeData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList(examData, subjectData)
-
+	const subjectOptions = getSubjectList(
+		{ selectedRoom: gradeData.classroom },
+		subjectData
+	)
 	return (
 		<div className={styles.dropdown_main_div}>
 			<div className={styles.dropdown_div}>
 				<Dropdown
-					isOpen={examData.openClassDropdown}
-					toggle={actions.openClassDropdownList}
+					isOpen={gradeData.classroomDropdown}
+					toggle={actions.openGradeClassList}
 				>
 					<DropdownToggle color="info" caret>
 						Select Class
@@ -26,7 +28,7 @@ const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
 				</Dropdown>
 			</div>
 			<div className={styles.dropdown_div}>
-				<Dropdown isOpen={examData.openSubList} toggle={actions.displayExamData}>
+				<Dropdown isOpen={gradeData.subDrop} toggle={actions.displayGradeData}>
 					<DropdownToggle color="info" caret>
 						Select Subject
 					</DropdownToggle>
@@ -40,7 +42,8 @@ const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
 const mapStateToProps = state => ({
 	classData: state.classData,
 	subjectData: state.subjectData,
-	examData: state.examData
+	examData: state.examData,
+	gradeData: state.gradeData
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -50,4 +53,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(ExamListDropdown)
+)(GradeDropdown)

@@ -8,7 +8,7 @@ import styles from '../styles/room.css'
 
 const _ = require('lodash')
 
-function getClassroomId(dataList) {
+const getClassroomId = dataList => {
 	if (_.isEmpty(dataList) || _.isNil(dataList)) {
 		return []
 	}
@@ -25,17 +25,17 @@ const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 			<input
 				name={data}
 				className={`${styles.form_input} form-control`}
-				id={`${data}_Id`}
+				data-id={`${data}_Id`}
 				type="text"
 				defaultValue={requiredSubject[data]}
 			/>
 		</div>
 	))
 	const classroomId = (
-		<input type="hidden" name="ClassroomId" id={getClassroomId(filteredData)} />
+		<input type="hidden" name="ClassroomId" data-id={getClassroomId(filteredData)} />
 	)
 
-	const subjectId = <input type="hidden" name="SubjectId" id={subjectModal.id} />
+	const subjectId = <input type="hidden" name="SubjectId" data-id={subjectModal.id} />
 
 	return (
 		<div>
@@ -62,7 +62,7 @@ const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 						</Button>
 						<Button
 							type="button"
-							id={subjectModal.id}
+							data-id={subjectModal.id}
 							onClick={actions.subjectModalDisplay}
 							color="secondary"
 						>

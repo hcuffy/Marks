@@ -21,14 +21,15 @@ const electron = require('electron')
 const path = require('path')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
+const collectionsPath = path.join(userDataPath, 'collections')
 const subjectCollection = new Datastore({
-	filename: path.join(userDataPath, 'subject.db'),
+	filename: path.join(collectionsPath, 'subject.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
 	timestampData: true
 })
 
-async function getSubjects(subjectData) {
+const getSubjects = async subjectData => {
 	const data = await getClassroomData()
 	const selectedClass = _.find(data, ['Name', subjectData.Room])
 	if (!_.includes(selectedClass.Subjects, subjectData.Abbreviation)) {
@@ -88,7 +89,7 @@ export const deleteSubject = data =>
 		})
 	)
 
-function checkSubjectChanges(prev, curr) {
+const checkSubjectChanges = (prev, curr) => {
 	const { Name, Abbreviation } = curr
 	if (_.isEqual(prev.Name, Name) && _.isEqual(prev.Abbreviation, Abbreviation)) {
 		return false
@@ -96,13 +97,13 @@ function checkSubjectChanges(prev, curr) {
 	return true
 }
 
-function updateClassroomSubjects(subjectId, previousSubject, currentSubject) {
+const updateClassroomSubjects = (subjectId, previousSubject, currentSubject) => {
 	if (!_.isEqual(previousSubject, currentSubject)) {
 		updateClassSubjectArray(subjectId, previousSubject, currentSubject)
 	}
 }
 
-function updateSinlgeSubject(previous, current) {
+const updateSinlgeSubject = (previous, current) => {
 	const { Name, Abbreviation } = current
 	const { Room, Tests, ClassroomId } = previous
 
@@ -151,13 +152,11 @@ export const updateSubjectData = data =>
 	)
 
 export const addExamToSubjectArray = ({ SubjectId, Title }) => {
-	console.log(SubjectId)
 	subjectCollection.find({ _id: SubjectId }, (err, doc) => {
 		if (err) {
 			unableToRetrieve()
 			return err
 		}
-		console.log(doc)
 		if (doc.length <= 0) {
 			return 'Exists'
 		}

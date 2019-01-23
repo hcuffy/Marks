@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from '../styles/students.css'
+import styles from '../../styles/students.css'
 
 const _ = require('lodash')
 
-function dropDownFields(chosenStudent, classdata) {
+const dropDownFields = (chosenStudent, classdata) => {
 	const classroomOptions = _.values(classdata).map((data, idx) => (
 		<option key={idx} className="form-control dropdown">
 			{data.Name}
@@ -18,7 +18,7 @@ function dropDownFields(chosenStudent, classdata) {
 				<select
 					className="form-control"
 					type="text"
-					id="gSelect"
+					data-id="gSelect"
 					name="Gender"
 					defaultValue={chosenStudent.Gender}
 				>
@@ -35,7 +35,7 @@ function dropDownFields(chosenStudent, classdata) {
 					className="form-control"
 					type="text"
 					name="Classroom"
-					id="cSelect"
+					data-id="cSelect"
 					defaultValue={chosenStudent.Classroom}
 				>
 					{classroomOptions}
@@ -58,7 +58,7 @@ const generateFields = (chosenStudent, classdata) => {
 					name={data}
 					required
 					className={`${styles.form_input} form-control`}
-					id={`${data}_Id`}
+					data-id={`${data}_Id`}
 					type="text"
 					defaultValue={chosenStudent[data]}
 				/>

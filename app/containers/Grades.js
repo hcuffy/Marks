@@ -4,35 +4,29 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/SideMenu'
-import Navbar from '../components/rooms/Navbar'
-import Classes from '../components/rooms/Classes'
-import Exams from '../components/exam/Exams'
+import GradeTable from '../components/grades/GradeTable'
 
-class Classroom extends Component {
+class Grades extends Component {
 	componentDidMount() {
 		if (this.props.classData) {
 			this.props.actions.displayClassData()
 			this.props.actions.getSubjectData()
+			this.props.actions.getStudents()
 		}
 	}
 
 	render() {
 		return (
-			<div data-tid="classroom_container">
+			<div data-tid="grades_container">
 				<SideMenu />
-				<Navbar />
-				{this.props.classesActive && <Classes />}
-				{this.props.examActive && <Exams />}
+				<GradeTable />
 			</div>
 		)
 	}
 }
 
 const mapStateToProps = state => ({
-	classesActive: state.tabStatus.classTab,
-	examActive: state.tabStatus.testTab,
-	classData: state.classData.classData,
-	addedClass: state.addedClass
+	classData: state.classData.classData
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -42,4 +36,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Classroom)
+)(Grades)

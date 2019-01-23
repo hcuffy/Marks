@@ -35,7 +35,6 @@ const SchoolInfo = ({ schoolData, actions }) => {
 					</div>
 				</div>
 			</form>
-			<div />
 		</div>
 	)
 }

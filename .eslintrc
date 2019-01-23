@@ -48,7 +48,17 @@
     "no-console": "off",
     "no-use-before-define": "off",
     "no-multi-assign": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "no-trailing-spaces": "error",
     "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "no-useless-return": "error",
+    "no-unused-vars": "error",
+    "no-unneeded-ternary": "error",
     "object-curly-spacing": ["error", "always"],
     "promise/param-names": "error",
     "promise/always-return": "error",

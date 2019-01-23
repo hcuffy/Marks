@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/exam.css'
+import styles from '../../styles/exam.css'
 
 const _ = require('lodash')
 
@@ -16,7 +16,7 @@ const generateFields = chosenExam => {
 				<input
 					name={_.invert(chosenExam)[chosenExam.Title]}
 					className={`${styles.form_input} form-control`}
-					id={`${_.invert(chosenExam)[chosenExam.Title]}_Id`}
+					data-id={`${_.invert(chosenExam)[chosenExam.Title]}_Id`}
 					type="text"
 					defaultValue={chosenExam.Title}
 				/>
@@ -31,7 +31,7 @@ const generateFields = chosenExam => {
 				<input
 					name={_.invert(chosenExam)[chosenExam.Weight]}
 					className={`${styles.form_input} form-control`}
-					id={`${_.invert(chosenExam)[chosenExam.Weight]}_Id`}
+					data-id={`${_.invert(chosenExam)[chosenExam.Weight]}_Id`}
 					type="number"
 					min="1"
 					max="4"
@@ -49,7 +49,7 @@ const generateFields = chosenExam => {
 				<input
 					name={_.invert(chosenExam)[chosenExam.Date]}
 					className={`${styles.form_input} form-control`}
-					id={`${_.invert(chosenExam)[chosenExam.Date]}_Id`}
+					data-id={`${_.invert(chosenExam)[chosenExam.Date]}_Id`}
 					type="date"
 					defaultValue={chosenExam.Date}
 				/>

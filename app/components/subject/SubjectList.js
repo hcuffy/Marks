@@ -7,7 +7,7 @@ import SubjectModal from './SubjectModal'
 
 const _ = require('lodash')
 
-export function filterSubjects(subjectData, chosenClass) {
+export const filterSubjects = (subjectData, chosenClass) => {
 	if (_.isNil(subjectData) || _.isNil(chosenClass) || chosenClass === 'Select Class') {
 		return []
 	}
@@ -24,7 +24,7 @@ const SubjectList = ({ selectedSubject, subjectData, actions }) => {
 	const subjectList = filteredData.map((data, idx) => (
 		<button
 			key={idx}
-			id={data._id}
+			data-id={data._id}
 			type="button"
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
 			onClick={actions.subjectModalDisplay}

@@ -2,5 +2,6 @@
   "HOME": "/",
   "SCHOOL": "/School",
   "CLASSROOM": "/Classroom",
-  "STUDENTS": "/Students"
+  "STUDENTS": "/Students",
+  "GRADES": "/Grades"
 }

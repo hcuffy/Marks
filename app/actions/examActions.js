@@ -12,7 +12,8 @@ export const addNewExam = event => {
 	const selectedSubjectIndex = event.target.Subject.selectedIndex
 	const examData = {
 		Title: event.target.Title.value,
-		SubjectId: event.target.Subject.options[selectedSubjectIndex].id,
+		// eslint-disable-next-line max-len
+		SubjectId: event.target.Subject.options[selectedSubjectIndex].getAttribute('data-id'),
 		Date: event.target.Date.value,
 		Weight: event.target.Weight.value
 	}
@@ -40,7 +41,7 @@ export const openClassDropdownList = event => {
 }
 
 export const displayExamData = event => async dispatch => {
-	const subjectId = event.target.id
+	const subjectId = event.target.getAttribute('data-id')
 	const exams = await getExamData()
 	if (exams.length !== 0) {
 		dispatch({
@@ -51,7 +52,7 @@ export const displayExamData = event => async dispatch => {
 }
 
 export const showSingleExam = event => {
-	const examId = event.target.id
+	const examId = event.target.getAttribute('data-id')
 	return {
 		type: GET_SINGLE_EXAM,
 		payload: examId
