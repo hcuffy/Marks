@@ -47,11 +47,13 @@ const averageColumn = () => ({
 	width: 150
 })
 
-const customFooter = (data, id) => {
+const customFooter = ({ data }, iterator) => {
 	const grades = []
 	for (let i = 0; i < data.length; i += 1) {
-		const temp = data[i]
-		grades.push(parseInt(temp[id], 10))
+		// eslint-disable-next-line no-underscore-dangle
+		const temp = data[i]._original.grades[iterator].score
+
+		grades.push(parseInt(temp, 10))
 	}
 	return (
 		<span>
@@ -71,7 +73,7 @@ const customColumn = (data, actions) => {
 			accessor: `grades[${i}]`,
 			width: 150,
 			Cell: props => customCell(props, actions),
-			Footer: props => customFooter(props.data, props.column.id)
+			Footer: props => customFooter(props, i)
 		})
 	}
 	columnData.push(averageColumn())

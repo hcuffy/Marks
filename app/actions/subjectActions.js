@@ -36,7 +36,6 @@ export const addNewSubject = event => {
 
 export const getSubjectData = () => async dispatch => {
 	const data = await getAllSubjects()
-	console.log('here')
 	if (data.length !== 0) {
 		dispatch({
 			type: GET_SUBJECT_LIST,
