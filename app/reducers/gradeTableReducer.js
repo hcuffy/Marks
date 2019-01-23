@@ -1,4 +1,8 @@
-import { DISPLAY_EXAM_TABLE, OPEN_CLASS_LIST } from '../constants/actionTypes'
+import {
+	DISPLAY_EXAM_TABLE,
+	OPEN_CLASS_LIST,
+	UPDATE_EXAM_TABLE
+} from '../constants/actionTypes'
 
 const _ = require('lodash')
 
@@ -22,6 +26,10 @@ const gradeData = (state = initialLoadState, action) => {
 		const subDrop = state.classroomDropdown
 		const classroom = action.payload
 		return _.assign({}, state, { classroomDropdown, subDrop, classroom })
+	}
+	case UPDATE_EXAM_TABLE: {
+		const { exams, grades } = action.payload
+		return _.assign({}, state, { exams, grades })
 	}
 	default:
 		return state

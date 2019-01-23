@@ -7,6 +7,8 @@ const customCell = (props, actions) => (
 	<input
 		defaultValue={props.value.score}
 		data-studentid={props.value.studentId}
+		data-subjectname={props.value.subjectName}
+		data-subjectid={props.value.subjectId}
 		data-examid={props.value.examId}
 		data-date={props.value.date}
 		data-weight={props.value.weight}

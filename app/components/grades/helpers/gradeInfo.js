@@ -22,15 +22,19 @@ const getGradeInfo = (student, gradeData) => {
 	for (let i = 0; i < exams.length; i += 1) {
 		const assembledInfo = {}
 		assembledInfo.studentId = studentId
+		assembledInfo.subjectName = gradeData.subjectName
+		assembledInfo.subjectId = gradeData.subjectId
 		assembledInfo.examId = exams[i]._id
 		assembledInfo.weight = exams[i].Weight
 		assembledInfo.date = exams[i].Date
+		assembledInfo.subjectName = gradeData.subjectName
 		const score = _.filter(grades, { examId: exams[i]._id, studentId })
 		assembledInfo.gradeId = checkGradeId(score[0])
 		const adjustedScore = _.isUndefined(score[0]) ? 0 : score[0].grade
 		assembledInfo.score = adjustedScore
 		grade.push(assembledInfo)
 	}
+
 	return grade
 }
 

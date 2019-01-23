@@ -1,4 +1,8 @@
-import { DISPLAY_EXAM_TABLE, OPEN_CLASS_LIST } from '../constants/actionTypes'
+import {
+	DISPLAY_EXAM_TABLE,
+	OPEN_CLASS_LIST,
+	UPDATE_EXAM_TABLE
+} from '../constants/actionTypes'
 import { getExamData } from '../database/examCollection'
 import { getAllGrades, addGradeData, updateGradeData } from '../database/gradeCollection'
 
@@ -39,25 +43,30 @@ export const displayGradeData = event => async dispatch => {
 }
 
 export const updateGrade = event => async dispatch => {
-	const { id } = event.target
+	const gradeId = event.target.getAttribute('data-id')
+	const subjectData = {
+		subjectId: event.target.getAttribute('data-subjectid'),
+		subjectName: event.target.getAttribute('data-subjectname')
+	}
+	console.log(subjectData)
 	const gradeData = {
-		grade: event.target.value,
+		grade: event.target.value === '' ? 0 : event.target.value,
 		examId: event.target.getAttribute('data-examid'),
 		studentId: event.target.getAttribute('data-studentid'),
 		date: event.target.getAttribute('data-date'),
 		weight: event.target.getAttribute('data-weight')
 	}
 
-	if (id === '') {
+	if (_.isNull(gradeId)) {
 		addGradeData(gradeData)
 	} else {
-		updateGradeData(gradeData, id)
+		updateGradeData(gradeData, gradeId)
 	}
 
-	const exams = await filterExams(gradeData)
+	const exams = await filterExams(subjectData)
 	const grades = await filterGrades(exams)
 	dispatch({
-		type: DISPLAY_EXAM_TABLE,
+		type: UPDATE_EXAM_TABLE,
 		payload: { exams, grades }
 	})
 }

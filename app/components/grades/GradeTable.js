@@ -12,7 +12,6 @@ const _ = require('lodash')
 
 const GradeTable = ({ gradeData, students, actions }) => {
 	const data = gradeInfo(gradeData, students)
-
 	return (
 		<div className={styles.div_wrapper}>
 			<h2 className={styles.center_header}>Grades</h2>
