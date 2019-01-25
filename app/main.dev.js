@@ -1,4 +1,4 @@
-/* eslint global-require: 0, flowtype-errors/show-errors: 0 */
+/* eslint global-require: off */
 
 /**
  * This module executes inside of electron's main process. You can start
@@ -10,49 +10,31 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron'
-import MenuBuilder from './menu'
+import { app, BrowserWindow } from 'electron';
+import { autoUpdater } from 'electron-updater';
+import log from 'electron-log';
+import MenuBuilder from './menu';
 
-let mainWindow = null
-// //////
-function createWindow() {
-	mainWindow = new BrowserWindow({
-		show: false,
-		width: 1024,
-		height: 728
-	})
-
-	mainWindow.loadURL(`file://${__dirname}/app.html`)
-
-	mainWindow.webContents.on('did-finish-load', () => {
-		if (!mainWindow) {
-			throw new Error('"mainWindow" is not defined')
-		}
-		if (process.env.START_MINIMIZED) {
-			mainWindow.minimize()
-		} else {
-			mainWindow.show()
-			mainWindow.focus()
-		}
-	})
-
-	mainWindow.on('closed', () => {
-		mainWindow = null
-	})
+export default class AppUpdater {
+  constructor() {
+    log.transports.file.level = 'info';
+    autoUpdater.logger = log;
+    autoUpdater.checkForUpdatesAndNotify();
+  }
 }
 
-// /////
+let mainWindow = null;
 
 if (process.env.NODE_ENV === 'production') {
 	const sourceMapSupport = require('source-map-support')
 	sourceMapSupport.install()
 }
 
-if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
-	require('electron-debug')()
-	const path = require('path')
-	const p = path.join(__dirname, '..', 'app', 'node_modules')
-	require('module').globalPaths.push(p)
+if (
+  process.env.NODE_ENV === 'development' ||
+  process.env.DEBUG_PROD === 'true'
+) {
+  require('electron-debug')();
 }
 
 const installExtensions = async () => {
@@ -78,24 +60,43 @@ app.on('window-all-closed', () => {
 })
 
 app.on('ready', async () => {
-	if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
-		await installExtensions()
-	}
+  if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.DEBUG_PROD === 'true'
+  ) {
+    await installExtensions();
+  }
 
-	mainWindow = new BrowserWindow({
-		show: false,
-		width: 1024,
-		height: 728
-	})
+  mainWindow = new BrowserWindow({
+    show: false,
+    width: 1024,
+    height: 728
+  });
 
-	createWindow()
+  mainWindow.loadURL(`file://${__dirname}/app.html`);
 
-	const menuBuilder = new MenuBuilder(mainWindow)
-	menuBuilder.buildMenu()
-})
+  // @TODO: Use 'ready-to-show' event
+  //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
+  mainWindow.webContents.on('did-finish-load', () => {
+    if (!mainWindow) {
+      throw new Error('"mainWindow" is not defined');
+    }
+    if (process.env.START_MINIMIZED) {
+      mainWindow.minimize();
+    } else {
+      mainWindow.show();
+      mainWindow.focus();
+    }
+  });
 
-app.on('activate', () => {
-	if (mainWindow === null) {
-		createWindow()
-	}
-})
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
+
+  const menuBuilder = new MenuBuilder(mainWindow);
+  menuBuilder.buildMenu();
+
+  // Remove this if your app does not use auto updates
+  // eslint-disable-next-line
+  new AppUpdater();
+});

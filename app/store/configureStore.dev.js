@@ -1,18 +1,21 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
-import { createHashHistory } from 'history'
-import { routerMiddleware, routerActions } from 'react-router-redux'
-import { createLogger } from 'redux-logger'
-import rootReducer from '../reducers'
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import { createHashHistory } from 'history';
+import { routerMiddleware, routerActions } from 'connected-react-router';
+import { createLogger } from 'redux-logger';
+import createRootReducer from '../reducers';
 import * as schoolActions from '../actions/schoolActions'
 import * as classroomActions from '../actions/classroomActions'
+import type { counterStateType } from '../reducers/types';
 
 const history = createHashHistory()
 
-const configureStore = () => {
-	// Redux Configuration
-	const middleware = []
-	const enhancers = []
+const rootReducer = createRootReducer(history);
+
+const configureStore = (initialState?: counterStateType) => {
+  // Redux Configuration
+  const middleware = [];
+  const enhancers = [];
 
 	// Thunk Middleware
 	middleware.push(thunk)
@@ -55,11 +58,12 @@ const configureStore = () => {
 	// Create Store
 	const store = createStore(rootReducer, {}, enhancer)
 	if (module.hot) {
-		module.hot.accept(
-			'../reducers',
-			() => store.replaceReducer(require('../reducers')) // eslint-disable-line global-require
-		)
-	}
+    module.hot.accept(
+      '../reducers',
+      // eslint-disable-next-line global-require
+      () => store.replaceReducer(require('../reducers').default)
+    );
+  }
 
 	return store
 }

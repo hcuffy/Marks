@@ -21,7 +21,7 @@ First, clone the repo via git:
 git clone https://github.com/hcuffy/My-Marks
 ```
 
-And then install dependencies with yarn.
+And then install the dependencies with yarn.
 
 ```bash
 $ cd marks

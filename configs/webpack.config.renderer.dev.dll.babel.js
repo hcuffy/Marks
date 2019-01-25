@@ -1,22 +1,22 @@
-/* eslint global-require: 0, import/no-dynamic-require: 0 */
+/* eslint global-require: off, import/no-dynamic-require: off */
 
 /**
  * Builds the DLL for development electron renderer process
  */
 
-import webpack from 'webpack'
-import path from 'path'
-import merge from 'webpack-merge'
-import baseConfig from './webpack.config.base'
-import { dependencies } from './package.json'
-import CheckNodeEnv from './internals/scripts/CheckNodeEnv'
+import webpack from 'webpack';
+import path from 'path';
+import merge from 'webpack-merge';
+import baseConfig from './webpack.config.base';
+import { dependencies } from '../package.json';
+import CheckNodeEnv from '../internals/scripts/CheckNodeEnv';
 
 CheckNodeEnv('development')
 
-const dist = path.resolve(process.cwd(), 'dll')
+const dist = path.join(__dirname, '..', 'dll');
 
 export default merge.smart(baseConfig, {
-	context: process.cwd(),
+  context: path.join(__dirname, '..'),
 
 	devtool: 'eval',
 
@@ -26,16 +26,14 @@ export default merge.smart(baseConfig, {
 
 	externals: ['fsevents', 'crypto-browserify'],
 
-	/**
-	 * Use `module` from `webpack.config.renderer.dev.js`
-	 */
-	module: require('./webpack.config.renderer.dev').module,
+  /**
+   * Use `module` from `webpack.config.renderer.dev.js`
+   */
+  module: require('./webpack.config.renderer.dev.babel').default.module,
 
-	entry: {
-		renderer: Object.keys(dependencies || {}).filter(
-			dependency => dependency !== '@fortawesome/fontawesome-free'
-		)
-	},
+  entry: {
+    renderer: Object.keys(dependencies || {})
+  },
 
 	output: {
 		library: 'renderer',
@@ -63,14 +61,14 @@ export default merge.smart(baseConfig, {
 			NODE_ENV: 'development'
 		}),
 
-		new webpack.LoaderOptionsPlugin({
-			debug: true,
-			options: {
-				context: path.resolve(process.cwd(), 'app'),
-				output: {
-					path: path.resolve(process.cwd(), 'dll')
-				}
-			}
-		})
-	]
-})
+    new webpack.LoaderOptionsPlugin({
+      debug: true,
+      options: {
+        context: path.join(__dirname, '..', 'app'),
+        output: {
+          path: path.join(__dirname, '..', 'dll')
+        }
+      }
+    })
+  ]
+});

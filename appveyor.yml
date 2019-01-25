@@ -6,14 +6,10 @@ platform:
 environment:
   matrix:
     - nodejs_version: 10
-    - nodejs_version: 9
-  GH_TOKEN:
-    secure: JQTogieeX60CDa5l+4NGvmE3do+t8iDPrrppjHYfGbx2vlGMvNUtPbJvnsqZ07tF
 
 cache:
   - '%LOCALAPPDATA%/Yarn'
-  - node_modules -> package.json
-  - app/node_modules -> app/package.json
+  - node_modules
   - flow-typed
   - '%USERPROFILE%\.electron'
 
@@ -31,20 +27,12 @@ clone_depth: 1
 install:
   - ps: Install-Product node $env:nodejs_version x64
   - set CI=true
-  # NOTE: Remove this if your project is private and you don't have a paid greenkeeper account
-  - yarn global add greenkeeper-lockfile@2
   - yarn
 
-# NOTE: Remove this if your project is private and you don't have a paid greenkeeper account
-before_test:
-  - greenkeeper-lockfile-update
-
 test_script:
-  - node --version
+  - yarn package-ci
   - yarn lint
-  - yarn package
+  # - yarn flow
   - yarn test
+  - yarn build-e2e
   - yarn test-e2e
-
-# NOTE: Remove this if your project is private and you don't have a paid greenkeeper account
-after_test: greenkeeper-lockfile-upload
