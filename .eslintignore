@@ -46,7 +46,7 @@ dist
 dll
 main.js
 main.js.map
-
+internals
 .idea
 npm-debug.log.*
 __snapshots__

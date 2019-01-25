@@ -1,6 +1,7 @@
-/* eslint-disable max-len */
 // @flow
 // Check if the renderer and main bundles are built
+/* eslint  max-len: 0 */
+
 import path from 'path'
 import chalk from 'chalk'
 import fs from 'fs'

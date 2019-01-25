@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { connectRouter } from 'connected-react-router';
+import { connectRouter } from 'connected-react-router'
 import displaySchoolData from './schoolDataReducer'
 import handleTabChange from './changeTabReducer'
 import displayClassData from './classDataReducer'
@@ -13,16 +13,15 @@ import gradeData from './gradeTableReducer'
 export default function createRootReducer(history: History) {
 	return combineReducers({
 		router: connectRouter(history),
-	schoolData: displaySchoolData,
-	classData: displayClassData,
-	subjectData: getSubjectData,
-	studentData: handleStudentData,
-	examData: filterExam,
-	selectClass: openClassList,
-	tabStatus: handleTabChange,
-	roomModal: handleClassModal,
-	subjectModal: handleSubjectModal,
-	gradeData
-})
-
-export default rootReducer
+		schoolData: displaySchoolData,
+		classData: displayClassData,
+		subjectData: getSubjectData,
+		studentData: handleStudentData,
+		examData: filterExam,
+		selectClass: openClassList,
+		tabStatus: handleTabChange,
+		roomModal: handleClassModal,
+		subjectModal: handleSubjectModal,
+		gradeData
+	})
+}
