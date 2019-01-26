@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/classroom.css'
+import styles from './styles/room.css'
 import ClassList from './ClassList'
 import Subjects from '../subject/Subjects'
 
@@ -17,8 +17,8 @@ const checkChange = (classData, actions) => {
 const Classes = ({ classData, actions }) => {
 	const formLabels = _.omit(classData, ['classData', 'Check'])
 	const formInputs = _.keys(formLabels).map((data, idx) => (
-		<div key={idx} className={styles.form_div}>
-			<label className={styles.form_label} htmlFor={`${data}Id`}>
+		<div key={idx} className={styles.room_form}>
+			<label className={styles.room_form_label} htmlFor={`${data}Id`}>
 				{data}:
 			</label>
 			<input

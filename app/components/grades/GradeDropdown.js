@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/grades.css'
+import styles from './styles/grades.css'
 import { sortData } from '../rooms/ClassList'
 import { getClassList, getSubjectList } from '../helpers/dropdowns'
 

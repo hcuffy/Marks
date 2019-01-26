@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import styles from '../styles/exam.css'
+import styles from './styles/exam.css'
 import { actionCreators } from '../../actions/index'
 import ExamListDropdown from './ExamListDropdown'
 import ExamListInputs from './ExamListInputs'

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/ClassList'
-import styles from '../styles/subjects.css'
+import styles from './styles/subject.css'
 import SubjectForm from './SubjectForm'
 import SubjectList from './SubjectList'
 

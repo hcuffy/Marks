@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/classroom.css'
+import styles from './styles/subject.css'
 
 const _ = require('lodash')
 

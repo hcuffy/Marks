@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { actionCreators } from '../actions/index'
-
 import { HOME, SCHOOL, CLASSROOM, STUDENTS, GRADES } from '../constants/routes.json'
 import styles from './styles/sidemenu.css'
 

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import { cleanAndFilterData } from '../rooms/RoomModal'
-import styles from '../styles/room.css'
+import styles from './styles/subject.css'
 
 const _ = require('lodash')
 
@@ -18,13 +18,13 @@ const getClassroomId = dataList => {
 const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 	const requiredSubject = cleanAndFilterData(filteredData, subjectModal)
 	const selectedSubject = _.keys(requiredSubject).map((data, idx) => (
-		<div key={idx} className={styles.form_div}>
-			<label className={styles.form_label} htmlFor={`${data}_Id`}>
+		<div key={idx} className={styles.modal_form_div}>
+			<label className={styles.modal_form_label} htmlFor={`${data}_Id`}>
 				{data}:
 			</label>
 			<input
 				name={data}
-				className={`${styles.form_input} form-control`}
+				className={`${styles.badge_number} form-control`}
 				data-id={`${data}_Id`}
 				type="text"
 				defaultValue={requiredSubject[data]}

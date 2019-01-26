@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
-import styles from '../../styles/students.css'
+import styles from '../styles/students.css'
 
 const studentForm = (selectOption, formFields, actions) => {
 	const studentFields = (

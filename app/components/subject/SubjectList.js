@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/list.css'
+import styles from './styles/subject.css'
 import SubjectModal from './SubjectModal'
 
 const _ = require('lodash')

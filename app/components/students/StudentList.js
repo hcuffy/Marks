@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Badge } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/students.css'
+import styles from './styles/students.css'
 import StudentModal from './StudentModal'
 
 const _ = require('lodash')

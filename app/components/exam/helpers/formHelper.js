@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
-import styles from '../../styles/exam.css'
+import styles from '../styles/exam.css'
 
 const examForm = (subjectOptions, classOption, actions) => {
 	const examFields = (

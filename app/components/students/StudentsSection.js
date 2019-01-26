@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/students.css'
+import styles from './styles/students.css'
 import StudentForm from './StudentForm'
 import StudentList from './StudentList'
 
