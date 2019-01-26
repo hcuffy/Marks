@@ -1,5 +1,3 @@
-// @flow
-/* eslint  max-len: 0 */
 import chalk from 'chalk'
 
 export default function CheckNodeEnv(expectedEnv: string) {
@@ -13,6 +11,6 @@ export default function CheckNodeEnv(expectedEnv: string) {
 				`"process.env.NODE_ENV" must be "${expectedEnv}" to use this webpack config`
 			)
 		)
-		process.exit(2)
+		//	process.exit(2)
 	}
 }
