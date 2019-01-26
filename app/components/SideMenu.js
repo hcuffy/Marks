@@ -55,6 +55,15 @@ const SideMenu = ({ menuStyle, actions }) => (
 				/>
 			</Link>
 		</button>
+		<button type="button" className={styles.menu_btn}>
+			<Link onClick={actions.updateButtonStyle} to={GRADES}>
+				<i
+					data-id="graphs"
+					style={{ color: menuStyle.graphs }}
+					className="fa fa-chart-pie fa-3x"
+				/>
+			</Link>
+		</button>
 		<ToastContainer />
 	</div>
 )

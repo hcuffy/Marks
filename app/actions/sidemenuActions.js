@@ -8,7 +8,8 @@ export const updateButtonStyle = event => {
 		school: '',
 		classroom: '',
 		students: '',
-		exams: ''
+		exams: '',
+		graphs: ''
 	}
 
 	const styleUpdate = _.set(menuButtons, event.target.getAttribute('data-id'), 'black')

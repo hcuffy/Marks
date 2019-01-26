@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/SideMenu'
-import GradeTable from '../components/grades/GradeTable'
 
-class Grades extends Component {
+class Graphs extends Component {
 	componentDidMount() {
 		if (this.props.classData) {
 			this.props.actions.displayClassData()
@@ -18,7 +17,6 @@ class Grades extends Component {
 		return (
 			<div data-tid="grades_container">
 				<SideMenu />
-				<GradeTable />
 			</div>
 		)
 	}
@@ -35,4 +33,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Grades)
+)(Graphs)

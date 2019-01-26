@@ -7,7 +7,8 @@ const initialLoadState = {
 	school: '',
 	classroom: '',
 	students: '',
-	exams: ''
+	exams: '',
+	graphs: ''
 }
 
 const handleMenuStyle = (state = initialLoadState, action) => {
