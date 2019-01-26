@@ -9,6 +9,7 @@ import openClassList, { getSubjectData } from './subjectReducer'
 import filterExam from './examReducer'
 import handleStudentData from './studentsReducer'
 import gradeData from './gradeTableReducer'
+import handleMenuStyle from './sidemenuReducer'
 
 export default function createRootReducer(history: History) {
 	return combineReducers({
@@ -22,6 +23,7 @@ export default function createRootReducer(history: History) {
 		tabStatus: handleTabChange,
 		roomModal: handleClassModal,
 		subjectModal: handleSubjectModal,
+		menuStyle: handleMenuStyle,
 		gradeData
 	})
 }
