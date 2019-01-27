@@ -10,6 +10,7 @@ import filterExam from './examReducer'
 import handleStudentData from './studentsReducer'
 import gradeData from './gradeTableReducer'
 import handleMenuStyle from './sidemenuReducer'
+import graphData from './graphReducer'
 
 export default function createRootReducer(history: History) {
 	return combineReducers({
@@ -24,6 +25,7 @@ export default function createRootReducer(history: History) {
 		roomModal: handleClassModal,
 		subjectModal: handleSubjectModal,
 		menuStyle: handleMenuStyle,
-		gradeData
+		gradeData,
+		graphData
 	})
 }
