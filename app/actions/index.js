@@ -6,6 +6,7 @@ import * as exam from './examActions'
 import * as student from './studentActions'
 import * as grade from './gradeActions'
 import * as sidemenu from './sidemenuActions'
+import * as graph from './graphActions'
 
 export const actionCreators = {
 	handleSchoolData: school.handleSchoolData,
@@ -38,5 +39,6 @@ export const actionCreators = {
 	displayGradeData: grade.displayGradeData,
 	openGradeClassList: grade.openGradeClassList,
 	updateGrade: grade.updateGrade,
-	updateButtonStyle: sidemenu.updateButtonStyle
+	updateButtonStyle: sidemenu.updateButtonStyle,
+	openGraphClassList: graph.openGraphClassList
 }

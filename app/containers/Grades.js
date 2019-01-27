@@ -16,7 +16,7 @@ class Grades extends Component {
 
 	render() {
 		return (
-			<div data-tid="grades_container">
+			<div>
 				<SideMenu />
 				<GradeTable />
 			</div>

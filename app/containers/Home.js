@@ -12,7 +12,7 @@ class Home extends Component {
 
 	render() {
 		return (
-			<div data-tid="container">
+			<div>
 				<SideMenu />
 				<Homepage />
 			</div>

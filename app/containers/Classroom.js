@@ -17,7 +17,7 @@ class Classroom extends Component {
 
 	render() {
 		return (
-			<div data-tid="classroom_container">
+			<div>
 				<SideMenu />
 				<Navbar />
 				{this.props.classesActive && <Classes />}

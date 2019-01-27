@@ -8,7 +8,7 @@ import ExamList from './ExamList'
 
 const Exam = () => (
 	<div>
-		<div className={styles.room_div}>
+		<div className={styles.header_div}>
 			<h4>Add Exam</h4>
 			<ExamForm />
 		</div>

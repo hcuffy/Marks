@@ -15,7 +15,7 @@ class Students extends Component {
 
 	render() {
 		return (
-			<div data-tid="students_container">
+			<div>
 				<SideMenu />
 				<StudentsSection />
 			</div>
