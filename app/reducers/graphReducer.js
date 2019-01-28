@@ -9,7 +9,7 @@ const initialLoadState = {
 	openSubList: false
 }
 
-const graphData = (state = initialLoadState, action) => {
+const applyGraphData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case OPEN_GRAPH_CLASS_LIST: {
 		const classroomDropdown = !state.classroomDropdown
@@ -22,4 +22,4 @@ const graphData = (state = initialLoadState, action) => {
 	}
 }
 
-export default graphData
+export default applyGraphData

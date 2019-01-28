@@ -4,34 +4,34 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/room.css'
 
-const NavBar = ({ tabStatus, actions }) => (
+const NavBar = ({ tabChangeData, actions }) => (
 	<div className={styles.navbar_div}>
 		<ul className="nav nav-pills justify-content-center">
 			<li className="nav-item">
 				<a
 					role="button"
 					tabIndex={0}
-					className={`nav-link ${tabStatus.subjectClass}`}
+					className={`nav-link ${tabChangeData.subjectClass}`}
 					onClick={actions.changeClassroomTab}
 				>
-					{tabStatus.tabOneTitle}
+					{tabChangeData.tabOneTitle}
 				</a>
 			</li>
 			<li className="nav-item">
 				<a
 					role="button"
 					tabIndex={-1}
-					className={`nav-link ${tabStatus.testClass}`}
+					className={`nav-link ${tabChangeData.testClass}`}
 					onClick={actions.changeClassroomTab}
 				>
-					{tabStatus.tabTwoTitle}
+					{tabChangeData.tabTwoTitle}
 				</a>
 			</li>
 		</ul>
 	</div>
 )
 
-const mapStateToProps = state => ({ tabStatus: state.tabStatus })
+const mapStateToProps = state => ({ tabChangeData: state.tabChangeData })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)

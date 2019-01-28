@@ -13,7 +13,7 @@ const initialLoadState = {
 	subDrop: false
 }
 
-const gradeData = (state = initialLoadState, action) => {
+const applyGradeData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case DISPLAY_EXAM_TABLE: {
 		const { subjectName, subjectId } = action.payload.subjectData
@@ -36,4 +36,4 @@ const gradeData = (state = initialLoadState, action) => {
 	}
 }
 
-export default gradeData
+export default applyGradeData

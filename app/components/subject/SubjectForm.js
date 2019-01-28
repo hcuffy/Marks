@@ -7,8 +7,8 @@ import styles from './styles/subject.css'
 
 const _ = require('lodash')
 
-const SubjectForm = ({ selectClass, subjects, actions }) => {
-	const formLabels = _.pick(selectClass, ['name', 'abbreviation'])
+const SubjectForm = ({ classListData, subjects, actions }) => {
+	const formLabels = _.pick(classListData, ['name', 'abbreviation'])
 	const formInputs = _.values(formLabels).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}Sid`}>

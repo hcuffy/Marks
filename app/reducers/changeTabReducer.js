@@ -11,7 +11,7 @@ const initialLoadState = {
 	testClass: ''
 }
 
-const handleTabChange = (state = initialLoadState, action) => {
+const applyTabChange = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case CHANGE_CLASSROOM_TAB: {
 		const { classTab, testTab, subjectClass, testClass } = action.payload.tabState
@@ -28,4 +28,4 @@ const handleTabChange = (state = initialLoadState, action) => {
 	}
 }
 
-export default handleTabChange
+export default applyTabChange

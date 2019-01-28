@@ -21,8 +21,8 @@ export const cleanAndFilterData = (objectToClean, roomToClean) => {
 	return cleanedData
 }
 
-const RoomModal = ({ modalData, roomModal, actions }) => {
-	const selectedRoom = cleanAndFilterData(modalData, roomModal)
+const RoomModal = ({ modalData, classModalData, actions }) => {
+	const selectedRoom = cleanAndFilterData(modalData, classModalData)
 	const clickedRoom = _.keys(selectedRoom).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}_Id`}>
@@ -39,7 +39,7 @@ const RoomModal = ({ modalData, roomModal, actions }) => {
 	))
 	return (
 		<div>
-			<Modal isOpen={roomModal.showModal} backdrop>
+			<Modal isOpen={classModalData.showModal} backdrop>
 				<ModalHeader charCode="Y">{`Edit: ${selectedRoom.Name}`}</ModalHeader>
 				<form onSubmit={actions.updateRoom} method="POST">
 					<ModalBody>
@@ -49,7 +49,7 @@ const RoomModal = ({ modalData, roomModal, actions }) => {
 					<ModalFooter>
 						<Button
 							type="button"
-							data-id={roomModal.id}
+							data-id={classModalData.id}
 							onClick={actions.deleteRoom}
 							color="danger"
 						>
@@ -61,7 +61,7 @@ const RoomModal = ({ modalData, roomModal, actions }) => {
 						</Button>
 						<Button
 							type="button"
-							data-id={roomModal.id}
+							data-id={classModalData.id}
 							onClick={actions.roomModalDisplay}
 							color="secondary"
 						>
@@ -74,7 +74,7 @@ const RoomModal = ({ modalData, roomModal, actions }) => {
 	)
 }
 
-const mapStateToProps = state => ({ roomModal: state.roomModal })
+const mapStateToProps = state => ({ classModalData: state.classModalData })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)

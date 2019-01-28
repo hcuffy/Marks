@@ -15,8 +15,8 @@ const getClassroomId = dataList => {
 	return dataList[0].ClassroomId
 }
 
-const SubjectModal = ({ filteredData, subjectModal, actions }) => {
-	const requiredSubject = cleanAndFilterData(filteredData, subjectModal)
+const SubjectModal = ({ filteredData, subjectModalData, actions }) => {
+	const requiredSubject = cleanAndFilterData(filteredData, subjectModalData)
 	const selectedSubject = _.keys(requiredSubject).map((data, idx) => (
 		<div key={idx} className={styles.modal_form_div}>
 			<label className={styles.modal_form_label} htmlFor={`${data}_Id`}>
@@ -35,11 +35,12 @@ const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 		<input type="hidden" name="ClassroomId" data-id={getClassroomId(filteredData)} />
 	)
 
-	const subjectId = <input type="hidden" name="SubjectId" data-id={subjectModal.id} />
+	// eslint-disable-next-line max-len
+	const subjectId = <input type="hidden" name="SubjectId" data-id={subjectModalData.id} />
 
 	return (
 		<div>
-			<Modal isOpen={subjectModal.showSubjectModal} backdrop>
+			<Modal isOpen={subjectModalData.showSubjectModal} backdrop>
 				<ModalHeader>{`Edit: ${requiredSubject.Abbreviation}`}</ModalHeader>
 				<form onSubmit={actions.updateSubject} method="POST">
 					<ModalBody>
@@ -50,7 +51,7 @@ const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 					<ModalFooter>
 						<Button
 							type="button"
-							id={subjectModal.id}
+							id={subjectModalData.id}
 							onClick={actions.deleteSingleSubject}
 							color="danger"
 						>
@@ -62,7 +63,7 @@ const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 						</Button>
 						<Button
 							type="button"
-							data-id={subjectModal.id}
+							data-id={subjectModalData.id}
 							onClick={actions.subjectModalDisplay}
 							color="secondary"
 						>
@@ -75,7 +76,7 @@ const SubjectModal = ({ filteredData, subjectModal, actions }) => {
 	)
 }
 
-const mapStateToProps = state => ({ subjectModal: state.subjectModal })
+const mapStateToProps = state => ({ subjectModalData: state.subjectModalData })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)

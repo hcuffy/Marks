@@ -11,7 +11,7 @@ const initialLoadState = {
 	Check: false
 }
 
-const displayClassData = (state = initialLoadState, action) => {
+const applyClassData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case ADD_CLASSROOM_DATA: {
 		return _.assign({}, state, {
@@ -34,4 +34,4 @@ const displayClassData = (state = initialLoadState, action) => {
 	}
 }
 
-export default displayClassData
+export default applyClassData
