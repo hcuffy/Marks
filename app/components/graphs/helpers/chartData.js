@@ -1,5 +1,5 @@
-export const graphInfo = () => {
-	const chartData = {
+export const chartData = () => {
+	const data = {
 		labels: ['One',
 			'Two',
 			'Three',
@@ -28,5 +28,5 @@ export const graphInfo = () => {
 		]
 	}
 
-	return chartData
+	return data
 }
