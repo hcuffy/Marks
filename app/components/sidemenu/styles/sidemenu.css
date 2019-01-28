@@ -16,3 +16,7 @@
   border: none;
   background: #007bff;
 }
+
+.selectedButton {
+  color: 'black';
+}

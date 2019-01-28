@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
-import SideMenu from '../components/SideMenu'
+import SideMenu from '../components/sidemenu/SideMenu'
 import GradeTable from '../components/grades/GradeTable'
 
 class Grades extends Component {
