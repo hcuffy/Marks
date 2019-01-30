@@ -1,19 +1,23 @@
+const chartLabels = () => ['One',
+	'Two',
+	'Three',
+	'Four',
+	'Five',
+	'Six']
+
+const filteredData = () => [3,
+	4,
+	10,
+	6,
+	7,
+	3]
+
 export const chartData = () => ({
-	labels: ['One',
-		'Two',
-		'Three',
-		'Four',
-		'Five',
-		'Six'],
+	labels: chartLabels(),
 	datasets: [
 		{
 			label: 'School Grades',
-			data: [3,
-				4,
-				10,
-				6,
-				7,
-				3],
+			data: filteredData(),
 			backgroundColor: [
 				'rgba(255, 99, 132, 0.6)',
 				'rgba(54, 162, 235, 0.6)',

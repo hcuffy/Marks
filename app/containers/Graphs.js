@@ -8,6 +8,7 @@ import GraphOverview from '../components/graphs/GraphOverview'
 class Graphs extends Component {
 	componentDidMount() {
 		if (this.props.classData) {
+			this.props.actions.getAllGradeData()
 			this.props.actions.displayClassData()
 			this.props.actions.getSubjectData()
 			this.props.actions.getStudents()

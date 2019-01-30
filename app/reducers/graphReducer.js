@@ -1,4 +1,4 @@
-import { OPEN_GRAPH_CLASS_LIST } from '../constants/actionTypes'
+import { OPEN_GRAPH_CLASS_LIST, GET_ALL_GRADES } from '../constants/actionTypes'
 
 const _ = require('lodash')
 
@@ -16,6 +16,9 @@ const applyGraphData = (state = initialLoadState, action) => {
 		const openSubList = state.classroomDropdown
 		const classroom = action.payload
 		return _.assign({}, state, { classroomDropdown, openSubList, classroom })
+	}
+	case GET_ALL_GRADES: {
+		return _.assign({}, state, action.payload)
 	}
 	default:
 		return state

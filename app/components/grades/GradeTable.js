@@ -11,7 +11,6 @@ import GradeDropdown from './GradeDropdown'
 const _ = require('lodash')
 
 const dynamicHeader = ({ classroom, subjectName }) => {
-	console.log(subjectName)
 	if (
 		subjectName === '' ||
 		_.includes(subjectName, 'Select') ||
