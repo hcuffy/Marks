@@ -7,3 +7,11 @@ export const openGraphClassList = event => {
 		payload: classroom
 	}
 }
+
+export const displayClassGraph = event => {
+	console.log(event)
+	return {
+		type: null,
+		payload: null
+	}
+}
