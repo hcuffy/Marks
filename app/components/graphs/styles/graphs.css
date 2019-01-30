@@ -13,14 +13,9 @@
 }
 
 .chart {
-  width: 1000px !important;
-  height: 600px !important;
+  width: 920px !important;
+  height: 500px !important;
   position: fixed !important;
   left: 100px !important;
-  top: 100px !important;
+  top: 150px !important;
 }
-
-/* canvas {
-  width: 100% !important;
-  height: auto !important;
-} */
