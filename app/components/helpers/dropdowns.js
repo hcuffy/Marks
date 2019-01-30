@@ -1,5 +1,5 @@
 import React from 'react'
-import { DropdownItem } from 'reactstrap'
+import { DropdownItem, Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
 
 const _ = require('lodash')
 
@@ -22,3 +22,14 @@ export const getSubjectList = (examData, subjectData) => {
 	))
 	return items
 }
+
+export const createDropdown = (styling, openIt, action, { label }, options) => (
+	<div className={styling}>
+		<Dropdown isOpen={openIt} toggle={action}>
+			<DropdownToggle color="info" caret>
+				{label}
+			</DropdownToggle>
+			<DropdownMenu>{options}</DropdownMenu>
+		</Dropdown>
+	</div>
+)

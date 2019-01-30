@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { DropdownItem } from 'reactstrap'
+import { createDropdown } from '../helpers/dropdowns'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/ClassList'
 import styles from './styles/subject.css'
@@ -23,12 +24,13 @@ const Subjects = ({ classData, classListData, actions }) => {
 		<div className={styles.main_div}>
 			<div className={styles.subject_left}>
 				<h4 className={styles.center_header}>Subjects</h4>
-				<Dropdown isOpen={classListData.openModal} toggle={actions.openClassList}>
-					<DropdownToggle color="info" caret>
-						Select Class
-					</DropdownToggle>
-					<DropdownMenu>{subjectOptions}</DropdownMenu>
-				</Dropdown>
+				{createDropdown(
+					null,
+					classListData.openModal,
+					actions.openClassList,
+					{ label: 'Select Class' },
+					subjectOptions
+				)}
 				<SubjectList selectedSubject={selectedSubject} />
 			</div>
 			<div className={styles.subject_right}>

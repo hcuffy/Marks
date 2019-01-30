@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/graphs.css'
 import { sortData } from '../rooms/ClassList'
-import { getClassList, getSubjectList } from '../helpers/dropdowns'
+import { getClassList, getSubjectList, createDropdown } from '../helpers/dropdowns'
 
 const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
@@ -16,25 +15,20 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 	)
 	return (
 		<div className={styles.dropdown_main_div}>
-			<div className={styles.dropdown_div}>
-				<Dropdown
-					isOpen={graphData.classroomDropdown}
-					toggle={actions.openGraphClassList}
-				>
-					<DropdownToggle color="info" caret>
-						Select Class
-					</DropdownToggle>
-					<DropdownMenu>{classOptions}</DropdownMenu>
-				</Dropdown>
-			</div>
-			<div className={styles.dropdown_div}>
-				<Dropdown isOpen={graphData.openSubList} toggle={actions.displayGraph}>
-					<DropdownToggle color="info" caret>
-						Select Subject
-					</DropdownToggle>
-					<DropdownMenu>{subjectOptions}</DropdownMenu>
-				</Dropdown>
-			</div>
+			{createDropdown(
+				styles.dropdown_div,
+				graphData.classroomDropdown,
+				actions.openGraphClassList,
+				{ label: 'Select Class' },
+				classOptions
+			)}
+			{createDropdown(
+				styles.dropdown_div,
+				graphData.openSubList,
+				actions.displayClassGraph,
+				{ label: 'Select Subject' },
+				subjectOptions
+			)}
 		</div>
 	)
 }
