@@ -15,7 +15,7 @@ const generateFields = chosenExam => {
 				</label>
 				<input
 					name={_.invert(chosenExam)[chosenExam.Title]}
-					className={`${styles.form_input} form-control`}
+					className={`${styles.form_input} ${styles.modalInput} form-control`}
 					data-id={`${_.invert(chosenExam)[chosenExam.Title]}_Id`}
 					type="text"
 					defaultValue={chosenExam.Title}

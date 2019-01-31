@@ -1,45 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import { cleanAndFilterData } from '../rooms/RoomModal'
+import { modalFrame } from '../helpers/editModal'
 import generateFields from './helpers/modalHelper'
 
 const ExamModal = ({ examModal, examId, exams, subjectId, actions }) => {
 	const requiredExam = cleanAndFilterData(exams, { id: examId })
 	const examFormData = generateFields(requiredExam)
-
+	const hiddenInputs = (
+		<div>
+			<input type="hidden" name="SubjectId" data-id={subjectId} />
+			<input type="hidden" name="ExamId" data-id={examId} />
+		</div>
+	)
+	const footerData = {
+		examId,
+		subjectId,
+		deleteAction: actions.deleteSingleExam,
+		closeAction: actions.showSingleExam
+	}
 	return (
 		<div>
-			<Modal isOpen={examModal} backdrop>
-				<ModalHeader>Edit:</ModalHeader>
-				<form onSubmit={actions.updateExam} method="POST">
-					<ModalBody>
-						{examFormData}
-						<input type="hidden" name="SubjectId" data-id={subjectId} />
-						<input type="hidden" name="ExamId" data-id={examId} />
-					</ModalBody>
-					<ModalFooter>
-						<Button
-							data-id={examId}
-							name={subjectId}
-							onClick={actions.deleteSingleExam}
-							type="button"
-							color="danger"
-						>
-							Delete
-						</Button>
-
-						<Button type="submit" color="primary">
-							Update
-						</Button>
-						<Button onClick={actions.showSingleExam} color="secondary">
-							Close
-						</Button>
-					</ModalFooter>
-				</form>
-			</Modal>
+			{/* eslint-disable-next-line max-len */}
+			{modalFrame(examModal, actions.updateExam, examFormData, hiddenInputs, footerData)}
 		</div>
 	)
 }
