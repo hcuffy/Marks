@@ -14,9 +14,8 @@ const checkChange = (classData, actions) => {
 	}
 }
 
-const Classes = ({ classData, actions }) => {
-	const formLabels = _.omit(classData, ['classData', 'Check'])
-	const formInputs = _.keys(formLabels).map((data, idx) => (
+const createFormInputs = labels =>
+	_.keys(labels).map((data, idx) => (
 		<div key={idx} className={styles.room_form}>
 			<label className={styles.room_form_label} htmlFor={`${data}Id`}>
 				{data}:
@@ -26,10 +25,14 @@ const Classes = ({ classData, actions }) => {
 				className="form-control"
 				id={`${data}Id`}
 				type="text"
-				defaultValue={formLabels[data]}
+				defaultValue={labels[data]}
 			/>
 		</div>
 	))
+const Classes = ({ classData, actions }) => {
+	const formLabels = _.omit(classData, ['classData', 'Check'])
+	const formInputs = createFormInputs(formLabels)
+
 	checkChange(classData, actions)
 	return (
 		<div className={styles.room_div}>
