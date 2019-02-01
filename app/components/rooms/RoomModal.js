@@ -44,7 +44,7 @@ const RoomModal = ({ modalData, classModalData, actions }) => {
 	const hiddenInput = <input type="hidden" name="OldName" data-id={selectedRoom.Name} />
 	const footerData = {
 		dataId: classModalData.id,
-		nameId: undefined,
+		nameId: null,
 		closeId: classModalData.id,
 		deleteAction: actions.deleteRoom,
 		closeAction: actions.roomModalDisplay

@@ -4,7 +4,7 @@ import styles from '../styles/students.css'
 
 const _ = require('lodash')
 
-const dropDownFields = (chosenStudent, classdata) => {
+const dropDownFields = (studentFields, chosenStudent, classdata) => {
 	const classroomOptions = _.values(classdata).map((data, idx) => (
 		<option key={idx} className="form-control dropdown">
 			{data.Name}
@@ -12,6 +12,7 @@ const dropDownFields = (chosenStudent, classdata) => {
 	))
 	const dropList = (
 		<div>
+			{studentFields}
 			<div className={styles.form_div_edit}>
 				<label className={styles.form_label_edit} htmlFor="gSelect">
 					Gender:
@@ -51,23 +52,25 @@ const dropDownFields = (chosenStudent, classdata) => {
 const generateFields = (chosenStudent, classdata) => {
 	const studentFields = _.keys(_.pick(chosenStudent, ['Firstname', 'Lastname'])).map(
 		(data, idx) => (
-			<div key={idx} className={styles.form_div_edit}>
-				<label className={styles.form_label_edit} htmlFor={`${data}_Id`}>
-					{`${data}*:`}
-				</label>
-				<input
-					name={data}
-					required
-					className={`${styles.form_input} form-control`}
-					data-id={`${data}_Id`}
-					type="text"
-					defaultValue={chosenStudent[data]}
-				/>
+			<div>
+				<div key={idx} className={styles.form_div_edit}>
+					<label className={styles.form_label_edit} htmlFor={`${data}_Id`}>
+						{`${data}*:`}
+					</label>
+					<input
+						name={data}
+						required
+						className={`${styles.form_input} form-control`}
+						data-id={`${data}_Id`}
+						type="text"
+						defaultValue={chosenStudent[data]}
+					/>
+				</div>
 			</div>
 		)
 	)
-	const dropDowns = dropDownFields(chosenStudent, classdata)
-	return { studentFields, dropDowns }
+	const studentForm = dropDownFields(studentFields, chosenStudent, classdata)
+	return studentForm
 }
 
 export default generateFields
