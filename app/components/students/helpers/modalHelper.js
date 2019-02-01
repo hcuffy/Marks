@@ -4,45 +4,53 @@ import styles from '../styles/students.css'
 
 const _ = require('lodash')
 
+const formDropdowns = ({ label, id, defaultValue, options }) => (
+	<div className={styles.form_div_edit}>
+		<label className={styles.form_label_edit} htmlFor={id}>
+			{label}
+		</label>
+		<select
+			className="form-control"
+			type="text"
+			data-id={id}
+			name="Gender"
+			defaultValue={defaultValue}
+		>
+			{options}
+		</select>
+	</div>
+)
 const dropDownFields = (studentFields, chosenStudent, classdata) => {
 	const classroomOptions = _.values(classdata).map((data, idx) => (
 		<option key={idx} className="form-control dropdown">
 			{data.Name}
 		</option>
 	))
+	const genderData = {
+		label: 'Gender:',
+		id: 'gSelect',
+		defaultValue: chosenStudent.Gender,
+		options: [
+			<option key="0" className="form-control dropdown">
+				Male
+			</option>, <option key="1" className="form-control dropdown">
+				Female
+			</option>
+		]
+	}
+
+	const classData = {
+		label: 'Classroom::',
+		id: 'cSelect',
+		defaultValue: chosenStudent.Classroom,
+		options: classroomOptions
+	}
+
 	const dropList = (
 		<div>
 			{studentFields}
-			<div className={styles.form_div_edit}>
-				<label className={styles.form_label_edit} htmlFor="gSelect">
-					Gender:
-				</label>
-				<select
-					className="form-control"
-					type="text"
-					data-id="gSelect"
-					name="Gender"
-					defaultValue={chosenStudent.Gender}
-				>
-					<option className="form-control dropdown">Male</option>
-					<option className="form-control dropdown">Female</option>
-				</select>
-			</div>
-
-			<div className={styles.form_div_edit}>
-				<label className={styles.form_label_edit} htmlFor="cSelect">
-					Classroom:
-				</label>
-				<select
-					className="form-control"
-					type="text"
-					name="Classroom"
-					data-id="cSelect"
-					defaultValue={chosenStudent.Classroom}
-				>
-					{classroomOptions}
-				</select>
-			</div>
+			{formDropdowns(genderData)}
+			{formDropdowns(classData)}
 		</div>
 	)
 
