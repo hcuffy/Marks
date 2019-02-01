@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
+import { modalFrame } from '../helpers/editModal'
 import styles from './styles/room.css'
 
 const _ = require('lodash')
@@ -21,9 +21,8 @@ export const cleanAndFilterData = (objectToClean, roomToClean) => {
 	return cleanedData
 }
 
-const RoomModal = ({ modalData, classModalData, actions }) => {
-	const selectedRoom = cleanAndFilterData(modalData, classModalData)
-	const clickedRoom = _.keys(selectedRoom).map((data, idx) => (
+const createInputs = selectedRoom =>
+	_.keys(selectedRoom).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}_Id`}>
 				{data}:
@@ -37,39 +36,28 @@ const RoomModal = ({ modalData, classModalData, actions }) => {
 			/>
 		</div>
 	))
+
+const RoomModal = ({ modalData, classModalData, actions }) => {
+	const selectedRoom = cleanAndFilterData(modalData, classModalData)
+	const clickedRoom = createInputs(selectedRoom)
+	console.log(selectedRoom)
+	const hiddenInput = <input type="hidden" name="OldName" data-id={selectedRoom.Name} />
+	const footerData = {
+		dataId: classModalData.id,
+		nameId: undefined,
+		closeId: classModalData.id,
+		deleteAction: actions.deleteRoom,
+		closeAction: actions.roomModalDisplay
+	}
 	return (
 		<div>
-			<Modal isOpen={classModalData.showModal} backdrop>
-				<ModalHeader charCode="Y">{`Edit: ${selectedRoom.Name}`}</ModalHeader>
-				<form onSubmit={actions.updateRoom} method="POST">
-					<ModalBody>
-						{clickedRoom}
-						<input type="hidden" name="OldName" data-id={selectedRoom.Name} />
-					</ModalBody>
-					<ModalFooter>
-						<Button
-							type="button"
-							data-id={classModalData.id}
-							onClick={actions.deleteRoom}
-							color="danger"
-						>
-							Delete
-						</Button>
-
-						<Button type="submit" color="primary">
-							Update
-						</Button>
-						<Button
-							type="button"
-							data-id={classModalData.id}
-							onClick={actions.roomModalDisplay}
-							color="secondary"
-						>
-							Close
-						</Button>
-					</ModalFooter>
-				</form>
-			</Modal>
+			{modalFrame(
+				classModalData.showModal,
+				actions.updateRoom,
+				clickedRoom,
+				hiddenInput,
+				footerData
+			)}
 		</div>
 	)
 }
