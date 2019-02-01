@@ -8,18 +8,14 @@ import StudentModal from './StudentModal'
 
 const _ = require('lodash')
 
-const generateStudentList = (students, actions) => {
-	if (_.isUndefined(students)) {
-		return []
-	}
-	const sortedStudents = _.sortBy(students, ['Firstname'], ['asc'])
-	const completeList = sortedStudents.map((data, idx) => (
+const generateListBtn = (students, action) =>
+	students.map((data, idx) => (
 		<button
 			key={idx}
 			data-id={data._id}
 			type="button"
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
-			onClick={actions.showStudentModal}
+			onClick={action}
 		>
 			{`${data.Firstname} ${data.Lastname}`}
 
@@ -35,7 +31,13 @@ const generateStudentList = (students, actions) => {
 		</button>
 	))
 
-	return completeList
+const generateStudentList = (students, actions) => {
+	if (_.isUndefined(students)) {
+		return []
+	}
+	const sortedStudents = _.sortBy(students, ['Firstname'], ['asc'])
+
+	return generateListBtn(sortedStudents, actions.showStudentModal)
 }
 
 const StudentList = ({ students, actions }) => {
