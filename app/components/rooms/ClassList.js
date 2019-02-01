@@ -18,7 +18,7 @@ const ClassList = ({ listData, actions }) => {
 	const listInputs = cleanedData.map((data, idx) => (
 		<button
 			key={idx}
-			id={data._id}
+			data-id={data._id}
 			type="button"
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
 			onClick={actions.roomModalDisplay}
@@ -29,6 +29,7 @@ const ClassList = ({ listData, actions }) => {
 			</span>
 		</button>
 	))
+	console.log(listInputs)
 	return (
 		<div className={styles.list_div}>
 			<RoomModal modalData={cleanedData} />
