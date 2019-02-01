@@ -1,3 +1,5 @@
+const _ = require('lodash')
+
 const chartLabels = () => ['One',
 	'Two',
 	'Three',
@@ -5,19 +7,33 @@ const chartLabels = () => ['One',
 	'Five',
 	'Six']
 
-const filteredData = () => [3,
-	4,
-	10,
-	6,
-	7,
-	3]
+const chartHeader = chartTitle => (chartTitle === null ? 'School Grades' : chartTitle)
 
-export const chartData = () => ({
+const filteredData = grades => {
+	const sumArr = []
+
+	for (let i = 1; i < 7; i += 1) {
+		sumArr.push(
+			_.reduce(
+				grades,
+				(sum, current) => {
+					const temp = parseInt(current.grade, 10)
+					return temp === i ? sum + 1 : sum
+				},
+				0
+			)
+		)
+	}
+
+	return sumArr
+}
+
+export const chartData = (grades, chartTitle) => ({
 	labels: chartLabels(),
 	datasets: [
 		{
-			label: 'School Grades',
-			data: filteredData(),
+			label: chartHeader(chartTitle),
+			data: filteredData(grades),
 			backgroundColor: [
 				'rgba(255, 99, 132, 0.6)',
 				'rgba(54, 162, 235, 0.6)',

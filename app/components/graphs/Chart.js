@@ -7,14 +7,15 @@ import { chartData } from './helpers/chartData'
 import { chartOptions } from './helpers/chartOptions'
 import styles from './styles/graphs.css'
 
-const Charts = () => (
+const Charts = ({ grades, chartTitle }) => (
 	<div className={styles.chart}>
-		<Bar data={chartData()} options={chartOptions()} />
+		<Bar data={chartData(grades, chartTitle)} options={chartOptions()} />
 	</div>
 )
 
 const mapStateToProps = state => ({
-	grades: state.grades
+	grades: state.graphData.grades,
+	chartTitle: state.graphData.chartTitle
 })
 
 const mapDispatchToProps = dispatch => ({

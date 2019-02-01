@@ -6,7 +6,8 @@ const initialLoadState = {
 	classroom: '',
 	subjectName: '',
 	classroomDropdown: false,
-	openSubList: false
+	openSubList: false,
+	chartTitle: null
 }
 
 const applyGraphData = (state = initialLoadState, action) => {
@@ -14,8 +15,13 @@ const applyGraphData = (state = initialLoadState, action) => {
 	case OPEN_GRAPH_CLASS_LIST: {
 		const classroomDropdown = !state.classroomDropdown
 		const openSubList = state.classroomDropdown
-		const classroom = action.payload
-		return _.assign({}, state, { classroomDropdown, openSubList, classroom })
+		const { classroom, chartTitle } = action.payload
+		return _.assign({}, state, {
+			classroomDropdown,
+			openSubList,
+			classroom,
+			chartTitle
+		})
 	}
 	case GET_ALL_GRADES: {
 		return _.assign({}, state, action.payload)
