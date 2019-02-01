@@ -16,8 +16,9 @@ const ExamModal = ({ examModal, examId, exams, subjectId, actions }) => {
 		</div>
 	)
 	const footerData = {
-		examId,
-		subjectId,
+		dataId: examId,
+		nameId: subjectId,
+		closeId: null,
 		deleteAction: actions.deleteSingleExam,
 		closeAction: actions.showSingleExam
 	}

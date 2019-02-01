@@ -1,11 +1,11 @@
 import React from 'react'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 
-const modalFooter = ({ dataId, subjectId, deleteAction, closeAction }) => (
+const modalFooter = ({ dataId, nameId, closeId, deleteAction, closeAction }) => (
 	<ModalFooter>
 		<Button
 			data-id={dataId}
-			name={subjectId}
+			name={nameId}
 			onClick={deleteAction}
 			type="button"
 			color="danger"
@@ -16,7 +16,7 @@ const modalFooter = ({ dataId, subjectId, deleteAction, closeAction }) => (
 		<Button type="submit" color="primary">
 			Update
 		</Button>
-		<Button onClick={closeAction} color="secondary">
+		<Button onClick={closeAction} data-id={closeId} color="secondary">
 			Close
 		</Button>
 	</ModalFooter>
