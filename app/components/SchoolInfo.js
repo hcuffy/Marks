@@ -6,8 +6,8 @@ import styles from './styles/schoolinfo.css'
 
 const _ = require('lodash')
 
-const SchoolInfo = ({ schoolData, actions }) => {
-	const entry = _.keys(schoolData).map((data, idx) => (
+const schoolInfoForm = info =>
+	_.keys(info).map((data, idx) => (
 		<div key={idx} className={styles.form_inner_div}>
 			<label className={styles.form_label} htmlFor={`school${data}`}>
 				{data}:
@@ -17,10 +17,13 @@ const SchoolInfo = ({ schoolData, actions }) => {
 				className="form-control"
 				id={`school${data}`}
 				type="text"
-				defaultValue={schoolData[data]}
+				defaultValue={info[data]}
 			/>
 		</div>
 	))
+
+const SchoolInfo = ({ schoolData, actions }) => {
+	const entry = schoolInfoForm(schoolData)
 
 	return (
 		<div className={styles.div_wrapper}>

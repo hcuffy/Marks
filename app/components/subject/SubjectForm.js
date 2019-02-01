@@ -7,9 +7,8 @@ import styles from './styles/subject.css'
 
 const _ = require('lodash')
 
-const SubjectForm = ({ classListData, subjects, actions }) => {
-	const formLabels = _.pick(classListData, ['name', 'abbreviation'])
-	const formInputs = _.values(formLabels).map((data, idx) => (
+const generateInputs = labels =>
+	_.values(labels).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}Sid`}>
 				{data}:
@@ -18,6 +17,10 @@ const SubjectForm = ({ classListData, subjects, actions }) => {
 			<input name={data} className="form-control" data-id={`${data}Sid`} type="text" />
 		</div>
 	))
+
+const SubjectForm = ({ classListData, subjects, actions }) => {
+	const formLabels = _.pick(classListData, ['name', 'abbreviation'])
+	const formInputs = generateInputs(formLabels)
 
 	const selectOption = _.values(subjects).map((data, idx) => (
 		<option className="form-control dropup" key={idx}>

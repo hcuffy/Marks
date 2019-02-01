@@ -18,16 +18,14 @@ export const filterSubjects = (subjectData, chosenClass) => {
 
 	return chosenSubjects
 }
-
-const SubjectList = ({ selectedSubject, subjectData, actions }) => {
-	const filteredData = filterSubjects(subjectData.data, selectedSubject)
-	const subjectList = filteredData.map((data, idx) => (
+const listOfButtons = (filteredData, action) =>
+	filteredData.map((data, idx) => (
 		<button
 			key={idx}
 			data-id={data._id}
 			type="button"
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
-			onClick={actions.subjectModalDisplay}
+			onClick={action}
 		>
 			{data.Abbreviation}
 			<span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
@@ -35,6 +33,10 @@ const SubjectList = ({ selectedSubject, subjectData, actions }) => {
 			</span>
 		</button>
 	))
+
+const SubjectList = ({ selectedSubject, subjectData, actions }) => {
+	const filteredData = filterSubjects(subjectData.data, selectedSubject)
+	const subjectList = listOfButtons(filteredData, actions.subjectModalDisplay)
 
 	return (
 		<div className={styles.list_div}>
