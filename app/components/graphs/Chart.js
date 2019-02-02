@@ -3,19 +3,25 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Bar } from 'react-chartjs-2'
 import { actionCreators } from '../../actions/index'
-import { chartData } from './helpers/chartData'
+import { chartData, filterBySubject } from './helpers/chartData'
 import { chartOptions } from './helpers/chartOptions'
 import styles from './styles/graphs.css'
 
-const Charts = ({ grades, chartTitle }) => (
-	<div className={styles.chart}>
-		<Bar data={chartData(grades, chartTitle)} options={chartOptions()} />
-	</div>
-)
+const Charts = ({ allGrades, chartTitle, subjectId, exams }) => {
+	const grades = subjectId === null ? allGrades : filterBySubject(subjectId, exams)
+
+	return (
+		<div className={styles.chart}>
+			<Bar data={chartData(grades, chartTitle)} options={chartOptions()} />
+		</div>
+	)
+}
 
 const mapStateToProps = state => ({
-	grades: state.graphData.grades,
-	chartTitle: state.graphData.chartTitle
+	allGrades: state.graphData.grades,
+	exams: state.graphData.exams,
+	chartTitle: state.graphData.chartTitle,
+	subjectId: state.graphData.subjectId
 })
 
 const mapDispatchToProps = dispatch => ({

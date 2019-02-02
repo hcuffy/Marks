@@ -25,7 +25,7 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 			{createDropdown(
 				styles.dropdown_div,
 				graphData.openSubList,
-				actions.displayClassGraph,
+				actions.displaySubjectGraph,
 				{ label: 'Select Subject' },
 				subjectOptions
 			)}

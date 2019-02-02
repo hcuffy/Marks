@@ -1,10 +1,16 @@
-import { OPEN_GRAPH_CLASS_LIST, GET_ALL_GRADES } from '../constants/actionTypes'
+import {
+	OPEN_GRAPH_CLASS_LIST,
+	GET_ALL_GRADES,
+	DISPLAY_SUBJECT_GRADES,
+	GET_ALL_EXAMS
+} from '../constants/actionTypes'
 
 const _ = require('lodash')
 
 const initialLoadState = {
 	classroom: '',
 	subjectName: '',
+	subjectId: null,
 	classroomDropdown: false,
 	openSubList: false,
 	chartTitle: null
@@ -23,6 +29,22 @@ const applyGraphData = (state = initialLoadState, action) => {
 			chartTitle
 		})
 	}
+
+	case DISPLAY_SUBJECT_GRADES: {
+		const openSubList = state.classroomDropdown
+
+		const { subjectId, chartTitle } = action.payload
+		return _.assign({}, state, {
+			openSubList,
+			subjectId,
+			chartTitle
+		})
+	}
+	case GET_ALL_EXAMS: {
+		const { exams } = action.payload
+		return _.assign({}, state, { exams })
+	}
+
 	case GET_ALL_GRADES: {
 		return _.assign({}, state, action.payload)
 	}

@@ -40,7 +40,6 @@ const createInputs = selectedRoom =>
 const RoomModal = ({ modalData, classModalData, actions }) => {
 	const selectedRoom = cleanAndFilterData(modalData, classModalData)
 	const clickedRoom = createInputs(selectedRoom)
-	console.log(selectedRoom)
 	const hiddenInput = <input type="hidden" name="OldName" data-id={selectedRoom.Name} />
 	const footerData = {
 		dataId: classModalData.id,

@@ -41,6 +41,7 @@ export const actionCreators = {
 	updateGrade: grade.updateGrade,
 	updateButtonStyle: sidemenu.updateButtonStyle,
 	openGraphClassList: graph.openGraphClassList,
-	displayClassGraph: graph.displayClassGraph,
-	getAllGradeData: graph.getAllGradeData
+	displaySubjectGraph: graph.displaySubjectGraph,
+	getAllGradeData: graph.getAllGradeData,
+	getGraphExamData: graph.getGraphExamData
 }
