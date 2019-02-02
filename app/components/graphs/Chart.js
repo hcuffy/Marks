@@ -8,7 +8,8 @@ import { chartOptions } from './helpers/chartOptions'
 import styles from './styles/graphs.css'
 
 const Charts = ({ allGrades, chartTitle, subjectId, exams }) => {
-	const grades = subjectId === null ? allGrades : filterBySubject(subjectId, exams)
+	const grades =
+		subjectId === null ? allGrades : filterBySubject(subjectId, exams, allGrades)
 
 	return (
 		<div className={styles.chart}>
