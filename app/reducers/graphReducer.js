@@ -29,10 +29,8 @@ const applyGraphData = (state = initialLoadState, action) => {
 			chartTitle
 		})
 	}
-
 	case DISPLAY_SUBJECT_GRADES: {
 		const openSubList = state.classroomDropdown
-
 		const { subjectId, chartTitle } = action.payload
 		return _.assign({}, state, {
 			openSubList,

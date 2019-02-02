@@ -11,7 +11,6 @@ export const openGraphClassList = event => {
 	if (event.target.type !== 'button') {
 		return
 	}
-
 	const data = {
 		classroom: event.target.innerText,
 		chartTitle: event.target.innerText

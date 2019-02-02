@@ -8,7 +8,6 @@ export const filterBySubject = (subjectId, exams, grades) => {
 		const temp = _.filter(grades, { examId: filteredExams[i]._id })
 		filteredGrades.push(...temp)
 	}
-
 	return filteredGrades
 }
 
@@ -39,22 +38,42 @@ const filteredData = grades => {
 
 	return sumArr
 }
+const filterByClass = (allGrades, chartTitle, subjects, exams) => {
+	const filteredGrades = []
+	const filteredClass = _.filter(subjects, { Room: chartTitle })
 
-export const chartData = (grades, chartTitle) => ({
-	labels: chartLabels(),
-	datasets: [
-		{
-			label: chartHeader(chartTitle),
-			data: filteredData(grades),
-			backgroundColor: [
-				'rgba(255, 99, 132, 0.6)',
-				'rgba(54, 162, 235, 0.6)',
-				'rgba(255, 206, 86, 0.6)',
-				'rgba(75, 192, 192, 0.6)',
-				'rgba(153, 102, 255, 0.6)',
-				'rgba(255, 159, 64, 0.6)',
-				'rgba(255, 99, 132, 0.6)'
-			]
-		}
-	]
-})
+	for (let i = 0; i < filteredClass.length; i += 1) {
+		const temp = filterBySubject(filteredClass[i]._id, exams, allGrades)
+		filteredGrades.push(...temp)
+	}
+	return filteredGrades
+}
+
+export const chartData = (allGrades, chartTitle, subjects, subjectId, exams) => {
+	const grades = []
+	if (subjectId !== null) {
+		grades.push(...filterBySubject(subjectId, exams, allGrades))
+	} else if (chartTitle !== null) {
+		grades.push(...filterByClass(allGrades, chartTitle, subjects, exams))
+	} else {
+		_.merge(grades, allGrades)
+	}
+	return {
+		labels: chartLabels(),
+		datasets: [
+			{
+				label: chartHeader(chartTitle),
+				data: filteredData(grades),
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.6)',
+					'rgba(54, 162, 235, 0.6)',
+					'rgba(255, 206, 86, 0.6)',
+					'rgba(75, 192, 192, 0.6)',
+					'rgba(153, 102, 255, 0.6)',
+					'rgba(255, 159, 64, 0.6)',
+					'rgba(255, 99, 132, 0.6)'
+				]
+			}
+		]
+	}
+}
