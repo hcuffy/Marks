@@ -24,6 +24,17 @@ export const getSubjectList = (examData, subjectData) => {
 	return items
 }
 
+export const getExamList = (exams, subjectId) => {
+	const selectedExams = _.filter(exams, ['SubjectId', subjectId])
+	const items = selectedExams.map((data, idx) => (
+		<DropdownItem key={idx} name={data.SubjectId} data-id={data._id}>
+			{data.Title}
+		</DropdownItem>
+	))
+
+	return items
+}
+
 export const createDropdown = (styling, openIt, action, { label }, options) => (
 	<div className={styling}>
 		<Dropdown isOpen={openIt} toggle={action}>

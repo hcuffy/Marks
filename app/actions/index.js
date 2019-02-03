@@ -43,5 +43,6 @@ export const actionCreators = {
 	openGraphClassList: graph.openGraphClassList,
 	displaySubjectGraph: graph.displaySubjectGraph,
 	getAllGradeData: graph.getAllGradeData,
-	getGraphExamData: graph.getGraphExamData
+	getGraphExamData: graph.getGraphExamData,
+	displayExamGraph: graph.displayExamGraph
 }

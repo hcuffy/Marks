@@ -7,23 +7,14 @@ import { chartData } from './helpers/chartData'
 import { chartOptions } from './helpers/chartOptions'
 import styles from './styles/graphs.css'
 
-const Charts = ({ allGrades, chartTitle, subjectId, exams, subjects }) => (
-	// const grades =
-	// 	subjectId === null ? allGrades : filterBySubject(subjectId, exams, allGrades)
-
+const Charts = ({ graphData, subjects }) => (
 	<div className={styles.chart}>
-		<Bar
-			data={chartData(allGrades, chartTitle, subjects, subjectId, exams)}
-			options={chartOptions()}
-		/>
+		<Bar data={chartData(graphData, subjects)} options={chartOptions()} />
 	</div>
 )
 
 const mapStateToProps = state => ({
-	allGrades: state.graphData.grades,
-	exams: state.graphData.exams,
-	chartTitle: state.graphData.chartTitle,
-	subjectId: state.graphData.subjectId,
+	graphData: state.graphData,
 	subjects: state.subjectData.data
 })
 

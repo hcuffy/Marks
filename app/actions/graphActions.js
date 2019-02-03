@@ -2,6 +2,7 @@ import {
 	OPEN_GRAPH_CLASS_LIST,
 	GET_ALL_GRADES,
 	DISPLAY_SUBJECT_GRADES,
+	DISPLAY_EXAM_GRADES,
 	GET_ALL_EXAMS
 } from '../constants/actionTypes'
 import { getAllGrades } from '../database/gradeCollection'
@@ -14,7 +15,8 @@ export const openGraphClassList = event => dispatch => {
 
 	const data = {
 		classroom: event.target.innerText,
-		chartTitle: event.target.innerText
+		chartTitle: event.target.innerText,
+		chartToDisplay: 'class'
 	}
 
 	dispatch({
@@ -30,11 +32,29 @@ export const displaySubjectGraph = event => dispatch => {
 
 	const data = {
 		subjectId: event.target.getAttribute('data-id'),
-		chartTitle: event.target.innerText
+		chartTitle: event.target.innerText,
+		chartToDisplay: 'subject'
 	}
 
 	dispatch({
 		type: DISPLAY_SUBJECT_GRADES,
+		payload: data
+	})
+}
+
+export const displayExamGraph = event => dispatch => {
+	if (event.target.type !== 'button') {
+		return
+	}
+
+	const data = {
+		examId: event.target.getAttribute('data-id'),
+		chartTitle: event.target.innerText,
+		chartToDisplay: 'exam'
+	}
+
+	dispatch({
+		type: DISPLAY_EXAM_GRADES,
 		payload: data
 	})
 }

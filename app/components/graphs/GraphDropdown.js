@@ -8,23 +8,31 @@ import {
 	getClassList,
 	getSubjectList,
 	createDropdown,
+	getExamList,
 	notifyIfEmpty
 } from '../helpers/dropdowns'
 
 const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
+	const {
+		subjectId,
+		exams,
+		classroom,
+		classroomDropdown,
+		openSubList,
+		openExamList
+	} = graphData
 	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList(
-		{ selectedRoom: graphData.classroom },
-		subjectData
-	)
-	notifyIfEmpty(subjectOptions, graphData.openSubList)
+	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
+	const examOptions = getExamList(exams, subjectId)
+
+	notifyIfEmpty(subjectOptions, openSubList)
 
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
 				styles.dropdown_div,
-				graphData.classroomDropdown,
+				classroomDropdown,
 				actions.openGraphClassList,
 				{ label: 'Select Class' },
 				classOptions
@@ -35,6 +43,13 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 				actions.displaySubjectGraph,
 				{ label: 'Select Subject' },
 				subjectOptions
+			)}
+			{createDropdown(
+				styles.dropdown_div,
+				openExamList,
+				actions.displayExamGraph,
+				{ label: 'Select Exam' },
+				examOptions
 			)}
 		</div>
 	)
