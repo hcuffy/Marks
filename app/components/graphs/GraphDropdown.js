@@ -4,7 +4,12 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/graphs.css'
 import { sortData } from '../rooms/ClassList'
-import { getClassList, getSubjectList, createDropdown } from '../helpers/dropdowns'
+import {
+	getClassList,
+	getSubjectList,
+	createDropdown,
+	notifyIfEmpty
+} from '../helpers/dropdowns'
 
 const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
@@ -13,6 +18,8 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 		{ selectedRoom: graphData.classroom },
 		subjectData
 	)
+	notifyIfEmpty(subjectOptions, graphData.openSubList)
+
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
