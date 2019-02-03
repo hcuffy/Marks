@@ -16,21 +16,21 @@ const changeTab = tabTitle => {
 	return newState
 }
 
-export const changeClassroomTab = event => {
+export const changeClassroomTab = event => dispatch => {
 	const clickedTabTitle = event.target.text
 	const clickedTabState = event.target.className.split(' ')[1]
 
 	if (clickedTabState !== 'active') {
 		const tabState = changeTab(clickedTabTitle)
-		return {
+		dispatch({
 			type: CHANGE_CLASSROOM_TAB,
 			payload: { tabState }
-		}
+		})
 	}
-	return {
+	dispatch({
 		type: '',
 		payload: {}
-	}
+	})
 }
 
 export const handleClassData = event => async dispatch => {

@@ -6,17 +6,17 @@ import {
 } from '../constants/actionTypes'
 import { addSubjectData, getAllSubjects } from '../database/subjectCollection'
 
-export const openClassList = event => {
+export const openClassList = event => dispatch => {
 	event.preventDefault()
 
 	const subject = event.target.innerText
-	return {
+	dispatch({
 		type: UPDATE_CLASS_LIST,
 		payload: subject
-	}
+	})
 }
 
-export const addNewSubject = event => {
+export const addNewSubject = event => dispatch => {
 	event.preventDefault()
 
 	const formData = {
@@ -27,10 +27,10 @@ export const addNewSubject = event => {
 
 	event.target.reset()
 	addSubjectData(formData)
-	return {
+	dispatch({
 		type: ADD_NEW_SUBJECT,
 		payload: {}
-	}
+	})
 }
 
 export const getSubjectData = () => async dispatch => {
@@ -43,11 +43,11 @@ export const getSubjectData = () => async dispatch => {
 	}
 }
 
-export const showSubject = event => {
+export const showSubject = event => dispatch => {
 	const subject = event.target.innerText
 	getSubjectData()
-	return {
+	dispatch({
 		type: GET_SINGLE_SUBJECT,
 		payload: subject
-	}
+	})
 }

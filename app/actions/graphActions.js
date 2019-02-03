@@ -7,22 +7,23 @@ import {
 import { getAllGrades } from '../database/gradeCollection'
 import { getExamData } from '../database/examCollection'
 
-export const openGraphClassList = event => {
+export const openGraphClassList = event => dispatch => {
 	if (event.target.type !== 'button') {
 		return
 	}
+
 	const data = {
 		classroom: event.target.innerText,
 		chartTitle: event.target.innerText
 	}
 
-	return {
+	dispatch({
 		type: OPEN_GRAPH_CLASS_LIST,
 		payload: data
-	}
+	})
 }
 
-export const displaySubjectGraph = event => {
+export const displaySubjectGraph = event => dispatch => {
 	if (event.target.type !== 'button') {
 		return
 	}
@@ -32,10 +33,10 @@ export const displaySubjectGraph = event => {
 		chartTitle: event.target.innerText
 	}
 
-	return {
+	dispatch({
 		type: DISPLAY_SUBJECT_GRADES,
 		payload: data
-	}
+	})
 }
 
 export const getAllGradeData = () => async dispatch => {

@@ -1,7 +1,7 @@
 import { HANDLE_SCHOOL_DATA, DISPLAY_SCHOOL_DATA } from '../constants/actionTypes'
 import { addSchoolData, getSchoolData } from '../database/schoolCollection'
 
-export const handleSchoolData = event => {
+export const handleSchoolData = event => dispatch => {
 	event.preventDefault()
 
 	const formData = {
@@ -15,10 +15,10 @@ export const handleSchoolData = event => {
 
 	addSchoolData(formData)
 
-	return {
+	dispatch({
 		type: HANDLE_SCHOOL_DATA,
 		payload: { schoolData: formData }
-	}
+	})
 }
 
 export const displaySchoolData = () => async dispatch => {

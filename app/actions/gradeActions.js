@@ -8,12 +8,12 @@ import { getAllGrades, addGradeData, updateGradeData } from '../database/gradeCo
 
 const _ = require('lodash')
 
-export const openGradeClassList = event => {
+export const openGradeClassList = event => dispatch => {
 	const classroom = event.target.innerText
-	return {
+	dispatch({
 		type: OPEN_CLASS_LIST,
 		payload: classroom
-	}
+	})
 }
 
 const filterGrades = async exams => {

@@ -20,17 +20,15 @@ const applyGraphData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case OPEN_GRAPH_CLASS_LIST: {
 		const classroomDropdown = !state.classroomDropdown
-		const openSubList = state.classroomDropdown
 		const { classroom, chartTitle } = action.payload
 		return _.assign({}, state, {
 			classroomDropdown,
-			openSubList,
 			classroom,
 			chartTitle
 		})
 	}
 	case DISPLAY_SUBJECT_GRADES: {
-		const openSubList = state.classroomDropdown
+		const openSubList = !state.openSubList
 		const { subjectId, chartTitle } = action.payload
 		return _.assign({}, state, {
 			openSubList,
