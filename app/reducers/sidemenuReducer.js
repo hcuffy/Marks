@@ -7,10 +7,11 @@ const initialLoadState = {
 	school: '',
 	classroom: '',
 	students: '',
-	exams: ''
+	exams: '',
+	graphs: ''
 }
 
-const handleMenuStyle = (state = initialLoadState, action) => {
+const applyMenuStyling = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case HANDLE_MENU_CHANGE: {
 		const { styleUpdate } = action.payload
@@ -21,4 +22,4 @@ const handleMenuStyle = (state = initialLoadState, action) => {
 	}
 }
 
-export default handleMenuStyle
+export default applyMenuStyling

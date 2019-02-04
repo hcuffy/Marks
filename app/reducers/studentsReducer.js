@@ -12,7 +12,7 @@ const initialLoadState = {
 	studentModal: false
 }
 
-const handleStudentData = (state = initialLoadState, action) => {
+const applyStudentData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case ADD_NEW_STUDENT: {
 		return _.assign({}, state, {
@@ -34,4 +34,4 @@ const handleStudentData = (state = initialLoadState, action) => {
 	}
 }
 
-export default handleStudentData
+export default applyStudentData

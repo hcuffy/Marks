@@ -29,7 +29,7 @@ export const handleSchoolReducer = (state = initialLoadState, action) => {
 	}
 }
 
-const displaySchoolData = (state = initialLoadState, action) => {
+const applySchoolData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case DISPLAY_SCHOOL_DATA: {
 		const { Title, Street, Province, Country, Zip, Year } = action.payload
@@ -47,4 +47,4 @@ const displaySchoolData = (state = initialLoadState, action) => {
 	}
 }
 
-export default displaySchoolData
+export default applySchoolData

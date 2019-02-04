@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/exam.css'
+import styles from './styles/exam.css'
 import { sortData } from '../rooms/ClassList'
-import { getClassList, getSubjectList } from '../helpers/dropdowns'
+import { getClassList, getSubjectList, createDropdown } from '../helpers/dropdowns'
 
 const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
@@ -14,25 +13,20 @@ const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
 
 	return (
 		<div className={styles.dropdown_main_div}>
-			<div className={styles.dropdown_div}>
-				<Dropdown
-					isOpen={examData.openClassDropdown}
-					toggle={actions.openClassDropdownList}
-				>
-					<DropdownToggle color="info" caret>
-						Select Class
-					</DropdownToggle>
-					<DropdownMenu>{classOptions}</DropdownMenu>
-				</Dropdown>
-			</div>
-			<div className={styles.dropdown_div}>
-				<Dropdown isOpen={examData.openSubList} toggle={actions.displayExamData}>
-					<DropdownToggle color="info" caret>
-						Select Subject
-					</DropdownToggle>
-					<DropdownMenu>{subjectOptions}</DropdownMenu>
-				</Dropdown>
-			</div>
+			{createDropdown(
+				styles.dropdown_div,
+				examData.openClassDropdown,
+				actions.openClassDropdownList,
+				{ label: 'Select Class' },
+				classOptions
+			)}
+			{createDropdown(
+				styles.dropdown_div,
+				examData.openSubList,
+				actions.displayExamData,
+				{ label: 'Select Subject' },
+				subjectOptions
+			)}
 		</div>
 	)
 }

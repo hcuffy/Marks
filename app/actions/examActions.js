@@ -7,7 +7,7 @@ import {
 } from '../constants/actionTypes'
 import { addExamData, getExamData } from '../database/examCollection'
 
-export const addNewExam = event => {
+export const addNewExam = event => dispatch => {
 	event.preventDefault()
 	const selectedSubjectIndex = event.target.Subject.selectedIndex
 	const examData = {
@@ -18,26 +18,26 @@ export const addNewExam = event => {
 		Weight: event.target.Weight.value
 	}
 	addExamData(examData)
-	return {
+	dispatch({
 		type: ADD_NEW_EXAM,
 		payload: {}
-	}
+	})
 }
 
-export const getSelectedSubject = event => {
+export const getSelectedSubject = event => dispatch => {
 	const subject = event.target.value
-	return {
+	dispatch({
 		type: GET_SELECTED_CLASS,
 		payload: subject
-	}
+	})
 }
 
-export const openClassDropdownList = event => {
+export const openClassDropdownList = event => dispatch => {
 	const classroom = event.target.innerText
-	return {
+	dispatch({
 		type: UPDATE_DROPDOWN_CLASS_LIST,
 		payload: classroom
-	}
+	})
 }
 
 export const displayExamData = event => async dispatch => {
@@ -51,10 +51,10 @@ export const displayExamData = event => async dispatch => {
 	}
 }
 
-export const showSingleExam = event => {
+export const showSingleExam = event => dispatch => {
 	const examId = event.target.getAttribute('data-id')
-	return {
+	dispatch({
 		type: GET_SINGLE_EXAM,
 		payload: examId
-	}
+	})
 }

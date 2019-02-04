@@ -252,6 +252,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
     "bootstrap": "^4.2.1",
+    "chart.js": "^2.7.3",
     "connected-react-router": "^5.0.1",
     "devtron": "^1.4.0",
     "electron-debug": "^2.0.0",
@@ -261,6 +262,7 @@
     "lodash": "^4.17.11",
     "nedb": "^1.8.0",
     "react": "^16.7.0",
+    "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3",
     "react-redux": "^5.1.1",

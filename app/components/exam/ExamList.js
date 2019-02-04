@@ -1,11 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import styles from '../styles/exam.css'
-import { actionCreators } from '../../actions/index'
 import ExamListDropdown from './ExamListDropdown'
 import ExamListInputs from './ExamListInputs'
 import ExamModal from './ExamModal'
+import styles from './styles/exam.css'
 
 const ExamList = () => (
 	<div className={styles.main_div}>
@@ -20,11 +17,4 @@ const ExamList = () => (
 	</div>
 )
 
-const mapDispatchToProps = dispatch => ({
-	actions: bindActionCreators(actionCreators, dispatch)
-})
-
-export default connect(
-	null,
-	mapDispatchToProps
-)(ExamList)
+export default ExamList

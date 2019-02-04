@@ -2,28 +2,29 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import styles from '../styles/students.css'
+import styles from './styles/students.css'
 import studentForm from './helpers/formHelper'
 
 const _ = require('lodash')
 
+const studentDataFields = studentData =>
+	_.keys(_.pick(studentData, ['Firstname', 'Lastname'])).map((data, idx) => (
+		<div key={idx} className={styles.form_inner_div}>
+			<label className={styles.form_label} htmlFor={`${data}_Id`}>
+				{`${data}*:`}
+			</label>
+			<input
+				name={data}
+				required
+				className="form-control"
+				data-id={`${data}_Id`}
+				type="text"
+			/>
+		</div>
+	))
+
 const StudentForm = ({ studentData, classData, actions }) => {
-	const formFields = _.keys(_.pick(studentData, ['Firstname', 'Lastname'])).map(
-		(data, idx) => (
-			<div key={idx} className={styles.form_inner_div}>
-				<label className={styles.form_label} htmlFor={`${data}_Id`}>
-					{`${data}*:`}
-				</label>
-				<input
-					name={data}
-					required
-					className="form-control"
-					data-id={`${data}_Id`}
-					type="text"
-				/>
-			</div>
-		)
-	)
+	const formFields = studentDataFields(studentData)
 	const selectOption = _.values(classData.classData).map((data, idx) => (
 		<option className="form-control dropdown" key={idx}>
 			{data.Name}

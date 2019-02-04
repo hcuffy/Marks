@@ -17,3 +17,6 @@
   background: #007bff;
 }
 
+.selectedButton {
+  color: 'black';
+}

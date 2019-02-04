@@ -8,12 +8,12 @@ import { getAllGrades, addGradeData, updateGradeData } from '../database/gradeCo
 
 const _ = require('lodash')
 
-export const openGradeClassList = event => {
+export const openGradeClassList = event => dispatch => {
 	const classroom = event.target.innerText
-	return {
+	dispatch({
 		type: OPEN_CLASS_LIST,
 		payload: classroom
-	}
+	})
 }
 
 const filterGrades = async exams => {
@@ -48,7 +48,7 @@ export const updateGrade = event => async dispatch => {
 		subjectId: event.target.getAttribute('data-subjectid'),
 		subjectName: event.target.getAttribute('data-subjectname')
 	}
-	console.log(subjectData)
+
 	const gradeData = {
 		grade: event.target.value === '' ? 0 : event.target.value,
 		examId: event.target.getAttribute('data-examid'),

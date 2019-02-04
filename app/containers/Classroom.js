@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
-import SideMenu from '../components/SideMenu'
+import SideMenu from '../components/sidemenu/SideMenu'
 import Navbar from '../components/rooms/Navbar'
 import Classes from '../components/rooms/Classes'
 import Exams from '../components/exam/Exams'
@@ -17,7 +17,7 @@ class Classroom extends Component {
 
 	render() {
 		return (
-			<div data-tid="classroom_container">
+			<div>
 				<SideMenu />
 				<Navbar />
 				{this.props.classesActive && <Classes />}
@@ -28,8 +28,8 @@ class Classroom extends Component {
 }
 
 const mapStateToProps = state => ({
-	classesActive: state.tabStatus.classTab,
-	examActive: state.tabStatus.testTab,
+	classesActive: state.tabChangeData.classTab,
+	examActive: state.tabChangeData.testTab,
 	classData: state.classData.classData,
 	addedClass: state.addedClass
 })

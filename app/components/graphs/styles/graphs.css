@@ -1,0 +1,21 @@
+.dropdown_div {
+  display: inline-block;
+  margin: 0 0 15px 15px;
+}
+
+.dropdown_main_div {
+  text-align: center;
+}
+
+.center_header {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.chart {
+  width: 920px !important;
+  height: 500px !important;
+  position: fixed !important;
+  left: 100px !important;
+  top: 150px !important;
+}

@@ -19,16 +19,16 @@ import {
 import { deleteExam, updateExamData } from '../database/examCollection'
 import { deleteStudent, updateStudentData } from '../database/studentCollection'
 
-export const roomModalDisplay = event => {
+export const roomModalDisplay = event => dispatch => {
 	event.preventDefault()
 	const roomId = {
 		id: event.target.getAttribute('data-id')
 	}
 
-	return {
+	dispatch({
 		type: OPEN_CLOSE_ROOM_MODAL,
 		payload: roomId
-	}
+	})
 }
 
 export const deleteRoom = event => async dispatch => {
@@ -79,16 +79,16 @@ export const updateRoom = event => async dispatch => {
 	})
 }
 
-export const subjectModalDisplay = event => {
+export const subjectModalDisplay = event => dispatch => {
 	event.preventDefault()
 	const subjectId = {
 		id: event.target.getAttribute('data-id')
 	}
 
-	return {
+	dispatch({
 		type: OPEN_CLOSE_SUBJECT_MODAL,
 		payload: subjectId
-	}
+	})
 }
 
 export const updateSubject = event => async dispatch => {

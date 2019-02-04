@@ -1,18 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { DropdownItem } from 'reactstrap'
+import { createDropdown } from '../helpers/dropdowns'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/ClassList'
-import styles from '../styles/subjects.css'
+import styles from './styles/subject.css'
 import SubjectForm from './SubjectForm'
 import SubjectList from './SubjectList'
 
 const _ = require('lodash')
 
-const Subjects = ({ classData, selectClass, actions }) => {
+const Subjects = ({ classData, classListData, actions }) => {
 	const subjects = sortData(classData)
-	const selectedSubject = _.find(subjects, ['Name', selectClass.subject])
+	const selectedSubject = _.find(subjects, ['Name', classListData.subject])
 
 	const subjectOptions = subjects.map((data, idx) => (
 		<DropdownItem key={idx} name={data.Name} onClick={actions.showSubject}>
@@ -23,24 +24,25 @@ const Subjects = ({ classData, selectClass, actions }) => {
 		<div className={styles.main_div}>
 			<div className={styles.subject_left}>
 				<h4 className={styles.center_header}>Subjects</h4>
-				<Dropdown isOpen={selectClass.openModal} toggle={actions.openClassList}>
-					<DropdownToggle color="info" caret>
-						Select Class
-					</DropdownToggle>
-					<DropdownMenu>{subjectOptions}</DropdownMenu>
-				</Dropdown>
+				{createDropdown(
+					null,
+					classListData.openModal,
+					actions.openClassList,
+					{ label: 'Select Class' },
+					subjectOptions
+				)}
 				<SubjectList selectedSubject={selectedSubject} />
 			</div>
 			<div className={styles.subject_right}>
 				<h4 className={styles.center_header}>Add Subjects</h4>
-				<SubjectForm selectClass={selectClass} subjects={subjects} />
+				<SubjectForm classListData={classListData} subjects={subjects} />
 			</div>
 		</div>
 	)
 }
 
 const mapStateToProps = state => ({
-	selectClass: state.selectClass
+	classListData: state.classListData
 })
 
 const mapDispatchToProps = dispatch => ({

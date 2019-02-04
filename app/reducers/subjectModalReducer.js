@@ -7,7 +7,7 @@ const initialLoadState = {
 	showSubjectModal: false
 }
 
-const handleSubjectModal = (state = initialLoadState, action) => {
+const applySubjectModal = (state = initialLoadState, action) => {
 	const showSubjectModal = !state.showSubjectModal
 	switch (action.type) {
 	case OPEN_CLOSE_SUBJECT_MODAL: {
@@ -29,4 +29,4 @@ const handleSubjectModal = (state = initialLoadState, action) => {
 	}
 }
 
-export default handleSubjectModal
+export default applySubjectModal

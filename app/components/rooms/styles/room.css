@@ -1,0 +1,68 @@
+.form_label {
+  float: left;
+  margin: 3px 10px 0 0;
+  vertical-align: bottom;
+  line-height: 32px;
+}
+
+.form_input {
+  float: right;
+}
+
+.form_div {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.room_form {
+  white-space: nowrap;
+  float: right;
+  margin: 10px 0 0 0;
+}
+
+.room_form_label {
+  float: left;
+  margin-right: 5px;
+  vertical-align: bottom;
+  line-height: 32px;
+}
+
+.center_header {
+  text-align: center;
+}
+
+.save_btn {
+  float: right;
+  margin: 10px 0 0 200px;
+}
+
+.form_outer_div {
+  float: right;
+  height: 350px;
+  width: 500px;
+}
+
+.room_div {
+  white-space: 800px;
+  border-top: 1px solid;
+  padding: 0 20px 0 0;
+}
+
+.list_div {
+  height: 230px;
+  overflow: scroll;
+}
+
+.list_btn {
+  display: inline-flex;
+  align-items: flex-start;
+  height: 40px;
+}
+
+.badge_number {
+  float: right;
+}
+
+.navbar_div {
+  padding: 30px 0 5px 0;
+}

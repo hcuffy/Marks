@@ -37,10 +37,10 @@ export const getStudents = () => async dispatch => {
 	}
 }
 
-export const showStudentModal = event => {
+export const showStudentModal = event => dispatch => {
 	const studentId = event.target.getAttribute('data-id')
-	return {
+	dispatch({
 		type: GET_SINGLE_STUDENT,
 		payload: studentId
-	}
+	})
 }

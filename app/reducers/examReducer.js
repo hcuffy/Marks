@@ -16,7 +16,7 @@ const initialLoadState = {
 	examModal: false
 }
 
-const filterExam = (state = initialLoadState, action) => {
+const applyFilteredExam = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case GET_SELECTED_CLASS: {
 		const subject = action.payload
@@ -58,4 +58,4 @@ const filterExam = (state = initialLoadState, action) => {
 	}
 }
 
-export default filterExam
+export default applyFilteredExam

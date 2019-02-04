@@ -14,7 +14,7 @@ const initialLoadState = {
 	select_Class: 'Select Class'
 }
 
-const openDropdownList = (state = initialLoadState, action) => {
+const applyClassList = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case UPDATE_CLASS_LIST: {
 		const openModal = !state.openModal
@@ -34,7 +34,7 @@ const openDropdownList = (state = initialLoadState, action) => {
 	}
 }
 
-export const getSubjectData = (state = {}, action) => {
+export const applySubjectData = (state = {}, action) => {
 	switch (action.type) {
 	case GET_SUBJECT_LIST: {
 		return _.assign({}, state, action.payload)
@@ -45,4 +45,4 @@ export const getSubjectData = (state = {}, action) => {
 	}
 }
 
-export default openDropdownList
+export default applyClassList

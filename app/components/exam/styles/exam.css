@@ -3,7 +3,7 @@
   border-top: 1px solid;
 }
 
-.room_div {
+.header_div {
   white-space: pre;
   border-top: 1px solid;
   overflow: auto;
@@ -48,4 +48,25 @@
   margin-right: 40px;
   width: 170px;
   display: inline-block;
+}
+
+.list_btn {
+  display: inline-flex;
+  align-items: flex-start;
+  height: 40px;
+}
+
+.badge_number {
+  float: right;
+}
+
+.exam_div {
+  margin: 10px 10px 20px 10px;
+  height: 300px;
+  overflow: scroll;
+}
+
+.modalInput {
+  border: 1px solid #6c757d !important;
+  width: 170px !important;
 }
