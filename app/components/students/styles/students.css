@@ -102,3 +102,11 @@ select {
   height: 30px;
   position: absolute;
 }
+
+.chart {
+  width: 910px !important;
+  height: 350px !important;
+  position: fixed !important;
+  left: 100px !important;
+  top: 350px !important;
+}
