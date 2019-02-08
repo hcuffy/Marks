@@ -9,7 +9,8 @@ const _ = require('lodash')
 const initialLoadState = {
 	Firstname: '',
 	Lastname: '',
-	studentModal: false
+	studentModal: false,
+	studentDropdown: false
 }
 
 const applyStudentData = (state = initialLoadState, action) => {

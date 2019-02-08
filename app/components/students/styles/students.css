@@ -110,3 +110,13 @@ select {
   left: 100px !important;
   top: 350px !important;
 }
+
+
+.dropdown_div {
+  display: inline-block;
+  margin: 0 0 15px 15px;
+}
+
+.dropdown_main_div {
+  text-align: center;
+}

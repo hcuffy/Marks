@@ -35,6 +35,21 @@ export const getExamList = (exams, subjectId) => {
 	return items
 }
 
+export const getStudentList = allStudents => {
+	const students = _.sortBy(
+		_.isUndefined(allStudents) ? [] : allStudents,
+		['Firstname'],
+		['asc']
+	)
+	const items = students.map((data, idx) => (
+		<DropdownItem key={idx} data-id={data._id}>
+			{`${data.Firstname} ${data.Lastname}`}
+		</DropdownItem>
+	))
+
+	return items
+}
+
 export const createDropdown = (styling, openIt, action, { label }, options) => (
 	<div className={styling}>
 		<Dropdown isOpen={openIt} toggle={action}>
