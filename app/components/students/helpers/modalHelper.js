@@ -58,6 +58,7 @@ const dropDownFields = (studentFields, chosenStudent, classdata) => {
 }
 
 const generateFields = (chosenStudent, classdata) => {
+	console.log(chosenStudent)
 	const studentFields = _.keys(_.pick(chosenStudent, ['Firstname', 'Lastname'])).map(
 		(data, idx) => (
 			<div>
