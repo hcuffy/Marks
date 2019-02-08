@@ -8,6 +8,7 @@ import StudentsSection from '../components/students/StudentsSection'
 class Students extends Component {
 	componentDidMount() {
 		this.props.actions.getStudents()
+		this.props.actions.getAllGradeData()
 		if (this.props.classData[0].Name === '') {
 			this.props.actions.displayClassData()
 		}

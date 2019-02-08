@@ -7,7 +7,7 @@ const chartLabels = () => ['One',
 	'Five',
 	'Six']
 
-const chartHeader = chartTitle => (chartTitle === null ? 'School Grades' : chartTitle)
+const chartHeader = chartTitle => (_.isNull(chartTitle) ? 'School Grades' : chartTitle)
 
 const filteredData = grades => {
 	const sumArr = []
