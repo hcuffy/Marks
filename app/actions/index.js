@@ -35,6 +35,7 @@ export const actionCreators = {
 	getStudents: student.getStudents,
 	showStudentModal: student.showStudentModal,
 	openStudenGraph: student.openStudenGraph,
+	openStudenSubjectGraph: student.openStudenSubjectGraph,
 	deleteSingleStudent: modals.deleteSingleStudent,
 	updateStudent: modals.updateStudent,
 	displayGradeData: grade.displayGradeData,
