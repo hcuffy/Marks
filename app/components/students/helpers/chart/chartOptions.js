@@ -5,6 +5,7 @@ export const chartOptions = () => ({
 			{
 				ticks: {
 					reverse: true,
+					min: 1,
 					max: 6
 				}
 			}
