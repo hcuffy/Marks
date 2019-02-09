@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/students.css'
-import { getStudentList, createDropdown } from '../helpers/dropdowns'
+import { getStudentList, getAllSubjects, createDropdown } from '../helpers/dropdowns'
 
-const StudentDropdown = ({ studentData, actions }) => {
-	const { students, studentDropdown } = studentData
+const StudentDropdown = ({ studentData, subjectData, actions }) => {
+	const { students, studentDropdown, subjectDropdown } = studentData
 	const studentOptions = getStudentList(students)
-
+	const subjectOptions = getAllSubjects(subjectData.data)
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
@@ -18,12 +18,20 @@ const StudentDropdown = ({ studentData, actions }) => {
 				{ label: 'Select Student' },
 				studentOptions
 			)}
+			{createDropdown(
+				styles.dropdown_div,
+				subjectDropdown,
+				actions.openStudenSubjectGraph,
+				{ label: 'Select Subject' },
+				subjectOptions
+			)}
 		</div>
 	)
 }
 
 const mapStateToProps = state => ({
-	studentData: state.studentData
+	studentData: state.studentData,
+	subjectData: state.subjectData
 })
 
 const mapDispatchToProps = dispatch => ({

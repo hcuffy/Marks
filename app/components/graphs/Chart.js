@@ -7,8 +7,8 @@ import { chartData } from './helpers/chartData'
 import { chartOptions } from './helpers/chartOptions'
 import styles from './styles/graphs.css'
 
-const Charts = ({ graphData, subjects }) => (
-	<div className={styles.chart}>
+const Chart = ({ graphData, subjects }) => (
+	<div id="test1" className={styles.chart}>
 		<Bar data={chartData(graphData, subjects)} options={chartOptions()} />
 	</div>
 )
@@ -25,4 +25,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Charts)
+)(Chart)

@@ -1,6 +1,8 @@
+import { filterBySubject } from '../../../graphs/helpers/chartData'
+
 const _ = require('lodash')
 
-const filteredGrades = (studentGraphId, grades) => {
+const filteredGrades = ({ studentGraphId }, grades) => {
 	const data = []
 	const studentGrades = _.sortBy(_.filter(grades, ['studentId', studentGraphId]), [
 		'date'
@@ -14,20 +16,39 @@ const filteredGrades = (studentGraphId, grades) => {
 	return data
 }
 
-const chartHeader = studentGraphName =>
-	_.isUndefined(studentGraphName) ? 'Student Grades' : studentGraphName
+const filterSubjectGrades = ({ studentGraphId, subjectGraphId }, exams, grades) => {
+	const allSubjectsGrade = filterBySubject(subjectGraphId, exams, grades)
+	return _.filter(allSubjectsGrade, ['studentId', studentGraphId])
+}
 
-export const chartData = ({ studentGraphName, studentGraphId }, grades) => ({
-	datasets: [
-		{
-			label: chartHeader(studentGraphName),
-			fill: false,
-			pointHoverRadius: 20,
-			pointRadius: 5,
-			borderColor: 'rgba(255, 99, 132, 0.6)',
-			backgroundColor: 'rgba(255, 99, 132, 0.6)',
-			pointBackgroundColor: 'rgba(255, 99, 132, 0.6)',
-			data: filteredGrades(studentGraphId, grades)
-		}
-	]
-})
+const chartHeader = ({ studentGraphName, subjectGraphName, chartToDisplay }) => {
+	if (chartToDisplay === null || chartToDisplay === 'student') {
+		return _.isUndefined(studentGraphName) ? 'Student Grades' : studentGraphName
+	}
+	return `${studentGraphName} - ${subjectGraphName}`
+}
+
+export const chartData = (studentData, grades, exams) => {
+	const checkedGrades = []
+	const { chartToDisplay } = studentData
+
+	if (chartToDisplay === 'student') {
+		checkedGrades.push(...grades)
+	} else if (chartToDisplay === 'subject') {
+		checkedGrades.push(...filterSubjectGrades(studentData, exams, grades))
+	}
+	return {
+		datasets: [
+			{
+				label: chartHeader(studentData),
+				fill: false,
+				pointHoverRadius: 20,
+				pointRadius: 5,
+				borderColor: 'rgba(255, 99, 132, 0.6)',
+				backgroundColor: 'rgba(255, 99, 132, 0.6)',
+				pointBackgroundColor: 'rgba(255, 99, 132, 0.6)',
+				data: filteredGrades(studentData, checkedGrades)
+			}
+		]
+	}
+}

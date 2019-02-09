@@ -24,6 +24,16 @@ export const getSubjectList = (examData, subjectData) => {
 	return items
 }
 
+export const getAllSubjects = subjects => {
+	const checkSubject = _.isUndefined(subjects) ? [] : subjects
+	const items = checkSubject.map((data, idx) => (
+		<DropdownItem key={idx} name={data.Name} data-id={data._id}>
+			{data.Name}
+		</DropdownItem>
+	))
+	return items
+}
+
 export const getExamList = (exams, subjectId) => {
 	const selectedExams = _.filter(exams, ['SubjectId', subjectId])
 	const items = selectedExams.map((data, idx) => (
