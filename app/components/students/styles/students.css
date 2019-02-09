@@ -113,7 +113,7 @@ select {
 
 .dropdown_div {
   display: inline-block;
-  margin: 10px 0 15px 15px;
+  margin: 10px 10px 15px 0;
 }
 
 .dropdown_main_div {
