@@ -9,6 +9,8 @@ class Students extends Component {
 	componentDidMount() {
 		this.props.actions.getStudents()
 		this.props.actions.getAllGradeData()
+		this.props.actions.getGraphExamData()
+		this.props.actions.getSubjectData()
 		if (this.props.classData[0].Name === '') {
 			this.props.actions.displayClassData()
 		}
