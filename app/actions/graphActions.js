@@ -33,6 +33,7 @@ export const displaySubjectGraph = event => dispatch => {
 	const data = {
 		subjectId: event.target.getAttribute('data-id'),
 		chartTitle: event.target.innerText,
+		subjectName: event.target.innerText,
 		chartToDisplay: 'subject'
 	}
 
@@ -46,10 +47,11 @@ export const displayExamGraph = event => dispatch => {
 	if (event.target.type !== 'button') {
 		return
 	}
-
+	console.log(event.target)
 	const data = {
 		examId: event.target.getAttribute('data-id'),
 		chartTitle: event.target.innerText,
+		examName: event.target.innerText,
 		chartToDisplay: 'exam'
 	}
 

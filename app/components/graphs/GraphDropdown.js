@@ -19,8 +19,11 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 		classroom,
 		classroomDropdown,
 		openSubList,
+		subjectName,
+		examName,
 		openExamList
 	} = graphData
+
 	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
 	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
@@ -34,21 +37,21 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 				styles.dropdown_div,
 				classroomDropdown,
 				actions.openGraphClassList,
-				{ label: 'Select Class' },
+				{ label: classroom },
 				classOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				graphData.openSubList,
 				actions.displaySubjectGraph,
-				{ label: 'Select Subject' },
+				{ label: subjectName },
 				subjectOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				openExamList,
 				actions.displayExamGraph,
-				{ label: 'Select Exam' },
+				{ label: examName },
 				examOptions
 			)}
 		</div>
