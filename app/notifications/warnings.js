@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify'
 
-export const selectClassroom = () => {
-	toast.warn('First select a class.', {
+export const selectClassroom = section => {
+	toast.warn(`First select a ${section}.`, {
 		position: 'top-right',
 		autoClose: 3000,
 		hideProgressBar: false,
