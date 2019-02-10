@@ -1,18 +1,3 @@
-Developed using [**electron-react-boilerplate**](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
-
-<br>
-
-
-  <a href="https://facebook.github.io/react/"><img src="./internals/img/react-padded-90.png" /></a>
-  <a href="https://webpack.github.io/"><img src="./internals/img/webpack-padded-90.png" /></a>
-  <a href="http://redux.js.org/"><img src="./internals/img/redux-padded-90.png" /></a>
-  <a href="https://github.com/ReactTraining/react-router"><img src="./internals/img/react-router-padded-90.png" /></a>
-  <a href="http://eslint.org/"><img src="./internals/img/eslint-padded-90.png" /></a>
-  <a href="https://yarnpkg.com/"><img src="./internals/img/yarn-padded-90.png" /></a>
-  <a href="https://github.com/louischatriot/nedb"><img src="http://i.imgur.com/9O1xHFb.png" style="width: 180px; height:75px;"></a>
-
-    
-
 ## Installation
 
 First, clone the repo via git:
@@ -38,3 +23,17 @@ OR for production version
 ```bash
 $ yarn start
 ```
+
+
+Developed using [**electron-react-boilerplate**](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
+
+<br>
+
+
+  <a href="https://facebook.github.io/react/"><img src="./internals/img/react-padded-90.png" /></a>
+  <a href="https://webpack.github.io/"><img src="./internals/img/webpack-padded-90.png" /></a>
+  <a href="http://redux.js.org/"><img src="./internals/img/redux-padded-90.png" /></a>
+  <a href="https://github.com/ReactTraining/react-router"><img src="./internals/img/react-router-padded-90.png" /></a>
+  <a href="http://eslint.org/"><img src="./internals/img/eslint-padded-90.png" /></a>
+  <a href="https://yarnpkg.com/"><img src="./internals/img/yarn-padded-90.png" /></a>
+  <a href="https://github.com/louischatriot/nedb"><img src="http://i.imgur.com/9O1xHFb.png" style="width: 180px; height:75px;"></a>
