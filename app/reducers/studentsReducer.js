@@ -15,7 +15,9 @@ const initialLoadState = {
 	studentDropdown: false,
 	subjectDropdown: false,
 	studentGraphId: null,
-	chartToDisplay: null
+	chartToDisplay: null,
+	studentGraphName: 'Select Student',
+	subjectGraphName: 'Select Subject'
 }
 
 const applyStudentData = (state = initialLoadState, action) => {

@@ -18,7 +18,9 @@ const StudentDropdown = ({ studentData, subjectData, actions }) => {
 		studentDropdown,
 		subjectDropdown,
 		chartToDisplay,
-		subjectGraphId
+		subjectGraphId,
+		studentGraphName,
+		subjectGraphName
 	} = studentData
 
 	const studentOptions = getStudentList(students)
@@ -30,14 +32,14 @@ const StudentDropdown = ({ studentData, subjectData, actions }) => {
 				styles.dropdown_div,
 				studentDropdown,
 				actions.openStudenGraph,
-				{ label: 'Select Student' },
+				{ label: studentGraphName },
 				studentOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				subjectDropdown,
 				actions.openStudenSubjectGraph,
-				{ label: 'Select Subject' },
+				{ label: subjectGraphName },
 				subjectOptions
 			)}
 		</div>
