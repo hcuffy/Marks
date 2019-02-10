@@ -25,6 +25,9 @@ const chartHeader = ({ studentGraphName, subjectGraphName, chartToDisplay }) => 
 	if (chartToDisplay === null || chartToDisplay === 'student') {
 		return _.isUndefined(studentGraphName) ? 'Student Grades' : studentGraphName
 	}
+	if (_.isUndefined(studentGraphName)) {
+		return 'Student Grades'
+	}
 	return `${studentGraphName} - ${subjectGraphName}`
 }
 

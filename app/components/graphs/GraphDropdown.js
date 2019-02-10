@@ -26,7 +26,7 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
 	const examOptions = getExamList(exams, subjectId)
 
-	notifyIfEmpty(subjectOptions, openSubList)
+	notifyIfEmpty(subjectOptions, openSubList, 'class')
 
 	return (
 		<div className={styles.dropdown_main_div}>

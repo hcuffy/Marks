@@ -14,6 +14,7 @@ const initialLoadState = {
 	studentModal: false,
 	studentDropdown: false,
 	subjectDropdown: false,
+	studentGraphId: null,
 	chartToDisplay: null
 }
 

@@ -3,12 +3,27 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/students.css'
-import { getStudentList, getAllSubjects, createDropdown } from '../helpers/dropdowns'
+import {
+	getStudentList,
+	getAllSubjects,
+	createDropdown,
+	notifyIfEmpty
+} from '../helpers/dropdowns'
+
+const _ = require('lodash')
 
 const StudentDropdown = ({ studentData, subjectData, actions }) => {
-	const { students, studentDropdown, subjectDropdown } = studentData
+	const {
+		students,
+		studentDropdown,
+		subjectDropdown,
+		chartToDisplay,
+		subjectGraphId
+	} = studentData
+
 	const studentOptions = getStudentList(students)
 	const subjectOptions = getAllSubjects(subjectData.data)
+	notifyIfEmpty([], chartToDisplay === 'subject' && _.isNull(subjectGraphId), 'student')
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
