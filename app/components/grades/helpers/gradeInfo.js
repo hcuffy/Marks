@@ -39,7 +39,14 @@ const getGradeInfo = (student, gradeData) => {
 }
 
 const getAverage = grades => {
-	const total = _.reduce(grades, (sum, n) => sum + parseInt(n.score, 10), 0)
+	const total = _.reduce(
+		grades,
+		(sum, grade) => {
+			const { score, weight } = grade
+			return sum + parseInt(score, 10) * parseInt(weight, 10)
+		},
+		0
+	)
 
 	return { average: _.round(total / grades.length, 2) }
 }

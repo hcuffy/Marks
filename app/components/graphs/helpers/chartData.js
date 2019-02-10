@@ -7,7 +7,7 @@ const chartLabels = () => ['One',
 	'Five',
 	'Six']
 
-const chartHeader = chartTitle => (chartTitle === null ? 'School Grades' : chartTitle)
+const chartHeader = chartTitle => (_.isNull(chartTitle) ? 'School Grades' : chartTitle)
 
 const filteredData = grades => {
 	const sumArr = []
@@ -34,18 +34,18 @@ const filterByClass = (allGrades, chartTitle, subjects, exams) => {
 		const temp = filterBySubject(filteredClass[i]._id, exams, allGrades)
 		filteredGrades.push(...temp)
 	}
-	console.log(filteredGrades)
 	return filteredGrades
 }
 
-const filterBySubject = (subjectId, exams, grades) => {
+export const filterBySubject = (subjectId, exams, grades) => {
 	const filteredGrades = []
-
 	const filteredExams = _.filter(exams, { SubjectId: subjectId })
+
 	for (let i = 0; i < filteredExams.length; i += 1) {
 		const temp = _.filter(grades, { examId: filteredExams[i]._id })
 		filteredGrades.push(...temp)
 	}
+
 	return filteredGrades
 }
 

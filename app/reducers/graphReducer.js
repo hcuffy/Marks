@@ -9,13 +9,14 @@ import {
 const _ = require('lodash')
 
 const initialLoadState = {
-	classroom: '',
-	subjectName: '',
+	classroom: 'Select Class',
+	subjectName: 'Select Subject',
 	subjectId: null,
 	examId: null,
 	classroomDropdown: false,
 	openSubList: false,
 	openExamList: false,
+	examName: 'Select Exam',
 	chartToDisplay: null,
 	chartTitle: null
 }
@@ -34,20 +35,22 @@ const applyGraphData = (state = initialLoadState, action) => {
 	}
 	case DISPLAY_SUBJECT_GRADES: {
 		const openSubList = !state.openSubList
-		const { subjectId, chartTitle, chartToDisplay } = action.payload
+		const { subjectId, subjectName, chartTitle, chartToDisplay } = action.payload
 		return _.assign({}, state, {
 			openSubList,
 			subjectId,
+			subjectName,
 			chartTitle,
 			chartToDisplay
 		})
 	}
 	case DISPLAY_EXAM_GRADES: {
 		const openExamList = !state.openExamList
-		const { examId, chartTitle, chartToDisplay } = action.payload
+		const { examId, examName, chartTitle, chartToDisplay } = action.payload
 		return _.assign({}, state, {
 			openExamList,
 			examId,
+			examName,
 			chartTitle,
 			chartToDisplay
 		})

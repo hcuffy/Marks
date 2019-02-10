@@ -1,7 +1,9 @@
 import {
 	ADD_NEW_STUDENT,
 	GET_ALL_STUDENTS,
-	GET_SINGLE_STUDENT
+	GET_SINGLE_STUDENT,
+	DISPLAY_STUDENT_GRAPH,
+	DISPLAY_STUDENT_SUBJECT_GRAPH
 } from '../constants/actionTypes'
 import { addNewStudentData, getAllStudents } from '../database/studentCollection'
 
@@ -42,5 +44,31 @@ export const showStudentModal = event => dispatch => {
 	dispatch({
 		type: GET_SINGLE_STUDENT,
 		payload: studentId
+	})
+}
+
+export const openStudenGraph = event => dispatch => {
+	const student = {
+		studentGraphId: event.target.getAttribute('data-id'),
+		studentGraphName: event.target.innerText,
+		chartToDisplay: 'student'
+	}
+
+	dispatch({
+		type: DISPLAY_STUDENT_GRAPH,
+		payload: student
+	})
+}
+
+export const openStudenSubjectGraph = event => dispatch => {
+	const subject = {
+		subjectGraphId: event.target.getAttribute('data-id'),
+		subjectGraphName: event.target.innerText,
+		chartToDisplay: 'subject'
+	}
+
+	dispatch({
+		type: DISPLAY_STUDENT_SUBJECT_GRAPH,
+		payload: subject
 	})
 }

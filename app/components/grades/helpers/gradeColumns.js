@@ -53,10 +53,11 @@ const customFooter = ({ data }, iterator) => {
 	const grades = []
 	for (let i = 0; i < data.length; i += 1) {
 		// eslint-disable-next-line no-underscore-dangle
-		const temp = data[i]._original.grades[iterator].score
+		const { score, weight } = data[i]._original.grades[iterator]
 
-		grades.push(parseInt(temp, 10))
+		grades.push(parseInt(score, 10) * parseInt(weight, 10))
 	}
+
 	return (
 		<span>
 			<strong>Ø:</strong> {_.round(_.mean(grades), 2)}

@@ -1,7 +1,9 @@
 import {
 	ADD_NEW_STUDENT,
 	GET_ALL_STUDENTS,
-	GET_SINGLE_STUDENT
+	GET_SINGLE_STUDENT,
+	DISPLAY_STUDENT_GRAPH,
+	DISPLAY_STUDENT_SUBJECT_GRAPH
 } from '../constants/actionTypes'
 
 const _ = require('lodash')
@@ -9,7 +11,13 @@ const _ = require('lodash')
 const initialLoadState = {
 	Firstname: '',
 	Lastname: '',
-	studentModal: false
+	studentModal: false,
+	studentDropdown: false,
+	subjectDropdown: false,
+	studentGraphId: null,
+	chartToDisplay: null,
+	studentGraphName: 'Select Student',
+	subjectGraphName: 'Select Subject'
 }
 
 const applyStudentData = (state = initialLoadState, action) => {
@@ -28,6 +36,28 @@ const applyStudentData = (state = initialLoadState, action) => {
 		const studentModal = !state.studentModal
 		const studentId = action.payload
 		return _.assign({}, state, { studentModal, studentId })
+	}
+
+	case DISPLAY_STUDENT_GRAPH: {
+		const studentDropdown = !state.studentDropdown
+		const { studentGraphId, studentGraphName, chartToDisplay } = action.payload
+		return _.assign({}, state, {
+			studentDropdown,
+			studentGraphId,
+			studentGraphName,
+			chartToDisplay
+		})
+	}
+
+	case DISPLAY_STUDENT_SUBJECT_GRAPH: {
+		const subjectDropdown = !state.subjectDropdown
+		const { subjectGraphId, subjectGraphName, chartToDisplay } = action.payload
+		return _.assign({}, state, {
+			subjectDropdown,
+			subjectGraphId,
+			subjectGraphName,
+			chartToDisplay
+		})
 	}
 	default:
 		return state
