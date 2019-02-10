@@ -8,7 +8,7 @@ import { chartOptions } from './helpers/chartOptions'
 import styles from './styles/graphs.css'
 
 const Chart = ({ graphData, subjects }) => (
-	<div id="test1" className={styles.chart}>
+	<div className={styles.chart}>
 		<Bar data={chartData(graphData, subjects)} options={chartOptions()} />
 	</div>
 )
