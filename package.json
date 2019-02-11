@@ -259,6 +259,7 @@
     "electron-log": "^2.2.17",
     "electron-updater": "^4.0.6",
     "history": "^4.7.2",
+    "jspdf": "^1.5.3",
     "lodash": "^4.17.11",
     "nedb": "^1.8.0",
     "react": "^16.7.0",
