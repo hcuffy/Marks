@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/students.css'
-import { downloadPDF } from '../utils/generatePDF'
+import { downloadPDF } from '../../utils/generatePDF'
 import { chartHeader } from './helpers/chart/chartData'
 
 import {
