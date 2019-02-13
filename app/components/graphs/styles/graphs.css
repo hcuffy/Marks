@@ -19,3 +19,11 @@
   left: 100px !important;
   top: 150px !important;
 }
+
+.pdf_btn {
+  margin-left: 40px;
+  background-color: Transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}

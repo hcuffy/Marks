@@ -13,6 +13,17 @@ import {
 	notifyIfEmpty
 } from '../helpers/dropdowns'
 
+const PDFbutton = chartTitle => (
+	<button
+		className={styles.pdf_btn}
+		type="button"
+		onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
+	>
+		<i className="fas fa-file-pdf fa-2x" /> <br />
+		Save As...
+	</button>
+)
+
 const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 	const {
 		subjectId,
@@ -22,7 +33,8 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 		openSubList,
 		subjectName,
 		examName,
-		openExamList
+		openExamList,
+		chartTitle
 	} = graphData
 
 	const cleanedClassList = sortData(classData)
@@ -55,9 +67,7 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 				{ label: examName },
 				examOptions
 			)}
-			<button type="button" onClick={() => downloadPDF('canvas', 'Chart', 'chart')}>
-				Download{' '}
-			</button>
+			{PDFbutton(chartTitle)}
 		</div>
 	)
 }
