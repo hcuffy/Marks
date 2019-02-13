@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import i18next from 'i18next'
 import styles from './styles/homepage.css'
 
 const _ = require('lodash')
 
 const Homepage = ({ schoolData }) => {
 	const entry = _.values(schoolData).map((data, idx) => <li key={idx}>{data}</li>)
+
 	return (
 		<div className={styles.main_school_div}>
 			<div className={styles.school_left_div}>
@@ -21,7 +23,7 @@ const Homepage = ({ schoolData }) => {
 
 			<div className={styles.school_right_div}>
 				<div>
-					<p>Your Students</p>
+					<p>{i18next.t('title')}</p>
 					<span>Under Development</span>
 				</div>
 				<div className={styles.page_inner_div}>
