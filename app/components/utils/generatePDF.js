@@ -4,6 +4,7 @@ const _ = require('lodash')
 
 export const downloadPDF = (itemToPDF, nameOfChart, saveAs) => {
 	const canvas = document.querySelector(itemToPDF)
+
 	if (_.isNull(canvas)) {
 		return
 	}

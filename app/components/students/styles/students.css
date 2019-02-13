@@ -119,3 +119,14 @@ select {
 .dropdown_main_div {
   text-align: center;
 }
+
+.pdf_btn {
+  position: fixed;
+  z-index: 1;
+  left: 900px;
+  margin-top: 10px;
+  background-color: Transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}

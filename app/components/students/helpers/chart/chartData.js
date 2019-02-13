@@ -21,7 +21,7 @@ const filterSubjectGrades = ({ studentGraphId, subjectGraphId }, exams, grades) 
 	return _.filter(allSubjectsGrade, ['studentId', studentGraphId])
 }
 
-const chartHeader = ({ studentGraphName, subjectGraphName, chartToDisplay }) => {
+export const chartHeader = ({ studentGraphName, subjectGraphName, chartToDisplay }) => {
 	if (chartToDisplay === null || chartToDisplay === 'student') {
 		return _.isUndefined(studentGraphName) ? 'Student Grades' : studentGraphName
 	}
