@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/graphs.css'
 import { sortData } from '../rooms/ClassList'
-import { downloadPDF } from '../../utils/generatePDF'
+import { downloadPDF } from '../../utils/pdfUtil'
 import {
 	getClassList,
 	getSubjectList,
