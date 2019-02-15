@@ -8,16 +8,20 @@ i18n
 	.use(LanguageDetector)
 	.use(reactI18nextModule)
 	.init({
+		debug: true,
+		preload: ['en', 'de'],
+		load: 'languageOnly',
 		backend: {
 			loadPath: 'locales/{{lng}}/{{ns}}.json'
 		},
 		fallbackLng: 'en',
-		debug: true,
-
+		whitelist: ['en',
+			'en-US',
+			'de',
+			'de-DE'],
 		interpolation: {
 			escapeValue: false
 		},
-
 		react: {
 			wait: true
 		}
