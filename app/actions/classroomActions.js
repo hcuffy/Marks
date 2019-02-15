@@ -5,31 +5,19 @@ import {
 } from '../constants/actionTypes'
 import { addClassroomData, getClassroomData } from '../database/classroomCollection'
 
-const changeTab = tabTitle => {
-	const newState = {}
-
-	newState.classTab = tabTitle === 'Classes'
-	newState.testTab = tabTitle === 'Exams/Tests'
-	newState.subjectClass = tabTitle === 'Classes' ? 'active' : ''
-	newState.testClass = tabTitle === 'Exams/Tests' ? 'active' : ''
-
-	return newState
-}
+const _ = require('lodash')
 
 export const changeClassroomTab = event => dispatch => {
-	const clickedTabTitle = event.target.text
-	const clickedTabState = event.target.className.split(' ')[1]
-
-	if (clickedTabState !== 'active') {
-		const tabState = changeTab(clickedTabTitle)
-		dispatch({
-			type: CHANGE_CLASSROOM_TAB,
-			payload: { tabState }
-		})
+	const tabButtons = {
+		classTab: '',
+		examTab: ''
 	}
+
+	const tabUpdate = _.set(tabButtons, event.target.getAttribute('data-name'), 'active')
+
 	dispatch({
-		type: '',
-		payload: {}
+		type: CHANGE_CLASSROOM_TAB,
+		payload: tabUpdate
 	})
 }
 
