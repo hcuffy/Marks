@@ -29,7 +29,7 @@ const createFormInputs = labels =>
 			/>
 		</div>
 	))
-const Classes = ({ classData, actions }) => {
+const Classes = ({ t, classData, actions }) => {
 	const formLabels = _.omit(classData, ['classData', 'Check'])
 	const formInputs = createFormInputs(formLabels)
 
@@ -38,17 +38,17 @@ const Classes = ({ classData, actions }) => {
 		<div className={styles.room_div}>
 			<form onSubmit={actions.handleClassData} method="POST">
 				<div className={styles.form_outer_div}>
-					<h4 className={styles.center_header}>Add a Class</h4>
+					<h4 className={styles.center_header}>{t('room.addClassHeader')}</h4>
 					{formInputs}
 					<div className={(styles.form_div, styles.save_btn)}>
 						<button type="submit" className="btn btn-success">
-							Add
+							{t('general.add')}
 						</button>
 					</div>
 				</div>
 			</form>
 			<div>
-				<h4 className={styles.center_header}>List of Classes</h4>
+				<h4 className={styles.center_header}>{t('room.listHeader')}</h4>
 				<ClassList listData={classData} />
 			</div>
 			<Subjects classData={classData} />

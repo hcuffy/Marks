@@ -2,6 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/subject.css'
 
@@ -34,7 +35,7 @@ const SubjectForm = ({ classListData, subjects, actions }) => {
 				{formInputs}
 				<div className={styles.form_div}>
 					<label className={styles.form_label} htmlFor="cSelect">
-						Select Class:
+						{t('general.selectClass')}
 					</label>
 					<select type="text" size="2" name="Room" className="form-control">
 						{selectOption}
@@ -42,7 +43,7 @@ const SubjectForm = ({ classListData, subjects, actions }) => {
 				</div>
 				<div className={styles.subject_save}>
 					<button type="submit" className="btn btn-success">
-						Add
+						{t('general.add')}
 					</button>
 				</div>
 			</form>

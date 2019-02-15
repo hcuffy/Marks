@@ -1,11 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import i18next from 'i18next'
+import { t } from '../utils/translationUtil'
 import styles from './styles/homepage.css'
 
 const _ = require('lodash')
-
-const t = translate => i18next.t(translate)
 
 const Homepage = ({ schoolData }) => {
 	const entry = _.values(schoolData).map((data, idx) => <li key={idx}>{data}</li>)
