@@ -5,6 +5,8 @@ import styles from './styles/homepage.css'
 
 const _ = require('lodash')
 
+const t = translate => i18next.t(translate)
+
 const Homepage = ({ schoolData }) => {
 	const entry = _.values(schoolData).map((data, idx) => <li key={idx}>{data}</li>)
 
@@ -23,7 +25,7 @@ const Homepage = ({ schoolData }) => {
 
 			<div className={styles.school_right_div}>
 				<div>
-					<p>{i18next.t('title')}</p>
+					<p>{t('title')}</p>
 					<span>Under Development</span>
 				</div>
 				<div className={styles.page_inner_div}>
