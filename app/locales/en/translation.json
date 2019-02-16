@@ -3,6 +3,9 @@
   "general": {
     "add": "Add",
     "save": "Save",
+    "close": "Close",
+    "update": "Update",
+    "delete": "Delete",
     "selectClass": "Select Class",
     "nameLabel": "Name"
   },
@@ -11,10 +14,29 @@
     "addClassHeader": "Add a Class",
     "addSubject": "Add a Subject",
     "subjectHeader": "Subjects",
-    "teacher": "Teacher",
-    "code": "Code",
-    "subjectTeacher": "Subject Teacher",
+    "Name": "Name",
+    "Teacher": "Teacher",
+    "Code": "Code",
+    "Subject_Teacher": "Subject Teacher",
+    "Abbreviation": "Abbreviation",
     "examsTab": "Exams/Tests",
     "classTab": "Classes"
+  },
+
+  "notifications": {
+    "general": {
+      "saveSuccess": "The data was saved successfully.",
+      "saveFailed": "The data could not be saved.",
+      "retrieveFail": "It was not possible to retrieve the data",
+      "exists": "The data already exists.",
+      "deleteSuccess": "The data was deleted successfully.",
+      "deleteFail": "Failed to delete the data.",
+      "updateSuccess": "The data was updated successfully.",
+      "updatefail": "The data could not be updated..",
+      "noUpdate": "There is nothing to update."
+    },
+    "warning": {
+      "makeSelection": "First select a"
+    }
   }
 }

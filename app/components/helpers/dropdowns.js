@@ -1,6 +1,6 @@
 import React from 'react'
 import { DropdownItem, Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
-import { selectClassroom } from '../../notifications/warnings'
+import { firstMakeSelection } from '../../notifications/warnings'
 
 const _ = require('lodash')
 
@@ -73,6 +73,6 @@ export const createDropdown = (styling, openIt, action, { label }, options) => (
 
 export const notifyIfEmpty = (options, selected, section) => {
 	if (_.isEmpty(options) && selected) {
-		selectClassroom(section)
+		firstMakeSelection(section)
 	}
 }
