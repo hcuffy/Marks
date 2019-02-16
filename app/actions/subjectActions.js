@@ -7,7 +7,9 @@ import {
 import { addSubjectData, getAllSubjects } from '../database/subjectCollection'
 
 export const openClassList = event => dispatch => {
-	event.preventDefault()
+	if (event.target.type !== 'button') {
+		return
+	}
 
 	const subject = event.target.innerText
 	dispatch({
