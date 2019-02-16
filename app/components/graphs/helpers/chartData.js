@@ -55,27 +55,29 @@ const filterByExam = (examId, grades) => {
 	return filteredGrades
 }
 
-export const chartData = (
+const gradesToDisplay = (
 	{ grades, chartTitle, subjectId, exams, examId, chartToDisplay },
 	subjects
 ) => {
-	const filteredGrades = []
-
-	if (chartToDisplay === 'exam') {
-		filteredGrades.push(...filterByExam(examId, grades))
-	} else if (chartToDisplay === 'subject') {
-		filteredGrades.push(...filterBySubject(subjectId, exams, grades))
-	} else if (chartToDisplay === 'class') {
-		filteredGrades.push(...filterByClass(grades, chartTitle, subjects, exams))
-	} else {
-		_.merge(filteredGrades, grades)
+	switch (chartToDisplay) {
+	case 'exam':
+		return [...filterByExam(examId, grades)]
+	case 'subject':
+		return [...filterBySubject(subjectId, exams, grades)]
+	case 'class':
+		return [...filterByClass(grades, chartTitle, subjects, exams)]
+	default:
+		return _.merge([], grades)
 	}
+}
+export const chartData = (graphData, subjects) => {
+	const filteredGrades = gradesToDisplay(graphData, subjects)
 
 	return {
 		labels: chartLabels(),
 		datasets: [
 			{
-				label: chartHeader(chartTitle),
+				label: chartHeader(graphData.chartTitle),
 				data: filteredData(filteredGrades),
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.6)',
