@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { modalFrame } from '../helpers/editModal'
 import styles from './styles/room.css'
@@ -25,7 +26,7 @@ const createInputs = selectedRoom =>
 	_.keys(selectedRoom).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}_Id`}>
-				{data}:
+				{t(`room.${data}`)}:
 			</label>
 			<input
 				name={data}

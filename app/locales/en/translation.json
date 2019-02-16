@@ -6,6 +6,7 @@
     "close": "Close",
     "update": "Update",
     "delete": "Delete",
+    "edit": "Edit",
     "selectClass": "Select Class",
     "nameLabel": "Name"
   },
