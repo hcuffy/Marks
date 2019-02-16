@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/room.css'
 import ClassList from './ClassList'
@@ -18,7 +19,7 @@ const createFormInputs = labels =>
 	_.keys(labels).map((data, idx) => (
 		<div key={idx} className={styles.room_form}>
 			<label className={styles.room_form_label} htmlFor={`${data}Id`}>
-				{data}:
+				{t(`room.${data}`)}:
 			</label>
 			<input
 				name={data}
@@ -29,7 +30,7 @@ const createFormInputs = labels =>
 			/>
 		</div>
 	))
-const Classes = ({ t, classData, actions }) => {
+const Classes = ({ classData, actions }) => {
 	const formLabels = _.omit(classData, ['classData', 'Check'])
 	const formInputs = createFormInputs(formLabels)
 

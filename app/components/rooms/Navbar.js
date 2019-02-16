@@ -2,6 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/room.css'
 
@@ -21,7 +22,7 @@ const classPill = (index, pillClass, name, action, title) => (
 	</li>
 )
 
-const NavBar = ({ t, tabChangeData, actions }) => {
+const NavBar = ({ tabChangeData, actions }) => {
 	const { classTab, examTab } = tabChangeData
 
 	return (

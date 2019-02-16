@@ -12,7 +12,7 @@ const generateInputs = labels =>
 	_.values(labels).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}Sid`}>
-				{data}:
+				{t(`room.${data}`)}:
 			</label>
 			{/* eslint-disable-next-line max-len */}
 			<input name={data} className="form-control" data-id={`${data}Sid`} type="text" />

@@ -29,7 +29,7 @@ const Subjects = ({ classData, classListData, actions }) => {
 					null,
 					classListData.openModal,
 					actions.openClassList,
-					{ label: 'Select Class' },
+					{ label: t('general.selectClass') },
 					subjectOptions
 				)}
 				<SubjectList selectedSubject={selectedSubject} />
