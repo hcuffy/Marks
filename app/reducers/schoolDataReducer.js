@@ -3,25 +3,25 @@ import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../constants/actionType
 const _ = require('lodash')
 
 const initialLoadState = {
-	Title: null,
-	Street: null,
-	Province: null,
-	Country: null,
-	Zip: null,
-	Year: null
+	title: null,
+	street: null,
+	province: null,
+	country: null,
+	zip: null,
+	year: null
 }
 
 export const handleSchoolReducer = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case HANDLE_SCHOOL_DATA: {
-		const { Title, Street, Province, Country, Zip, Year } = action.payload
+		const { title, street, province, country, zip, year } = action.payload
 		return _.assign({}, state, {
-			Title,
-			Street,
-			Province,
-			Country,
-			Zip,
-			Year
+			title,
+			street,
+			province,
+			country,
+			zip,
+			year
 		})
 	}
 	default:
@@ -32,14 +32,14 @@ export const handleSchoolReducer = (state = initialLoadState, action) => {
 const applySchoolData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case DISPLAY_SCHOOL_DATA: {
-		const { Title, Street, Province, Country, Zip, Year } = action.payload
+		const { title, street, province, country, zip, year } = action.payload
 		return _.assign({}, state, {
-			Title,
-			Street,
-			Province,
-			Country,
-			Zip,
-			Year
+			title,
+			street,
+			province,
+			country,
+			zip,
+			year
 		})
 	}
 	default:

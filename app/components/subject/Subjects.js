@@ -15,11 +15,11 @@ const _ = require('lodash')
 const Subjects = ({ classData, classListData, actions }) => {
 	const subjects = sortData(classData)
 	const { subject, openModal } = classListData
-	const selectedSubject = _.find(subjects, ['Name', subject])
+	const selectedSubject = _.find(subjects, ['name', subject])
 
 	const subjectOptions = subjects.map((data, idx) => (
-		<DropdownItem key={idx} name={data.Name} onClick={actions.showSubject}>
-			{data.Name}
+		<DropdownItem key={idx} name={data.name} onClick={actions.showSubject}>
+			{data.name}
 		</DropdownItem>
 	))
 	return (

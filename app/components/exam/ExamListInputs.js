@@ -7,7 +7,7 @@ import styles from './styles/exam.css'
 const _ = require('lodash')
 
 const ExamListInputs = ({ exams, subjectId, actions }) => {
-	const filteredExams = _.filter(exams, ['SubjectId', subjectId])
+	const filteredExams = _.filter(exams, ['subjectId', subjectId])
 	const examList = filteredExams.map((data, idx) => (
 		<button
 			key={idx}
@@ -16,12 +16,12 @@ const ExamListInputs = ({ exams, subjectId, actions }) => {
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
 			onClick={actions.showSingleExam}
 		>
-			{data.Title}
+			{data.title}
 			<span className={`badge badge-light badge-pill ${styles.badge_number}`}>
-				<i className="fas fa-calendar" /> {data.Date}
+				<i className="fas fa-calendar" /> {data.date}
 			</span>
 			<span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
-				<i className="fas fa-weight-hanging" /> {data.Weight}
+				<i className="fas fa-weight-hanging" /> {data.weight}
 			</span>
 		</button>
 	))

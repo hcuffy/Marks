@@ -14,10 +14,10 @@ export const cleanAndFilterData = (objectToClean, roomToClean) => {
 		'_id',
 		'createdAt',
 		'updatedAt',
-		'Subjects',
-		'Tests',
-		'ClassroomId',
-		'Room'
+		'subjects',
+		'tests',
+		'classroomId',
+		'room'
 	])
 	return cleanedData
 }
@@ -41,7 +41,7 @@ const createInputs = selectedRoom =>
 const RoomModal = ({ modalData, classModalData, actions }) => {
 	const selectedRoom = cleanAndFilterData(modalData, classModalData)
 	const clickedRoom = createInputs(selectedRoom)
-	const hiddenInput = <input type="hidden" name="OldName" data-id={selectedRoom.Name} />
+	const hiddenInput = <input type="hidden" name="oldName" data-id={selectedRoom.name} />
 	const footerData = {
 		dataId: classModalData.id,
 		nameId: null,

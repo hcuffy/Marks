@@ -22,9 +22,9 @@ export const addNewSubject = event => dispatch => {
 	event.preventDefault()
 
 	const formData = {
-		Name: event.target.Name.value,
-		Abbreviation: event.target.Abbreviation.value,
-		Room: event.target.Room.value
+		name: event.target.name.value,
+		abbreviation: event.target.abbreviation.value,
+		room: event.target.room.value
 	}
 
 	event.target.reset()

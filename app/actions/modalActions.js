@@ -55,11 +55,11 @@ export const deleteRoom = event => async dispatch => {
 export const updateRoom = event => async dispatch => {
 	event.preventDefault()
 	const roomData = {
-		Name: event.target.Name.value,
-		Teacher: event.target.Teacher.value,
-		Code: event.target.Code.value,
-		Subject_Teacher: event.target.Subject_Teacher.value,
-		OldName: event.target.OldName.getAttribute('data-id'),
+		name: event.target.name.value,
+		teacher: event.target.teacher.value,
+		code: event.target.code.value,
+		substitute: event.target.substitute.value,
+		oldName: event.target.oldName.getAttribute('data-id'),
 		id: '',
 		showModal: true
 	}
@@ -94,10 +94,10 @@ export const subjectModalDisplay = event => dispatch => {
 export const updateSubject = event => async dispatch => {
 	event.preventDefault()
 	const subjectData = {
-		Name: event.target.Name.value,
-		Abbreviation: event.target.Abbreviation.value,
-		ClassroomId: event.target.ClassroomId.getAttribute('data-id'),
-		SubjectId: event.target.SubjectId.getAttribute('data-id')
+		name: event.target.name.value,
+		abbreviation: event.target.abbreviation.value,
+		classroomId: event.target.classroomId.getAttribute('data-id'),
+		subjectId: event.target.subjectId.getAttribute('data-id')
 	}
 
 	const subjectDoc = await updateSubjectData(subjectData)
@@ -105,13 +105,13 @@ export const updateSubject = event => async dispatch => {
 
 	dispatch({
 		type: OPEN_CLOSE_SUBJECT_MODAL,
-		payload: { id: subjectData.SubjectId }
+		payload: { id: subjectData.subjectId }
 	})
 
 	if (subjectDoc.length > 0) {
 		dispatch({
 			type: GET_SINGLE_SUBJECT,
-			payload: { subject: subjectDoc[0].Room }
+			payload: { subject: subjectDoc[0].room }
 		})
 	}
 	dispatch({
@@ -129,13 +129,13 @@ export const deleteSingleSubject = event => async dispatch => {
 
 	dispatch({
 		type: OPEN_CLOSE_SUBJECT_MODAL,
-		payload: { id: subjectData.SubjectId }
+		payload: { id: subjectData.subjectId }
 	})
 
 	if (subjectDoc.length > 0) {
 		dispatch({
 			type: GET_SINGLE_SUBJECT,
-			payload: { subject: subjectDoc[0].Room }
+			payload: { subject: subjectDoc[0].room }
 		})
 	}
 }
@@ -164,18 +164,18 @@ export const deleteSingleExam = event => async dispatch => {
 export const updateExam = event => async dispatch => {
 	event.preventDefault()
 	const examData = {
-		Title: event.target.Title.value,
-		Date: event.target.Date.value,
-		Weight: event.target.Weight.value,
-		SubjectId: event.target.SubjectId.getAttribute('data-id'),
-		ExamId: event.target.ExamId.getAttribute('data-id')
+		title: event.target.title.value,
+		date: event.target.date.value,
+		weight: event.target.weight.value,
+		subjectId: event.target.subjectId.getAttribute('data-id'),
+		examId: event.target.examId.getAttribute('data-id')
 	}
 
 	const exams = await updateExamData(examData)
 
 	dispatch({
 		type: GET_SINGLE_EXAM,
-		payload: examData.ExamId
+		payload: examData.examId
 	})
 
 	if (exams.length > 0) {
@@ -205,11 +205,11 @@ export const deleteSingleStudent = event => async dispatch => {
 export const updateStudent = event => async dispatch => {
 	event.preventDefault()
 	const studentData = {
-		Firstname: event.target.Firstname.value,
-		Lastname: event.target.Lastname.value,
-		Gender: event.target.Gender.value,
-		Classroom: event.target.Classroom.value,
-		Id: event.target.studentId.getAttribute('data-id')
+		firstname: event.target.firstname.value,
+		lastname: event.target.lastname.value,
+		gender: event.target.gender.value,
+		classroom: event.target.classroom.value,
+		id: event.target.studentId.getAttribute('data-id')
 	}
 
 	const students = await updateStudentData(studentData)

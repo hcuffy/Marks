@@ -6,8 +6,8 @@ const _ = require('lodash')
 
 export const getClassList = classlist => {
 	const items = classlist.map((data, idx) => (
-		<DropdownItem key={idx} name={data.Name}>
-			{data.Name}
+		<DropdownItem key={idx} name={data.name}>
+			{data.name}
 		</DropdownItem>
 	))
 
@@ -15,10 +15,10 @@ export const getClassList = classlist => {
 }
 
 export const getSubjectList = (examData, subjectData) => {
-	const selectedSubjects = _.filter(subjectData.data, ['Room', examData.selectedRoom])
+	const selectedSubjects = _.filter(subjectData.data, ['room', examData.selectedRoom])
 	const items = selectedSubjects.map((data, idx) => (
-		<DropdownItem key={idx} name={data.Name} data-id={data._id}>
-			{data.Name}
+		<DropdownItem key={idx} name={data.name} data-id={data._id}>
+			{data.name}
 		</DropdownItem>
 	))
 	return items
@@ -27,18 +27,18 @@ export const getSubjectList = (examData, subjectData) => {
 export const getAllSubjects = subjects => {
 	const checkSubject = _.isUndefined(subjects) ? [] : subjects
 	const items = checkSubject.map((data, idx) => (
-		<DropdownItem key={idx} name={data.Name} data-id={data._id}>
-			{data.Name}
+		<DropdownItem key={idx} name={data.name} data-id={data._id}>
+			{data.name}
 		</DropdownItem>
 	))
 	return items
 }
 
 export const getExamList = (exams, subjectId) => {
-	const selectedExams = _.filter(exams, ['SubjectId', subjectId])
+	const selectedExams = _.filter(exams, ['subjectId', subjectId])
 	const items = selectedExams.map((data, idx) => (
-		<DropdownItem key={idx} name={data.SubjectId} data-id={data._id}>
-			{data.Title}
+		<DropdownItem key={idx} name={data.subjectId} data-id={data._id}>
+			{data.title}
 		</DropdownItem>
 	))
 
@@ -48,12 +48,12 @@ export const getExamList = (exams, subjectId) => {
 export const getStudentList = allStudents => {
 	const students = _.sortBy(
 		_.isUndefined(allStudents) ? [] : allStudents,
-		['Firstname'],
+		['firstname'],
 		['asc']
 	)
 	const items = students.map((data, idx) => (
 		<DropdownItem key={idx} data-id={data._id}>
-			{`${data.Firstname} ${data.Lastname}`}
+			{`${data.firstname} ${data.lastname}`}
 		</DropdownItem>
 	))
 

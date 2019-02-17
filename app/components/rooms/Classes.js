@@ -10,7 +10,7 @@ import Subjects from '../subject/Subjects'
 const _ = require('lodash')
 
 const checkChange = (classData, actions) => {
-	if (classData.Check) {
+	if (classData.check) {
 		actions.displayClassData()
 	}
 }
@@ -31,7 +31,7 @@ const createFormInputs = labels =>
 		</div>
 	))
 const Classes = ({ classData, actions }) => {
-	const formLabels = _.omit(classData, ['classData', 'Check'])
+	const formLabels = _.omit(classData, ['classData', 'check'])
 	const formInputs = createFormInputs(formLabels)
 
 	checkChange(classData, actions)

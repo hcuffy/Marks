@@ -28,7 +28,7 @@ const filteredData = grades => {
 }
 const filterByClass = (allGrades, chartTitle, subjects, exams) => {
 	const filteredGrades = []
-	const filteredClass = _.filter(subjects, { Room: chartTitle })
+	const filteredClass = _.filter(subjects, { room: chartTitle })
 
 	for (let i = 0; i < filteredClass.length; i += 1) {
 		const temp = filterBySubject(filteredClass[i]._id, exams, allGrades)
@@ -39,7 +39,7 @@ const filterByClass = (allGrades, chartTitle, subjects, exams) => {
 
 export const filterBySubject = (subjectId, exams, grades) => {
 	const filteredGrades = []
-	const filteredExams = _.filter(exams, { SubjectId: subjectId })
+	const filteredExams = _.filter(exams, { subjectId })
 
 	for (let i = 0; i < filteredExams.length; i += 1) {
 		const temp = _.filter(grades, { examId: filteredExams[i]._id })

@@ -17,9 +17,9 @@ const generateListBtn = (students, action) =>
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
 			onClick={action}
 		>
-			{`${data.Firstname} ${data.Lastname}`}
+			{`${data.firstname} ${data.lastname}`}
 
-			{data.Gender === 'Male' ? (
+			{data.gender === 'Male' ? (
 				<Badge className={`badge-pill ${styles.badge_boy}`}>
 					<i className="fas fa-mars" />
 				</Badge>
@@ -35,7 +35,7 @@ const generateStudentList = (students, actions) => {
 	if (_.isUndefined(students)) {
 		return []
 	}
-	const sortedStudents = _.sortBy(students, ['Firstname'], ['asc'])
+	const sortedStudents = _.sortBy(students, ['firstname'], ['asc'])
 
 	return generateListBtn(sortedStudents, actions.showStudentModal)
 }

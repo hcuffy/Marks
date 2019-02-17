@@ -14,16 +14,16 @@ const schoolCollection = new Datastore({
 })
 
 const updateData = (previous, current) => {
-	const { Title, Street, Province, Country, Zip, Year } = current
+	const { title, street, province, country, zip, year } = current
 	schoolCollection.update(
-		{ Title: previous.Title },
+		{ title: previous.title },
 		{
-			Title,
-			Street,
-			Province,
-			Country,
-			Zip,
-			Year
+			title,
+			street,
+			province,
+			country,
+			zip,
+			year
 		},
 		{},
 		err => {
@@ -44,7 +44,7 @@ export const addSchoolData = data => {
 		}
 		if (entry.length > 0) {
 			updateData(entry[0], data)
-			return 'saved'
+			return
 		}
 		schoolCollection.insert(data, error => {
 			if (error) {
@@ -52,7 +52,6 @@ export const addSchoolData = data => {
 				return error
 			}
 			saveSuccessful()
-			return 'Saved'
 		})
 	})
 }

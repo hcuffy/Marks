@@ -9,13 +9,13 @@ import { addExamData, getExamData } from '../database/examCollection'
 
 export const addNewExam = event => dispatch => {
 	event.preventDefault()
-	const selectedSubjectIndex = event.target.Subject.selectedIndex
+	const selectedSubjectIndex = event.target.subject.selectedIndex
 	const examData = {
-		Title: event.target.Title.value,
+		title: event.target.title.value,
 		// eslint-disable-next-line max-len
-		SubjectId: event.target.Subject.options[selectedSubjectIndex].getAttribute('data-id'),
-		Date: event.target.Date.value,
-		Weight: event.target.Weight.value
+		subjectId: event.target.subject.options[selectedSubjectIndex].getAttribute('data-id'),
+		date: event.target.date.value,
+		weight: event.target.weight.value
 	}
 	addExamData(examData)
 	dispatch({

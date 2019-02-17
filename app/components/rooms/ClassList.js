@@ -8,7 +8,7 @@ import RoomModal from './RoomModal'
 const _ = require('lodash')
 
 export const sortData = clean => {
-	const sortedProp = _.sortBy(clean.classData, ['Name'], ['asc'])
+	const sortedProp = _.sortBy(clean.classData, ['name'], ['asc'])
 
 	return sortedProp
 }
@@ -22,9 +22,9 @@ const classInputs = (cleanData, action) =>
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
 			onClick={action}
 		>
-			{data.Name}
+			{data.name}
 			<span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
-				{data.Subjects.length}
+				{data.subjects.length}
 			</span>
 		</button>
 	))

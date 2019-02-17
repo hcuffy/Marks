@@ -12,7 +12,7 @@ const getClassroomId = dataList => {
 	if (_.isEmpty(dataList) || _.isNil(dataList)) {
 		return []
 	}
-	return dataList[0].ClassroomId
+	return dataList[0].classroomId
 }
 
 const selectedSubject = subject =>
@@ -37,8 +37,8 @@ const SubjectModal = ({ filteredData, subjectModalData, actions }) => {
 	const hiddenInputs = (
 		<div>
 			{/* eslint-disable-next-line max-len */}
-			<input type="hidden" name="ClassroomId" data-id={getClassroomId(filteredData)} />
-			<input type="hidden" name="SubjectId" data-id={subjectModalData.id} />
+			<input type="hidden" name="classroomId" data-id={getClassroomId(filteredData)} />
+			<input type="hidden" name="subjectId" data-id={subjectModalData.id} />
 		</div>
 	)
 	const footerData = {

@@ -7,7 +7,7 @@ import {
 	GRAPHS
 } from '../../../constants/routes.json'
 
-export const MENUDATA = {
+export const menuData = {
 	home: {
 		linkTo: HOME,
 		dataId: 'home',

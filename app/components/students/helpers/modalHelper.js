@@ -13,7 +13,7 @@ const formDropdowns = ({ label, id, defaultValue, options }) => (
 			className="form-control"
 			type="text"
 			data-id={id}
-			name="Gender"
+			name="gender"
 			defaultValue={defaultValue}
 		>
 			{options}
@@ -23,13 +23,13 @@ const formDropdowns = ({ label, id, defaultValue, options }) => (
 const dropDownFields = (studentFields, chosenStudent, classdata) => {
 	const classroomOptions = _.values(classdata).map((data, idx) => (
 		<option key={idx} className="form-control dropdown">
-			{data.Name}
+			{data.name}
 		</option>
 	))
 	const genderData = {
-		label: 'Gender:',
+		label: 'gender:',
 		id: 'gSelect',
-		defaultValue: chosenStudent.Gender,
+		defaultValue: chosenStudent.gender,
 		options: [
 			<option key="0" className="form-control dropdown">
 				Male
@@ -40,9 +40,9 @@ const dropDownFields = (studentFields, chosenStudent, classdata) => {
 	}
 
 	const classData = {
-		label: 'Classroom::',
+		label: 'classroom::',
 		id: 'cSelect',
-		defaultValue: chosenStudent.Classroom,
+		defaultValue: chosenStudent.classroom,
 		options: classroomOptions
 	}
 
@@ -58,7 +58,7 @@ const dropDownFields = (studentFields, chosenStudent, classdata) => {
 }
 
 const generateFields = (chosenStudent, classdata) => {
-	const studentFields = _.keys(_.pick(chosenStudent, ['Firstname', 'Lastname'])).map(
+	const studentFields = _.keys(_.pick(chosenStudent, ['firstname', 'lastname'])).map(
 		(data, idx) => (
 			<div>
 				<div key={idx} className={styles.form_div_edit}>

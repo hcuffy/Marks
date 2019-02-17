@@ -7,7 +7,7 @@ const genderDropdown = (
 		<label className={styles.form_label} htmlFor="gSelect">
 			Gender:
 		</label>
-		<select type="text" name="Gender" className="form-control">
+		<select type="text" name="gender" className="form-control">
 			<option className="form-control dropdown">Male</option>
 			<option className="form-control dropdown">Female</option>
 		</select>
@@ -19,7 +19,7 @@ const classroomDropdown = options => (
 		<label className={styles.form_label} htmlFor="cSelect">
 			Classroom:
 		</label>
-		<select type="text" name="Classroom" className="form-control">
+		<select type="text" name="classroom" className="form-control">
 			{options}
 		</select>
 	</div>

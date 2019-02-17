@@ -8,7 +8,7 @@ const titleInput = (
 			Title*:
 		</label>
 		{/* eslint-disable-next-line max-len */}
-		<input name="Title" className="form-control" required data-id="titleId" type="text" />
+		<input name="title" className="form-control" required data-id="titleId" type="text" />
 	</div>
 )
 const classInput = (options, action) => (
@@ -19,7 +19,7 @@ const classInput = (options, action) => (
 		<select
 			onChange={action}
 			className="form-control"
-			name="Room"
+			name="room"
 			data-id="classSelection"
 			type="text"
 		>
@@ -49,7 +49,7 @@ const dateInput = (
 		<label className={styles.form_label} htmlFor="dateIn">
 			Date:
 		</label>
-		<input className="form-control" name="Date" type="date" data-id="dateIn" />
+		<input className="form-control" name="date" type="date" data-id="dateIn" />
 	</div>
 )
 const numberInput = (
@@ -60,7 +60,7 @@ const numberInput = (
 		<input
 			className={`${styles.weight_input} form-control`}
 			defaultValue="1"
-			name="Weight"
+			name="weight"
 			type="number"
 			data-id="number-input"
 			min="1"

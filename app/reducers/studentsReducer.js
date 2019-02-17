@@ -9,23 +9,23 @@ import {
 const _ = require('lodash')
 
 const initialLoadState = {
-	Firstname: '',
-	Lastname: '',
+	firstname: '',
+	lastname: '',
 	studentModal: false,
 	studentDropdown: false,
 	subjectDropdown: false,
 	studentGraphId: null,
 	chartToDisplay: null,
-	studentGraphName: 'Select Student',
-	subjectGraphName: 'Select Subject'
+	studentGraphName: null,
+	subjectGraphName: null
 }
 
 const applyStudentData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case ADD_NEW_STUDENT: {
 		return _.assign({}, state, {
-			Firstname: '',
-			Lastname: ''
+			firstname: '',
+			lastname: ''
 		})
 	}
 	case GET_ALL_STUDENTS: {

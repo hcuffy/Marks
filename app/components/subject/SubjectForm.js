@@ -25,7 +25,7 @@ const SubjectForm = ({ classListData, subjects, actions }) => {
 
 	const selectOption = _.values(subjects).map((data, idx) => (
 		<option className="form-control dropup" key={idx}>
-			{data.Name}
+			{data.name}
 		</option>
 	))
 
@@ -37,7 +37,7 @@ const SubjectForm = ({ classListData, subjects, actions }) => {
 					<label className={styles.form_label} htmlFor="cSelect">
 						{t('general.selectClass')}
 					</label>
-					<select type="text" size="2" name="Room" className="form-control">
+					<select type="text" size="2" name="room" className="form-control">
 						{selectOption}
 					</select>
 				</div>

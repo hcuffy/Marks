@@ -25,10 +25,10 @@ export const handleClassData = event => async dispatch => {
 	event.preventDefault()
 
 	const formData = {
-		Name: event.target.Name.value,
-		Teacher: event.target.Teacher.value,
-		Code: event.target.Code.value,
-		Subject_Teacher: event.target.Subject_Teacher.value
+		name: event.target.name.value,
+		teacher: event.target.teacher.value,
+		code: event.target.code.value,
+		substitute: event.target.substitute.value
 	}
 	event.target.reset()
 	addClassroomData(formData)

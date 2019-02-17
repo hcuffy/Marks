@@ -44,7 +44,7 @@ const customHeader = ({ date, weight }) => (
 )
 
 const averageColumn = () => ({
-	Header: 'Average',
+	Header: 'Ø',
 	accessor: 'average',
 	width: 150
 })

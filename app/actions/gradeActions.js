@@ -26,7 +26,7 @@ const filterGrades = async exams => {
 }
 
 const filterExams = async subjectData =>
-	_.filter(await getExamData(), ['SubjectId', subjectData.subjectId])
+	_.filter(await getExamData(), ['subjectId', subjectData.subjectId])
 
 export const displayGradeData = event => async dispatch => {
 	const subjectData = {
