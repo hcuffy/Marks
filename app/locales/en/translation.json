@@ -1,5 +1,5 @@
 {
-  "title": "Student Information",
+  "title": "Title",
   "general": {
     "add": "Add",
     "save": "Save",
@@ -7,7 +7,11 @@
     "update": "Update",
     "delete": "Delete",
     "edit": "Edit",
+    "date": "Date",
+    "number": "Number",
     "selectClass": "Select Class",
+    "selectSubject": "Select Subject",
+    "selectRoom": "Select Classroom",
     "nameLabel": "Name"
   },
   "room": {
@@ -22,6 +26,9 @@
     "Abbreviation": "Abbreviation",
     "examsTab": "Exams/Tests",
     "classTab": "Classes"
+  },
+  "exam": {
+    "addExam": "Add New Exam"
   },
 
   "notifications": {
