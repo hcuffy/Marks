@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { DropdownItem } from 'reactstrap'
-import { t } from '../../utils/translationUtil'
+import { t, resolveLabel } from '../../utils/translationUtil'
 import { createDropdown } from '../helpers/dropdowns'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/ClassList'
@@ -14,7 +14,8 @@ const _ = require('lodash')
 
 const Subjects = ({ classData, classListData, actions }) => {
 	const subjects = sortData(classData)
-	const selectedSubject = _.find(subjects, ['Name', classListData.subject])
+	const { subject, openModal } = classListData
+	const selectedSubject = _.find(subjects, ['Name', subject])
 
 	const subjectOptions = subjects.map((data, idx) => (
 		<DropdownItem key={idx} name={data.Name} onClick={actions.showSubject}>
@@ -27,9 +28,9 @@ const Subjects = ({ classData, classListData, actions }) => {
 				<h4 className={styles.center_header}>{t('room.subjectHeader')}</h4>
 				{createDropdown(
 					null,
-					classListData.openModal,
+					openModal,
 					actions.openClassList,
-					{ label: t('general.selectClass') },
+					{ label: resolveLabel(subject, t('general.selectClass')) },
 					subjectOptions
 				)}
 				<SubjectList selectedSubject={selectedSubject} />
