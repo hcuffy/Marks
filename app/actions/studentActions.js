@@ -11,10 +11,10 @@ export const addNewStudent = event => async dispatch => {
 	event.preventDefault()
 
 	const formData = {
-		Firstname: event.target.Firstname.value,
-		Lastname: event.target.Lastname.value,
-		Gender: event.target.Gender.value,
-		Classroom: event.target.Classroom.value
+		firstname: event.target.firstname.value,
+		lastname: event.target.lastname.value,
+		gender: event.target.gender.value,
+		classroom: event.target.classroom.value
 	}
 	addNewStudentData(formData)
 	event.target.reset()
@@ -48,6 +48,9 @@ export const showStudentModal = event => dispatch => {
 }
 
 export const openStudenGraph = event => dispatch => {
+	if (event.target.type !== 'button') {
+		return
+	}
 	const student = {
 		studentGraphId: event.target.getAttribute('data-id'),
 		studentGraphName: event.target.innerText,
@@ -61,6 +64,9 @@ export const openStudenGraph = event => dispatch => {
 }
 
 export const openStudenSubjectGraph = event => dispatch => {
+	if (event.target.type !== 'button') {
+		return
+	}
 	const subject = {
 		subjectGraphId: event.target.getAttribute('data-id'),
 		subjectGraphName: event.target.innerText,
