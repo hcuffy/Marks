@@ -46,7 +46,8 @@ const customHeader = ({ date, weight }) => (
 const averageColumn = () => ({
 	Header: 'Ø',
 	accessor: 'average',
-	width: 150
+	width: 40,
+	style: { textAlign: 'center' }
 })
 
 const customFooter = ({ data }, iterator) => {
