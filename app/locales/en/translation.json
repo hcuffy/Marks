@@ -12,25 +12,27 @@
     "selectClass": "Select Class",
     "selectSubject": "Select Subject",
     "selectRoom": "Select Classroom",
-    "nameLabel": "Name"
+    "selectStudent": "Select Student"
   },
   "room": {
     "listHeader": "List of Classes",
     "addClassHeader": "Add a Class",
+    "name": "Name",
     "addSubject": "Add a Subject",
     "subjectHeader": "Subjects",
-    "Name": "Name",
-    "Teacher": "Teacher",
-    "Code": "Code",
-    "Subject_Teacher": "Subject Teacher",
-    "Abbreviation": "Abbreviation",
+    "teacher": "Teacher",
+    "code": "Code",
+    "substitute": "Substitute",
+    "abbreviation": "Abbreviation",
     "examsTab": "Exams/Tests",
     "classTab": "Classes"
   },
   "exam": {
     "addExam": "Add New Exam"
   },
-
+  "student": {
+    "defaultHeader": "Student Grades"
+  },
   "notifications": {
     "general": {
       "saveSuccess": "The data was saved successfully.",
