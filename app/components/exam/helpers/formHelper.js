@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
+import { t } from '../../../utils/translationUtil'
 import styles from '../styles/exam.css'
 
-const titleInput = (
+const titleInput = () => (
 	<div>
 		<label className={styles.form_label} htmlFor="titleId">
-			Title*:
+			{t('title')}*:
 		</label>
 		{/* eslint-disable-next-line max-len */}
 		<input name="title" className="form-control" required data-id="titleId" type="text" />
@@ -14,7 +15,7 @@ const titleInput = (
 const classInput = (options, action) => (
 	<div>
 		<label className={styles.form_label} htmlFor="classSelection">
-			Select Classroom:
+			{t('general.selectRoom')}:
 		</label>
 		<select
 			onChange={action}
@@ -31,7 +32,7 @@ const classInput = (options, action) => (
 const subjectInput = options => (
 	<div>
 		<label className={styles.form_label} htmlFor="subjectSelection">
-			Select Subject:
+			{t('general.selectSubject')}:
 		</label>
 		<select
 			className="form-control"
@@ -44,18 +45,18 @@ const subjectInput = options => (
 	</div>
 )
 
-const dateInput = (
+const dateInput = () => (
 	<div className={`${styles.form_div} form-group`}>
 		<label className={styles.form_label} htmlFor="dateIn">
-			Date:
+			{t('general.date')}:
 		</label>
 		<input className="form-control" name="date" type="date" data-id="dateIn" />
 	</div>
 )
-const numberInput = (
+const numberInput = () => (
 	<div className={`${styles.form_div} form-group`}>
 		<label className={styles.form_label} htmlFor="number-input">
-			Number:
+			{t('general.number')}:
 		</label>
 		<input
 			className={`${styles.weight_input} form-control`}
@@ -74,14 +75,14 @@ const examForm = (subjectOptions, classOption, actions) => {
 	const examFields = (
 		<div>
 			<form className="form-inline" onSubmit={actions.addNewExam} method="POST">
-				{titleInput}
+				{titleInput()}
 				{classInput(classOption, actions.getSelectedSubject)}
 				{subjectInput(subjectOptions)}
-				{dateInput}
-				{numberInput}
+				{dateInput()}
+				{numberInput()}
 				<div className={styles.form_save_btn}>
 					<button type="submit" className="btn btn-success">
-						Add New Exam
+						{t('general.add')}
 					</button>
 				</div>
 			</form>

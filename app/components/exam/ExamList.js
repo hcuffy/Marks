@@ -1,4 +1,5 @@
 import React from 'react'
+import { t } from '../../utils/translationUtil'
 import ExamListDropdown from './ExamListDropdown'
 import ExamListInputs from './ExamListInputs'
 import ExamModal from './ExamModal'
@@ -7,7 +8,7 @@ import styles from './styles/exam.css'
 const ExamList = () => (
 	<div className={styles.main_div}>
 		<div>
-			<h4>Edit Exam</h4>
+			<h4>{t('exam.editExamHeader')}</h4>
 			<ExamListDropdown />
 		</div>
 		<div>
