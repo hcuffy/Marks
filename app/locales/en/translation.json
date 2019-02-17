@@ -28,6 +28,8 @@
     "classTab": "Classes"
   },
   "exam": {
+    "addExamHeader": "Add Exam",
+    "editExamHeader": "Edit Exam",
     "addExam": "Add New Exam"
   },
   "student": {
@@ -48,5 +50,14 @@
     "warning": {
       "makeSelection": "First select a"
     }
+  },
+  "address": {
+    "sectionTitle": "School Information",
+    "title": "Title",
+    "street": "Street",
+    "province": "Province",
+    "country": "Country",
+    "zip": "Zip",
+    "year": "Year"
   }
 }
