@@ -26,14 +26,14 @@ const GradeDropdown = ({ classData, gradeData, subjectData, actions }) => {
 				styles.dropdown_div,
 				gradeData.classroomDropdown,
 				actions.openGradeClassList,
-				{ label: 'Select Class' },
+				'Select Class',
 				classOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				gradeData.subDrop,
 				actions.displayGradeData,
-				{ label: 'Select Subject' },
+				'Select Subject',
 				subjectOptions
 			)}
 		</div>

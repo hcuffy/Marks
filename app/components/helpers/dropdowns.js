@@ -60,7 +60,7 @@ export const getStudentList = allStudents => {
 	return items
 }
 
-export const createDropdown = (styling, openIt, action, { label }, options) => (
+export const createDropdown = (styling, openIt, action, label , options) => (
 	<div className={styling}>
 		<Dropdown isOpen={openIt} toggle={action}>
 			<DropdownToggle color="info" caret>

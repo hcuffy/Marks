@@ -52,14 +52,14 @@ const StudentDropdown = ({ studentData, subjectData, actions }) => {
 				styles.dropdown_div,
 				studentDropdown,
 				actions.openStudenGraph,
-				{ label: resolveLabel(studentGraphName, t('general.selectStudent')) },
+				resolveLabel(studentGraphName, t('general.selectStudent')),
 				studentOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				openIt.subjectDropdown,
 				actions.openStudenSubjectGraph,
-				{ label: resolveLabel(subjectGraphName, t('general.selectSubject')) },
+				resolveLabel(subjectGraphName, t('general.selectSubject')),
 				subjectOptions
 			)}
 			{PDFbutton(chartTitle)}

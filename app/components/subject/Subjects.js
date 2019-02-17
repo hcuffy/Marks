@@ -30,7 +30,7 @@ const Subjects = ({ classData, classListData, actions }) => {
 					null,
 					openModal,
 					actions.openClassList,
-					{ label: resolveLabel(subject, t('general.selectClass')) },
+					resolveLabel(subject, t('general.selectClass')),
 					subjectOptions
 				)}
 				<SubjectList selectedSubject={selectedSubject} />

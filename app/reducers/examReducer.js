@@ -12,7 +12,8 @@ const initialLoadState = {
 	subject: '',
 	openClassDropdown: false,
 	openSubList: false,
-	selectedRoom: '',
+	selectedRoom: null,
+	selectedSubject: null,
 	examModal: false
 }
 

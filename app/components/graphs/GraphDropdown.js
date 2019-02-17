@@ -50,21 +50,21 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 				styles.dropdown_div,
 				classroomDropdown,
 				actions.openGraphClassList,
-				{ label: classroom },
+				classroom,
 				classOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				openSubList,
 				actions.displaySubjectGraph,
-				{ label: subjectName },
+				subjectName,
 				subjectOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				openExamList,
 				actions.displayExamGraph,
-				{ label: examName },
+				examName,
 				examOptions
 			)}
 			{PDFbutton(chartTitle)}
