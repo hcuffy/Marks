@@ -8,8 +8,6 @@ import {
 import { addNewStudentData, getAllStudents } from '../database/studentCollection'
 
 export const addNewStudent = event => async dispatch => {
-	event.preventDefault()
-
 	const formData = {
 		firstname: event.target.firstname.value,
 		lastname: event.target.lastname.value,
