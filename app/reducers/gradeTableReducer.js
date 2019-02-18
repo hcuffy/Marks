@@ -7,8 +7,8 @@ import {
 const _ = require('lodash')
 
 const initialLoadState = {
-	classroom: '',
-	subjectName: '',
+	classroom: null,
+	subjectName: null,
 	classroomDropdown: false,
 	subDrop: false
 }

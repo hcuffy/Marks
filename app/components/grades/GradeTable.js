@@ -11,19 +11,9 @@ import GradeDropdown from './GradeDropdown'
 const _ = require('lodash')
 
 const dynamicHeader = ({ classroom, subjectName }) => {
-	if (
-		subjectName === '' ||
-		_.includes(subjectName, 'Select') ||
-		subjectName === '-' ||
-		subjectName === classroom
-	) {
-		return <h4 className={styles.center_header}>-</h4>
+	if (!_.isNull(subjectName) && !_.isEqual(classroom, subjectName)) {
+		return <h4 className={styles.center_header}>{`${classroom} : ${subjectName}`}</h4>
 	}
-
-	if (classroom === '' || _.includes(classroom, 'Select' || classroom === '-')) {
-		return <h4 className={styles.center_header}>-</h4>
-	}
-	return <h4 className={styles.center_header}>{`${classroom} : ${subjectName}`}</h4>
 }
 
 const GradeTable = ({ gradeData, students, actions }) => {
