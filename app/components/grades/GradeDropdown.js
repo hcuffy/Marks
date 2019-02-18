@@ -11,27 +11,32 @@ import {
 	notifyIfEmpty
 } from '../helpers/dropdowns'
 
+const _ = require('lodash')
+
 const GradeDropdown = ({ classData, gradeData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
+	const { subDrop, classroom, classroomDropdown } = gradeData
+	const openIt = { subDrop }
 	const classOptions = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList(
-		{ selectedRoom: gradeData.classroom },
-		subjectData
-	)
-	notifyIfEmpty(subjectOptions, gradeData.subDrop)
+	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
+
+	if (_.isEmpty(subjectOptions) && subDrop) {
+		notifyIfEmpty([], true, 'class')
+		openIt.subDrop = false
+	}
 
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
 				styles.dropdown_div,
-				gradeData.classroomDropdown,
+				classroomDropdown,
 				actions.openGradeClassList,
 				'Select Class',
 				classOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
-				gradeData.subDrop,
+				subDrop,
 				actions.displayGradeData,
 				'Select Subject',
 				subjectOptions
