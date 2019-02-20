@@ -111,12 +111,16 @@ select {
   top: 350px !important;
 }
 
-.dropdown_div {
+.dropdown_one {
   display: inline-block;
-  margin: 10px 10px 15px 0;
+  margin: 5px 10px 0 0;
 }
-
+.dropdown_two {
+  display: inline-block;
+}
 .dropdown_main_div {
+  height: 50px;
+  width: 440px;
   text-align: center;
 }
 

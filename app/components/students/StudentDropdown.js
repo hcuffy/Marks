@@ -49,14 +49,14 @@ const StudentDropdown = ({ studentData, subjectData, actions }) => {
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
-				styles.dropdown_div,
+				styles.dropdown_one,
 				studentDropdown,
 				actions.openStudenGraph,
 				resolveLabel(studentGraphName, t('general.selectStudent')),
 				studentOptions
 			)}
 			{createDropdown(
-				styles.dropdown_div,
+				styles.dropdown_two,
 				openIt.subjectDropdown,
 				actions.openStudenSubjectGraph,
 				resolveLabel(subjectGraphName, t('general.selectSubject')),

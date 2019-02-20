@@ -9,7 +9,7 @@ const chartLabels = () => ['One',
 
 const chartHeader = chartTitle => (_.isNull(chartTitle) ? 'School Grades' : chartTitle)
 
-const filteredData = grades => {
+const computeGrades = grades => {
 	const sumArr = []
 	for (let i = 1; i < 7; i += 1) {
 		sumArr.push(
@@ -78,7 +78,7 @@ export const chartData = (graphData, subjects) => {
 		datasets: [
 			{
 				label: chartHeader(graphData.chartTitle),
-				data: filteredData(filteredGrades),
+				data: computeGrades(filteredGrades),
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.6)',
 					'rgba(54, 162, 235, 0.6)',
