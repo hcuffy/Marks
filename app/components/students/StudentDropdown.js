@@ -23,7 +23,7 @@ const PDFbutton = chartTitle => (
 		onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
 	>
 		<i className="fas fa-file-pdf fa-2x" /> <br />
-		Save As...
+		{t('general.saveAs')}
 	</button>
 )
 

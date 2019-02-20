@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Badge } from 'reactstrap'
+import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/students.css'
 import StudentModal from './StudentModal'
@@ -45,7 +46,7 @@ const StudentList = ({ students, actions }) => {
 	return (
 		<div className={styles.list_div}>
 			<div className="list-group list-group-flush">
-				<h4 className={styles.center_sub_header}>List of Students</h4>
+				<h4 className={styles.center_sub_header}>{t('student.list')}</h4>
 				{listData}
 			</div>
 			<StudentModal />

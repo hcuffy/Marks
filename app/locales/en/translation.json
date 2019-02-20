@@ -12,7 +12,8 @@
     "selectClass": "Select Class",
     "selectSubject": "Select Subject",
     "selectRoom": "Select Classroom",
-    "selectStudent": "Select Student"
+    "selectStudent": "Select Student",
+    "saveAs": "Save As"
   },
   "room": {
     "listHeader": "List of Classes",
@@ -33,7 +34,17 @@
     "addExam": "Add New Exam"
   },
   "student": {
-    "defaultHeader": "Student Grades"
+    "defaultHeader": "Student Grades",
+    "title": "Students",
+    "list": "List of Students",
+    "add": "Add Student",
+    "chart": "Charts",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "gender": "Gender",
+    "classroom": "Classroom",
+    "male": "Male",
+    "female": "Female"
   },
   "notifications": {
     "general": {
