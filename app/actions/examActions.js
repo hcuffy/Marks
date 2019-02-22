@@ -42,11 +42,13 @@ export const openClassDropdownList = event => dispatch => {
 
 export const displayExamData = event => async dispatch => {
 	const subjectId = event.target.getAttribute('data-id')
+	const selectedSubject = event.target.innerText
+	console.log(selectedSubject)
 	const exams = await getExamData()
 	if (exams.length !== 0) {
 		dispatch({
 			type: DISPLAY_SUBJECT_LIST,
-			payload: { exams, subjectId }
+			payload: { exams, subjectId, selectedSubject }
 		})
 	}
 }
