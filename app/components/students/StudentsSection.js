@@ -14,7 +14,7 @@ const StudentsSection = () => (
 			<StudentList />
 		</div>
 		<div className={styles.chart_div}>
-			<h4 className={styles.chart_header}>{t('student.chart')}</h4>
+			<h4 className={styles.chart_header}>{t('student.chartTitle')}</h4>
 			<StudentDropdown />
 			<StudentChart />
 		</div>
