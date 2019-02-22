@@ -11,14 +11,13 @@ const modalFooter = ({ dataId, nameId, closeId, deleteAction, closeAction }) => 
 			type="button"
 			color="danger"
 		>
-			{t('general.delete')}:
+			{t('general.delete')}
 		</Button>
-
 		<Button type="submit" color="primary">
-			{t('general.update')}:
+			{t('general.update')}
 		</Button>
 		<Button onClick={closeAction} data-id={closeId} color="secondary">
-			{t('general.close')}:
+			{t('general.close')}
 		</Button>
 	</ModalFooter>
 )

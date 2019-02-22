@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
+import { t } from '../../../utils/translationUtil'
 import styles from '../styles/students.css'
 
 const _ = require('lodash')
@@ -7,7 +8,7 @@ const _ = require('lodash')
 const formDropdowns = ({ label, id, defaultValue, options }) => (
 	<div className={styles.form_div_edit}>
 		<label className={styles.form_label_edit} htmlFor={id}>
-			{label}
+			{t(`student.${label}`)}:
 		</label>
 		<select
 			className="form-control"
@@ -27,20 +28,20 @@ const dropDownFields = (studentFields, chosenStudent, classdata) => {
 		</option>
 	))
 	const genderData = {
-		label: 'gender:',
+		label: 'gender',
 		id: 'gSelect',
 		defaultValue: chosenStudent.gender,
 		options: [
 			<option key="0" className="form-control dropdown">
-				Male
+				{t('student.male')}
 			</option>, <option key="1" className="form-control dropdown">
-				Female
+				{t('student.female')}
 			</option>
 		]
 	}
 
 	const classData = {
-		label: 'classroom::',
+		label: 'classroom',
 		id: 'cSelect',
 		defaultValue: chosenStudent.classroom,
 		options: classroomOptions
@@ -60,20 +61,18 @@ const dropDownFields = (studentFields, chosenStudent, classdata) => {
 const generateFields = (chosenStudent, classdata) => {
 	const studentFields = _.keys(_.pick(chosenStudent, ['firstname', 'lastname'])).map(
 		(data, idx) => (
-			<div>
-				<div key={idx} className={styles.form_div_edit}>
-					<label className={styles.form_label_edit} htmlFor={`${data}_Id`}>
-						{`${data}*:`}
-					</label>
-					<input
-						name={data}
-						required
-						className={`${styles.form_input} form-control`}
-						data-id={`${data}_Id`}
-						type="text"
-						defaultValue={chosenStudent[data]}
-					/>
-				</div>
+			<div key={idx} className={styles.form_div_edit}>
+				<label className={styles.form_label_edit} htmlFor={`${data}_Id`}>
+					{t(`student.${data}`)}*:
+				</label>
+				<input
+					name={data}
+					required
+					className={`${styles.form_input} form-control`}
+					data-id={`${data}_Id`}
+					type="text"
+					defaultValue={chosenStudent[data]}
+				/>
 			</div>
 		)
 	)

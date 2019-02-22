@@ -1,4 +1,5 @@
 import React from 'react'
+// import { t } from '../../../utils/translationUtil'
 import styles from '../styles/exam.css'
 
 const _ = require('lodash')
