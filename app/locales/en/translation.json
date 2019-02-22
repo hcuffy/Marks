@@ -46,6 +46,10 @@
     "male": "Male",
     "female": "Female"
   },
+  "grades": {
+    "gradesTitle": "Grades",
+    "noData": "No Data To Show"
+  },
   "notifications": {
     "general": {
       "saveSuccess": "The data was saved successfully.",

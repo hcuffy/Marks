@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/grades.css'
 import { sortData } from '../rooms/ClassList'
@@ -15,7 +16,7 @@ const _ = require('lodash')
 
 const GradeDropdown = ({ classData, gradeData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
-	const { subDrop, classroom, classroomDropdown } = gradeData
+	const { subDrop, subjectName, classroom, classroomDropdown } = gradeData
 	const openIt = { subDrop }
 	const classOptions = getClassList(cleanedClassList)
 	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
@@ -31,14 +32,14 @@ const GradeDropdown = ({ classData, gradeData, subjectData, actions }) => {
 				styles.dropdown_div,
 				classroomDropdown,
 				actions.openGradeClassList,
-				'Select Class',
+				resolveLabel(classroom, t('general.selectClass')),
 				classOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				subDrop,
 				actions.displayGradeData,
-				'Select Subject',
+				resolveLabel(subjectName, t('general.selectSubject')),
 				subjectOptions
 			)}
 		</div>
