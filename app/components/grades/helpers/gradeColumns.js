@@ -1,4 +1,5 @@
 import React from 'react'
+import { t } from '../../../utils/translationUtil'
 import styles from '../styles/grades.css'
 
 const _ = require('lodash')
@@ -87,7 +88,7 @@ const customColumn = (data, actions) => {
 export const gradeColumns = ({ newData, actions }) => {
 	const columns = [
 		{
-			Header: 'Student Data',
+			Header: t('grades.studentHeader'),
 			columns: [
 				{
 					Header: <i className="fas fa-user" />,
@@ -95,14 +96,14 @@ export const gradeColumns = ({ newData, actions }) => {
 					width: 40,
 					style: { textAlign: 'center' }
 				}, {
-					Header: 'Full Name',
+					Header: t('grades.fullName'),
 					accessor: 'name',
 					width: 150,
 					headerStyle: { textAlign: 'left' }
 				}
 			]
 		}, {
-			Header: 'Examinations & Tests',
+			Header: t('grades.examHeader'),
 			columns: customColumn(newData, actions)
 		}
 	]

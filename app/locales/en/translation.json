@@ -48,7 +48,10 @@
   },
   "grades": {
     "gradesTitle": "Grades",
-    "noData": "No Data To Show"
+    "noData": "No Data To Show",
+    "fullName": "Full Name",
+    "studentHeader": "Student Data",
+    "examHeader": "Exams/Tests"
   },
   "notifications": {
     "general": {
