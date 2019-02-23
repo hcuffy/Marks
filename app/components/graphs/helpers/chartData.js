@@ -1,11 +1,6 @@
 const _ = require('lodash')
 
-const chartLabels = () => ['One',
-	'Two',
-	'Three',
-	'Four',
-	'Five',
-	'Six']
+const chartLabels = (start, limit, step) => _.range(start, limit, step)
 
 const chartHeader = chartTitle => (_.isNull(chartTitle) ? 'School Grades' : chartTitle)
 
@@ -74,7 +69,7 @@ export const chartData = (graphData, subjects) => {
 	const filteredGrades = gradesToDisplay(graphData, subjects)
 
 	return {
-		labels: chartLabels(),
+		labels: chartLabels(1, 7, 1),
 		datasets: [
 			{
 				label: chartHeader(graphData.chartTitle),

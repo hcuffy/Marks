@@ -53,11 +53,14 @@
     "studentHeader": "Student Data",
     "examHeader": "Exams/Tests"
   },
+  "graph": {
+    "overview": "Graph Overview"
+  },
   "notifications": {
     "general": {
       "saveSuccess": "The data was saved successfully.",
       "saveFailed": "The data could not be saved.",
-      "retrieveFail": "It was not possible to retrieve the data",
+      "retrieveFail": "It was not possible to retrieve the data.",
       "exists": "The data already exists.",
       "deleteSuccess": "The data was deleted successfully.",
       "deleteFail": "Failed to delete the data.",

@@ -1,3 +1,84 @@
 {
-  "title": "German Test"
+  "title": "Titel",
+  "general": {
+    "add": "Hinzufügen",
+    "save": "Speichern",
+    "close": "Schließen",
+    "update": "Aktualisieren",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "date": "Datum",
+    "number": "Nummer",
+    "selectClass": "Klasse auswählen",
+    "selectSubject": "Subjekt auswählen",
+    "selectRoom": "Klassenzimmer auswählen",
+    "selectStudent": "Student auswählen",
+    "saveAs": "Speichern als"
+  },
+  "room": {
+    "listHeader": "Liste der Klassen",
+    "addClassHeader": "Klasse hinzufügen",
+    "name": "Name",
+    "addSubject": "Subjekt hinzufügen",
+    "subjectHeader": "Unterrichtsfächer",
+    "teacher": "Lehrer/in",
+    "code": "code",
+    "substitute": "Vertretungslehrer",
+    "abbreviation": "Abkürzung",
+    "examsTab": "Prüfungen",
+    "classTab": "Klassen"
+  },
+  "exam": {
+    "addExamHeader": "Prüfung hinzufügen",
+    "editExamHeader": "Prüfung bearbeiten",
+    "addExam": "Neue Prüfung hinzufügen"
+  },
+  "student": {
+    "defaultHeader": "Noten der Schüler",
+    "title": "Studenten",
+    "list": "Liste der Studenten",
+    "add": "Schüler hinzufügen",
+    "chartTitle": "Diagramme",
+    "firstname": "VorName",
+    "lastname": "Nachname",
+    "gender": "Geschlecht",
+    "classroom": "Classroom",
+    "male": "Männlich",
+    "female": "Weiblich"
+  },
+  "grades": {
+    "gradesTitle": "Note",
+    "noData": "Keine Daten zum Anzeigen",
+    "fullName": "Vollständiger Name",
+    "studentHeader": "Studentendaten",
+    "examHeader": "Prüfungen/Tests"
+  },
+  "graph": {
+    "overview": "Diagrammübersicht"
+  },
+  "notifications": {
+    "general": {
+      "saveSuccess": "Die Daten wurden erfolgreich gespeichert.",
+      "saveFailed": "Die Daten konnten nicht gespeichert werden.",
+      "retrieveFail": "Die Daten konnten nicht abgerufen werden.",
+      "exists": "Die Daten sind bereits vorhanden.",
+      "deleteSuccess": "Die Daten wurden erfolgreich gelöscht.",
+      "deleteFail": "Daten konnten nicht gelöscht werden.",
+      "updateSuccess": "Die Daten wurden erfolgreich aktualisiert.",
+      "updatefail": "Die Daten konnten nicht aktualisiert werden.",
+      "noUpdate": "Es gibt nichts zu aktualisieren."
+    },
+    "warning": {
+      "makeSelection": "Wählen Sie zuerst eine"
+    }
+  },
+  "address": {
+    "sectionTitle": "Schulinformationen",
+    "title": "Titel",
+    "street": "Straße",
+    "province": "Provinz",
+    "country": "Land",
+    "zip": "Postleitzahl",
+    "year": "Jahr"
+  }
 }
