@@ -53,6 +53,9 @@
     "studentHeader": "Student Data",
     "examHeader": "Exams/Tests"
   },
+  "graph": {
+    "overview": "Graph Overview"
+  },
   "notifications": {
     "general": {
       "saveSuccess": "The data was saved successfully.",
