@@ -44,12 +44,12 @@ const generateStudentList = (students, actions) => {
 const StudentList = ({ students, actions }) => {
 	const listData = generateStudentList(students, actions)
 	return (
-		<div className={styles.list_div}>
-			<div className="list-group list-group-flush">
-				<h4 className={styles.center_sub_header}>{t('student.list')}</h4>
-				{listData}
+		<div>
+			<h4 className={styles.center_sub_header}>{t('student.list')}</h4>
+			<div className={styles.list_div}>
+				<div className="list-group list-group-flush">{listData}</div>
+				<StudentModal />
 			</div>
-			<StudentModal />
 		</div>
 	)
 }

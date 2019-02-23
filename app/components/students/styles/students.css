@@ -1,6 +1,6 @@
 .student_div {
   white-space: 800px;
-  height: 350px;
+  height: 275px;
   width: 50%;
   float: right;
   padding: 0 20px 0 0;
@@ -63,8 +63,10 @@
 }
 
 .list_div {
-  height: 230px;
-  overflow: scroll;
+  height: 210px;
+  position: static;
+  scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 select {

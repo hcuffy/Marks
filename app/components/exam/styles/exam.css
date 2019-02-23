@@ -63,7 +63,8 @@
 .exam_div {
   margin: 10px 10px 20px 10px;
   height: 300px;
-  overflow: scroll;
+  scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 .modalInput {

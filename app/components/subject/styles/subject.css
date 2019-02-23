@@ -18,7 +18,8 @@
 
 .list_div {
   height: 230px;
-  overflow: scroll;
+  scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 .list_btn {
@@ -48,7 +49,8 @@
   width: 38%;
   height: 330px;
   position: absolute;
-  overflow: scroll;
+  scrollbar-width: none;
+  overflow-x: hidden;
   margin-left: 110px;
 }
 
@@ -57,7 +59,8 @@
   height: 330px;
   position: absolute;
   right: 20px;
-  overflow: scroll;
+  scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 .center_header {
