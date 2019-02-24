@@ -204,6 +204,7 @@ export const deleteSingleStudent = event => async dispatch => {
 
 export const updateStudent = event => async dispatch => {
 	event.preventDefault()
+
 	const studentData = {
 		firstname: event.target.firstname.value,
 		lastname: event.target.lastname.value,
