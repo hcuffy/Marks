@@ -20,7 +20,7 @@ const generateListBtn = (students, action) =>
 		>
 			{`${data.firstname} ${data.lastname}`}
 
-			{data.gender === 'Male' ? (
+			{data.gender === 'male' ? (
 				<Badge className={`badge-pill ${styles.badge_boy}`}>
 					<i className="fas fa-mars" />
 				</Badge>

@@ -2,7 +2,7 @@ const _ = require('lodash')
 
 const getPersonalInfo = student => ({
 	name: `${student.lastname}, ${student.firstname}`,
-	gender: student.gender === 'Male' ? 'M' : 'F'
+	gender: student.gender === 'male' ? 'M' : 'F'
 })
 
 const checkGradeId = grade => {
