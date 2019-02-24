@@ -35,9 +35,9 @@ const SubjectForm = ({ classListData, subjects, actions }) => {
 				{formInputs}
 				<div className={styles.form_div}>
 					<label className={styles.form_label} htmlFor="cSelect">
-						{t('general.selectClass')}
+						{t('general.selectClass')}:
 					</label>
-					<select type="text" size="2" name="room" className="form-control">
+					<select type="text" name="room" className="form-control">
 						{selectOption}
 					</select>
 				</div>
