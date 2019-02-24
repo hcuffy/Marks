@@ -43,8 +43,8 @@
     "lastname": "Last Name",
     "gender": "Gender",
     "classroom": "Classroom",
-    "male": "Male",
-    "female": "Female"
+    "male": "male",
+    "female": "female"
   },
   "grades": {
     "gradesTitle": "Grades",

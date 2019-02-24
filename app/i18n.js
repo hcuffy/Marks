@@ -8,7 +8,6 @@ i18n
 	.use(LanguageDetector)
 	.use(reactI18nextModule)
 	.init({
-		debug: true,
 		preload: ['en', 'de'],
 		load: 'languageOnly',
 		backend: {
