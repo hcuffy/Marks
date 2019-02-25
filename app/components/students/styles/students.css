@@ -109,20 +109,21 @@ select {
   width: 910px !important;
   height: 350px !important;
   position: fixed !important;
-  left: 100px !important;
-  top: 350px !important;
+  left: 110px !important;
+  top: 370px !important;
 }
 
 .dropdown_one {
-  display: inline-block;
-  margin: 5px 10px 0 0;
+  float: left;
+  margin: 5px 5px 0 0;
 }
 .dropdown_two {
-  display: inline-block;
+  float: right;
+  margin-top: 5px;
 }
 .dropdown_main_div {
-  height: 50px;
-  width: 440px;
+  height: 45px;
+  width: 465px;
   text-align: center;
 }
 

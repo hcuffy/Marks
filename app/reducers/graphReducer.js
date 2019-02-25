@@ -9,14 +9,14 @@ import {
 const _ = require('lodash')
 
 const initialLoadState = {
-	classroom: 'Select Class',
-	subjectName: 'Select Subject',
+	classroom: null,
+	subjectName: null,
+	examName: null,
 	subjectId: null,
 	examId: null,
 	classroomDropdown: false,
 	openSubList: false,
 	openExamList: false,
-	examName: 'Select Exam',
 	chartToDisplay: null,
 	chartTitle: null
 }
