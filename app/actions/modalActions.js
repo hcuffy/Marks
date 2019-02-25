@@ -204,11 +204,11 @@ export const deleteSingleStudent = event => async dispatch => {
 
 export const updateStudent = event => async dispatch => {
 	event.preventDefault()
-
+	const genderIndex = event.target.gender.selectedIndex
 	const studentData = {
 		firstname: event.target.firstname.value,
 		lastname: event.target.lastname.value,
-		gender: event.target.gender.value,
+		gender: event.target.gender.options[genderIndex].getAttribute('data-id'),
 		classroom: event.target.classroom.value,
 		id: event.target.studentId.getAttribute('data-id')
 	}
