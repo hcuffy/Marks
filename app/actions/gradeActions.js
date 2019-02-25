@@ -49,6 +49,7 @@ export const displayGradeData = event => async dispatch => {
 }
 
 export const updateGrade = event => async dispatch => {
+	event.preventDefault()
 	const gradeId = event.target.getAttribute('data-id')
 	const subjectData = {
 		subjectId: event.target.getAttribute('data-subjectid'),
