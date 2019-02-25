@@ -31,8 +31,8 @@ const subjectCollection = new Datastore({
 
 const getSubjects = async subjectData => {
 	const data = await getClassroomData()
-	const selectedClass = _.find(data, ['Name', subjectData.Room])
-	if (!_.includes(selectedClass.Subjects, subjectData.Abbreviation)) {
+	const selectedClass = _.find(data, ['name', subjectData.room])
+	if (!_.includes(selectedClass.subjects, subjectData.abbreviation)) {
 		return selectedClass
 	}
 	return true
@@ -46,8 +46,8 @@ export const addSubjectData = async data => {
 		return -1
 	}
 
-	const newSubject = _.merge(data, { Tests: [], ClassroomId: newRoom._id })
-	newRoom.Subjects.push(data.Abbreviation)
+	const newSubject = _.merge(data, { tests: [], classroomId: newRoom._id })
+	newRoom.subjects.push(data.abbreviation)
 
 	subjectCollection.insert(newSubject, (error, doc) => {
 		if (error) {
@@ -90,8 +90,8 @@ export const deleteSubject = data =>
 	)
 
 const checkSubjectChanges = (prev, curr) => {
-	const { Name, Abbreviation } = curr
-	if (_.isEqual(prev.Name, Name) && _.isEqual(prev.Abbreviation, Abbreviation)) {
+	const { name, abbreviation } = curr
+	if (_.isEqual(prev.name, name) && _.isEqual(prev.abbreviation, abbreviation)) {
 		return false
 	}
 	return true
@@ -104,20 +104,20 @@ const updateClassroomSubjects = (subjectId, previousSubject, currentSubject) => 
 }
 
 const updateSinlgeSubject = (previous, current) => {
-	const { Name, Abbreviation } = current
-	const { Room, Tests, ClassroomId } = previous
+	const { name, abbreviation } = current
+	const { room, tests, classroomId } = previous
 
 	const subjectUpdatable = checkSubjectChanges(previous, current)
 	if (subjectUpdatable) {
-		updateClassroomSubjects(ClassroomId, previous.Abbreviation, Abbreviation)
+		updateClassroomSubjects(classroomId, previous.abbreviation, abbreviation)
 		subjectCollection.update(
 			{ _id: previous._id },
 			{
-				Name,
-				Abbreviation,
-				Room,
-				Tests,
-				ClassroomId
+				name,
+				abbreviation,
+				room,
+				tests,
+				classroomId
 			},
 			{},
 			err => {
@@ -133,14 +133,14 @@ const updateSinlgeSubject = (previous, current) => {
 
 export const updateSubjectData = data =>
 	new Promise((resolve, reject) =>
-		subjectCollection.find({ _id: data.SubjectId }, (err, entry) => {
+		subjectCollection.find({ _id: data.subjectId }, (err, entry) => {
 			if (err) {
 				updateFailed()
 				return err
 			}
 			if (entry.length > 0) {
 				updateSinlgeSubject(entry[0], data)
-				subjectCollection.find({ _id: data.SubjectId }, (error, docs) => {
+				subjectCollection.find({ _id: data.subjectId }, (error, docs) => {
 					if (error) {
 						updateFailed()
 						return reject(error)
@@ -151,8 +151,8 @@ export const updateSubjectData = data =>
 		})
 	)
 
-export const addExamToSubjectArray = ({ SubjectId, Title }) => {
-	subjectCollection.find({ _id: SubjectId }, (err, doc) => {
+export const addExamToSubjectArray = ({ subjectId, title }) => {
+	subjectCollection.find({ _id: subjectId }, (err, doc) => {
 		if (err) {
 			unableToRetrieve()
 			return err
@@ -161,10 +161,10 @@ export const addExamToSubjectArray = ({ SubjectId, Title }) => {
 			return 'Exists'
 		}
 
-		if (!_.includes(doc.Tests, Title)) {
+		if (!_.includes(doc.tests, title)) {
 			subjectCollection.update(
-				{ _id: SubjectId },
-				{ $push: { Tests: Title } },
+				{ _id: subjectId },
+				{ $push: { tests: title } },
 				{},
 				error => {
 					if (error) {
@@ -186,7 +186,7 @@ export const updateSubjecTestsArray = (subjectId, examTitle) =>
 			if (entry.length > 0) {
 				subjectCollection.update(
 					{ _id: subjectId },
-					{ $pull: { Tests: examTitle } },
+					{ $pull: { tests: examTitle } },
 					{},
 					(error, docs) => {
 						if (error) {

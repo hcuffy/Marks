@@ -8,10 +8,9 @@ const _ = require('lodash')
 
 const initialLoadState = {
 	openModal: false,
-	subject: 'Select Class',
-	name: 'Name',
-	abbreviation: 'Abbreviation',
-	select_Class: 'Select Class'
+	subject: null,
+	name: 'name',
+	abbreviation: 'abbreviation'
 }
 
 const applyClassList = (state = initialLoadState, action) => {

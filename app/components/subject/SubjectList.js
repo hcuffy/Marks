@@ -12,8 +12,8 @@ export const filterSubjects = (subjectData, chosenClass) => {
 		return []
 	}
 	const chosenSubjects = _.chain(subjectData)
-		.filter(['Room', chosenClass.Name])
-		.orderBy(['Abbreviation'], [subJ => subJ.Abbreviation.toLowerCase()], ['asc'])
+		.filter(['room', chosenClass.name])
+		.orderBy(['abbreviation'], [subJ => subJ.abbreviation.toLowerCase()], ['asc'])
 		.value()
 
 	return chosenSubjects
@@ -27,9 +27,9 @@ const listOfButtons = (filteredData, action) =>
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
 			onClick={action}
 		>
-			{data.Abbreviation}
+			{data.abbreviation}
 			<span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
-				{data.Tests.length}
+				{data.tests.length}
 			</span>
 		</button>
 	))

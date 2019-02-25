@@ -1,9 +1,10 @@
 import { toast } from 'react-toastify'
+import { t } from '../utils/translationUtil'
 
 export const saveSuccessful = () => {
-	toast.success('The data was saved successfully.', {
+	toast.success(t('notifications.general.saveSuccess'), {
 		position: 'top-right',
-		autoClose: 2000,
+		autoClose: 4000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: false,
@@ -12,9 +13,9 @@ export const saveSuccessful = () => {
 }
 
 export const saveFailed = () => {
-	toast.error('The data could not be saved.', {
+	toast.error(t('notifications.general.saveFail'), {
 		position: 'top-right',
-		autoClose: 2000,
+		autoClose: 4000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: false,
@@ -23,9 +24,9 @@ export const saveFailed = () => {
 }
 
 export const unableToRetrieve = () => {
-	toast.success('Unable to retireve data from database.', {
+	toast.success(t('notifications.general.retrieveFail'), {
 		position: 'top-right',
-		autoClose: 2000,
+		autoClose: 4000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: false,
@@ -34,9 +35,9 @@ export const unableToRetrieve = () => {
 }
 
 export const entryAlreadyExists = () => {
-	toast.error('Data already exists in database.', {
+	toast.error(t('notifications.general.exists'), {
 		position: 'top-right',
-		autoClose: 2000,
+		autoClose: 4000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: false,
@@ -45,9 +46,9 @@ export const entryAlreadyExists = () => {
 }
 
 export const deletionSuccessful = () => {
-	toast.success('Deletion was successful.', {
+	toast.success(t('notifications.general.deleteSuccess'), {
 		position: 'top-right',
-		autoClose: 2000,
+		autoClose: 4000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: false,
@@ -56,9 +57,9 @@ export const deletionSuccessful = () => {
 }
 
 export const deletionFailed = () => {
-	toast.error('Deletion attempt failed.', {
+	toast.error(t('notifications.general.deleteFail'), {
 		position: 'top-right',
-		autoClose: 2000,
+		autoClose: 4000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: false,
@@ -67,9 +68,9 @@ export const deletionFailed = () => {
 }
 
 export const updateSuccessful = () => {
-	toast.success('Data update was successful.', {
+	toast.success(t('notifications.general.updateSuccess'), {
 		position: 'top-right',
-		autoClose: 2000,
+		autoClose: 4000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: false,
@@ -78,9 +79,9 @@ export const updateSuccessful = () => {
 }
 
 export const updateFailed = () => {
-	toast.error('Update attempt failed.', {
+	toast.error(t('notifications.general.updateFail'), {
 		position: 'top-right',
-		autoClose: 2000,
+		autoClose: 4000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: false,
@@ -89,9 +90,9 @@ export const updateFailed = () => {
 }
 
 export const noUpdate = () => {
-	toast.success('No data to update.', {
+	toast.success(t('notifications.general.noUpdate'), {
 		position: 'top-right',
-		autoClose: 2000,
+		autoClose: 4000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: false,

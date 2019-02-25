@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/students.css'
 import studentForm from './helpers/formHelper'
@@ -8,10 +9,10 @@ import studentForm from './helpers/formHelper'
 const _ = require('lodash')
 
 const studentDataFields = studentData =>
-	_.keys(_.pick(studentData, ['Firstname', 'Lastname'])).map((data, idx) => (
+	_.keys(_.pick(studentData, ['firstname', 'lastname'])).map((data, idx) => (
 		<div key={idx} className={styles.form_inner_div}>
 			<label className={styles.form_label} htmlFor={`${data}_Id`}>
-				{`${data}*:`}
+				{t(`student.${data}`)}*:
 			</label>
 			<input
 				name={data}
@@ -27,7 +28,7 @@ const StudentForm = ({ studentData, classData, actions }) => {
 	const formFields = studentDataFields(studentData)
 	const selectOption = _.values(classData.classData).map((data, idx) => (
 		<option className="form-control dropdown" key={idx}>
-			{data.Name}
+			{data.name}
 		</option>
 	))
 

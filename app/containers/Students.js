@@ -11,7 +11,7 @@ class Students extends Component {
 		this.props.actions.getAllGradeData()
 		this.props.actions.getGraphExamData()
 		this.props.actions.getSubjectData()
-		if (this.props.classData[0].Name === '') {
+		if (this.props.classData[0].name === '') {
 			this.props.actions.displayClassData()
 		}
 	}

@@ -1,6 +1,6 @@
 .student_div {
   white-space: 800px;
-  height: 350px;
+  height: 275px;
   width: 50%;
   float: right;
   padding: 0 20px 0 0;
@@ -18,7 +18,7 @@
 .form_inner_div {
   white-space: nowrap;
   float: right;
-  margin: 10px -15px 0 0;
+  margin: 10px 0 0 0;
   width: 300px;
 }
 
@@ -63,8 +63,10 @@
 }
 
 .list_div {
-  height: 230px;
-  overflow: scroll;
+  height: 210px;
+  position: static;
+  scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 select {
@@ -107,16 +109,21 @@ select {
   width: 910px !important;
   height: 350px !important;
   position: fixed !important;
-  left: 100px !important;
-  top: 350px !important;
+  left: 110px !important;
+  top: 370px !important;
 }
 
-.dropdown_div {
-  display: inline-block;
-  margin: 10px 10px 15px 0;
+.dropdown_one {
+  float: left;
+  margin: 5px 5px 0 0;
 }
-
+.dropdown_two {
+  float: right;
+  margin-top: 5px;
+}
 .dropdown_main_div {
+  height: 45px;
+  width: 465px;
   text-align: center;
 }
 

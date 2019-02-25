@@ -4,19 +4,19 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { actionCreators } from '../../actions/index'
-import { MENUDATA } from './helpers/sideMenuData'
+import { menuData } from './helpers/sideMenuData'
 import styles from './styles/sidemenu.css'
 
 const _ = require('lodash')
 
 const SideMenu = ({ menuStylingData, actions }) => {
-	const menuItems = _.keys(MENUDATA).map((data, idx) => (
+	const menuItems = _.keys(menuData).map((data, idx) => (
 		<button key={idx} type="button" className={styles.menu_btn}>
-			<Link onClick={actions.updateButtonStyle} to={MENUDATA[data].linkTo}>
+			<Link onClick={actions.updateButtonStyle} to={menuData[data].linkTo}>
 				<i
-					data-id={MENUDATA[data].dataId}
-					style={{ color: menuStylingData[MENUDATA[data].dataId] }}
-					className={MENUDATA[data].className}
+					data-id={menuData[data].dataId}
+					style={{ color: menuStylingData[menuData[data].dataId] }}
+					className={menuData[data].className}
 				/>
 			</Link>
 		</button>

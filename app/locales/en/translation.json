@@ -1,0 +1,84 @@
+{
+  "title": "Title",
+  "general": {
+    "add": "Add",
+    "save": "Save",
+    "close": "Close",
+    "update": "Update",
+    "delete": "Delete",
+    "edit": "Edit",
+    "date": "Date",
+    "number": "Number",
+    "selectClass": "Select Class",
+    "selectSubject": "Select Subject",
+    "selectRoom": "Select Classroom",
+    "selectStudent": "Select Student",
+    "saveAs": "Save As"
+  },
+  "room": {
+    "listHeader": "List of Classes",
+    "addClassHeader": "Add a Class",
+    "name": "Name",
+    "addSubject": "Add a Subject",
+    "subjectHeader": "Subjects",
+    "teacher": "Teacher",
+    "code": "Code",
+    "substitute": "Substitute",
+    "abbreviation": "Abbreviation",
+    "examsTab": "Exams/Tests",
+    "classTab": "Classes"
+  },
+  "exam": {
+    "addExamHeader": "Add Exam",
+    "editExamHeader": "Edit Exam",
+    "addExam": "Add New Exam"
+  },
+  "student": {
+    "defaultHeader": "Student Grades",
+    "title": "Students",
+    "list": "List of Students",
+    "add": "Add Student",
+    "chartTitle": "Charts",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "gender": "Gender",
+    "classroom": "Classroom",
+    "male": "male",
+    "female": "female"
+  },
+  "grades": {
+    "gradesTitle": "Grades",
+    "noData": "No Data To Show",
+    "fullName": "Full Name",
+    "studentHeader": "Student Data",
+    "examHeader": "Exams/Tests"
+  },
+  "graph": {
+    "overview": "Graph Overview"
+  },
+  "notifications": {
+    "general": {
+      "saveSuccess": "The data was saved successfully.",
+      "saveFailed": "The data could not be saved.",
+      "retrieveFail": "It was not possible to retrieve the data.",
+      "exists": "The data already exists.",
+      "deleteSuccess": "The data was deleted successfully.",
+      "deleteFail": "Failed to delete the data.",
+      "updateSuccess": "The data was updated successfully.",
+      "updatefail": "The data could not be updated..",
+      "noUpdate": "There is nothing to update."
+    },
+    "warning": {
+      "makeSelection": "First select a"
+    }
+  },
+  "address": {
+    "sectionTitle": "School Information",
+    "title": "Title",
+    "street": "Street",
+    "province": "Province",
+    "country": "Country",
+    "zip": "Zip",
+    "year": "Year"
+  }
+}

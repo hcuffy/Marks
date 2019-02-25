@@ -1,4 +1,5 @@
 import { filterBySubject } from '../../../graphs/helpers/chartData'
+import { t, resolveLabel } from '../../../../utils/translationUtil'
 
 const _ = require('lodash')
 
@@ -23,9 +24,9 @@ const filterSubjectGrades = ({ studentGraphId, subjectGraphId }, exams, grades) 
 
 export const chartHeader = ({ studentGraphName, subjectGraphName, chartToDisplay }) => {
 	if (chartToDisplay === null || chartToDisplay === 'student') {
-		return _.isUndefined(studentGraphName) ? 'Student Grades' : studentGraphName
+		return resolveLabel(studentGraphName, t('student.defaultHeader'))
 	}
-	if (_.isUndefined(studentGraphName)) {
+	if (_.isNull(studentGraphName)) {
 		return 'Student Grades'
 	}
 	return `${studentGraphName} - ${subjectGraphName}`

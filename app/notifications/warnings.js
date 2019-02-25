@@ -1,9 +1,10 @@
 import { toast } from 'react-toastify'
+import { t } from '../utils/translationUtil'
 
-export const selectClassroom = section => {
-	toast.warn(`First select a ${section}.`, {
+export const firstMakeSelection = section => {
+	toast.warn(t(`${t('notifications.warning.makeSelection')} ${section}.`), {
 		position: 'top-right',
-		autoClose: 3000,
+		autoClose: 4000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: false,

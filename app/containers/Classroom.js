@@ -29,7 +29,7 @@ class Classroom extends Component {
 
 const mapStateToProps = state => ({
 	classesActive: state.tabChangeData.classTab,
-	examActive: state.tabChangeData.testTab,
+	examActive: state.tabChangeData.examTab,
 	classData: state.classData.classData,
 	addedClass: state.addedClass
 })

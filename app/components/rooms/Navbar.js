@@ -1,40 +1,51 @@
+/* eslint-disable max-len */
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/room.css'
 
-const classPill = (index, pillClass, action, title) => (
+const _ = require('lodash')
+
+const classPill = (index, pillClass, name, action, title) => (
 	<li className="nav-item">
 		<a
 			role="button"
 			tabIndex={index}
 			className={`nav-link ${pillClass}`}
 			onClick={action}
+			data-name={name}
 		>
 			{title}
 		</a>
 	</li>
 )
 
-const NavBar = ({ tabChangeData, actions }) => (
-	<div className={styles.navbar_div}>
-		<ul className="nav nav-pills justify-content-center">
-			{classPill(
-				0,
-				tabChangeData.subjectClass,
-				actions.changeClassroomTab,
-				tabChangeData.tabOneTitle
-			)}
-			{classPill(
-				-1,
-				tabChangeData.testClass,
-				actions.changeClassroomTab,
-				tabChangeData.tabTwoTitle
-			)}
-		</ul>
-	</div>
-)
+const NavBar = ({ tabChangeData, actions }) => {
+	const { classTab, examTab } = tabChangeData
+
+	return (
+		<div className={styles.navbar_div}>
+			<ul className="nav nav-pills justify-content-center">
+				{classPill(
+					0,
+					classTab,
+					_.keys({ classTab })[0],
+					actions.changeClassroomTab,
+					t('room.classTab')
+				)}
+				{classPill(
+					-1,
+					examTab,
+					_.keys({ examTab })[0],
+					actions.changeClassroomTab,
+					t('room.examsTab')
+				)}
+			</ul>
+		</div>
+	)
+}
 
 const mapStateToProps = state => ({ tabChangeData: state.tabChangeData })
 

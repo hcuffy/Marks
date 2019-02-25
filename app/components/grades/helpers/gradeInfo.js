@@ -1,8 +1,8 @@
 const _ = require('lodash')
 
 const getPersonalInfo = student => ({
-	name: `${student.Lastname}, ${student.Firstname}`,
-	gender: student.Gender === 'Male' ? 'M' : 'F'
+	name: `${student.lastname}, ${student.firstname}`,
+	gender: student.gender === 'male' ? 'M' : 'F'
 })
 
 const checkGradeId = grade => {
@@ -25,8 +25,8 @@ const getGradeInfo = (student, gradeData) => {
 		assembledInfo.subjectName = gradeData.subjectName
 		assembledInfo.subjectId = gradeData.subjectId
 		assembledInfo.examId = exams[i]._id
-		assembledInfo.weight = exams[i].Weight
-		assembledInfo.date = exams[i].Date
+		assembledInfo.weight = exams[i].weight
+		assembledInfo.date = exams[i].date
 		assembledInfo.subjectName = gradeData.subjectName
 		const score = _.filter(grades, { examId: exams[i]._id, studentId })
 		assembledInfo.gradeId = checkGradeId(score[0])

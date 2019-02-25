@@ -50,7 +50,8 @@
 
 .list_div {
   height: 230px;
-  overflow: scroll;
+  scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 .list_btn {

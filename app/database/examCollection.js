@@ -24,7 +24,7 @@ const examCollection = new Datastore({
 })
 
 export const addExamData = data => {
-	examCollection.find({ Name: data.Title }, (err, entry) => {
+	examCollection.find({ name: data.title }, (err, entry) => {
 		if (err) {
 			saveFailed()
 			return err
@@ -63,7 +63,7 @@ const updateTestsArr = (examId, subjectId) => {
 		if (err) {
 			return err
 		}
-		const examTitle = entry[0].Title
+		const examTitle = entry[0].title
 		updateSubjecTestsArray(subjectId, examTitle)
 	})
 }
@@ -86,16 +86,16 @@ export const deleteExam = data =>
 	})
 
 const updateSinlgeExam = (previous, current) => {
-	const { Title, Date, Weight } = current
-	const { SubjectId } = previous
+	const { title, date, weight } = current
+	const { subjectId } = previous
 
 	examCollection.update(
 		{ _id: previous._id },
 		{
-			Title,
-			Date,
-			Weight,
-			SubjectId
+			title,
+			date,
+			weight,
+			subjectId
 		},
 		{},
 		err => {
@@ -110,16 +110,16 @@ const updateSinlgeExam = (previous, current) => {
 
 export const updateExamData = data =>
 	new Promise((resolve, reject) => {
-		const { ExamId, SubjectId, Title } = data
-		examCollection.find({ _id: ExamId }, (err, entry) => {
+		const { examId, subjectId, title } = data
+		examCollection.find({ _id: examId }, (err, entry) => {
 			if (err) {
 				return err
 			}
 			if (entry.length > 0) {
 				updateSinlgeExam(entry[0], data)
 
-				updateSubjecTestsArray(SubjectId, entry[0].Title)
-				addExamToSubjectArray({ SubjectId, Title })
+				updateSubjecTestsArray(subjectId, entry[0].title)
+				addExamToSubjectArray({ subjectId, title })
 				examCollection.find({}, (error, docs) => {
 					if (error) {
 						return reject(error)

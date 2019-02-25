@@ -3,24 +3,18 @@ import { CHANGE_CLASSROOM_TAB } from '../constants/actionTypes'
 const _ = require('lodash')
 
 const initialLoadState = {
-	tabOneTitle: 'Classes',
-	tabTwoTitle: 'Exams/Tests',
-	classTab: true,
-	testTab: false,
-	subjectClass: 'active',
-	testClass: ''
+	classTab: 'active',
+	examTab: ''
 }
 
 const applyTabChange = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case CHANGE_CLASSROOM_TAB: {
-		const { classTab, testTab, subjectClass, testClass } = action.payload.tabState
+		const { classTab, examTab } = action.payload
 
 		return _.assign({}, state, {
 			classTab,
-			testTab,
-			subjectClass,
-			testClass
+			examTab
 		})
 	}
 	default:

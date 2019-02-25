@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/grades.css'
 import { sortData } from '../rooms/ClassList'
@@ -11,29 +12,34 @@ import {
 	notifyIfEmpty
 } from '../helpers/dropdowns'
 
+const _ = require('lodash')
+
 const GradeDropdown = ({ classData, gradeData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
+	const { subDrop, subjectName, classroom, classroomDropdown } = gradeData
+	const openIt = { subDrop }
 	const classOptions = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList(
-		{ selectedRoom: gradeData.classroom },
-		subjectData
-	)
-	notifyIfEmpty(subjectOptions, gradeData.subDrop)
+	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
+
+	if (_.isEmpty(subjectOptions) && subDrop) {
+		notifyIfEmpty([], true, 'class')
+		openIt.subDrop = false
+	}
 
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
 				styles.dropdown_div,
-				gradeData.classroomDropdown,
+				classroomDropdown,
 				actions.openGradeClassList,
-				{ label: 'Select Class' },
+				resolveLabel(classroom, t('general.selectClass')),
 				classOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
-				gradeData.subDrop,
+				subDrop,
 				actions.displayGradeData,
-				{ label: 'Select Subject' },
+				resolveLabel(subjectName, t('general.selectSubject')),
 				subjectOptions
 			)}
 		</div>

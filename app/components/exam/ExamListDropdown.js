@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/exam.css'
 import { sortData } from '../rooms/ClassList'
@@ -10,21 +11,21 @@ const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
 	const subjectOptions = getSubjectList(examData, subjectData)
-
+	const { selectedRoom, selectedSubject } = examData
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
 				styles.dropdown_div,
 				examData.openClassDropdown,
 				actions.openClassDropdownList,
-				{ label: 'Select Class' },
+				resolveLabel(selectedRoom, t('general.selectClass')),
 				classOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				examData.openSubList,
 				actions.displayExamData,
-				{ label: 'Select Subject' },
+				resolveLabel(selectedSubject, t('general.selectSubject')),
 				subjectOptions
 			)}
 		</div>

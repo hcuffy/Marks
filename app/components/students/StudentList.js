@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Badge } from 'reactstrap'
+import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/students.css'
 import StudentModal from './StudentModal'
@@ -17,9 +18,9 @@ const generateListBtn = (students, action) =>
 			className={`list-group-item list-group-item-action ${styles.list_btn}`}
 			onClick={action}
 		>
-			{`${data.Firstname} ${data.Lastname}`}
+			{`${data.firstname} ${data.lastname}`}
 
-			{data.Gender === 'Male' ? (
+			{data.gender === 'male' ? (
 				<Badge className={`badge-pill ${styles.badge_boy}`}>
 					<i className="fas fa-mars" />
 				</Badge>
@@ -35,7 +36,7 @@ const generateStudentList = (students, actions) => {
 	if (_.isUndefined(students)) {
 		return []
 	}
-	const sortedStudents = _.sortBy(students, ['Firstname'], ['asc'])
+	const sortedStudents = _.sortBy(students, ['firstname'], ['asc'])
 
 	return generateListBtn(sortedStudents, actions.showStudentModal)
 }
@@ -43,12 +44,12 @@ const generateStudentList = (students, actions) => {
 const StudentList = ({ students, actions }) => {
 	const listData = generateStudentList(students, actions)
 	return (
-		<div className={styles.list_div}>
-			<div className="list-group list-group-flush">
-				<h4 className={styles.center_sub_header}>List of Students</h4>
-				{listData}
+		<div>
+			<h4 className={styles.center_sub_header}>{t('student.list')}</h4>
+			<div className={styles.list_div}>
+				<div className="list-group list-group-flush">{listData}</div>
+				<StudentModal />
 			</div>
-			<StudentModal />
 		</div>
 	)
 }

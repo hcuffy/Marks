@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t } from '../utils/translationUtil'
 import { actionCreators } from '../actions/index'
 import styles from './styles/schoolinfo.css'
 
@@ -10,7 +11,7 @@ const schoolInfoForm = info =>
 	_.keys(info).map((data, idx) => (
 		<div key={idx} className={styles.form_inner_div}>
 			<label className={styles.form_label} htmlFor={`school${data}`}>
-				{data}:
+				{t(`address.${data}`)}
 			</label>
 			<input
 				name={data}
@@ -27,13 +28,13 @@ const SchoolInfo = ({ schoolData, actions }) => {
 
 	return (
 		<div className={styles.div_wrapper}>
-			<h2 className={styles.center_header}>School Information</h2>
+			<h2 className={styles.center_header}>{t('address.sectionTitle')}</h2>
 			<form onSubmit={actions.handleSchoolData} method="POST">
 				<div className={styles.form_outer_div}>
 					{entry}
 					<div className={(styles.form_inner_div, styles.save_btn)}>
 						<button type="submit" className="btn btn-success">
-							Save
+							{t('general.save')}
 						</button>
 					</div>
 				</div>

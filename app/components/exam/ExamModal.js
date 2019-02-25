@@ -6,13 +6,14 @@ import { cleanAndFilterData } from '../rooms/RoomModal'
 import { modalFrame } from '../helpers/editModal'
 import generateFields from './helpers/modalHelper'
 
-const ExamModal = ({ examModal, examId, exams, subjectId, actions }) => {
+const ExamModal = ({ examData, actions }) => {
+	const { examModal, examId, exams, subjectId } = examData
 	const requiredExam = cleanAndFilterData(exams, { id: examId })
 	const examFormData = generateFields(requiredExam)
 	const hiddenInputs = (
 		<div>
-			<input type="hidden" name="SubjectId" data-id={subjectId} />
-			<input type="hidden" name="ExamId" data-id={examId} />
+			<input type="hidden" name="subjectId" data-id={subjectId} />
+			<input type="hidden" name="examId" data-id={examId} />
 		</div>
 	)
 	const footerData = {
@@ -30,10 +31,7 @@ const ExamModal = ({ examModal, examId, exams, subjectId, actions }) => {
 	)
 }
 const mapStateToProps = state => ({
-	examModal: state.examData.examModal,
-	examId: state.examData.examId,
-	exams: state.examData.exams,
-	subjectId: state.examData.subjectId
+	examData: state.examData
 })
 
 const mapDispatchToProps = dispatch => ({

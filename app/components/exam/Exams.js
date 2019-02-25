@@ -1,12 +1,13 @@
 import React from 'react'
-import styles from './styles/exam.css'
+import { t } from '../../utils/translationUtil'
 import ExamForm from './ExamForm'
 import ExamList from './ExamList'
+import styles from './styles/exam.css'
 
 const Exam = () => (
 	<div>
 		<div className={styles.header_div}>
-			<h4>Add Exam</h4>
+			<h4>{t('exam.addExamHeader')}</h4>
 			<ExamForm />
 		</div>
 		<div>

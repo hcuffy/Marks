@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/graphs.css'
 import { sortData } from '../rooms/ClassList'
-import { downloadPDF } from '../../utils/generatePDF'
+import { downloadPDF } from '../../utils/pdfUtil'
 import {
 	getClassList,
 	getSubjectList,
@@ -20,7 +21,7 @@ const PDFbutton = chartTitle => (
 		onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
 	>
 		<i className="fas fa-file-pdf fa-2x" /> <br />
-		Save As...
+		{t('general.saveAs')}
 	</button>
 )
 
@@ -50,21 +51,21 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 				styles.dropdown_div,
 				classroomDropdown,
 				actions.openGraphClassList,
-				{ label: classroom },
+				resolveLabel(classroom, t('general.selectClass')),
 				classOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				openSubList,
 				actions.displaySubjectGraph,
-				{ label: subjectName },
+				resolveLabel(subjectName, t('general.selectClass')),
 				subjectOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				openExamList,
 				actions.displayExamGraph,
-				{ label: examName },
+				resolveLabel(examName, t('general.selectClass')),
 				examOptions
 			)}
 			{PDFbutton(chartTitle)}

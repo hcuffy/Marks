@@ -62,15 +62,15 @@ export const deleteStudent = data =>
 	)
 
 const updateSinlgStudent = previous => {
-	const { Firstname, Lastname, Gender, Classroom, Id } = previous
+	const { firstname, lastname, gender, classroom, id } = previous
 
 	studentCollection.update(
-		{ _id: Id },
+		{ _id: id },
 		{
-			Firstname,
-			Lastname,
-			Gender,
-			Classroom
+			firstname,
+			lastname,
+			gender,
+			classroom
 		},
 		{},
 		err => {

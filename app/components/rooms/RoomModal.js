@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { modalFrame } from '../helpers/editModal'
 import styles from './styles/room.css'
@@ -13,10 +14,10 @@ export const cleanAndFilterData = (objectToClean, roomToClean) => {
 		'_id',
 		'createdAt',
 		'updatedAt',
-		'Subjects',
-		'Tests',
-		'ClassroomId',
-		'Room'
+		'subjects',
+		'tests',
+		'classroomId',
+		'room'
 	])
 	return cleanedData
 }
@@ -25,7 +26,7 @@ const createInputs = selectedRoom =>
 	_.keys(selectedRoom).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}_Id`}>
-				{data}:
+				{t(`room.${data}`)}:
 			</label>
 			<input
 				name={data}
@@ -40,7 +41,7 @@ const createInputs = selectedRoom =>
 const RoomModal = ({ modalData, classModalData, actions }) => {
 	const selectedRoom = cleanAndFilterData(modalData, classModalData)
 	const clickedRoom = createInputs(selectedRoom)
-	const hiddenInput = <input type="hidden" name="OldName" data-id={selectedRoom.Name} />
+	const hiddenInput = <input type="hidden" name="oldName" data-id={selectedRoom.name} />
 	const footerData = {
 		dataId: classModalData.id,
 		nameId: null,

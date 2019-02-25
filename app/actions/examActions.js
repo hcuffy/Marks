@@ -9,13 +9,12 @@ import { addExamData, getExamData } from '../database/examCollection'
 
 export const addNewExam = event => dispatch => {
 	event.preventDefault()
-	const selectedSubjectIndex = event.target.Subject.selectedIndex
+	const subjectIndex = event.target.subject.selectedIndex
 	const examData = {
-		Title: event.target.Title.value,
-		// eslint-disable-next-line max-len
-		SubjectId: event.target.Subject.options[selectedSubjectIndex].getAttribute('data-id'),
-		Date: event.target.Date.value,
-		Weight: event.target.Weight.value
+		title: event.target.title.value,
+		subjectId: event.target.subject.options[subjectIndex].getAttribute('data-id'),
+		date: event.target.date.value,
+		weight: event.target.weight.value
 	}
 	addExamData(examData)
 	dispatch({
@@ -42,11 +41,13 @@ export const openClassDropdownList = event => dispatch => {
 
 export const displayExamData = event => async dispatch => {
 	const subjectId = event.target.getAttribute('data-id')
+	const selectedSubject = event.target.innerText
+	console.log(selectedSubject)
 	const exams = await getExamData()
 	if (exams.length !== 0) {
 		dispatch({
 			type: DISPLAY_SUBJECT_LIST,
-			payload: { exams, subjectId }
+			payload: { exams, subjectId, selectedSubject }
 		})
 	}
 }

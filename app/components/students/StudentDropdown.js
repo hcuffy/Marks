@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/students.css'
-import { downloadPDF } from '../../utils/generatePDF'
+import { downloadPDF } from '../../utils/pdfUtil'
 import { chartHeader } from './helpers/chart/chartData'
 
 import {
@@ -22,7 +23,7 @@ const PDFbutton = chartTitle => (
 		onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
 	>
 		<i className="fas fa-file-pdf fa-2x" /> <br />
-		Save As...
+		{t('general.saveAs')}
 	</button>
 )
 
@@ -32,29 +33,33 @@ const StudentDropdown = ({ studentData, subjectData, actions }) => {
 		studentDropdown,
 		subjectDropdown,
 		chartToDisplay,
-		subjectGraphId,
 		studentGraphName,
 		subjectGraphName
 	} = studentData
 
 	const studentOptions = getStudentList(students)
 	const subjectOptions = getAllSubjects(subjectData.data)
-	notifyIfEmpty([], chartToDisplay === 'subject' && _.isNull(subjectGraphId), 'student')
 	const chartTitle = chartHeader(studentData)
+	const openIt = { subjectDropdown }
+
+	if (chartToDisplay === 'subject' && _.isNull(studentGraphName)) {
+		notifyIfEmpty([], true, 'student')
+		openIt.subjectDropdown = false
+	}
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
-				styles.dropdown_div,
+				styles.dropdown_one,
 				studentDropdown,
 				actions.openStudenGraph,
-				{ label: studentGraphName },
+				resolveLabel(studentGraphName, t('general.selectStudent')),
 				studentOptions
 			)}
 			{createDropdown(
-				styles.dropdown_div,
-				subjectDropdown,
+				styles.dropdown_two,
+				openIt.subjectDropdown,
 				actions.openStudenSubjectGraph,
-				{ label: subjectGraphName },
+				resolveLabel(subjectGraphName, t('general.selectSubject')),
 				subjectOptions
 			)}
 			{PDFbutton(chartTitle)}

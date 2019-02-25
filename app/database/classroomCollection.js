@@ -30,7 +30,7 @@ const classroomCollection = new Datastore({
 })
 
 export const addClassroomData = data => {
-	classroomCollection.find({ Name: data.Name }, (err, entry) => {
+	classroomCollection.find({ name: data.name }, (err, entry) => {
 		if (err) {
 			saveFailed()
 			return err
@@ -40,7 +40,7 @@ export const addClassroomData = data => {
 			return
 		}
 		const newData = data
-		newData.Subjects = []
+		newData.subjects = []
 		classroomCollection.insert(newData, (error, doc) => {
 			if (error) {
 				saveFailed()
@@ -82,30 +82,30 @@ export const deleteClassroom = data =>
 	)
 
 const checkSubject = checkingCurrent => {
-	if (_.isNil(checkingCurrent.Subjects)) {
+	if (_.isNil(checkingCurrent.subjects)) {
 		return false
 	}
-	if (checkingCurrent.Subjects.length > 0) {
+	if (checkingCurrent.subjects.length > 0) {
 		return true
 	}
 }
 
 const updateSinlgeClassroom = (previous, current) => {
-	const { Name, Teacher, Code, Subject_Teacher } = current
-	const { Subjects } = previous
+	const { name, teacher, code, substitute } = current
+	const { subjects } = previous
 
 	if (checkSubject(current) === true) {
-		Subjects.push(current.Subjects[0])
+		subjects.push(current.subjects[0])
 	}
 
 	classroomCollection.update(
-		{ Name: previous.Name },
+		{ name: previous.name },
 		{
-			Name,
-			Teacher,
-			Code,
-			Subject_Teacher,
-			Subjects
+			name,
+			teacher,
+			code,
+			substitute,
+			subjects
 		},
 		{},
 		err => {
@@ -120,7 +120,7 @@ const updateSinlgeClassroom = (previous, current) => {
 
 export const updateRoomData = data =>
 	new Promise((resolve, reject) =>
-		classroomCollection.find({ Name: data.OldName }, (err, entry) => {
+		classroomCollection.find({ name: data.oldName }, (err, entry) => {
 			if (err) {
 				updateFailed()
 				return err
@@ -139,7 +139,7 @@ export const updateRoomData = data =>
 	)
 
 export const updateSubjectArray = data => {
-	classroomCollection.find({ Name: data.Name }, (err, entry) => {
+	classroomCollection.find({ name: data.name }, (err, entry) => {
 		if (err) {
 			updateFailed()
 			return err
@@ -160,7 +160,7 @@ export const updateSubjectArray = data => {
 export const updateClassSubjectArray = (classroomId, oldSubject, newSubject) => {
 	classroomCollection.update(
 		{ _id: classroomId },
-		{ $push: { Subjects: newSubject } },
+		{ $push: { subjects: newSubject } },
 		{},
 		err => {
 			if (err) {
@@ -172,7 +172,7 @@ export const updateClassSubjectArray = (classroomId, oldSubject, newSubject) => 
 
 	classroomCollection.update(
 		{ _id: classroomId },
-		{ $pull: { Subjects: oldSubject } },
+		{ $pull: { subjects: oldSubject } },
 		{},
 		err => {
 			if (err) {
