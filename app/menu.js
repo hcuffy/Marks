@@ -2,6 +2,28 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron'
 
+let newPanelWindow = null
+function openAttributionWindow() {
+	if (newPanelWindow) {
+		newPanelWindow.focus()
+		return
+	}
+
+	newPanelWindow = new BrowserWindow({
+		height: 500,
+		width: 400,
+		title: 'Attributions',
+		resizable: false,
+		minimizable: false,
+		fullscreenable: false
+	})
+
+	newPanelWindow.on('closed', () => {
+		newPanelWindow = null
+	})
+
+	newPanelWindow.loadURL(`file://${__dirname}/views/attribution.html`)
+}
 export default class MenuBuilder {
 	mainWindow: BrowserWindow
 
@@ -43,7 +65,7 @@ export default class MenuBuilder {
 
 	buildDarwinTemplate() {
 		const subMenuAbout = {
-			label: 'Electron',
+			label: 'Marks',
 			submenu: [
 				{
 					label: 'About Marks',
@@ -160,6 +182,12 @@ export default class MenuBuilder {
 					click() {
 						shell.openExternal('https://github.com/hcuffy/My-Marks/issues')
 					}
+				},
+				{
+					label: 'Attribution',
+					click() {
+						openAttributionWindow()
+					}
 				}
 			]
 		}
@@ -249,6 +277,12 @@ export default class MenuBuilder {
 						label: 'Search Issues',
 						click() {
 							shell.openExternal('https://github.com/hcuffy/My-Marks/issues')
+						}
+					},
+					{
+						label: 'Attribution',
+						click() {
+							openAttributionWindow()
 						}
 					}
 				]
