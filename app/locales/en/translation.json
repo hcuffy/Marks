@@ -72,8 +72,8 @@
       "makeSelection": "First select a"
     }
   },
-  "address": {
-    "sectionTitle": "School Information",
+  "settings": {
+    "sectionTitle": "Settings",
     "title": "Title",
     "street": "Street",
     "province": "Province",

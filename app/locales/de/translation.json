@@ -72,8 +72,8 @@
       "makeSelection": "Wählen Sie zuerst eine"
     }
   },
-  "address": {
-    "sectionTitle": "Schulinformationen",
+  "settings": {
+    "sectionTitle": "Einstellungen",
     "title": "Titel",
     "street": "Straße",
     "province": "Provinz",
