@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/sidemenu/SideMenu'
-import SchoolInfo from '../components/SchoolInfo'
+import SettingsPage from '../components/SettingsPage'
 
 const _ = require('lodash')
 
@@ -18,7 +18,7 @@ class School extends Component {
 		return (
 			<div>
 				<SideMenu />
-				<SchoolInfo />
+				<SettingsPage />
 			</div>
 		)
 	}

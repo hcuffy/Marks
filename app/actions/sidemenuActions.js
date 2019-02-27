@@ -5,11 +5,11 @@ const _ = require('lodash')
 export const updateButtonStyle = event => dispatch => {
 	const menuButtons = {
 		home: '',
-		school: '',
 		classroom: '',
 		students: '',
 		exams: '',
-		graphs: ''
+		graphs: '',
+		settings: ''
 	}
 
 	const styleUpdate = _.set(menuButtons, event.target.getAttribute('data-id'), 'black')

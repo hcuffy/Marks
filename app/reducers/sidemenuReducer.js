@@ -4,11 +4,11 @@ const _ = require('lodash')
 
 const initialLoadState = {
 	home: 'black',
-	school: '',
 	classroom: '',
 	students: '',
 	exams: '',
-	graphs: ''
+	graphs: '',
+	settings: ''
 }
 
 const applyMenuStyling = (state = initialLoadState, action) => {

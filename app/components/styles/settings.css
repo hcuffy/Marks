@@ -8,6 +8,7 @@
 }
 
 .center_header {
+  text-align: center;
   float: right;
   width: 50%;
   margin-right: 200px;

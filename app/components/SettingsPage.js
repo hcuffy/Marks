@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { t } from '../utils/translationUtil'
 import { actionCreators } from '../actions/index'
-import styles from './styles/schoolinfo.css'
+import styles from './styles/settings.css'
 
 const _ = require('lodash')
 
@@ -11,7 +11,7 @@ const schoolInfoForm = info =>
 	_.keys(info).map((data, idx) => (
 		<div key={idx} className={styles.form_inner_div}>
 			<label className={styles.form_label} htmlFor={`school${data}`}>
-				{t(`address.${data}`)}
+				{t(`settings.${data}`)}
 			</label>
 			<input
 				name={data}
@@ -23,12 +23,12 @@ const schoolInfoForm = info =>
 		</div>
 	))
 
-const SchoolInfo = ({ schoolData, actions }) => {
+const Settings = ({ schoolData, actions }) => {
 	const entry = schoolInfoForm(schoolData)
 
 	return (
 		<div className={styles.div_wrapper}>
-			<h2 className={styles.center_header}>{t('address.sectionTitle')}</h2>
+			<h2 className={styles.center_header}>{t('settings.sectionTitle')}</h2>
 			<form onSubmit={actions.handleSchoolData} method="POST">
 				<div className={styles.form_outer_div}>
 					{entry}
@@ -51,4 +51,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(SchoolInfo)
+)(Settings)
