@@ -1,13 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
+import { gradeRadioButtons } from './helpers/formHelpers'
+import styles from './styles/settings.css'
 
-const GradeFormat = () => (
-	<div>
-		<p>hello world</p>
-	</div>
-)
+const GradeFormat = () => {
+	const gradingSystemTypes = ['note',
+		'points',
+		'percent']
+	return (
+		<div>
+			<h4 className={styles.center_header}>{t('settings.gradeSystemTitle')}</h4>
+			{gradeRadioButtons(gradingSystemTypes)}
+		</div>
+	)
+}
 
 const mapStateToProps = state => ({ schoolData: state.schoolData })
 
