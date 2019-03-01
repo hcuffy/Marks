@@ -7,9 +7,8 @@ import { gradeRadioButtons } from './helpers/formHelpers'
 import styles from './styles/settings.css'
 
 const GradeFormat = () => {
-	const gradingSystemTypes = ['note',
-		'points',
-		'percent']
+	const gradingSystemTypes = { note: true, points: false, percent: false }
+
 	return (
 		<div>
 			<h4 className={styles.center_header}>{t('settings.gradeSystemTitle')}</h4>

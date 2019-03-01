@@ -72,4 +72,5 @@ input[type='text'] {
 .radio_input {
   position: fixed;
   float: left;
+  box-shadow: none !important;
 }
