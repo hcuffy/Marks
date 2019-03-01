@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/sidemenu/SideMenu'
-import SettingsPage from '../components/SettingsPage'
+import SettingsPage from '../components/settings/SettingsPage'
 
 const _ = require('lodash')
 
