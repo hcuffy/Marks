@@ -33,7 +33,7 @@ export const addressFields = schoolData =>
 		</div>
 	))
 
-export const gradeRadioButtons = systemType =>
+export const gradeRadioButtons = (systemType, actions) =>
 	_.keys(systemType).map((data, idx) => (
 		<div key={idx} className={`form-check ${styles.radio_div}`}>
 			<label htmlFor={data} className={`form-check-label ${styles.radio_label}`}>
@@ -44,8 +44,9 @@ export const gradeRadioButtons = systemType =>
 				type="radio"
 				className={`form-control ${styles.radio_input}`}
 				name="grading"
+				onClick={actions.updateSytemType}
 				defaultValue={data}
-				checked={systemType[data]}
+				defaultChecked={systemType[data]}
 			/>
 		</div>
 	))

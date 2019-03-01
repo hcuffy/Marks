@@ -7,6 +7,7 @@ import * as student from './studentActions'
 import * as grade from './gradeActions'
 import * as sidemenu from './sidemenuActions'
 import * as graph from './graphActions'
+import * as settings from './settingsActions'
 
 export const actionCreators = {
 	handleSchoolData: school.handleSchoolData,
@@ -46,5 +47,6 @@ export const actionCreators = {
 	displaySubjectGraph: graph.displaySubjectGraph,
 	getAllGradeData: graph.getAllGradeData,
 	getGraphExamData: graph.getGraphExamData,
-	displayExamGraph: graph.displayExamGraph
+	displayExamGraph: graph.displayExamGraph,
+	updateSytemType: settings.updateGradingSystem
 }

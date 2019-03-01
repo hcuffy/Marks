@@ -8,7 +8,7 @@ import styles from './styles/settings.css'
 
 const _ = require('lodash')
 
-const GradeFormat = ({ gradingSystem }) => {
+const GradeFormat = ({ gradingSystem, actions }) => {
 	const gradingSystemTypes = _.pick(gradingSystem, ['note',
 		'points',
 		'percent'])
@@ -16,7 +16,7 @@ const GradeFormat = ({ gradingSystem }) => {
 	return (
 		<div>
 			<h4 className={styles.center_header}>{t('settings.gradeSystemTitle')}</h4>
-			{gradeRadioButtons(gradingSystemTypes)}
+			{gradeRadioButtons(gradingSystemTypes, actions)}
 		</div>
 	)
 }
