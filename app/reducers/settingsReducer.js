@@ -1,4 +1,8 @@
-import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA } from '../constants/actionTypes'
+import {
+	DISPLAY_SCHOOL_DATA,
+	HANDLE_SCHOOL_DATA,
+	HANDLE_GRADING_DATA
+} from '../constants/actionTypes'
 
 const _ = require('lodash')
 
@@ -10,6 +14,8 @@ const initialLoadState = {
 	zip: null,
 	year: null
 }
+
+const gradingLoadState = { note: true, points: false, percent: false }
 
 export const handleSchoolReducer = (state = initialLoadState, action) => {
 	switch (action.type) {
@@ -23,6 +29,17 @@ export const handleSchoolReducer = (state = initialLoadState, action) => {
 			zip,
 			year
 		})
+	}
+	default:
+		return state
+	}
+}
+
+export const applyGradeSystem = (state = gradingLoadState, action) => {
+	switch (action.type) {
+	case HANDLE_GRADING_DATA: {
+		const { note, points, percent } = action.payload
+		return _.assign({}, state, { note, points, percent })
 	}
 	default:
 		return state

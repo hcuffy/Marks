@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
-import applySchoolData from './schoolDataReducer'
+import applySettingsData, { applyGradeSystem } from './settingsReducer'
 import applyTabChange from './changeTabReducer'
 import applyClassData from './classDataReducer'
 import applyClassModal from './roomModalReducer'
@@ -15,7 +15,8 @@ import applyGraphData from './graphReducer'
 export default function createRootReducer(history: History) {
 	return combineReducers({
 		router: connectRouter(history),
-		schoolData: applySchoolData,
+		schoolData: applySettingsData,
+		settingData: applyGradeSystem,
 		classData: applyClassData,
 		subjectData: applySubjectData,
 		studentData: applyStudentData,

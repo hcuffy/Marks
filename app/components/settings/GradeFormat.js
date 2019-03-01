@@ -6,8 +6,12 @@ import { actionCreators } from '../../actions/index'
 import { gradeRadioButtons } from './helpers/formHelpers'
 import styles from './styles/settings.css'
 
-const GradeFormat = () => {
-	const gradingSystemTypes = { note: true, points: false, percent: false }
+const _ = require('lodash')
+
+const GradeFormat = ({ gradingSystem }) => {
+	const gradingSystemTypes = _.pick(gradingSystem, ['note',
+		'points',
+		'percent'])
 
 	return (
 		<div>
@@ -17,7 +21,10 @@ const GradeFormat = () => {
 	)
 }
 
-const mapStateToProps = state => ({ schoolData: state.schoolData })
+const mapStateToProps = state => ({
+	schoolData: state.schoolData,
+	gradingSystem: state.settingData
+})
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
