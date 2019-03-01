@@ -74,11 +74,16 @@
   },
   "settings": {
     "sectionTitle": "Settings",
+    "addressTitle": "School Address",
     "title": "Title",
     "street": "Street",
     "province": "Province",
     "country": "Country",
     "zip": "Zip",
-    "year": "Year"
+    "year": "Year",
+    "gradeSystemTitle": "Grading System",
+    "note": "Note (1-6)",
+    "points": "Points (0-15)",
+    "percent": "Percent (0-100%)"
   }
 }

@@ -74,11 +74,16 @@
   },
   "settings": {
     "sectionTitle": "Einstellungen",
+    "addressTitle": "Schuladresse",
     "title": "Titel",
     "street": "Straße",
     "province": "Provinz",
     "country": "Land",
     "zip": "Postleitzahl",
-    "year": "Jahr"
+    "year": "Jahr",
+    "gradeSystemTitle": "Benotung System",
+    "note": "Noten System (1-6)",
+    "points": "Punkte System (0-15)",
+    "percent": "Prozent System (0-100%)"
   }
 }
