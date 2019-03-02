@@ -1,7 +1,8 @@
 import {
 	DISPLAY_SCHOOL_DATA,
 	HANDLE_SCHOOL_DATA,
-	HANDLE_GRADING_DATA
+	HANDLE_GRADING_DATA,
+	GET_SYSTEM_TYPE
 } from '../constants/actionTypes'
 
 const _ = require('lodash')
@@ -41,6 +42,10 @@ export const applyGradeSystem = (state = gradingLoadState, action) => {
 		const { note, points, percent } = action.payload
 		return _.assign({}, state, { note, points, percent })
 	}
+	case GET_SYSTEM_TYPE: {
+		const { note, points, percent } = action.payload
+		return _.assign({}, state, { note, points, percent })
+	}
 	default:
 		return state
 	}
@@ -59,6 +64,7 @@ const applySchoolData = (state = initialLoadState, action) => {
 			year
 		})
 	}
+
 	default:
 		return state
 	}
