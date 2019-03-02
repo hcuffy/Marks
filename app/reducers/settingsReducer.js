@@ -1,7 +1,7 @@
 import {
 	DISPLAY_SCHOOL_DATA,
 	HANDLE_SCHOOL_DATA,
-	HANDLE_GRADING_DATA,
+	UPDATE_GRADING_DATA,
 	GET_SYSTEM_TYPE
 } from '../constants/actionTypes'
 
@@ -38,7 +38,7 @@ export const handleSchoolReducer = (state = initialLoadState, action) => {
 
 export const applyGradeSystem = (state = gradingLoadState, action) => {
 	switch (action.type) {
-	case HANDLE_GRADING_DATA: {
+	case UPDATE_GRADING_DATA: {
 		const { note, points, percent } = action.payload
 		return _.assign({}, state, { note, points, percent })
 	}

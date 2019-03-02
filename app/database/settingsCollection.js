@@ -28,3 +28,21 @@ export const getSystemType = () =>
 			return resolve(docs)
 		})
 	)
+
+const updateSystem = (previous, id) => {
+	const { note, points, percent } = previous
+	settingsCollection.update({ _id: id }, { note, points, percent }, {}, err => {
+		if (err) {
+			return err
+		}
+	})
+}
+
+export const updateGradeType = async data => {
+	const setting = await getSystemType()
+	return new Promise(resolve => {
+		updateSystem(data, setting[0]._id)
+
+		return resolve(getSystemType())
+	})
+}
