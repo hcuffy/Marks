@@ -9,6 +9,7 @@ const _ = require('lodash')
 
 class School extends Component {
 	componentDidMount() {
+		this.props.actions.getGradingSystem()
 		if (_.isNull(this.props.schoolData.title)) {
 			this.props.actions.displaySchoolData()
 		}

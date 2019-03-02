@@ -48,5 +48,6 @@ export const actionCreators = {
 	getAllGradeData: graph.getAllGradeData,
 	getGraphExamData: graph.getGraphExamData,
 	displayExamGraph: graph.displayExamGraph,
-	updateSytemType: settings.updateGradingSystem
+	updateSytemType: settings.updateGradingSystem,
+	getGradingSystem: settings.getGradingSystem
 }
