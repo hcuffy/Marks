@@ -1,21 +1,21 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import { createHashHistory } from 'history';
-import { routerMiddleware, routerActions } from 'connected-react-router';
-import { createLogger } from 'redux-logger';
-import createRootReducer from '../reducers';
-import * as schoolActions from '../actions/schoolActions'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
+import { createHashHistory } from 'history'
+import { routerMiddleware, routerActions } from 'connected-react-router'
+import { createLogger } from 'redux-logger'
+import createRootReducer from '../reducers'
 import * as classroomActions from '../actions/classroomActions'
-import type { counterStateType } from '../reducers/types';
+import type { counterStateType } from '../reducers/types'
 
 const history = createHashHistory()
 
-const rootReducer = createRootReducer(history);
+const rootReducer = createRootReducer(history)
 
+// eslint-disable-next-line no-unused-vars
 const configureStore = (initialState?: counterStateType) => {
-  // Redux Configuration
-  const middleware = [];
-  const enhancers = [];
+	// Redux Configuration
+	const middleware = []
+	const enhancers = []
 
 	// Thunk Middleware
 	middleware.push(thunk)
@@ -38,7 +38,6 @@ const configureStore = (initialState?: counterStateType) => {
 	// Redux DevTools Configuration
 	const actionCreators = {
 		...classroomActions,
-		...schoolActions,
 		...routerActions
 	}
 	// If Redux DevTools Extension is installed use it, otherwise use Redux compose
@@ -58,12 +57,12 @@ const configureStore = (initialState?: counterStateType) => {
 	// Create Store
 	const store = createStore(rootReducer, {}, enhancer)
 	if (module.hot) {
-    module.hot.accept(
-      '../reducers',
-      // eslint-disable-next-line global-require
-      () => store.replaceReducer(require('../reducers').default)
-    );
-  }
+		module.hot.accept(
+			'../reducers',
+			// eslint-disable-next-line global-require
+			() => store.replaceReducer(require('../reducers').default)
+		)
+	}
 
 	return store
 }

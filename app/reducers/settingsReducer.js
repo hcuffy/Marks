@@ -51,7 +51,7 @@ export const applyGradeSystem = (state = gradingLoadState, action) => {
 	}
 }
 
-const applySchoolData = (state = initialLoadState, action) => {
+const applyAddressData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case DISPLAY_SCHOOL_DATA: {
 		const { title, street, province, country, zip, year } = action.payload
@@ -70,4 +70,4 @@ const applySchoolData = (state = initialLoadState, action) => {
 	}
 }
 
-export default applySchoolData
+export default applyAddressData
