@@ -22,7 +22,7 @@ const GradeFormat = ({ gradingSystem, actions }) => {
 }
 
 const mapStateToProps = state => ({
-	schoolData: state.schoolData,
+	addressData: state.addressData,
 	gradingSystem: state.settingData
 })
 

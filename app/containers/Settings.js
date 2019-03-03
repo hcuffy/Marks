@@ -10,8 +10,8 @@ const _ = require('lodash')
 class School extends Component {
 	componentDidMount() {
 		this.props.actions.getGradingSystem()
-		if (_.isNull(this.props.schoolData.title)) {
-			this.props.actions.displaySchoolData()
+		if (_.isNull(this.props.addressData.title)) {
+			this.props.actions.displayAddress()
 		}
 	}
 
@@ -25,7 +25,7 @@ class School extends Component {
 	}
 }
 
-const mapStateToProps = state => ({ schoolData: state.schoolData })
+const mapStateToProps = state => ({ addressData: state.addressData })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)

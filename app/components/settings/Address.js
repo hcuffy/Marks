@@ -6,8 +6,8 @@ import { addressForm, addressFields } from './helpers/formHelpers'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/settings.css'
 
-const Address = ({ schoolData, actions }) => {
-	const entry = addressFields(schoolData)
+const Address = ({ addressData, actions }) => {
+	const entry = addressFields(addressData)
 
 	return (
 		<div className={styles.address_wrapper}>
@@ -16,7 +16,7 @@ const Address = ({ schoolData, actions }) => {
 		</div>
 	)
 }
-const mapStateToProps = state => ({ schoolData: state.schoolData })
+const mapStateToProps = state => ({ addressData: state.addressData })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)

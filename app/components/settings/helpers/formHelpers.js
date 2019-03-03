@@ -5,7 +5,7 @@ import { t } from '../../../utils/translationUtil'
 const _ = require('lodash')
 
 export const addressForm = (entry, actions) => (
-	<form onSubmit={actions.handleSchoolData} method="POST">
+	<form onSubmit={actions.saveSchoolAddress} method="POST">
 		<div className={styles.form_outer_div}>
 			{entry}
 			<div className={(styles.form_inner_div, styles.save_btn)}>
@@ -17,8 +17,8 @@ export const addressForm = (entry, actions) => (
 	</form>
 )
 
-export const addressFields = schoolData =>
-	_.keys(schoolData).map((data, idx) => (
+export const addressFields = addressData =>
+	_.keys(addressData).map((data, idx) => (
 		<div key={idx} className={styles.form_inner_div}>
 			<label className={styles.form_label} htmlFor={`school${data}`}>
 				{t(`settings.${data}`)}
@@ -28,7 +28,7 @@ export const addressFields = schoolData =>
 				className="form-control"
 				id={`school${data}`}
 				type="text"
-				defaultValue={schoolData[data]}
+				defaultValue={addressData[data]}
 			/>
 		</div>
 	))

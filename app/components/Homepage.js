@@ -5,8 +5,8 @@ import styles from './styles/homepage.css'
 
 const _ = require('lodash')
 
-const Homepage = ({ schoolData }) => {
-	const entry = _.values(schoolData).map((data, idx) => <li key={idx}>{data}</li>)
+const Homepage = ({ addressData }) => {
+	const entry = _.values(addressData).map((data, idx) => <li key={idx}>{data}</li>)
 
 	return (
 		<div className={styles.main_school_div}>
@@ -36,7 +36,7 @@ const Homepage = ({ schoolData }) => {
 }
 
 const mapStateToProps = state => ({
-	schoolData: state.schoolData
+	addressData: state.addressData
 })
 
 export default connect(
