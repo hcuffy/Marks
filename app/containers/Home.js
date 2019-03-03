@@ -7,7 +7,7 @@ import Homepage from '../components/Homepage'
 
 class Home extends Component {
 	componentDidMount() {
-		this.props.actions.displaySchoolData()
+		this.props.actions.displayAddress()
 		this.props.actions.getGradingSystem()
 	}
 
