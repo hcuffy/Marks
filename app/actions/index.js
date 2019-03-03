@@ -1,4 +1,3 @@
-import * as school from './schoolActions'
 import * as modals from './modalActions'
 import * as classroom from './classroomActions'
 import * as subject from './subjectActions'
@@ -10,8 +9,6 @@ import * as graph from './graphActions'
 import * as settings from './settingsActions'
 
 export const actionCreators = {
-	handleSchoolData: school.handleSchoolData,
-	displaySchoolData: school.displaySchoolData,
 	changeClassroomTab: classroom.changeClassroomTab,
 	handleClassData: classroom.handleClassData,
 	displayClassData: classroom.displayClassData,
@@ -48,6 +45,8 @@ export const actionCreators = {
 	getAllGradeData: graph.getAllGradeData,
 	getGraphExamData: graph.getGraphExamData,
 	displayExamGraph: graph.displayExamGraph,
+	saveSchoolAddress: settings.saveSchoolAddress,
+	displayAddress: settings.displayAddress,
 	updateSytemType: settings.updateGradingSystem,
 	getGradingSystem: settings.getGradingSystem
 }

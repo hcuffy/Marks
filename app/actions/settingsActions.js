@@ -1,8 +1,15 @@
-import { UPDATE_GRADING_DATA, GET_SYSTEM_TYPE } from '../constants/actionTypes'
+import {
+	UPDATE_GRADING_DATA,
+	GET_SYSTEM_TYPE,
+	HANDLE_SCHOOL_DATA,
+	DISPLAY_SCHOOL_DATA
+} from '../constants/actionTypes'
 import {
 	saveGradeSystem,
 	getSystemType,
-	updateGradeType
+	updateGradeType,
+	addAddress,
+	getAddressData
 } from '../database/settingsCollection'
 
 const _ = require('lodash')
@@ -41,4 +48,34 @@ export const getGradingSystem = () => async dispatch => {
 		type: GET_SYSTEM_TYPE,
 		payload: { ...systemType[0] }
 	})
+}
+
+export const saveSchoolAddress = event => dispatch => {
+	event.preventDefault()
+
+	const formData = {
+		title: event.target.title.value,
+		street: event.target.street.value,
+		province: event.target.province.value,
+		country: event.target.country.value,
+		zip: event.target.zip.value,
+		year: event.target.year.value
+	}
+
+	addAddress(formData)
+
+	dispatch({
+		type: HANDLE_SCHOOL_DATA,
+		payload: { addressData: formData }
+	})
+}
+
+export const displayAddress = () => async dispatch => {
+	const data = await getAddressData()
+	if (data.length !== 0) {
+		dispatch({
+			type: DISPLAY_SCHOOL_DATA,
+			payload: data[0]
+		})
+	}
 }
