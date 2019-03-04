@@ -1,13 +1,15 @@
 const _ = require('lodash')
 
-const chartLabels = (start, limit, step) => _.range(start, limit, step)
+const xAxisLabels = (start, limit, step) => _.range(start, limit, step)
 
 const chartHeader = chartTitle => (_.isNull(chartTitle) ? 'School Grades' : chartTitle)
 
-const computeGrades = grades => {
-	const sumArr = []
-	for (let i = 1; i < 7; i += 1) {
-		sumArr.push(
+const computeGrades = (grades, { start, limit, step }) => {
+	const chartLabels = xAxisLabels(start, limit, step)
+	const computedGrades = []
+
+	for (let i = start; i < limit; i += 1) {
+		computedGrades.push(
 			_.reduce(
 				grades,
 				(sum, current) => {
@@ -18,9 +20,40 @@ const computeGrades = grades => {
 			)
 		)
 	}
-
-	return sumArr
+	return { computedGrades, chartLabels }
 }
+
+const computePercentGrades = (grades, { start, limit, step }) => {
+	const chartLabels = xAxisLabels(start, limit, step)
+	const computedGrades = []
+
+	for (let i = 0; i < grades.length; i += 1) {
+		for (let j = 0; j < chartLabels.length; j += 1) {
+			if (_.inRange(grades[i].grade, chartLabels[j], chartLabels[j + 1])) {
+				computedGrades.push({ grade: chartLabels[j] })
+				break
+			}
+		}
+	}
+
+	return computeGrades(computedGrades, { start, limit, step })
+}
+
+const computeGradeFormat = (grades, settings) => {
+	const gradeSystem = _.findKey(settings, gradeType => gradeType === true)
+
+	switch (gradeSystem) {
+	case 'note':
+		return computeGrades(grades, { start: 1, limit: 7, step: 1 })
+	case 'points':
+		return computeGrades(grades, { start: 0, limit: 16, step: 1 })
+	case 'percent':
+		return computePercentGrades(grades, { start: 0, limit: 110, step: 10 })
+	default:
+		return computeGrades(grades, { start: 1, limit: 7, step: 1 })
+	}
+}
+
 const filterByClass = (allGrades, chartTitle, subjects, exams) => {
 	const filteredGrades = []
 	const filteredClass = _.filter(subjects, { room: chartTitle })
@@ -65,15 +98,15 @@ const gradesToDisplay = (
 		return _.merge([], grades)
 	}
 }
-export const chartData = (graphData, subjects) => {
+export const chartData = (graphData, subjects, settings) => {
 	const filteredGrades = gradesToDisplay(graphData, subjects)
-
+	const { computedGrades, chartLabels } = computeGradeFormat(filteredGrades, settings)
 	return {
-		labels: chartLabels(1, 7, 1),
+		labels: chartLabels,
 		datasets: [
 			{
 				label: chartHeader(graphData.chartTitle),
-				data: computeGrades(filteredGrades),
+				data: computedGrades,
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.6)',
 					'rgba(54, 162, 235, 0.6)',
