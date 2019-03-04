@@ -1,3 +1,6 @@
+export const gradingSystem = settings =>
+	_.findKey(settings, gradeType => gradeType === true)
+
 const _ = require('lodash')
 
 const xAxisLabels = (start, limit, step) => _.range(start, limit, step)
@@ -40,7 +43,7 @@ const computePercentGrades = (grades, { start, limit, step }) => {
 }
 
 const computeGradeFormat = (grades, settings) => {
-	const gradeSystem = _.findKey(settings, gradeType => gradeType === true)
+	const gradeSystem = gradingSystem(settings)
 
 	switch (gradeSystem) {
 	case 'note':
