@@ -1,9 +1,16 @@
 import {
 	CHANGE_CLASSROOM_TAB,
 	ADD_CLASSROOM_DATA,
-	GET_CLASSROOM_DATA
+	GET_CLASSROOM_DATA,
+	UPDATE_CLASSROOM,
+	OPEN_CLOSE_ROOM_MODAL
 } from '../constants/actionTypes'
-import { addClassroomData, getClassroomData } from '../database/classroomCollection'
+import {
+	addClassroomData,
+	getClassroomData,
+	updateRoomData,
+	deleteClassroom
+} from '../database/classroomCollection'
 
 const _ = require('lodash')
 
@@ -48,4 +55,64 @@ export const displayClassData = () => async dispatch => {
 			payload: { classData: data }
 		})
 	}
+}
+
+export const updateRoom = event => async dispatch => {
+	event.preventDefault()
+	const roomData = {
+		name: event.target.name.value,
+		teacher: event.target.teacher.value,
+		code: event.target.code.value,
+		substitute: event.target.substitute.value,
+		oldName: event.target.oldName.getAttribute('data-id'),
+		id: '',
+		showModal: true
+	}
+
+	const docs = await updateRoomData(roomData)
+	if (docs) {
+		roomData.showModal = false
+		dispatch({
+			type: GET_CLASSROOM_DATA,
+			payload: { classData: docs }
+		})
+	}
+
+	dispatch({
+		type: UPDATE_CLASSROOM,
+		payload: roomData
+	})
+}
+
+export const deleteRoom = event => async dispatch => {
+	const roomData = {
+		id: event.target.getAttribute('data-id'),
+		showModal: true
+	}
+
+	const docs = await deleteClassroom(roomData)
+
+	if (docs) {
+		dispatch({
+			type: GET_CLASSROOM_DATA,
+			payload: { classData: docs }
+		})
+	}
+
+	dispatch({
+		type: UPDATE_CLASSROOM,
+		payload: roomData
+	})
+}
+
+export const roomModalDisplay = event => dispatch => {
+	event.preventDefault()
+	const roomId = {
+		id: event.target.getAttribute('data-id')
+	}
+
+	dispatch({
+		type: OPEN_CLOSE_ROOM_MODAL,
+		payload: roomId
+	})
 }

@@ -3,9 +3,15 @@ import {
 	ADD_NEW_EXAM,
 	UPDATE_DROPDOWN_CLASS_LIST,
 	DISPLAY_SUBJECT_LIST,
-	GET_SINGLE_EXAM
+	GET_SINGLE_EXAM,
+	UPDATE_EXAMS_LIST
 } from '../constants/actionTypes'
-import { addExamData, getExamData } from '../database/examCollection'
+import {
+	addExamData,
+	getExamData,
+	deleteExam,
+	updateExamData
+} from '../database/examCollection'
 
 export const addNewExam = event => dispatch => {
 	event.preventDefault()
@@ -58,4 +64,50 @@ export const showSingleExam = event => dispatch => {
 		type: GET_SINGLE_EXAM,
 		payload: examId
 	})
+}
+
+export const updateExam = event => async dispatch => {
+	event.preventDefault()
+	const examData = {
+		title: event.target.title.value,
+		date: event.target.date.value,
+		weight: event.target.weight.value,
+		subjectId: event.target.subjectId.getAttribute('data-id'),
+		examId: event.target.examId.getAttribute('data-id')
+	}
+
+	const exams = await updateExamData(examData)
+
+	dispatch({
+		type: GET_SINGLE_EXAM,
+		payload: examData.examId
+	})
+
+	if (exams.length > 0) {
+		dispatch({
+			type: UPDATE_EXAMS_LIST,
+			payload: exams
+		})
+	}
+}
+
+export const deleteSingleExam = event => async dispatch => {
+	const examData = {
+		examId: event.target.getAttribute('data-id'),
+		subjectId: event.target.name
+	}
+
+	const exams = await deleteExam(examData)
+
+	dispatch({
+		type: GET_SINGLE_EXAM,
+		payload: examData.examId
+	})
+
+	if (exams.length > 0) {
+		dispatch({
+			type: UPDATE_EXAMS_LIST,
+			payload: exams
+		})
+	}
 }
