@@ -13,6 +13,7 @@ class Graphs extends Component {
 			this.props.actions.displayClassData()
 			this.props.actions.getSubjectData()
 			this.props.actions.getStudents()
+			this.props.actions.getGradingSystem()
 		}
 	}
 
