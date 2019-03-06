@@ -3,7 +3,7 @@
 import { app, Menu, shell, BrowserWindow } from 'electron'
 
 let newPanelWindow = null
-function openAttributionWindow() {
+const openAttributionWindow = () => {
 	if (newPanelWindow) {
 		newPanelWindow.focus()
 		return
@@ -12,7 +12,7 @@ function openAttributionWindow() {
 	newPanelWindow = new BrowserWindow({
 		height: 500,
 		width: 500,
-		title: 'Attributions',
+		title: 'Attribution',
 		resizable: false,
 		minimizable: false,
 		fullscreenable: false
