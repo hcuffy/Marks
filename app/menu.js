@@ -72,8 +72,6 @@ export default class MenuBuilder {
 					selector: 'orderFrontStandardAboutPanel:'
 				},
 				{ type: 'separator' },
-				{ label: 'Services', submenu: [] },
-				{ type: 'separator' },
 				{
 					label: 'Hide Marks',
 					accelerator: 'Command+H',
@@ -84,7 +82,6 @@ export default class MenuBuilder {
 					accelerator: 'Command+Shift+H',
 					selector: 'hideOtherApplications:'
 				},
-				{ label: 'Show All', selector: 'unhideAllApplications:' },
 				{ type: 'separator' },
 				{
 					label: 'Quit',
@@ -95,22 +92,7 @@ export default class MenuBuilder {
 				}
 			]
 		}
-		const subMenuEdit = {
-			label: 'Edit',
-			submenu: [
-				{ label: 'Undo', accelerator: 'Command+Z', selector: 'undo:' },
-				{ label: 'Redo', accelerator: 'Shift+Command+Z', selector: 'redo:' },
-				{ type: 'separator' },
-				{ label: 'Cut', accelerator: 'Command+X', selector: 'cut:' },
-				{ label: 'Copy', accelerator: 'Command+C', selector: 'copy:' },
-				{ label: 'Paste', accelerator: 'Command+V', selector: 'paste:' },
-				{
-					label: 'Select All',
-					accelerator: 'Command+A',
-					selector: 'selectAll:'
-				}
-			]
-		}
+
 		const subMenuViewDev = {
 			label: 'View',
 			submenu: [
@@ -196,7 +178,6 @@ export default class MenuBuilder {
 			process.env.NODE_ENV === 'development' ? subMenuViewDev : subMenuViewProd
 
 		return [subMenuAbout,
-			subMenuEdit,
 			subMenuView,
 			subMenuWindow,
 			subMenuHelp]

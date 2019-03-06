@@ -7,7 +7,7 @@ const _ = require('lodash')
 
 const Homepage = ({ addressData }) => {
 	const entry = _.values(addressData).map((data, idx) => <li key={idx}>{data}</li>)
-	console.log(entry)
+
 	return (
 		<div className={styles.main_school_div}>
 			<div className={styles.school_left_div}>
