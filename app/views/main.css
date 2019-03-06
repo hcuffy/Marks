@@ -3,31 +3,3 @@ body {
   text-align: left;
   font-size: 50%;
 }
-
-.attribution_header {
-  text-align: center;
-}
-
-.table {
-  width: 100%;
-  margin-bottom: 1px;
-  background-color: transparent;
-}
-
-.table th,
-.table td {
-  border-top: 1px solid #9e9e9e;
-}
-
-.table thead th {
-  vertical-align: bottom;
-  border-bottom: 1px solid #9e9e9e;
-}
-
-.table tbody + tbody {
-  border-top: 1px solid #9e9e9e;
-}
-
-.table .table {
-  background-color: #fff;
-}

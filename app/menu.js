@@ -11,7 +11,7 @@ function openAttributionWindow() {
 
 	newPanelWindow = new BrowserWindow({
 		height: 500,
-		width: 400,
+		width: 500,
 		title: 'Attributions',
 		resizable: false,
 		minimizable: false,
