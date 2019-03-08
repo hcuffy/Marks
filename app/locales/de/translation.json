@@ -1,57 +1,57 @@
 {
   "title": "Titel",
   "general": {
-    "add": "Hinzufügen",
-    "save": "Speichern",
-    "close": "Schließen",
-    "update": "Aktualisieren",
-    "delete": "Löschen",
-    "edit": "Bearbeiten",
+    "add": "hinzufügen",
+    "save": "speichern",
+    "close": "schließen",
+    "update": "aktualisieren",
+    "delete": "löschen",
+    "edit": "bearbeiten",
     "date": "Datum",
     "number": "Nummer",
     "selectClass": "Klasse auswählen",
-    "selectSubject": "Subjekt auswählen",
+    "selectSubject": "Fach auswählen",
     "selectRoom": "Klassenzimmer auswählen",
-    "selectStudent": "Student auswählen",
-    "saveAs": "Speichern als"
+    "selectStudent": "Scüler/in auswählen",
+    "saveAs": "speichern als"
   },
   "room": {
     "listHeader": "Liste der Klassen",
     "addClassHeader": "Klasse hinzufügen",
     "name": "Name",
-    "addSubject": "Subjekt hinzufügen",
+    "addSubject": "Fach hinzufügen",
     "subjectHeader": "Unterrichtsfächer",
     "teacher": "Lehrer/in",
     "code": "code",
     "substitute": "Vertretungslehrer",
     "abbreviation": "Abkürzung",
-    "examsTab": "Prüfungen",
+    "examsTab": "Leistungsnachweise/Proben",
     "classTab": "Klassen"
   },
   "exam": {
-    "addExamHeader": "Prüfung hinzufügen",
-    "editExamHeader": "Prüfung bearbeiten",
-    "addExam": "Neue Prüfung hinzufügen"
+    "addExamHeader": "Leistungsnachweise hinzufügen",
+    "editExamHeader": "Leistungsnachweise bearbeiten",
+    "addExam": "Neu Leistungsnachweise hinzufügen"
   },
   "student": {
-    "defaultHeader": "Noten der Schüler",
-    "title": "Studenten",
-    "list": "Liste der Studenten",
-    "add": "Schüler hinzufügen",
+    "defaultHeader": "Noten der Schüler/innen",
+    "title": "Schüler/innen",
+    "list": "Liste der Schüler/in",
+    "add": "Schüler/in hinzufügen",
     "chartTitle": "Diagramme",
     "firstname": "Vorname",
     "lastname": "Nachname",
     "gender": "Geschlecht",
-    "classroom": "Classroom",
-    "male": "Männlich",
-    "female": "Weiblich"
+    "classroom": "Klassenzimmer",
+    "male": "männlich",
+    "female": "weiblich"
   },
   "grades": {
-    "gradesTitle": "Note",
+    "gradesTitle": "Noten",
     "noData": "Keine Daten zum Anzeigen",
     "fullName": "Vollständiger Name",
     "studentHeader": "Studentendaten",
-    "examHeader": "Prüfungen/Tests"
+    "examHeader": "Leistungsnachweise"
   },
   "graph": {
     "overview": "Diagrammübersicht"
@@ -69,7 +69,7 @@
       "noUpdate": "Es gibt nichts zu aktualisieren."
     },
     "warning": {
-      "makeSelection": "Wählen Sie zuerst eine"
+      "makeSelection": "Wählen Sie zuerst ein/e"
     }
   },
   "settings": {
@@ -77,13 +77,13 @@
     "addressTitle": "Schuladresse",
     "title": "Titel",
     "street": "Straße",
-    "province": "Provinz",
+    "province": "Bundesland",
     "country": "Land",
     "zip": "Postleitzahl",
     "year": "Jahr",
-    "gradeSystemTitle": "Benotung System",
-    "note": "Noten System (1-6)",
-    "points": "Punkte System (0-15)",
-    "percent": "Prozent System (0-100%)"
+    "gradeSystemTitle": "Benotungssystem",
+    "note": "Notensystem (1 - 6)",
+    "points": "Punktesystem (0 - 15)",
+    "percent": "Prozentsystem (0 - 100%)"
   }
 }
