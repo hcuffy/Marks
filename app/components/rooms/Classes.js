@@ -36,20 +36,22 @@ const Classes = ({ classData, actions }) => {
 
 	checkChange(classData, actions)
 	return (
-		<div className={styles.room_div}>
-			<form onSubmit={actions.handleClassData} method="POST">
-				<div className={styles.form_outer_div}>
-					<h4 className={styles.center_header}>{t('room.addClassHeader')}</h4>
-					{formInputs}
-					<div className={(styles.form_div, styles.save_btn)}>
-						<button type="submit" className="btn btn-success">
-							{t('general.add')}
-						</button>
+		<div>
+			<div className={styles.room_div}>
+				<form onSubmit={actions.handleClassData} method="POST">
+					<div className={styles.form_outer_div}>
+						<h4 className={styles.add_header}>{t('room.addClassHeader')}</h4>
+						{formInputs}
+						<div className={(styles.form_div, styles.save_btn)}>
+							<button type="submit" className="btn btn-success">
+								{t('general.add')}
+							</button>
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 			<div>
-				<h4 className={styles.center_header}>{t('room.listHeader')}</h4>
+				<h4 className={styles.list_header}>{t('room.listHeader')}</h4>
 				<ClassList listData={classData} />
 			</div>
 			<Subjects classData={classData} />

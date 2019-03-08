@@ -16,6 +16,7 @@
     "saveAs": "speichern als"
   },
   "room": {
+    "title": "KLASSEN",
     "listHeader": "Liste der Klassen",
     "addClassHeader": "Klasse hinzufügen",
     "name": "Name",

@@ -16,6 +16,7 @@
     "saveAs": "Save As"
   },
   "room": {
+    "title": "CLASSES",
     "listHeader": "List of Classes",
     "addClassHeader": "Add a Class",
     "name": "Name",
