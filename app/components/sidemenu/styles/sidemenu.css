@@ -1,5 +1,5 @@
 .menu_div {
-  background: #afc7db;
+  background: #1e73be;
   float: left;
   width: 101px;
   display: block;
@@ -14,10 +14,10 @@
   width: 100px;
   padding: 10px 10px 10px 10px;
   border: none;
-  background: #007bff;
+  background: #1e73be;
   outline: none !important;
 }
 
 .selectedButton {
-  color: 'black';
+  color: #1dbb90;
 }

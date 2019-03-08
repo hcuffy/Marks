@@ -11,9 +11,8 @@ body {
   position: relative;
   color: black;
   height: 100vh;
-  background-color: #232c39;
-  background-image: linear-gradient(90deg, #e2e2e2, #b7b7b7);
-  font-family: Arial, Helvetica, Helvetica Neue, serif;
+  background-color: #e4e5e0;
+  font-family: Century Schoolbook, Times New Roman;
   overflow-y: hidden;
 }
 
@@ -43,4 +42,9 @@ a:hover {
   opacity: 1;
   text-decoration: none;
   cursor: pointer;
+}
+
+.btn-success {
+  background-color: #1dbb90;
+  border-color: #1dbb90;
 }
