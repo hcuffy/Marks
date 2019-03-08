@@ -1,5 +1,3 @@
-import * as school from './schoolActions'
-import * as modals from './modalActions'
 import * as classroom from './classroomActions'
 import * as subject from './subjectActions'
 import * as exam from './examActions'
@@ -7,37 +5,36 @@ import * as student from './studentActions'
 import * as grade from './gradeActions'
 import * as sidemenu from './sidemenuActions'
 import * as graph from './graphActions'
+import * as settings from './settingsActions'
 
 export const actionCreators = {
-	handleSchoolData: school.handleSchoolData,
-	displaySchoolData: school.displaySchoolData,
 	changeClassroomTab: classroom.changeClassroomTab,
 	handleClassData: classroom.handleClassData,
 	displayClassData: classroom.displayClassData,
-	roomModalDisplay: modals.roomModalDisplay,
-	deleteRoom: modals.deleteRoom,
-	updateRoom: modals.updateRoom,
+	roomModalDisplay: classroom.roomModalDisplay,
+	deleteRoom: classroom.deleteRoom,
+	updateRoom: classroom.updateRoom,
 	openClassList: subject.openClassList,
 	showSubject: subject.showSubject,
 	addNewSubject: subject.addNewSubject,
 	getSubjectData: subject.getSubjectData,
-	updateSubject: modals.updateSubject,
-	subjectModalDisplay: modals.subjectModalDisplay,
-	deleteSingleSubject: modals.deleteSingleSubject,
+	updateSubject: subject.updateSubject,
+	subjectModalDisplay: subject.subjectModalDisplay,
+	deleteSingleSubject: subject.deleteSingleSubject,
 	addNewExam: exam.addNewExam,
 	getSelectedSubject: exam.getSelectedSubject,
 	openClassDropdownList: exam.openClassDropdownList,
 	displayExamData: exam.displayExamData,
 	showSingleExam: exam.showSingleExam,
-	deleteSingleExam: modals.deleteSingleExam,
-	updateExam: modals.updateExam,
+	deleteSingleExam: exam.deleteSingleExam,
+	updateExam: exam.updateExam,
 	addNewStudent: student.addNewStudent,
 	getStudents: student.getStudents,
 	showStudentModal: student.showStudentModal,
 	openStudenGraph: student.openStudenGraph,
 	openStudenSubjectGraph: student.openStudenSubjectGraph,
-	deleteSingleStudent: modals.deleteSingleStudent,
-	updateStudent: modals.updateStudent,
+	deleteSingleStudent: student.deleteSingleStudent,
+	updateStudent: student.updateStudent,
 	displayGradeData: grade.displayGradeData,
 	openGradeClassList: grade.openGradeClassList,
 	updateGrade: grade.updateGrade,
@@ -46,5 +43,9 @@ export const actionCreators = {
 	displaySubjectGraph: graph.displaySubjectGraph,
 	getAllGradeData: graph.getAllGradeData,
 	getGraphExamData: graph.getGraphExamData,
-	displayExamGraph: graph.displayExamGraph
+	displayExamGraph: graph.displayExamGraph,
+	saveSchoolAddress: settings.saveSchoolAddress,
+	displayAddress: settings.displayAddress,
+	updateSytemType: settings.updateGradingSystem,
+	getGradingSystem: settings.getGradingSystem
 }

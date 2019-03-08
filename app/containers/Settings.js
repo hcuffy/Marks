@@ -3,14 +3,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/sidemenu/SideMenu'
-import SchoolInfo from '../components/SchoolInfo'
+import SettingsPage from '../components/settings/SettingsPage'
 
 const _ = require('lodash')
 
 class School extends Component {
 	componentDidMount() {
-		if (_.isNull(this.props.schoolData.title)) {
-			this.props.actions.displaySchoolData()
+		this.props.actions.getGradingSystem()
+		if (_.isNull(this.props.addressData.title)) {
+			this.props.actions.displayAddress()
 		}
 	}
 
@@ -18,13 +19,13 @@ class School extends Component {
 		return (
 			<div>
 				<SideMenu />
-				<SchoolInfo />
+				<SettingsPage />
 			</div>
 		)
 	}
 }
 
-const mapStateToProps = state => ({ schoolData: state.schoolData })
+const mapStateToProps = state => ({ addressData: state.addressData })
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)

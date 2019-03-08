@@ -1,8 +1,8 @@
 {
   "HOME": "/",
-  "SCHOOL": "/school",
   "CLASSROOM": "/classroom",
   "STUDENTS": "/students",
   "GRADES": "/grades",
-  "GRAPHS": "/graphs"
+  "GRAPHS": "/graphs",
+  "SETTINGS": "/settings"
 }

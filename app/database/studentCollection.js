@@ -61,7 +61,7 @@ export const deleteStudent = data =>
 		})
 	)
 
-const updateSinlgStudent = previous => {
+const updateSingleStudent = previous => {
 	const { firstname, lastname, gender, classroom, id } = previous
 
 	studentCollection.update(
@@ -85,7 +85,7 @@ const updateSinlgStudent = previous => {
 
 export const updateStudentData = data =>
 	new Promise((resolve, reject) => {
-		updateSinlgStudent(data)
+		updateSingleStudent(data)
 		studentCollection.find({}, (error, docs) => {
 			if (error) {
 				updateFailed()

@@ -2,6 +2,28 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron'
 
+let newPanelWindow = null
+const openAttributionWindow = () => {
+	if (newPanelWindow) {
+		newPanelWindow.focus()
+		return
+	}
+
+	newPanelWindow = new BrowserWindow({
+		height: 500,
+		width: 500,
+		title: 'Attribution',
+		resizable: false,
+		minimizable: false,
+		fullscreenable: false
+	})
+
+	newPanelWindow.on('closed', () => {
+		newPanelWindow = null
+	})
+
+	newPanelWindow.loadURL(`file://${__dirname}/views/attribution.html`)
+}
 export default class MenuBuilder {
 	mainWindow: BrowserWindow
 
@@ -43,14 +65,12 @@ export default class MenuBuilder {
 
 	buildDarwinTemplate() {
 		const subMenuAbout = {
-			label: 'Electron',
+			label: 'Marks',
 			submenu: [
 				{
 					label: 'About Marks',
 					selector: 'orderFrontStandardAboutPanel:'
 				},
-				{ type: 'separator' },
-				{ label: 'Services', submenu: [] },
 				{ type: 'separator' },
 				{
 					label: 'Hide Marks',
@@ -62,7 +82,6 @@ export default class MenuBuilder {
 					accelerator: 'Command+Shift+H',
 					selector: 'hideOtherApplications:'
 				},
-				{ label: 'Show All', selector: 'unhideAllApplications:' },
 				{ type: 'separator' },
 				{
 					label: 'Quit',
@@ -73,22 +92,7 @@ export default class MenuBuilder {
 				}
 			]
 		}
-		const subMenuEdit = {
-			label: 'Edit',
-			submenu: [
-				{ label: 'Undo', accelerator: 'Command+Z', selector: 'undo:' },
-				{ label: 'Redo', accelerator: 'Shift+Command+Z', selector: 'redo:' },
-				{ type: 'separator' },
-				{ label: 'Cut', accelerator: 'Command+X', selector: 'cut:' },
-				{ label: 'Copy', accelerator: 'Command+C', selector: 'copy:' },
-				{ label: 'Paste', accelerator: 'Command+V', selector: 'paste:' },
-				{
-					label: 'Select All',
-					accelerator: 'Command+A',
-					selector: 'selectAll:'
-				}
-			]
-		}
+
 		const subMenuViewDev = {
 			label: 'View',
 			submenu: [
@@ -160,6 +164,12 @@ export default class MenuBuilder {
 					click() {
 						shell.openExternal('https://github.com/hcuffy/My-Marks/issues')
 					}
+				},
+				{
+					label: 'Attribution',
+					click() {
+						openAttributionWindow()
+					}
 				}
 			]
 		}
@@ -168,7 +178,6 @@ export default class MenuBuilder {
 			process.env.NODE_ENV === 'development' ? subMenuViewDev : subMenuViewProd
 
 		return [subMenuAbout,
-			subMenuEdit,
 			subMenuView,
 			subMenuWindow,
 			subMenuHelp]
@@ -249,6 +258,12 @@ export default class MenuBuilder {
 						label: 'Search Issues',
 						click() {
 							shell.openExternal('https://github.com/hcuffy/My-Marks/issues')
+						}
+					},
+					{
+						label: 'Attribution',
+						click() {
+							openAttributionWindow()
 						}
 					}
 				]
