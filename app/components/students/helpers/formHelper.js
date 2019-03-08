@@ -50,7 +50,7 @@ const studentForm = (selectOption, formFields, actions) => {
 		<div>
 			<form onSubmit={actions.addNewStudent} method="POST">
 				<div className={styles.form_outer_div}>
-					<h4 className={styles.center_sub_header}>{t('student.add')}</h4>
+					<h4 className={styles.center_add_sub_header}>{t('student.add')}</h4>
 					{formFields}
 					{/* eslint-disable-next-line max-len */}
 					{genderDropdown(t('student.male'), styles.select_dropDown, styles.form_div)}

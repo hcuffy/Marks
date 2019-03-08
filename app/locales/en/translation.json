@@ -35,7 +35,7 @@
   },
   "student": {
     "defaultHeader": "Student Grades",
-    "title": "Students",
+    "title": "STUDENTS",
     "list": "List of Students",
     "add": "Add Student",
     "chartTitle": "Charts",

@@ -8,8 +8,8 @@ import StudentDropdown from './StudentDropdown'
 
 const StudentsSection = () => (
 	<div>
-		<div>
-			<h2 className={styles.center_header}>{t('student.title')}</h2>
+		<div className={styles.student_home_div}>
+			<h4 className={styles.center_header}>{t('student.title')}</h4>
 			<StudentForm />
 			<StudentList />
 		</div>

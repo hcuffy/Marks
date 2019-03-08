@@ -3,7 +3,7 @@ import { HANDLE_MENU_CHANGE } from '../constants/actionTypes'
 const _ = require('lodash')
 
 const initialLoadState = {
-	home: 'black',
+	home: '#1dbb90',
 	classroom: '',
 	students: '',
 	exams: '',
