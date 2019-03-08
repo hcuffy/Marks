@@ -1,6 +1,7 @@
 import React from 'react'
 import { DropdownItem, Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
 import { firstMakeSelection } from '../../notifications/warnings'
+import styles from './styles/helpers.css'
 
 const _ = require('lodash')
 
@@ -60,10 +61,10 @@ export const getStudentList = allStudents => {
 	return items
 }
 
-export const createDropdown = (styling, openIt, action, label , options) => (
+export const createDropdown = (styling, openIt, action, label, options) => (
 	<div className={styling}>
 		<Dropdown isOpen={openIt} toggle={action}>
-			<DropdownToggle color="info" caret>
+			<DropdownToggle className={styles.dropdown_color} caret>
 				{label}
 			</DropdownToggle>
 			<DropdownMenu>{options}</DropdownMenu>
