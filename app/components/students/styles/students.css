@@ -88,7 +88,6 @@ select {
 
 .form_label_edit {
   float: left;
-  margin: 0 5px 0 5px;
   vertical-align: bottom;
   line-height: 36px;
 }
@@ -98,7 +97,7 @@ select {
 }
 
 .form_div_edit {
-  width: 300px;
+  width: 350px;
   height: 50px;
 }
 

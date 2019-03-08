@@ -27,6 +27,7 @@ const NavBar = ({ tabChangeData, actions }) => {
 
 	return (
 		<div className={styles.navbar_div}>
+			<h4 className={styles.center_main_header}>{t('room.title')}</h4>
 			<ul className="nav nav-pills justify-content-center">
 				{classPill(
 					0,
