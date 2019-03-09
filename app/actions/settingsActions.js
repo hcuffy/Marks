@@ -1,3 +1,4 @@
+import { shell } from 'electron'
 import {
 	UPDATE_GRADING_DATA,
 	GET_SYSTEM_TYPE,
@@ -78,4 +79,8 @@ export const displayAddress = () => async dispatch => {
 			payload: data[0]
 		})
 	}
+}
+
+export const buyMeACoffee = () => {
+	shell.openExternal('https://www.buymeacoffee.com/cuffy')
 }
