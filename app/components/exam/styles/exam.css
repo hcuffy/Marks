@@ -3,10 +3,18 @@
   border-top: 1px solid;
 }
 
+.edit_div {
+  display: flex;
+  padding-top: 15px;
+}
+
 .header_div {
   white-space: pre;
-  border-top: 1px solid;
   overflow: auto;
+}
+
+.edit_header {
+  float: left;
 }
 
 .form_label {
@@ -31,6 +39,7 @@
 
 .dropdown_main_div {
   text-align: center;
+  margin-left: 160px;
 }
 
 .form_label_edit {
