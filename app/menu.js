@@ -244,7 +244,7 @@ export default class MenuBuilder {
 						label: 'Issues/Requests',
 						click() {
 							shell.openExternal(
-								'https://github.com/hcuffy/My-Marks/blob/master/README.md'
+								'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
 							)
 						}
 					},
