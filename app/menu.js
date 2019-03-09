@@ -148,27 +148,21 @@ export default class MenuBuilder {
 			label: 'Help',
 			submenu: [
 				{
-					label: 'Learn More',
+					label: 'Attribution',
 					click() {
-						shell.openExternal('https://github.com/hcuffy/My-Marks')
+						openAttributionWindow()
 					}
 				},
 				{
-					label: 'Documentation',
+					label: 'Issues/Requests',
 					click() {
 						shell.openExternal('https://github.com/hcuffy/My-Marks/blob/master/README.md')
 					}
 				},
 				{
-					label: 'Search Issues',
+					label: 'Coffee',
 					click() {
-						shell.openExternal('https://github.com/hcuffy/My-Marks/issues')
-					}
-				},
-				{
-					label: 'Attribution',
-					click() {
-						openAttributionWindow()
+						shell.openExternal('https://www.buymeacoffee.com/cuffy')
 					}
 				}
 			]
@@ -241,13 +235,13 @@ export default class MenuBuilder {
 				label: 'Help',
 				submenu: [
 					{
-						label: 'Learn More',
+						label: 'Attribution',
 						click() {
-							shell.openExternal('https://github.com/hcuffy/My-Marks')
+							openAttributionWindow()
 						}
 					},
 					{
-						label: 'Documentation',
+						label: 'Issues/Requests',
 						click() {
 							shell.openExternal(
 								'https://github.com/hcuffy/My-Marks/blob/master/README.md'
@@ -255,15 +249,9 @@ export default class MenuBuilder {
 						}
 					},
 					{
-						label: 'Search Issues',
+						label: 'Coffee',
 						click() {
-							shell.openExternal('https://github.com/hcuffy/My-Marks/issues')
-						}
-					},
-					{
-						label: 'Attribution',
-						click() {
-							openAttributionWindow()
+							shell.openExternal('https://www.buymeacoffee.com/cuffy')
 						}
 					}
 				]
