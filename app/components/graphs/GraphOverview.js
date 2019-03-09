@@ -6,9 +6,11 @@ import Chart from './Chart'
 
 const GraphOverview = () => (
 	<div>
-		<h2 className={styles.center_header}>{t('graph.overview')}</h2>
+		<h4 className={styles.center_header}>{t('graph.overview')}</h4>
 		<GraphDropdown />
-		<Chart />
+		<div className={styles.chart_div}>
+			<Chart />
+		</div>
 	</div>
 )
 
