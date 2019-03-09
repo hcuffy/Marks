@@ -11,7 +11,7 @@ const Address = ({ addressData, actions }) => {
 
 	return (
 		<div className={styles.address_wrapper}>
-			<h4 className={styles.center_header}>{t('settings.addressTitle')}</h4>
+			<h4 className={styles.address_header}>{t('settings.addressTitle')}</h4>
 			{addressForm(entry, actions)}
 		</div>
 	)

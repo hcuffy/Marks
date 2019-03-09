@@ -12,8 +12,17 @@
   height: 330px;
 }
 
-.center_header {
-  text-align: center;
+.main_header {
+  height: 50px;
+  padding-top: 10px;
+  text-align: left;
+  border-bottom: 1px solid;
+  background: #fdb12e;
+}
+
+.address_header {
+  margin-left: 15px;
+  text-align: left;
 }
 
 input[type='text'] {
@@ -26,12 +35,14 @@ input[type='text'] {
 
 .form_inner_div {
   float: right;
+  white-space: nowrap;
+  margin: auto;
+  width: 300px;
 }
 
 .form_outer_div {
-  height: 350px;
   width: 450px;
-  margin: 10px 0 0 0;
+  padding-right: 115px;
 }
 
 .save_btn {
@@ -41,19 +52,20 @@ input[type='text'] {
 
 .form_label {
   float: left;
-  margin-right: 5px;
+  width: 90px;
+  margin: auto;
   vertical-align: bottom;
   line-height: 32px;
 }
 
 .address_div {
   float: left;
-  width: 50%;
+  width: 40%;
 }
 
 .gradeFormat_div {
   float: right;
-  width: 38%;
+  width: 42%;
 }
 
 .radio_div {

@@ -6,7 +6,7 @@ import GradeFormat from './GradeFormat'
 
 const Settings = () => (
 	<div className={styles.settings_wrapper}>
-		<h2 className={styles.center_header}>{t('settings.sectionTitle')}</h2>
+		<h4 className={styles.main_header}>{t('settings.sectionTitle')}</h4>
 		<div className={styles.address_div}>
 			<Address />
 		</div>
