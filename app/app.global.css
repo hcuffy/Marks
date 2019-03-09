@@ -48,3 +48,8 @@ a:hover {
   background-color: #1dbb90;
   border-color: #1dbb90;
 }
+
+.nav-pills .nav-link.active {
+  color: #fff;
+  background-color: #1e73be;
+}

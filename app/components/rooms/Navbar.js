@@ -13,7 +13,7 @@ const classPill = (index, pillClass, name, action, title) => (
 		<a
 			role="button"
 			tabIndex={index}
-			className={`nav-link ${pillClass}`}
+			className={`${styles.tab_link} nav-link ${pillClass}`}
 			onClick={action}
 			data-name={name}
 		>

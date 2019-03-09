@@ -79,3 +79,16 @@
 .modal-body {
   height: 200px;
 }
+
+.tab_link {
+  color: #1e73be;
+  border-width: 1px !important;
+  border: solid;
+  border-color: #1e73be;
+  margin-left: 5px;
+}
+
+.tab_link:hover {
+  color: #fff;
+  background-color: #1e73be;
+}
