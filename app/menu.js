@@ -148,19 +148,29 @@ export default class MenuBuilder {
 			label: 'Help',
 			submenu: [
 				{
-					label: 'Attribution',
+					label: 'Attributions',
 					click() {
 						openAttributionWindow()
 					}
 				},
 				{
-					label: 'Issues/Requests',
+					label: 'Report an issue',
 					click() {
-						shell.openExternal('https://github.com/hcuffy/My-Marks/blob/master/README.md')
+						shell.openExternal(
+							'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
+						)
 					}
 				},
 				{
-					label: 'Coffee',
+					label: 'Propose a feature',
+					click() {
+						shell.openExternal(
+							'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
+						)
+					}
+				},
+				{
+					label: 'Buy me a coffee',
 					click() {
 						shell.openExternal('https://www.buymeacoffee.com/cuffy')
 					}
@@ -235,13 +245,13 @@ export default class MenuBuilder {
 				label: 'Help',
 				submenu: [
 					{
-						label: 'Attribution',
+						label: 'Attributions',
 						click() {
 							openAttributionWindow()
 						}
 					},
 					{
-						label: 'Issues/Requests',
+						label: 'Report an issue',
 						click() {
 							shell.openExternal(
 								'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
@@ -249,7 +259,15 @@ export default class MenuBuilder {
 						}
 					},
 					{
-						label: 'Coffee',
+						label: 'Propose a feature',
+						click() {
+							shell.openExternal(
+								'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
+							)
+						}
+					},
+					{
+						label: 'Buy me a coffee',
 						click() {
 							shell.openExternal('https://www.buymeacoffee.com/cuffy')
 						}
