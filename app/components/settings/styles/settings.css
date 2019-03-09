@@ -86,3 +86,15 @@ input[type='text'] {
   float: left;
   box-shadow: none !important;
 }
+
+.coffee_div {
+  display: inline-grid;
+  text-align: -webkit-center;
+  position: absolute;
+  top: 400px;
+  left: 600px;
+}
+
+img {
+  height: 4em;
+}
