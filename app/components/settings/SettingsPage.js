@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { t } from '../../utils/translationUtil'
 import styles from './styles/settings.css'
+import coffeeCup from './helpers/images/BMC.svg'
 import Address from './Address'
 import GradeFormat from './GradeFormat'
 
@@ -21,10 +22,7 @@ const Settings = ({ actions }) => (
 		<div />
 		<button type="button" className={styles.coffee_div} onClick={actions.buyMeACoffee}>
 			{t('settings.buyMeCoffee')}
-			<img
-				src={`file://${__dirname}/components/settings/helpers/images/BMC.svg`}
-				alt="BMC"
-			/>
+			<img src={coffeeCup} alt="Coffee cup" />
 		</button>
 	</div>
 )
