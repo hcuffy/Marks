@@ -25,7 +25,7 @@ const Subjects = ({ classData, classListData, actions }) => {
 	return (
 		<div className={styles.main_div}>
 			<div className={styles.subject_left}>
-				<h4 className={styles.center_header}>{t('room.subjectHeader')}</h4>
+				<h4 className={styles.subject_header}>{t('room.subjectHeader')}</h4>
 				{createDropdown(
 					null,
 					openModal,
@@ -36,7 +36,7 @@ const Subjects = ({ classData, classListData, actions }) => {
 				<SubjectList selectedSubject={selectedSubject} />
 			</div>
 			<div className={styles.subject_right}>
-				<h4 className={styles.center_header}>{t('room.addSubject')}</h4>
+				<h4 className={styles.add_header}>{t('room.addSubject')}</h4>
 				<SubjectForm classListData={classListData} subjects={subjects} />
 			</div>
 		</div>

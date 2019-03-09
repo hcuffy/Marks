@@ -61,10 +61,16 @@
   right: 20px;
   scrollbar-width: none;
   overflow-x: hidden;
+  padding-right: 70px;
 }
 
-.center_header {
-  text-align: center;
+.subject_header {
+  text-align: left;
+  margin-top: 15px;
+}
+.add_header {
+  text-align: left;
+  margin-top: 15px;
 }
 
 .main_div {
