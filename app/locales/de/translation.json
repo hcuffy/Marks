@@ -48,11 +48,16 @@
     "female": "weiblich"
   },
   "grades": {
-    "gradesTitle": "Noten",
+    "gradesTitle": "NOTEN",
     "noData": "Keine Daten zum Anzeigen",
     "fullName": "Vollständiger Name",
     "studentHeader": "Studentendaten",
-    "examHeader": "Leistungsnachweise"
+    "examHeader": "Leistungsnachweise",
+    "previousPage": "vorige",
+    "nextPage": "nächste",
+    "textPage": "seite",
+    "pageOf": "von",
+    "textRows": "reihen"
   },
   "graph": {
     "overview": "Diagrammübersicht"

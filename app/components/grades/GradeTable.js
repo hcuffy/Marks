@@ -11,19 +11,28 @@ import GradeDropdown from './GradeDropdown'
 
 const _ = require('lodash')
 
+const tableOptions = () => ({
+	defaultPageSize: 20,
+	noDataText: t('grades.noData'),
+	previousText: t('grades.previousPage'),
+	nextText: t('grades.nextPage'),
+	pageText: t('grades.textPage'),
+	ofText: t('grades.pageOf'),
+	rowsText: t('grades.textRows')
+})
+
 const GradeTable = ({ gradeData, students, actions }) => {
 	const data = gradeInfo(gradeData, students)
 	return (
 		<div className={styles.div_wrapper}>
-			<h2 className={styles.center_header}>{t('grades.gradesTitle')}</h2>
+			<h4 className={styles.center_header}>{t('grades.gradesTitle')}</h4>
 			<GradeDropdown />
 			<ReactTable
 				data={_.sortBy(data, ['name'], ['asc'])}
-				noDataText={t('grades.noData')}
 				columns={gradeColumns({ newData: data, actions })}
 				className="-striped -highlight"
-				defaultPageSize={20}
-				style={{ height: '570px' }}
+				style={{ height: '650px' }}
+				{...tableOptions()}
 			/>
 		</div>
 	)

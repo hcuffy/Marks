@@ -48,11 +48,16 @@
     "female": "female"
   },
   "grades": {
-    "gradesTitle": "Grades",
+    "gradesTitle": "GRADES",
     "noData": "No Data To Show",
     "fullName": "Full Name",
     "studentHeader": "Student Data",
-    "examHeader": "Exams/Tests"
+    "examHeader": "Exams/Tests",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "textPage": "page",
+    "pageOf": "of",
+    "textRows": "rows"
   },
   "graph": {
     "overview": "Graph Overview"
