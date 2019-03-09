@@ -21,7 +21,7 @@ export const addressFields = addressData =>
 	_.keys(addressData).map((data, idx) => (
 		<div key={idx} className={styles.form_inner_div}>
 			<label className={styles.form_label} htmlFor={`school${data}`}>
-				{t(`settings.${data}`)}
+				{t(`settings.${data}`)}:
 			</label>
 			<input
 				name={data}

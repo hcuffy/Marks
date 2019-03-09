@@ -1,5 +1,9 @@
 {
-  "title": "Titel",
+  "home": {
+    "title": "Homepage",
+    "addressHeader": "Your School Address",
+    "resourcesHeader": "Useful Resources"
+  },
   "general": {
     "add": "hinzufügen",
     "save": "speichern",
@@ -90,6 +94,7 @@
     "gradeSystemTitle": "Benotungssystem",
     "note": "Notensystem (1 - 6)",
     "points": "Punktesystem (0 - 15)",
-    "percent": "Prozentsystem (0 - 100%)"
+    "percent": "Prozentsystem (0 - 100%)",
+    "buyMeCoffee": "Do you like this app? Consider buying me a Coffee."
   }
 }
