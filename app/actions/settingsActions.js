@@ -5,6 +5,7 @@ import {
 	HANDLE_SCHOOL_DATA,
 	DISPLAY_SCHOOL_DATA
 } from '../constants/actionTypes'
+import { SUPPORT_APP } from '../constants/externalLinks'
 import {
 	saveGradeSystem,
 	getSystemType,
@@ -82,6 +83,6 @@ export const displayAddress = () => async dispatch => {
 }
 
 export const supportApp = () => dispatch => {
-	shell.openExternal('https://www.paypal.me/HenryCuffy')
-	dispatch(null)
+	shell.openExternal(SUPPORT_APP)
+	dispatch({ type: null, payload: null })
 }
