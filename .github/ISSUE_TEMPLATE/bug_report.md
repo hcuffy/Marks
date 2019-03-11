@@ -28,3 +28,26 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+
+---
+**Beschreiben Sie den Softwarefehler**
+Eine klare und präzise Beschreibung des Softwarefehlers
+
+**Zum Nachvollziehen**
+Schritte den Fehler nachvollziehbar zu machen:
+Gehe zu …
+Klicke auf …
+Scrolle runter zu…
+Sehe den Fehler
+
+**Erwartetes Verhalten**
+Eine klare und präzise Beschreibung dessen, was sich in Zukunft passieren soll.
+
+**Bildschirmfotos**
+Fügen Sie Bildschirmfotos hinzu, wenn Sie dies als notwendig erachten und sich die vorhandene Problematik dadurch besser darstellen lässt. 
+
+**Benutzeroberfläche (bitte vervollständigen Sie die folgende Information):**
+OS und Version: [z.B. Mac OS 10.12.0]
+
+**Zusätzliche Hilfsmittel**
+Fügen Sie hilfreiche Medien zur Problematik hier hinzu.
