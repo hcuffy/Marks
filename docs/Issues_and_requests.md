@@ -14,7 +14,7 @@ Send an email with the issues/proposal to: [marksapphelp@gmail.com]
 
 Individuals with a Github account can report issues & make feature proposals [here](https://github.com/hcuffy/My-Marks/issues/new/choose).
 
-# (German) Berichten eines Problems oder Vorschlag bezüglich neuer Features:
+# (Deutsch) Berichten eines Problems oder Vorschlag bezüglich neuer Features:
 
 Es existiert bereits die Möglichkeit, Probleme zu melden und Vorschläge zu machen. Kontrollieren Sie jedoch vorher [hier](https://github.com/hcuffy/My-Marks/issues), ob dies bereits erfolgt ist.
 
