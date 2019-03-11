@@ -87,7 +87,7 @@ input[type='text'] {
   box-shadow: none !important;
 }
 
-.coffee_div {
+.support_div {
   display: inline-grid;
   text-align: -webkit-center;
   position: absolute;
@@ -95,6 +95,6 @@ input[type='text'] {
   left: 600px;
 }
 
-img {
-  height: 4em;
+.support_icon {
+  display: inline;
 }

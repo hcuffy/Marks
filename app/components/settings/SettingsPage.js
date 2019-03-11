@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { t } from '../../utils/translationUtil'
 import styles from './styles/settings.css'
-import coffeeCup from './helpers/images/BMC.svg'
 import Address from './Address'
 import GradeFormat from './GradeFormat'
 
@@ -20,9 +19,12 @@ const Settings = ({ actions }) => (
 			<GradeFormat />
 		</div>
 		<div />
-		<button type="button" className={styles.coffee_div} onClick={actions.buyMeACoffee}>
-			{t('settings.buyMeCoffee')}
-			<img src={coffeeCup} alt="Coffee cup" />
+		<button type="button" className={styles.support_div} onClick={actions.supportApp}>
+			{t('settings.supportText')}
+			<div className={styles.support_icon}>
+				<i className="fab fa-paypal fa-2x" style={{ color: '#1e73be' }} />
+				<i className="fas fa-hands-helping fa-2x" style={{ color: '#1e73be' }} />
+			</div>
 		</button>
 	</div>
 )
