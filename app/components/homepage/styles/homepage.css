@@ -12,11 +12,15 @@
 }
 
 .school_right_div {
-  width: 50%;
-  margin: 15px 0 0 0;
+  width: 40%;
+  margin: 15px 60px 0 0;
   float: right;
 }
 
 .page_inner_div {
   margin-top: 20vh;
+}
+
+.resource_btn:hover {
+ background-color: #1e73be;
 }

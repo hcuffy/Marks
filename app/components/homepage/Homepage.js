@@ -1,11 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { t } from '../../utils/translationUtil'
+import { actionCreators } from '../../actions/index'
+import { resourceList } from './helpers/resourcesList'
 import styles from './styles/homepage.css'
 
 const _ = require('lodash')
 
-const Homepage = ({ addressData }) => {
+const Homepage = ({ addressData, actions }) => {
 	const entry = _.values(addressData).map((data, idx) => <li key={idx}>{data}</li>)
 
 	return (
@@ -21,7 +24,7 @@ const Homepage = ({ addressData }) => {
 			<div className={styles.school_right_div}>
 				<div>
 					<p>{t('home.resourcesHeader')}</p>
-					<span>Holder</span>
+					{resourceList(actions)}
 				</div>
 			</div>
 		</div>
@@ -32,7 +35,11 @@ const mapStateToProps = state => ({
 	addressData: state.addressData
 })
 
+const mapDispatchToProps = dispatch => ({
+	actions: bindActionCreators(actionCreators, dispatch)
+})
+
 export default connect(
 	mapStateToProps,
-	null
+	mapDispatchToProps
 )(Homepage)

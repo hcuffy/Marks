@@ -14,6 +14,7 @@ export const actionCreators = {
 	roomModalDisplay: classroom.roomModalDisplay,
 	deleteRoom: classroom.deleteRoom,
 	updateRoom: classroom.updateRoom,
+	goToResource: classroom.goToResource,
 	openClassList: subject.openClassList,
 	showSubject: subject.showSubject,
 	addNewSubject: subject.addNewSubject,
