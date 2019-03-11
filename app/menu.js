@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron'
-import { translateMenu } from './utils/translationUtil'
+import { customMenuTranslation } from './utils/translationUtil'
 
 let newPanelWindow = null
 const openAttributionWindow = () => {
@@ -70,23 +70,23 @@ export default class MenuBuilder {
 			label: 'Marks',
 			submenu: [
 				{
-					label: translateMenu(locale, 'about'),
+					label: customMenuTranslation(locale, 'about'),
 					selector: 'orderFrontStandardAboutPanel:'
 				},
 				{ type: 'separator' },
 				{
-					label: translateMenu(locale, 'hide'),
+					label: customMenuTranslation(locale, 'hide'),
 					accelerator: 'Command+H',
 					selector: 'hide:'
 				},
 				{
-					label: translateMenu(locale, 'others'),
+					label: customMenuTranslation(locale, 'others'),
 					accelerator: 'Command+Shift+H',
 					selector: 'hideOtherApplications:'
 				},
 				{ type: 'separator' },
 				{
-					label: translateMenu(locale, 'quit'),
+					label: customMenuTranslation(locale, 'quit'),
 					accelerator: 'Command+Q',
 					click: () => {
 						app.quit()
@@ -96,7 +96,7 @@ export default class MenuBuilder {
 		}
 
 		const subMenuViewDev = {
-			label: translateMenu(locale, 'view'),
+			label: customMenuTranslation(locale, 'view'),
 			submenu: [
 				{
 					label: 'Reload',
@@ -106,7 +106,7 @@ export default class MenuBuilder {
 					}
 				},
 				{
-					label: translateMenu(locale, 'toggle'),
+					label: customMenuTranslation(locale, 'toggle'),
 					accelerator: 'Ctrl+Command+F',
 					click: () => {
 						this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
@@ -122,10 +122,10 @@ export default class MenuBuilder {
 			]
 		}
 		const subMenuViewProd = {
-			label: translateMenu(locale, 'view'),
+			label: customMenuTranslation(locale, 'view'),
 			submenu: [
 				{
-					label: translateMenu(locale, 'toggle'),
+					label: customMenuTranslation(locale, 'toggle'),
 					accelerator: 'Ctrl+Command+F',
 					click: () => {
 						this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
@@ -134,29 +134,29 @@ export default class MenuBuilder {
 			]
 		}
 		const subMenuWindow = {
-			label: translateMenu(locale, 'window'),
+			label: customMenuTranslation(locale, 'window'),
 			submenu: [
 				{
-					label: translateMenu(locale, 'mini'),
+					label: customMenuTranslation(locale, 'mini'),
 					accelerator: 'Command+M',
 					selector: 'performMiniaturize:'
 				},
 				{ label: 'Close', accelerator: 'Command+W', selector: 'performClose:' },
 				{ type: 'separator' },
-				{ label: translateMenu(locale, 'front'), selector: 'arrangeInFront:' }
+				{ label: customMenuTranslation(locale, 'front'), selector: 'arrangeInFront:' }
 			]
 		}
 		const subMenuHelp = {
-			label: translateMenu(locale, 'help'),
+			label: customMenuTranslation(locale, 'help'),
 			submenu: [
 				{
-					label: translateMenu(locale, 'credits'),
+					label: customMenuTranslation(locale, 'credits'),
 					click() {
 						openAttributionWindow()
 					}
 				},
 				{
-					label: translateMenu(locale, 'report'),
+					label: customMenuTranslation(locale, 'report'),
 					click() {
 						shell.openExternal(
 							'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
@@ -164,7 +164,7 @@ export default class MenuBuilder {
 					}
 				},
 				{
-					label: translateMenu(locale, 'propose'),
+					label: customMenuTranslation(locale, 'propose'),
 					click() {
 						shell.openExternal(
 							'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
@@ -172,7 +172,7 @@ export default class MenuBuilder {
 					}
 				},
 				{
-					label: translateMenu(locale, 'buy'),
+					label: customMenuTranslation(locale, 'buy'),
 					click() {
 						shell.openExternal('https://www.buymeacoffee.com/cuffy')
 					}
@@ -245,16 +245,16 @@ export default class MenuBuilder {
 						  ]
 			},
 			{
-				label: translateMenu(locale, 'hide'),
+				label: customMenuTranslation(locale, 'hide'),
 				submenu: [
 					{
-						label: translateMenu(locale, 'credits'),
+						label: customMenuTranslation(locale, 'credits'),
 						click() {
 							openAttributionWindow()
 						}
 					},
 					{
-						label: translateMenu(locale, 'report'),
+						label: customMenuTranslation(locale, 'report'),
 						click() {
 							shell.openExternal(
 								'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
@@ -262,7 +262,7 @@ export default class MenuBuilder {
 						}
 					},
 					{
-						label: translateMenu(locale, 'propose'),
+						label: customMenuTranslation(locale, 'propose'),
 						click() {
 							shell.openExternal(
 								'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
@@ -270,7 +270,7 @@ export default class MenuBuilder {
 						}
 					},
 					{
-						label: translateMenu(locale, 'buy'),
+						label: customMenuTranslation(locale, 'buy'),
 						click() {
 							shell.openExternal('https://www.buymeacoffee.com/cuffy')
 						}

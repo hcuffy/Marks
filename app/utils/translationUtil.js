@@ -7,7 +7,7 @@ export const t = translate => i18next.t(translate)
 export const resolveLabel = (current, translated) =>
 	_.isNull(current) ? translated : current
 
-const englishMenuLabel = {
+const englishMenuLabels = {
 	hide: 'Hide Marks',
 	about: 'About Marks',
 	others: 'Hide Others',
@@ -23,7 +23,7 @@ const englishMenuLabel = {
 	propose: 'Propose a feature',
 	buy: 'Buy me a coffee'
 }
-const germanMenuLabel = {
+const germanMenuLabels = {
 	hide: 'Ausblenden: Marks',
 	about: 'Über Marks',
 	others: 'Andere ausblenden',
@@ -39,17 +39,17 @@ const germanMenuLabel = {
 	propose: 'Vorschlag machen',
 	buy: 'Geld spenden'
 }
-export const translateMenu = (locale, label) => {
+export const customMenuTranslation = (locale, label) => {
 	const firstTwo = locale.slice(0, 2)
 	switch (firstTwo) {
 	case 'en': {
-		return englishMenuLabel[label]
+		return englishMenuLabels[label]
 	}
 	case 'de': {
-		return germanMenuLabel[label]
+		return germanMenuLabels[label]
 	}
 	default: {
-		return englishMenuLabel[label]
+		return englishMenuLabels[label]
 	}
 	}
 }

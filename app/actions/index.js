@@ -48,5 +48,5 @@ export const actionCreators = {
 	displayAddress: settings.displayAddress,
 	updateSytemType: settings.updateGradingSystem,
 	getGradingSystem: settings.getGradingSystem,
-	buyMeACoffee: settings.buyMeACoffee
+	supportApp: settings.supportApp
 }

@@ -81,6 +81,7 @@ export const displayAddress = () => async dispatch => {
 	}
 }
 
-export const buyMeACoffee = () => {
+export const supportApp = () => dispatch => {
 	shell.openExternal('https://www.buymeacoffee.com/cuffy')
+	dispatch(null)
 }
