@@ -2,6 +2,7 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron'
 import { customMenuTranslation } from './utils/translationUtil'
+import { SUPPORT_APP } from './constants/externalLinks'
 
 let newPanelWindow = null
 const openAttributionWindow = () => {
@@ -152,7 +153,7 @@ export default class MenuBuilder {
 				{
 					label: customMenuTranslation(locale, 'buy'),
 					click() {
-						shell.openExternal('https://www.paypal.me/HenryCuffy')
+						shell.openExternal(SUPPORT_APP)
 					}
 				},
 				{
@@ -250,7 +251,7 @@ export default class MenuBuilder {
 					{
 						label: customMenuTranslation(locale, 'buy'),
 						click() {
-							shell.openExternal('https://www.paypal.me/HenryCuffy')
+							shell.openExternal(SUPPORT_APP)
 						}
 					},
 					{
