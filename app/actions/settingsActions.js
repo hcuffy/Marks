@@ -82,6 +82,6 @@ export const displayAddress = () => async dispatch => {
 }
 
 export const supportApp = () => dispatch => {
-	shell.openExternal('https://www.buymeacoffee.com/cuffy')
+	shell.openExternal('https://www.paypal.me/HenryCuffy')
 	dispatch(null)
 }

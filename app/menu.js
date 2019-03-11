@@ -150,9 +150,9 @@ export default class MenuBuilder {
 			label: customMenuTranslation(locale, 'help'),
 			submenu: [
 				{
-					label: customMenuTranslation(locale, 'credits'),
+					label: customMenuTranslation(locale, 'buy'),
 					click() {
-						openAttributionWindow()
+						shell.openExternal('https://www.paypal.me/HenryCuffy')
 					}
 				},
 				{
@@ -172,9 +172,9 @@ export default class MenuBuilder {
 					}
 				},
 				{
-					label: customMenuTranslation(locale, 'buy'),
+					label: customMenuTranslation(locale, 'credits'),
 					click() {
-						shell.openExternal('https://www.buymeacoffee.com/cuffy')
+						openAttributionWindow()
 					}
 				}
 			]
@@ -248,9 +248,9 @@ export default class MenuBuilder {
 				label: customMenuTranslation(locale, 'hide'),
 				submenu: [
 					{
-						label: customMenuTranslation(locale, 'credits'),
+						label: customMenuTranslation(locale, 'buy'),
 						click() {
-							openAttributionWindow()
+							shell.openExternal('https://www.paypal.me/HenryCuffy')
 						}
 					},
 					{
@@ -270,9 +270,9 @@ export default class MenuBuilder {
 						}
 					},
 					{
-						label: customMenuTranslation(locale, 'buy'),
+						label: customMenuTranslation(locale, 'credits'),
 						click() {
-							shell.openExternal('https://www.buymeacoffee.com/cuffy')
+							openAttributionWindow()
 						}
 					}
 				]
