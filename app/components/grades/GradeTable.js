@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux'
 import ReactTable from 'react-table'
 import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
-import styles from './styles/grades.css'
+import GradeDropdown from './GradeDropdown'
 import { gradeColumns } from './helpers/gradeColumns'
 import { gradeInfo } from './helpers/gradeInfo'
-import GradeDropdown from './GradeDropdown'
+import styles from './styles/grades.css'
 
 const _ = require('lodash')
 

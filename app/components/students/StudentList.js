@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux'
 import { Badge } from 'reactstrap'
 import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
-import styles from './styles/students.css'
 import StudentModal from './StudentModal'
+import styles from './styles/students.css'
 
 const _ = require('lodash')
 

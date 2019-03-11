@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
-import styles from './styles/grades.css'
-import { sortData } from '../rooms/ClassList'
+import { sortData } from '../rooms/helpers/formHelpers'
 import {
 	getClassList,
 	getSubjectList,
 	createDropdown,
 	notifyIfEmpty
 } from '../helpers/dropdowns'
+import styles from './styles/grades.css'
 
 const _ = require('lodash')
 

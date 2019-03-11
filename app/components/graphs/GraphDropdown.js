@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
-import styles from './styles/graphs.css'
-import { sortData } from '../rooms/ClassList'
+import { sortData } from '../rooms/helpers/formHelpers'
 import { downloadPDF } from '../../utils/pdfUtil'
 import {
 	getClassList,
@@ -13,6 +12,7 @@ import {
 	getExamList,
 	notifyIfEmpty
 } from '../helpers/dropdowns'
+import styles from './styles/graphs.css'
 
 const PDFbutton = chartTitle => (
 	<button

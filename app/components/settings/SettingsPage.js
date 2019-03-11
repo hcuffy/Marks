@@ -2,12 +2,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { actionCreators } from '../../actions/index'
 import { t } from '../../utils/translationUtil'
-import styles from './styles/settings.css'
+import { actionCreators } from '../../actions/index'
 import Address from './Address'
 import GradeFormat from './GradeFormat'
 import { supportBtn } from './helpers/supportHelper'
+import styles from './styles/settings.css'
 
 const Settings = ({ actions }) => (
 	<div className={styles.settings_wrapper}>

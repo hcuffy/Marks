@@ -1,10 +1,10 @@
 import React from 'react'
-import styles from './styles/students.css'
 import { t } from '../../utils/translationUtil'
 import StudentForm from './StudentForm'
 import StudentList from './StudentList'
 import StudentChart from './StudentChart'
 import StudentDropdown from './StudentDropdown'
+import styles from './styles/students.css'
 
 const StudentsSection = () => (
 	<div>

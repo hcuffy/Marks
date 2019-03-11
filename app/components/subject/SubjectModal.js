@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { modalFrame } from '../helpers/editModal'
 import { actionCreators } from '../../actions/index'
-import { cleanAndFilterData } from '../rooms/RoomModal'
+import { cleanAndFilterData } from '../rooms/helpers/formHelpers'
 import styles from './styles/subject.css'
 
 const _ = require('lodash')

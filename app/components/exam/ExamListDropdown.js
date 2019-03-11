@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
-import styles from './styles/exam.css'
-import { sortData } from '../rooms/ClassList'
+import { sortData } from '../rooms/helpers/formHelpers'
 import { getClassList, getSubjectList, createDropdown } from '../helpers/dropdowns'
+import styles from './styles/exam.css'
 
 const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
