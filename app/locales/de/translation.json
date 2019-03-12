@@ -1,5 +1,9 @@
 {
-  "title": "Titel",
+  "home": {
+    "title": "Homepage",
+    "addressHeader": "Ihre Schuladresse",
+    "resourcesHeader": "Hilfreiche Links"
+  },
   "general": {
     "add": "hinzufügen",
     "save": "speichern",
@@ -16,6 +20,7 @@
     "saveAs": "speichern als"
   },
   "room": {
+    "title": "KLASSEN",
     "listHeader": "Liste der Klassen",
     "addClassHeader": "Klasse hinzufügen",
     "name": "Name",
@@ -47,14 +52,19 @@
     "female": "weiblich"
   },
   "grades": {
-    "gradesTitle": "Noten",
+    "gradesTitle": "NOTEN",
     "noData": "Keine Daten zum Anzeigen",
     "fullName": "Vollständiger Name",
     "studentHeader": "Studentendaten",
-    "examHeader": "Leistungsnachweise"
+    "examHeader": "Leistungsnachweise",
+    "previousPage": "vorige",
+    "nextPage": "nächste",
+    "textPage": "Seite",
+    "pageOf": "von",
+    "textRows": "Zeilen"
   },
   "graph": {
-    "overview": "Diagrammübersicht"
+    "overview": "DIAGRAMMÜBERSICHT"
   },
   "notifications": {
     "general": {
@@ -84,6 +94,7 @@
     "gradeSystemTitle": "Benotungssystem",
     "note": "Notensystem (1 - 6)",
     "points": "Punktesystem (0 - 15)",
-    "percent": "Prozentsystem (0 - 100%)"
+    "percent": "Prozentsystem (0 - 100%)",
+    "supportText": "Sie mögen diese App? Sie können mir einen Kaffee spendieren."
   }
 }

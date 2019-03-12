@@ -3,16 +3,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
-import styles from './styles/students.css'
 import { downloadPDF } from '../../utils/pdfUtil'
 import { chartHeader } from './helpers/chart/chartData'
-
 import {
 	getStudentList,
 	getAllSubjects,
 	createDropdown,
 	notifyIfEmpty
 } from '../helpers/dropdowns'
+import styles from './styles/students.css'
 
 const _ = require('lodash')
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import { sortData } from '../rooms/ClassList'
+import { sortData } from '../rooms/helpers/formHelpers'
 import examForm from './helpers/formHelper'
 
 const _ = require('lodash')

@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { DropdownItem } from 'reactstrap'
 import { t, resolveLabel } from '../../utils/translationUtil'
-import { createDropdown } from '../helpers/dropdowns'
 import { actionCreators } from '../../actions/index'
-import { sortData } from '../rooms/ClassList'
-import styles from './styles/subject.css'
 import SubjectForm from './SubjectForm'
 import SubjectList from './SubjectList'
+import { createDropdown } from '../helpers/dropdowns'
+import { sortData } from '../rooms/helpers/formHelpers'
+import styles from './styles/subject.css'
 
 const _ = require('lodash')
 
@@ -25,7 +25,7 @@ const Subjects = ({ classData, classListData, actions }) => {
 	return (
 		<div className={styles.main_div}>
 			<div className={styles.subject_left}>
-				<h4 className={styles.center_header}>{t('room.subjectHeader')}</h4>
+				<h4 className={styles.subject_header}>{t('room.subjectHeader')}</h4>
 				{createDropdown(
 					null,
 					openModal,
@@ -36,7 +36,7 @@ const Subjects = ({ classData, classListData, actions }) => {
 				<SubjectList selectedSubject={selectedSubject} />
 			</div>
 			<div className={styles.subject_right}>
-				<h4 className={styles.center_header}>{t('room.addSubject')}</h4>
+				<h4 className={styles.add_header}>{t('room.addSubject')}</h4>
 				<SubjectForm classListData={classListData} subjects={subjects} />
 			</div>
 		</div>

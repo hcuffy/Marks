@@ -1,3 +1,4 @@
+import { shell } from 'electron'
 import {
 	CHANGE_CLASSROOM_TAB,
 	ADD_CLASSROOM_DATA,
@@ -115,4 +116,10 @@ export const roomModalDisplay = event => dispatch => {
 		type: OPEN_CLOSE_ROOM_MODAL,
 		payload: roomId
 	})
+}
+
+export const goToResource = event => dispatch => {
+	const link = event.target.getAttribute('data-name')
+	shell.openExternal(link)
+	dispatch({ type: null, payload: null })
 }

@@ -1,5 +1,9 @@
 .center_header {
-  text-align: center;
+  height: 50px;
+  padding-top: 10px;
+  text-align: left;
+  border-bottom: 1px solid;
+  background: #fdb12e;
 }
 
 .div_wrapper {

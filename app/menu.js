@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron'
+import { customMenuTranslation } from './utils/translationUtil'
+import { SUPPORT_APP } from './constants/externalLinks'
 
 let newPanelWindow = null
 const openAttributionWindow = () => {
@@ -12,7 +14,7 @@ const openAttributionWindow = () => {
 	newPanelWindow = new BrowserWindow({
 		height: 500,
 		width: 500,
-		title: 'Attribution',
+		title: 'Credits',
 		resizable: false,
 		minimizable: false,
 		fullscreenable: false
@@ -64,27 +66,28 @@ export default class MenuBuilder {
 	}
 
 	buildDarwinTemplate() {
+		const locale = app.getLocale().slice(0, 2)
 		const subMenuAbout = {
 			label: 'Marks',
 			submenu: [
 				{
-					label: 'About Marks',
+					label: customMenuTranslation(locale, 'about'),
 					selector: 'orderFrontStandardAboutPanel:'
 				},
 				{ type: 'separator' },
 				{
-					label: 'Hide Marks',
+					label: customMenuTranslation(locale, 'hide'),
 					accelerator: 'Command+H',
 					selector: 'hide:'
 				},
 				{
-					label: 'Hide Others',
+					label: customMenuTranslation(locale, 'others'),
 					accelerator: 'Command+Shift+H',
 					selector: 'hideOtherApplications:'
 				},
 				{ type: 'separator' },
 				{
-					label: 'Quit',
+					label: customMenuTranslation(locale, 'quit'),
 					accelerator: 'Command+Q',
 					click: () => {
 						app.quit()
@@ -94,7 +97,7 @@ export default class MenuBuilder {
 		}
 
 		const subMenuViewDev = {
-			label: 'View',
+			label: customMenuTranslation(locale, 'view'),
 			submenu: [
 				{
 					label: 'Reload',
@@ -104,7 +107,7 @@ export default class MenuBuilder {
 					}
 				},
 				{
-					label: 'Toggle Full Screen',
+					label: customMenuTranslation(locale, 'toggle'),
 					accelerator: 'Ctrl+Command+F',
 					click: () => {
 						this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
@@ -120,10 +123,10 @@ export default class MenuBuilder {
 			]
 		}
 		const subMenuViewProd = {
-			label: 'View',
+			label: customMenuTranslation(locale, 'view'),
 			submenu: [
 				{
-					label: 'Toggle Full Screen',
+					label: customMenuTranslation(locale, 'toggle'),
 					accelerator: 'Ctrl+Command+F',
 					click: () => {
 						this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
@@ -132,41 +135,45 @@ export default class MenuBuilder {
 			]
 		}
 		const subMenuWindow = {
-			label: 'Window',
+			label: customMenuTranslation(locale, 'window'),
 			submenu: [
 				{
-					label: 'Minimize',
+					label: customMenuTranslation(locale, 'mini'),
 					accelerator: 'Command+M',
 					selector: 'performMiniaturize:'
 				},
 				{ label: 'Close', accelerator: 'Command+W', selector: 'performClose:' },
 				{ type: 'separator' },
-				{ label: 'Bring All to Front', selector: 'arrangeInFront:' }
+				{ label: customMenuTranslation(locale, 'front'), selector: 'arrangeInFront:' }
 			]
 		}
 		const subMenuHelp = {
-			label: 'Help',
+			label: customMenuTranslation(locale, 'help'),
 			submenu: [
 				{
-					label: 'Learn More',
+					label: customMenuTranslation(locale, 'buy'),
 					click() {
-						shell.openExternal('https://github.com/hcuffy/My-Marks')
+						shell.openExternal(SUPPORT_APP)
 					}
 				},
 				{
-					label: 'Documentation',
+					label: customMenuTranslation(locale, 'report'),
 					click() {
-						shell.openExternal('https://github.com/hcuffy/My-Marks/blob/master/README.md')
+						shell.openExternal(
+							'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
+						)
 					}
 				},
 				{
-					label: 'Search Issues',
+					label: customMenuTranslation(locale, 'propose'),
 					click() {
-						shell.openExternal('https://github.com/hcuffy/My-Marks/issues')
+						shell.openExternal(
+							'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
+						)
 					}
 				},
 				{
-					label: 'Attribution',
+					label: customMenuTranslation(locale, 'credits'),
 					click() {
 						openAttributionWindow()
 					}
@@ -184,6 +191,7 @@ export default class MenuBuilder {
 	}
 
 	buildDefaultTemplate() {
+		const locale = app.getLocale().slice(0, 2)
 		const templateDefault = [
 			{
 				label: '&File',
@@ -238,30 +246,32 @@ export default class MenuBuilder {
 						  ]
 			},
 			{
-				label: 'Help',
+				label: customMenuTranslation(locale, 'hide'),
 				submenu: [
 					{
-						label: 'Learn More',
+						label: customMenuTranslation(locale, 'buy'),
 						click() {
-							shell.openExternal('https://github.com/hcuffy/My-Marks')
+							shell.openExternal(SUPPORT_APP)
 						}
 					},
 					{
-						label: 'Documentation',
+						label: customMenuTranslation(locale, 'report'),
 						click() {
 							shell.openExternal(
-								'https://github.com/hcuffy/My-Marks/blob/master/README.md'
+								'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
 							)
 						}
 					},
 					{
-						label: 'Search Issues',
+						label: customMenuTranslation(locale, 'propose'),
 						click() {
-							shell.openExternal('https://github.com/hcuffy/My-Marks/issues')
+							shell.openExternal(
+								'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
+							)
 						}
 					},
 					{
-						label: 'Attribution',
+						label: customMenuTranslation(locale, 'credits'),
 						click() {
 							openAttributionWindow()
 						}

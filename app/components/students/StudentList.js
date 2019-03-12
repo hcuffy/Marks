@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux'
 import { Badge } from 'reactstrap'
 import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
-import styles from './styles/students.css'
 import StudentModal from './StudentModal'
+import styles from './styles/students.css'
 
 const _ = require('lodash')
 
@@ -44,7 +44,7 @@ const generateStudentList = (students, actions) => {
 const StudentList = ({ students, actions }) => {
 	const listData = generateStudentList(students, actions)
 	return (
-		<div>
+		<div className={styles.student_list}>
 			<h4 className={styles.center_sub_header}>{t('student.list')}</h4>
 			<div className={styles.list_div}>
 				<div className="list-group list-group-flush">{listData}</div>

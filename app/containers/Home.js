@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/sidemenu/SideMenu'
-import Homepage from '../components/Homepage'
+import Homepage from '../components/homepage/Homepage'
 
 class Home extends Component {
 	componentDidMount() {

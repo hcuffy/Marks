@@ -1,46 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { modalFrame } from '../helpers/editModal'
-import styles from './styles/room.css'
-
-const _ = require('lodash')
-
-export const cleanAndFilterData = (objectToClean, roomToClean) => {
-	const requiredProp = _.find(objectToClean, { _id: roomToClean.id })
-	const cleanedData = _.omit(requiredProp, [
-		'_id',
-		'createdAt',
-		'updatedAt',
-		'subjects',
-		'tests',
-		'classroomId',
-		'room'
-	])
-	return cleanedData
-}
-
-const createInputs = selectedRoom =>
-	_.keys(selectedRoom).map((data, idx) => (
-		<div key={idx} className={styles.form_div}>
-			<label className={styles.form_label} htmlFor={`${data}_Id`}>
-				{t(`room.${data}`)}:
-			</label>
-			<input
-				name={data}
-				className={`${styles.form_input} form-control`}
-				data-id={`${data}_Id`}
-				type="text"
-				defaultValue={selectedRoom[data]}
-			/>
-		</div>
-	))
+import { cleanAndFilterData, createModalInputs } from './helpers/formHelpers'
 
 const RoomModal = ({ modalData, classModalData, actions }) => {
 	const selectedRoom = cleanAndFilterData(modalData, classModalData)
-	const clickedRoom = createInputs(selectedRoom)
+	const clickedRoom = createModalInputs(selectedRoom)
 	const hiddenInput = <input type="hidden" name="oldName" data-id={selectedRoom.name} />
 	const footerData = {
 		dataId: classModalData.id,

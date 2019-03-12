@@ -7,8 +7,8 @@ import styles from './styles/exam.css'
 
 const ExamList = () => (
 	<div className={styles.main_div}>
-		<div>
-			<h4>{t('exam.editExamHeader')}</h4>
+		<div className={styles.edit_div}>
+			<h4 className={styles.edit_header}>{t('exam.editExamHeader')}</h4>
 			<ExamListDropdown />
 		</div>
 		<div>

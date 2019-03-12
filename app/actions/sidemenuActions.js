@@ -12,7 +12,8 @@ export const updateButtonStyle = event => dispatch => {
 		settings: ''
 	}
 
-	const styleUpdate = _.set(menuButtons, event.target.getAttribute('data-id'), 'black')
+	// eslint-disable-next-line max-len
+	const styleUpdate = _.set(menuButtons, event.target.getAttribute('data-id'), '#1dbb90')
 
 	dispatch({
 		type: HANDLE_MENU_CHANGE,

@@ -1,5 +1,9 @@
 {
-  "title": "Title",
+  "home": {
+    "title": "Homepage",
+    "addressHeader": "Your School Address",
+    "resourcesHeader": "Useful Resources"
+  },
   "general": {
     "add": "Add",
     "save": "Save",
@@ -16,6 +20,7 @@
     "saveAs": "Save As"
   },
   "room": {
+    "title": "CLASSES",
     "listHeader": "List of Classes",
     "addClassHeader": "Add a Class",
     "name": "Name",
@@ -35,7 +40,7 @@
   },
   "student": {
     "defaultHeader": "Student Grades",
-    "title": "Students",
+    "title": "STUDENTS",
     "list": "List of Students",
     "add": "Add Student",
     "chartTitle": "Charts",
@@ -47,14 +52,19 @@
     "female": "female"
   },
   "grades": {
-    "gradesTitle": "Grades",
+    "gradesTitle": "GRADES",
     "noData": "No Data To Show",
     "fullName": "Full Name",
     "studentHeader": "Student Data",
-    "examHeader": "Exams/Tests"
+    "examHeader": "Exams/Tests",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "textPage": "page",
+    "pageOf": "of",
+    "textRows": "rows"
   },
   "graph": {
-    "overview": "Graph Overview"
+    "overview": "GRAPH OVERVIEW"
   },
   "notifications": {
     "general": {
@@ -65,7 +75,7 @@
       "deleteSuccess": "The data was deleted successfully.",
       "deleteFail": "Failed to delete the data.",
       "updateSuccess": "The data was updated successfully.",
-      "updatefail": "The data could not be updated..",
+      "updatefail": "The data could not be updated.",
       "noUpdate": "There is nothing to update."
     },
     "warning": {
@@ -84,6 +94,7 @@
     "gradeSystemTitle": "Grading System",
     "note": "Note (1 - 6)",
     "points": "Points (0 - 15)",
-    "percent": "Percent (0 - 100%)"
+    "percent": "Percent (0 - 100%)",
+    "supportText": "Do you like this app? Consider supporting."
   }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import { cleanAndFilterData } from '../rooms/RoomModal'
+import { cleanAndFilterData } from '../rooms/helpers/formHelpers'
 import { modalFrame } from '../helpers/editModal'
 import generateFields from './helpers/modalHelper'
 
