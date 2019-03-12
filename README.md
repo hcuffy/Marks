@@ -23,7 +23,13 @@ OR for production version
 ```bash
 $ yarn start
 ```
+## Code of conduct
 
+Read the [code of conduct](https://github.com/hcuffy/My-Marks/blob/master/CODE_OF_CONDUCT.md)
+
+## Contribution Guide
+
+Read the [contribution guide](https://github.com/hcuffy/My-Marks/blob/master/CONTRIBUTING.md)
 
 Developed using [**electron-react-boilerplate**](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
 
