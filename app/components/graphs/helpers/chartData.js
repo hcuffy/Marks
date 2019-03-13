@@ -1,11 +1,12 @@
 export const gradingSystem = settings =>
 	_.findKey(settings, gradeType => gradeType === true)
 
+export const chartHeader = chartTitle =>
+	_.isNull(chartTitle) ? 'School Grades' : chartTitle
+
 const _ = require('lodash')
 
 const xAxisLabels = (start, limit, step) => _.range(start, limit, step)
-
-const chartHeader = chartTitle => (_.isNull(chartTitle) ? 'School Grades' : chartTitle)
 
 const computeGrades = (grades, { start, limit, step }) => {
 	const chartLabels = xAxisLabels(start, limit, step)
