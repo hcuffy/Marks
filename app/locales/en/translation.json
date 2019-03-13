@@ -1,6 +1,6 @@
 {
   "home": {
-    "title": "Homepage",
+    "title": "HOMEPAGE",
     "addressHeader": "Your School Address",
     "resourcesHeader": "Useful Resources"
   },
@@ -83,7 +83,7 @@
     }
   },
   "settings": {
-    "sectionTitle": "Settings",
+    "sectionTitle": "SETTINGS",
     "addressTitle": "School address",
     "title": "Title",
     "street": "Street",
