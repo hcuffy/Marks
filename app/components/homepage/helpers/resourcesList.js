@@ -6,7 +6,7 @@ import styles from '../styles/homepage.css'
 
 const _ = require('lodash')
 
-export const resourceList = actions => {
+export const resourceList = openResource => {
 	// eslint-disable-next-line max-len
 	const firstTwo = _.isUndefined(currentLanguage()) ? 'de' : currentLanguage().slice(0, 2)
 	const links = firstTwo === 'de' ? GERMAN_LINKS : ENGLISH_LINKS
@@ -16,7 +16,7 @@ export const resourceList = actions => {
 			<ListGroupItem
 				data-name={links[data]}
 				className={styles.resource_btn}
-				onClick={actions.goToResource}
+				onClick={openResource}
 			>
 				{data}
 			</ListGroupItem>
