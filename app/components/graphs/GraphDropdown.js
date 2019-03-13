@@ -12,6 +12,7 @@ import {
 	getExamList,
 	notifyIfEmpty
 } from '../helpers/dropdowns'
+import { chartHeader } from './helpers/chartData'
 import styles from './styles/graphs.css'
 
 const PDFbutton = chartTitle => (
@@ -68,7 +69,7 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 				resolveLabel(examName, t('general.selectClass')),
 				examOptions
 			)}
-			{PDFbutton(chartTitle)}
+			{PDFbutton(chartHeader(chartTitle))}
 		</div>
 	)
 }

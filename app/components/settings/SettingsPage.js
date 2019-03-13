@@ -1,15 +1,12 @@
-/* eslint-disable max-len */
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { t } from '../../utils/translationUtil'
-import { actionCreators } from '../../actions/index'
 import Address from './Address'
 import GradeFormat from './GradeFormat'
+import { supportTheApp } from '../../utils/externalLinksUtil'
 import { supportBtn } from './helpers/supportHelper'
 import styles from './styles/settings.css'
 
-const Settings = ({ actions }) => (
+const Settings = () => (
 	<div className={styles.settings_wrapper}>
 		<h4 className={styles.main_header}>{t('settings.sectionTitle')}</h4>
 		<div className={styles.address_div}>
@@ -19,15 +16,8 @@ const Settings = ({ actions }) => (
 			<GradeFormat />
 		</div>
 		<div />
-		{supportBtn(actions)}
+		{supportBtn(supportTheApp)}
 	</div>
 )
 
-const mapDispatchToProps = dispatch => ({
-	actions: bindActionCreators(actionCreators, dispatch)
-})
-
-export default connect(
-	null,
-	mapDispatchToProps
-)(Settings)
+export default Settings

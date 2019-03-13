@@ -14,7 +14,6 @@ export const actionCreators = {
 	roomModalDisplay: classroom.roomModalDisplay,
 	deleteRoom: classroom.deleteRoom,
 	updateRoom: classroom.updateRoom,
-	goToResource: classroom.goToResource,
 	openClassList: subject.openClassList,
 	showSubject: subject.showSubject,
 	addNewSubject: subject.addNewSubject,
@@ -48,6 +47,5 @@ export const actionCreators = {
 	saveSchoolAddress: settings.saveSchoolAddress,
 	displayAddress: settings.displayAddress,
 	updateSytemType: settings.updateGradingSystem,
-	getGradingSystem: settings.getGradingSystem,
-	supportApp: settings.supportApp
+	getGradingSystem: settings.getGradingSystem
 }

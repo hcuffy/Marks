@@ -1,11 +1,9 @@
-import { shell } from 'electron'
 import {
 	UPDATE_GRADING_DATA,
 	GET_SYSTEM_TYPE,
 	HANDLE_SCHOOL_DATA,
 	DISPLAY_SCHOOL_DATA
 } from '../constants/actionTypes'
-import { SUPPORT_APP } from '../constants/externalLinks'
 import {
 	saveGradeSystem,
 	getSystemType,
@@ -80,9 +78,4 @@ export const displayAddress = () => async dispatch => {
 			payload: data[0]
 		})
 	}
-}
-
-export const supportApp = () => dispatch => {
-	shell.openExternal(SUPPORT_APP)
-	dispatch({ type: null, payload: null })
 }
