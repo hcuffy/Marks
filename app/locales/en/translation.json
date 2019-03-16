@@ -17,6 +17,7 @@
     "selectSubject": "Select Subject",
     "selectRoom": "Select Classroom",
     "selectStudent": "Select Student",
+    "selectExam": "Select Exam",
     "saveAs": "Save As"
   },
   "room": {
@@ -64,7 +65,8 @@
     "textRows": "rows"
   },
   "graph": {
-    "overview": "GRAPH OVERVIEW"
+    "overview": "GRAPH OVERVIEW",
+    "schoolGrades": "School Grades"
   },
   "notifications": {
     "general": {

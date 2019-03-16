@@ -17,6 +17,7 @@
     "selectSubject": "Fach auswählen",
     "selectRoom": "Klassenzimmer auswählen",
     "selectStudent": "Scüler/in auswählen",
+    "selectExam": "Leistungsnachweise auswählen",
     "saveAs": "speichern als"
   },
   "room": {
@@ -47,7 +48,7 @@
     "firstname": "Vorname",
     "lastname": "Nachname",
     "gender": "Geschlecht",
-    "classroom": "Klassenzimmer",
+    "classroom": "Zimmer",
     "male": "männlich",
     "female": "weiblich"
   },
@@ -64,7 +65,8 @@
     "textRows": "Zeilen"
   },
   "graph": {
-    "overview": "DIAGRAMMÜBERSICHT"
+    "overview": "DIAGRAMMÜBERSICHT",
+    "schoolGrades": "Noten der Schule"
   },
   "notifications": {
     "general": {
