@@ -12,7 +12,6 @@ import {
 	getExamList,
 	notifyIfEmpty
 } from '../helpers/dropdowns'
-import { chartHeader } from './helpers/chartData'
 import styles from './styles/graphs.css'
 
 const PDFbutton = chartTitle => (
@@ -59,17 +58,17 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 				styles.dropdown_div,
 				openSubList,
 				actions.displaySubjectGraph,
-				resolveLabel(subjectName, t('general.selectClass')),
+				resolveLabel(subjectName, t('general.selectSubject')),
 				subjectOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				openExamList,
 				actions.displayExamGraph,
-				resolveLabel(examName, t('general.selectClass')),
+				resolveLabel(examName, t('general.selectExam')),
 				examOptions
 			)}
-			{PDFbutton(chartHeader(chartTitle))}
+			{PDFbutton(resolveLabel(chartTitle, t('graph.schoolGrades')))}
 		</div>
 	)
 }

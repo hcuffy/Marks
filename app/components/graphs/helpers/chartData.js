@@ -1,8 +1,7 @@
+import { t, resolveLabel } from '../../../utils/translationUtil'
+
 export const gradingSystem = settings =>
 	_.findKey(settings, gradeType => gradeType === true)
-
-export const chartHeader = chartTitle =>
-	_.isNull(chartTitle) ? 'School Grades' : chartTitle
 
 const _ = require('lodash')
 
@@ -109,7 +108,7 @@ export const chartData = (graphData, subjects, settings) => {
 		labels: chartLabels,
 		datasets: [
 			{
-				label: chartHeader(graphData.chartTitle),
+				label: resolveLabel(graphData.chartTitle, t('graph.schoolGrades')),
 				data: computedGrades,
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.6)',

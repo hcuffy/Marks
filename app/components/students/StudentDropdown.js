@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { downloadPDF } from '../../utils/pdfUtil'
-import { chartHeader } from './helpers/chart/chartData'
 import {
 	getStudentList,
 	getAllSubjects,
@@ -38,7 +37,6 @@ const StudentDropdown = ({ studentData, subjectData, actions }) => {
 
 	const studentOptions = getStudentList(students)
 	const subjectOptions = getAllSubjects(subjectData.data)
-	const chartTitle = chartHeader(studentData)
 	const openIt = { subjectDropdown }
 
 	if (chartToDisplay === 'subject' && _.isNull(studentGraphName)) {
@@ -61,7 +59,7 @@ const StudentDropdown = ({ studentData, subjectData, actions }) => {
 				resolveLabel(subjectGraphName, t('general.selectSubject')),
 				subjectOptions
 			)}
-			{PDFbutton(chartTitle)}
+			{PDFbutton(resolveLabel(studentGraphName, t('student.defaultHeader')))}
 		</div>
 	)
 }
