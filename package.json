@@ -54,7 +54,7 @@
   "main": "./app/main.prod.js",
   "build": {
     "productName": "Marks",
-    "appId": "org.develar.Marks",
+    "appId": "com.henry.marks",
     "files": [
       "app/dist/",
       "app/app.html",
