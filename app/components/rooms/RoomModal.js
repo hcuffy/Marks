@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { withNamespaces } from 'react-i18next'
+import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { modalFrame } from '../helpers/editModal'
 import { cleanAndFilterData, createModalInputs } from './helpers/formHelpers'
@@ -20,6 +20,7 @@ const RoomModal = ({ t, modalData, classModalData, actions }) => {
 	return (
 		<div>
 			{modalFrame(
+				t,
 				classModalData.showModal,
 				actions.updateRoom,
 				clickedRoom,

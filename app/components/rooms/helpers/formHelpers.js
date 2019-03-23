@@ -65,8 +65,8 @@ export const classPill = (index, pillClass, name, action, title) => (
 	</li>
 )
 
-export const cleanAndFilterData = (objectToClean, roomToClean) => {
-	const requiredProp = _.find(objectToClean, { _id: roomToClean.id })
+export const cleanAndFilterData = (objectToClean, cleanBy) => {
+	const requiredProp = _.find(objectToClean, { _id: cleanBy.id })
 	const cleanedData = _.omit(requiredProp, [
 		'_id',
 		'createdAt',

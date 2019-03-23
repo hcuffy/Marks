@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { withNamespaces } from 'react-i18next'
+import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import ClassList from './ClassList'
 import Subjects from '../subject/Subjects'
@@ -20,9 +20,9 @@ const Classes = ({ t, classData, actions }) => {
 			{addRoomForm(t, formInputs, actions)}
 			<div>
 				<h4 className={styles.list_header}>{t('room.listHeader')}</h4>
-				<ClassList listData={classData} />
+				<ClassList t={t} listData={classData} />
 			</div>
-			<Subjects classData={classData} />
+			<Subjects t={t} classData={classData} />
 		</div>
 	)
 }

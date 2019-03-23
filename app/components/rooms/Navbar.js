@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { withNamespaces } from 'react-i18next'
+import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { classPill } from './helpers/formHelpers'
 import styles from './styles/room.css'
