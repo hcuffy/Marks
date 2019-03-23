@@ -1,8 +1,9 @@
+import React from 'react'
 import JsPDF from 'jspdf'
 
 const _ = require('lodash')
 
-export const downloadPDF = (itemToPDF, nameOfChart, saveAs) => {
+const downloadPDF = (itemToPDF, nameOfChart, saveAs) => {
 	const canvas = document.querySelector(itemToPDF)
 
 	if (_.isNull(canvas)) {
@@ -16,3 +17,14 @@ export const downloadPDF = (itemToPDF, nameOfChart, saveAs) => {
 	doc.addImage(canvasImg, 'png', 10, 10, 280, 150)
 	doc.save(`${saveAs}.pdf`)
 }
+
+export const PDFbutton = (styling, saveText, chartTitle) => (
+	<button
+		className={styling}
+		type="button"
+		onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
+	>
+		<i className="fas fa-file-pdf fa-2x" /> <br />
+		{saveText}
+	</button>
+)

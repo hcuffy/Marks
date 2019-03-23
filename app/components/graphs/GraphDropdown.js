@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { t, resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
-import { downloadPDF } from '../../utils/pdfUtil'
+import { PDFbutton } from '../../utils/pdfUtil'
 import {
 	getClassList,
 	getSubjectList,
@@ -13,17 +13,6 @@ import {
 	notifyIfEmpty
 } from '../helpers/dropdowns'
 import styles from './styles/graphs.css'
-
-const PDFbutton = chartTitle => (
-	<button
-		className={styles.pdf_btn}
-		type="button"
-		onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
-	>
-		<i className="fas fa-file-pdf fa-2x" /> <br />
-		{t('general.saveAs')}
-	</button>
-)
 
 const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 	const {
@@ -68,7 +57,11 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 				resolveLabel(examName, t('general.selectExam')),
 				examOptions
 			)}
-			{PDFbutton(resolveLabel(chartTitle, t('graph.schoolGrades')))}
+			{PDFbutton(
+				styles.pdf_btn,
+				t('general.saveAs'),
+				resolveLabel(chartTitle, t('graph.schoolGrades'))
+			)}
 		</div>
 	)
 }
