@@ -1,5 +1,5 @@
 import { filterBySubject } from '../../../graphs/helpers/chartData'
-import { t, resolveLabel } from '../../../../utils/translationUtil'
+import { resolveLabel } from '../../../../utils/translationUtil'
 
 const _ = require('lodash')
 
@@ -22,7 +22,10 @@ const filterSubjectGrades = ({ studentGraphId, subjectGraphId }, exams, grades) 
 	return _.filter(allSubjectsGrade, ['studentId', studentGraphId])
 }
 
-export const chartHeader = ({ studentGraphName, subjectGraphName, chartToDisplay }) => {
+export const chartHeader = (
+	t,
+	{ studentGraphName, subjectGraphName, chartToDisplay }
+) => {
 	if (chartToDisplay === null || chartToDisplay === 'student') {
 		return resolveLabel(studentGraphName, t('student.defaultHeader'))
 	}
@@ -32,7 +35,7 @@ export const chartHeader = ({ studentGraphName, subjectGraphName, chartToDisplay
 	return `${studentGraphName} - ${subjectGraphName}`
 }
 
-export const chartData = (studentData, grades, exams) => {
+export const chartData = (t, studentData, grades, exams) => {
 	const checkedGrades = []
 	const { chartToDisplay } = studentData
 
@@ -44,7 +47,7 @@ export const chartData = (studentData, grades, exams) => {
 	return {
 		datasets: [
 			{
-				label: chartHeader(studentData),
+				label: chartHeader(t, studentData),
 				fill: false,
 				pointHoverRadius: 20,
 				pointRadius: 5,

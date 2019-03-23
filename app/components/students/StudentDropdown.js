@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t, resolveLabel } from '../../utils/translationUtil'
+import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
-import { downloadPDF } from '../../utils/pdfUtil'
+import { PDFbutton } from '../../utils/pdfUtil'
 import {
 	getStudentList,
 	getAllSubjects,
@@ -14,18 +15,7 @@ import styles from './styles/students.css'
 
 const _ = require('lodash')
 
-const PDFbutton = chartTitle => (
-	<button
-		className={styles.pdf_btn}
-		type="button"
-		onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
-	>
-		<i className="fas fa-file-pdf fa-2x" /> <br />
-		{t('general.saveAs')}
-	</button>
-)
-
-const StudentDropdown = ({ studentData, subjectData, actions }) => {
+const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
 	const {
 		students,
 		studentDropdown,
@@ -59,7 +49,11 @@ const StudentDropdown = ({ studentData, subjectData, actions }) => {
 				resolveLabel(subjectGraphName, t('general.selectSubject')),
 				subjectOptions
 			)}
-			{PDFbutton(resolveLabel(studentGraphName, t('student.defaultHeader')))}
+			{PDFbutton(
+				styles.pdf_btn,
+				t('general.saveAs'),
+				resolveLabel(studentGraphName, t('student.defaultHeader'))
+			)}
 		</div>
 	)
 }
@@ -76,4 +70,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(StudentDropdown)
+)(withNamespaces()(StudentDropdown))

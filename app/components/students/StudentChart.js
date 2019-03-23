@@ -6,9 +6,12 @@ import { chartData } from './helpers/chart/chartData'
 import { chartOptions } from './helpers/chart/chartOptions'
 import styles from './styles/students.css'
 
-const StudentChart = ({ studentData, exams, grades, settings }) => (
+const StudentChart = ({ t, studentData, exams, grades, settings }) => (
 	<div className={styles.chart}>
-		<Line data={chartData(studentData, grades, exams)} options={chartOptions(settings)} />
+		<Line
+			data={chartData(t, studentData, grades, exams)}
+			options={chartOptions(settings)}
+		/>
 	</div>
 )
 

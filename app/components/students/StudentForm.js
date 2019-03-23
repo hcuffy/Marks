@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import studentForm from './helpers/formHelper'
 import styles from './styles/students.css'
 
 const _ = require('lodash')
 
-const studentDataFields = studentData =>
+const studentDataFields = (t, studentData) =>
 	_.keys(_.pick(studentData, ['firstname', 'lastname'])).map((data, idx) => (
 		<div key={idx} className={styles.form_inner_div}>
 			<label className={styles.form_label} htmlFor={`${data}_Id`}>
@@ -24,15 +24,15 @@ const studentDataFields = studentData =>
 		</div>
 	))
 
-const StudentForm = ({ studentData, classData, actions }) => {
-	const formFields = studentDataFields(studentData)
+const StudentForm = ({ t, studentData, classData, actions }) => {
+	const formFields = studentDataFields(t, studentData)
 	const selectOption = _.values(classData.classData).map((data, idx) => (
 		<option className="form-control dropdown" key={idx}>
 			{data.name}
 		</option>
 	))
 
-	const completeStudentForm = studentForm(selectOption, formFields, actions)
+	const completeStudentForm = studentForm(t, selectOption, formFields, actions)
 	return <div className={styles.student_div}>{completeStudentForm}</div>
 }
 const mapStateToProps = state => ({
@@ -47,4 +47,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(StudentForm)
+)(withNamespaces()(StudentForm))

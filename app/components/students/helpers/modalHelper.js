@@ -1,11 +1,10 @@
 import React from 'react'
-import { t } from '../../../utils/translationUtil'
 import { genderDropdown, classroomDropdown } from './formHelper'
 import styles from '../styles/students.css'
 
 const _ = require('lodash')
 
-const dropDownFields = (studentFields, chosenStudent, classdata) => {
+const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
 	const { gender, classroom } = chosenStudent
 	const classroomOptions = _.values(classdata).map((data, idx) => (
 		<option key={idx} className="form-control dropdown">
@@ -16,8 +15,9 @@ const dropDownFields = (studentFields, chosenStudent, classdata) => {
 	const dropList = (
 		<div>
 			{studentFields}
-			{genderDropdown(gender, styles.form_div_edit, null)}
+			{genderDropdown(t, gender, styles.form_div_edit, null)}
 			{classroomDropdown(
+				t,
 				classroomOptions,
 				classroom,
 				styles.form_div_edit,
@@ -30,7 +30,7 @@ const dropDownFields = (studentFields, chosenStudent, classdata) => {
 	return dropList
 }
 
-const generateFields = (chosenStudent, classdata) => {
+const generateFields = (t, chosenStudent, classdata) => {
 	const studentFields = _.keys(_.pick(chosenStudent, ['firstname', 'lastname'])).map(
 		(data, idx) => (
 			<div key={idx} className={styles.form_div_edit}>
@@ -48,7 +48,7 @@ const generateFields = (chosenStudent, classdata) => {
 			</div>
 		)
 	)
-	const studentForm = dropDownFields(studentFields, chosenStudent, classdata)
+	const studentForm = dropDownFields(t, studentFields, chosenStudent, classdata)
 	return studentForm
 }
 
