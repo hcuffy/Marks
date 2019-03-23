@@ -97,8 +97,8 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate",
+      "owner": "hcuffy",
+      "repo": "My-Marks",
       "private": false
     }
   },
@@ -111,18 +111,6 @@
     "email": "hcuffy7@gmail.com",
     "url": "https://github.com/hcuffy"
   },
-  "contributors": [
-    {
-      "name": "Vikram Rangaraj",
-      "email": "vikr01@icloud.com",
-      "url": "https://github.com/vikr01"
-    },
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
-    }
-  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hcuffy/My-Marks/issues"
