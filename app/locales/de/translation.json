@@ -35,6 +35,7 @@
     "classTab": "Klassen"
   },
   "exam": {
+    "title": "Titel",
     "addExamHeader": "Leistungsnachweise hinzufügen",
     "editExamHeader": "Leistungsnachweise bearbeiten",
     "addExam": "Neu Leistungsnachweise hinzufügen"

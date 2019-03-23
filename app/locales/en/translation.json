@@ -35,6 +35,7 @@
     "classTab": "Classes"
   },
   "exam": {
+    "title": "Title",
     "addExamHeader": "Add Exam",
     "editExamHeader": "Edit Exam",
     "addExam": "Add New Exam"
