@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/subject.css'
 
@@ -19,7 +19,7 @@ const generateInputs = labels =>
 		</div>
 	))
 
-const SubjectForm = ({ classListData, subjects, actions }) => {
+const SubjectForm = ({ t, classListData, subjects, actions }) => {
 	const formLabels = _.pick(classListData, ['name', 'abbreviation'])
 	const formInputs = generateInputs(formLabels)
 
@@ -57,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	null,
 	mapDispatchToProps
-)(SubjectForm)
+)(withNamespaces()(SubjectForm))

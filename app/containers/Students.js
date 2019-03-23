@@ -18,10 +18,11 @@ class Students extends Component {
 	}
 
 	render() {
+		const { t } = this.props
 		return (
 			<div>
 				<SideMenu />
-				<StudentsSection />
+				<StudentsSection t={t} />
 			</div>
 		)
 	}

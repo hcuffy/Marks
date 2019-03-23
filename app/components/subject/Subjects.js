@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { DropdownItem } from 'reactstrap'
-import { t, resolveLabel } from '../../utils/translationUtil'
+import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import SubjectForm from './SubjectForm'
 import SubjectList from './SubjectList'
@@ -12,7 +13,7 @@ import styles from './styles/subject.css'
 
 const _ = require('lodash')
 
-const Subjects = ({ classData, classListData, actions }) => {
+const Subjects = ({ t, classData, classListData, actions }) => {
 	const subjects = sortData(classData)
 	const { subject, openModal } = classListData
 	const selectedSubject = _.find(subjects, ['name', subject])
@@ -33,11 +34,11 @@ const Subjects = ({ classData, classListData, actions }) => {
 					resolveLabel(subject, t('general.selectClass')),
 					subjectOptions
 				)}
-				<SubjectList selectedSubject={selectedSubject} />
+				<SubjectList t={t} selectedSubject={selectedSubject} />
 			</div>
 			<div className={styles.subject_right}>
 				<h4 className={styles.add_header}>{t('room.addSubject')}</h4>
-				<SubjectForm classListData={classListData} subjects={subjects} />
+				<SubjectForm t={t} classListData={classListData} subjects={subjects} />
 			</div>
 		</div>
 	)
@@ -54,4 +55,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Subjects)
+)(withNamespaces()(Subjects))
