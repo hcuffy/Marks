@@ -21,8 +21,8 @@ class Classroom extends Component {
 			<div>
 				<SideMenu />
 				<Navbar t={t} />
-				{this.props.classesActive && <Classes />}
-				{this.props.examActive && <Exams />}
+				{this.props.classesActive && <Classes t={t} />}
+				{this.props.examActive && <Exams t={t} />}
 			</div>
 		)
 	}
@@ -31,8 +31,7 @@ class Classroom extends Component {
 const mapStateToProps = state => ({
 	classesActive: state.tabChangeData.classTab,
 	examActive: state.tabChangeData.examTab,
-	classData: state.classData.classData,
-	addedClass: state.addedClass
+	classData: state.classData.classData
 })
 
 const mapDispatchToProps = dispatch => ({

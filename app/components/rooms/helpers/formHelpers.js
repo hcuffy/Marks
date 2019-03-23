@@ -1,10 +1,9 @@
 import React from 'react'
-import { t } from '../../../utils/translationUtil'
 import styles from '../styles/room.css'
 
 const _ = require('lodash')
 
-export const createFormInputs = labels =>
+export const createFormInputs = (t, labels) =>
 	_.keys(labels).map((data, idx) => (
 		<div key={idx} className={styles.room_form}>
 			<label className={styles.room_form_label} htmlFor={`${data}Id`}>
@@ -20,7 +19,7 @@ export const createFormInputs = labels =>
 		</div>
 	))
 
-export const addRoomForm = (formInputs, actions) => (
+export const addRoomForm = (t, formInputs, actions) => (
 	<div className={styles.room_div}>
 		<form onSubmit={actions.handleClassData} method="POST">
 			<div className={styles.form_outer_div}>
@@ -80,7 +79,7 @@ export const cleanAndFilterData = (objectToClean, roomToClean) => {
 	return cleanedData
 }
 
-export const createModalInputs = selectedRoom =>
+export const createModalInputs = (t, selectedRoom) =>
 	_.keys(selectedRoom).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}_Id`}>

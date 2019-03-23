@@ -15,7 +15,7 @@ class Grades extends Component {
 	}
 
 	render() {
-    const { t } = this.props
+		const { t } = this.props
 		return (
 			<div>
 				<SideMenu />
