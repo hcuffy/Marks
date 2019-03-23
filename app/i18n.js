@@ -10,6 +10,7 @@ i18n
 	.init({
 		preload: ['en', 'de'],
 		load: 'languageOnly',
+		debug: true,
 		backend: {
 			loadPath: 'locales/{{lng}}/{{ns}}.json'
 		},

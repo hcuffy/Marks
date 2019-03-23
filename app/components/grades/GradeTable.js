@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import ReactTable from 'react-table'
-import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import GradeDropdown from './GradeDropdown'
 import { gradeColumns } from './helpers/gradeColumns'
@@ -11,7 +11,7 @@ import styles from './styles/grades.css'
 
 const _ = require('lodash')
 
-const tableOptions = () => ({
+const tableOptions = (t) => ({
 	defaultPageSize: 20,
 	noDataText: t('grades.noData'),
 	previousText: t('grades.previousPage'),
@@ -21,18 +21,18 @@ const tableOptions = () => ({
 	rowsText: t('grades.textRows')
 })
 
-const GradeTable = ({ gradeData, students, actions }) => {
+const GradeTable = ({t, gradeData, students, actions }) => {
 	const data = gradeInfo(gradeData, students)
 	return (
 		<div className={styles.div_wrapper}>
 			<h4 className={styles.center_header}>{t('grades.gradesTitle')}</h4>
-			<GradeDropdown />
+			<GradeDropdown t={t}/>
 			<ReactTable
 				data={_.sortBy(data, ['name'], ['asc'])}
 				columns={gradeColumns({ newData: data, actions })}
 				className="-striped -highlight"
 				style={{ height: '650px' }}
-				{...tableOptions()}
+				{...tableOptions(t)}
 			/>
 		</div>
 	)
@@ -49,4 +49,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(GradeTable)
+)(withNamespaces()(GradeTable))

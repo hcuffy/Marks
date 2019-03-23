@@ -3,7 +3,6 @@ import { ENGLISH_LABELS, GERMAN_LABELS } from '../constants/menuLabels'
 
 const _ = require('lodash')
 
-export const t = translate => i18next.t(translate)
 export const resolveLabel = (current, translated) =>
 	_.isNull(current) ? translated : current
 
@@ -23,3 +22,5 @@ export const customMenuTranslation = (locale, label) => {
 	}
 	}
 }
+
+export const t = translate => i18next.t(translate)
