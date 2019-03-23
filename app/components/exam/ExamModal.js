@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { cleanAndFilterData } from '../rooms/helpers/formHelpers'
 import { modalFrame } from '../helpers/editModal'
 import generateFields from './helpers/modalHelper'
 
-const ExamModal = ({ examData, actions }) => {
+const ExamModal = ({ t, examData, actions }) => {
 	const { examModal, examId, exams, subjectId } = examData
 	const requiredExam = cleanAndFilterData(exams, { id: examId })
 	const examFormData = generateFields(requiredExam)
@@ -25,8 +26,14 @@ const ExamModal = ({ examData, actions }) => {
 	}
 	return (
 		<div>
-			{/* eslint-disable-next-line max-len */}
-			{modalFrame(examModal, actions.updateExam, examFormData, hiddenInputs, footerData)}
+			{modalFrame(
+				t,
+				examModal,
+				actions.updateExam,
+				examFormData,
+				hiddenInputs,
+				footerData
+			)}
 		</div>
 	)
 }
@@ -41,4 +48,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(ExamModal)
+)(withNamespaces()(ExamModal))

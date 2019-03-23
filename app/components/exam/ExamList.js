@@ -1,21 +1,21 @@
 import React from 'react'
-import { t } from '../../utils/translationUtil'
+import { withNamespaces } from 'react-i18next'
 import ExamListDropdown from './ExamListDropdown'
 import ExamListInputs from './ExamListInputs'
 import ExamModal from './ExamModal'
 import styles from './styles/exam.css'
 
-const ExamList = () => (
+const ExamList = ({ t }) => (
 	<div className={styles.main_div}>
 		<div className={styles.edit_div}>
 			<h4 className={styles.edit_header}>{t('exam.editExamHeader')}</h4>
-			<ExamListDropdown />
+			<ExamListDropdown t={t} />
 		</div>
 		<div>
 			<ExamListInputs />
-			<ExamModal />
+			<ExamModal t={t} />
 		</div>
 	</div>
 )
 
-export default ExamList
+export default withNamespaces()(ExamList)
