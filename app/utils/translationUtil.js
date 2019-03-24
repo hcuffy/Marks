@@ -9,8 +9,8 @@ export const resolveLabel = (current, translated) =>
 export const currentLanguage = () => i18next.language
 
 export const customMenuTranslation = (locale, label) => {
-	const firstTwo = locale.slice(0, 2)
-	switch (firstTwo) {
+	const primaryLang = locale.slice(0, 2)
+	switch (primaryLang) {
 	case 'en': {
 		return ENGLISH_LABELS[label]
 	}
@@ -22,5 +22,3 @@ export const customMenuTranslation = (locale, label) => {
 	}
 	}
 }
-
-export const t = translate => i18next.t(translate)
