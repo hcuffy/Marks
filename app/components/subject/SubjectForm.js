@@ -8,7 +8,7 @@ import styles from './styles/subject.css'
 
 const _ = require('lodash')
 
-const generateInputs = labels =>
+const generateInputs = (t, labels) =>
 	_.values(labels).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}Sid`}>
@@ -21,7 +21,7 @@ const generateInputs = labels =>
 
 const SubjectForm = ({ t, classListData, subjects, actions }) => {
 	const formLabels = _.pick(classListData, ['name', 'abbreviation'])
-	const formInputs = generateInputs(formLabels)
+	const formInputs = generateInputs(t, formLabels)
 
 	const selectOption = _.values(subjects).map((data, idx) => (
 		<option className="form-control dropup" key={idx}>

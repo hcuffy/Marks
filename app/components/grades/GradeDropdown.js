@@ -23,7 +23,7 @@ const GradeDropdown = ({ t, classData, gradeData, subjectData, actions }) => {
 	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
 
 	if (_.isEmpty(subjectOptions) && subDrop) {
-		notifyIfEmpty([], true, 'class')
+		notifyIfEmpty(t, [], true, 'class')
 		openIt.subDrop = false
 	}
 
