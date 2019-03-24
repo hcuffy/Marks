@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { Bar } from 'react-chartjs-2'
 import { actionCreators } from '../../actions/index'
@@ -7,9 +8,9 @@ import { chartData } from './helpers/chartData'
 import { chartOptions } from './helpers/chartOptions'
 import styles from './styles/graphs.css'
 
-const Chart = ({ graphData, subjects, settings }) => (
+const Chart = ({ t, graphData, subjects, settings }) => (
 	<div className={styles.chart}>
-		<Bar data={chartData(graphData, subjects, settings)} options={chartOptions()} />
+		<Bar data={chartData(t, graphData, subjects, settings)} options={chartOptions()} />
 	</div>
 )
 
@@ -26,4 +27,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Chart)
+)(withNamespaces()(Chart))

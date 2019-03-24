@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t, resolveLabel } from '../../utils/translationUtil'
+import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
 import { PDFbutton } from '../../utils/pdfUtil'
@@ -14,7 +15,7 @@ import {
 } from '../helpers/dropdowns'
 import styles from './styles/graphs.css'
 
-const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
+const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 	const {
 		subjectId,
 		exams,
@@ -79,4 +80,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(GraphDropdown)
+)(withNamespaces()(GraphDropdown))

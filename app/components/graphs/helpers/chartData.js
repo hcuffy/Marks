@@ -1,4 +1,4 @@
-import { t, resolveLabel } from '../../../utils/translationUtil'
+import { resolveLabel } from '../../../utils/translationUtil'
 
 export const gradingSystem = settings =>
 	_.findKey(settings, gradeType => gradeType === true)
@@ -101,7 +101,7 @@ const gradesToDisplay = (
 		return _.merge([], grades)
 	}
 }
-export const chartData = (graphData, subjects, settings) => {
+export const chartData = (t, graphData, subjects, settings) => {
 	const filteredGrades = gradesToDisplay(graphData, subjects)
 	const { computedGrades, chartLabels } = computeGradeFormat(filteredGrades, settings)
 	return {
