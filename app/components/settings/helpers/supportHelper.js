@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from '../styles/settings.css'
-import { t } from '../../../utils/translationUtil'
 
-export const supportBtn = openResource => (
+export const supportBtn = (t, openResource) => (
 	<button type="button" className={styles.support_div} onClick={openResource}>
 		{t('settings.supportText')}
 		<div className={styles.support_icon}>

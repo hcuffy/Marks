@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { gradeRadioButtons } from './helpers/formHelpers'
 import styles from './styles/settings.css'
 
 const _ = require('lodash')
 
-const GradeFormat = ({ gradingSystem, actions }) => {
+const GradeFormat = ({ t, gradingSystem, actions }) => {
 	const gradingSystemTypes = _.pick(gradingSystem, ['note',
 		'points',
 		'percent'])
@@ -16,7 +16,7 @@ const GradeFormat = ({ gradingSystem, actions }) => {
 	return (
 		<div>
 			<h4 className={styles.center_header}>{t('settings.gradeSystemTitle')}</h4>
-			{gradeRadioButtons(gradingSystemTypes, actions)}
+			{gradeRadioButtons(t, gradingSystemTypes, actions)}
 		</div>
 	)
 }
@@ -33,4 +33,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(GradeFormat)
+)(withNamespaces()(GradeFormat))

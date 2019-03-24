@@ -30,7 +30,7 @@ const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
 	const openIt = { subjectDropdown }
 
 	if (chartToDisplay === 'subject' && _.isNull(studentGraphName)) {
-		notifyIfEmpty([], true, 'student')
+		notifyIfEmpty(t, [], true, 'student')
 		openIt.subjectDropdown = false
 	}
 	return (

@@ -1,18 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t } from '../../utils/translationUtil'
 import { addressForm, addressFields } from './helpers/formHelpers'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/settings.css'
 
-const Address = ({ addressData, actions }) => {
-	const entry = addressFields(addressData)
+const Address = ({ t, addressData, actions }) => {
+	const entry = addressFields(t, addressData)
 
 	return (
 		<div className={styles.address_wrapper}>
 			<h4 className={styles.address_header}>{t('settings.addressTitle')}</h4>
-			{addressForm(entry, actions)}
+			{addressForm(t, entry, actions)}
 		</div>
 	)
 }
@@ -25,4 +25,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Address)
+)(withNamespaces()(Address))

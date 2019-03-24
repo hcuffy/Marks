@@ -1,10 +1,9 @@
 import React from 'react'
 import styles from '../styles/settings.css'
-import { t } from '../../../utils/translationUtil'
 
 const _ = require('lodash')
 
-export const addressForm = (entry, actions) => (
+export const addressForm = (t, entry, actions) => (
 	<form onSubmit={actions.saveSchoolAddress} method="POST">
 		<div className={styles.form_outer_div}>
 			{entry}
@@ -17,7 +16,7 @@ export const addressForm = (entry, actions) => (
 	</form>
 )
 
-export const addressFields = addressData =>
+export const addressFields = (t, addressData) =>
 	_.keys(addressData).map((data, idx) => (
 		<div key={idx} className={styles.form_inner_div}>
 			<label className={styles.form_label} htmlFor={`school${data}`}>
@@ -33,7 +32,7 @@ export const addressFields = addressData =>
 		</div>
 	))
 
-export const gradeRadioButtons = (systemType, actions) =>
+export const gradeRadioButtons = (t, systemType, actions) =>
 	_.keys(systemType).map((data, idx) => (
 		<div key={idx} className={`form-check ${styles.radio_div}`}>
 			<label htmlFor={data} className={`form-check-label ${styles.radio_label}`}>
