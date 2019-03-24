@@ -15,7 +15,7 @@ import styles from './styles/grades.css'
 
 const _ = require('lodash')
 
-const GradeDropdown = ({ t,classData, gradeData, subjectData, actions }) => {
+const GradeDropdown = ({ t, classData, gradeData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
 	const { subDrop, subjectName, classroom, classroomDropdown } = gradeData
 	const openIt = { subDrop }

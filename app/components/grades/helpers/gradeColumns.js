@@ -1,5 +1,4 @@
 import React from 'react'
-import { t } from '../../../utils/translationUtil'
 import styles from '../styles/grades.css'
 
 const _ = require('lodash')
@@ -85,7 +84,7 @@ const customColumn = (data, actions) => {
 	return columnData
 }
 
-export const gradeColumns = ({ newData, actions }) => {
+export const gradeColumns = ({ t, newData, actions }) => {
 	const columns = [
 		{
 			Header: t('grades.studentHeader'),

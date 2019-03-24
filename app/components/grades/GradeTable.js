@@ -11,7 +11,7 @@ import styles from './styles/grades.css'
 
 const _ = require('lodash')
 
-const tableOptions = (t) => ({
+const tableOptions = t => ({
 	defaultPageSize: 20,
 	noDataText: t('grades.noData'),
 	previousText: t('grades.previousPage'),
@@ -21,15 +21,15 @@ const tableOptions = (t) => ({
 	rowsText: t('grades.textRows')
 })
 
-const GradeTable = ({t, gradeData, students, actions }) => {
+const GradeTable = ({ t, gradeData, students, actions }) => {
 	const data = gradeInfo(gradeData, students)
 	return (
 		<div className={styles.div_wrapper}>
 			<h4 className={styles.center_header}>{t('grades.gradesTitle')}</h4>
-			<GradeDropdown t={t}/>
+			<GradeDropdown t={t} />
 			<ReactTable
 				data={_.sortBy(data, ['name'], ['asc'])}
-				columns={gradeColumns({ newData: data, actions })}
+				columns={gradeColumns({ t, newData: data, actions })}
 				className="-striped -highlight"
 				style={{ height: '650px' }}
 				{...tableOptions(t)}
