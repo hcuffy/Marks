@@ -5692,7 +5692,7 @@ file-loader@^3.0.1:
     loader-utils "^1.0.2"
     schema-utils "^1.0.0"
 
-"file-saver@github:eligrey/FileSaver.js#1.3.8":
+file-saver@eligrey/FileSaver.js#1.3.8:
   version "1.3.8"
   resolved "https://codeload.github.com/eligrey/FileSaver.js/tar.gz/e865e37af9f9947ddcced76b549e27dc45c1cb2e"
 
@@ -6767,11 +6767,6 @@ i18next-electron-language-detector@^0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/i18next-electron-language-detector/-/i18next-electron-language-detector-0.0.10.tgz#6fdb01df5a47c40ca3821458449da88220c4baf8"
   integrity sha512-l/CdtK5i6BB7h5OGKadUK+Q0q4e4EYXZSDV+Hetxjdv4C8RoYPNbqfTIpcc4RpIO3Dty05Xt8TxV+HyFd6opeA==
-
-i18next-xhr-backend@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/i18next-xhr-backend/-/i18next-xhr-backend-2.0.1.tgz#7af735ee1b0c6d4ce49fa5756591040a0fba6db7"
-  integrity sha512-CP0XPjJsTE4hY1rM1KXFYo63Ib61EBLEcTvMDyJwr0vs9p/UTuA3ENCmzSs9+ghZgWSjdOigc0oUERHaxctbsQ==
 
 i18next@^15.0.3:
   version "15.0.7"

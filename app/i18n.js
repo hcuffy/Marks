@@ -1,20 +1,26 @@
 import i18n from 'i18next'
-import Backend from 'i18next-xhr-backend'
-import LanguageDetector from 'i18next-electron-language-detector'
 import { reactI18nextModule } from 'react-i18next'
+import LanguageDetector from 'i18next-electron-language-detector'
+import translationEN from './locales/en/translation.json'
+import translationDE from './locales/de/translation.json'
+
+const resources = {
+	en: {
+		translation: translationEN
+	},
+	de: {
+		translation: translationDE
+	}
+}
 
 i18n
-	.use(Backend)
 	.use(LanguageDetector)
 	.use(reactI18nextModule)
 	.init({
-		preload: ['en', 'de'],
+		resources,
 		load: 'languageOnly',
 		debug: true,
-		backend: {
-			loadPath: 'locales/{{lng}}/{{ns}}.json'
-		},
-		fallbackLng: 'en',
+		fallbackLng: 'de',
 		whitelist: ['en',
 			'en-US',
 			'de',
