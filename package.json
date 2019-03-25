@@ -251,7 +251,6 @@
     "history": "^4.7.2",
     "i18next": "^15.0.3",
     "i18next-electron-language-detector": "^0.0.10",
-    "i18next-xhr-backend": "^2.0.0",
     "jspdf": "^1.5.3",
     "lodash": "^4.17.11",
     "nedb": "^1.8.0",
