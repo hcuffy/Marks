@@ -26,7 +26,7 @@ export default class AppUpdater {
 
 let mainWindow = null
 // ///
-const createWindow = () => {
+export const createWindow = () => {
 	mainWindow = new BrowserWindow({
 		show: false,
 		width: 1024,

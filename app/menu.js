@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron'
+import { createWindow } from './main.dev'
 import { customMenuTranslation } from './utils/translationUtil'
 import { SUPPORT_APP } from './constants/externalLinks'
 
