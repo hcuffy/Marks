@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { modalFrame } from '../helpers/editModal'
 import { cleanAndFilterData, createModalInputs } from './helpers/formHelpers'
 
-const RoomModal = ({ modalData, classModalData, actions }) => {
+const RoomModal = ({ t, modalData, classModalData, actions }) => {
 	const selectedRoom = cleanAndFilterData(modalData, classModalData)
-	const clickedRoom = createModalInputs(selectedRoom)
+	const clickedRoom = createModalInputs(t, selectedRoom)
 	const hiddenInput = <input type="hidden" name="oldName" data-id={selectedRoom.name} />
 	const footerData = {
 		dataId: classModalData.id,
@@ -19,6 +20,7 @@ const RoomModal = ({ modalData, classModalData, actions }) => {
 	return (
 		<div>
 			{modalFrame(
+				t,
 				classModalData.showModal,
 				actions.updateRoom,
 				clickedRoom,
@@ -38,4 +40,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(RoomModal)
+)(withNamespaces()(RoomModal))

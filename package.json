@@ -1,7 +1,7 @@
 {
   "name": "Marks",
   "productName": "Marks",
-  "version": "1.1.0",
+  "version": "0.2.1",
   "description": "This app gives teahchers the ability to keep track of marks",
   "scripts": {
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
@@ -28,7 +28,9 @@
     "prestart": "yarn build",
     "start": "cross-env NODE_ENV=production electron ./app/main.prod.js",
     "start-main-dev": "cross-env HOT=1 NODE_ENV=development electron -r @babel/register ./app/main.dev.js",
-    "start-renderer-dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.config.renderer.dev.babel.js"
+    "start-renderer-dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.config.renderer.dev.babel.js",
+    "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 jest",
+    "test-watch": "yarn test --watch"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -52,7 +54,7 @@
   "main": "./app/main.prod.js",
   "build": {
     "productName": "Marks",
-    "appId": "org.develar.Marks",
+    "appId": "com.henry.marks",
     "files": [
       "app/dist/",
       "app/app.html",
@@ -95,8 +97,8 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate",
+      "owner": "hcuffy",
+      "repo": "My-Marks",
       "private": false
     }
   },
@@ -109,18 +111,6 @@
     "email": "hcuffy7@gmail.com",
     "url": "https://github.com/hcuffy"
   },
-  "contributors": [
-    {
-      "name": "Vikram Rangaraj",
-      "email": "vikr01@icloud.com",
-      "url": "https://github.com/vikr01"
-    },
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
-    }
-  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hcuffy/My-Marks/issues"
@@ -261,7 +251,6 @@
     "history": "^4.7.2",
     "i18next": "^15.0.3",
     "i18next-electron-language-detector": "^0.0.10",
-    "i18next-xhr-backend": "^2.0.0",
     "jspdf": "^1.5.3",
     "lodash": "^4.17.11",
     "nedb": "^1.8.0",

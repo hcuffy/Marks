@@ -18,6 +18,7 @@
 
 .list_div {
   height: 230px;
+  margin-top: 10px;
   scrollbar-width: none;
   overflow-x: hidden;
 }
@@ -61,7 +62,7 @@
   right: 20px;
   scrollbar-width: none;
   overflow-x: hidden;
-  padding-right: 70px;
+  padding-right: 60px;
 }
 
 .subject_header {

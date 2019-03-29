@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import styles from './styles/subject.css'
 
 const _ = require('lodash')
 
-const generateInputs = labels =>
+const generateInputs = (t, labels) =>
 	_.values(labels).map((data, idx) => (
 		<div key={idx} className={styles.form_div}>
 			<label className={styles.form_label} htmlFor={`${data}Sid`}>
@@ -19,9 +19,9 @@ const generateInputs = labels =>
 		</div>
 	))
 
-const SubjectForm = ({ classListData, subjects, actions }) => {
+const SubjectForm = ({ t, classListData, subjects, actions }) => {
 	const formLabels = _.pick(classListData, ['name', 'abbreviation'])
-	const formInputs = generateInputs(formLabels)
+	const formInputs = generateInputs(t, formLabels)
 
 	const selectOption = _.values(subjects).map((data, idx) => (
 		<option className="form-control dropup" key={idx}>
@@ -57,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	null,
 	mapDispatchToProps
-)(SubjectForm)
+)(withNamespaces()(SubjectForm))

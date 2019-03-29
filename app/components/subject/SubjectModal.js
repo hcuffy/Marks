@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { modalFrame } from '../helpers/editModal'
 import { actionCreators } from '../../actions/index'
@@ -31,26 +32,28 @@ const selectedSubject = subject =>
 		</div>
 	))
 
-const SubjectModal = ({ filteredData, subjectModalData, actions }) => {
+const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
 	const requiredSubject = cleanAndFilterData(filteredData, subjectModalData)
 	const subjectFields = selectedSubject(requiredSubject)
+	const { id, showSubjectModal } = subjectModalData
 	const hiddenInputs = (
 		<div>
 			{/* eslint-disable-next-line max-len */}
 			<input type="hidden" name="classroomId" data-id={getClassroomId(filteredData)} />
-			<input type="hidden" name="subjectId" data-id={subjectModalData.id} />
+			<input type="hidden" name="subjectId" data-id={id} />
 		</div>
 	)
 	const footerData = {
-		dataId: subjectModalData.id,
+		dataId: id,
 		nameId: null,
-		closeId: subjectModalData.id,
+		closeId: id,
 		deleteAction: actions.deleteSingleSubject,
 		closeAction: actions.subjectModalDisplay
 	}
 	return (
 		<div>
 			{modalFrame(
+				t,
 				subjectModalData.showSubjectModal,
 				actions.updateSubject,
 				subjectFields,
@@ -70,4 +73,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(SubjectModal)
+)(withNamespaces()(SubjectModal))

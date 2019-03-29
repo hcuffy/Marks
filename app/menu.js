@@ -1,10 +1,12 @@
 /* eslint-disable max-len */
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron'
+import { createWindow } from './main.dev'
 import { customMenuTranslation } from './utils/translationUtil'
 import { SUPPORT_APP } from './constants/externalLinks'
 
 let newPanelWindow = null
+
 const openAttributionWindow = () => {
 	if (newPanelWindow) {
 		newPanelWindow.focus()
@@ -110,7 +112,9 @@ export default class MenuBuilder {
 					label: customMenuTranslation(locale, 'toggle'),
 					accelerator: 'Ctrl+Command+F',
 					click: () => {
-						this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
+						if (!this.mainWindow.isDestroyed()) {
+							this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
+						}
 					}
 				},
 				{
@@ -129,7 +133,9 @@ export default class MenuBuilder {
 					label: customMenuTranslation(locale, 'toggle'),
 					accelerator: 'Ctrl+Command+F',
 					click: () => {
-						this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
+						if (!this.mainWindow.isDestroyed()) {
+							this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
+						}
 					}
 				}
 			]
@@ -142,9 +148,20 @@ export default class MenuBuilder {
 					accelerator: 'Command+M',
 					selector: 'performMiniaturize:'
 				},
-				{ label: 'Close', accelerator: 'Command+W', selector: 'performClose:' },
+				{
+					label: customMenuTranslation(locale, 'close'),
+					accelerator: 'Command+W',
+					selector: 'performClose:'
+				},
 				{ type: 'separator' },
-				{ label: customMenuTranslation(locale, 'front'), selector: 'arrangeInFront:' }
+				{
+					label: customMenuTranslation(locale, 'front'),
+					click: () => {
+						if (this.mainWindow.isDestroyed()) {
+							createWindow()
+						}
+					}
+				}
 			]
 		}
 		const subMenuHelp = {

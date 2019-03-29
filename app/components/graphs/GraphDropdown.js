@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t, resolveLabel } from '../../utils/translationUtil'
+import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
-import { downloadPDF } from '../../utils/pdfUtil'
+import { PDFbutton } from '../../utils/pdfUtil'
 import {
 	getClassList,
 	getSubjectList,
@@ -12,21 +13,9 @@ import {
 	getExamList,
 	notifyIfEmpty
 } from '../helpers/dropdowns'
-import { chartHeader } from './helpers/chartData'
 import styles from './styles/graphs.css'
 
-const PDFbutton = chartTitle => (
-	<button
-		className={styles.pdf_btn}
-		type="button"
-		onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
-	>
-		<i className="fas fa-file-pdf fa-2x" /> <br />
-		{t('general.saveAs')}
-	</button>
-)
-
-const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
+const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 	const {
 		subjectId,
 		exams,
@@ -44,7 +33,7 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
 	const examOptions = getExamList(exams, subjectId)
 
-	notifyIfEmpty(subjectOptions, openSubList, 'class')
+	notifyIfEmpty(t, subjectOptions, openSubList, 'class')
 
 	return (
 		<div className={styles.dropdown_main_div}>
@@ -59,17 +48,21 @@ const GraphDropdown = ({ classData, graphData, subjectData, actions }) => {
 				styles.dropdown_div,
 				openSubList,
 				actions.displaySubjectGraph,
-				resolveLabel(subjectName, t('general.selectClass')),
+				resolveLabel(subjectName, t('general.selectSubject')),
 				subjectOptions
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				openExamList,
 				actions.displayExamGraph,
-				resolveLabel(examName, t('general.selectClass')),
+				resolveLabel(examName, t('general.selectExam')),
 				examOptions
 			)}
-			{PDFbutton(chartHeader(chartTitle))}
+			{PDFbutton(
+				styles.pdf_btn,
+				t('general.saveAs'),
+				resolveLabel(chartTitle, t('graph.schoolGrades'))
+			)}
 		</div>
 	)
 }
@@ -87,4 +80,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(GraphDropdown)
+)(withNamespaces()(GraphDropdown))

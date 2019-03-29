@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { t } from '../../utils/translationUtil'
+import { withNamespaces } from 'react-i18next'
 import { resourceList } from './helpers/resourcesList'
 import { openResource } from '../../utils/externalLinksUtil'
 import styles from './styles/homepage.css'
 
 const _ = require('lodash')
 
-const Homepage = ({ addressData }) => {
+const Homepage = ({ t, addressData }) => {
 	const entry = _.values(addressData).map((data, idx) => <li key={idx}>{data}</li>)
 
 	return (
@@ -36,4 +36,4 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 	null
-)(Homepage)
+)(withNamespaces()(Homepage))

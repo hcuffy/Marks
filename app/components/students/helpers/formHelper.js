@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
-import { t } from '../../../utils/translationUtil'
 import styles from '../styles/students.css'
 
-export const genderDropdown = (defaultValue, styleOne, styleTwo) => (
+export const genderDropdown = (t, defaultValue, styleOne, styleTwo) => (
 	<div className={`${styleOne} ${styleTwo}`}>
 		<label className={styles.form_label} htmlFor="gSelect">
 			{t('student.gender')}:
@@ -25,6 +24,7 @@ export const genderDropdown = (defaultValue, styleOne, styleTwo) => (
 )
 
 export const classroomDropdown = (
+	t,
 	options,
 	defaultValue,
 	styleOne,
@@ -45,7 +45,7 @@ export const classroomDropdown = (
 		</select>
 	</div>
 )
-const studentForm = (selectOption, formFields, actions) => {
+const studentForm = (t, selectOption, formFields, actions) => {
 	const studentFields = (
 		<div>
 			<form onSubmit={actions.addNewStudent} method="POST">
@@ -53,8 +53,9 @@ const studentForm = (selectOption, formFields, actions) => {
 					<h4 className={styles.center_add_sub_header}>{t('student.add')}</h4>
 					{formFields}
 					{/* eslint-disable-next-line max-len */}
-					{genderDropdown(t('student.male'), styles.select_dropDown, styles.form_div)}
+					{genderDropdown(t, t('student.male'), styles.select_dropDown, styles.form_div)}
 					{classroomDropdown(
+						t,
 						selectOption,
 						null,
 						styles.select_dropDown,

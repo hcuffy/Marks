@@ -1,13 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t, resolveLabel } from '../../utils/translationUtil'
+
+import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
 import { getClassList, getSubjectList, createDropdown } from '../helpers/dropdowns'
 import styles from './styles/exam.css'
 
-const ExamListDropdown = ({ classData, examData, subjectData, actions }) => {
+const ExamListDropdown = ({ t, classData, examData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
 	const subjectOptions = getSubjectList(examData, subjectData)
@@ -45,4 +47,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(ExamListDropdown)
+)(withNamespaces()(ExamListDropdown))

@@ -16,12 +16,13 @@ class Classroom extends Component {
 	}
 
 	render() {
+		const { t } = this.props
 		return (
 			<div>
 				<SideMenu />
-				<Navbar />
-				{this.props.classesActive && <Classes />}
-				{this.props.examActive && <Exams />}
+				<Navbar t={t} />
+				{this.props.classesActive && <Classes t={t} />}
+				{this.props.examActive && <Exams t={t} />}
 			</div>
 		)
 	}
@@ -30,8 +31,7 @@ class Classroom extends Component {
 const mapStateToProps = state => ({
 	classesActive: state.tabChangeData.classTab,
 	examActive: state.tabChangeData.examTab,
-	classData: state.classData.classData,
-	addedClass: state.addedClass
+	classData: state.classData.classData
 })
 
 const mapDispatchToProps = dispatch => ({

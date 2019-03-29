@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t, resolveLabel } from '../../utils/translationUtil'
+import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
 import {
@@ -14,7 +15,7 @@ import styles from './styles/grades.css'
 
 const _ = require('lodash')
 
-const GradeDropdown = ({ classData, gradeData, subjectData, actions }) => {
+const GradeDropdown = ({ t, classData, gradeData, subjectData, actions }) => {
 	const cleanedClassList = sortData(classData)
 	const { subDrop, subjectName, classroom, classroomDropdown } = gradeData
 	const openIt = { subDrop }
@@ -22,7 +23,7 @@ const GradeDropdown = ({ classData, gradeData, subjectData, actions }) => {
 	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
 
 	if (_.isEmpty(subjectOptions) && subDrop) {
-		notifyIfEmpty([], true, 'class')
+		notifyIfEmpty(t, [], true, 'class')
 		openIt.subDrop = false
 	}
 
@@ -59,4 +60,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(GradeDropdown)
+)(withNamespaces()(GradeDropdown))

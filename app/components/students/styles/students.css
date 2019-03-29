@@ -22,8 +22,8 @@
 }
 
 .center_add_sub_header {
-  text-align: right;
-  margin-right: 180px;
+  text-align: left;
+  padding-left: 110px;
 }
 
 .form_inner_div {

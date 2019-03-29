@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { classPill } from './helpers/formHelpers'
 import styles from './styles/room.css'
 
 const _ = require('lodash')
 
-const NavBar = ({ tabChangeData, actions }) => {
+const NavBar = ({ t, tabChangeData, actions }) => {
 	const { classTab, examTab } = tabChangeData
 
 	return (
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(NavBar)
+)(withNamespaces()(NavBar))

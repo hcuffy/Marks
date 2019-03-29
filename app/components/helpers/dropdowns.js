@@ -72,8 +72,8 @@ export const createDropdown = (styling, openIt, action, label, options) => (
 	</div>
 )
 
-export const notifyIfEmpty = (options, selected, section) => {
+export const notifyIfEmpty = (t, options, selected, section) => {
 	if (_.isEmpty(options) && selected) {
-		firstMakeSelection(section)
+		firstMakeSelection(t, section)
 	}
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import SubjectModal from './SubjectModal'
@@ -34,13 +35,12 @@ const listOfButtons = (filteredData, action) =>
 		</button>
 	))
 
-const SubjectList = ({ selectedSubject, subjectData, actions }) => {
+const SubjectList = ({ t, selectedSubject, subjectData, actions }) => {
 	const filteredData = filterSubjects(subjectData.data, selectedSubject)
 	const subjectList = listOfButtons(filteredData, actions.subjectModalDisplay)
-
 	return (
 		<div className={styles.list_div}>
-			<SubjectModal filteredData={filteredData} />
+			<SubjectModal t={t} filteredData={filteredData} />
 			<div className="list-group list-group-flush">{subjectList}</div>
 		</div>
 	)
@@ -56,4 +56,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(SubjectList)
+)(withNamespaces()(SubjectList))

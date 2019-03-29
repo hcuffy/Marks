@@ -17,6 +17,7 @@
     "selectSubject": "Fach auswählen",
     "selectRoom": "Klassenzimmer auswählen",
     "selectStudent": "Scüler/in auswählen",
+    "selectExam": "Leistungsnachweise auswählen",
     "saveAs": "speichern als"
   },
   "room": {
@@ -34,6 +35,7 @@
     "classTab": "Klassen"
   },
   "exam": {
+    "title": "Titel",
     "addExamHeader": "Leistungsnachweise hinzufügen",
     "editExamHeader": "Leistungsnachweise bearbeiten",
     "addExam": "Neu Leistungsnachweise hinzufügen"
@@ -41,13 +43,13 @@
   "student": {
     "defaultHeader": "Noten der Schüler/innen",
     "title": "Schüler/innen",
-    "list": "Liste der Schüler/in",
+    "list": "Liste der Schüler/innen",
     "add": "Schüler/in hinzufügen",
     "chartTitle": "Diagramme",
     "firstname": "Vorname",
     "lastname": "Nachname",
     "gender": "Geschlecht",
-    "classroom": "Klassenzimmer",
+    "classroom": "Zimmer",
     "male": "männlich",
     "female": "weiblich"
   },
@@ -64,7 +66,8 @@
     "textRows": "Zeilen"
   },
   "graph": {
-    "overview": "DIAGRAMMÜBERSICHT"
+    "overview": "DIAGRAMMÜBERSICHT",
+    "schoolGrades": "Noten der Schule"
   },
   "notifications": {
     "general": {

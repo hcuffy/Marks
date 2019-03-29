@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { Badge } from 'reactstrap'
-import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import StudentModal from './StudentModal'
 import styles from './styles/students.css'
@@ -41,14 +41,14 @@ const generateStudentList = (students, actions) => {
 	return generateListBtn(sortedStudents, actions.showStudentModal)
 }
 
-const StudentList = ({ students, actions }) => {
+const StudentList = ({ t, students, actions }) => {
 	const listData = generateStudentList(students, actions)
 	return (
 		<div className={styles.student_list}>
 			<h4 className={styles.center_sub_header}>{t('student.list')}</h4>
 			<div className={styles.list_div}>
 				<div className="list-group list-group-flush">{listData}</div>
-				<StudentModal />
+				<StudentModal t={t} />
 			</div>
 		</div>
 	)
@@ -64,4 +64,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(StudentList)
+)(withNamespaces()(StudentList))

@@ -1,8 +1,7 @@
 import React from 'react'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
-import { t } from '../../utils/translationUtil'
 
-const modalFooter = ({ dataId, nameId, closeId, deleteAction, closeAction }) => (
+const modalFooter = (t, { dataId, nameId, closeId, deleteAction, closeAction }) => (
 	<ModalFooter>
 		<Button
 			data-id={dataId}
@@ -22,7 +21,14 @@ const modalFooter = ({ dataId, nameId, closeId, deleteAction, closeAction }) => 
 	</ModalFooter>
 )
 
-export const modalFrame = (modalOpen, updateAction, examFormData, extras, footerData) => (
+export const modalFrame = (
+	t,
+	modalOpen,
+	updateAction,
+	examFormData,
+	extras,
+	footerData
+) => (
 	<Modal isOpen={modalOpen} backdrop>
 		<ModalHeader>{t('general.edit')}:</ModalHeader>
 		<form onSubmit={updateAction} method="POST">
@@ -30,7 +36,7 @@ export const modalFrame = (modalOpen, updateAction, examFormData, extras, footer
 				{examFormData}
 				{extras}
 			</ModalBody>
-			{modalFooter(footerData)}
+			{modalFooter(t, footerData)}
 		</form>
 	</Modal>
 )

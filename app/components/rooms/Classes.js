@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { t } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import ClassList from './ClassList'
 import Subjects from '../subject/Subjects'
@@ -10,19 +10,19 @@ import styles from './styles/room.css'
 
 const _ = require('lodash')
 
-const Classes = ({ classData, actions }) => {
+const Classes = ({ t, classData, actions }) => {
 	const formLabels = _.omit(classData, ['classData', 'check'])
-	const formInputs = createFormInputs(formLabels)
+	const formInputs = createFormInputs(t, formLabels)
 
 	checkChange(classData, actions)
 	return (
 		<div>
-			{addRoomForm(formInputs, actions)}
+			{addRoomForm(t, formInputs, actions)}
 			<div>
 				<h4 className={styles.list_header}>{t('room.listHeader')}</h4>
-				<ClassList listData={classData} />
+				<ClassList t={t} listData={classData} />
 			</div>
-			<Subjects classData={classData} />
+			<Subjects t={t} classData={classData} />
 		</div>
 	)
 }
@@ -37,4 +37,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Classes)
+)(withNamespaces()(Classes))

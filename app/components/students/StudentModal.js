@@ -1,30 +1,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { modalFrame } from '../helpers/editModal'
 import { actionCreators } from '../../actions/index'
 import { cleanAndFilterData } from '../rooms/helpers/formHelpers'
 import generateFields from './helpers/modalHelper'
 
-const StudentModal = ({ students, classdata, actions }) => {
+const StudentModal = ({ t, students, classdata, actions }) => {
+	const { studentId, studentModal } = students
 	const requiredStudent = cleanAndFilterData(students.students, {
 		id: students.studentId
 	})
-	const studentFields = generateFields(requiredStudent, classdata)
+	const studentFields = generateFields(t, requiredStudent, classdata)
 
-	const hiddenInput = (
-		<input type="hidden" name="studentId" data-id={students.studentId} />
-	)
+	const hiddenInput = <input type="hidden" name="studentId" data-id={studentId} />
 	const footerData = {
-		dataId: students.studentId,
+		dataId: studentId,
 		nameId: null,
-		closeId: students.studentId,
+		closeId: studentId,
 		deleteAction: actions.deleteSingleStudent,
 		closeAction: actions.showStudentModal
 	}
 	return (
 		<div>
 			{modalFrame(
+				t,
 				students.studentModal,
 				actions.updateStudent,
 				studentFields,
@@ -47,4 +48,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(StudentModal)
+)(withNamespaces()(StudentModal))
