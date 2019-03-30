@@ -19,7 +19,6 @@ i18n
 	.init({
 		resources,
 		load: 'languageOnly',
-		debug: true,
 		fallbackLng: 'de',
 		whitelist: ['en',
 			'en-US',
