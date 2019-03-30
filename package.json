@@ -1,7 +1,7 @@
 {
   "name": "Marks",
   "productName": "Marks",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "This app gives teahchers the ability to keep track of marks",
   "scripts": {
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
@@ -16,7 +16,7 @@
     "lint-fix": "yarn --silent lint --fix; exit 0",
     "lint-styles": "stylelint --ignore-path .eslintignore '**/*.*(css|scss)' --syntax scss",
     "lint-styles-fix": "yarn --silent lint-styles --fix; exit 0",
-    "package": "yarn build && electron-builder build --publish never",
+    "package": "yarn build && electron-builder build --mac --publish never",
     "package-all": "yarn build && electron-builder build -mwl",
     "package-ci": "yarn postinstall && yarn build && electron-builder --publish always",
     "package-linux": "yarn build && electron-builder build --linux",
@@ -74,6 +74,13 @@
           "type": "link",
           "path": "/Applications"
         }
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "mas",
+        "zip"
       ]
     },
     "win": {
