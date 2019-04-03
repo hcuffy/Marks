@@ -9,6 +9,8 @@ import {
 	updateSuccessful
 } from '../notifications/general'
 
+// import { deleteAllStudentGrade } from "./gradeCollection"
+
 const Datastore = require('nedb')
 const electron = require('electron')
 const path = require('path')
@@ -52,7 +54,6 @@ export const deleteStudent = data =>
 			}
 			studentCollection.find({}, (error, docs) => {
 				if (err) {
-					deletionFailed()
 					return reject(err)
 				}
 				deletionSuccessful()
