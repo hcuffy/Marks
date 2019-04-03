@@ -1,9 +1,7 @@
 import { toast } from 'react-toastify'
-import i18next from 'i18next'
+import { customTranslate } from '../utils/translationUtil'
 
-const t = translate => i18next.t(translate)
-
-export const saveSuccessful = t => {
+export const saveSuccessful = () => {
 	toast.success(t('notifications.general.saveSuccess'), {
 		position: 'top-right',
 		autoClose: 4000,
@@ -69,7 +67,7 @@ export const deletionFailed = t => {
 	})
 }
 
-export const updateSuccessful = t => {
+export const updateSuccessful = () => {
 	toast.success(t('notifications.general.updateSuccess'), {
 		position: 'top-right',
 		autoClose: 4000,
