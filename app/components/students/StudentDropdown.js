@@ -38,7 +38,7 @@ const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
 			{createDropdown(
 				styles.dropdown_one,
 				studentDropdown,
-				actions.openStudenGraph,
+				actions.openStudentGraph,
 				resolveLabel(studentGraphName, t('general.selectStudent')),
 				studentOptions
 			)}

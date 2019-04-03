@@ -54,7 +54,7 @@ export const showStudentModal = event => dispatch => {
 	})
 }
 
-export const openStudenGraph = event => dispatch => {
+export const openStudentGraph = event => dispatch => {
 	if (event.target.type !== 'button') {
 		return
 	}
