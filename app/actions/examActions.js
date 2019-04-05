@@ -15,6 +15,7 @@ import {
 
 export const addNewExam = event => dispatch => {
 	event.preventDefault()
+
 	const subjectIndex = event.target.subject.selectedIndex
 	const examData = {
 		title: event.target.title.value,
