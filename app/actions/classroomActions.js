@@ -5,12 +5,7 @@ import {
 	UPDATE_CLASSROOM,
 	OPEN_CLOSE_ROOM_MODAL
 } from '../constants/actionTypes'
-import {
-	addClassroomData,
-	getClassroomData,
-	updateRoomData,
-	deleteClassroom
-} from '../database/classroomCollection'
+import { actionsOnDatabase } from '../database/index'
 
 const _ = require('lodash')
 
@@ -38,8 +33,8 @@ export const handleClassData = event => async dispatch => {
 		substitute: event.target.substitute.value
 	}
 	event.target.reset()
-	addClassroomData(formData)
-	const data = await getClassroomData()
+	actionsOnDatabase.addClassroomData(formData)
+	const data = await actionsOnDatabase.getClassroomData()
 
 	dispatch({
 		type: ADD_CLASSROOM_DATA,
@@ -48,7 +43,8 @@ export const handleClassData = event => async dispatch => {
 }
 
 export const displayClassData = () => async dispatch => {
-	const data = await getClassroomData()
+	const data = await actionsOnDatabase.getClassroomData()
+
 	if (data.length !== 0) {
 		dispatch({
 			type: GET_CLASSROOM_DATA,
@@ -69,7 +65,7 @@ export const updateRoom = event => async dispatch => {
 		showModal: true
 	}
 
-	const docs = await updateRoomData(roomData)
+	const docs = await actionsOnDatabase.updateRoomData(roomData)
 	if (docs) {
 		roomData.showModal = false
 		dispatch({
@@ -90,7 +86,7 @@ export const deleteRoom = event => async dispatch => {
 		showModal: true
 	}
 
-	const docs = await deleteClassroom(roomData)
+	const docs = await actionsOnDatabase.deleteClassroom(roomData)
 
 	if (docs) {
 		dispatch({
