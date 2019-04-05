@@ -2,7 +2,7 @@ import { toast } from 'react-toastify'
 import { customTranslate } from '../utils/translationUtil'
 
 export const saveSuccessful = () => {
-	toast.success(t('notifications.general.saveSuccess'), {
+	toast.success(customTranslate('notifications.general.saveSuccess'), {
 		position: 'top-right',
 		autoClose: 4000,
 		hideProgressBar: false,
@@ -12,8 +12,8 @@ export const saveSuccessful = () => {
 	})
 }
 
-export const saveFailed = t => {
-	toast.error(t('notifications.general.saveFail'), {
+export const saveFailed = () => {
+	toast.error(customTranslate('notifications.general.saveFail'), {
 		position: 'top-right',
 		autoClose: 4000,
 		hideProgressBar: false,
@@ -23,8 +23,8 @@ export const saveFailed = t => {
 	})
 }
 
-export const unableToRetrieve = t => {
-	toast.success(t('notifications.general.retrieveFail'), {
+export const unableToRetrieve = () => {
+	toast.success(customTranslate('notifications.general.retrieveFail'), {
 		position: 'top-right',
 		autoClose: 4000,
 		hideProgressBar: false,
@@ -34,8 +34,8 @@ export const unableToRetrieve = t => {
 	})
 }
 
-export const entryAlreadyExists = t => {
-	toast.error(t('notifications.general.exists'), {
+export const entryAlreadyExists = () => {
+	toast.error(customTranslate('notifications.general.exists'), {
 		position: 'top-right',
 		autoClose: 4000,
 		hideProgressBar: false,
@@ -45,8 +45,8 @@ export const entryAlreadyExists = t => {
 	})
 }
 
-export const deletionSuccessful = t => {
-	toast.success(t('notifications.general.deleteSuccess'), {
+export const deletionSuccessful = () => {
+	toast.success(customTranslate('notifications.general.deleteSuccess'), {
 		position: 'top-right',
 		autoClose: 4000,
 		hideProgressBar: false,
@@ -56,8 +56,8 @@ export const deletionSuccessful = t => {
 	})
 }
 
-export const deletionFailed = t => {
-	toast.error(t('notifications.general.deleteFail'), {
+export const deletionFailed = () => {
+	toast.error(customTranslate('notifications.general.deleteFail'), {
 		position: 'top-right',
 		autoClose: 4000,
 		hideProgressBar: false,
@@ -68,7 +68,7 @@ export const deletionFailed = t => {
 }
 
 export const updateSuccessful = () => {
-	toast.success(t('notifications.general.updateSuccess'), {
+	toast.success(customTranslate('notifications.general.updateSuccess'), {
 		position: 'top-right',
 		autoClose: 4000,
 		hideProgressBar: false,
@@ -78,8 +78,8 @@ export const updateSuccessful = () => {
 	})
 }
 
-export const updateFailed = t => {
-	toast.error(t('notifications.general.updateFail'), {
+export const updateFailed = () => {
+	toast.error(customTranslate('notifications.general.updateFail'), {
 		position: 'top-right',
 		autoClose: 4000,
 		hideProgressBar: false,
@@ -89,8 +89,8 @@ export const updateFailed = t => {
 	})
 }
 
-export const noUpdate = t => {
-	toast.success(t('notifications.general.noUpdate'), {
+export const noUpdate = () => {
+	toast.success(customTranslate('notifications.general.noUpdate'), {
 		position: 'top-right',
 		autoClose: 4000,
 		hideProgressBar: false,
