@@ -35,7 +35,7 @@ const subjectInput = (t, options) => (
 		</label>
 		<select
 			className="form-control"
-			name="Subject"
+			name="subject"
 			data-id="subjectSelection"
 			type="text"
 		>
