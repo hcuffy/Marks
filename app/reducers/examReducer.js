@@ -21,12 +21,14 @@ const applyFilteredExam = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case GET_SELECTED_CLASS: {
 		const subject = action.payload
+
 		return _.assign({}, state, { subject })
 	}
 	case UPDATE_DROPDOWN_CLASS_LIST: {
 		const openClassDropdown = !state.openClassDropdown
 		const openSubList = state.openClassDropdown
 		const selectedRoom = action.payload
+
 		return _.assign({}, state, {
 			openClassDropdown,
 			selectedRoom,
@@ -36,6 +38,7 @@ const applyFilteredExam = (state = initialLoadState, action) => {
 	case GET_SINGLE_EXAM: {
 		const examModal = !state.examModal
 		const examId = action.payload
+
 		return _.assign({}, state, { examModal, examId })
 	}
 	case DISPLAY_SUBJECT_LIST: {
@@ -53,6 +56,7 @@ const applyFilteredExam = (state = initialLoadState, action) => {
 	}
 	case UPDATE_EXAMS_LIST: {
 		const exams = action.payload
+
 		return _.assign({}, state, { exams })
 	}
 	default:
