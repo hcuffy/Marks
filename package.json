@@ -1,8 +1,8 @@
 {
   "name": "Marks",
   "productName": "Marks",
-  "version": "0.2.2",
-  "description": "This app gives teahchers the ability to keep track of marks",
+  "version": "0.2.4",
+  "description": "This app gives teachers the ability to keep track of marks",
   "scripts": {
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development webpack --config ./configs/webpack.config.renderer.dev.dll.babel.js --colors",

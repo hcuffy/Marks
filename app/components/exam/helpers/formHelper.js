@@ -29,13 +29,13 @@ const classInput = (t, options, action) => (
 )
 
 const subjectInput = (t, options) => (
-	<div>
+	<div className={styles.subject_dropdown}>
 		<label className={styles.form_label} htmlFor="subjectSelection">
 			{t('general.selectSubject')}:
 		</label>
 		<select
 			className="form-control"
-			name="Subject"
+			name="subject"
 			data-id="subjectSelection"
 			type="text"
 		>
