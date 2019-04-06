@@ -40,7 +40,9 @@ export const chartData = (t, studentData, grades, exams) => {
 	const { chartToDisplay } = studentData
 
 	if (chartToDisplay === 'student') {
-		checkedGrades.push(...grades)
+		if (!_.isUndefined(grades)) {
+			checkedGrades.push(...grades)
+		}
 	} else if (chartToDisplay === 'subject') {
 		checkedGrades.push(...filterSubjectGrades(studentData, exams, grades))
 	}
