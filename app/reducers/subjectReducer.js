@@ -18,6 +18,7 @@ const applyClassList = (state = initialLoadState, action) => {
 	case UPDATE_CLASS_LIST: {
 		const openModal = !state.openModal
 		const subject = action.payload
+
 		return _.assign({}, state, {
 			openModal,
 			subject
@@ -25,6 +26,7 @@ const applyClassList = (state = initialLoadState, action) => {
 	}
 	case GET_SINGLE_SUBJECT: {
 		const subject = action.payload
+
 		return _.assign({}, state, { subject })
 	}
 

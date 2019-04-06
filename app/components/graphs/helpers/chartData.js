@@ -17,12 +17,14 @@ const computeGrades = (grades, { start, limit, step }) => {
 				grades,
 				(sum, current) => {
 					const temp = parseInt(current.grade, 10)
+
 					return temp === i ? sum + 1 : sum
 				},
 				0
 			)
 		)
 	}
+
 	return { computedGrades, chartLabels }
 }
 
@@ -65,6 +67,7 @@ const filterByClass = (allGrades, chartTitle, subjects, exams) => {
 		const temp = filterBySubject(filteredClass[i]._id, exams, allGrades)
 		filteredGrades.push(...temp)
 	}
+
 	return filteredGrades
 }
 
@@ -104,6 +107,7 @@ const gradesToDisplay = (
 export const chartData = (t, graphData, subjects, settings) => {
 	const filteredGrades = gradesToDisplay(graphData, subjects)
 	const { computedGrades, chartLabels } = computeGradeFormat(filteredGrades, settings)
+
 	return {
 		labels: chartLabels,
 		datasets: [

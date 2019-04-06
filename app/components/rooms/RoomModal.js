@@ -17,6 +17,7 @@ const RoomModal = ({ t, modalData, classModalData, actions }) => {
 		deleteAction: actions.deleteRoom,
 		closeAction: actions.roomModalDisplay
 	}
+
 	return (
 		<div>
 			{modalFrame(

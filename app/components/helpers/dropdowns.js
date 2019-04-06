@@ -22,6 +22,7 @@ export const getSubjectList = (examData, subjectData) => {
 			{data.name}
 		</DropdownItem>
 	))
+
 	return items
 }
 
@@ -32,6 +33,7 @@ export const getAllSubjects = subjects => {
 			{data.name}
 		</DropdownItem>
 	))
+
 	return items
 }
 

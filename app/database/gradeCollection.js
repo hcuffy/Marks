@@ -23,6 +23,7 @@ export const updateGradeData = (data, id) => {
 		err => {
 			if (err) {
 				updateFailed()
+
 				return err
 			}
 		}
@@ -32,8 +33,10 @@ export const addGradeData = data => {
 	gradeCollection.insert(data, (error, doc) => {
 		if (error) {
 			saveFailed()
+
 			return error
 		}
+
 		return doc
 	})
 }
@@ -43,8 +46,10 @@ export const getAllGrades = () =>
 		gradeCollection.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
+
 				return reject(err)
 			}
+
 			return resolve(docs)
 		})
 	)

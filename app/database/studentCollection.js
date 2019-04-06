@@ -26,6 +26,7 @@ export const addNewStudentData = data => {
 	studentCollection.insert(data, error => {
 		if (error) {
 			saveFailed()
+
 			return error
 		}
 		saveSuccessful()
@@ -37,8 +38,10 @@ export const getAllStudents = () =>
 		studentCollection.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
+
 				return reject(err)
 			}
+
 			return resolve(docs)
 		})
 	)
@@ -48,14 +51,17 @@ export const deleteStudent = data =>
 		studentCollection.remove({ _id: data }, err => {
 			if (err) {
 				deletionFailed()
+
 				return reject(err)
 			}
 			studentCollection.find({}, (error, docs) => {
 				if (err) {
 					deletionFailed()
+
 					return reject(err)
 				}
 				deletionSuccessful()
+
 				return resolve(docs)
 			})
 		})
@@ -76,6 +82,7 @@ const updateSingleStudent = previous => {
 		err => {
 			if (err) {
 				updateFailed()
+
 				return err
 			}
 			updateSuccessful()
@@ -89,8 +96,10 @@ export const updateStudentData = data =>
 		studentCollection.find({}, (error, docs) => {
 			if (error) {
 				updateFailed()
+
 				return reject(error)
 			}
+
 			return resolve(docs)
 		})
 	})

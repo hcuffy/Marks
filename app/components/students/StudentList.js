@@ -43,6 +43,7 @@ const generateStudentList = (students, actions) => {
 
 const StudentList = ({ t, students, actions }) => {
 	const listData = generateStudentList(students, actions)
+
 	return (
 		<div className={styles.student_list}>
 			<h4 className={styles.center_sub_header}>{t('student.list')}</h4>

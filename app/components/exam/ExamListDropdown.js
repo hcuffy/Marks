@@ -14,6 +14,7 @@ const ExamListDropdown = ({ t, classData, examData, subjectData, actions }) => {
 	const classOptions = getClassList(cleanedClassList)
 	const subjectOptions = getSubjectList(examData, subjectData)
 	const { selectedRoom, selectedSubject } = examData
+
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(

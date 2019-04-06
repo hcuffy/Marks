@@ -49,6 +49,7 @@ const generateFields = (t, chosenStudent, classdata) => {
 		)
 	)
 	const studentForm = dropDownFields(t, studentFields, chosenStudent, classdata)
+
 	return studentForm
 }
 

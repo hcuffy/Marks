@@ -15,6 +15,7 @@ const Classes = ({ t, classData, actions }) => {
 	const formInputs = createFormInputs(t, formLabels)
 
 	checkChange(classData, actions)
+
 	return (
 		<div>
 			{addRoomForm(t, formInputs, actions)}

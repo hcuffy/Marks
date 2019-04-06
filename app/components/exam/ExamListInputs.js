@@ -25,6 +25,7 @@ const ExamListInputs = ({ exams, subjectId, actions }) => {
 			</span>
 		</button>
 	))
+
 	return (
 		<div className={`list-group list-group-flush ${styles.exam_div}`}>{examList}</div>
 	)

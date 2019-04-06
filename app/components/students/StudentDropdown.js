@@ -33,6 +33,7 @@ const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
 		notifyIfEmpty(t, [], true, 'student')
 		openIt.subjectDropdown = false
 	}
+
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(

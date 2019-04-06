@@ -35,6 +35,7 @@ const getSubjects = async subjectData => {
 	if (!_.includes(selectedClass.subjects, subjectData.abbreviation)) {
 		return selectedClass
 	}
+
 	return true
 }
 
@@ -43,6 +44,7 @@ export const addSubjectData = async data => {
 
 	if (newRoom === true) {
 		entryAlreadyExists()
+
 		return -1
 	}
 
@@ -52,10 +54,12 @@ export const addSubjectData = async data => {
 	subjectCollection.insert(newSubject, (error, doc) => {
 		if (error) {
 			saveFailed()
+
 			return error
 		}
 		updateSubjectArray(newRoom)
 		saveSuccessful()
+
 		return doc
 	})
 }
@@ -65,8 +69,10 @@ export const getAllSubjects = () =>
 		subjectCollection.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
+
 				return reject(err)
 			}
+
 			return resolve(docs)
 		})
 	)
@@ -76,14 +82,17 @@ export const deleteSubject = data =>
 		subjectCollection.remove({ _id: data.id }, err => {
 			if (err) {
 				deletionFailed()
+
 				return reject(err)
 			}
 			subjectCollection.find({}, (error, docs) => {
 				if (err) {
 					deletionFailed()
+
 					return reject(err)
 				}
 				deletionSuccessful()
+
 				return resolve(docs)
 			})
 		})
@@ -94,6 +103,7 @@ const checkSubjectChanges = (prev, curr) => {
 	if (_.isEqual(prev.name, name) && _.isEqual(prev.abbreviation, abbreviation)) {
 		return false
 	}
+
 	return true
 }
 
@@ -123,6 +133,7 @@ const updateSinlgeSubject = (previous, current) => {
 			err => {
 				if (err) {
 					updateFailed()
+
 					return err
 				}
 				updateSuccessful()
@@ -136,6 +147,7 @@ export const updateSubjectData = data =>
 		subjectCollection.find({ _id: data.subjectId }, (err, entry) => {
 			if (err) {
 				updateFailed()
+
 				return err
 			}
 			if (entry.length > 0) {
@@ -143,8 +155,10 @@ export const updateSubjectData = data =>
 				subjectCollection.find({ _id: data.subjectId }, (error, docs) => {
 					if (error) {
 						updateFailed()
+
 						return reject(error)
 					}
+
 					return resolve(docs)
 				})
 			}
@@ -155,6 +169,7 @@ export const addExamToSubjectArray = ({ subjectId, title }) => {
 	subjectCollection.find({ _id: subjectId }, (err, doc) => {
 		if (err) {
 			unableToRetrieve()
+
 			return err
 		}
 		if (doc.length <= 0) {
@@ -169,6 +184,7 @@ export const addExamToSubjectArray = ({ subjectId, title }) => {
 				error => {
 					if (error) {
 						updateFailed()
+
 						return error
 					}
 				}
@@ -181,6 +197,7 @@ export const updateSubjecTestsArray = (subjectId, examTitle) =>
 		subjectCollection.find({ _id: subjectId }, (err, entry) => {
 			if (err) {
 				updateFailed()
+
 				return err
 			}
 			if (entry.length > 0) {
@@ -191,8 +208,10 @@ export const updateSubjecTestsArray = (subjectId, examTitle) =>
 					(error, docs) => {
 						if (error) {
 							updateFailed()
+
 							return reject(error)
 						}
+
 						return resolve(docs)
 					}
 				)

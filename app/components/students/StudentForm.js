@@ -33,6 +33,7 @@ const StudentForm = ({ t, studentData, classData, actions }) => {
 	))
 
 	const completeStudentForm = studentForm(t, selectOption, formFields, actions)
+
 	return <div className={styles.student_div}>{completeStudentForm}</div>
 }
 const mapStateToProps = state => ({

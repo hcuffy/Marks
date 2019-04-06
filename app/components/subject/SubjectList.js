@@ -38,6 +38,7 @@ const listOfButtons = (filteredData, action) =>
 const SubjectList = ({ t, selectedSubject, subjectData, actions }) => {
 	const filteredData = filterSubjects(subjectData.data, selectedSubject)
 	const subjectList = listOfButtons(filteredData, actions.subjectModalDisplay)
+
 	return (
 		<div className={styles.list_div}>
 			<SubjectModal t={t} filteredData={filteredData} />

@@ -23,6 +23,7 @@ const tableOptions = t => ({
 
 const GradeTable = ({ t, gradeData, students, actions }) => {
 	const data = gradeInfo(gradeData, students)
+
 	return (
 		<div className={styles.div_wrapper}>
 			<h4 className={styles.center_header}>{t('grades.gradesTitle')}</h4>

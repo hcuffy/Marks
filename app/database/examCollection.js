@@ -27,10 +27,12 @@ export const addExamData = data => {
 	examCollection.find({ name: data.title }, (err, entry) => {
 		if (err) {
 			saveFailed()
+
 			return err
 		}
 		if (entry.length > 0) {
 			entryAlreadyExists()
+
 			return
 		}
 		const newData = data
@@ -38,10 +40,12 @@ export const addExamData = data => {
 		examCollection.insert(newData, (error, doc) => {
 			if (error) {
 				saveFailed()
+
 				return error
 			}
 			saveSuccessful()
 			addExamToSubjectArray(newData)
+
 			return doc
 		})
 	})
@@ -52,8 +56,10 @@ export const getExamData = () =>
 		examCollection.find({}, (err, entry) => {
 			if (err) {
 				unableToRetrieve()
+
 				return reject(err)
 			}
+
 			return resolve(entry)
 		})
 	)
@@ -80,6 +86,7 @@ export const deleteExam = data =>
 					return reject(err)
 				}
 				deletionSuccessful()
+
 				return resolve(docs)
 			})
 		})
@@ -101,6 +108,7 @@ const updateSinlgeExam = (previous, current) => {
 		err => {
 			if (err) {
 				updateFailed()
+
 				return err
 			}
 			updateSuccessful()
@@ -124,6 +132,7 @@ export const updateExamData = data =>
 					if (error) {
 						return reject(error)
 					}
+
 					return resolve(docs)
 				})
 			}

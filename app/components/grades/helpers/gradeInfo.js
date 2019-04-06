@@ -9,6 +9,7 @@ const checkGradeId = grade => {
 	if (_.isUndefined(grade)) {
 		return null
 	}
+
 	return grade._id
 }
 const getGradeInfo = (student, gradeData) => {
@@ -43,6 +44,7 @@ const getAverage = grades => {
 		grades,
 		(sum, grade) => {
 			const { score, weight } = grade
+
 			return sum + parseInt(score, 10) * parseInt(weight, 10)
 		},
 		0
@@ -67,5 +69,6 @@ export const gradeInfo = (gradeData, students) => {
 	if (_.isNaN(data[0].average)) {
 		return []
 	}
+
 	return data
 }

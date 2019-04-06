@@ -28,6 +28,7 @@
         "code": 90
       }
     ],
+    "newline-before-return": "error",
     "no-console": "off",
     "no-use-before-define": "off",
     "no-multi-assign": "off",

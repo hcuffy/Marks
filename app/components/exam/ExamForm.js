@@ -36,6 +36,7 @@ const ExamForm = ({ t, classData, subjectData, examData, actions }) => {
 	const classOption = getClassList(cleanedClassList)
 	const subjectOptions = getSubjectList(subjectData, examData, cleanedClassList)
 	const completeExamForm = examForm(t, subjectOptions, classOption, actions)
+
 	return <div>{completeExamForm}</div>
 }
 
