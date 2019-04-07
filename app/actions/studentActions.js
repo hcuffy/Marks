@@ -120,10 +120,9 @@ export const deleteSingleStudent = event => async dispatch => {
 		type: GET_SINGLE_STUDENT,
 		payload: studentId
 	})
-	if (students.length > 0) {
-		dispatch({
-			type: GET_ALL_STUDENTS,
-			payload: { students }
-		})
-	}
+
+	dispatch({
+		type: GET_ALL_STUDENTS,
+		payload: { students }
+	})
 }
