@@ -35,7 +35,7 @@ export const addNewSubject = event => async dispatch => {
 
 	event.target.reset()
 	const data = await addSubjectData(formData)
-	console.log(data)
+
 	dispatch({
 		type: ADD_NEW_SUBJECT,
 		payload: { data }

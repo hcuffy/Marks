@@ -53,9 +53,11 @@ const getAverage = grades => {
 
 export const gradeInfo = (gradeData, students) => {
 	const data = []
+
 	if (_.isUndefined(gradeData) || _.isUndefined(students)) {
 		return []
 	}
+
 	for (let i = 0; i < students.length; i += 1) {
 		const personalData = getPersonalInfo(students[i])
 		const gradesData = getGradeInfo(students[i], gradeData)
@@ -67,5 +69,6 @@ export const gradeInfo = (gradeData, students) => {
 	if (_.isNaN(data[0].average)) {
 		return []
 	}
+
 	return data
 }
