@@ -24,7 +24,7 @@ export const openClassList = event => dispatch => {
 	})
 }
 
-export const addNewSubject = event => dispatch => {
+export const addNewSubject = event => async dispatch => {
 	event.preventDefault()
 
 	const formData = {
@@ -34,21 +34,21 @@ export const addNewSubject = event => dispatch => {
 	}
 
 	event.target.reset()
-	addSubjectData(formData)
+	const data = await addSubjectData(formData)
+	console.log(data)
 	dispatch({
 		type: ADD_NEW_SUBJECT,
-		payload: {}
+		payload: { data }
 	})
 }
 
 export const getSubjectData = () => async dispatch => {
 	const data = await getAllSubjects()
-	if (data.length !== 0) {
-		dispatch({
-			type: GET_SUBJECT_LIST,
-			payload: { data }
-		})
-	}
+
+	dispatch({
+		type: GET_SUBJECT_LIST,
+		payload: { data }
+	})
 }
 
 export const showSubject = event => dispatch => {
