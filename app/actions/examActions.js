@@ -23,6 +23,7 @@ export const addNewExam = event => dispatch => {
 		weight: event.target.weight.value
 	}
 	addExamData(examData)
+	event.target.reset()
 	dispatch({
 		type: ADD_NEW_EXAM,
 		payload: {}
