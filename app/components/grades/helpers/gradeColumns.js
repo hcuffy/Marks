@@ -14,7 +14,7 @@ const customCell = (props, actions) => (
 		data-weight={props.value.weight}
 		data-id={props.value.gradeId}
 		type="number"
-		onChange={actions.updateGrade}
+		onBlur={actions.updateGrade}
 	/>
 )
 
