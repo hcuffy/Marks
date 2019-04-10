@@ -66,7 +66,7 @@ export const gradeInfo = (gradeData, students) => {
 
 		data.push(studentData)
 	}
-	if (_.isNaN(data[0].average)) {
+	if (_.isUndefined(data[0]) || _.isNaN(data[0].average)) {
 		return []
 	}
 
