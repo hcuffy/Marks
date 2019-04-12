@@ -1,7 +1,7 @@
 {
   "name": "Marks",
   "productName": "Marks",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "This app gives teachers the ability to keep track of marks",
   "scripts": {
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",

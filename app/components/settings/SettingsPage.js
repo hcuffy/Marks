@@ -2,8 +2,6 @@ import React from 'react'
 import { withNamespaces } from 'react-i18next'
 import Address from './Address'
 import GradeFormat from './GradeFormat'
-import { supportTheApp } from '../../utils/externalLinksUtil'
-import { supportBtn } from './helpers/supportHelper'
 import styles from './styles/settings.css'
 
 const Settings = ({ t }) => (
@@ -16,7 +14,6 @@ const Settings = ({ t }) => (
 			<GradeFormat t={t} />
 		</div>
 		<div />
-		{supportBtn(t, supportTheApp)}
 	</div>
 )
 
