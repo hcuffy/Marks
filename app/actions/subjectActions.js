@@ -65,19 +65,17 @@ export const deleteSingleSubject = event => async dispatch => {
 		id: event.target.getAttribute('data-id')
 	}
 
-	const subjectDoc = await deleteSubject(subjectData)
+	const data = await deleteSubject(subjectData)
 
 	dispatch({
 		type: OPEN_CLOSE_SUBJECT_MODAL,
 		payload: { id: subjectData.subjectId }
 	})
 
-	if (subjectDoc.length > 0) {
-		dispatch({
-			type: GET_SINGLE_SUBJECT,
-			payload: { subject: subjectDoc[0].room }
-		})
-	}
+	dispatch({
+		type: GET_SUBJECT_LIST,
+		payload: { data }
+	})
 }
 
 export const updateSubject = event => async dispatch => {
@@ -100,7 +98,7 @@ export const updateSubject = event => async dispatch => {
 	if (subjectDoc.length > 0) {
 		dispatch({
 			type: GET_SINGLE_SUBJECT,
-			payload: { subject: subjectDoc[0].room }
+			payload: subjectDoc[0].room
 		})
 	}
 	dispatch({

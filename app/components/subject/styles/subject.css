@@ -36,6 +36,7 @@
 .modal_form_div {
   white-space: nowrap;
   display: inline-block;
+  width: 320px;
 }
 
 .modal_form_label {

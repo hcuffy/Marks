@@ -26,7 +26,7 @@ const StudentModal = ({ t, students, classdata, actions }) => {
 		<div>
 			{modalFrame(
 				t,
-				students.studentModal,
+				studentModal,
 				actions.updateStudent,
 				studentFields,
 				hiddenInput,

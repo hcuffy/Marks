@@ -23,6 +23,7 @@ const Subjects = ({ t, classData, classListData, actions }) => {
 			{data.name}
 		</DropdownItem>
 	))
+
 	return (
 		<div className={styles.main_div}>
 			<div className={styles.subject_left}>
