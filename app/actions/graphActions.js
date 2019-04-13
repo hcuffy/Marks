@@ -63,12 +63,11 @@ export const displayExamGraph = event => dispatch => {
 
 export const getAllGradeData = () => async dispatch => {
 	const grades = await getAllGrades()
-	if (grades.length !== 0) {
-		dispatch({
-			type: GET_ALL_GRADES,
-			payload: { grades }
-		})
-	}
+
+	dispatch({
+		type: GET_ALL_GRADES,
+		payload: { grades }
+	})
 }
 
 export const getGraphExamData = () => async dispatch => {

@@ -3,13 +3,13 @@ import styles from '../styles/exam.css'
 
 const _ = require('lodash')
 
-const examTitle = chosenExam => (
+const examTitle = (t, chosenExam) => (
 	<div className={styles.form_div_edit}>
 		<label
 			className={styles.form_label_edit}
 			htmlFor={`${_.invert(chosenExam)[chosenExam.title]}_Id`}
 		>
-			{_.invert(chosenExam)[chosenExam.title]}:
+			{t(`exam.${_.invert(chosenExam)[chosenExam.title]}`)}:
 		</label>
 		<input
 			name={_.invert(chosenExam)[chosenExam.title]}
@@ -17,17 +17,18 @@ const examTitle = chosenExam => (
 			data-id={`${_.invert(chosenExam)[chosenExam.title]}_Id`}
 			type="text"
 			defaultValue={chosenExam.title}
+			required
 		/>
 	</div>
 )
 
-const examWieght = chosenExam => (
+const examWieght = (t, chosenExam) => (
 	<div className={styles.form_div_edit}>
 		<label
 			className={styles.form_label_edit}
 			htmlFor={`${_.invert(chosenExam)[chosenExam.weight]}_Id`}
 		>
-			{_.invert(chosenExam)[chosenExam.weight]}:
+			{t(`general.${_.invert(chosenExam)[chosenExam.weight]}`)}:
 		</label>
 		<input
 			name={_.invert(chosenExam)[chosenExam.weight]}
@@ -38,17 +39,18 @@ const examWieght = chosenExam => (
 			max="4"
 			step="0.5"
 			defaultValue={chosenExam.weight}
+			required
 		/>
 	</div>
 )
 
-const examDate = chosenExam => (
+const examDate = (t, chosenExam) => (
 	<div className={styles.form_div_edit}>
 		<label
 			className={styles.form_label_edit}
 			htmlFor={`${_.invert(chosenExam)[chosenExam.date]}_Id`}
 		>
-			{_.invert(chosenExam)[chosenExam.date]}:
+			{t(`general.${_.invert(chosenExam)[chosenExam.date]}`)}:
 		</label>
 		<input
 			name={_.invert(chosenExam)[chosenExam.date]}
@@ -56,16 +58,17 @@ const examDate = chosenExam => (
 			data-id={`${_.invert(chosenExam)[chosenExam.date]}_Id`}
 			type="date"
 			defaultValue={chosenExam.date}
+			required
 		/>
 	</div>
 )
 
-const generateFields = exam => {
+const generateFields = (t, exam) => {
 	const examFields = (
 		<div>
-			{examTitle(exam)}
-			{examWieght(exam)}
-			{examDate(exam)}
+			{examTitle(t, exam)}
+			{examWieght(t, exam)}
+			{examDate(t, exam)}
 		</div>
 	)
 

@@ -10,7 +10,7 @@ import generateFields from './helpers/modalHelper'
 const ExamModal = ({ t, examData, actions }) => {
 	const { examModal, examId, exams, subjectId } = examData
 	const requiredExam = cleanAndFilterData(exams, { id: examId })
-	const examFormData = generateFields(requiredExam)
+	const examFormData = generateFields(t, requiredExam)
 	const hiddenInputs = (
 		<div>
 			<input type="hidden" name="subjectId" data-id={subjectId} />
