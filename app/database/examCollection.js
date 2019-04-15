@@ -3,11 +3,11 @@ import {
 	saveFailed,
 	entryAlreadyExists,
 	unableToRetrieve,
-	deletionSuccessful,
 	updateFailed,
 	updateSuccessful
 } from '../notifications/general'
 import { addExamToSubjectArray, updateSubjecTestsArray } from './subjectCollection'
+import { deleteGradesByExamId } from './gradeCollection'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -67,20 +67,20 @@ const updateTestsArr = (examId, subjectId) => {
 		updateSubjecTestsArray(subjectId, examTitle)
 	})
 }
-export const deleteExam = data =>
+export const deleteExam = ({ examId, subjectId }) =>
 	new Promise((resolve, reject) => {
-		updateTestsArr(data.examId, data.subjectId)
-		examCollection.remove({ _id: data.examId }, err => {
+		updateTestsArr(examId, subjectId)
+		examCollection.remove({ _id: examId }, err => {
 			if (err) {
 				return reject(err)
 			}
 
-			examCollection.find({}, (error, docs) => {
+			examCollection.find({}, (error, exams) => {
 				if (err) {
 					return reject(err)
 				}
-				deletionSuccessful()
-				return resolve(docs)
+				deleteGradesByExamId(examId)
+				return resolve(exams)
 			})
 		})
 	})

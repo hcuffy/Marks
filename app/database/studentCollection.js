@@ -4,13 +4,10 @@ import {
 	saveFailed,
 	unableToRetrieve,
 	deletionFailed,
-	deletionSuccessful,
 	updateFailed,
 	updateSuccessful
 } from '../notifications/general'
-import { deleteAllStudentGrade } from './gradeCollection'
-
-// import { deleteAllStudentGrade } from "./gradeCollection"
+import { deleteGradesByStudentId } from './gradeCollection'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -57,7 +54,7 @@ export const deleteStudent = data =>
 				if (err) {
 					return reject(err)
 				}
-				deleteAllStudentGrade(data)
+				deleteGradesByStudentId(data)
 
 				return resolve(students)
 			})
