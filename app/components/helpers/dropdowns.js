@@ -7,7 +7,7 @@ const _ = require('lodash')
 
 export const getClassList = classlist => {
 	const items = classlist.map((data, idx) => (
-		<DropdownItem key={idx} name={data.name}>
+		<DropdownItem key={idx} name={data.name} data-check="classDropdown">
 			{data.name}
 		</DropdownItem>
 	))
@@ -18,7 +18,12 @@ export const getClassList = classlist => {
 export const getSubjectList = (examData, subjectData) => {
 	const selectedSubjects = _.filter(subjectData.data, ['room', examData.selectedRoom])
 	const items = selectedSubjects.map((data, idx) => (
-		<DropdownItem key={idx} name={data.name} data-id={data._id}>
+		<DropdownItem
+			key={idx}
+			name={data.name}
+			data-id={data._id}
+			data-check="subjectDropdown"
+		>
 			{data.name}
 		</DropdownItem>
 	))
@@ -61,10 +66,10 @@ export const getStudentList = allStudents => {
 	return items
 }
 
-export const createDropdown = (styling, openIt, action, label, options) => (
+export const createDropdown = (styling, openIt, action, label, options, dataId) => (
 	<div className={styling}>
 		<Dropdown isOpen={openIt} toggle={action}>
-			<DropdownToggle className={styles.dropdown_color} caret>
+			<DropdownToggle data-check={dataId} className={styles.dropdown_color} caret>
 				{label}
 			</DropdownToggle>
 			<DropdownMenu>{options}</DropdownMenu>
