@@ -38,6 +38,17 @@ const getSubjects = async subjectData => {
 	return true
 }
 
+export const getAllSubjects = () =>
+	new Promise((resolve, reject) =>
+		subjectCollection.find({}, (err, docs) => {
+			if (err) {
+				unableToRetrieve()
+				return reject(err)
+			}
+			return resolve(docs)
+		})
+	)
+
 export const addSubjectData = async data => {
 	const newRoom = await getSubjects(data)
 
@@ -49,27 +60,17 @@ export const addSubjectData = async data => {
 	const newSubject = _.merge(data, { tests: [], classroomId: newRoom._id })
 	newRoom.subjects.push(data.abbreviation)
 
-	subjectCollection.insert(newSubject, (error, doc) => {
+	subjectCollection.insert(newSubject, error => {
 		if (error) {
 			saveFailed()
 			return error
 		}
 		updateSubjectArray(newRoom)
 		saveSuccessful()
-		return doc
 	})
+	const allSubjects = await getAllSubjects()
+	return allSubjects
 }
-
-export const getAllSubjects = () =>
-	new Promise((resolve, reject) =>
-		subjectCollection.find({}, (err, docs) => {
-			if (err) {
-				unableToRetrieve()
-				return reject(err)
-			}
-			return resolve(docs)
-		})
-	)
 
 export const deleteSubject = data =>
 	new Promise((resolve, reject) =>

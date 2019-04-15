@@ -9,12 +9,14 @@ import generateFields from './helpers/modalHelper'
 
 const StudentModal = ({ t, students, classdata, actions }) => {
 	const { studentId, studentModal } = students
+
 	const requiredStudent = cleanAndFilterData(students.students, {
-		id: students.studentId
+		id: studentId
 	})
 	const studentFields = generateFields(t, requiredStudent, classdata)
 
 	const hiddenInput = <input type="hidden" name="studentId" data-id={studentId} />
+
 	const footerData = {
 		dataId: studentId,
 		nameId: null,
@@ -26,7 +28,7 @@ const StudentModal = ({ t, students, classdata, actions }) => {
 		<div>
 			{modalFrame(
 				t,
-				students.studentModal,
+				studentModal,
 				actions.updateStudent,
 				studentFields,
 				hiddenInput,

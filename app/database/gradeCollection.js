@@ -55,9 +55,9 @@ export const getAllGrades = () =>
 		})
 	)
 
-export const deleteAllStudentGrade = data =>
+export const deleteAllStudentGrade = id =>
 	new Promise((resolve, reject) =>
-		gradeCollection.remove({ _id: data }, { multi: true }, err => {
+		gradeCollection.remove({ studentId: id }, { multi: true }, err => {
 			if (err) {
 				deletionFailed()
 				return reject(err)

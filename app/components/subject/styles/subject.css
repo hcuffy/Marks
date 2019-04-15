@@ -36,6 +36,7 @@
 .modal_form_div {
   white-space: nowrap;
   display: inline-block;
+  width: 320px;
 }
 
 .modal_form_label {
@@ -62,7 +63,7 @@
   right: 20px;
   scrollbar-width: none;
   overflow-x: hidden;
-  padding-right: 60px;
+  padding-right: 30px;
 }
 
 .subject_header {

@@ -10,10 +10,7 @@ export const ENGLISH_LABELS = {
 	close: 'Close',
 	front: 'Reopen',
 	help: 'Help',
-	credits: 'Credits',
-	report: 'Report an issue',
-	propose: 'Propose a feature',
-	buy: 'Support the App'
+	credits: 'Credits'
 }
 
 export const GERMAN_LABELS = {
@@ -28,8 +25,5 @@ export const GERMAN_LABELS = {
 	close: 'Schließen',
 	front: 'Wieder Öffnen',
 	help: 'Hilfe',
-	credits: 'Zuschreibung',
-	report: 'Problem melden',
-	propose: 'Vorschlag machen',
-	buy: 'Geld spenden'
+	credits: 'Zuschreibung'
 }

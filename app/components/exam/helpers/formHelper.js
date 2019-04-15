@@ -44,18 +44,28 @@ const subjectInput = (t, options) => (
 	</div>
 )
 
-const dateInput = t => (
-	<div className={`${styles.form_div} form-group`}>
-		<label className={styles.form_label} htmlFor="dateIn">
-			{t('general.date')}:
-		</label>
-		<input className="form-control" name="date" type="date" data-id="dateIn" />
-	</div>
-)
+const dateInput = t => {
+	const defaultDate = new Date().toISOString().substring(0, 10)
+
+	return (
+		<div className={`${styles.form_div} form-group`}>
+			<label className={styles.form_label} htmlFor="dateIn">
+				{t('general.date')}:
+			</label>
+			<input
+				className="form-control"
+				name="date"
+				type="date"
+				data-id="dateIn"
+				defaultValue={defaultDate}
+			/>
+		</div>
+	)
+}
 const numberInput = t => (
 	<div className={`${styles.form_div} form-group`}>
 		<label className={styles.form_label} htmlFor="number-input">
-			{t('general.number')}:
+			{t('general.weight')}:
 		</label>
 		<input
 			className={`${styles.weight_input} form-control`}

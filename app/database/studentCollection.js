@@ -8,6 +8,7 @@ import {
 	updateFailed,
 	updateSuccessful
 } from '../notifications/general'
+import { deleteAllStudentGrade } from './gradeCollection'
 
 // import { deleteAllStudentGrade } from "./gradeCollection"
 
@@ -52,12 +53,13 @@ export const deleteStudent = data =>
 				deletionFailed()
 				return reject(err)
 			}
-			studentCollection.find({}, (error, docs) => {
+			studentCollection.find({}, (error, students) => {
 				if (err) {
 					return reject(err)
 				}
-				deletionSuccessful()
-				return resolve(docs)
+				deleteAllStudentGrade(data)
+
+				return resolve(students)
 			})
 		})
 	)

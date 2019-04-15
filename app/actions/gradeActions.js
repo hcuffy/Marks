@@ -42,6 +42,7 @@ export const displayGradeData = event => async dispatch => {
 
 	const exams = await filterExams(subjectData)
 	const grades = await filterGrades(exams)
+
 	dispatch({
 		type: DISPLAY_EXAM_TABLE,
 		payload: { exams, grades, subjectData }
