@@ -1,9 +1,8 @@
 /* eslint-disable max-len */
 // @flow
-import { app, Menu, shell, BrowserWindow } from 'electron'
+import { app, Menu, BrowserWindow } from 'electron'
 import { createWindow } from './main.dev'
 import { customMenuTranslation } from './utils/translationUtil'
-import { SUPPORT_APP } from './constants/externalLinks'
 
 let newPanelWindow = null
 
@@ -168,28 +167,6 @@ export default class MenuBuilder {
 			label: customMenuTranslation(locale, 'help'),
 			submenu: [
 				{
-					label: customMenuTranslation(locale, 'buy'),
-					click() {
-						shell.openExternal(SUPPORT_APP)
-					}
-				},
-				{
-					label: customMenuTranslation(locale, 'report'),
-					click() {
-						shell.openExternal(
-							'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
-						)
-					}
-				},
-				{
-					label: customMenuTranslation(locale, 'propose'),
-					click() {
-						shell.openExternal(
-							'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
-						)
-					}
-				},
-				{
 					label: customMenuTranslation(locale, 'credits'),
 					click() {
 						openAttributionWindow()
@@ -265,28 +242,6 @@ export default class MenuBuilder {
 			{
 				label: customMenuTranslation(locale, 'hide'),
 				submenu: [
-					{
-						label: customMenuTranslation(locale, 'buy'),
-						click() {
-							shell.openExternal(SUPPORT_APP)
-						}
-					},
-					{
-						label: customMenuTranslation(locale, 'report'),
-						click() {
-							shell.openExternal(
-								'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
-							)
-						}
-					},
-					{
-						label: customMenuTranslation(locale, 'propose'),
-						click() {
-							shell.openExternal(
-								'https://github.com/hcuffy/My-Marks/blob/master/docs/Issues_and_requests.md'
-							)
-						}
-					},
 					{
 						label: customMenuTranslation(locale, 'credits'),
 						click() {

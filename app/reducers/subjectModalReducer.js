@@ -12,6 +12,7 @@ const applySubjectModal = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case OPEN_CLOSE_SUBJECT_MODAL: {
 		const { id } = action.payload
+
 		return _.assign({}, state, {
 			id,
 			showSubjectModal

@@ -47,7 +47,7 @@ export const displayExamGraph = event => dispatch => {
 	if (event.target.type !== 'button') {
 		return
 	}
-	console.log(event.target)
+
 	const data = {
 		examId: event.target.getAttribute('data-id'),
 		chartTitle: event.target.innerText,
@@ -63,12 +63,11 @@ export const displayExamGraph = event => dispatch => {
 
 export const getAllGradeData = () => async dispatch => {
 	const grades = await getAllGrades()
-	if (grades.length !== 0) {
-		dispatch({
-			type: GET_ALL_GRADES,
-			payload: { grades }
-		})
-	}
+
+	dispatch({
+		type: GET_ALL_GRADES,
+		payload: { grades }
+	})
 }
 
 export const getGraphExamData = () => async dispatch => {

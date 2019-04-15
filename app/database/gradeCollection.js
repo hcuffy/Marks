@@ -1,4 +1,10 @@
-import { saveFailed, unableToRetrieve, updateFailed } from '../notifications/general'
+import {
+	saveFailed,
+	unableToRetrieve,
+	updateFailed,
+	deletionFailed,
+	deletionSuccessful
+} from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -46,5 +52,22 @@ export const getAllGrades = () =>
 				return reject(err)
 			}
 			return resolve(docs)
+		})
+	)
+
+export const deleteAllStudentGrade = id =>
+	new Promise((resolve, reject) =>
+		gradeCollection.remove({ studentId: id }, { multi: true }, err => {
+			if (err) {
+				deletionFailed()
+				return reject(err)
+			}
+			gradeCollection.find({}, (error, docs) => {
+				if (err) {
+					return reject(err)
+				}
+				deletionSuccessful()
+				return resolve(docs)
+			})
 		})
 	)

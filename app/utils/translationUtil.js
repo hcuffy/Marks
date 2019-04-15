@@ -1,6 +1,8 @@
 import i18next from 'i18next'
 import { ENGLISH_LABELS, GERMAN_LABELS } from '../constants/menuLabels'
 
+export const customTranslate = translate => i18next.t(translate)
+
 const _ = require('lodash')
 
 export const resolveLabel = (current, translated) =>

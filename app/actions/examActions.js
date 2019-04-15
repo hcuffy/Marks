@@ -23,6 +23,7 @@ export const addNewExam = event => dispatch => {
 		weight: event.target.weight.value
 	}
 	addExamData(examData)
+	event.target.reset()
 	dispatch({
 		type: ADD_NEW_EXAM,
 		payload: {}
@@ -48,7 +49,7 @@ export const openClassDropdownList = event => dispatch => {
 export const displayExamData = event => async dispatch => {
 	const subjectId = event.target.getAttribute('data-id')
 	const selectedSubject = event.target.innerText
-	console.log(selectedSubject)
+
 	const exams = await getExamData()
 	if (exams.length !== 0) {
 		dispatch({

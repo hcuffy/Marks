@@ -21,3 +21,12 @@
 .selectedButton {
   color: #1dbb90;
 }
+
+.version {
+  color: #fff;
+  font-size: 10px;
+  background-color: none;
+  position: absolute;
+  bottom: 50px;
+  left: 25px;
+}
