@@ -8,7 +8,7 @@ import {
 } from '../constants/actionTypes'
 import {
 	addExamData,
-	getExamData,
+	getAllExams,
 	deleteExam,
 	updateExamData
 } from '../database/examCollection'
@@ -51,7 +51,7 @@ export const displayExamData = event => async dispatch => {
 	const subjectId = event.target.getAttribute('data-id')
 	const selectedSubject = event.target.innerText
 
-	const exams = await getExamData()
+	const exams = await getAllExams()
 	if (exams.length !== 0) {
 		dispatch({
 			type: DISPLAY_SUBJECT_LIST,

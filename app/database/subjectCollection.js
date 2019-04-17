@@ -14,6 +14,7 @@ import {
 	updateSubjectArray,
 	updateClassSubjectArray
 } from './classroomCollection'
+import { getAllExams, deleteExam } from './examsCollection'
 
 const _ = require('lodash')
 const Datastore = require('nedb')
@@ -72,19 +73,22 @@ export const addSubjectData = async data => {
 	return allSubjects
 }
 
-export const deleteSubject = data =>
+const filteredExams = async id => _.filter(await getAllExams(), ['subjectId', id])
+
+export const deleteSubject = ({ id }) =>
 	new Promise((resolve, reject) =>
-		subjectCollection.remove({ _id: data.id }, err => {
+		subjectCollection.remove({ _id: id }, err => {
 			if (err) {
 				deletionFailed()
 				return reject(err)
 			}
+			const exams = filteredExams(id)
 			subjectCollection.find({}, (error, docs) => {
 				if (err) {
 					deletionFailed()
 					return reject(err)
 				}
-				deletionSuccessful()
+
 				return resolve(docs)
 			})
 		})

@@ -47,7 +47,7 @@ export const addExamData = data => {
 	})
 }
 
-export const getExamData = () =>
+export const getAllExams = () =>
 	new Promise((resolve, reject) =>
 		examCollection.find({}, (err, entry) => {
 			if (err) {

@@ -3,7 +3,7 @@ import {
 	OPEN_CLASS_LIST,
 	UPDATE_EXAM_TABLE
 } from '../constants/actionTypes'
-import { getExamData } from '../database/examCollection'
+import { getAllExams } from '../database/examCollection'
 import { getAllGrades, addGradeData, updateGradeData } from '../database/gradeCollection'
 
 const _ = require('lodash')
@@ -32,7 +32,7 @@ const filterGrades = async exams => {
 }
 
 const filterExams = async subjectData =>
-	_.filter(await getExamData(), ['subjectId', subjectData.subjectId])
+	_.filter(await getAllExams(), ['subjectId', subjectData.subjectId])
 
 export const displayGradeData = event => async dispatch => {
 	const subjectDropdown = event.target.getAttribute('data-check')
