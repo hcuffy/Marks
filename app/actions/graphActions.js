@@ -9,10 +9,9 @@ import { getAllGrades } from '../database/gradeCollection'
 import { getAllExams } from '../database/examCollection'
 
 export const openGraphClassList = event => dispatch => {
-	if (event.target.type !== 'button') {
+	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
-
 	const data = {
 		classroom: event.target.innerText,
 		chartTitle: event.target.innerText,
@@ -26,7 +25,7 @@ export const openGraphClassList = event => dispatch => {
 }
 
 export const displaySubjectGraph = event => dispatch => {
-	if (event.target.type !== 'button') {
+	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
 		return
 	}
 
@@ -44,7 +43,7 @@ export const displaySubjectGraph = event => dispatch => {
 }
 
 export const displayExamGraph = event => dispatch => {
-	if (event.target.type !== 'button') {
+	if (event.target.getAttribute('data-check') !== 'examDropdown') {
 		return
 	}
 

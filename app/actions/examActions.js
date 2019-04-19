@@ -40,6 +40,9 @@ export const getSelectedSubject = event => dispatch => {
 }
 
 export const openClassDropdownList = event => dispatch => {
+	if (event.target.getAttribute('data-check') !== 'classDropdown') {
+		return
+	}
 	const classroom = event.target.innerText
 	dispatch({
 		type: UPDATE_DROPDOWN_CLASS_LIST,
@@ -48,6 +51,10 @@ export const openClassDropdownList = event => dispatch => {
 }
 
 export const displayExamData = event => async dispatch => {
+	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
+		return
+	}
+
 	const subjectId = event.target.getAttribute('data-id')
 	const selectedSubject = event.target.innerText
 

@@ -42,21 +42,24 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 				classroomDropdown,
 				actions.openGraphClassList,
 				resolveLabel(classroom, t('general.selectClass')),
-				classOptions
+				classOptions,
+				'classDropdown'
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				openSubList,
 				actions.displaySubjectGraph,
 				resolveLabel(subjectName, t('general.selectSubject')),
-				subjectOptions
+				subjectOptions,
+				'subjectDropdown'
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				openExamList,
 				actions.displayExamGraph,
 				resolveLabel(examName, t('general.selectExam')),
-				examOptions
+				examOptions,
+				'examDropdown'
 			)}
 			{PDFbutton(
 				styles.pdf_btn,

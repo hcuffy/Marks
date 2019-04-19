@@ -40,14 +40,16 @@ const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
 				studentDropdown,
 				actions.openStudentGraph,
 				resolveLabel(studentGraphName, t('general.selectStudent')),
-				studentOptions
+				studentOptions,
+				'studentDropdown'
 			)}
 			{createDropdown(
 				styles.dropdown_two,
 				openIt.subjectDropdown,
 				actions.openStudenSubjectGraph,
 				resolveLabel(subjectGraphName, t('general.selectSubject')),
-				subjectOptions
+				subjectOptions,
+				'subjectDropdown'
 			)}
 			{PDFbutton(
 				styles.pdf_btn,

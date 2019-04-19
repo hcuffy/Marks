@@ -9,9 +9,7 @@ import { getAllGrades, addGradeData, updateGradeData } from '../database/gradeCo
 const _ = require('lodash')
 
 export const openGradeClassList = event => dispatch => {
-	const classDropdown = event.target.getAttribute('data-check')
-
-	if (classDropdown !== 'classDropdown') {
+	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
 
@@ -35,9 +33,7 @@ const filterExams = async subjectData =>
 	_.filter(await getAllExams(), ['subjectId', subjectData.subjectId])
 
 export const displayGradeData = event => async dispatch => {
-	const subjectDropdown = event.target.getAttribute('data-check')
-
-	if (subjectDropdown !== 'subjectDropdown') {
+	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
 		return
 	}
 
