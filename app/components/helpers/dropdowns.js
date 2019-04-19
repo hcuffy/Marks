@@ -33,7 +33,12 @@ export const getSubjectList = (examData, subjectData) => {
 export const getAllSubjects = subjects => {
 	const checkSubject = _.isUndefined(subjects) ? [] : subjects
 	const items = checkSubject.map((data, idx) => (
-		<DropdownItem key={idx} name={data.name} data-id={data._id}>
+		<DropdownItem
+			key={idx}
+			name={data.name}
+			data-id={data._id}
+			data-check="subjectDropdown"
+		>
 			{data.name}
 		</DropdownItem>
 	))
@@ -43,7 +48,12 @@ export const getAllSubjects = subjects => {
 export const getExamList = (exams, subjectId) => {
 	const selectedExams = _.filter(exams, ['subjectId', subjectId])
 	const items = selectedExams.map((data, idx) => (
-		<DropdownItem key={idx} name={data.subjectId} data-id={data._id}>
+		<DropdownItem
+			key={idx}
+			name={data.subjectId}
+			data-id={data._id}
+			data-check="examDropdown"
+		>
 			{data.title}
 		</DropdownItem>
 	))
@@ -58,12 +68,27 @@ export const getStudentList = allStudents => {
 		['asc']
 	)
 	const items = students.map((data, idx) => (
-		<DropdownItem key={idx} data-id={data._id}>
+		<DropdownItem key={idx} data-id={data._id} data-check="studentDropdown">
 			{`${data.firstname} ${data.lastname}`}
 		</DropdownItem>
 	))
 
 	return items
+}
+
+export const subjectOptions = (subjects, actions) => {
+	const options = subjects.map((data, idx) => (
+		<DropdownItem
+			key={idx}
+			name={data.name}
+			onClick={actions.showSubject}
+			data-check="classDropdown"
+		>
+			{data.name}
+		</DropdownItem>
+	))
+
+	return options
 }
 
 export const createDropdown = (styling, openIt, action, label, options, dataId) => (

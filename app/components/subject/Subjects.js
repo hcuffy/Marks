@@ -7,7 +7,7 @@ import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import SubjectForm from './SubjectForm'
 import SubjectList from './SubjectList'
-import { createDropdown } from '../helpers/dropdowns'
+import { createDropdown, subjectOptions } from '../helpers/dropdowns'
 import { sortData } from '../rooms/helpers/formHelpers'
 import styles from './styles/subject.css'
 
@@ -17,12 +17,7 @@ const Subjects = ({ t, classData, classListData, actions }) => {
 	const subjects = sortData(classData)
 	const { subject, openModal } = classListData
 	const selectedSubject = _.find(subjects, ['name', subject])
-
-	const subjectOptions = subjects.map((data, idx) => (
-		<DropdownItem key={idx} name={data.name} onClick={actions.showSubject}>
-			{data.name}
-		</DropdownItem>
-	))
+	const options = subjectOptions(subjects, actions)
 
 	return (
 		<div className={styles.main_div}>
@@ -33,7 +28,8 @@ const Subjects = ({ t, classData, classListData, actions }) => {
 					openModal,
 					actions.openClassList,
 					resolveLabel(subject, t('general.selectClass')),
-					subjectOptions
+					options,
+					'classDropdown'
 				)}
 				<SubjectList t={t} selectedSubject={selectedSubject} />
 			</div>
