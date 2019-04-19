@@ -14,7 +14,7 @@ import {
 	updateSubjectArray,
 	updateClassSubjectArray
 } from './classroomCollection'
-import { getAllExams, deleteExam } from './examsCollection'
+import { getAllExams, deleteExam } from './examCollection'
 
 const _ = require('lodash')
 const Datastore = require('nedb')
@@ -55,7 +55,7 @@ export const addSubjectData = async data => {
 
 	if (newRoom === true) {
 		entryAlreadyExists()
-		return -1
+		return
 	}
 
 	const newSubject = _.merge(data, { tests: [], classroomId: newRoom._id })
@@ -73,7 +73,17 @@ export const addSubjectData = async data => {
 	return allSubjects
 }
 
-const filteredExams = async id => _.filter(await getAllExams(), ['subjectId', id])
+const filteredExams = async subjectId => _.filter(await getAllExams(), { subjectId })
+
+const deleteExamsBySubject = async subjectId => {
+	const exams = await filteredExams(subjectId)
+
+	if (!_.isEmpty(exams)) {
+		_.forEach(exams, exam => {
+			deleteExam({ examId: exam._id, subjectId })
+		})
+	}
+}
 
 export const deleteSubject = ({ id }) =>
 	new Promise((resolve, reject) =>
@@ -88,7 +98,7 @@ export const deleteSubject = ({ id }) =>
 					deletionFailed()
 					return reject(err)
 				}
-
+				deleteExamsBySubject(id)
 				return resolve(docs)
 			})
 		})
@@ -181,6 +191,7 @@ export const addExamToSubjectArray = ({ subjectId, title }) => {
 		}
 	})
 }
+
 export const updateSubjecTestsArray = (subjectId, examTitle) =>
 	new Promise((resolve, reject) =>
 		subjectCollection.find({ _id: subjectId }, (err, entry) => {

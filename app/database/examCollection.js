@@ -67,6 +67,7 @@ const updateTestsArr = (examId, subjectId) => {
 		updateSubjecTestsArray(subjectId, examTitle)
 	})
 }
+
 export const deleteExam = ({ examId, subjectId }) =>
 	new Promise((resolve, reject) => {
 		updateTestsArr(examId, subjectId)
