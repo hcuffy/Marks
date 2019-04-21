@@ -6,7 +6,6 @@ import {
 	entryAlreadyExists,
 	unableToRetrieve,
 	deletionFailed,
-	deletionSuccessful,
 	updateFailed
 } from '../notifications/general'
 import {
@@ -92,7 +91,7 @@ export const deleteSubject = ({ id }) =>
 				deletionFailed()
 				return reject(err)
 			}
-			const exams = filteredExams(id)
+			filteredExams(id)
 			subjectCollection.find({}, (error, docs) => {
 				if (err) {
 					deletionFailed()
