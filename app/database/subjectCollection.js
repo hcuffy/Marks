@@ -29,13 +29,13 @@ const subjectCollection = new Datastore({
 	timestampData: true
 })
 
-const getSubjects = async subjectData => {
+const getSubjects = async ({ room, abbreviation }) => {
 	const data = await getClassroomData()
-	const selectedClass = _.find(data, ['name', subjectData.room])
-	if (!_.includes(selectedClass.subjects, subjectData.abbreviation)) {
-		return selectedClass
+	const selectedClass = _.find(data, ['name', room])
+	if (_.includes(selectedClass.subjects, abbreviation)) {
+		return true
 	}
-	return true
+	return selectedClass
 }
 
 export const getAllSubjects = () =>
@@ -50,22 +50,22 @@ export const getAllSubjects = () =>
 	)
 
 export const addSubjectData = async data => {
-	const newRoom = await getSubjects(data)
+	const subjectClassroom = await getSubjects(data)
 
-	if (newRoom === true) {
+	if (subjectClassroom === true) {
 		entryAlreadyExists()
 		return
 	}
 
-	const newSubject = _.merge(data, { tests: [], classroomId: newRoom._id })
-	newRoom.subjects.push(data.abbreviation)
+	const newSubject = _.merge(data, { tests: [], classroomId: subjectClassroom._id })
+	subjectClassroom.subjects.push(data.abbreviation)
 
 	subjectCollection.insert(newSubject, error => {
 		if (error) {
 			saveFailed()
 			return error
 		}
-		updateSubjectArray(newRoom)
+		updateSubjectArray(subjectClassroom)
 		saveSuccessful()
 	})
 	const allSubjects = await getAllSubjects()
