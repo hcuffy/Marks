@@ -63,6 +63,8 @@ export const getClassroomData = () =>
 		})
 	)
 
+const deleteSubjectByClassroom = async classroomId => {}
+
 export const deleteClassroom = data =>
 	new Promise((resolve, reject) =>
 		classroomCollection.remove({ _id: data.id }, err => {
