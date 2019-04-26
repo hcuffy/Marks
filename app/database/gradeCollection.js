@@ -2,8 +2,7 @@ import {
 	saveFailed,
 	unableToRetrieve,
 	updateFailed,
-	deletionFailed,
-	deletionSuccessful
+	deletionFailed
 } from '../notifications/general'
 
 const Datastore = require('nedb')
@@ -83,7 +82,7 @@ export const deleteGradesByExamId = id =>
 				if (err) {
 					return reject(err)
 				}
-				deletionSuccessful()
+
 				return resolve(docs)
 			})
 		})

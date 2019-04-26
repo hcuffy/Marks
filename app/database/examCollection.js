@@ -118,7 +118,6 @@ export const updateExamData = data =>
 			}
 			if (entry.length > 0) {
 				updateSinlgeExam(entry[0], data)
-
 				updateSubjecTestsArray(subjectId, entry[0].title)
 				addExamToSubjectArray({ subjectId, title })
 				examCollection.find({}, (error, docs) => {

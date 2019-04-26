@@ -60,7 +60,6 @@ export const displayClassData = () => async dispatch => {
 
 export const updateRoom = event => async dispatch => {
 	event.preventDefault()
-
 	const roomData = {
 		name: event.target.name.value,
 		teacher: event.target.teacher.value,
