@@ -65,7 +65,6 @@ export const deleteGradesByStudentId = id =>
 				if (err) {
 					return reject(err)
 				}
-				deletionSuccessful()
 				return resolve(docs)
 			})
 		})
