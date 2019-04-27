@@ -4,29 +4,6 @@ import { app, Menu, BrowserWindow } from 'electron'
 import { createWindow } from './main.dev'
 import { customMenuTranslation } from './utils/translationUtil'
 
-let newPanelWindow = null
-
-const openAttributionWindow = () => {
-	if (newPanelWindow) {
-		newPanelWindow.focus()
-		return
-	}
-
-	newPanelWindow = new BrowserWindow({
-		height: 500,
-		width: 500,
-		title: 'Credits',
-		resizable: false,
-		minimizable: false,
-		fullscreenable: false
-	})
-
-	newPanelWindow.on('closed', () => {
-		newPanelWindow = null
-	})
-
-	newPanelWindow.loadURL(`file://${__dirname}/views/attribution.html`)
-}
 export default class MenuBuilder {
 	mainWindow: BrowserWindow
 
@@ -163,25 +140,13 @@ export default class MenuBuilder {
 				}
 			]
 		}
-		const subMenuHelp = {
-			label: customMenuTranslation(locale, 'help'),
-			submenu: [
-				{
-					label: customMenuTranslation(locale, 'credits'),
-					click() {
-						openAttributionWindow()
-					}
-				}
-			]
-		}
 
 		const subMenuView =
 			process.env.NODE_ENV === 'development' ? subMenuViewDev : subMenuViewProd
 
 		return [subMenuAbout,
 			subMenuView,
-			subMenuWindow,
-			subMenuHelp]
+			subMenuWindow]
 	}
 
 	buildDefaultTemplate() {
@@ -201,8 +166,7 @@ export default class MenuBuilder {
 						}
 					}
 				]
-			},
-			{
+			}, {
 				label: '&View',
 				submenu:
 					process.env.NODE_ENV === 'development'
@@ -238,17 +202,6 @@ export default class MenuBuilder {
 								}
 							}
 						  ]
-			},
-			{
-				label: customMenuTranslation(locale, 'hide'),
-				submenu: [
-					{
-						label: customMenuTranslation(locale, 'credits'),
-						click() {
-							openAttributionWindow()
-						}
-					}
-				]
 			}
 		]
 

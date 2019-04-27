@@ -3,15 +3,16 @@ import {
 	OPEN_CLASS_LIST,
 	UPDATE_EXAM_TABLE
 } from '../constants/actionTypes'
-import { getExamData } from '../database/examCollection'
+import { getAllExams } from '../database/examCollection'
 import { getAllGrades, addGradeData, updateGradeData } from '../database/gradeCollection'
 
 const _ = require('lodash')
 
 export const openGradeClassList = event => dispatch => {
-	if (event.target.type !== 'button') {
+	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
+
 	const classroom = event.target.innerText
 	dispatch({
 		type: OPEN_CLASS_LIST,
@@ -29,12 +30,13 @@ const filterGrades = async exams => {
 }
 
 const filterExams = async subjectData =>
-	_.filter(await getExamData(), ['subjectId', subjectData.subjectId])
+	_.filter(await getAllExams(), ['subjectId', subjectData.subjectId])
 
 export const displayGradeData = event => async dispatch => {
-	if (event.target.type !== 'button') {
+	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
 		return
 	}
+
 	const subjectData = {
 		subjectId: event.target.getAttribute('data-id'),
 		subjectName: event.target.innerText

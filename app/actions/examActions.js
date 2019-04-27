@@ -8,13 +8,14 @@ import {
 } from '../constants/actionTypes'
 import {
 	addExamData,
-	getExamData,
+	getAllExams,
 	deleteExam,
 	updateExamData
 } from '../database/examCollection'
 
 export const addNewExam = event => dispatch => {
 	event.preventDefault()
+
 	const subjectIndex = event.target.subject.selectedIndex
 	const examData = {
 		title: event.target.title.value,
@@ -39,6 +40,9 @@ export const getSelectedSubject = event => dispatch => {
 }
 
 export const openClassDropdownList = event => dispatch => {
+	if (event.target.getAttribute('data-check') !== 'classDropdown') {
+		return
+	}
 	const classroom = event.target.innerText
 	dispatch({
 		type: UPDATE_DROPDOWN_CLASS_LIST,
@@ -47,10 +51,14 @@ export const openClassDropdownList = event => dispatch => {
 }
 
 export const displayExamData = event => async dispatch => {
+	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
+		return
+	}
+
 	const subjectId = event.target.getAttribute('data-id')
 	const selectedSubject = event.target.innerText
 
-	const exams = await getExamData()
+	const exams = await getAllExams()
 	if (exams.length !== 0) {
 		dispatch({
 			type: DISPLAY_SUBJECT_LIST,

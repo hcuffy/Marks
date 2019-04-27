@@ -13,7 +13,7 @@ import {
 } from '../database/subjectCollection'
 
 export const openClassList = event => dispatch => {
-	if (event.target.type !== 'button') {
+	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
 

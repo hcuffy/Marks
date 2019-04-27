@@ -2,8 +2,7 @@ import {
 	saveFailed,
 	unableToRetrieve,
 	updateFailed,
-	deletionFailed,
-	deletionSuccessful
+	deletionFailed
 } from '../notifications/general'
 
 const Datastore = require('nedb')
@@ -55,7 +54,7 @@ export const getAllGrades = () =>
 		})
 	)
 
-export const deleteAllStudentGrade = id =>
+export const deleteGradesByStudentId = id =>
 	new Promise((resolve, reject) =>
 		gradeCollection.remove({ studentId: id }, { multi: true }, err => {
 			if (err) {
@@ -66,7 +65,23 @@ export const deleteAllStudentGrade = id =>
 				if (err) {
 					return reject(err)
 				}
-				deletionSuccessful()
+				return resolve(docs)
+			})
+		})
+	)
+
+export const deleteGradesByExamId = id =>
+	new Promise((resolve, reject) =>
+		gradeCollection.remove({ examId: id }, { multi: true }, err => {
+			if (err) {
+				deletionFailed()
+				return reject(err)
+			}
+			gradeCollection.find({}, (error, docs) => {
+				if (err) {
+					return reject(err)
+				}
+
 				return resolve(docs)
 			})
 		})

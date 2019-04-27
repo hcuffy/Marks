@@ -6,7 +6,6 @@ import {
 	entryAlreadyExists,
 	unableToRetrieve,
 	deletionFailed,
-	deletionSuccessful,
 	updateFailed
 } from '../notifications/general'
 import {
@@ -14,6 +13,7 @@ import {
 	updateSubjectArray,
 	updateClassSubjectArray
 } from './classroomCollection'
+import { getAllExams, deleteExam } from './examCollection'
 
 const _ = require('lodash')
 const Datastore = require('nedb')
@@ -29,13 +29,13 @@ const subjectCollection = new Datastore({
 	timestampData: true
 })
 
-const getSubjects = async subjectData => {
+const getSubjects = async ({ room, abbreviation }) => {
 	const data = await getClassroomData()
-	const selectedClass = _.find(data, ['name', subjectData.room])
-	if (!_.includes(selectedClass.subjects, subjectData.abbreviation)) {
-		return selectedClass
+	const selectedClass = _.find(data, ['name', room])
+	if (_.includes(selectedClass.subjects, abbreviation)) {
+		return true
 	}
-	return true
+	return selectedClass
 }
 
 export const getAllSubjects = () =>
@@ -50,41 +50,54 @@ export const getAllSubjects = () =>
 	)
 
 export const addSubjectData = async data => {
-	const newRoom = await getSubjects(data)
+	const subjectClassroom = await getSubjects(data)
 
-	if (newRoom === true) {
+	if (subjectClassroom === true) {
 		entryAlreadyExists()
-		return -1
+		return
 	}
 
-	const newSubject = _.merge(data, { tests: [], classroomId: newRoom._id })
-	newRoom.subjects.push(data.abbreviation)
+	const newSubject = _.merge(data, { tests: [], classroomId: subjectClassroom._id })
+	subjectClassroom.subjects.push(data.abbreviation)
 
 	subjectCollection.insert(newSubject, error => {
 		if (error) {
 			saveFailed()
 			return error
 		}
-		updateSubjectArray(newRoom)
+		updateSubjectArray(subjectClassroom)
 		saveSuccessful()
 	})
 	const allSubjects = await getAllSubjects()
 	return allSubjects
 }
 
-export const deleteSubject = data =>
+const filteredExams = async subjectId => _.filter(await getAllExams(), { subjectId })
+
+const deleteExamsBySubject = async subjectId => {
+	const exams = await filteredExams(subjectId)
+
+	if (!_.isEmpty(exams)) {
+		_.forEach(exams, exam => {
+			deleteExam({ examId: exam._id, subjectId })
+		})
+	}
+}
+
+export const deleteSubject = ({ id }) =>
 	new Promise((resolve, reject) =>
-		subjectCollection.remove({ _id: data.id }, err => {
+		subjectCollection.remove({ _id: id }, err => {
 			if (err) {
 				deletionFailed()
 				return reject(err)
 			}
+			filteredExams(id)
 			subjectCollection.find({}, (error, docs) => {
 				if (err) {
 					deletionFailed()
 					return reject(err)
 				}
-				deletionSuccessful()
+				deleteExamsBySubject(id)
 				return resolve(docs)
 			})
 		})
@@ -177,6 +190,7 @@ export const addExamToSubjectArray = ({ subjectId, title }) => {
 		}
 	})
 }
+
 export const updateSubjecTestsArray = (subjectId, examTitle) =>
 	new Promise((resolve, reject) =>
 		subjectCollection.find({ _id: subjectId }, (err, entry) => {

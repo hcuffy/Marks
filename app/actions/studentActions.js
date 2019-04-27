@@ -55,8 +55,8 @@ export const showStudentModal = event => dispatch => {
 	})
 }
 
-export const openStudenGraph = event => dispatch => {
-	if (event.target.type !== 'button') {
+export const openStudentGraph = event => dispatch => {
+	if (event.target.getAttribute('data-check') !== 'studentDropdown') {
 		return
 	}
 	const student = {
@@ -72,7 +72,7 @@ export const openStudenGraph = event => dispatch => {
 }
 
 export const openStudenSubjectGraph = event => dispatch => {
-	if (event.target.type !== 'button') {
+	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
 		return
 	}
 	const subject = {
