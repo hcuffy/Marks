@@ -9,5 +9,3 @@ export const GERMAN_LINKS = {
 export const ENGLISH_LINKS = {
 	DoE: 'https://www2.ed.gov/rschstat/catalog/index.html '
 }
-
-export const SUPPORT_APP = 'https://www.paypal.me/HenryCuffy'

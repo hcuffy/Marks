@@ -34,14 +34,16 @@ const GradeDropdown = ({ t, classData, gradeData, subjectData, actions }) => {
 				classroomDropdown,
 				actions.openGradeClassList,
 				resolveLabel(classroom, t('general.selectClass')),
-				classOptions
+				classOptions,
+				'classDropdown'
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				subDrop,
 				actions.displayGradeData,
 				resolveLabel(subjectName, t('general.selectSubject')),
-				subjectOptions
+				subjectOptions,
+				'subjectDropdown'
 			)}
 		</div>
 	)

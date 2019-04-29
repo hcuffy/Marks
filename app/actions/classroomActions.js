@@ -8,8 +8,8 @@ import {
 import {
 	addClassroomData,
 	getClassroomData,
-	updateRoomData,
-	deleteClassroom
+	deleteClassroom,
+	updateRoomData
 } from '../database/classroomCollection'
 
 const _ = require('lodash')
@@ -49,6 +49,7 @@ export const handleClassData = event => async dispatch => {
 
 export const displayClassData = () => async dispatch => {
 	const data = await getClassroomData()
+
 	if (data.length !== 0) {
 		dispatch({
 			type: GET_CLASSROOM_DATA,

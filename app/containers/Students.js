@@ -12,9 +12,7 @@ class Students extends Component {
 		this.props.actions.getGraphExamData()
 		this.props.actions.getSubjectData()
 		this.props.actions.getGradingSystem()
-		if (this.props.classData[0].name === '') {
-			this.props.actions.displayClassData()
-		}
+		this.props.actions.displayClassData()
 	}
 
 	render() {
@@ -29,7 +27,7 @@ class Students extends Component {
 	}
 }
 
-const mapStateToProps = state => ({ classData: state.classData.classData })
+const mapStateToProps = state => ({})
 
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)

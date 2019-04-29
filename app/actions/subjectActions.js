@@ -13,7 +13,7 @@ import {
 } from '../database/subjectCollection'
 
 export const openClassList = event => dispatch => {
-	if (event.target.type !== 'button') {
+	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
 
@@ -24,7 +24,7 @@ export const openClassList = event => dispatch => {
 	})
 }
 
-export const addNewSubject = event => dispatch => {
+export const addNewSubject = event => async dispatch => {
 	event.preventDefault()
 
 	const formData = {
@@ -34,21 +34,21 @@ export const addNewSubject = event => dispatch => {
 	}
 
 	event.target.reset()
-	addSubjectData(formData)
+	const data = await addSubjectData(formData)
+
 	dispatch({
 		type: ADD_NEW_SUBJECT,
-		payload: {}
+		payload: { data }
 	})
 }
 
 export const getSubjectData = () => async dispatch => {
 	const data = await getAllSubjects()
-	if (data.length !== 0) {
-		dispatch({
-			type: GET_SUBJECT_LIST,
-			payload: { data }
-		})
-	}
+
+	dispatch({
+		type: GET_SUBJECT_LIST,
+		payload: { data }
+	})
 }
 
 export const showSubject = event => dispatch => {
@@ -65,19 +65,17 @@ export const deleteSingleSubject = event => async dispatch => {
 		id: event.target.getAttribute('data-id')
 	}
 
-	const subjectDoc = await deleteSubject(subjectData)
+	const data = await deleteSubject(subjectData)
 
 	dispatch({
 		type: OPEN_CLOSE_SUBJECT_MODAL,
 		payload: { id: subjectData.subjectId }
 	})
 
-	if (subjectDoc.length > 0) {
-		dispatch({
-			type: GET_SINGLE_SUBJECT,
-			payload: { subject: subjectDoc[0].room }
-		})
-	}
+	dispatch({
+		type: GET_SUBJECT_LIST,
+		payload: { data }
+	})
 }
 
 export const updateSubject = event => async dispatch => {
@@ -100,7 +98,7 @@ export const updateSubject = event => async dispatch => {
 	if (subjectDoc.length > 0) {
 		dispatch({
 			type: GET_SINGLE_SUBJECT,
-			payload: { subject: subjectDoc[0].room }
+			payload: subjectDoc[0].room
 		})
 	}
 	dispatch({

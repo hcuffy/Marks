@@ -30,6 +30,7 @@ export const addNewStudent = event => async dispatch => {
 		type: ADD_NEW_STUDENT,
 		payload: {}
 	})
+
 	dispatch({
 		type: GET_ALL_STUDENTS,
 		payload: { students }
@@ -54,8 +55,8 @@ export const showStudentModal = event => dispatch => {
 	})
 }
 
-export const openStudenGraph = event => dispatch => {
-	if (event.target.type !== 'button') {
+export const openStudentGraph = event => dispatch => {
+	if (event.target.getAttribute('data-check') !== 'studentDropdown') {
 		return
 	}
 	const student = {
@@ -71,7 +72,7 @@ export const openStudenGraph = event => dispatch => {
 }
 
 export const openStudenSubjectGraph = event => dispatch => {
-	if (event.target.type !== 'button') {
+	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
 		return
 	}
 	const subject = {
@@ -89,27 +90,27 @@ export const openStudenSubjectGraph = event => dispatch => {
 export const updateStudent = event => async dispatch => {
 	event.preventDefault()
 	const genderIndex = event.target.gender.selectedIndex
+	const studentId = event.target.studentId.getAttribute('data-id')
+
 	const studentData = {
 		firstname: event.target.firstname.value,
 		lastname: event.target.lastname.value,
 		gender: event.target.gender.options[genderIndex].getAttribute('data-id'),
 		classroom: event.target.classroom.value,
-		id: event.target.studentId.getAttribute('data-id')
+		id: studentId
 	}
 
 	const students = await updateStudentData(studentData)
 
 	dispatch({
 		type: GET_SINGLE_STUDENT,
-		payload: studentData.getAttribute('data-id')
+		payload: studentId
 	})
 
-	if (students.length > 0) {
-		dispatch({
-			type: GET_ALL_STUDENTS,
-			payload: { students }
-		})
-	}
+	dispatch({
+		type: GET_ALL_STUDENTS,
+		payload: { students }
+	})
 }
 
 export const deleteSingleStudent = event => async dispatch => {
@@ -120,10 +121,9 @@ export const deleteSingleStudent = event => async dispatch => {
 		type: GET_SINGLE_STUDENT,
 		payload: studentId
 	})
-	if (students.length > 0) {
-		dispatch({
-			type: GET_ALL_STUDENTS,
-			payload: { students }
-		})
-	}
+
+	dispatch({
+		type: GET_ALL_STUDENTS,
+		payload: { students }
+	})
 }

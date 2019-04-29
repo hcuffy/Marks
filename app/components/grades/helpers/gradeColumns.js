@@ -14,7 +14,7 @@ const customCell = (props, actions) => (
 		data-weight={props.value.weight}
 		data-id={props.value.gradeId}
 		type="number"
-		onChange={actions.updateGrade}
+		onBlur={actions.updateGrade}
 	/>
 )
 
@@ -70,8 +70,9 @@ const customColumn = (data, actions) => {
 	if (_.isUndefined(data[0])) {
 		return
 	}
+
 	for (let i = 0; i < data[0].grades.length; i += 1) {
-		const gradeProps = data[i].grades[i]
+		const gradeProps = data[0].grades[i]
 		columnData.push({
 			Header: customHeader(gradeProps),
 			accessor: `grades[${i}]`,

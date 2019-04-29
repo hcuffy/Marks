@@ -22,14 +22,16 @@ const ExamListDropdown = ({ t, classData, examData, subjectData, actions }) => {
 				examData.openClassDropdown,
 				actions.openClassDropdownList,
 				resolveLabel(selectedRoom, t('general.selectClass')),
-				classOptions
+				classOptions,
+				'classDropdown'
 			)}
 			{createDropdown(
 				styles.dropdown_div,
 				examData.openSubList,
 				actions.displayExamData,
 				resolveLabel(selectedSubject, t('general.selectSubject')),
-				subjectOptions
+				subjectOptions,
+				'subjectDropdown'
 			)}
 		</div>
 	)

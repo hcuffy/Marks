@@ -8,12 +8,7 @@ export const ENGLISH_LABELS = {
 	window: 'Window',
 	mini: 'Minimize',
 	close: 'Close',
-	front: 'Reopen',
-	help: 'Help',
-	credits: 'Credits',
-	report: 'Report an issue',
-	propose: 'Propose a feature',
-	buy: 'Support the App'
+	front: 'Reopen'
 }
 
 export const GERMAN_LABELS = {
@@ -26,10 +21,5 @@ export const GERMAN_LABELS = {
 	window: 'Fenster',
 	mini: 'Minimieren',
 	close: 'Schließen',
-	front: 'Wieder Öffnen',
-	help: 'Hilfe',
-	credits: 'Zuschreibung',
-	report: 'Problem melden',
-	propose: 'Vorschlag machen',
-	buy: 'Geld spenden'
+	front: 'Wieder Öffnen'
 }

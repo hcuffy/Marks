@@ -17,11 +17,11 @@ const getClassroomId = dataList => {
 	return dataList[0].classroomId
 }
 
-const selectedSubject = subject =>
+const selectedSubject = (t, subject) =>
 	_.keys(subject).map((data, idx) => (
 		<div key={idx} className={styles.modal_form_div}>
 			<label className={styles.modal_form_label} htmlFor={`${data}_Id`}>
-				{data}:
+				{t(`room.${data}`)}:
 			</label>
 			<input
 				name={data}
@@ -35,7 +35,7 @@ const selectedSubject = subject =>
 
 const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
 	const requiredSubject = cleanAndFilterData(filteredData, subjectModalData)
-	const subjectFields = selectedSubject(requiredSubject)
+	const subjectFields = selectedSubject(t, requiredSubject)
 	const { id, showSubjectModal } = subjectModalData
 	const hiddenInputs = (
 		<div>
@@ -44,6 +44,7 @@ const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
 			<input type="hidden" name="subjectId" data-id={id} />
 		</div>
 	)
+
 	const footerData = {
 		dataId: id,
 		nameId: null,
@@ -56,7 +57,7 @@ const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
 		<div>
 			{modalFrame(
 				t,
-				subjectModalData.showSubjectModal,
+				showSubjectModal,
 				actions.updateSubject,
 				subjectFields,
 				hiddenInputs,

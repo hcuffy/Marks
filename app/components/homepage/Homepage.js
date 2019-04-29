@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { resourceList } from './helpers/resourcesList'
-import { openResource } from '../../utils/externalLinksUtil'
+import { openResource } from '../../utils/resourcesLinks'
 import styles from './styles/homepage.css'
 
 const _ = require('lodash')

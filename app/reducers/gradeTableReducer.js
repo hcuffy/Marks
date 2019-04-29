@@ -24,7 +24,7 @@ const applyGradeData = (state = initialLoadState, action) => {
 	}
 	case OPEN_CLASS_LIST: {
 		const classroomDropdown = !state.classroomDropdown
-		const subDrop = state.classroomDropdown
+		const subDrop = !classroomDropdown
 		const classroom = action.payload
 
 		return _.assign({}, state, { classroomDropdown, subDrop, classroom })

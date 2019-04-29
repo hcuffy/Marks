@@ -3,11 +3,11 @@ import {
 	saveFailed,
 	unableToRetrieve,
 	entryAlreadyExists,
-	deletionSuccessful,
 	deletionFailed,
 	updateSuccessful,
 	updateFailed
 } from '../notifications/general'
+import { getAllSubjects, deleteSubject } from './subjectCollection'
 
 const _ = require('lodash')
 const Datastore = require('nedb')
@@ -69,9 +69,22 @@ export const getClassroomData = () =>
 		})
 	)
 
-export const deleteClassroom = data =>
+const filteredSubjects = async classroomId =>
+	_.filter(await getAllSubjects(), { classroomId })
+
+const deleteSubjectByClassroom = async classroomId => {
+	const subjects = await filteredSubjects(classroomId)
+
+	if (!_.isEmpty(subjects)) {
+		_.forEach(subjects, subject => {
+			deleteSubject({ classroomId: subject._id })
+		})
+	}
+}
+
+export const deleteClassroom = ({ id }) =>
 	new Promise((resolve, reject) =>
-		classroomCollection.remove({ _id: data.id }, err => {
+		classroomCollection.remove({ _id: id }, err => {
 			if (err) {
 				deletionFailed()
 
@@ -83,7 +96,7 @@ export const deleteClassroom = data =>
 
 					return reject(err)
 				}
-				deletionSuccessful()
+				deleteSubjectByClassroom(id)
 
 				return resolve(docs)
 			})

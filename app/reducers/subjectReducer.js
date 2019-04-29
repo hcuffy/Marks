@@ -1,7 +1,8 @@
 import {
 	UPDATE_CLASS_LIST,
 	GET_SINGLE_SUBJECT,
-	GET_SUBJECT_LIST
+	GET_SUBJECT_LIST,
+	ADD_NEW_SUBJECT
 } from '../constants/actionTypes'
 
 const _ = require('lodash')
@@ -38,6 +39,9 @@ const applyClassList = (state = initialLoadState, action) => {
 export const applySubjectData = (state = {}, action) => {
 	switch (action.type) {
 	case GET_SUBJECT_LIST: {
+		return _.assign({}, state, action.payload)
+	}
+	case ADD_NEW_SUBJECT: {
 		return _.assign({}, state, action.payload)
 	}
 
