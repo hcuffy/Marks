@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import applyStudentData from '../../app/reducers/studentsReducer'
 import {
 	ADD_NEW_STUDENT,
