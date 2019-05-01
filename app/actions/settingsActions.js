@@ -66,7 +66,7 @@ export const saveSchoolAddress = event => dispatch => {
 
 	dispatch({
 		type: HANDLE_SCHOOL_DATA,
-		payload: { addressData: formData }
+		payload: formData
 	})
 }
 
