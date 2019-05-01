@@ -13,6 +13,7 @@ const getClassroomId = dataList => {
 	if (_.isEmpty(dataList) || _.isNil(dataList)) {
 		return []
 	}
+
 	return dataList[0].classroomId
 }
 
@@ -51,6 +52,7 @@ const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
 		deleteAction: actions.deleteSingleSubject,
 		closeAction: actions.subjectModalDisplay
 	}
+
 	return (
 		<div>
 			{modalFrame(

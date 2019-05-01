@@ -1,22 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test change tab reducer should handle ADD_CLASSROOM_DATA 1`] = `Object {}`;
-
-exports[`test change tab reducer should handle GET_CLASSROOM_DATA 1`] = `
-Object {
-  "check": false,
-}
-`;
-
-exports[`test change tab reducer should handle unknown action type 1`] = `Object {}`;
-
-exports[`test change tab reducer should use initial state 1`] = `
-Object {
-  "classTab": "active",
-  "examTab": "",
-}
-`;
-
 exports[`test class data reducer should handle ADD_CLASSROOM_DATA 1`] = `Object {}`;
 
 exports[`test class data reducer should handle GET_CLASSROOM_DATA 1`] = `
@@ -29,7 +12,16 @@ exports[`test class data reducer should handle unknown action type 1`] = `Object
 
 exports[`test class data reducer should use initial state 1`] = `
 Object {
-  "classTab": "active",
-  "examTab": "",
+  "check": false,
+  "classData": Array [
+    Object {
+      "name": "",
+      "subjects": Array [],
+    },
+  ],
+  "code": "",
+  "name": "",
+  "substitute": "",
+  "teacher": "",
 }
 `;

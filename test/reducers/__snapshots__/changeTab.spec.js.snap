@@ -16,7 +16,7 @@ Object {
 
 exports[`test change tab reducer should handle unknown action type 1`] = `Object {}`;
 
-exports[`test change tab reducer should use initial state 1`] = `
+exports[`test change tab reducer should use default state 1`] = `
 Object {
   "classTab": "active",
   "examTab": "",

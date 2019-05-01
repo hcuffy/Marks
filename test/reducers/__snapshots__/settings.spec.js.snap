@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test settings reducer should get grading system type 1`] = `
+Object {
+  "note": false,
+  "percent": true,
+  "points": false,
+}
+`;
+
+exports[`test settings reducer should handle address creation 1`] = `
+Object {
+  "country": "Germany",
+  "province": "Regensburg",
+  "street": "Tester Street",
+  "title": "Mark's School",
+  "year": 2019,
+  "zip": "93309",
+}
+`;
+
+exports[`test settings reducer should update displayed address 1`] = `
+Object {
+  "country": null,
+  "province": null,
+  "street": null,
+  "title": null,
+  "year": null,
+  "zip": null,
+}
+`;
+
+exports[`test settings reducer should update grading system 1`] = `
+Object {
+  "note": false,
+  "percent": false,
+  "points": true,
+}
+`;
+
+exports[`test settings reducer should use default address state 1`] = `
+Object {
+  "country": null,
+  "province": null,
+  "street": null,
+  "title": null,
+  "year": null,
+  "zip": null,
+}
+`;
+
+exports[`test settings reducer should use default displayed address state 1`] = `
+Object {
+  "country": null,
+  "province": null,
+  "street": null,
+  "title": null,
+  "year": null,
+  "zip": null,
+}
+`;
+
+exports[`test settings reducer should use default grading state 1`] = `
+Object {
+  "note": true,
+  "percent": false,
+  "points": false,
+}
+`;

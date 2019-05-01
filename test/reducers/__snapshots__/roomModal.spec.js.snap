@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test room modal reducer should close modal 1`] = `
+Object {
+  "id": "umjHjOkl84Ry2kDH",
+  "showModal": false,
+}
+`;
+
+exports[`test room modal reducer should open modal 1`] = `
+Object {
+  "id": "umjHjOkl84Ry2kDH",
+  "showModal": true,
+}
+`;
+
+exports[`test room modal reducer should update classroom 1`] = `
+Object {
+  "id": "umjHjOkl84Ry2kDH",
+  "showModal": false,
+}
+`;
+
+exports[`test room modal reducer should use default state 1`] = `
+Object {
+  "id": "",
+  "showModal": false,
+}
+`;

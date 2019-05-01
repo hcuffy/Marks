@@ -1,10 +1,14 @@
-/* eslint-disable max-len */
 import applyTabChange from '../../app/reducers/changeTabReducer'
 import { CHANGE_CLASSROOM_TAB } from '../../app/constants/actionTypes'
 
+const initialLoadState = {
+	classTab: 'active',
+	examTab: ''
+}
+
 describe('test change tab reducer', () => {
-	it('should use initial state', () => {
-		expect(applyTabChange(undefined, {})).toMatchSnapshot()
+	it('should use default state', () => {
+		expect(applyTabChange(initialLoadState, {})).toMatchSnapshot()
 	})
 
 	it('should handle CHANGE_CLASSROOM_TAB to classtab', () => {

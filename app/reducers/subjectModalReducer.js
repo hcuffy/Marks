@@ -20,6 +20,7 @@ const applySubjectModal = (state = initialLoadState, action) => {
 	}
 	case UPDATE_SUBJECT: {
 		const { id } = action.payload
+
 		return _.assign({}, state, {
 			id,
 			showSubjectModal

@@ -1,8 +1,7 @@
-/* eslint-disable max-len */
 import applyTabChange from '../../app/reducers/changeTabReducer'
 import { ADD_CLASSROOM_DATA, GET_CLASSROOM_DATA } from '../../app/constants/actionTypes'
 
-const initialState = {
+const initialLoadState = {
 	name: '',
 	teacher: '',
 	code: '',
@@ -28,12 +27,12 @@ const payload = [
 
 describe('test class data reducer', () => {
 	it('should use initial state', () => {
-		expect(applyTabChange(undefined, {})).toMatchSnapshot()
+		expect(applyTabChange(initialLoadState, {})).toMatchSnapshot()
 	})
 
 	it('should handle ADD_CLASSROOM_DATA', () => {
 		expect(
-			applyTabChange({}, { type: ADD_CLASSROOM_DATA, initialState })
+			applyTabChange({}, { type: ADD_CLASSROOM_DATA, initialLoadState })
 		).toMatchSnapshot()
 	})
 

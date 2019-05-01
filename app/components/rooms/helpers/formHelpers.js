@@ -76,6 +76,7 @@ export const cleanAndFilterData = (objectToClean, cleanBy) => {
 		'classroomId',
 		'room'
 	])
+
 	return cleanedData
 }
 

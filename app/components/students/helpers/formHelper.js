@@ -72,6 +72,7 @@ const studentForm = (t, selectOption, formFields, actions) => {
 			<div />
 		</div>
 	)
+
 	return studentFields
 }
 

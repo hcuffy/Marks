@@ -97,6 +97,7 @@ const examForm = (t, subjectOptions, classOption, actions) => {
 			</form>
 		</div>
 	)
+
 	return examFields
 }
 

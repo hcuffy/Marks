@@ -19,6 +19,7 @@ class Graphs extends Component {
 
 	render() {
 		const { t } = this.props
+
 		return (
 			<div>
 				<SideMenu />

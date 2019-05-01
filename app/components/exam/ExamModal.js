@@ -24,6 +24,7 @@ const ExamModal = ({ t, examData, actions }) => {
 		deleteAction: actions.deleteSingleExam,
 		closeAction: actions.showSingleExam
 	}
+
 	return (
 		<div>
 			{modalFrame(

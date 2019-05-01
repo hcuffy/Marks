@@ -33,10 +33,12 @@ export const addClassroomData = data => {
 	classroomCollection.find({ name: data.name }, (err, entry) => {
 		if (err) {
 			saveFailed()
+
 			return err
 		}
 		if (entry.length > 0) {
 			entryAlreadyExists()
+
 			return
 		}
 		const newData = data
@@ -44,9 +46,11 @@ export const addClassroomData = data => {
 		classroomCollection.insert(newData, (error, doc) => {
 			if (error) {
 				saveFailed()
+
 				return error
 			}
 			saveSuccessful()
+
 			return doc
 		})
 	})
@@ -57,8 +61,10 @@ export const getClassroomData = () =>
 		classroomCollection.find({}, (err, entry) => {
 			if (err) {
 				unableToRetrieve()
+
 				return reject(err)
 			}
+
 			return resolve(entry)
 		})
 	)
@@ -81,14 +87,17 @@ export const deleteClassroom = ({ id }) =>
 		classroomCollection.remove({ _id: id }, err => {
 			if (err) {
 				deletionFailed()
+
 				return reject(err)
 			}
 			classroomCollection.find({}, (error, docs) => {
 				if (err) {
 					deletionFailed()
+
 					return reject(err)
 				}
 				deleteSubjectByClassroom(id)
+
 				return resolve(docs)
 			})
 		})
@@ -124,6 +133,7 @@ const updateSinlgeClassroom = (previous, current) => {
 		err => {
 			if (err) {
 				updateFailed()
+
 				return err
 			}
 			updateSuccessful()
@@ -136,6 +146,7 @@ export const updateRoomData = data =>
 		classroomCollection.find({ name: data.oldName }, (err, entry) => {
 			if (err) {
 				updateFailed()
+
 				return err
 			}
 			if (entry.length > 0) {
@@ -143,8 +154,10 @@ export const updateRoomData = data =>
 				classroomCollection.find({}, (error, docs) => {
 					if (error) {
 						updateFailed()
+
 						return reject(error)
 					}
+
 					return resolve(docs)
 				})
 			}
@@ -155,6 +168,7 @@ export const updateSubjectArray = data => {
 	classroomCollection.find({ name: data.name }, (err, entry) => {
 		if (err) {
 			updateFailed()
+
 			return err
 		}
 		if (entry.length > 0) {
@@ -162,8 +176,10 @@ export const updateSubjectArray = data => {
 			classroomCollection.find({}, (error, docs) => {
 				if (error) {
 					updateFailed()
+
 					return error
 				}
+
 				return docs
 			})
 		}
@@ -178,6 +194,7 @@ export const updateClassSubjectArray = (classroomId, oldSubject, newSubject) => 
 		err => {
 			if (err) {
 				updateFailed()
+
 				return err
 			}
 		}
@@ -190,6 +207,7 @@ export const updateClassSubjectArray = (classroomId, oldSubject, newSubject) => 
 		err => {
 			if (err) {
 				updateFailed()
+
 				return err
 			}
 		}

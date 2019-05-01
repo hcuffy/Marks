@@ -35,12 +35,14 @@ const applyStudentData = (state = initialLoadState, action) => {
 	case GET_SINGLE_STUDENT: {
 		const studentModal = !state.studentModal
 		const studentId = action.payload
+
 		return _.assign({}, state, { studentModal, studentId })
 	}
 
 	case DISPLAY_STUDENT_GRAPH: {
 		const studentDropdown = !state.studentDropdown
 		const { studentGraphId, studentGraphName, chartToDisplay } = action.payload
+
 		return _.assign({}, state, {
 			studentDropdown,
 			studentGraphId,
@@ -52,6 +54,7 @@ const applyStudentData = (state = initialLoadState, action) => {
 	case DISPLAY_STUDENT_SUBJECT_GRAPH: {
 		const subjectDropdown = !state.subjectDropdown
 		const { subjectGraphId, subjectGraphName, chartToDisplay } = action.payload
+
 		return _.assign({}, state, {
 			subjectDropdown,
 			subjectGraphId,

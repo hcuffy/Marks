@@ -14,11 +14,13 @@ const filteredGrades = ({ studentGraphId }, grades) => {
 			y: studentGrades[i].grade
 		})
 	}
+
 	return data
 }
 
 const filterSubjectGrades = ({ studentGraphId, subjectGraphId }, exams, grades) => {
 	const allSubjectsGrade = filterBySubject(subjectGraphId, exams, grades)
+
 	return _.filter(allSubjectsGrade, ['studentId', studentGraphId])
 }
 
@@ -32,6 +34,7 @@ export const chartHeader = (
 	if (_.isNull(studentGraphName)) {
 		return 'Student Grades'
 	}
+
 	return `${studentGraphName} - ${subjectGraphName}`
 }
 
@@ -46,6 +49,7 @@ export const chartData = (t, studentData, grades, exams) => {
 	} else if (chartToDisplay === 'subject') {
 		checkedGrades.push(...filterSubjectGrades(studentData, exams, grades))
 	}
+
 	return {
 		datasets: [
 			{

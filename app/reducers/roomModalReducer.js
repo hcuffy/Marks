@@ -9,9 +9,13 @@ const initialLoadState = {
 
 const applyClassModal = (state = initialLoadState, action) => {
 	const showModal = !state.showModal
+
 	switch (action.type) {
 	case OPEN_CLOSE_ROOM_MODAL: {
 		const { id } = action.payload
+		console.log(state.showModal)
+		console.log(showModal)
+
 		return _.assign({}, state, {
 			id,
 			showModal
@@ -19,6 +23,7 @@ const applyClassModal = (state = initialLoadState, action) => {
 	}
 	case UPDATE_CLASSROOM: {
 		const { id } = action.payload
+
 		return _.assign({}, state, {
 			id,
 			showModal

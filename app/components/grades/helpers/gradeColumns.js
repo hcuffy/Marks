@@ -82,6 +82,7 @@ const customColumn = (data, actions) => {
 		})
 	}
 	columnData.push(averageColumn())
+
 	return columnData
 }
 

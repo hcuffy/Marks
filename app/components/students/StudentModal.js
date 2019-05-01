@@ -24,6 +24,7 @@ const StudentModal = ({ t, students, classdata, actions }) => {
 		deleteAction: actions.deleteSingleStudent,
 		closeAction: actions.showStudentModal
 	}
+
 	return (
 		<div>
 			{modalFrame(
