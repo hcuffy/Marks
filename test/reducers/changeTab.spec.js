@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import applyTabChange from '../../app/reducers/changeTabReducer'
 import { CHANGE_CLASSROOM_TAB } from '../../app/constants/actionTypes'
 

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import applyClassModal from '../../app/reducers/roomModalReducer'
 import { OPEN_CLOSE_ROOM_MODAL, UPDATE_CLASSROOM } from '../../app/constants/actionTypes'
 

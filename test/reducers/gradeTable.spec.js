@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import applyGradeData from '../../app/reducers/gradeTableReducer'
 import {
 	DISPLAY_EXAM_TABLE,
