@@ -46,7 +46,7 @@ const customHeader = ({ date, weight }) => (
 const averageColumn = () => ({
 	Header: 'Ø',
 	accessor: 'average',
-	width: 40,
+	width: 50,
 	style: { textAlign: 'center' }
 })
 
