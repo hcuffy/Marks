@@ -21,7 +21,6 @@ describe('classroom actions', () => {
 		expect(fn).toBeInstanceOf(Function)
 		expect(dispatch.args[0][0]).toEqual(expectedAction)
 	})
-
 	it('should add new classrooms', () => {
 		const event = {
 			target: {

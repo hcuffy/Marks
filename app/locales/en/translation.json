@@ -79,7 +79,7 @@
       "deleteSuccess": "The data was deleted successfully.",
       "deleteFail": "Failed to delete the data.",
       "updateSuccess": "The data was updated successfully.",
-      "updatefail": "The data could not be updated.",
+      "updateFail": "The data could not be updated.",
       "noUpdate": "There is nothing to update."
     },
     "warning": {
