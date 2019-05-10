@@ -1,4 +1,5 @@
 import { CHANGE_CLASSROOM_TAB, ADD_CLASSROOM_DATA } from '../../constants/actionTypes'
+import { addClassroomData, getClassroomData } from './mockCollections/classroomCollection'
 
 const _ = require('lodash')
 
@@ -8,7 +9,7 @@ export const changeClassroomTab = event => dispatch => {
 		examTab: ''
 	}
 
-	const tabUpdate = _.set(tabButtons, event.target, 'active')
+	const tabUpdate = _.set(tabButtons, event.target.getAttribute('data-name'), 'active')
 
 	dispatch({
 		type: CHANGE_CLASSROOM_TAB,
@@ -24,8 +25,11 @@ export const handleClassData = event => async dispatch => {
 		substitute: event.target.substitute
 	}
 
+	addClassroomData(formData)
+	const data = await getClassroomData()
+
 	dispatch({
 		type: ADD_CLASSROOM_DATA,
-		payload: { inputData: [formData] }
+		payload: { inputData: data }
 	})
 }
