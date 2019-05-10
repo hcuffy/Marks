@@ -8,3 +8,12 @@ export const getClassroomData = () => [
 		substitute: 'John Tester'
 	}
 ]
+
+export const updateRoomData = () => [
+	{
+		name: 'Science',
+		teacher: 'John Tester',
+		code: 'SCI101',
+		substitute: 'Mary Tester'
+	}
+]

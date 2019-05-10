@@ -35,13 +35,79 @@ describe('classroom actions', () => {
 			}
 		}
 
-		const fn = actions.handleClassData(events.newUser)
+		const fn = actions.handleClassData(events.newClassroom)
 		const dispatch = spy()
 
 		expect(fn).toBeInstanceOf(Function)
 
 		fn(dispatch).then(() => {
 			expect(dispatch.args[0][0]).toEqual(expectedAction)
+			done()
+		})
+	})
+
+	it('should get all class data', done => {
+		const expectedAction = {
+			type: types.GET_CLASSROOM_DATA,
+			payload: {
+				classData: [
+					{
+						name: 'Biology',
+						teacher: 'Sara Tester',
+						code: 'BIO101',
+						substitute: 'John Tester'
+					}
+				]
+			}
+		}
+
+		const fn = actions.displayClassData()
+		const dispatch = spy()
+
+		expect(fn).toBeInstanceOf(Function)
+
+		fn(dispatch).then(() => {
+			expect(dispatch.args[0][0]).toEqual(expectedAction)
+			done()
+		})
+	})
+
+	it('should update the classroom data', done => {
+		const expectedActionOne = {
+			type: types.GET_CLASSROOM_DATA,
+			payload: {
+				classData: [
+					{
+						name: 'Science',
+						teacher: 'John Tester',
+						code: 'SCI101',
+						substitute: 'Mary Tester'
+					}
+				]
+			}
+		}
+
+		const expectedActionTwo = {
+			type: types.UPDATE_CLASSROOM,
+			payload: {
+				name: 'Science',
+				teacher: 'John Tester',
+				code: 'SCI101',
+				substitute: 'Mary Tester',
+				oldName: 'FH347hfr8f5fnJs',
+				id: '',
+				showModal: false
+			}
+		}
+
+		const fn = actions.updateRoom(events.updateClassroom)
+		const dispatch = spy()
+
+		expect(fn).toBeInstanceOf(Function)
+
+		fn(dispatch).then(() => {
+			expect(dispatch.args[0][0]).toEqual(expectedActionOne)
+			expect(dispatch.args[1][0]).toEqual(expectedActionTwo)
 			done()
 		})
 	})

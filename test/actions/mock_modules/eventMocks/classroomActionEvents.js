@@ -7,7 +7,7 @@ export const changeTab = {
 	}
 }
 
-export const newUser = {
+export const newClassroom = {
 	target: {
 		name: 'Biology',
 		teacher: 'Sara Tester',
@@ -15,6 +15,21 @@ export const newUser = {
 		substitute: 'John Tester',
 		getAttribute(value) {
 			return this[value]
+		}
+	}
+}
+
+export const updateClassroom = {
+	target: {
+		name: { value: 'Science' },
+		teacher: { value: 'John Tester' },
+		code: { value: 'SCI101' },
+		substitute: { value: 'Mary Tester' },
+		oldName: {
+			'data-id': 'FH347hfr8f5fnJs',
+			getAttribute(value) {
+				return this[value]
+			}
 		}
 	}
 }
