@@ -9,9 +9,9 @@ export const changeTab = {
 
 export const newClassroom = {
 	target: {
-		name: 'Biology',
+		name: 'Class 1',
 		teacher: 'Sara Tester',
-		code: 'BIO101',
+		code: 'CLS2',
 		substitute: 'John Tester',
 		getAttribute(value) {
 			return this[value]
@@ -21,9 +21,9 @@ export const newClassroom = {
 
 export const updateClassroom = {
 	target: {
-		name: { value: 'Science' },
+		name: { value: 'Class 2' },
 		teacher: { value: 'John Tester' },
-		code: { value: 'SCI101' },
+		code: { value: 'CLS2' },
 		substitute: { value: 'Mary Tester' },
 		oldName: {
 			'data-id': 'FH347hfr8f5fnJs',

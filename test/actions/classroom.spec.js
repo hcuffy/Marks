@@ -28,9 +28,9 @@ describe('classroom actions', () => {
 			payload: {
 				inputData: [
 					{
-						name: 'Biology',
+						name: 'Class 1',
 						teacher: 'Sara Tester',
-						code: 'BIO101',
+						code: 'CLS1',
 						substitute: 'John Tester'
 					}
 				]
@@ -54,9 +54,9 @@ describe('classroom actions', () => {
 			payload: {
 				classData: [
 					{
-						name: 'Biology',
+						name: 'Class 1',
 						teacher: 'Sara Tester',
-						code: 'BIO101',
+						code: 'CLS1',
 						substitute: 'John Tester'
 					}
 				]
@@ -80,9 +80,9 @@ describe('classroom actions', () => {
 			payload: {
 				classData: [
 					{
-						name: 'Science',
+						name: 'Class 2',
 						teacher: 'John Tester',
-						code: 'SCI101',
+						code: 'CLS2',
 						substitute: 'Mary Tester'
 					}
 				]
@@ -92,9 +92,9 @@ describe('classroom actions', () => {
 		const expectedActionTwo = {
 			type: types.UPDATE_CLASSROOM,
 			payload: {
-				name: 'Science',
+				name: 'Class 2',
 				teacher: 'John Tester',
-				code: 'SCI101',
+				code: 'CLS2',
 				substitute: 'Mary Tester',
 				oldName: 'FH347hfr8f5fnJs',
 				id: '',
@@ -120,9 +120,9 @@ describe('classroom actions', () => {
 			payload: {
 				classData: [
 					{
-						name: 'German',
+						name: 'Class 3',
 						teacher: 'Ludwig Tester',
-						code: 'DEU101',
+						code: 'CLS3',
 						substitute: 'Susanne Tester'
 					}
 				]
