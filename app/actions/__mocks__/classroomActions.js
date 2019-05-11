@@ -57,8 +57,6 @@ export const displayClassData = () => async dispatch => {
 	}
 }
 
-// TODO: continue from here
-
 export const updateRoom = event => async dispatch => {
 	const roomData = {
 		name: event.target.name.value,

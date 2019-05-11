@@ -1,3 +1,5 @@
+/* eslint-disable promise/always-return */
+/* eslint-disable promise/catch-or-return */
 import { spy } from 'sinon'
 import * as actions from '../../app/actions/classroomActions'
 import * as types from '../../app/constants/actionTypes'
@@ -110,5 +112,56 @@ describe('classroom actions', () => {
 			expect(dispatch.args[1][0]).toEqual(expectedActionTwo)
 			done()
 		})
+	})
+
+	it('should delete a classroom classroom', done => {
+		const expectedActionOne = {
+			type: types.GET_CLASSROOM_DATA,
+			payload: {
+				classData: [
+					{
+						name: 'German',
+						teacher: 'Ludwig Tester',
+						code: 'DEU101',
+						substitute: 'Susanne Tester'
+					}
+				]
+			}
+		}
+
+		const expectedActionTwo = {
+			type: types.UPDATE_CLASSROOM,
+			payload: {
+				id: 'DF347gfr834fnFe',
+				showModal: true
+			}
+		}
+
+		const fn = actions.deleteRoom(events.deleteRoom)
+		const dispatch = spy()
+
+		expect(fn).toBeInstanceOf(Function)
+
+		fn(dispatch).then(() => {
+			expect(dispatch.args[0][0]).toEqual(expectedActionOne)
+			expect(dispatch.args[1][0]).toEqual(expectedActionTwo)
+			done()
+		})
+	})
+
+	it('should open classroom modal', () => {
+		const expectedActionOne = {
+			type: types.OPEN_CLOSE_ROOM_MODAL,
+			payload: {
+				id: 'GrtZ7gGHZ34fn4e'
+			}
+		}
+
+		const fn = actions.roomModalDisplay(events.showModal)
+		const dispatch = spy()
+
+		expect(fn).toBeInstanceOf(Function)
+		fn(dispatch)
+		expect(dispatch.args[0][0]).toEqual(expectedActionOne)
 	})
 })

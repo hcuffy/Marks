@@ -17,3 +17,12 @@ export const updateRoomData = () => [
 		substitute: 'Mary Tester'
 	}
 ]
+
+export const deleteClassroom = () => [
+	{
+		name: 'German',
+		teacher: 'Ludwig Tester',
+		code: 'DEU101',
+		substitute: 'Susanne Tester'
+	}
+]

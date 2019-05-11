@@ -33,3 +33,21 @@ export const updateClassroom = {
 		}
 	}
 }
+
+export const deleteRoom = {
+	target: {
+		'data-id': 'DF347gfr834fnFe',
+		getAttribute(value) {
+			return this[value]
+		}
+	}
+}
+
+export const showModal = {
+	target: {
+		'data-id': 'GrtZ7gGHZ34fn4e',
+		getAttribute(value) {
+			return this[value]
+		}
+	}
+}
