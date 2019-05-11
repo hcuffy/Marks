@@ -2,27 +2,27 @@ export const addClassroomData = () => 1
 
 export const getClassroomData = () => [
 	{
-		name: 'Biology',
+		name: 'Class 1',
 		teacher: 'Sara Tester',
-		code: 'BIO101',
+		code: 'CLS1',
 		substitute: 'John Tester'
 	}
 ]
 
 export const updateRoomData = () => [
 	{
-		name: 'Science',
+		name: 'Class 2',
 		teacher: 'John Tester',
-		code: 'SCI101',
+		code: 'CLS2',
 		substitute: 'Mary Tester'
 	}
 ]
 
 export const deleteClassroom = () => [
 	{
-		name: 'German',
+		name: 'Class 3',
 		teacher: 'Ludwig Tester',
-		code: 'DEU101',
+		code: 'CLS3',
 		substitute: 'Susanne Tester'
 	}
 ]
