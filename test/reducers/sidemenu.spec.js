@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import applyMenuStyling from '../../app/reducers/sidemenuReducer'
 import { HANDLE_MENU_CHANGE } from '../../app/constants/actionTypes'
 
