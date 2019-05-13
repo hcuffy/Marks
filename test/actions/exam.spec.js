@@ -69,7 +69,9 @@ describe('exams actions', () => {
 					{
 						title: 'Science',
 						date: '2019-05-05',
-						weight: '2'
+						weight: '2',
+						_id: '22E47DFF834fgDh',
+						subjectId: 'DF347gfr834fnFe'
 					}
 				],
 				selectedSubject: 'Science',

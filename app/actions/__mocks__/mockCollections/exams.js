@@ -4,7 +4,9 @@ export const getAllExams = () => [
 	{
 		title: 'Science',
 		date: '2019-05-05',
-		weight: '2'
+		weight: '2',
+		subjectId: 'DF347gfr834fnFe',
+		_id: '22E47DFF834fgDh'
 	}
 ]
 
