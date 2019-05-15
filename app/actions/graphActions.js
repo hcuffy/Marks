@@ -9,10 +9,7 @@ import { getAllGrades } from '../database/gradeCollection'
 import { getAllExams } from '../database/examCollection'
 
 export const openGraphClassList = event => dispatch => {
-	if (
-		event.target.getAttribute('data-check') !== 'classDropdown' ||
-		event.target.innerText === ''
-	) {
+	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
 	const data = {
