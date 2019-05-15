@@ -10,7 +10,7 @@ jest.mock('../../app/actions/gradeActions')
 
 describe('exams actions', () => {
 	it('should not open classroom dropdown', () => {
-		const fn = actions.openGradeClassList(events.classDropdown)
+		const fn = actions.openGradeClassList(events.classDropdownInvalid)
 		const dispatch = spy()
 		expect(fn).toBeInstanceOf(Function)
 		fn(dispatch)
@@ -30,7 +30,7 @@ describe('exams actions', () => {
 	})
 
 	it('should not display grade data', () => {
-		const fn = actions.openGradeClassList(events.subjectDropdown)
+		const fn = actions.openGradeClassList(events.subjectDropdownInvalid)
 		const dispatch = spy()
 		expect(fn).toBeInstanceOf(Function)
 		fn(dispatch)
@@ -66,7 +66,6 @@ describe('exams actions', () => {
 		const fn = actions.displayGradeData(events.subjectDropdownValid)
 		const dispatch = spy()
 		expect(fn).toBeInstanceOf(Function)
-		fn(dispatch)
 		fn(dispatch).then(() => {
 			expect(dispatch.args[0][0]).toEqual(expectedAction)
 			done()

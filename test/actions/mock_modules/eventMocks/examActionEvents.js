@@ -26,7 +26,7 @@ export const displaySubject = {
 	}
 }
 
-export const classDropdown = {
+export const classDropdownInvalid = {
 	target: {
 		'data-check': null,
 		innerText: 'Class 1',
@@ -46,7 +46,7 @@ export const classDropdownValid = {
 	}
 }
 
-export const subjectDropdown = {
+export const subjectDropdownInvalid = {
 	target: {
 		'data-check': null,
 		getAttribute(value) {

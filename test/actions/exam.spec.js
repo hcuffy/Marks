@@ -34,7 +34,7 @@ describe('exams actions', () => {
 		expect(dispatch.args[0][0]).toEqual(expectedActionOne)
 	})
 	it('should not open classroom dropdown', () => {
-		const fn = actions.openClassDropdownList(events.classDropdown)
+		const fn = actions.openClassDropdownList(events.classDropdownInvalid)
 		const dispatch = spy()
 		expect(fn).toBeInstanceOf(Function)
 		fn(dispatch)
@@ -52,7 +52,7 @@ describe('exams actions', () => {
 		expect(dispatch.args[0][0]).toEqual(expectedActionOne)
 	})
 	it('should not open subject dropdown', done => {
-		const fn = actions.displayExamData(events.subjectDropdown)
+		const fn = actions.displayExamData(events.subjectDropdownInvalid)
 		const dispatch = spy()
 		expect(fn).toBeInstanceOf(Function)
 		fn(dispatch)
