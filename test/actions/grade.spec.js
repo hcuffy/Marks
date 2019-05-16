@@ -8,7 +8,7 @@ import { updateGrade, updateGradeNull } from './mock_modules/eventMocks/gradeAct
 
 jest.mock('../../app/actions/gradeActions')
 
-describe('exams actions', () => {
+describe('test the grade section actions', () => {
 	it('should not open classroom dropdown', () => {
 		const fn = actions.openGradeClassList(events.classDropdownInvalid)
 		const dispatch = spy()

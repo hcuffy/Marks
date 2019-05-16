@@ -7,7 +7,7 @@ import * as events from './mock_modules/eventMocks/classroomActionEvents'
 
 jest.mock('../../app/actions/classroomActions')
 
-describe('classroom actions', () => {
+describe('test the classroom section actions', () => {
 	it('should change the classroom tab', () => {
 		const expectedAction = {
 			type: types.CHANGE_CLASSROOM_TAB,

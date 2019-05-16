@@ -7,7 +7,7 @@ import * as events from './mock_modules/eventMocks/settingsActionEvents'
 
 jest.mock('../../app/actions/settingsActions')
 
-describe('exams actions', () => {
+describe('test the settings actions', () => {
 	it('should change the grading system to points', done => {
 		const expectedAction = {
 			type: types.UPDATE_GRADING_DATA,

@@ -7,7 +7,7 @@ import * as events from './mock_modules/eventMocks/sidemenuActionEvents'
 
 jest.mock('../../app/actions/sidemenuActions')
 
-describe('exams actions', () => {
+describe('test the sidemenu actions', () => {
 	it('should change menu background color', () => {
 		const expectedAction = {
 			type: types.HANDLE_MENU_CHANGE,

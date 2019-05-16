@@ -7,7 +7,7 @@ import * as events from './mock_modules/eventMocks/graphActionEvents'
 
 jest.mock('../../app/actions/graphActions')
 
-describe('exams actions', () => {
+describe('test the graphs section actions', () => {
 	it('should not open classroom dropdown', () => {
 		const fn = actions.openGraphClassList(events.classDropdownInvalid)
 		const dispatch = spy()

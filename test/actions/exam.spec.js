@@ -7,7 +7,7 @@ import * as events from './mock_modules/eventMocks/examActionEvents'
 
 jest.mock('../../app/actions/examActions')
 
-describe('exams actions', () => {
+describe('test the exam section actions', () => {
 	it('should add a new exam', () => {
 		const expectedAction = {
 			type: types.ADD_NEW_EXAM,
