@@ -11,7 +11,7 @@ import {
 	getClassroomData,
 	deleteClassroom,
 	updateRoomData
-} from './mockCollections/classroom'
+} from '../../../test/mockCollections/classroom'
 
 const _ = require('lodash')
 

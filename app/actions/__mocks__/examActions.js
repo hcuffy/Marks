@@ -11,7 +11,7 @@ import {
 	getAllExams,
 	deleteExam,
 	updateExamData
-} from './mockCollections/exams'
+} from '../../../test/mockCollections/exams'
 
 export const addNewExam = event => dispatch => {
 	const subjectIndex = event.target.subject.selectedIndex

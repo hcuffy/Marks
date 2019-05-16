@@ -3,8 +3,12 @@ import {
 	OPEN_CLASS_LIST,
 	UPDATE_EXAM_TABLE
 } from '../../constants/actionTypes'
-import { getAllExams } from './mockCollections/exams'
-import { getAllGrades, addGradeData, updateGradeData } from './mockCollections/grade'
+import { getAllExams } from '../../../test/mockCollections/exams'
+import {
+	getAllGrades,
+	addGradeData,
+	updateGradeData
+} from '../../../test/mockCollections/grade'
 
 const _ = require('lodash')
 
