@@ -79,7 +79,7 @@
       "deleteSuccess": "Die Daten wurden erfolgreich gelöscht.",
       "deleteFail": "Daten konnten nicht gelöscht werden.",
       "updateSuccess": "Die Daten wurden erfolgreich aktualisiert.",
-      "updatefail": "Die Daten konnten nicht aktualisiert werden.",
+      "updateFail": "Die Daten konnten nicht aktualisiert werden.",
       "noUpdate": "Es gibt nichts zu aktualisieren."
     },
     "warning": {
