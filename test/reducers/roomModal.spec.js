@@ -14,7 +14,10 @@ describe('test room modal reducer', () => {
 	it('should open modal', () => {
 		const payload = { id: 'umjHjOkl84Ry2kDH' }
 		expect(
-			applyClassModal(initialLoadState, { type: OPEN_CLOSE_ROOM_MODAL, payload })
+			applyClassModal(initialLoadState, {
+				type: OPEN_CLOSE_ROOM_MODAL,
+				payload
+			})
 		).toMatchSnapshot()
 	})
 
@@ -22,7 +25,10 @@ describe('test room modal reducer', () => {
 		initialLoadState.showModal = true
 		const payload = { id: 'umjHjOkl84Ry2kDH' }
 		expect(
-			applyClassModal(initialLoadState, { type: OPEN_CLOSE_ROOM_MODAL, payload })
+			applyClassModal(initialLoadState, {
+				type: OPEN_CLOSE_ROOM_MODAL,
+				payload
+			})
 		).toMatchSnapshot()
 	})
 

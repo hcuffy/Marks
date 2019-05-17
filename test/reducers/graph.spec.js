@@ -45,7 +45,10 @@ describe('test settings reducer', () => {
 			chartToDisplay: 'subject'
 		}
 		expect(
-			applyGraphData(initialLoadState, { type: DISPLAY_SUBJECT_GRADES, payload })
+			applyGraphData(initialLoadState, {
+				type: DISPLAY_SUBJECT_GRADES,
+				payload
+			})
 		).toMatchSnapshot()
 	})
 

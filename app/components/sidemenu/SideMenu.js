@@ -21,6 +21,7 @@ const SideMenu = ({ menuStylingData, actions }) => {
 			</Link>
 		</button>
 	))
+
 	return (
 		<div className={styles.menu_div}>
 			{menuItems}

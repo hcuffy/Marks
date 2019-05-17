@@ -107,6 +107,7 @@ describe('test the grade section actions', () => {
 			done()
 		})
 	})
+
 	it('should add grade if grade ID is null', done => {
 		const expectedAction = {
 			type: types.UPDATE_EXAM_TABLE,

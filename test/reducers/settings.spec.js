@@ -33,7 +33,10 @@ describe('test settings reducer', () => {
 		}
 
 		expect(
-			handleSchoolReducer(initialLoadState, { type: HANDLE_SCHOOL_DATA, payload })
+			handleSchoolReducer(initialLoadState, {
+				type: HANDLE_SCHOOL_DATA,
+				payload
+			})
 		).toMatchSnapshot()
 	})
 

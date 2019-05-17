@@ -64,7 +64,7 @@ const updateAddress = (previous, id) => {
 
 const updateSystem = (previous, id) => {
 	const { note, points, percent } = previous
-
+	// eslint-disable-next-line max-len
 	settingsCollection.update({ _id: id }, { $set: { note, points, percent } }, {}, err => {
 		if (err) {
 			saveFailed()

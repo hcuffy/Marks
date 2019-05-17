@@ -20,4 +20,4 @@ export const updateStudentData = data => {
 	return [Object.assign({}, oldData, data)]
 }
 
-export const deleteStudent = data => [{}]
+export const deleteStudent = () => [{}]

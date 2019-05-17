@@ -35,6 +35,7 @@ describe('test the student section actions', () => {
 			done()
 		})
 	})
+
 	it('should get all students', done => {
 		const expectedAction = {
 			type: types.GET_ALL_STUDENTS,
@@ -57,6 +58,7 @@ describe('test the student section actions', () => {
 			done()
 		})
 	})
+
 	it('should show student dialog', () => {
 		const expectedAction = {
 			type: types.GET_SINGLE_STUDENT,
@@ -68,6 +70,7 @@ describe('test the student section actions', () => {
 		fn(dispatch)
 		expect(dispatch.args[0][0]).toEqual(expectedAction)
 	})
+
 	it('should not display the student chart', () => {
 		const fn = actions.openStudentGraph(events.studentDropdownInvalid)
 		const dispatch = spy()
@@ -75,6 +78,7 @@ describe('test the student section actions', () => {
 		fn(dispatch)
 		expect(dispatch.args).toHaveLength(0)
 	})
+
 	it('should display the student chart', () => {
 		const expectedAction = {
 			type: types.DISPLAY_STUDENT_GRAPH,
@@ -90,6 +94,7 @@ describe('test the student section actions', () => {
 		fn(dispatch)
 		expect(dispatch.args[0][0]).toEqual(expectedAction)
 	})
+
 	it('should not display the subject chart', () => {
 		const fn = actions.openStudentGraph(events.subjectDropdownInvalid)
 		const dispatch = spy()
@@ -97,6 +102,7 @@ describe('test the student section actions', () => {
 		fn(dispatch)
 		expect(dispatch.args).toHaveLength(0)
 	})
+
 	it('should display the subject chart', () => {
 		const expectedAction = {
 			type: types.DISPLAY_STUDENT_SUBJECT_GRAPH,

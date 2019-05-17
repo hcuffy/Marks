@@ -19,6 +19,7 @@ describe('test the exam section actions', () => {
 		expect(fn).toBeInstanceOf(Function)
 		expect(dispatch.args[0][0]).toEqual(expectedAction)
 	})
+
 	it('should get subject for drop down', () => {
 		const expectedActionOne = {
 			type: types.GET_SELECTED_CLASS,
@@ -33,6 +34,7 @@ describe('test the exam section actions', () => {
 		fn(dispatch)
 		expect(dispatch.args[0][0]).toEqual(expectedActionOne)
 	})
+
 	it('should not open classroom dropdown', () => {
 		const fn = actions.openClassDropdownList(events.classDropdownInvalid)
 		const dispatch = spy()
@@ -40,6 +42,7 @@ describe('test the exam section actions', () => {
 		fn(dispatch)
 		expect(dispatch.args).toHaveLength(0)
 	})
+
 	it('should open classroom dropdown', () => {
 		const expectedActionOne = {
 			type: types.UPDATE_DROPDOWN_CLASS_LIST,
@@ -51,6 +54,7 @@ describe('test the exam section actions', () => {
 		fn(dispatch)
 		expect(dispatch.args[0][0]).toEqual(expectedActionOne)
 	})
+
 	it('should not open subject dropdown', done => {
 		const fn = actions.displayExamData(events.subjectDropdownInvalid)
 		const dispatch = spy()
@@ -61,6 +65,7 @@ describe('test the exam section actions', () => {
 			done()
 		})
 	})
+
 	it('should open subject dropdown', done => {
 		const expectedAction = {
 			type: types.DISPLAY_SUBJECT_LIST,

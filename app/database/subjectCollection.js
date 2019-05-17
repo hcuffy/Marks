@@ -61,7 +61,10 @@ export const addSubjectData = async data => {
 		return
 	}
 
-	const newSubject = _.merge(data, { tests: [], classroomId: subjectClassroom._id })
+	const newSubject = _.merge(data, {
+		tests: [],
+		classroomId: subjectClassroom._id
+	})
 	subjectClassroom.subjects.push(data.abbreviation)
 
 	subjectCollection.insert(newSubject, error => {

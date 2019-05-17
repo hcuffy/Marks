@@ -15,6 +15,7 @@ describe('test the subject section actions', () => {
 		fn(dispatch)
 		expect(dispatch.args).toHaveLength(0)
 	})
+
 	it('should open the class dropdown', () => {
 		const expectedAction = {
 			type: types.UPDATE_CLASS_LIST,
@@ -26,10 +27,13 @@ describe('test the subject section actions', () => {
 		fn(dispatch)
 		expect(dispatch.args[0][0]).toEqual(expectedAction)
 	})
+
 	it('should add new student', done => {
 		const expectedAction = {
 			type: types.ADD_NEW_SUBJECT,
-			payload: { data: [{ abbreviation: 'ENG101', name: 'English', room: 'Class 1' }] }
+			payload: {
+				data: [{ abbreviation: 'ENG101', name: 'English', room: 'Class 1' }]
+			}
 		}
 		const fn = actions.addNewSubject(events.newSubject)
 		const dispatch = spy()
@@ -39,10 +43,13 @@ describe('test the subject section actions', () => {
 			done()
 		})
 	})
+
 	it('should get all subjects', done => {
 		const expectedAction = {
 			type: types.GET_SUBJECT_LIST,
-			payload: { data: [{ abbreviation: 'ENG101', name: 'English', room: 'Class 1' }] }
+			payload: {
+				data: [{ abbreviation: 'ENG101', name: 'English', room: 'Class 1' }]
+			}
 		}
 		const fn = actions.getSubjectData()
 		const dispatch = spy()
@@ -52,6 +59,7 @@ describe('test the subject section actions', () => {
 			done()
 		})
 	})
+
 	it('should get single subject', () => {
 		const expectedAction = {
 			type: types.GET_SINGLE_SUBJECT,
@@ -63,6 +71,7 @@ describe('test the subject section actions', () => {
 		fn(dispatch)
 		expect(dispatch.args[0][0]).toEqual(expectedAction)
 	})
+
 	it('should show subject dialog', () => {
 		const expectedAction = {
 			type: types.OPEN_CLOSE_SUBJECT_MODAL,
@@ -109,7 +118,9 @@ describe('test the subject section actions', () => {
 		}
 		const expectedActionThree = {
 			type: types.GET_SUBJECT_LIST,
-			payload: { data: [{ abbreviation: 'ENG101', name: 'English', room: 'Class 1' }] }
+			payload: {
+				data: [{ abbreviation: 'ENG101', name: 'English', room: 'Class 1' }]
+			}
 		}
 		const fn = actions.updateSubject(events.updateSubject)
 		const dispatch = spy()

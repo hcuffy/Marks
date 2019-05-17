@@ -150,7 +150,6 @@ export default class MenuBuilder {
 	}
 
 	buildDefaultTemplate() {
-		const locale = app.getLocale().slice(0, 2)
 		const templateDefault = [
 			{
 				label: '&File',

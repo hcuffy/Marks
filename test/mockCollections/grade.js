@@ -16,6 +16,6 @@ export const getAllGrades = () => [
 	}
 ]
 
-export const addGradeData = gradeDate => true
+export const addGradeData = () => true
 
-export const updateGradeData = (gradeData, gradeId) => true
+export const updateGradeData = () => true
