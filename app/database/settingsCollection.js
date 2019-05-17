@@ -26,8 +26,10 @@ export const getAddressData = () =>
 		settingsCollection.find({}, (err, entry) => {
 			if (err) {
 				unableToRetrieve()
+
 				return reject(err)
 			}
+
 			return resolve(entry)
 		})
 	)
@@ -38,6 +40,7 @@ export const getSystemType = () =>
 			if (err) {
 				return reject(err)
 			}
+
 			return resolve(docs)
 		})
 	)
@@ -51,6 +54,7 @@ const updateAddress = (previous, id) => {
 		err => {
 			if (err) {
 				saveFailed()
+
 				return err
 			}
 			saveSuccessful()
@@ -64,6 +68,7 @@ const updateSystem = (previous, id) => {
 	settingsCollection.update({ _id: id }, { $set: { note, points, percent } }, {}, err => {
 		if (err) {
 			saveFailed()
+
 			return err
 		}
 		saveSuccessful()
@@ -72,6 +77,7 @@ const updateSystem = (previous, id) => {
 
 export const updateGradeType = async data => {
 	const setting = await getSystemType()
+
 	return new Promise(resolve => {
 		updateSystem(data, setting[0]._id)
 
@@ -81,8 +87,10 @@ export const updateGradeType = async data => {
 
 export const addAddress = async data => {
 	const setting = await getAddressData()
+
 	return new Promise(resolve => {
 		updateAddress(data, setting[0]._id)
+
 		return resolve(getAddressData())
 	})
 }

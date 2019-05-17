@@ -64,12 +64,14 @@ export const deleteGradesByStudentId = id =>
 		gradeCollection.remove({ studentId: id }, { multi: true }, err => {
 			if (err) {
 				deletionFailed()
+
 				return reject(err)
 			}
 			gradeCollection.find({}, (error, docs) => {
 				if (err) {
 					return reject(err)
 				}
+
 				return resolve(docs)
 			})
 		})
@@ -80,6 +82,7 @@ export const deleteGradesByExamId = id =>
 		gradeCollection.remove({ examId: id }, { multi: true }, err => {
 			if (err) {
 				deletionFailed()
+
 				return reject(err)
 			}
 			gradeCollection.find({}, (error, docs) => {

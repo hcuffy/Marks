@@ -18,9 +18,17 @@ export const menuData = {
 		dataId: 'classroom',
 		className: 'fa fa-eraser fa-3x'
 	},
-	students: { linkTo: STUDENTS, dataId: 'students', className: 'fa fa-users fa-3x' },
+	students: {
+		linkTo: STUDENTS,
+		dataId: 'students',
+		className: 'fa fa-users fa-3x'
+	},
 	exams: { linkTo: GRADES, dataId: 'exams', className: 'fa fa-list-ol fa-3x' },
-	graphs: { linkTo: GRAPHS, dataId: 'graphs', className: 'fa fa-chart-pie fa-3x' },
+	graphs: {
+		linkTo: GRAPHS,
+		dataId: 'graphs',
+		className: 'fa fa-chart-pie fa-3x'
+	},
 	school: {
 		linkTo: SETTINGS,
 		dataId: 'settings',

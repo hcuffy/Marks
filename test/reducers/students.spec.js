@@ -71,7 +71,10 @@ describe('test student reducer', () => {
 			chartToDisplay: 'student'
 		}
 		expect(
-			applyStudentData(initialLoadState, { type: DISPLAY_STUDENT_GRAPH, payload })
+			applyStudentData(initialLoadState, {
+				type: DISPLAY_STUDENT_GRAPH,
+				payload
+			})
 		).toMatchSnapshot()
 	})
 
@@ -83,7 +86,10 @@ describe('test student reducer', () => {
 		}
 
 		expect(
-			applyStudentData(initialLoadState, { type: DISPLAY_STUDENT_SUBJECT_GRAPH, payload })
+			applyStudentData(initialLoadState, {
+				type: DISPLAY_STUDENT_SUBJECT_GRAPH,
+				payload
+			})
 		).toMatchSnapshot()
 	})
 })

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import applySubjectModal from '../../app/reducers/subjectModalReducer'
 import { OPEN_CLOSE_SUBJECT_MODAL, UPDATE_SUBJECT } from '../../app/constants/actionTypes'
 
@@ -14,7 +15,10 @@ describe('test subject modal reducer', () => {
 	it('should open subject modal', () => {
 		const payload = { id: 'L0EWvgOlqFDKYrVs' }
 		expect(
-			applySubjectModal(initialLoadState, { type: OPEN_CLOSE_SUBJECT_MODAL, payload })
+			applySubjectModal(initialLoadState, {
+				type: OPEN_CLOSE_SUBJECT_MODAL,
+				payload
+			})
 		).toMatchSnapshot()
 	})
 
@@ -22,7 +26,10 @@ describe('test subject modal reducer', () => {
 		initialLoadState.showSubjectModal = true
 		const payload = { id: 'L0EWvgOlqFDKYrVs' }
 		expect(
-			applySubjectModal(initialLoadState, { type: OPEN_CLOSE_SUBJECT_MODAL, payload })
+			applySubjectModal(initialLoadState, {
+				type: OPEN_CLOSE_SUBJECT_MODAL,
+				payload
+			})
 		).toMatchSnapshot()
 	})
 

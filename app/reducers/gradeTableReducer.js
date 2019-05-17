@@ -20,7 +20,13 @@ const applyGradeData = (state = initialLoadState, action) => {
 		const { exams, grades } = action.payload
 		const subDrop = !state.subDrop
 
-		return _.assign({}, state, { subjectName, subjectId, subDrop, exams, grades })
+		return _.assign({}, state, {
+			subjectName,
+			subjectId,
+			subDrop,
+			exams,
+			grades
+		})
 	}
 	case OPEN_CLASS_LIST: {
 		const classroomDropdown = !state.classroomDropdown
