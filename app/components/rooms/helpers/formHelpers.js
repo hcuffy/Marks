@@ -14,6 +14,7 @@ export const createFormInputs = (t, labels) =>
 				className="form-control"
 				id={`${data}Id`}
 				type="text"
+				required
 				defaultValue={labels[data]}
 			/>
 		</div>
