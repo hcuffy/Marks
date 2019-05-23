@@ -91,6 +91,7 @@ export const createModalInputs = (t, selectedRoom) =>
 				className={`${styles.form_input} form-control`}
 				data-id={`${data}_Id`}
 				type="text"
+				required
 				defaultValue={selectedRoom[data]}
 			/>
 		</div>
