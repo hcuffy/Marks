@@ -14,6 +14,7 @@ export const createFormInputs = (t, labels) =>
 				className="form-control"
 				id={`${data}Id`}
 				type="text"
+				required
 				defaultValue={labels[data]}
 			/>
 		</div>
@@ -91,6 +92,7 @@ export const createModalInputs = (t, selectedRoom) =>
 				className={`${styles.form_input} form-control`}
 				data-id={`${data}_Id`}
 				type="text"
+				required
 				defaultValue={selectedRoom[data]}
 			/>
 		</div>

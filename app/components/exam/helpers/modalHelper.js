@@ -22,7 +22,7 @@ const examTitle = (t, chosenExam) => (
 	</div>
 )
 
-const examWieght = (t, chosenExam) => (
+const examWeight = (t, chosenExam) => (
 	<div className={styles.form_div_edit}>
 		<label
 			className={styles.form_label_edit}
@@ -67,7 +67,7 @@ const generateFields = (t, exam) => {
 	const examFields = (
 		<div>
 			{examTitle(t, exam)}
-			{examWieght(t, exam)}
+			{examWeight(t, exam)}
 			{examDate(t, exam)}
 		</div>
 	)

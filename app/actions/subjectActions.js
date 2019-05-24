@@ -69,7 +69,7 @@ export const deleteSingleSubject = event => async dispatch => {
 
 	dispatch({
 		type: OPEN_CLOSE_SUBJECT_MODAL,
-		payload:  subjectData
+		payload: subjectData
 	})
 
 	dispatch({
