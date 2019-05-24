@@ -28,6 +28,7 @@ const selectedSubject = (t, subject) =>
 				className={`${styles.badge_number} form-control`}
 				data-id={`${data}_Id`}
 				type="text"
+				required
 				defaultValue={subject[data]}
 			/>
 		</div>
