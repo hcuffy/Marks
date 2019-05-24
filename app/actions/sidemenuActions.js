@@ -12,6 +12,7 @@ export const updateButtonStyle = event => dispatch => {
 		students: '',
 		exams: '',
 		graphs: '',
+		notes: '',
 		settings: ''
 	}
 

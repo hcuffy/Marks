@@ -4,5 +4,6 @@
   "STUDENTS": "/students",
   "GRADES": "/grades",
   "GRAPHS": "/graphs",
+  "NOTES": "/notes",
   "SETTINGS": "/settings"
 }
