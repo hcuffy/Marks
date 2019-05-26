@@ -1,3 +1,4 @@
+GitHub Pages Link: https://hcuffy.github.io/Marks/
 ## Installation
 
 First, clone the repo via git:
