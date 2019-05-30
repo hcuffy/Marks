@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { actionCreators } from '../actions/index'
 import SideMenu from '../components/sidemenu/SideMenu'
 import NotesSection from '../components/notes/NotesSection'
 
 class Notes extends Component {
+	componentDidMount() {
+		this.props.actions.getStudents()
+	}
+
 	render() {
 		return (
 			<div>
@@ -14,7 +20,11 @@ class Notes extends Component {
 	}
 }
 
+const mapDispatchToProps = dispatch => ({
+	actions: bindActionCreators(actionCreators, dispatch)
+})
+
 export default connect(
 	null,
-	null
+	mapDispatchToProps
 )(Notes)
