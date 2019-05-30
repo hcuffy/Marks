@@ -27,13 +27,11 @@ class Students extends Component {
 	}
 }
 
-const mapStateToProps = state => ({})
-
 const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
 })
 
 export default connect(
-	mapStateToProps,
+	null,
 	mapDispatchToProps
 )(Students)
