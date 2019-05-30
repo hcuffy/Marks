@@ -2,6 +2,14 @@ body {
   padding: 10px;
 }
 
+.lang_btn_div {
+  float: right;
+  margin-right: 13%;
+}
+
+.heading {
+  margin-left: 240px;
+}
 .main_div {
   text-align: center;
 }
