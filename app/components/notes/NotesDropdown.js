@@ -5,8 +5,9 @@ import { actionCreators } from '../../actions/index'
 import { getStudentList, createDropdown } from '../helpers/dropdowns'
 import styles from './styles/notes.css'
 
-const NotesDropdown = ({ studentData, actions }) => {
+const NotesDropdown = ({ studentData, notesData, actions }) => {
 	const { students } = studentData
+	const { studentDropdown } = notesData
 
 	const studentOptions = getStudentList(students)
 
@@ -14,7 +15,7 @@ const NotesDropdown = ({ studentData, actions }) => {
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
 				styles.dropdown_one,
-				false,
+				studentDropdown,
 				actions.getStudents,
 				'Select Student',
 				studentOptions,
@@ -34,7 +35,8 @@ const NotesDropdown = ({ studentData, actions }) => {
 }
 
 const mapStateToProps = state => ({
-	studentData: state.studentData
+	studentData: state.studentData,
+	notesData: state.notesData
 })
 
 const mapDispatchToProps = dispatch => ({
