@@ -11,6 +11,7 @@ import applyStudentData from './studentsReducer'
 import applyGradeData from './gradeTableReducer'
 import applyMenuStyling from './sidemenuReducer'
 import applyGraphData from './graphReducer'
+import applyNotesData from './notesReducer'
 
 export default function createRootReducer(history: History) {
 	return combineReducers({
@@ -27,6 +28,7 @@ export default function createRootReducer(history: History) {
 		subjectModalData: applySubjectModal,
 		menuStylingData: applyMenuStyling,
 		gradeData: applyGradeData,
-		graphData: applyGraphData
+    graphData: applyGraphData,
+    notesData:applyNotesData
 	})
 }
