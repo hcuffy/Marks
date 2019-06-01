@@ -50,5 +50,8 @@ export const actionCreators = {
 	updateSytemType: settings.updateGradingSystem,
 	getGradingSystem: settings.getGradingSystem,
 	addNote: notes.addNote,
-	openStudentDropdown: notes.openStudentDropdown
+	openStudentDropdown: notes.openStudentDropdown,
+	getNotes: notes.getNotes,
+	openNotesDropdown: notes.openNotesDropdown,
+	updateTextArea: notes.updateTextArea
 }

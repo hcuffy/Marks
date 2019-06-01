@@ -1,4 +1,9 @@
-import { OPEN_STUDENT_NOTES_DROPDOWN } from '../constants/actionTypes'
+import {
+	GET_ALL_NOTES,
+	OPEN_STUDENT_NOTES_DROPDOWN,
+	OPEN_NOTES_DROPDOWN,
+	UPDATE_TEXTAREA
+} from '../constants/actionTypes'
 
 const _ = require('lodash')
 
@@ -6,11 +11,17 @@ const initialLoadState = {
 	studentDropdown: false,
 	notesDropdown: false,
 	studentId: null,
-	selectedStudent: null
+	noteId: null,
+	selectedStudent: null,
+	selectedNote: null,
+	textBox: null
 }
 
 const applyNotesData = (state = initialLoadState, action) => {
 	switch (action.type) {
+	case GET_ALL_NOTES: {
+		return _.assign({}, state, action.payload)
+	}
 	case OPEN_STUDENT_NOTES_DROPDOWN: {
 		const studentDropdown = !state.studentDropdown
 		const { studentId, selectedStudent } = action.payload
@@ -21,7 +32,23 @@ const applyNotesData = (state = initialLoadState, action) => {
 			selectedStudent
 		})
 	}
+	case OPEN_NOTES_DROPDOWN: {
+		const notesDropdown = !state.notesDropdown
+		const studentDropdown = false
 
+		return _.assign(
+			{},
+			state,
+			{
+				notesDropdown,
+				studentDropdown
+			},
+			action.payload
+		)
+	}
+	case UPDATE_TEXTAREA: {
+		return _.assign({}, state, action.payload)
+	}
 	default:
 		return state
 	}

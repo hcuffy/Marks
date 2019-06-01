@@ -8,6 +8,7 @@ import NotesSection from '../components/notes/NotesSection'
 class Notes extends Component {
 	componentDidMount() {
 		this.props.actions.getStudents()
+		this.props.actions.getNotes()
 	}
 
 	render() {

@@ -2,14 +2,22 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import { getStudentList, createDropdown } from '../helpers/dropdowns'
+import { getStudentList, getNotesList, createDropdown } from '../helpers/dropdowns'
 import { resolveLabel } from '../../utils/translationUtil'
 import styles from './styles/notes.css'
 
 const NotesDropdown = ({ studentData, notesData, actions }) => {
 	const { students } = studentData
-	const { studentDropdown, selectedStudent } = notesData
+	const {
+		studentDropdown,
+		notesDropdown,
+		selectedStudent,
+		selectedNote,
+		studentId,
+		notes
+	} = notesData
 	const studentOptions = getStudentList(students)
+	const notesOptions = getNotesList(notes, studentId)
 
 	return (
 		<div className={styles.dropdown_main_div}>
@@ -24,10 +32,10 @@ const NotesDropdown = ({ studentData, notesData, actions }) => {
 
 			{createDropdown(
 				styles.dropdown_two,
-				false,
-				actions.getStudents,
-				'Select Note',
-				[],
+				notesDropdown,
+				actions.openNotesDropdown,
+				resolveLabel(selectedNote, 'Select Note'),
+				notesOptions,
 				'notesDropdown'
 			)}
 		</div>
