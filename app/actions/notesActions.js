@@ -1,4 +1,4 @@
-import { GET_ALL_NOTES } from '../constants/actionTypes'
+import { GET_ALL_NOTES, OPEN_STUDENT_NOTES_DROPDOWN } from '../constants/actionTypes'
 import { addNewNote, getAllNotes } from '../database/notesCollection'
 
 export const addNote = event => async dispatch => {
@@ -16,5 +16,21 @@ export const addNote = event => async dispatch => {
 	dispatch({
 		type: GET_ALL_NOTES,
 		payload: { notes }
+	})
+}
+
+export const openStudentDropdown = event => dispatch => {
+	if (event.target.getAttribute('data-check') !== 'studentDropdown') {
+		return
+	}
+
+	const student = {
+		studentId: event.target.getAttribute('data-id'),
+		selectedStudent: event.target.innerText
+	}
+
+	dispatch({
+		type: OPEN_STUDENT_NOTES_DROPDOWN,
+		payload: student
 	})
 }

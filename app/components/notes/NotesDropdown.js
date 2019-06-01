@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { getStudentList, createDropdown } from '../helpers/dropdowns'
+import { resolveLabel } from '../../utils/translationUtil'
 import styles from './styles/notes.css'
 
 const NotesDropdown = ({ studentData, notesData, actions }) => {
 	const { students } = studentData
-	const { studentDropdown } = notesData
-
+	const { studentDropdown, selectedStudent } = notesData
 	const studentOptions = getStudentList(students)
 
 	return (
@@ -16,8 +16,8 @@ const NotesDropdown = ({ studentData, notesData, actions }) => {
 			{createDropdown(
 				styles.dropdown_one,
 				studentDropdown,
-				actions.getStudents,
-				'Select Student',
+				actions.openStudentDropdown,
+				resolveLabel(selectedStudent, 'Select Student'),
 				studentOptions,
 				'studentDropdown'
 			)}

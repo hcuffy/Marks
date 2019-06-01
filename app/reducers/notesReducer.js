@@ -4,16 +4,21 @@ const _ = require('lodash')
 
 const initialLoadState = {
 	studentDropdown: false,
-	notesDropdown: false
+	notesDropdown: false,
+	studentId: null,
+	selectedStudent: null
 }
 
 const applyNotesData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case OPEN_STUDENT_NOTES_DROPDOWN: {
 		const studentDropdown = !state.studentDropdown
+		const { studentId, selectedStudent } = action.payload
 
 		return _.assign({}, state, {
-			studentNotesDropdown
+			studentDropdown,
+			studentId,
+			selectedStudent
 		})
 	}
 

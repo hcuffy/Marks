@@ -6,9 +6,8 @@ import noteForm from './helpers/formHelpers'
 import styles from './styles/notes.css'
 
 const NotesForm = ({ notesData, actions }) => {
-	const { studentNotesDropdown } = notesData
 
-	return <div>{noteForm(actions)}</div>
+	return <div>{noteForm(actions, notesData)}</div>
 }
 
 const mapStateToProps = state => ({
