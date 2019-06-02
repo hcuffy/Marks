@@ -4,7 +4,7 @@ import {
 	OPEN_NOTES_DROPDOWN,
 	UPDATE_TEXTAREA
 } from '../constants/actionTypes'
-import { addNewNote, getAllNotes } from '../database/notesCollection'
+import { addNewNote, getAllNotes, deleteNote } from '../database/notesCollection'
 
 export const addNote = event => async dispatch => {
 	event.preventDefault()
@@ -14,9 +14,7 @@ export const addNote = event => async dispatch => {
 		note: event.target.note.value,
 		studentId: event.target.student.value
 	}
-	console.log(event.target)
 
-	return
 	addNewNote(formData)
 	event.target.reset()
 	const notes = await getAllNotes()
@@ -74,5 +72,20 @@ export const updateTextArea = event => dispatch => {
 	dispatch({
 		type: UPDATE_TEXTAREA,
 		payload: updatedNote
+	})
+}
+
+export const deleteSingleNote = event => async dispatch => {
+	const noteId = event.target.getAttribute('data-id')
+	const notes = await deleteNote(noteId)
+
+	dispatch({
+		type: UPDATE_TEXTAREA,
+		payload: { textBox: '' }
+	})
+
+	dispatch({
+		type: GET_ALL_NOTES,
+		payload: { notes }
 	})
 }

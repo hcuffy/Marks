@@ -11,15 +11,22 @@ const getNoteTitle = (noteId, notes, wanted) => {
 	return _.get(fullNoteData, wanted)
 }
 
-const footerBtns = (noteId, studentId) => (
+const footerBtns = (noteId, studentId, actions) => (
 	<FormGroup check>
 		<Col sm={{ offset: 8 }}>
-			<Button type="button" color="danger" data-id={noteId} disabled={!noteId}>
+			<Button
+				type="button"
+				color="danger"
+				onClick={actions.deleteSingleNote}
+				data-id={noteId}
+				disabled={!noteId}
+			>
 				Delete
 			</Button>{' '}
 			<Button type="button" color="primary" data-id={noteId} disabled={!noteId}>
 				Update
 			</Button>{' '}
+			{/* eslint-disable-next-line max-len */}
 			<Button type="submit" color="success" disabled={!studentId || Boolean(noteId)}>
 				Add
 			</Button>
@@ -28,7 +35,7 @@ const footerBtns = (noteId, studentId) => (
 )
 
 const noteForm = (actions, notesData) => {
-	const { studentId, noteId, notes, updatedNote, textBox } = notesData
+	const { studentId, noteId, notes, textBox } = notesData
 	const noteInformation = _.isNull(textBox)
 		? getNoteTitle(noteId, notes, 'note')
 		: textBox
@@ -64,7 +71,7 @@ const noteForm = (actions, notesData) => {
 					/>
 				</Col>
 			</FormGroup>
-			{footerBtns(noteId, studentId)}
+			{footerBtns(noteId, studentId, actions)}
 		</Form>
 	)
 }

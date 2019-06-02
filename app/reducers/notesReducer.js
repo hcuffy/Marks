@@ -24,10 +24,12 @@ const applyNotesData = (state = initialLoadState, action) => {
 	}
 	case OPEN_STUDENT_NOTES_DROPDOWN: {
 		const studentDropdown = !state.studentDropdown
+		const notesDropdown = false
 		const { studentId, selectedStudent } = action.payload
 
 		return _.assign({}, state, {
 			studentDropdown,
+			notesDropdown,
 			studentId,
 			selectedStudent
 		})
