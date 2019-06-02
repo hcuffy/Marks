@@ -48,8 +48,8 @@ body {
 }
 
 img {
-  width: 500px;
-  height: 400px;
+  width: 450px;
+  height: 350px;
 }
 
 .left_img_div {
@@ -66,5 +66,10 @@ footer {
   margin-left: 35%;
   height: 50px;
   position: absolute;
-  bottom: -820px;
+  bottom: -900px;
+}
+
+.btn_color {
+  background-color: #1dbb90;
+  border-color: #1dbb90;
 }
