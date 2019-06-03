@@ -24,3 +24,8 @@
   margin: auto;
   text-align: center;
 }
+
+.clear_Btn {
+  position: absolute;
+  left: 200px;
+}
