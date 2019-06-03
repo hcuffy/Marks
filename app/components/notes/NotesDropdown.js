@@ -16,6 +16,7 @@ const NotesDropdown = ({ studentData, notesData, actions }) => {
 		studentId,
 		notes
 	} = notesData
+
 	const studentOptions = getStudentList(students)
 	const notesOptions = getNotesList(notes, studentId)
 

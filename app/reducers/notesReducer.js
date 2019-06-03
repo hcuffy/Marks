@@ -25,6 +25,7 @@ const applyNotesData = (state = initialLoadState, action) => {
 	case OPEN_STUDENT_NOTES_DROPDOWN: {
 		const studentDropdown = !state.studentDropdown
 		const notesDropdown = false
+
 		const { studentId, selectedStudent } = action.payload
 
 		return _.assign({}, state, {
@@ -36,6 +37,7 @@ const applyNotesData = (state = initialLoadState, action) => {
 	}
 	case OPEN_NOTES_DROPDOWN: {
 		const notesDropdown = !state.notesDropdown
+		const textBox = null
 		const studentDropdown = false
 
 		return _.assign(
@@ -43,6 +45,7 @@ const applyNotesData = (state = initialLoadState, action) => {
 			state,
 			{
 				notesDropdown,
+				textBox,
 				studentDropdown
 			},
 			action.payload

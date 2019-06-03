@@ -45,6 +45,7 @@ export const openStudentDropdown = event => dispatch => {
 		selectedStudent: event.target.innerText
 	}
 
+	console.log(student.studentId)
 	dispatch({
 		type: OPEN_STUDENT_NOTES_DROPDOWN,
 		payload: student

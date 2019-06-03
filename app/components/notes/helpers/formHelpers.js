@@ -3,13 +3,47 @@ import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap'
 
 const _ = require('lodash')
 
-const getNoteTitle = (noteId, notes, wanted) => {
+const getNoteProp = (noteId, notes, prop) => {
 	const fullNoteData = _.chain(notes)
 		.find({ _id: noteId })
 		.value()
 
-	return _.get(fullNoteData, wanted)
+	return _.get(fullNoteData, prop)
 }
+
+const getTextBoxData = (textBox, noteId, notes) => {
+	const noteData = _.isNull(textBox) ? getNoteProp(noteId, notes, 'note') : textBox
+
+	return _.isUndefined(noteData) ? '' : noteData
+}
+const titleField = (title, studentId) => (
+	<FormGroup row>
+		<Label for="textBox" sm={1}>
+			Title*:
+		</Label>
+		<Col sm={10}>
+			<Input type="text" name="title" required defaultValue={title} />
+			<Input type="text" name="student" defaultValue={studentId} hidden />
+		</Col>
+	</FormGroup>
+)
+const textBoxArea = (noteInformation, actions) => (
+	<FormGroup row>
+		<Label for="textBox" sm={1}>
+			Notes:
+		</Label>
+		<Col sm={10}>
+			<Input
+				type="textarea"
+				name="note"
+				rows="20"
+				id="textBox"
+				value={noteInformation}
+				onChange={actions.updateTextArea}
+			/>
+		</Col>
+	</FormGroup>
+)
 
 const footerBtns = (noteId, studentId, actions) => (
 	<FormGroup check>
@@ -36,41 +70,15 @@ const footerBtns = (noteId, studentId, actions) => (
 
 const noteForm = (actions, notesData) => {
 	const { studentId, noteId, notes, textBox } = notesData
-	const noteInformation = _.isNull(textBox)
-		? getNoteTitle(noteId, notes, 'note')
-		: textBox
+	const noteInformation = _.isNull(studentId)
+		? ''
+		: getTextBoxData(textBox, noteId, notes)
+	const title = _.isNull(studentId) ? '' : getNoteProp(noteId, notes, 'title')
 
 	return (
 		<Form onSubmit={actions.addNote} method="POST">
-			<FormGroup row>
-				<Label for="textBox" sm={1}>
-					Title*:
-				</Label>
-				<Col sm={10}>
-					<Input
-						type="text"
-						name="title"
-						required
-						defaultValue={getNoteTitle(noteId, notes, 'title')}
-					/>
-					<Input type="text" name="student" defaultValue={studentId} hidden />
-				</Col>
-			</FormGroup>
-			<FormGroup row>
-				<Label for="textBox" sm={1}>
-					Notes:
-				</Label>
-				<Col sm={10}>
-					<Input
-						type="textarea"
-						name="note"
-						rows="20"
-						id="textBox"
-						value={noteInformation}
-						onChange={actions.updateTextArea}
-					/>
-				</Col>
-			</FormGroup>
+			{titleField(title, studentId, actions)}
+			{textBoxArea(noteInformation, actions)}
 			{footerBtns(noteId, studentId, actions)}
 		</Form>
 	)
