@@ -2,7 +2,8 @@ import {
 	GET_ALL_NOTES,
 	OPEN_STUDENT_NOTES_DROPDOWN,
 	OPEN_NOTES_DROPDOWN,
-	UPDATE_TEXTAREA
+	UPDATE_TEXTAREA,
+	CLEAR_NOTE_FIELDS
 } from '../constants/actionTypes'
 
 const _ = require('lodash')
@@ -52,6 +53,9 @@ const applyNotesData = (state = initialLoadState, action) => {
 		)
 	}
 	case UPDATE_TEXTAREA: {
+		return _.assign({}, state, action.payload)
+	}
+	case CLEAR_NOTE_FIELDS: {
 		return _.assign({}, state, action.payload)
 	}
 	default:

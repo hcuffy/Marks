@@ -2,7 +2,8 @@ import {
 	GET_ALL_NOTES,
 	OPEN_STUDENT_NOTES_DROPDOWN,
 	OPEN_NOTES_DROPDOWN,
-	UPDATE_TEXTAREA
+	UPDATE_TEXTAREA,
+	CLEAR_NOTE_FIELDS
 } from '../constants/actionTypes'
 import { addNewNote, getAllNotes, deleteNote } from '../database/notesCollection'
 
@@ -45,7 +46,6 @@ export const openStudentDropdown = event => dispatch => {
 		selectedStudent: event.target.innerText
 	}
 
-	console.log(student.studentId)
 	dispatch({
 		type: OPEN_STUDENT_NOTES_DROPDOWN,
 		payload: student
@@ -57,22 +57,18 @@ export const openNotesDropdown = event => dispatch => {
 		return
 	}
 
-	const note = {
-		noteId: event.target.getAttribute('data-id')
-	}
-
 	dispatch({
 		type: OPEN_NOTES_DROPDOWN,
-		payload: note
+		payload: {
+			noteId: event.target.getAttribute('data-id')
+		}
 	})
 }
 
 export const updateTextArea = event => dispatch => {
-	const updatedNote = { textBox: event.target.value }
-
 	dispatch({
 		type: UPDATE_TEXTAREA,
-		payload: updatedNote
+		payload: { textBox: event.target.value }
 	})
 }
 
@@ -88,5 +84,12 @@ export const deleteSingleNote = event => async dispatch => {
 	dispatch({
 		type: GET_ALL_NOTES,
 		payload: { notes }
+	})
+}
+
+export const clearNoteField = () => async dispatch => {
+	dispatch({
+		type: CLEAR_NOTE_FIELDS,
+		payload: { noteId: null, selectedNote: null, textBox: null }
 	})
 }

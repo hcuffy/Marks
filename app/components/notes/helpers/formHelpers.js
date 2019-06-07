@@ -59,7 +59,12 @@ const footerBtns = (noteId, studentId, actions) => (
 			>
 				Delete
 			</Button>{' '}
-			<Button type="button" color="secondary" disabled={!noteId}>
+			<Button
+				type="button"
+				color="secondary"
+				onClick={actions.clearNoteField}
+				disabled={!noteId}
+			>
 				Clear
 			</Button>{' '}
 			<Button type="button" color="primary" data-id={noteId} disabled={!noteId}>
