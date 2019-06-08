@@ -3,7 +3,9 @@ import {
 	saveSuccessful,
 	saveFailed,
 	unableToRetrieve,
-	deletionFailed
+	deletionFailed,
+	updateSuccessful,
+	updateFailed
 } from '../notifications/general'
 
 const Datastore = require('nedb')
@@ -60,3 +62,30 @@ export const deleteNote = data =>
 			})
 		})
 	)
+
+const updateSingleNote = previousData => {
+	const { title, note, noteId } = previousData
+
+	notesCollection.update({ _id: noteId }, { $set: { title, note, noteId } }, {}, err => {
+		if (err) {
+			updateFailed()
+
+			return err
+		}
+		updateSuccessful()
+	})
+}
+
+export const updateNoteData = data =>
+	new Promise((resolve, reject) => {
+		updateSingleNote(data)
+		notesCollection.find({}, (error, docs) => {
+			if (error) {
+				updateFailed()
+
+				return reject(error)
+			}
+
+			return resolve(docs)
+		})
+	})

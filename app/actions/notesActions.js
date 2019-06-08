@@ -3,9 +3,15 @@ import {
 	OPEN_STUDENT_NOTES_DROPDOWN,
 	OPEN_NOTES_DROPDOWN,
 	UPDATE_TEXTAREA,
-	CLEAR_NOTE_FIELDS
+	CLEAR_NOTE_FIELDS,
+	UPDATE_NOTE
 } from '../constants/actionTypes'
-import { addNewNote, getAllNotes, deleteNote } from '../database/notesCollection'
+import {
+	addNewNote,
+	getAllNotes,
+	deleteNote,
+	updateNoteData
+} from '../database/notesCollection'
 
 export const addNote = event => async dispatch => {
 	event.preventDefault()
@@ -97,24 +103,16 @@ export const clearNoteField = () => async dispatch => {
 export const updateNote = event => async dispatch => {
 	event.preventDefault()
 
-	const noteId = event.target.getAttribute('data-id')
-
 	const noteData = {
+		noteId: event.target.getAttribute('data-id'),
 		title: event.target.closest('form').title.value,
 		note: event.target.closest('form').note.value
 	}
-	console.log(noteData)
 
-	return
-	const students = await updateNoteData(studentData)
+	const notes = await updateNoteData(noteData)
 
 	dispatch({
-		type: GET_SINGLE_STUDENT,
-		payload: studentId
-	})
-
-	dispatch({
-		type: GET_ALL_STUDENTS,
-		payload: { students }
+		type: UPDATE_NOTE,
+		payload: { notes }
 	})
 }
