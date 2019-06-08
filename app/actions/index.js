@@ -55,5 +55,6 @@ export const actionCreators = {
 	openNotesDropdown: notes.openNotesDropdown,
 	updateTextArea: notes.updateTextArea,
 	deleteSingleNote: notes.deleteSingleNote,
-	clearNoteField: notes.clearNoteField
+	clearNoteField: notes.clearNoteField,
+	updateNote: notes.updateNote
 }

@@ -67,7 +67,13 @@ const footerBtns = (noteId, studentId, actions) => (
 			>
 				Clear
 			</Button>{' '}
-			<Button type="button" color="primary" data-id={noteId} disabled={!noteId}>
+			<Button
+				type="button"
+				color="primary"
+				data-id={noteId}
+				onClick={actions.updateNote}
+				disabled={!noteId}
+			>
 				Update
 			</Button>{' '}
 			{/* eslint-disable-next-line max-len */}

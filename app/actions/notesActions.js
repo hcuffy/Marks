@@ -77,8 +77,8 @@ export const deleteSingleNote = event => async dispatch => {
 	const notes = await deleteNote(noteId)
 
 	dispatch({
-		type: UPDATE_TEXTAREA,
-		payload: { textBox: '' }
+		type: CLEAR_NOTE_FIELDS,
+		payload: { noteId: null, selectedNote: null, textBox: null }
 	})
 
 	dispatch({
@@ -91,5 +91,30 @@ export const clearNoteField = () => async dispatch => {
 	dispatch({
 		type: CLEAR_NOTE_FIELDS,
 		payload: { noteId: null, selectedNote: null, textBox: null }
+	})
+}
+
+export const updateNote = event => async dispatch => {
+	event.preventDefault()
+
+	const noteId = event.target.getAttribute('data-id')
+
+	const noteData = {
+		title: event.target.closest('form').title.value,
+		note: event.target.closest('form').note.value
+	}
+	console.log(noteData)
+
+	return
+	const students = await updateNoteData(studentData)
+
+	dispatch({
+		type: GET_SINGLE_STUDENT,
+		payload: studentId
+	})
+
+	dispatch({
+		type: GET_ALL_STUDENTS,
+		payload: { students }
 	})
 }
