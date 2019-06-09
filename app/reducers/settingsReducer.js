@@ -21,16 +21,7 @@ const gradingLoadState = { note: true, points: false, percent: false }
 export const handleSchoolReducer = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case HANDLE_SCHOOL_DATA: {
-		const { title, street, province, country, zip, year } = action.payload
-
-		return _.assign({}, state, {
-			title,
-			street,
-			province,
-			country,
-			zip,
-			year
-		})
+		return _.assign({}, state, action.payload)
 	}
 	default:
 		return state
@@ -40,14 +31,10 @@ export const handleSchoolReducer = (state = initialLoadState, action) => {
 export const applyGradeSystem = (state = gradingLoadState, action) => {
 	switch (action.type) {
 	case UPDATE_GRADING_DATA: {
-		const { note, points, percent } = action.payload
-
-		return _.assign({}, state, { note, points, percent })
+		return _.assign({}, state, action.payload)
 	}
 	case GET_SYSTEM_TYPE: {
-		const { note, points, percent } = action.payload
-
-		return _.assign({}, state, { note, points, percent })
+		return _.assign({}, state, action.payload)
 	}
 	default:
 		return state

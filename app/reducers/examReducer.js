@@ -42,17 +42,9 @@ const applyFilteredExam = (state = initialLoadState, action) => {
 		return _.assign({}, state, { examModal, examId })
 	}
 	case DISPLAY_SUBJECT_LIST: {
-		const openClassDropdown = false
 		const openSubList = !state.openSubList
-		const { exams, subjectId, selectedSubject } = action.payload
 
-		return _.assign({}, state, {
-			openClassDropdown,
-			openSubList,
-			exams,
-			subjectId,
-			selectedSubject
-		})
+		return _.assign({}, state, { openSubList }, action.payload)
 	}
 	case UPDATE_EXAMS_LIST: {
 		const exams = action.payload

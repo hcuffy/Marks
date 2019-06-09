@@ -41,26 +41,14 @@ const applyStudentData = (state = initialLoadState, action) => {
 
 	case DISPLAY_STUDENT_GRAPH: {
 		const studentDropdown = !state.studentDropdown
-		const { studentGraphId, studentGraphName, chartToDisplay } = action.payload
 
-		return _.assign({}, state, {
-			studentDropdown,
-			studentGraphId,
-			studentGraphName,
-			chartToDisplay
-		})
+		return _.assign({}, state, { studentDropdown }, action.payload)
 	}
 
 	case DISPLAY_STUDENT_SUBJECT_GRAPH: {
 		const subjectDropdown = !state.subjectDropdown
-		const { subjectGraphId, subjectGraphName, chartToDisplay } = action.payload
 
-		return _.assign({}, state, {
-			subjectDropdown,
-			subjectGraphId,
-			subjectGraphName,
-			chartToDisplay
-		})
+		return _.assign({}, state, { subjectDropdown }, action.payload)
 	}
 	default:
 		return state

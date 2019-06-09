@@ -25,43 +25,21 @@ const applyGraphData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case OPEN_GRAPH_CLASS_LIST: {
 		const classroomDropdown = !state.classroomDropdown
-		const { classroom, chartTitle, chartToDisplay } = action.payload
 
-		return _.assign({}, state, {
-			classroomDropdown,
-			classroom,
-			chartTitle,
-			chartToDisplay
-		})
+		return _.assign({}, state, { classroomDropdown }, action.payload)
 	}
 	case DISPLAY_SUBJECT_GRADES: {
 		const openSubList = !state.openSubList
-		const { subjectId, subjectName, chartTitle, chartToDisplay } = action.payload
 
-		return _.assign({}, state, {
-			openSubList,
-			subjectId,
-			subjectName,
-			chartTitle,
-			chartToDisplay
-		})
+		return _.assign({}, state, { openSubList }, action.payload)
 	}
 	case DISPLAY_EXAM_GRADES: {
 		const openExamList = !state.openExamList
-		const { examId, examName, chartTitle, chartToDisplay } = action.payload
 
-		return _.assign({}, state, {
-			openExamList,
-			examId,
-			examName,
-			chartTitle,
-			chartToDisplay
-		})
+		return _.assign({}, state, { openExamList }, action.payload)
 	}
 	case GET_ALL_EXAMS: {
-		const { exams } = action.payload
-
-		return _.assign({}, state, { exams })
+		return _.assign({}, state, action.payload)
 	}
 
 	case GET_ALL_GRADES: {
