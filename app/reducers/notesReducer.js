@@ -3,6 +3,7 @@ import {
 	OPEN_STUDENT_NOTES_DROPDOWN,
 	OPEN_NOTES_DROPDOWN,
 	UPDATE_TEXTAREA,
+	UPDATE_TITLE,
 	CLEAR_NOTE_FIELDS,
 	UPDATE_NOTE
 } from '../constants/actionTypes'
@@ -16,7 +17,8 @@ const initialLoadState = {
 	noteId: null,
 	selectedStudent: null,
 	selectedNote: null,
-	textBox: null
+	textBox: null,
+	textField: null
 }
 
 const applyNotesData = (state = initialLoadState, action) => {
@@ -26,34 +28,18 @@ const applyNotesData = (state = initialLoadState, action) => {
 	}
 	case OPEN_STUDENT_NOTES_DROPDOWN: {
 		const studentDropdown = !state.studentDropdown
-		const notesDropdown = false
 
-		const { studentId, selectedStudent } = action.payload
-
-		return _.assign({}, state, {
-			studentDropdown,
-			notesDropdown,
-			studentId,
-			selectedStudent
-		})
+		return _.assign({}, state, { studentDropdown }, action.payload)
 	}
 	case OPEN_NOTES_DROPDOWN: {
 		const notesDropdown = !state.notesDropdown
-		const textBox = null
-		const studentDropdown = false
 
-		return _.assign(
-			{},
-			state,
-			{
-				notesDropdown,
-				textBox,
-				studentDropdown
-			},
-			action.payload
-		)
+		return _.assign({}, state, { notesDropdown }, action.payload)
 	}
 	case UPDATE_TEXTAREA: {
+		return _.assign({}, state, action.payload)
+	}
+	case UPDATE_TITLE: {
 		return _.assign({}, state, action.payload)
 	}
 	case CLEAR_NOTE_FIELDS: {

@@ -3,6 +3,7 @@ import {
 	OPEN_STUDENT_NOTES_DROPDOWN,
 	OPEN_NOTES_DROPDOWN,
 	UPDATE_TEXTAREA,
+	UPDATE_TITLE,
 	CLEAR_NOTE_FIELDS,
 	UPDATE_NOTE
 } from '../constants/actionTypes'
@@ -49,7 +50,8 @@ export const openStudentDropdown = event => dispatch => {
 
 	const student = {
 		studentId: event.target.getAttribute('data-id'),
-		selectedStudent: event.target.innerText
+		selectedStudent: event.target.innerText,
+		notesDropdown: false
 	}
 
 	dispatch({
@@ -66,7 +68,10 @@ export const openNotesDropdown = event => dispatch => {
 	dispatch({
 		type: OPEN_NOTES_DROPDOWN,
 		payload: {
-			noteId: event.target.getAttribute('data-id')
+			noteId: event.target.getAttribute('data-id'),
+			textBox: null,
+			textField: null,
+			studentDropdown: false
 		}
 	})
 }
@@ -75,6 +80,13 @@ export const updateTextArea = event => dispatch => {
 	dispatch({
 		type: UPDATE_TEXTAREA,
 		payload: { textBox: event.target.value }
+	})
+}
+
+export const updateTitleField = event => dispatch => {
+	dispatch({
+		type: UPDATE_TITLE,
+		payload: { textField: event.target.value }
 	})
 }
 

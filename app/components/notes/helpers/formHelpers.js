@@ -12,18 +12,25 @@ const getNoteProp = (noteId, notes, prop) => {
 	return _.get(fullNoteData, prop)
 }
 
-const getTextBoxData = (textBox, noteId, notes) => {
-	const noteData = _.isNull(textBox) ? getNoteProp(noteId, notes, 'note') : textBox
+const getNoteData = (textData, noteId, notes, propToGet) => {
+	const noteData = _.isNull(textData) ? getNoteProp(noteId, notes, propToGet) : textData
 
 	return _.isUndefined(noteData) ? '' : noteData
 }
-const titleField = (title, studentId) => (
+
+const titleField = (title, studentId, actions) => (
 	<FormGroup row>
 		<Label for="textBox" sm={1}>
 			Title*:
 		</Label>
 		<Col sm={10}>
-			<Input type="text" name="title" required defaultValue={title} />
+			<Input
+				type="text"
+				name="title"
+				required
+				value={title}
+				onChange={actions.updateTitleField}
+			/>
 			<Input type="text" name="student" defaultValue={studentId} hidden />
 		</Col>
 	</FormGroup>
@@ -85,16 +92,18 @@ const footerBtns = (noteId, studentId, actions) => (
 )
 
 const noteForm = (actions, notesData) => {
-	const { studentId, noteId, notes, textBox } = notesData
-	const noteInformation = _.isNull(studentId)
+	const { studentId, noteId, notes, textBox, textField } = notesData
+	const textBoxText = _.isNull(studentId)
 		? ''
-		: getTextBoxData(textBox, noteId, notes)
-	const title = _.isNull(studentId) ? '' : getNoteProp(noteId, notes, 'title')
+		: getNoteData(textBox, noteId, notes, 'note')
+	const titleText = _.isNull(studentId)
+		? ''
+		: getNoteData(textField, noteId, notes, 'title')
 
 	return (
 		<Form onSubmit={actions.addNote} method="POST">
-			{titleField(title, studentId, actions)}
-			{textBoxArea(noteInformation, actions)}
+			{titleField(titleText, studentId, actions)}
+			{textBoxArea(textBoxText, actions)}
 			{footerBtns(noteId, studentId, actions)}
 		</Form>
 	)
