@@ -26,7 +26,7 @@ const SideMenu = ({ menuStylingData, actions }) => {
 		<div className={styles.menu_div}>
 			{menuItems}
 			<ToastContainer />
-			<h6 className={styles.version}>ver. 1.2.0</h6>
+			<h6 className={styles.version}>ver. 1.3.0</h6>
 		</div>
 	)
 }
