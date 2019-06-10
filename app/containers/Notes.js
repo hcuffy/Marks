@@ -12,10 +12,12 @@ class Notes extends Component {
 	}
 
 	render() {
+		const { t } = this.props
+
 		return (
 			<div>
 				<SideMenu />
-				<NotesSection />
+				<NotesSection t={t} />
 			</div>
 		)
 	}

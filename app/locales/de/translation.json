@@ -9,6 +9,7 @@
     "save": "speichern",
     "close": "schließen",
     "update": "aktualisieren",
+    "clear": "räumen",
     "delete": "löschen",
     "edit": "bearbeiten",
     "date": "Datum",
@@ -19,6 +20,7 @@
     "selectRoom": "Klassenzimmer auswählen",
     "selectStudent": "Scüler/in auswählen",
     "selectExam": "Leistungsnachweise auswählen",
+    "selectNote": "Notiz auswählen",
     "saveAs": "speichern als"
   },
   "room": {
@@ -69,6 +71,11 @@
   "graph": {
     "overview": "DIAGRAMMÜBERSICHT",
     "schoolGrades": "Noten der Schule"
+  },
+  "notes": {
+    "sectionTitle": "NOTIZEN",
+    "title": "Titel",
+    "textbox": "Notiz"
   },
   "notifications": {
     "general": {

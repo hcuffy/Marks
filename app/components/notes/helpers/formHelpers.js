@@ -18,10 +18,10 @@ const getNoteData = (textData, noteId, notes, propToGet) => {
 	return _.isUndefined(noteData) ? '' : noteData
 }
 
-const titleField = (title, studentId, actions) => (
+const titleField = (t, title, studentId, actions) => (
 	<FormGroup row>
 		<Label for="textBox" sm={1}>
-			Title*:
+			{t('notes.title')}*:
 		</Label>
 		<Col sm={10}>
 			<Input
@@ -35,10 +35,10 @@ const titleField = (title, studentId, actions) => (
 		</Col>
 	</FormGroup>
 )
-const textBoxArea = (noteInformation, actions) => (
+const textBoxArea = (t, noteInformation, actions) => (
 	<FormGroup row>
 		<Label for="textBox" sm={1}>
-			Notes:
+			{t('notes.textbox')}:
 		</Label>
 		<Col sm={10}>
 			<Input
@@ -53,7 +53,7 @@ const textBoxArea = (noteInformation, actions) => (
 	</FormGroup>
 )
 
-const footerBtns = (noteId, studentId, actions) => (
+const footerBtns = (t, noteId, studentId, actions) => (
 	<FormGroup check>
 		<Col sm={{ offset: 7 }}>
 			<Button
@@ -64,7 +64,7 @@ const footerBtns = (noteId, studentId, actions) => (
 				data-id={noteId}
 				disabled={!noteId}
 			>
-				Delete
+				{t('general.delete')}
 			</Button>{' '}
 			<Button
 				type="button"
@@ -72,7 +72,7 @@ const footerBtns = (noteId, studentId, actions) => (
 				onClick={actions.clearNoteField}
 				disabled={!noteId}
 			>
-				Clear
+				{t('general.clear')}
 			</Button>{' '}
 			<Button
 				type="button"
@@ -81,17 +81,17 @@ const footerBtns = (noteId, studentId, actions) => (
 				onClick={actions.updateNote}
 				disabled={!noteId}
 			>
-				Update
+				{t('general.update')}
 			</Button>{' '}
 			{/* eslint-disable-next-line max-len */}
 			<Button type="submit" color="success" disabled={!studentId || Boolean(noteId)}>
-				Add
+				{t('general.add')}
 			</Button>
 		</Col>
 	</FormGroup>
 )
 
-const noteForm = (actions, notesData) => {
+const noteForm = (t, actions, notesData) => {
 	const { studentId, noteId, notes, textBox, textField } = notesData
 	const textBoxText = _.isNull(studentId)
 		? ''
@@ -102,9 +102,9 @@ const noteForm = (actions, notesData) => {
 
 	return (
 		<Form onSubmit={actions.addNote} method="POST">
-			{titleField(titleText, studentId, actions)}
-			{textBoxArea(textBoxText, actions)}
-			{footerBtns(noteId, studentId, actions)}
+			{titleField(t, titleText, studentId, actions)}
+			{textBoxArea(t, textBoxText, actions)}
+			{footerBtns(t, noteId, studentId, actions)}
 		</Form>
 	)
 }

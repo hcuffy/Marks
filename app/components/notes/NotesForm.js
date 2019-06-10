@@ -1,10 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import noteForm from './helpers/formHelpers'
 
-const NotesForm = ({ notesData, actions }) => <div>{noteForm(actions, notesData)}</div>
+const NotesForm = ({ t, notesData, actions }) => (
+	<div>{noteForm(t, actions, notesData)}</div>
+)
 
 const mapStateToProps = state => ({
 	notesData: state.notesData
@@ -17,4 +20,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(NotesForm)
+)(withNamespaces()(NotesForm))

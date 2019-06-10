@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { getStudentList, getNotesList, createDropdown } from '../helpers/dropdowns'
 import { resolveLabel } from '../../utils/translationUtil'
 import styles from './styles/notes.css'
 
-const NotesDropdown = ({ studentData, notesData, actions }) => {
+const NotesDropdown = ({ t, studentData, notesData, actions }) => {
 	const { students } = studentData
 	const {
 		studentDropdown,
@@ -26,7 +27,7 @@ const NotesDropdown = ({ studentData, notesData, actions }) => {
 				styles.dropdown_one,
 				studentDropdown,
 				actions.openStudentDropdown,
-				resolveLabel(selectedStudent, 'Select Student'),
+				resolveLabel(selectedStudent, t('general.selectStudent')),
 				studentOptions,
 				'studentDropdown'
 			)}
@@ -35,7 +36,7 @@ const NotesDropdown = ({ studentData, notesData, actions }) => {
 				styles.dropdown_two,
 				notesDropdown,
 				actions.openNotesDropdown,
-				resolveLabel(selectedNote, 'Select Note'),
+				resolveLabel(selectedNote, t('general.selectNote')),
 				notesOptions,
 				'notesDropdown'
 			)}
@@ -55,4 +56,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(NotesDropdown)
+)(withNamespaces()(NotesDropdown))

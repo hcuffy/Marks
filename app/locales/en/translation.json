@@ -9,6 +9,7 @@
     "save": "Save",
     "close": "Close",
     "update": "Update",
+    "clear": "Clear",
     "delete": "Delete",
     "edit": "Edit",
     "date": "Date",
@@ -19,6 +20,7 @@
     "selectRoom": "Select Classroom",
     "selectStudent": "Select Student",
     "selectExam": "Select Exam",
+    "selectNote": "Select Note",
     "saveAs": "Save As"
   },
   "room": {
@@ -69,6 +71,11 @@
   "graph": {
     "overview": "GRAPH OVERVIEW",
     "schoolGrades": "School Grades"
+  },
+  "notes": {
+    "sectionTitle": "NOTES",
+    "title": "Title",
+    "textbox": "Note"
   },
   "notifications": {
     "general": {
