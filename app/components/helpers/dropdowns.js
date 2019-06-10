@@ -78,6 +78,25 @@ export const getStudentList = allStudents => {
 	return items
 }
 
+export const getNotesList = (allNotes, studentId) => {
+	if (_.isNull(studentId) || allNotes.length === 0) {
+		return []
+	}
+
+	const notes = _.sortBy(_.filter(allNotes, { studentId }), ['title'], ['asc'])
+	const items = notes.map((data, idx) => {
+		const created = _.toString(data.createdAt).substring(4, 15)
+
+		return (
+			<DropdownItem key={idx} data-id={data._id} data-check="notesDropdown">
+				{`${data.title} (${created})`}
+			</DropdownItem>
+		)
+	})
+
+	return items
+}
+
 export const subjectOptions = (subjects, actions) => {
 	const options = subjects.map((data, idx) => (
 		<DropdownItem

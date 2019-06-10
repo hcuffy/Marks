@@ -3,16 +3,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../actions/index'
 import SideMenu from '../components/sidemenu/SideMenu'
-import StudentsSection from '../components/students/StudentsSection'
+import NotesSection from '../components/notes/NotesSection'
 
-class Students extends Component {
+class Notes extends Component {
 	componentDidMount() {
 		this.props.actions.getStudents()
-		this.props.actions.getAllGradeData()
-		this.props.actions.getGraphExamData()
-		this.props.actions.getSubjectData()
-		this.props.actions.getGradingSystem()
-		this.props.actions.displayClassData()
+		this.props.actions.getNotes()
 	}
 
 	render() {
@@ -21,7 +17,7 @@ class Students extends Component {
 		return (
 			<div>
 				<SideMenu />
-				<StudentsSection t={t} />
+				<NotesSection t={t} />
 			</div>
 		)
 	}
@@ -34,4 +30,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	null,
 	mapDispatchToProps
-)(Students)
+)(Notes)

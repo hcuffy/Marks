@@ -62,7 +62,7 @@ export const displayExamData = event => async dispatch => {
 	if (exams.length !== 0) {
 		dispatch({
 			type: DISPLAY_SUBJECT_LIST,
-			payload: { exams, subjectId, selectedSubject }
+			payload: { exams, subjectId, selectedSubject, openClassDropdown: false }
 		})
 	}
 }

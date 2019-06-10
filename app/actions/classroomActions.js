@@ -96,7 +96,7 @@ export const deleteRoom = event => async dispatch => {
 	if (docs) {
 		dispatch({
 			type: GET_CLASSROOM_DATA,
-			payload: { classData: docs }
+			payload: { classData: docs, check: false }
 		})
 	}
 

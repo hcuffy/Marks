@@ -48,7 +48,7 @@ export const displayGradeData = event => async dispatch => {
 
 	dispatch({
 		type: DISPLAY_EXAM_TABLE,
-		payload: { exams, grades, subjectData }
+		payload: { exams, grades, ...subjectData }
 	})
 }
 

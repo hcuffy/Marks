@@ -5,6 +5,7 @@ import * as student from './studentActions'
 import * as grade from './gradeActions'
 import * as sidemenu from './sidemenuActions'
 import * as graph from './graphActions'
+import * as notes from './notesActions'
 import * as settings from './settingsActions'
 
 export const actionCreators = {
@@ -47,5 +48,14 @@ export const actionCreators = {
 	saveSchoolAddress: settings.saveSchoolAddress,
 	displayAddress: settings.displayAddress,
 	updateSytemType: settings.updateGradingSystem,
-	getGradingSystem: settings.getGradingSystem
+	getGradingSystem: settings.getGradingSystem,
+	addNote: notes.addNote,
+	openStudentDropdown: notes.openStudentDropdown,
+	getNotes: notes.getNotes,
+	openNotesDropdown: notes.openNotesDropdown,
+	updateTextArea: notes.updateTextArea,
+	updateTitleField: notes.updateTitleField,
+	deleteSingleNote: notes.deleteSingleNote,
+	clearNoteField: notes.clearNoteField,
+	updateNote: notes.updateNote
 }
