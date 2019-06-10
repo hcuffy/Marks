@@ -9,6 +9,7 @@ const initialLoadState = {
 	exams: '',
 	graphs: '',
 	notes: '',
+	capability: '',
 	settings: ''
 }
 

@@ -5,6 +5,7 @@ import {
 	GRADES,
 	GRAPHS,
 	NOTES,
+	CAPABILITY,
 	SETTINGS
 } from '../../../constants/routes.json'
 
@@ -34,6 +35,11 @@ export const menuData = {
 		linkTo: NOTES,
 		dataId: 'notes',
 		className: 'fas fa-sticky-note fa-3x'
+	},
+	capability: {
+		linkTo: CAPABILITY,
+		dataId: 'capability',
+		className: 'fas fa-brain fa-3x'
 	},
 	school: {
 		linkTo: SETTINGS,

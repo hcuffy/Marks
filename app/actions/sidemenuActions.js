@@ -13,6 +13,7 @@ export const updateButtonStyle = event => dispatch => {
 		exams: '',
 		graphs: '',
 		notes: '',
+		capability: '',
 		settings: ''
 	}
 

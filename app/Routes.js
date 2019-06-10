@@ -8,6 +8,7 @@ import {
 	GRADES,
 	GRAPHS,
 	NOTES,
+	CAPABILITY,
 	SETTINGS
 } from './constants/routes.json'
 import App from './containers/App'
@@ -18,6 +19,7 @@ import Students from './containers/Students'
 import Grades from './containers/Grades'
 import Graphs from './containers/Graphs'
 import Notes from './containers/Notes'
+import Capability from './containers/Capability'
 
 export default () => (
 	<App>
@@ -29,6 +31,7 @@ export default () => (
 				<Route exact key="1" path={GRADES} component={Grades} />,
 				<Route exact key="1" path={GRAPHS} component={Graphs} />,
 				<Route exact key="1" path={NOTES} component={Notes} />,
+				<Route exact key="1" path={CAPABILITY} component={Capability} />,
 				<Route exact key="1" path={SETTINGS} component={Settings} />
 			]}
 		</Switch>
