@@ -12,8 +12,9 @@ const applyCapabilityChanges = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case OPEN_CLOSE_CLASS_LIST: {
 		const classDropdown = !state.classDropdown
+		const subjectDropown = false
 
-		return _.assign({}, state, { classDropdown }, action.payload)
+		return _.assign({}, state, { classDropdown, subjectDropown }, action.payload)
 	}
 	default:
 		return state
