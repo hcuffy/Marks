@@ -1,5 +1,4 @@
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
 import CapabilityDropdown from './CapabilityDropdown'
 import styles from './styles/capability.css'
 

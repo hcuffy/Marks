@@ -7,6 +7,7 @@ import * as sidemenu from './sidemenuActions'
 import * as graph from './graphActions'
 import * as notes from './notesActions'
 import * as settings from './settingsActions'
+import * as capability from './capabilityActions'
 
 export const actionCreators = {
 	changeClassroomTab: classroom.changeClassroomTab,
@@ -57,5 +58,6 @@ export const actionCreators = {
 	updateTitleField: notes.updateTitleField,
 	deleteSingleNote: notes.deleteSingleNote,
 	clearNoteField: notes.clearNoteField,
-	updateNote: notes.updateNote
+	updateNote: notes.updateNote,
+	openCapabilityClassList: capability.openCapabilityClassList
 }
