@@ -7,7 +7,12 @@ const _ = require('lodash')
 
 export const getClassList = classlist => {
 	const items = classlist.map((data, idx) => (
-		<DropdownItem key={idx} name={data.name} data-check="classDropdown">
+		<DropdownItem
+			key={idx}
+			name={data.name}
+			data-id={data._id}
+			data-check="classDropdown"
+		>
 			{data.name}
 		</DropdownItem>
 	))

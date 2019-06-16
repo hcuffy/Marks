@@ -4,10 +4,20 @@ import styles from '../styles/students.css'
 
 const _ = require('lodash')
 
+const getClassroomName = (id, classdata) => {
+	const classObject = _.find(classdata, { _id: id })
+	if (_.isUndefined(classObject)) {
+		return ''
+	}
+
+	return classObject.name
+}
+
 const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
 	const { gender, classroom } = chosenStudent
+
 	const classroomOptions = _.values(classdata).map((data, idx) => (
-		<option key={idx} className="form-control dropdown">
+		<option key={idx} className="form-control dropdown" data-id={data._id}>
 			{data.name}
 		</option>
 	))
@@ -19,7 +29,7 @@ const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
 			{classroomDropdown(
 				t,
 				classroomOptions,
-				classroom,
+				getClassroomName(classroom, classdata),
 				styles.form_div_edit,
 				null,
 				styles.form_label_edit

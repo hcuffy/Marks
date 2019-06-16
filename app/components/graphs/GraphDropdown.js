@@ -28,8 +28,7 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 		chartTitle
 	} = graphData
 
-	const cleanedClassList = sortData(classData)
-	const classOptions = getClassList(cleanedClassList)
+	const classOptions = getClassList(sortData(classData))
 	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
 	const examOptions = getExamList(exams, subjectId)
 

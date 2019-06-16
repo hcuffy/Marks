@@ -26,7 +26,7 @@ export const genderDropdown = (t, defaultValue, styleOne, styleTwo) => (
 export const classroomDropdown = (
 	t,
 	options,
-	defaultValue,
+	classroom,
 	styleOne,
 	styleTwo,
 	styleThree
@@ -38,13 +38,14 @@ export const classroomDropdown = (
 		<select
 			type="text"
 			name="classroom"
-			defaultValue={defaultValue}
+			defaultValue={classroom}
 			className="form-control"
 		>
 			{options}
 		</select>
 	</div>
 )
+
 const studentForm = (t, selectOption, formFields, actions) => {
 	const studentFields = (
 		<div>

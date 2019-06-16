@@ -4,32 +4,25 @@ import {
 	GET_SINGLE_STUDENT,
 	DISPLAY_STUDENT_GRAPH,
 	DISPLAY_STUDENT_SUBJECT_GRAPH
-} from '../constants/actionTypes'
+} from '../../constants/actionTypes'
 import {
 	addNewStudentData,
 	getAllStudents,
 	deleteStudent,
 	updateStudentData
-} from '../database/studentCollection'
-
-const getOption = (event, propToGet) => {
-	const index = event.target[propToGet].selectedIndex
-
-	return event.target[propToGet].options[index].getAttribute('data-id')
-}
+} from '../../../test/mockCollections/students'
 
 export const addNewStudent = event => async dispatch => {
-	event.preventDefault()
-
+	const genderIndex = event.target.gender.selectedIndex
 	const formData = {
 		firstname: event.target.firstname.value,
 		lastname: event.target.lastname.value,
-		gender: getOption(event, 'gender'),
-		classroom: getOption(event, 'classroom')
+		gender: event.target.gender.options[genderIndex].getAttribute('data-id'),
+		classroom: event.target.classroom.value
 	}
 
 	addNewStudentData(formData)
-	event.target.reset()
+
 	const students = await getAllStudents()
 
 	dispatch({
@@ -94,14 +87,14 @@ export const openStudentSubjectGraph = event => dispatch => {
 }
 
 export const updateStudent = event => async dispatch => {
-	event.preventDefault()
+	const genderIndex = event.target.gender.selectedIndex
 	const studentId = event.target.studentId.getAttribute('data-id')
 
 	const studentData = {
 		firstname: event.target.firstname.value,
 		lastname: event.target.lastname.value,
-		gender: getOption(event, 'gender'),
-		classroom: getOption(event, 'classroom'),
+		gender: event.target.gender.options[genderIndex].getAttribute('data-id'),
+		classroom: event.target.classroom.value,
 		id: studentId
 	}
 
