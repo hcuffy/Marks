@@ -43,7 +43,7 @@ export const gradeRadioButtons = (t, systemType, actions) =>
 				type="radio"
 				className={`form-control ${styles.radio_input}`}
 				name="grading"
-				onClick={actions.updateSytemType}
+				onClick={actions.updateSystemType}
 				defaultValue={data}
 				defaultChecked={systemType[data]}
 			/>

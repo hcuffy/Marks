@@ -47,7 +47,7 @@ const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
 			{createDropdown(
 				styles.dropdown_two,
 				openIt.subjectDropdown,
-				actions.openStudenSubjectGraph,
+				actions.openStudentSubjectGraph,
 				resolveLabel(subjectGraphName, t('general.selectSubject')),
 				subjectOptions,
 				'subjectDropdown'

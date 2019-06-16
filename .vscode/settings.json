@@ -31,5 +31,17 @@
     "npm-debug.log.*": true,
     "test/**/__snapshots__": true,
     "yarn.lock": true
-  }
+  },
+  "cSpell.words": [
+    "Datastore",
+    "Fbutton",
+    "autoload",
+    "classdata",
+    "dropdown",
+    "dropdowns",
+    "firstname",
+    "lastname",
+    "reactstrap",
+    "sidemenu"
+  ]
 }

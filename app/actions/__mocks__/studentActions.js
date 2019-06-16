@@ -70,7 +70,7 @@ export const openStudentGraph = event => dispatch => {
 	})
 }
 
-export const openStudenSubjectGraph = event => dispatch => {
+export const openStudentSubjectGraph = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
 		return
 	}

@@ -12,14 +12,20 @@ import {
 	updateStudentData
 } from '../database/studentCollection'
 
+const getOption = (event, propToGet) => {
+	const index = event.target[propToGet].selectedIndex
+
+	return event.target[propToGet].options[index].getAttribute('data-id')
+}
+
 export const addNewStudent = event => async dispatch => {
 	event.preventDefault()
-	const genderIndex = event.target.gender.selectedIndex
+
 	const formData = {
 		firstname: event.target.firstname.value,
 		lastname: event.target.lastname.value,
-		gender: event.target.gender.options[genderIndex].getAttribute('data-id'),
-		classroom: event.target.classroom.value
+		gender: getOption(event, 'gender'),
+		classroom: getOption(event, 'classroom')
 	}
 
 	addNewStudentData(formData)
@@ -71,7 +77,7 @@ export const openStudentGraph = event => dispatch => {
 	})
 }
 
-export const openStudenSubjectGraph = event => dispatch => {
+export const openStudentSubjectGraph = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
 		return
 	}
@@ -89,14 +95,13 @@ export const openStudenSubjectGraph = event => dispatch => {
 
 export const updateStudent = event => async dispatch => {
 	event.preventDefault()
-	const genderIndex = event.target.gender.selectedIndex
 	const studentId = event.target.studentId.getAttribute('data-id')
 
 	const studentData = {
 		firstname: event.target.firstname.value,
 		lastname: event.target.lastname.value,
-		gender: event.target.gender.options[genderIndex].getAttribute('data-id'),
-		classroom: event.target.classroom.value,
+		gender: getOption(event, 'gender'),
+		classroom: getOption(event, 'classroom'),
 		id: studentId
 	}
 
