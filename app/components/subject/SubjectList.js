@@ -13,7 +13,7 @@ export const filterSubjects = (subjectData, chosenClass) => {
 		return []
 	}
 	const chosenSubjects = _.chain(subjectData)
-		.filter(['room', chosenClass.name])
+		.filter(['classroomId', chosenClass._id])
 		.orderBy(['abbreviation'], [subJ => subJ.abbreviation.toLowerCase()], ['asc'])
 		.value()
 
