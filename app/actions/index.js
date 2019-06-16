@@ -59,5 +59,6 @@ export const actionCreators = {
 	deleteSingleNote: notes.deleteSingleNote,
 	clearNoteField: notes.clearNoteField,
 	updateNote: notes.updateNote,
-	openCapabilityClassList: capability.openCapabilityClassList
+	openCapabilityClassList: capability.openCapabilityClassList,
+	openCapabilitySubjectList: capability.openCapabilitySubjectList
 }

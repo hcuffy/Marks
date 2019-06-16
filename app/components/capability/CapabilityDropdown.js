@@ -7,10 +7,11 @@ import { getClassList, getSubjectList, createDropdown } from '../helpers/dropdow
 import { resolveLabel } from '../../utils/translationUtil'
 import styles from './styles/capability.css'
 
-const CapabilityDropdown = ({ capabilityData, classData, actions }) => {
-	const { classDropdown, subjectDropown, classroom } = capabilityData
+const CapabilityDropdown = ({ capabilityData, classData, subjectData, actions }) => {
+	console.log(subjectData)
+	const { classDropdown, subjectDropown, classroom, subject } = capabilityData
 	const classOptions = getClassList(sortData(classData))
-	const subjectOptions = getSubjectList({ selectedRoom: 'temp' }, [{ temp: 'holder' }])
+	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
 
 	return (
 		<div className={styles.dropdown_main_div}>
@@ -25,8 +26,8 @@ const CapabilityDropdown = ({ capabilityData, classData, actions }) => {
 			{createDropdown(
 				styles.dropdown_div,
 				subjectDropown,
-				actions.displaySubjectGraph,
-				resolveLabel(null, 'Select Subject'),
+				actions.openCapabilitySubjectList,
+				resolveLabel(subject, 'Select Subject'),
 				subjectOptions,
 				'subjectDropdown'
 			)}
@@ -36,7 +37,8 @@ const CapabilityDropdown = ({ capabilityData, classData, actions }) => {
 
 const mapStateToProps = state => ({
 	capabilityData: state.capabilityData,
-	classData: state.classData
+	classData: state.classData,
+	subjectData: state.subjectData
 })
 
 const mapDispatchToProps = dispatch => ({
