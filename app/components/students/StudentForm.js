@@ -27,7 +27,7 @@ const studentDataFields = (t, studentData) =>
 const StudentForm = ({ t, studentData, classData, actions }) => {
 	const formFields = studentDataFields(t, studentData)
 	const selectOption = _.values(classData.classData).map((data, idx) => (
-		<option className="form-control dropdown" key={idx}>
+		<option className="form-control dropdown" data-id={data._id} key={idx}>
 			{data.name}
 		</option>
 	))
