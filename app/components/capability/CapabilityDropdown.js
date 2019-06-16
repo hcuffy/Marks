@@ -3,15 +3,14 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
-import { getClassList, getSubjectList, createDropdown } from '../helpers/dropdowns'
+import { getClassList, getStudentList, createDropdown } from '../helpers/dropdowns'
 import { resolveLabel } from '../../utils/translationUtil'
 import styles from './styles/capability.css'
 
-const CapabilityDropdown = ({ capabilityData, classData, subjectData, actions }) => {
-	console.log(subjectData)
-	const { classDropdown, subjectDropown, classroom, subject } = capabilityData
+const CapabilityDropdown = ({ capabilityData, classData, students, actions }) => {
+	const { classDropdown, studentDropdown, classroom, subject } = capabilityData
 	const classOptions = getClassList(sortData(classData))
-	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
+	const studentOptions = getStudentList(students)
 
 	return (
 		<div className={styles.dropdown_main_div}>
@@ -25,11 +24,11 @@ const CapabilityDropdown = ({ capabilityData, classData, subjectData, actions })
 			)}
 			{createDropdown(
 				styles.dropdown_div,
-				subjectDropown,
-				actions.openCapabilitySubjectList,
-				resolveLabel(subject, 'Select Subject'),
-				subjectOptions,
-				'subjectDropdown'
+				studentDropdown,
+				actions.openCapabilityStudentList,
+				resolveLabel(subject, 'Select Student'),
+				studentOptions,
+				'studentDropdown'
 			)}
 		</div>
 	)
@@ -38,7 +37,7 @@ const CapabilityDropdown = ({ capabilityData, classData, subjectData, actions })
 const mapStateToProps = state => ({
 	capabilityData: state.capabilityData,
 	classData: state.classData,
-	subjectData: state.subjectData
+	students: state.studentData.students
 })
 
 const mapDispatchToProps = dispatch => ({

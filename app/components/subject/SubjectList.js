@@ -9,16 +9,18 @@ import styles from './styles/subject.css'
 const _ = require('lodash')
 
 export const filterSubjects = (subjectData, chosenClass) => {
+	console.log(subjectData)
 	if (_.isNil(subjectData) || _.isNil(chosenClass) || chosenClass === 'Select Class') {
 		return []
 	}
 	const chosenSubjects = _.chain(subjectData)
-		.filter(['room', chosenClass.name])
+		.filter(['classroomId', chosenClass._id])
 		.orderBy(['abbreviation'], [subJ => subJ.abbreviation.toLowerCase()], ['asc'])
 		.value()
 
 	return chosenSubjects
 }
+
 const listOfButtons = (filteredData, action) =>
 	filteredData.map((data, idx) => (
 		<button

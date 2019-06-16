@@ -9,7 +9,7 @@ class Capability extends Component {
 	componentDidMount() {
 		if (this.props.classData) {
 			this.props.actions.displayClassData()
-			this.props.actions.getSubjectData()
+			this.props.actions.getStudents()
 		}
 	}
 

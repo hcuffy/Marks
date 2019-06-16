@@ -60,5 +60,5 @@ export const actionCreators = {
 	clearNoteField: notes.clearNoteField,
 	updateNote: notes.updateNote,
 	openCapabilityClassList: capability.openCapabilityClassList,
-	openCapabilitySubjectList: capability.openCapabilitySubjectList
+	openCapabilityStudentList: capability.openCapabilityStudentList
 }
