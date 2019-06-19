@@ -12,7 +12,7 @@ import {
 	updateStudentData
 } from '../database/studentCollection'
 
-const getOption = (event, propToGet) => {
+export const getOption = (event, propToGet) => {
 	const index = event.target[propToGet].selectedIndex
 
 	return event.target[propToGet].options[index].getAttribute('data-id')

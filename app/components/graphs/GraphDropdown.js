@@ -11,15 +11,18 @@ import {
 	getSubjectList,
 	createDropdown,
 	getExamList,
-	notifyIfEmpty
+	notifyIfEmpty,
+	getClassroomName
 } from '../helpers/dropdowns'
 import styles from './styles/graphs.css'
+
+const _ = require('lodash')
 
 const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 	const {
 		subjectId,
 		exams,
-		classroom,
+		classroomId,
 		classroomDropdown,
 		openSubList,
 		subjectName,
@@ -28,8 +31,11 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 		chartTitle
 	} = graphData
 
+	const classroom = _.isNull(classroomId)
+		? classroomId
+		: getClassroomName(classroomId, classData.classData)
 	const classOptions = getClassList(sortData(classData))
-	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
+	const subjectOptions = getSubjectList({ selectedRoom: classroomId }, subjectData)
 	const examOptions = getExamList(exams, subjectId)
 
 	notifyIfEmpty(t, subjectOptions, openSubList, 'class')

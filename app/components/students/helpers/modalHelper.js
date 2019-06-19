@@ -1,17 +1,9 @@
 import React from 'react'
 import { genderDropdown, classroomDropdown } from './formHelper'
+import { getClassroomName } from '../../helpers/dropdowns'
 import styles from '../styles/students.css'
 
 const _ = require('lodash')
-
-const getClassroomName = (id, classdata) => {
-	const classObject = _.find(classdata, { _id: id })
-	if (_.isUndefined(classObject)) {
-		return ''
-	}
-
-	return classObject.name
-}
 
 const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
 	const { gender, classroom } = chosenStudent

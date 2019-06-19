@@ -12,14 +12,14 @@ import {
 	deleteExam,
 	updateExamData
 } from '../database/examCollection'
+import { getOption } from './studentActions'
 
 export const addNewExam = event => dispatch => {
 	event.preventDefault()
 
-	const subjectIndex = event.target.subject.selectedIndex
 	const examData = {
 		title: event.target.title.value,
-		subjectId: event.target.subject.options[subjectIndex].getAttribute('data-id'),
+		subjectId: getOption(event, 'subject'),
 		date: event.target.date.value,
 		weight: event.target.weight.value
 	}
@@ -43,10 +43,11 @@ export const openClassDropdownList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
-	const classroom = event.target.innerText
+	const classroomId = event.target.getAttribute('data-id')
+
 	dispatch({
 		type: UPDATE_DROPDOWN_CLASS_LIST,
-		payload: classroom
+		payload: { classroomId }
 	})
 }
 

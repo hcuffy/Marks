@@ -13,7 +13,7 @@ export const openGraphClassList = event => dispatch => {
 		return
 	}
 	const data = {
-		classroom: event.target.innerText,
+		classroomId: event.target.getAttribute('data-id'),
 		chartTitle: event.target.innerText,
 		chartToDisplay: 'class'
 	}

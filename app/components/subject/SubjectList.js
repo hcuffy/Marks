@@ -9,7 +9,6 @@ import styles from './styles/subject.css'
 const _ = require('lodash')
 
 export const filterSubjects = (subjectData, chosenClass) => {
-	console.log(subjectData)
 	if (_.isNil(subjectData) || _.isNil(chosenClass) || chosenClass === 'Select Class') {
 		return []
 	}
