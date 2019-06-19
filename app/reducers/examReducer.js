@@ -12,7 +12,7 @@ const initialLoadState = {
 	subject: '',
 	openClassDropdown: false,
 	openSubList: false,
-	selectedRoom: null,
+	classroomId: null,
 	selectedSubject: null,
 	examModal: false
 }
@@ -26,12 +26,8 @@ const applyFilteredExam = (state = initialLoadState, action) => {
 	case UPDATE_DROPDOWN_CLASS_LIST: {
 		const openClassDropdown = !state.openClassDropdown
 		const openSubList = state.openClassDropdown
-		const selectedRoom = action.payload
-		return _.assign({}, state, {
-			openClassDropdown,
-			selectedRoom,
-			openSubList
-		})
+
+		return _.assign({}, state, { openClassDropdown, openSubList }, action.payload)
 	}
 	case GET_SINGLE_EXAM: {
 		const examModal = !state.examModal

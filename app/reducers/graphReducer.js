@@ -9,7 +9,7 @@ import {
 const _ = require('lodash')
 
 const initialLoadState = {
-	classroom: null,
+	classroomId: null,
 	subjectName: null,
 	examName: null,
 	subjectId: null,

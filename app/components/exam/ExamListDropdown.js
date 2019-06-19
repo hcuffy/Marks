@@ -2,31 +2,42 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-
 import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
-import { getClassList, getSubjectList, createDropdown } from '../helpers/dropdowns'
+import {
+	getClassList,
+	getSubjectList,
+	createDropdown,
+	getClassroomName
+} from '../helpers/dropdowns'
 import styles from './styles/exam.css'
 
+const _ = require('lodash')
+
 const ExamListDropdown = ({ t, classData, examData, subjectData, actions }) => {
+	const { classroomId, selectedSubject, openClassDropdown, openSubList } = examData
 	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList(examData, subjectData)
-	const { selectedRoom, selectedSubject } = examData
+	const classroom = _.isNull(classroomId)
+		? classroomId
+		: getClassroomName(classroomId, classData.classData)
+
+	const subjectOptions = getSubjectList({ selectedRoom: classroomId }, subjectData)
+
 	return (
 		<div className={styles.dropdown_main_div}>
 			{createDropdown(
 				styles.dropdown_div,
-				examData.openClassDropdown,
+				openClassDropdown,
 				actions.openClassDropdownList,
-				resolveLabel(selectedRoom, t('general.selectClass')),
+				resolveLabel(classroom, t('general.selectClass')),
 				classOptions,
 				'classDropdown'
 			)}
 			{createDropdown(
 				styles.dropdown_div,
-				examData.openSubList,
+				openSubList,
 				actions.displayExamData,
 				resolveLabel(selectedSubject, t('general.selectSubject')),
 				subjectOptions,

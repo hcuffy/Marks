@@ -7,7 +7,7 @@ import {
 const _ = require('lodash')
 
 const initialLoadState = {
-	classroom: null,
+	classroomId: null,
 	subjectName: null,
 	classroomDropdown: false,
 	subDrop: false
@@ -24,8 +24,8 @@ const applyGradeData = (state = initialLoadState, action) => {
 	case OPEN_CLASS_LIST: {
 		const classroomDropdown = !state.classroomDropdown
 		const subDrop = !classroomDropdown
-		const classroom = action.payload
-		return _.assign({}, state, { classroomDropdown, subDrop, classroom })
+
+		return _.assign({}, state, { classroomDropdown, subDrop }, action.payload)
 	}
 	case UPDATE_EXAM_TABLE: {
 		const { exams, grades } = action.payload

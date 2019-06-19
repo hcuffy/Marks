@@ -9,18 +9,23 @@ import {
 	getClassList,
 	getSubjectList,
 	createDropdown,
-	notifyIfEmpty
+	notifyIfEmpty,
+	getClassroomName
 } from '../helpers/dropdowns'
 import styles from './styles/grades.css'
 
 const _ = require('lodash')
 
 const GradeDropdown = ({ t, classData, gradeData, subjectData, actions }) => {
-	const cleanedClassList = sortData(classData)
-	const { subDrop, subjectName, classroom, classroomDropdown } = gradeData
+	const { subDrop, subjectName, classroomId, classroomDropdown } = gradeData
 	const openIt = { subDrop }
-	const classOptions = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
+	const classOptions = getClassList(sortData(classData))
+
+	const classroom = _.isNull(classroomId)
+		? classroomId
+		: getClassroomName(classroomId, classData.classData)
+
+	const subjectOptions = getSubjectList({ selectedRoom: classroomId }, subjectData)
 
 	if (_.isEmpty(subjectOptions) && subDrop) {
 		notifyIfEmpty(t, [], true, 'class')

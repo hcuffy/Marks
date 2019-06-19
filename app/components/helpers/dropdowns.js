@@ -20,8 +20,10 @@ export const getClassList = classlist => {
 	return items
 }
 
-export const getSubjectList = (examData, subjectData) => {
-	const selectedSubjects = _.filter(subjectData.data, ['room', examData.selectedRoom])
+export const getSubjectList = (classroom, subjectData) => {
+	const selectedSubjects = _.filter(subjectData.data, [
+		'classroomId', classroom.selectedRoom
+	])
 	const items = selectedSubjects.map((data, idx) => (
 		<DropdownItem
 			key={idx}
@@ -111,4 +113,22 @@ export const notifyIfEmpty = (t, options, selected, section) => {
 	if (_.isEmpty(options) && selected) {
 		firstMakeSelection(t, section)
 	}
+}
+
+export const getClassroomName = (id, classdata) => {
+	const classObject = _.find(classdata, { _id: id })
+	if (_.isUndefined(classObject)) {
+		return ''
+	}
+
+	return classObject.name
+}
+
+export const getClassroomId = (name, classdata) => {
+	const classObject = _.find(classdata, { name })
+	if (_.isUndefined(classObject)) {
+		return ''
+	}
+
+	return classObject._id
 }

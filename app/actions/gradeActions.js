@@ -13,10 +13,11 @@ export const openGradeClassList = event => dispatch => {
 		return
 	}
 
-	const classroom = event.target.innerText
+	const classroomId = event.target.getAttribute('data-id')
+
 	dispatch({
 		type: OPEN_CLASS_LIST,
-		payload: classroom
+		payload: { classroomId }
 	})
 }
 
