@@ -19,3 +19,13 @@
 .dropdown_main_div {
   text-align: center;
 }
+
+.table_main_dev {
+  margin-left: 100px;
+  position: absolute;
+}
+
+th,
+td {
+  border: 1px solid black !important;
+}
