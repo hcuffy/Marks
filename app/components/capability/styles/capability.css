@@ -22,10 +22,30 @@
 
 .table_main_dev {
   margin-left: 100px;
+  width: 90.2%;
+  height: 650px;
   position: absolute;
 }
 
 th,
 td {
   border: 1px solid black !important;
+}
+
+.form_div {
+  border-top: 1px solid black;
+  border-bottom: 2px solid black;
+  overflow-y: auto;
+  height: 550px;
+}
+
+.radio_label {
+  display: block;
+  text-align: left;
+}
+
+.radio_td {
+  white-space: normal;
+  padding: 0 !important;
+  text-align: center;
 }

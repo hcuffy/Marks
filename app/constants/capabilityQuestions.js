@@ -4,12 +4,12 @@ const capabilityQuestions = {
 		questions: {
 			mathematics: {
 				number: 6,
-				abbreviation: math
+				abbreviation: 'math'
 			}
 		},
 		english: {
 			number: 6,
-			abbreviation: eng
+			abbreviation: 'eng'
 		}
 	}
 }
