@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
+import { changeQuestionBtn } from './helpers/tableForm'
 import { sortData } from '../rooms/helpers/formHelpers'
 import { getClassList, getStudentList, createDropdown } from '../helpers/dropdowns'
 import { resolveLabel } from '../../utils/translationUtil'
@@ -30,6 +31,15 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 				studentOptions,
 				'studentDropdown'
 			)}
+			{createDropdown(
+				styles.dropdown_div,
+				false,
+				() => {},
+				resolveLabel(null, 'Select Questions List'),
+				[],
+				'questionDropdown'
+			)}
+			{changeQuestionBtn()}
 		</div>
 	)
 }

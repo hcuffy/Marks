@@ -1,6 +1,20 @@
 import React from 'react'
-import { Table, FormGroup, Input, Label } from 'reactstrap'
+import { Table, FormGroup, Input, Label, Button } from 'reactstrap'
+import { createDropdown } from '../../helpers/dropdowns'
+import { resolveLabel } from '../../../utils/translationUtil'
 import styles from '../styles/capability.css'
+
+export const changeQuestionBtn = () => (
+	<Button className={styles.change_Btn} type="button" color="danger" disabled>
+		&larr; Change Assigned Questions
+	</Button>
+)
+
+const saveBtn = () => (
+	<Button className={styles.save_Btn} type="submit" color="success">
+		add
+	</Button>
+)
 
 const tableForm = () => {
 	const tableFields = (
@@ -92,8 +106,114 @@ const tableForm = () => {
 						<tr>
 							<th colSpan="6">Science</th>
 						</tr>
+						<tr>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 1
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 2
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 3
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 4
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 5
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 6
+								</FormGroup>
+							</td>
+						</tr>
+						<tr>
+							<th colSpan="6">Science</th>
+						</tr>
+						<tr>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 1
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 2
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 3
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 4
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 5
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 6
+								</FormGroup>
+							</td>
+						</tr>
+						<tr>
+							<th colSpan="6">Science</th>
+						</tr>
+						<tr>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 1
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 2
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 3
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 4
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 5
+								</FormGroup>
+							</td>
+							<td>
+								<FormGroup check>
+									<Input type="radio" name="radio2" /> Option 6
+								</FormGroup>
+							</td>
+						</tr>
+						<tr>
+							<th colSpan="6">Science</th>
+						</tr>
 					</tbody>
 				</Table>
+				{saveBtn()}
 			</form>
 		</div>
 	)

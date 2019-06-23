@@ -36,7 +36,8 @@ td {
   border-top: 1px solid black;
   border-bottom: 2px solid black;
   overflow-y: auto;
-  height: 550px;
+  height: 100%;
+  background: #fdb12e;
 }
 
 .radio_label {
@@ -48,4 +49,13 @@ td {
   white-space: normal;
   padding: 0 !important;
   text-align: center;
+}
+
+.save_Btn {
+  float: right;
+  margin: 0 10px 10px 0;
+}
+
+.change_Btn {
+  margin-left: 15px;
 }
