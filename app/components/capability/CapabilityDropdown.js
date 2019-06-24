@@ -4,14 +4,22 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { changeQuestionBtn } from './helpers/tableForm'
 import { sortData } from '../rooms/helpers/formHelpers'
-import { getClassList, getStudentList, createDropdown } from '../helpers/dropdowns'
+import {
+	getClassList,
+	getStudentList,
+	getQuestionList,
+	createDropdown
+} from '../helpers/dropdowns'
 import { resolveLabel } from '../../utils/translationUtil'
 import styles from './styles/capability.css'
 
+const _ = require('lodash')
+
 const CapabilityDropdown = ({ capabilityData, classData, students, actions }) => {
-	const { classDropdown, studentDropdown, classroom, subject } = capabilityData
+	const { classDropdown, studentDropdown, classroom, subject, answers } = capabilityData
 	const classOptions = getClassList(sortData(classData))
 	const studentOptions = getStudentList(students)
+	const questionOptions = _.isNull(answers) ? getQuestionList('id', answers) : []
 
 	return (
 		<div className={styles.dropdown_main_div}>
@@ -36,7 +44,7 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 				false,
 				() => {},
 				resolveLabel(null, 'Select Questions List'),
-				[],
+				questionOptions,
 				'questionDropdown'
 			)}
 			{changeQuestionBtn()}

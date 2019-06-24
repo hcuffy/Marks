@@ -6,7 +6,8 @@ const initialLoadState = {
 	classDropdown: false,
 	studentDropdown: false,
 	classroom: null,
-	subject: null
+	subject: null,
+	answers: null
 }
 
 const applyCapabilityChanges = (state = initialLoadState, action) => {

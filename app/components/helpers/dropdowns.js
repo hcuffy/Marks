@@ -153,3 +153,19 @@ export const getClassroomId = (name, classdata) => {
 
 	return classObject._id
 }
+
+export const getQuestionList = (id, answers) => {
+	const selectedClassroom = _.filter(answers, ['classroomId', id])
+	const items = selectedClassroom.map((data, idx) => (
+		<DropdownItem
+			key={idx}
+			name={data.name}
+			data-id={data._id}
+			data-check="questionDropdown"
+		>
+			{data.name}
+		</DropdownItem>
+	))
+
+	return items
+}

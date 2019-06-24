@@ -1,7 +1,5 @@
 import React from 'react'
 import { Table, FormGroup, Input, Label, Button } from 'reactstrap'
-import { createDropdown } from '../../helpers/dropdowns'
-import { resolveLabel } from '../../../utils/translationUtil'
 import styles from '../styles/capability.css'
 
 export const changeQuestionBtn = () => (

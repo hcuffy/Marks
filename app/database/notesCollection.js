@@ -64,16 +64,21 @@ export const deleteNote = data =>
 	)
 
 const updateSingleNote = previousData => {
-	const { title, note, noteId } = previousData
+	const { note, noteId } = previousData
 
-	notesCollection.update({ _id: noteId }, { $set: { title, note, noteId } }, {}, err => {
-		if (err) {
-			updateFailed()
+	notesCollection.update(
+		{ _id: noteId },
+		{ $set: { title: previousData.title, note, noteId } },
+		{},
+		err => {
+			if (err) {
+				updateFailed()
 
-			return err
+				return err
+			}
+			updateSuccessful()
 		}
-		updateSuccessful()
-	})
+	)
 }
 
 export const updateNoteData = data =>
