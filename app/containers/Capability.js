@@ -10,6 +10,7 @@ class Capability extends Component {
 		if (this.props.classData) {
 			this.props.actions.displayClassData()
 			this.props.actions.getStudents()
+			this.props.actions.getAnswers()
 		}
 	}
 

@@ -10,16 +10,19 @@ import {
 	getQuestionList,
 	createDropdown
 } from '../helpers/dropdowns'
+import capabilityQuestions from '../../constants/capabilityQuestions'
 import { resolveLabel } from '../../utils/translationUtil'
 import styles from './styles/capability.css'
 
 const _ = require('lodash')
 
+const getQuestionsFromFile = questions => {}
+
 const CapabilityDropdown = ({ capabilityData, classData, students, actions }) => {
 	const { classDropdown, studentDropdown, classroom, subject, answers } = capabilityData
 	const classOptions = getClassList(sortData(classData))
 	const studentOptions = getStudentList(students)
-	const questionOptions = _.isNull(answers) ? getQuestionList('id', answers) : []
+	const questionOptions = getQuestionList('id', answers, capabilityQuestions)
 
 	return (
 		<div className={styles.dropdown_main_div}>
@@ -43,7 +46,7 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 				styles.dropdown_div,
 				false,
 				() => {},
-				resolveLabel(null, 'Select Questions List'),
+				resolveLabel(null, 'Question Group'),
 				questionOptions,
 				'questionDropdown'
 			)}

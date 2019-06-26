@@ -1,17 +1,29 @@
-const capabilityQuestions = {
-	gradeFive: {
-		classroom: 'cl5',
+const capabilityQuestions = [
+	{
+		name: 'class5',
 		questions: {
 			mathematics: {
 				number: 6,
-				abbreviation: 'math'
+				short: 'math'
+			},
+			english: {
+				number: 6,
+				short: 'eng'
 			}
-		},
-		english: {
-			number: 6,
-			abbreviation: 'eng'
+		}
+	}, {
+		name: 'class6',
+		questions: {
+			mathematics: {
+				number: 6,
+				short: 'math'
+			},
+			english: {
+				number: 6,
+				short: 'eng'
+			}
 		}
 	}
-}
+]
 
 export default capabilityQuestions

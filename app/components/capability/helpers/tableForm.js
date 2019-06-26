@@ -4,7 +4,7 @@ import styles from '../styles/capability.css'
 
 export const changeQuestionBtn = () => (
 	<Button className={styles.change_Btn} type="button" color="danger" disabled>
-		&larr; Change Assigned Questions
+		<i className="fas fa-sync" />
 	</Button>
 )
 

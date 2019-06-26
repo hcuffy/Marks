@@ -1,4 +1,8 @@
-import { OPEN_CLOSE_CLASS_LIST, OPEN_CLOSE_STUDENT_LIST } from '../constants/actionTypes'
+import {
+	OPEN_CLOSE_CLASS_LIST,
+	OPEN_CLOSE_STUDENT_LIST,
+	GET_ALL_ANSWERS
+} from '../constants/actionTypes'
 
 const _ = require('lodash')
 
@@ -7,7 +11,7 @@ const initialLoadState = {
 	studentDropdown: false,
 	classroom: null,
 	subject: null,
-	answers: null
+	answers: []
 }
 
 const applyCapabilityChanges = (state = initialLoadState, action) => {
@@ -23,6 +27,9 @@ const applyCapabilityChanges = (state = initialLoadState, action) => {
 		const classDropdown = false
 
 		return _.assign({}, state, { studentDropdown, classDropdown }, action.payload)
+	}
+	case GET_ALL_ANSWERS: {
+		return _.assign({}, state, action.payload)
 	}
 	default:
 		return state
