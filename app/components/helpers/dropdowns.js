@@ -154,27 +154,12 @@ export const getClassroomId = (name, classdata) => {
 	return classObject._id
 }
 
-const optionsFromFile = capabilityQuestions => {
+export const getQuestionList = (classroomId, capabilityQuestions) => {
 	const items = capabilityQuestions.map((data, idx) => (
-		<DropdownItem key={idx} name={data.name} data-check="questionDropdown">
-			{data.name}
-		</DropdownItem>
-	))
-
-	return items
-}
-
-export const getQuestionList = (id, answers, capabilityQuestions) => {
-	if (_.isEmpty(answers) || _.isNull(id)) {
-		return optionsFromFile(capabilityQuestions)
-	}
-
-	const selectedClassroom = _.filter(answers, ['classroomId', id])
-	const items = selectedClassroom.map((data, idx) => (
 		<DropdownItem
 			key={idx}
 			name={data.name}
-			data-id={data._id}
+			data-id={classroomId}
 			data-check="questionDropdown"
 		>
 			{data.name}

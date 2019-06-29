@@ -58,4 +58,5 @@ td {
 
 .change_Btn {
   margin-left: 15px;
+  z-index: 0;
 }

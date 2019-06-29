@@ -2,9 +2,15 @@ import React from 'react'
 import { Table, FormGroup, Input, Label, Button } from 'reactstrap'
 import styles from '../styles/capability.css'
 
-export const changeQuestionBtn = () => (
-	<Button className={styles.change_Btn} type="button" color="danger" disabled>
-		<i className="fas fa-sync" />
+export const changeQuestionBtn = ({ openQuestionList }) => (
+	<Button
+		className={styles.change_Btn}
+		type="button"
+		color="danger"
+		data-check="openButton"
+		onClick={openQuestionList}
+	>
+		&#8617;
 	</Button>
 )
 
