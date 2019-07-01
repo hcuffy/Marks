@@ -11,10 +11,9 @@ import {
 	createDropdown
 } from '../helpers/dropdowns'
 import capabilityQuestions from '../../constants/capabilityQuestions'
+import { getQuestionSet } from './helpers/helpers'
 import { resolveLabel } from '../../utils/translationUtil'
 import styles from './styles/capability.css'
-
-// const getQuestionsFromFile = questions => {}
 
 const CapabilityDropdown = ({ capabilityData, classData, students, actions }) => {
 	const {
@@ -23,12 +22,13 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 		questionDropdown,
 		classroom,
 		subject,
-		questionSet,
+		answers,
 		classroomId
 	} = capabilityData
 	const classOptions = getClassList(sortData(classData))
 	const studentOptions = getStudentList(students)
 	const questionOptions = getQuestionList(classroomId, capabilityQuestions)
+	const actualSet = getQuestionSet(classroomId, answers)
 
 	return (
 		<div className={styles.dropdown_main_div}>
@@ -52,7 +52,7 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 				styles.dropdown_div,
 				questionDropdown,
 				actions.openQuestionList,
-				resolveLabel(questionSet, 'Question Group'),
+				resolveLabel(actualSet, 'Question Set'),
 				questionOptions,
 				null
 			)}

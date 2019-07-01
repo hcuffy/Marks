@@ -14,7 +14,6 @@ const initialLoadState = {
 	classroom: null,
 	classroomId: null,
 	subject: null,
-	questionSet: null,
 	answers: []
 }
 
