@@ -2,7 +2,8 @@ import {
 	OPEN_CLOSE_CLASS_LIST,
 	OPEN_CLOSE_STUDENT_LIST,
 	GET_ALL_ANSWERS,
-	OPEN_CLOSE_QUESTION_LIST
+	OPEN_CLOSE_QUESTION_LIST,
+	UPDATE_QUESTION_SET
 } from '../constants/actionTypes'
 
 const _ = require('lodash')
@@ -38,6 +39,11 @@ const applyCapabilityChanges = (state = initialLoadState, action) => {
 		const questionDropdown = !state.questionDropdown
 
 		return _.assign({}, state, { questionDropdown })
+	}
+	case UPDATE_QUESTION_SET: {
+		const questionDropdown = false
+
+		return _.assign({}, state, { questionDropdown }, action.payload)
 	}
 	default:
 		return state

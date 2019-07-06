@@ -1,5 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-import { unableToRetrieve } from '../notifications/general'
+import {
+	unableToRetrieve,
+	saveFailed,
+	saveSuccessful,
+	updateSuccessful
+} from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -26,3 +31,51 @@ export const getAllAnswers = () =>
 			return resolve(docs)
 		})
 	)
+
+export const addNewAnswer = data => {
+	capabilityCollection.insert(data, error => {
+		if (error) {
+			saveFailed()
+
+			return error
+		}
+		saveSuccessful()
+	})
+}
+
+const updateAnswer = data => {
+	const { classroomId, questionSet } = data
+
+	capabilityCollection.update({ classroomId }, { $set: { questionSet } }, {}, err => {
+		if (err) {
+			updateFailed()
+
+			return err
+		}
+		updateSuccessful()
+	})
+}
+
+export const updateAnswerData = data =>
+	new Promise((resolve, reject) => {
+		const { classroomId, questionSet } = data
+
+		capabilityCollection.find({ classroomId }, (err, entry) => {
+			if (err) {
+				return err
+			}
+
+			if (entry.length > 0) {
+				updateAnswer(data)
+			} else {
+				addNewAnswer(data)
+			}
+			capabilityCollection.find({}, (error, docs) => {
+				if (error) {
+					return reject(error)
+				}
+
+				return resolve(docs)
+			})
+		})
+	})

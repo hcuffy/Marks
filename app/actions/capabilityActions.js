@@ -2,9 +2,12 @@ import {
 	OPEN_CLOSE_CLASS_LIST,
 	OPEN_CLOSE_STUDENT_LIST,
 	GET_ALL_ANSWERS,
-	OPEN_CLOSE_QUESTION_LIST
+	OPEN_CLOSE_QUESTION_LIST,
+	UPDATE_QUESTION_SET
 } from '../constants/actionTypes'
-import { getAllAnswers } from '../database/capabilityCollection'
+import { getAllAnswers, updateAnswerData } from '../database/capabilityCollection'
+
+const isNull = require('lodash/isNull')
 
 export const openCapabilityClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
@@ -40,13 +43,33 @@ export const getAnswers = () => async dispatch => {
 }
 
 export const openQuestionList = event => dispatch => {
-	event.stopPropagation()
-	if (event.target.getAttribute('data-check') !== 'openButton') {
+	if (
+		event.target.getAttribute('data-check') !== 'openButton' ||
+		isNull(event.target.getAttribute('data-id'))
+	) {
 		return
 	}
 
 	dispatch({
 		type: OPEN_CLOSE_QUESTION_LIST,
 		payload: {}
+	})
+}
+
+export const updateQuestionSet = event => async dispatch => {
+	if (event.target.getAttribute('data-check') !== 'questionDropdown') {
+		return
+	}
+
+	const questionSetData = {
+		classroomId: event.target.getAttribute('data-id'),
+		questionSet: event.target.name
+	}
+
+	const answers = await updateAnswerData(questionSetData)
+
+	dispatch({
+		type: UPDATE_QUESTION_SET,
+		payload: { answers }
 	})
 }

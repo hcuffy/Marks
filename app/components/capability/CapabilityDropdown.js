@@ -27,7 +27,7 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 	} = capabilityData
 	const classOptions = getClassList(sortData(classData))
 	const studentOptions = getStudentList(students)
-	const questionOptions = getQuestionList(classroomId, capabilityQuestions)
+	const questionOptions = getQuestionList(classroomId, capabilityQuestions, actions)
 	const actualSet = getQuestionSet(classroomId, answers)
 
 	return (
@@ -56,7 +56,7 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 				questionOptions,
 				null
 			)}
-			{changeQuestionBtn(actions)}
+			{changeQuestionBtn(classroomId, actions)}
 		</div>
 	)
 }

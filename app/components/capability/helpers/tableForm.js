@@ -2,12 +2,13 @@ import React from 'react'
 import { Table, FormGroup, Input, Label, Button } from 'reactstrap'
 import styles from '../styles/capability.css'
 
-export const changeQuestionBtn = ({ openQuestionList }) => (
+export const changeQuestionBtn = (classroomId, { openQuestionList }) => (
 	<Button
 		className={styles.change_Btn}
 		type="button"
 		color="danger"
 		data-check="openButton"
+		data-id={classroomId}
 		onClick={openQuestionList}
 	>
 		&#8617;
