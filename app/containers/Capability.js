@@ -15,10 +15,12 @@ class Capability extends Component {
 	}
 
 	render() {
+		const { t } = this.props
+
 		return (
 			<div>
 				<SideMenu />
-				<CapabilitySection />
+				<CapabilitySection t={t} />
 			</div>
 		)
 	}

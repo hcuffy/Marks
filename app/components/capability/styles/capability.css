@@ -42,13 +42,19 @@ td {
 
 .radio_label {
   display: block;
-  text-align: left;
+  text-align: center;
+  font-size: 12px;
 }
 
 .radio_td {
   white-space: normal;
+  height: 50px;
   padding: 0 !important;
   text-align: center;
+}
+
+.radio_input {
+  margin: auto !important;
 }
 
 .save_Btn {

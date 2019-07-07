@@ -3,6 +3,7 @@ import {
 	unableToRetrieve,
 	saveFailed,
 	saveSuccessful,
+	updateFailed,
 	updateSuccessful
 } from '../notifications/general'
 
@@ -58,7 +59,7 @@ const updateAnswer = data => {
 
 export const updateAnswerData = data =>
 	new Promise((resolve, reject) => {
-		const { classroomId, questionSet } = data
+		const { classroomId } = data
 
 		capabilityCollection.find({ classroomId }, (err, entry) => {
 			if (err) {

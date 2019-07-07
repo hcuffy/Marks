@@ -1,6 +1,10 @@
 import React from 'react'
 import { Table, FormGroup, Input, Label, Button } from 'reactstrap'
+import capabilityQuestions from '../../../constants/capabilityQuestions'
+import { getQuestionSet } from './helpers'
 import styles from '../styles/capability.css'
+
+const _ = require('lodash')
 
 export const changeQuestionBtn = (classroomId, { openQuestionList }) => (
 	<Button
@@ -21,14 +25,36 @@ const saveBtn = () => (
 	</Button>
 )
 
-const tableForm = () => {
+const questionOptions = (t, subject) => {
+	const numberOfOptions = []
+	for (let i = 0; i < 6; i++) {
+		numberOfOptions.push(`option${i}`)
+	}
+
+	const options = numberOfOptions.map((numberOfOptions, idx) => (
+		<td className={styles.radio_td}>
+			<FormGroup>
+				<Label className={styles.radio_label}>
+					{t(`capability.options.${numberOfOptions}`)}
+				</Label>
+				<Input type="radio" className={styles.radio_input} name={subject} />
+			</FormGroup>
+		</td>
+	))
+
+	return <tr>{options}</tr>
+}
+
+const tableForm = (t, classroomId, answers) => {
+	const actualSet = getQuestionSet(classroomId, answers)
+
 	const tableFields = (
 		<div className={styles.form_div}>
 			<form>
 				<Table>
 					<thead>
 						<tr>
-							<th colSpan="6">Student Capability Questions PlaceHolder</th>
+							<th colSpan="6">{t('capability.tableHeader')}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,184 +64,11 @@ const tableForm = () => {
 						<tr>
 							<th colSpan="6">Can you add?</th>
 						</tr>
-						<tr>
-							<td className={styles.radio_td}>
-								<FormGroup check>
-									<Label className={styles.radio_label} check>
-										This is better than the other
-									</Label>
-									<Input type="radio" name="radio1" />
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio1" /> Option 2
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio1" /> Option 3
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio1" /> Option 4
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio1" /> Option 5
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio1" /> Option 6
-								</FormGroup>
-							</td>
-						</tr>
+						{questionOptions(t, 'math')}
 						<tr>
 							<th colSpan="6">Can you sing?</th>
 						</tr>
-						<tr>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 1
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 2
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 3
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 4
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 5
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 6
-								</FormGroup>
-							</td>
-						</tr>
-						<tr>
-							<th colSpan="6">Science</th>
-						</tr>
-						<tr>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 1
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 2
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 3
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 4
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 5
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 6
-								</FormGroup>
-							</td>
-						</tr>
-						<tr>
-							<th colSpan="6">Science</th>
-						</tr>
-						<tr>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 1
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 2
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 3
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 4
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 5
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 6
-								</FormGroup>
-							</td>
-						</tr>
-						<tr>
-							<th colSpan="6">Science</th>
-						</tr>
-						<tr>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 1
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 2
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 3
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 4
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 5
-								</FormGroup>
-							</td>
-							<td>
-								<FormGroup check>
-									<Input type="radio" name="radio2" /> Option 6
-								</FormGroup>
-							</td>
-						</tr>
-						<tr>
-							<th colSpan="6">Science</th>
-						</tr>
+						{questionOptions(t, 'eng')}
 					</tbody>
 				</Table>
 				{saveBtn()}

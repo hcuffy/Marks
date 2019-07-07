@@ -1,7 +1,7 @@
 const capabilityQuestions = [
 	{
 		name: 'class5',
-		questions: {
+		class5: {
 			mathematics: {
 				number: 6,
 				short: 'math'
@@ -13,7 +13,7 @@ const capabilityQuestions = [
 		}
 	}, {
 		name: 'class6',
-		questions: {
+		class6: {
 			mathematics: {
 				number: 6,
 				short: 'math'
