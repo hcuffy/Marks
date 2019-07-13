@@ -25,17 +25,23 @@ const saveBtn = () => (
 	</Button>
 )
 
-const questionOptions = (t, subject) => {
-	const numberOfOptions = []
-	for (let i = 0; i < 6; i++) {
-		numberOfOptions.push(`option${i}`)
+const createKeys = (numberOfKeys, prefix) => {
+	const keys = []
+	for (let i = 0; i < numberOfKeys; i += 1) {
+		keys.push(`${prefix}${i}`)
 	}
 
-	const options = numberOfOptions.map((numberOfOptions, idx) => (
-		<td className={styles.radio_td}>
+	return keys
+}
+
+const questionOptions = (t, subject) => {
+	const optionsKeys = createKeys(6, 'option')
+
+	const options = optionsKeys.map((capabilityOptions, idx) => (
+		<td key={idx} className={styles.radio_td}>
 			<FormGroup>
 				<Label className={styles.radio_label}>
-					{t(`capability.options.${numberOfOptions}`)}
+					{t(`capability.options.${capabilityOptions}`)}
 				</Label>
 				<Input type="radio" className={styles.radio_input} name={subject} />
 			</FormGroup>
@@ -45,8 +51,41 @@ const questionOptions = (t, subject) => {
 	return <tr>{options}</tr>
 }
 
+const innerTableBody = (t, subjects, actualSet) => {
+	const questions = subjects.map((subject, idx) => {
+		const subjectKey = _.findKey(subject)
+		// const optionsKeys = createKeys(subject[subjectKey].number, 'question')
+		const translationStem = `capability.${actualSet}.${subject[subjectKey].short}`
+		console.log(subjectKey)
+
+		return (
+			<div className={styles.subject_row_div}>
+				<tr key={idx}>
+					<th colSpan="6">{t(`${translationStem}.subject`)}</th>
+				</tr>
+				{questionOptions(t, subject[subjectKey].short)}
+			</div>
+		)
+	})
+
+	return <tbody>{questions}</tbody>
+}
+
+const tableQuestions = (t, actualSet) => {
+	const developerHolder = 'class5'
+
+	const questionSet = _.find(capabilityQuestions, actualSet)[developerHolder]
+	const questionArr = []
+
+	_.forIn(questionSet, (value, key) => {
+		questionArr.push({ [key]: value })
+	})
+
+	return innerTableBody(t, questionArr, developerHolder)
+}
+
 const tableForm = (t, classroomId, answers) => {
-	const actualSet = getQuestionSet(classroomId, answers)
+	const tableBody = tableQuestions(t, getQuestionSet(classroomId, answers))
 
 	const tableFields = (
 		<div className={styles.form_div}>
@@ -57,19 +96,7 @@ const tableForm = (t, classroomId, answers) => {
 							<th colSpan="6">{t('capability.tableHeader')}</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<th colSpan="6">Mathematics</th>
-						</tr>
-						<tr>
-							<th colSpan="6">Can you add?</th>
-						</tr>
-						{questionOptions(t, 'math')}
-						<tr>
-							<th colSpan="6">Can you sing?</th>
-						</tr>
-						{questionOptions(t, 'eng')}
-					</tbody>
+					{tableBody}
 				</Table>
 				{saveBtn()}
 			</form>
@@ -80,3 +107,17 @@ const tableForm = (t, classroomId, answers) => {
 }
 
 export default tableForm
+
+// <tbody>
+// 	<tr>
+// 		<th colSpan="6">Mathematics</th>
+// 	</tr>
+// 	<tr>
+// 		<th colSpan="6">Can you add?</th>
+// 	</tr>
+// 	{questionOptions(t, 'math')}
+// 	<tr>
+// 		<th colSpan="6">Can you sing?</th>
+// 	</tr>
+// 	{questionOptions(t, 'eng')}
+// </tbody>

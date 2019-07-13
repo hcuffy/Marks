@@ -43,6 +43,7 @@
     "firstname",
     "lastname",
     "reactstrap",
-    "sidemenu"
+    "sidemenu",
+    "textbox"
   ]
 }

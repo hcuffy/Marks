@@ -66,3 +66,7 @@ td {
   margin-left: 15px;
   z-index: 0;
 }
+
+th {
+  width: 1000px;
+}
