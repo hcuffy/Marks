@@ -34,7 +34,7 @@ const createKeys = (numberOfKeys, prefix) => {
 	return keys
 }
 
-const questionOptions = (t, subject) => {
+const questionOptions = (t, subjectShort, optionKey) => {
 	const optionsKeys = createKeys(6, 'option')
 
 	const options = optionsKeys.map((capabilityOptions, idx) => (
@@ -43,7 +43,11 @@ const questionOptions = (t, subject) => {
 				<Label className={styles.radio_label}>
 					{t(`capability.options.${capabilityOptions}`)}
 				</Label>
-				<Input type="radio" className={styles.radio_input} name={subject} />
+				<Input
+					type="radio"
+					className={styles.radio_input}
+					name={`${subjectShort}${_.last(optionKey)}`}
+				/>
 			</FormGroup>
 		</td>
 	))
@@ -51,22 +55,52 @@ const questionOptions = (t, subject) => {
 	return <tr>{options}</tr>
 }
 
-const innerTableBody = (t, subjects, actualSet) => {
-	const questions = subjects.map((subject, idx) => {
-		const subjectKey = _.findKey(subject)
-		// const optionsKeys = createKeys(subject[subjectKey].number, 'question')
-		const translationStem = `capability.${actualSet}.${subject[subjectKey].short}`
+const createInnerBody = (
+	t,
+	questionKeys,
+	subjectHeader,
+	translationStem,
+	subjectShort
+) => {
+	const question = questionKeys.map((questionKey, idx) => {
+		const answerOptions = questionOptions(t, subjectShort, questionKey)
+
+		const showHeader = _.last(questionKey) === '0' ? subjectHeader : null
 
 		return (
-			<tbody>
-				<tr key={idx}>
-					<th key={idx} colSpan="6">
-						{t(`${translationStem}.subject`)}
-					</th>
+			<tbody key={idx}>
+				{showHeader}
+				<tr>
+					<th colSpan="6">{t(`${translationStem}.${questionKey}`)}</th>
 				</tr>
-				{questionOptions(t, subject[subjectKey].short)}
+				{answerOptions}
 			</tbody>
 		)
+	})
+
+	return question
+}
+
+const createTableBody = (t, subjects, actualSet) => {
+	const questions = subjects.map(subject => {
+		const subjectKey = subject[_.findKey(subject)]
+		const subjectShort = subjectKey.short
+		const questionKeys = createKeys(subjectKey.number, 'question')
+		const translationStem = `capability.${actualSet}.${subjectShort}`
+		const subjectHeader = (
+			<tr>
+				<th colSpan="6">{t(`${translationStem}.subject`)}</th>
+			</tr>
+		)
+		const innerTableBody = createInnerBody(
+			t,
+			questionKeys,
+			subjectHeader,
+			translationStem,
+			subjectShort
+		)
+
+		return innerTableBody
 	})
 
 	return questions
@@ -82,7 +116,7 @@ const tableQuestions = (t, actualSet) => {
 		questionArr.push({ [key]: value })
 	})
 
-	return innerTableBody(t, questionArr, developerHolder)
+	return createTableBody(t, questionArr, developerHolder)
 }
 
 const tableForm = (t, classroomId, answers) => {
@@ -108,17 +142,3 @@ const tableForm = (t, classroomId, answers) => {
 }
 
 export default tableForm
-
-// <tbody>
-// 	<tr>
-// 		<th colSpan="6">Mathematics</th>
-// 	</tr>
-// 	<tr>
-// 		<th colSpan="6">Can you add?</th>
-// 	</tr>
-// 	{questionOptions(t, 'math')}
-// 	<tr>
-// 		<th colSpan="6">Can you sing?</th>
-// 	</tr>
-// 	{questionOptions(t, 'eng')}
-// </tbody>
