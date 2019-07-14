@@ -56,19 +56,20 @@ const innerTableBody = (t, subjects, actualSet) => {
 		const subjectKey = _.findKey(subject)
 		// const optionsKeys = createKeys(subject[subjectKey].number, 'question')
 		const translationStem = `capability.${actualSet}.${subject[subjectKey].short}`
-		console.log(subjectKey)
 
 		return (
-			<div className={styles.subject_row_div}>
+			<tbody>
 				<tr key={idx}>
-					<th colSpan="6">{t(`${translationStem}.subject`)}</th>
+					<th key={idx} colSpan="6">
+						{t(`${translationStem}.subject`)}
+					</th>
 				</tr>
 				{questionOptions(t, subject[subjectKey].short)}
-			</div>
+			</tbody>
 		)
 	})
 
-	return <tbody>{questions}</tbody>
+	return questions
 }
 
 const tableQuestions = (t, actualSet) => {
