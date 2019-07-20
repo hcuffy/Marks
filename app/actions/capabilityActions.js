@@ -30,7 +30,7 @@ export const openCapabilityStudentList = event => dispatch => {
 
 	dispatch({
 		type: OPEN_CLOSE_STUDENT_LIST,
-		payload: { subject: event.target.innerText }
+		payload: { singleStudent: event.target.innerText }
 	})
 }
 

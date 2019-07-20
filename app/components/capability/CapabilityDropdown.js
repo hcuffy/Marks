@@ -15,18 +15,23 @@ import { getQuestionSet } from './helpers/helpers'
 import { resolveLabel } from '../../utils/translationUtil'
 import styles from './styles/capability.css'
 
+const _ = require('lodash')
+
+const filterStudentsByClassId = (students, classroomId) =>
+	_.filter(students, ['classroom', classroomId])
+
 const CapabilityDropdown = ({ capabilityData, classData, students, actions }) => {
 	const {
 		classDropdown,
 		studentDropdown,
 		questionDropdown,
 		classroom,
-		subject,
+		singleStudent,
 		answers,
 		classroomId
 	} = capabilityData
 	const classOptions = getClassList(sortData(classData))
-	const studentOptions = getStudentList(students)
+	const studentOptions = getStudentList(filterStudentsByClassId(students, classroomId))
 	const questionOptions = getQuestionList(classroomId, capabilityQuestions, actions)
 	const actualSet = getQuestionSet(classroomId, answers)
 
@@ -44,7 +49,7 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 				styles.dropdown_div,
 				studentDropdown,
 				actions.openCapabilityStudentList,
-				resolveLabel(subject, 'Select Student'),
+				resolveLabel(singleStudent, 'Select Student'),
 				studentOptions,
 				'studentDropdown'
 			)}
