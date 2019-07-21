@@ -14,7 +14,8 @@ const initialLoadState = {
 	questionDropdown: false,
 	classroom: null,
 	classroomId: null,
-	singleStudent: null,
+	studentName: null,
+	studentId: null,
 	answers: []
 }
 

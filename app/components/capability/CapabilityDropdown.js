@@ -26,7 +26,7 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 		studentDropdown,
 		questionDropdown,
 		classroom,
-		singleStudent,
+		studentName,
 		answers,
 		classroomId
 	} = capabilityData
@@ -49,7 +49,7 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 				styles.dropdown_div,
 				studentDropdown,
 				actions.openCapabilityStudentList,
-				resolveLabel(singleStudent, 'Select Student'),
+				resolveLabel(studentName, 'Select Student'),
 				studentOptions,
 				'studentDropdown'
 			)}

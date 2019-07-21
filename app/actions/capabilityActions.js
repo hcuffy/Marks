@@ -23,14 +23,21 @@ export const openCapabilityClassList = event => dispatch => {
 	})
 }
 
-export const openCapabilityStudentList = event => dispatch => {
+export const openCapabilityStudentList = event => async dispatch => {
+	event.persist()
 	if (event.target.getAttribute('data-check') !== 'studentDropdown') {
 		return
 	}
 
+	const answers = await getAllAnswers()
+
 	dispatch({
 		type: OPEN_CLOSE_STUDENT_LIST,
-		payload: { singleStudent: event.target.innerText }
+		payload: {
+			studentName: event.target.innerText,
+			studentId: event.target.getAttribute('data-id'),
+			answers
+		}
 	})
 }
 
@@ -72,4 +79,10 @@ export const updateQuestionSet = event => async dispatch => {
 		type: UPDATE_QUESTION_SET,
 		payload: { answers }
 	})
+}
+
+export const handleCapabilityAnswers = event => {
+	event.preventDefault()
+
+	console.log(event.target)
 }

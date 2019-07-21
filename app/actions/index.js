@@ -63,5 +63,6 @@ export const actionCreators = {
 	openCapabilityStudentList: capability.openCapabilityStudentList,
 	getAnswers: capability.getAnswers,
 	openQuestionList: capability.openQuestionList,
-	updateQuestionSet: capability.updateQuestionSet
+	updateQuestionSet: capability.updateQuestionSet,
+	handleCapabilityAnswers: capability.handleCapabilityAnswers
 }

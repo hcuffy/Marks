@@ -19,12 +19,6 @@ export const changeQuestionBtn = (classroomId, { openQuestionList }) => (
 	</Button>
 )
 
-const saveBtn = () => (
-	<Button className={styles.save_Btn} type="submit" color="success">
-		add
-	</Button>
-)
-
 const createKeys = (numberOfKeys, prefix) => {
 	const keys = []
 	for (let i = 0; i < numberOfKeys; i += 1) {
@@ -34,7 +28,7 @@ const createKeys = (numberOfKeys, prefix) => {
 	return keys
 }
 
-const questionOptions = (t, subjectShort, optionKey) => {
+const questionOptions = (t, subjectShort, optionKey, questionId, studentId, actions) => {
 	const optionsKeys = createKeys(6, 'option')
 
 	const options = optionsKeys.map((capabilityOptions, idx) => (
@@ -46,6 +40,9 @@ const questionOptions = (t, subjectShort, optionKey) => {
 				<Input
 					type="radio"
 					className={styles.radio_input}
+					data-id={questionId}
+					studentId={studentId}
+					onClick={actions.handleCapabilityAnswers}
 					name={`${subjectShort}${_.last(optionKey)}`}
 				/>
 			</FormGroup>
@@ -60,11 +57,20 @@ const createInnerBody = (
 	questionKeys,
 	subjectHeader,
 	translationStem,
-	subjectShort
+	subjectShort,
+	studentId,
+	actions
 ) => {
 	const question = questionKeys.map((questionKey, idx) => {
-		const answerOptions = questionOptions(t, subjectShort, questionKey)
-
+		const questionId = `${subjectShort}${_.upperFirst(questionKey)}`
+		const answerOptions = questionOptions(
+			t,
+			subjectShort,
+			questionKey,
+			questionId,
+			studentId,
+			actions
+		)
 		const showHeader = _.last(questionKey) === '0' ? subjectHeader : null
 
 		return (
@@ -81,7 +87,7 @@ const createInnerBody = (
 	return question
 }
 
-const createTableBody = (t, subjects, actualSet) => {
+const createTableBody = (t, subjects, actualSet, studentId, actions) => {
 	const questions = subjects.map(subject => {
 		const subjectKey = subject[_.findKey(subject)]
 		const subjectShort = subjectKey.short
@@ -97,7 +103,9 @@ const createTableBody = (t, subjects, actualSet) => {
 			questionKeys,
 			subjectHeader,
 			translationStem,
-			subjectShort
+			subjectShort,
+			studentId,
+			actions
 		)
 
 		return innerTableBody
@@ -106,7 +114,7 @@ const createTableBody = (t, subjects, actualSet) => {
 	return questions
 }
 
-const tableQuestions = (t, actualSet) => {
+const tableQuestions = (t, actualSet, studentId, actions) => {
 	const developerHolder = 'class5'
 
 	const questionSet = _.find(capabilityQuestions, actualSet)[developerHolder]
@@ -116,25 +124,26 @@ const tableQuestions = (t, actualSet) => {
 		questionArr.push({ [key]: value })
 	})
 
-	return createTableBody(t, questionArr, developerHolder)
+	return createTableBody(t, questionArr, developerHolder, studentId, actions)
 }
 
-const tableForm = (t, classroomId, answers) => {
-	const tableBody = tableQuestions(t, getQuestionSet(classroomId, answers))
-
+const tableForm = (t, { classroomId, answers, studentId }, actions) => {
+	const tableBody = tableQuestions(
+		t,
+		getQuestionSet(classroomId, answers),
+		studentId,
+		actions
+	)
 	const tableFields = (
 		<div className={styles.form_div}>
-			<form>
-				<Table>
-					<thead>
-						<tr>
-							<th colSpan="6">{t('capability.tableHeader')}</th>
-						</tr>
-					</thead>
-					{tableBody}
-				</Table>
-				{saveBtn()}
-			</form>
+			<Table>
+				<thead>
+					<tr>
+						<th colSpan="6">{t('capability.tableHeader')}</th>
+					</tr>
+				</thead>
+				{tableBody}
+			</Table>
 		</div>
 	)
 
