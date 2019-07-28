@@ -1,11 +1,11 @@
 /* eslint-disable promise/always-return */
 /* eslint-disable promise/catch-or-return */
 import { spy } from 'sinon'
-import * as actions from '../../app/actions/subjectActions'
-import * as types from '../../app/constants/actionTypes'
+import * as actions from '../../app/component/subject/actions'
+import * as types from '../../app/component/subject/constants'
 import * as events from './mock_modules/eventMocks/subjectActionEvents'
 
-jest.mock('../../app/actions/subjectActions')
+jest.mock('../../app/component/subject/actions')
 
 describe('test the subject section actions', () => {
 	it('should not open the class dropdown', () => {

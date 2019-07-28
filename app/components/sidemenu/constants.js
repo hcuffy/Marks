@@ -1,0 +1,1 @@
+export const HANDLE_MENU_CHANGE = 'HANDLE_MENU_CHANGE'

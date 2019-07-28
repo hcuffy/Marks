@@ -1,6 +1,9 @@
 /* eslint-disable max-len */
-import applySubjectModal from '../../app/reducers/subjectModalReducer'
-import { OPEN_CLOSE_SUBJECT_MODAL, UPDATE_SUBJECT } from '../../app/constants/actionTypes'
+import applySubjectModal from '../../app/reducers/subjectModal'
+import {
+	OPEN_CLOSE_SUBJECT_MODAL,
+	UPDATE_SUBJECT
+} from '../../app/components/subject/constants'
 
 const initialLoadState = {
 	id: '',

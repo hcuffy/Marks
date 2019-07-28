@@ -1,10 +1,10 @@
-import applyClassList, { applySubjectData } from '../../app/reducers/subjectReducer'
+import applyClassList, { applySubjectData } from '../../app/reducers/subject'
 import {
 	UPDATE_CLASS_LIST,
 	GET_SINGLE_SUBJECT,
 	GET_SUBJECT_LIST,
 	ADD_NEW_SUBJECT
-} from '../../app/constants/actionTypes'
+} from '../../app/components/subject/constants'
 
 const initialLoadState = {
 	openModal: false,

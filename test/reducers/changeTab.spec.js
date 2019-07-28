@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
-import applyTabChange from '../../app/reducers/changeTabReducer'
-import { CHANGE_CLASSROOM_TAB } from '../../app/constants/actionTypes'
+import applyTabChange from '../../app/reducers/changeTab'
+import { CHANGE_CLASSROOM_TAB } from '../../app/components/rooms/constants'
 
 const initialLoadState = {
 	classTab: 'active',

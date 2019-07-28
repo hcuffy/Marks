@@ -1,12 +1,12 @@
-import * as classroom from './classroomActions'
-import * as subject from './subjectActions'
-import * as exam from './examActions'
-import * as student from './studentActions'
-import * as grade from './gradeActions'
-import * as sidemenu from './sidemenuActions'
-import * as graph from './graphActions'
-import * as notes from './notesActions'
-import * as settings from './settingsActions'
+import * as classroom from '../components/rooms/actions'
+import * as subject from '../components/subject/actions'
+import * as exam from '../components/exam/actions'
+import * as student from '../components/students/actions'
+import * as grade from '../components/grades/actions'
+import * as sidemenu from '../components/sidemenu/actions'
+import * as graph from '../components/graphs/actions'
+import * as notes from '../components/notes/actions'
+import * as settings from '../components/settings/actions'
 
 export const actionCreators = {
 	changeClassroomTab: classroom.changeClassroomTab,

@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
-import applyAddressData, { applyGradeSystem } from './settingsReducer'
-import applyTabChange from './changeTabReducer'
-import applyClassData from './classDataReducer'
-import applyClassModal from './roomModalReducer'
-import applySubjectModal from './subjectModalReducer'
-import applyClassList, { applySubjectData } from './subjectReducer'
-import applyFilteredExam from './examReducer'
-import applyStudentData from './studentsReducer'
-import applyGradeData from './gradeTableReducer'
-import applyMenuStyling from './sidemenuReducer'
-import applyGraphData from './graphReducer'
-import applyNotesData from './notesReducer'
+import applyAddressData, { applyGradeSystem } from './settings'
+import applyTabChange from './changeTab'
+import applyClassData from './classData'
+import applyClassModal from './roomModal'
+import applySubjectModal from './subjectModal'
+import applyClassList, { applySubjectData } from './subject'
+import applyFilteredExam from './exam'
+import applyStudentData from './students'
+import applyGradeData from './gradeTable'
+import applyMenuStyling from './sidemenu'
+import applyGraphData from './graph'
+import applyNotesData from './notes'
 
 export default function createRootReducer(history: History) {
 	return combineReducers({
@@ -28,7 +28,7 @@ export default function createRootReducer(history: History) {
 		subjectModalData: applySubjectModal,
 		menuStylingData: applyMenuStyling,
 		gradeData: applyGradeData,
-    graphData: applyGraphData,
-    notesData:applyNotesData
+		graphData: applyGraphData,
+		notesData: applyNotesData
 	})
 }

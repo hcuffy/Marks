@@ -1,10 +1,10 @@
-import { handleSchoolReducer, applyGradeSystem } from '../../app/reducers/settingsReducer'
+import { handleSchoolReducer, applyGradeSystem } from '../../app/reducers/settings'
 import {
 	DISPLAY_SCHOOL_DATA,
 	HANDLE_SCHOOL_DATA,
 	UPDATE_GRADING_DATA,
 	GET_SYSTEM_TYPE
-} from '../../app/constants/actionTypes'
+} from '../../app/components/settings/constants'
 
 const initialLoadState = {
 	title: null,

@@ -1,11 +1,11 @@
 /* eslint-disable promise/always-return */
 /* eslint-disable promise/catch-or-return */
 import { spy } from 'sinon'
-import * as actions from '../../app/actions/studentActions'
-import * as types from '../../app/constants/actionTypes'
+import * as actions from '../../app/component/students/actions'
+import * as types from '../../app/component/students/constants'
 import * as events from './mock_modules/eventMocks/studentActionEvents'
 
-jest.mock('../../app/actions/studentActions')
+jest.mock('../../app/component/students/actions')
 
 describe('test the student section actions', () => {
 	it('should add new student', done => {

@@ -1,5 +1,8 @@
-import applyClassModal from '../../app/reducers/roomModalReducer'
-import { OPEN_CLOSE_ROOM_MODAL, UPDATE_CLASSROOM } from '../../app/constants/actionTypes'
+import applyClassModal from '../../app/reducers/roomModal'
+import {
+	OPEN_CLOSE_ROOM_MODAL,
+	UPDATE_CLASSROOM
+} from '../../app/components/rooms/constants'
 
 const initialLoadState = {
 	id: '',

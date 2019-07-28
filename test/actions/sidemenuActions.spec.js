@@ -1,11 +1,11 @@
 /* eslint-disable promise/always-return */
 /* eslint-disable promise/catch-or-return */
 import { spy } from 'sinon'
-import * as actions from '../../app/actions/sidemenuActions'
-import * as types from '../../app/constants/actionTypes'
+import * as actions from '../../app/component/sidemenu/actions'
+import * as types from '../../app/component/sidemenu/constants'
 import * as events from './mock_modules/eventMocks/sidemenuActionEvents'
 
-jest.mock('../../app/actions/sidemenuActions')
+jest.mock('../../app/component/sidemenu/actions')
 
 describe('test the sidemenu actions', () => {
 	it('should change menu background color', () => {
