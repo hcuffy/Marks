@@ -41,7 +41,7 @@ const questionOptions = (t, subjectShort, optionKey, questionId, studentId, acti
 					type="radio"
 					className={styles.radio_input}
 					data-id={questionId}
-					studentId={studentId}
+					student-id={studentId}
 					onClick={actions.handleCapabilityAnswers}
 					name={`${subjectShort}${_.last(optionKey)}`}
 				/>

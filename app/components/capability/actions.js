@@ -4,8 +4,8 @@ import {
 	GET_ALL_ANSWERS,
 	OPEN_CLOSE_QUESTION_LIST,
 	UPDATE_QUESTION_SET
-} from '../constants'
-import { getAllAnswers, updateAnswerData } from '../database/capabilityCollection'
+} from './constants'
+import { getAllAnswers, updateAnswerData } from '../../database/capabilityCollection'
 
 const isNull = require('lodash/isNull')
 
@@ -81,8 +81,13 @@ export const updateQuestionSet = event => async dispatch => {
 	})
 }
 
-export const handleCapabilityAnswers = event => {
+export const handleCapabilityAnswers = event => dispatch => {
 	event.preventDefault()
 
 	console.log(event.target)
+
+	dispatch({
+		type: 'test',
+		payload: {}
+	})
 }
