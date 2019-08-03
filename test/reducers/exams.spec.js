@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
-import applyFilteredExam from '../../app/reducers/examReducer'
+import applyFilteredExam from '../../app/reducers/exam'
 import {
 	GET_SELECTED_CLASS,
 	UPDATE_DROPDOWN_CLASS_LIST,
 	DISPLAY_SUBJECT_LIST,
 	GET_SINGLE_EXAM,
 	UPDATE_EXAMS_LIST
-} from '../../app/constants/actionTypes'
+} from '../../app/components/exam/constants'
 
 const initialLoadState = {
 	subject: '',

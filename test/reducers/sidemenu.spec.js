@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
-import applyMenuStyling from '../../app/reducers/sidemenuReducer'
-import { HANDLE_MENU_CHANGE } from '../../app/constants/actionTypes'
+import applyMenuStyling from '../../app/reducers/sidemenu'
+import { HANDLE_MENU_CHANGE } from '../../app/components/sidemenu/constants'
 
 const initialLoadState = {
 	home: '#1dbb90',

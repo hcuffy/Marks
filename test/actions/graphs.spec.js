@@ -1,11 +1,11 @@
 /* eslint-disable promise/always-return */
 /* eslint-disable promise/catch-or-return */
 import { spy } from 'sinon'
-import * as actions from '../../app/actions/graphActions'
-import * as types from '../../app/constants/actionTypes'
+import * as actions from '../../app/component/graphs/actions'
+import * as types from '../../app/component/graphs/constants'
 import * as events from './mock_modules/eventMocks/graphActionEvents'
 
-jest.mock('../../app/actions/graphActions')
+jest.mock('../../app/component/graphs/actions')
 
 describe('test the graphs section actions', () => {
 	it('should not open classroom dropdown', () => {

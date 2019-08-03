@@ -1,5 +1,8 @@
-import applyTabChange from '../../app/reducers/changeTabReducer'
-import { ADD_CLASSROOM_DATA, GET_CLASSROOM_DATA } from '../../app/constants/actionTypes'
+import applyTabChange from '../../app/reducers/changeTab'
+import {
+	ADD_CLASSROOM_DATA,
+	GET_CLASSROOM_DATA
+} from '../../app/components/rooms/constants'
 
 const initialLoadState = {
 	name: '',

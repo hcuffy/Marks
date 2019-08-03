@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
-import applyStudentData from '../../app/reducers/studentsReducer'
+import applyStudentData from '../../app/reducers/students'
 import {
 	ADD_NEW_STUDENT,
 	GET_ALL_STUDENTS,
 	GET_SINGLE_STUDENT,
 	DISPLAY_STUDENT_GRAPH,
 	DISPLAY_STUDENT_SUBJECT_GRAPH
-} from '../../app/constants/actionTypes'
+} from '../../app/components/students/constants'
 
 const initialLoadState = {
 	firstname: '',

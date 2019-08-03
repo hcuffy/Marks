@@ -1,11 +1,11 @@
 /* eslint-disable promise/always-return */
 /* eslint-disable promise/catch-or-return */
 import { spy } from 'sinon'
-import * as actions from '../../app/actions/settingsActions'
-import * as types from '../../app/constants/actionTypes'
+import * as actions from '../../app/component/settings/actions'
+import * as types from '../../app/component/settings/constants'
 import * as events from './mock_modules/eventMocks/settingsActionEvents'
 
-jest.mock('../../app/actions/settingsActions')
+jest.mock('../../app/component/settings/actions')
 
 describe('test the settings actions', () => {
 	it('should change the grading system to points', done => {

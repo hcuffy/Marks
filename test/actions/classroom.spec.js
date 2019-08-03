@@ -1,11 +1,11 @@
 /* eslint-disable promise/always-return */
 /* eslint-disable promise/catch-or-return */
 import { spy } from 'sinon'
-import * as actions from '../../app/actions/classroomActions'
-import * as types from '../../app/constants/actionTypes'
+import * as actions from '../../app/component/rooms/actions'
+import * as types from '../../app/component/rooms/constants'
 import * as events from './mock_modules/eventMocks/classroomActionEvents'
 
-jest.mock('../../app/actions/classroomActions')
+jest.mock('../../app/component/rooms/actions')
 
 describe('test the classroom section actions', () => {
 	it('should change the classroom tab', () => {

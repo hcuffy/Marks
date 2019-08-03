@@ -1,12 +1,12 @@
 /* eslint-disable promise/always-return */
 /* eslint-disable promise/catch-or-return */
 import { spy } from 'sinon'
-import * as actions from '../../app/actions/gradeActions'
-import * as types from '../../app/constants/actionTypes'
+import * as actions from '../../app/component/grades/actions'
+import * as types from '../../app/component/grades/constants'
 import * as events from './mock_modules/eventMocks/examActionEvents'
 import { updateGrade, updateGradeNull } from './mock_modules/eventMocks/gradeActionEvents'
 
-jest.mock('../../app/actions/gradeActions')
+jest.mock('../../app/component/grades/actions')
 
 describe('test the grade section actions', () => {
 	it('should not open classroom dropdown', () => {

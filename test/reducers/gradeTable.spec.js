@@ -1,9 +1,9 @@
-import applyGradeData from '../../app/reducers/gradeTableReducer'
+import applyGradeData from '../../app/reducers/gradeTable'
 import {
 	DISPLAY_EXAM_TABLE,
 	OPEN_CLASS_LIST,
 	UPDATE_EXAM_TABLE
-} from '../../app/constants/actionTypes'
+} from '../../app/components/grades/constants'
 
 const initialLoadState = {
 	classroom: null,

@@ -1,11 +1,11 @@
-import applyGraphData from '../../app/reducers/graphReducer'
+import applyGraphData from '../../app/reducers/graph'
 import {
 	OPEN_GRAPH_CLASS_LIST,
 	GET_ALL_GRADES,
 	DISPLAY_SUBJECT_GRADES,
 	GET_ALL_EXAMS,
 	DISPLAY_EXAM_GRADES
-} from '../../app/constants/actionTypes'
+} from '../../app/components/graphs/constants'
 
 const initialLoadState = {
 	classroom: null,
