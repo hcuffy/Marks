@@ -4,7 +4,7 @@ import {
 	GET_SINGLE_STUDENT,
 	DISPLAY_STUDENT_GRAPH,
 	DISPLAY_STUDENT_SUBJECT_GRAPH
-} from '../components/sidemenu/constants'
+} from '../components/students/constants'
 
 const _ = require('lodash')
 

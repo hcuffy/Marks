@@ -31,7 +31,7 @@ const subjectCollection = new Datastore({
 
 const getSubjects = async ({ room, abbreviation }) => {
 	const data = await getClassroomData()
-	const selectedClass = _.find(data, ['name', room])
+	const selectedClass = _.find(data, { name: room })
 	if (_.includes(selectedClass.subjects, abbreviation)) {
 		return true
 	}

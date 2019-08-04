@@ -28,20 +28,30 @@ const createKeys = (numberOfKeys, prefix) => {
 	return keys
 }
 
-const questionOptions = (t, subjectShort, optionKey, questionId, studentId, actions) => {
+const questionOptions = (
+	t,
+	subjectShort,
+	optionKey,
+	questionId,
+	studentId,
+	classroomId,
+	actions
+) => {
 	const optionsKeys = createKeys(6, 'option')
 
-	const options = optionsKeys.map((capabilityOptions, idx) => (
+	const options = optionsKeys.map((capabilityOption, idx) => (
 		<td key={idx} className={styles.radio_td}>
 			<FormGroup>
 				<Label className={styles.radio_label}>
-					{t(`capability.options.${capabilityOptions}`)}
+					{t(`capability.options.${capabilityOption}`)}
 				</Label>
 				<Input
 					type="radio"
 					className={styles.radio_input}
 					data-id={questionId}
+					option-tag={capabilityOption}
 					student-id={studentId}
+					classroom-id={classroomId}
 					onClick={actions.handleCapabilityAnswers}
 					name={`${subjectShort}${_.last(optionKey)}`}
 				/>
@@ -59,6 +69,7 @@ const createInnerBody = (
 	translationStem,
 	subjectShort,
 	studentId,
+	classroomId,
 	actions
 ) => {
 	const question = questionKeys.map((questionKey, idx) => {
@@ -69,6 +80,7 @@ const createInnerBody = (
 			questionKey,
 			questionId,
 			studentId,
+			classroomId,
 			actions
 		)
 		const showHeader = _.last(questionKey) === '0' ? subjectHeader : null
@@ -87,7 +99,7 @@ const createInnerBody = (
 	return question
 }
 
-const createTableBody = (t, subjects, actualSet, studentId, actions) => {
+const createTableBody = (t, subjects, actualSet, studentId, classroomId, actions) => {
 	const questions = subjects.map(subject => {
 		const subjectKey = subject[_.findKey(subject)]
 		const subjectShort = subjectKey.short
@@ -105,6 +117,7 @@ const createTableBody = (t, subjects, actualSet, studentId, actions) => {
 			translationStem,
 			subjectShort,
 			studentId,
+			classroomId,
 			actions
 		)
 
@@ -114,8 +127,14 @@ const createTableBody = (t, subjects, actualSet, studentId, actions) => {
 	return questions
 }
 
-const tableQuestions = (t, actualSet, studentId, actions) => {
-	const developerHolder = 'class5'
+const getQuestionBase = (classroomId, answers) => {
+	const questionRoot = _.find(answers, { classroomId })
+
+	return questionRoot ? questionRoot.questionSet : null
+}
+
+const tableQuestions = (t, actualSet, studentId, classroomId, answers, actions) => {
+	const developerHolder = getQuestionBase(classroomId, answers) ? 'class5' : 'class5'
 
 	const questionSet = _.find(capabilityQuestions, actualSet)[developerHolder]
 	const questionArr = []
@@ -124,7 +143,7 @@ const tableQuestions = (t, actualSet, studentId, actions) => {
 		questionArr.push({ [key]: value })
 	})
 
-	return createTableBody(t, questionArr, developerHolder, studentId, actions)
+	return createTableBody(t, questionArr, developerHolder, studentId, classroomId, actions)
 }
 
 const tableForm = (t, { classroomId, answers, studentId }, actions) => {
@@ -132,6 +151,8 @@ const tableForm = (t, { classroomId, answers, studentId }, actions) => {
 		t,
 		getQuestionSet(classroomId, answers),
 		studentId,
+		classroomId,
+		answers,
 		actions
 	)
 	const tableFields = (

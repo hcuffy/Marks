@@ -8,6 +8,7 @@ import {
 import { getAllAnswers, updateAnswerData } from '../../database/capabilityCollection'
 
 const isNull = require('lodash/isNull')
+const includes = require('lodash/includes')
 
 export const openCapabilityClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
@@ -84,7 +85,18 @@ export const updateQuestionSet = event => async dispatch => {
 export const handleCapabilityAnswers = event => dispatch => {
 	event.preventDefault()
 
-	console.log(event.target)
+	const formData = {
+		classroomId: event.target.getAttribute('classroom-id'),
+		questionId: event.target.getAttribute('data-id'),
+		studentId: event.target.getAttribute('student-id'),
+		optionTag: event.target.getAttribute('option-tag')
+	}
+
+	if (includes(formData, null)) {
+		return
+	}
+
+	console.log(formData)
 
 	dispatch({
 		type: 'test',

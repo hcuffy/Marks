@@ -80,12 +80,12 @@
   "capability": {
     "tableHeader": "Student Capability Questions PlaceHolder",
     "options": {
-      "option0": "This is better than the",
-      "option1": "This is better than the",
-      "option2": "This is better than the",
-      "option3": "This is better than the",
-      "option4": "This is better than the",
-      "option5": "This is better than the"
+      "option0": "Terrible",
+      "option1": "Not Good",
+      "option2": "Could do better",
+      "option3": "Satisfactory",
+      "option4": "Very Good",
+      "option5": "Excellent"
     },
     "class5": {
       "math": {
