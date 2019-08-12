@@ -80,3 +80,29 @@ export const updateAnswerData = data =>
 			})
 		})
 	})
+
+export const updateSingleCapability = data =>
+	new Promise((resolve, reject) => {
+		const { classroomId, questionId, studentId, optionTag } = data
+
+		capabilityCollection.update(
+			{ classroomId },
+			{ $set: { students: { : { questionId: optionTag } } } },
+			{},
+			err => {
+				if (err) {
+					updateFailed()
+
+					return err
+				}
+
+				capabilityCollection.find({}, (error, docs) => {
+					if (error) {
+						return reject(error)
+					}
+
+					return resolve(docs)
+				})
+			}
+		)
+	})

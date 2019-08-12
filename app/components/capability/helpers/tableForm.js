@@ -134,16 +134,16 @@ const getQuestionBase = (classroomId, answers) => {
 }
 
 const tableQuestions = (t, actualSet, studentId, classroomId, answers, actions) => {
-	const developerHolder = getQuestionBase(classroomId, answers) ? 'class5' : 'class5'
+	const questionBase = getQuestionBase(classroomId, answers) ? 'class5' : 'class5'
 
-	const questionSet = _.find(capabilityQuestions, actualSet)[developerHolder]
+	const questionSet = _.find(capabilityQuestions, actualSet)[questionBase]
 	const questionArr = []
 
 	_.forIn(questionSet, (value, key) => {
 		questionArr.push({ [key]: value })
 	})
 
-	return createTableBody(t, questionArr, developerHolder, studentId, classroomId, actions)
+	return createTableBody(t, questionArr, questionBase, studentId, classroomId, actions)
 }
 
 const tableForm = (t, { classroomId, answers, studentId }, actions) => {
