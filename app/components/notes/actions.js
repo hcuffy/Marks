@@ -7,12 +7,7 @@ import {
 	CLEAR_NOTE_FIELDS,
 	UPDATE_NOTE
 } from './constants'
-import {
-	addNewNote,
-	getAllNotes,
-	deleteNote,
-	updateNoteData
-} from '../../database/notesCollection'
+import { addNewNote, getAllNotes, deleteNote, updateNoteData } from '../../database/notes'
 
 export const addNote = event => async dispatch => {
 	event.preventDefault()

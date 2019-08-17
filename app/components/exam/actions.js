@@ -6,12 +6,7 @@ import {
 	GET_SINGLE_EXAM,
 	UPDATE_EXAMS_LIST
 } from './constants'
-import {
-	addExamData,
-	getAllExams,
-	deleteExam,
-	updateExamData
-} from '../../database/examCollection'
+import { addExamData, getAllExams, deleteExam, updateExamData } from '../../database/exam'
 
 export const addNewExam = event => dispatch => {
 	event.preventDefault()

@@ -6,8 +6,8 @@ import {
 	updateFailed,
 	updateSuccessful
 } from '../notifications/general'
-import { addExamToSubjectArray, updateSubjecTestsArray } from './subjectCollection'
-import { deleteGradesByExamId } from './gradeCollection'
+import { addExamToSubjectArray, updateSubjecTestsArray } from './subject'
+import { deleteGradesByExamId } from './grade'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -16,7 +16,7 @@ const path = require('path')
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const collectionsPath = path.join(userDataPath, 'collections')
 
-const examCollection = new Datastore({
+const Exam = new Datastore({
 	filename: path.join(collectionsPath, 'examinations.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
@@ -24,7 +24,7 @@ const examCollection = new Datastore({
 })
 
 export const addExamData = data => {
-	examCollection.find({ name: data.title }, (err, entry) => {
+	Exam.find({ name: data.title }, (err, entry) => {
 		if (err) {
 			saveFailed()
 
@@ -37,7 +37,7 @@ export const addExamData = data => {
 		}
 		const newData = data
 
-		examCollection.insert(newData, (error, doc) => {
+		Exam.insert(newData, (error, doc) => {
 			if (error) {
 				saveFailed()
 
@@ -53,7 +53,7 @@ export const addExamData = data => {
 
 export const getAllExams = () =>
 	new Promise((resolve, reject) =>
-		examCollection.find({}, (err, entry) => {
+		Exam.find({}, (err, entry) => {
 			if (err) {
 				unableToRetrieve()
 
@@ -65,7 +65,7 @@ export const getAllExams = () =>
 	)
 
 const updateTestsArr = (examId, subjectId) => {
-	examCollection.find({ _id: examId }, (err, entry) => {
+	Exam.find({ _id: examId }, (err, entry) => {
 		if (err) {
 			return err
 		}
@@ -77,12 +77,12 @@ const updateTestsArr = (examId, subjectId) => {
 export const deleteExam = ({ examId, subjectId }) =>
 	new Promise((resolve, reject) => {
 		updateTestsArr(examId, subjectId)
-		examCollection.remove({ _id: examId }, err => {
+		Exam.remove({ _id: examId }, err => {
 			if (err) {
 				return reject(err)
 			}
 
-			examCollection.find({}, (error, exams) => {
+			Exam.find({}, (error, exams) => {
 				if (err) {
 					return reject(err)
 				}
@@ -97,7 +97,7 @@ const updateSinlgeExam = (previous, current) => {
 	const { title, date, weight } = current
 	const { subjectId } = previous
 
-	examCollection.update(
+	Exam.update(
 		{ _id: previous._id },
 		{
 			title,
@@ -120,7 +120,7 @@ const updateSinlgeExam = (previous, current) => {
 export const updateExamData = data =>
 	new Promise((resolve, reject) => {
 		const { examId, subjectId, title } = data
-		examCollection.find({ _id: examId }, (err, entry) => {
+		Exam.find({ _id: examId }, (err, entry) => {
 			if (err) {
 				return err
 			}
@@ -128,7 +128,7 @@ export const updateExamData = data =>
 				updateSinlgeExam(entry[0], data)
 				updateSubjecTestsArray(subjectId, entry[0].title)
 				addExamToSubjectArray({ subjectId, title })
-				examCollection.find({}, (error, docs) => {
+				Exam.find({}, (error, docs) => {
 					if (error) {
 						return reject(error)
 					}

@@ -10,7 +10,7 @@ import {
 	getClassroomData,
 	deleteClassroom,
 	updateRoomData
-} from '../../database/classroomCollection'
+} from '../../database/classroom'
 
 const _ = require('lodash')
 

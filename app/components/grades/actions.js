@@ -1,10 +1,6 @@
 import { DISPLAY_EXAM_TABLE, OPEN_CLASS_LIST, UPDATE_EXAM_TABLE } from './constants'
-import { getAllExams } from '../../database/examCollection'
-import {
-	getAllGrades,
-	addGradeData,
-	updateGradeData
-} from '../../database/gradeCollection'
+import { getAllExams } from '../../database/exam'
+import { getAllGrades, addGradeData, updateGradeData } from '../../database/grade'
 
 const _ = require('lodash')
 

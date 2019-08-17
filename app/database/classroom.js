@@ -7,7 +7,7 @@ import {
 	updateSuccessful,
 	updateFailed
 } from '../notifications/general'
-import { getAllSubjects, deleteSubject } from './subjectCollection'
+import { getAllSubjects, deleteSubject } from './subject'
 
 const _ = require('lodash')
 const Datastore = require('nedb')
@@ -22,7 +22,7 @@ if (!fs.existsSync(collectionsPath)) {
 	fs.mkdirSync(collectionsPath)
 }
 
-const classroomCollection = new Datastore({
+const Classroom = new Datastore({
 	filename: path.join(collectionsPath, 'classroom.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
@@ -30,7 +30,7 @@ const classroomCollection = new Datastore({
 })
 
 export const addClassroomData = data => {
-	classroomCollection.find({ name: data.name }, (err, entry) => {
+	Classroom.find({ name: data.name }, (err, entry) => {
 		if (err) {
 			saveFailed()
 
@@ -43,7 +43,7 @@ export const addClassroomData = data => {
 		}
 		const newData = data
 		newData.subjects = []
-		classroomCollection.insert(newData, (error, doc) => {
+		Classroom.insert(newData, (error, doc) => {
 			if (error) {
 				saveFailed()
 
@@ -58,7 +58,7 @@ export const addClassroomData = data => {
 
 export const getClassroomData = () =>
 	new Promise((resolve, reject) =>
-		classroomCollection.find({}, (err, entry) => {
+		Classroom.find({}, (err, entry) => {
 			if (err) {
 				unableToRetrieve()
 
@@ -84,13 +84,13 @@ const deleteSubjectByClassroom = async classroomId => {
 
 export const deleteClassroom = ({ id }) =>
 	new Promise((resolve, reject) =>
-		classroomCollection.remove({ _id: id }, err => {
+		Classroom.remove({ _id: id }, err => {
 			if (err) {
 				deletionFailed()
 
 				return reject(err)
 			}
-			classroomCollection.find({}, (error, docs) => {
+			Classroom.find({}, (error, docs) => {
 				if (err) {
 					deletionFailed()
 
@@ -120,7 +120,7 @@ const updateSinlgeClassroom = (previous, current) => {
 		subjects.push(current.subjects[0])
 	}
 
-	classroomCollection.update(
+	Classroom.update(
 		{ name: previous.name },
 		{
 			name,
@@ -143,7 +143,7 @@ const updateSinlgeClassroom = (previous, current) => {
 
 export const updateRoomData = data =>
 	new Promise((resolve, reject) =>
-		classroomCollection.find({ name: data.oldName }, (err, entry) => {
+		Classroom.find({ name: data.oldName }, (err, entry) => {
 			if (err) {
 				updateFailed()
 
@@ -151,7 +151,7 @@ export const updateRoomData = data =>
 			}
 			if (entry.length > 0) {
 				updateSinlgeClassroom(entry[0], data)
-				classroomCollection.find({}, (error, docs) => {
+				Classroom.find({}, (error, docs) => {
 					if (error) {
 						updateFailed()
 
@@ -165,7 +165,7 @@ export const updateRoomData = data =>
 	)
 
 export const updateSubjectArray = data => {
-	classroomCollection.find({ name: data.name }, (err, entry) => {
+	Classroom.find({ name: data.name }, (err, entry) => {
 		if (err) {
 			updateFailed()
 
@@ -173,7 +173,7 @@ export const updateSubjectArray = data => {
 		}
 		if (entry.length > 0) {
 			updateSinlgeClassroom(entry[0], data)
-			classroomCollection.find({}, (error, docs) => {
+			Classroom.find({}, (error, docs) => {
 				if (error) {
 					updateFailed()
 
@@ -187,7 +187,7 @@ export const updateSubjectArray = data => {
 }
 
 export const updateClassSubjectArray = (classroomId, oldSubject, newSubject) => {
-	classroomCollection.update(
+	Classroom.update(
 		{ _id: classroomId },
 		{ $push: { subjects: newSubject } },
 		{},
@@ -200,7 +200,7 @@ export const updateClassSubjectArray = (classroomId, oldSubject, newSubject) => 
 		}
 	)
 
-	classroomCollection.update(
+	Classroom.update(
 		{ _id: classroomId },
 		{ $pull: { subjects: oldSubject } },
 		{},
