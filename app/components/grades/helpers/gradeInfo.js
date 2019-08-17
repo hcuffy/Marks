@@ -20,16 +20,16 @@ const getGradeInfo = (student, gradeData) => {
 		return []
 	}
 
-	for (let i = 0; i < exams.length; i += 1) {
+	for (const exam of exams) {
 		const assembledInfo = {}
 		assembledInfo.studentId = studentId
 		assembledInfo.subjectName = gradeData.subjectName
 		assembledInfo.subjectId = gradeData.subjectId
-		assembledInfo.examId = exams[i]._id
-		assembledInfo.weight = exams[i].weight
-		assembledInfo.date = exams[i].date
+		assembledInfo.examId = exam._id
+		assembledInfo.weight = exam.weight
+		assembledInfo.date = exam.date
 		assembledInfo.subjectName = gradeData.subjectName
-		const score = _.filter(grades, { examId: exams[i]._id, studentId })
+		const score = _.filter(grades, { examId: exam._id, studentId })
 		assembledInfo.gradeId = checkGradeId(score[0])
 		const adjustedScore = _.isUndefined(score[0]) ? 0 : score[0].grade
 		assembledInfo.score = adjustedScore
@@ -60,9 +60,9 @@ export const gradeInfo = (gradeData, students) => {
 		return []
 	}
 
-	for (let i = 0; i < students.length; i += 1) {
-		const personalData = getPersonalInfo(students[i])
-		const gradesData = getGradeInfo(students[i], gradeData)
+	for (student of students) {
+		const personalData = getPersonalInfo(student)
+		const gradesData = getGradeInfo(student, gradeData)
 		const average = getAverage(gradesData)
 		const studentData = _.assign({}, personalData, { grades: gradesData }, average)
 

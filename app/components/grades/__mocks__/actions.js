@@ -23,8 +23,8 @@ export const openGradeClassList = event => dispatch => {
 const filterGrades = async exams => {
 	const filteredGrades = []
 	const allGrades = await getAllGrades()
-	for (let i = 0; i < exams.length; i += 1) {
-		filteredGrades.push(..._.filter(allGrades, ['examId', exams[i]._id]))
+	for (const exam of exams) {
+		filteredGrades.push(..._.filter(allGrades, ['examId', exam._id]))
 	}
 
 	return filteredGrades
