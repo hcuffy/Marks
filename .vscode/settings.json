@@ -36,6 +36,8 @@
     "DROPDOWN",
     "Datastore",
     "autoload",
+    "firstname",
+    "lastname",
     "sidemenu"
   ]
 }

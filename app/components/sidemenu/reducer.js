@@ -1,4 +1,4 @@
-import { HANDLE_MENU_CHANGE } from '../components/sidemenu/constants'
+import { HANDLE_MENU_CHANGE } from './constants'
 
 const _ = require('lodash')
 

@@ -4,7 +4,7 @@ import {
 	DISPLAY_SUBJECT_GRADES,
 	GET_ALL_EXAMS,
 	DISPLAY_EXAM_GRADES
-} from '../components/graphs/constants'
+} from './constants'
 
 const _ = require('lodash')
 

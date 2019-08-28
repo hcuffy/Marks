@@ -3,7 +3,7 @@ import {
 	GET_SINGLE_SUBJECT,
 	GET_SUBJECT_LIST,
 	ADD_NEW_SUBJECT
-} from '../components/subject/constants'
+} from '../constants'
 
 const _ = require('lodash')
 
@@ -14,7 +14,7 @@ const initialLoadState = {
 	abbreviation: 'abbreviation'
 }
 
-const applyClassList = (state = initialLoadState, action) => {
+export const applyClassList = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case UPDATE_CLASS_LIST: {
 		const openModal = !state.openModal
@@ -49,5 +49,3 @@ export const applySubjectData = (state = {}, action) => {
 		return state
 	}
 }
-
-export default applyClassList

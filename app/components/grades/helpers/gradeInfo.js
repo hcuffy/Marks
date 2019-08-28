@@ -60,7 +60,7 @@ export const gradeInfo = (gradeData, students) => {
 		return []
 	}
 
-	for (student of students) {
+	for (const student of students) {
 		const personalData = getPersonalInfo(student)
 		const gradesData = getGradeInfo(student, gradeData)
 		const average = getAverage(gradesData)

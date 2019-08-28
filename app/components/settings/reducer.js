@@ -3,7 +3,7 @@ import {
 	HANDLE_SCHOOL_DATA,
 	UPDATE_GRADING_DATA,
 	GET_SYSTEM_TYPE
-} from '../components/settings/constants'
+} from './constants'
 
 const _ = require('lodash')
 
