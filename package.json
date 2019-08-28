@@ -259,7 +259,7 @@
     "i18next": "^15.0.3",
     "i18next-electron-language-detector": "^0.0.10",
     "jspdf": "^1.5.3",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.15",
     "nedb": "^1.8.0",
     "react": "^16.7.0",
     "react-chartjs-2": "^2.7.4",
