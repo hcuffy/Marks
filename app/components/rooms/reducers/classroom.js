@@ -1,4 +1,4 @@
-import { ADD_CLASSROOM_DATA, GET_CLASSROOM_DATA } from '../components/rooms/constants'
+import { ADD_CLASSROOM_DATA, GET_CLASSROOM_DATA } from '../constants'
 
 const _ = require('lodash')
 
@@ -11,7 +11,7 @@ const initialLoadState = {
 	check: false
 }
 
-const applyClassData = (state = initialLoadState, action) => {
+export const applyClassData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case ADD_CLASSROOM_DATA: {
 		return _.assign({}, state, {
@@ -29,5 +29,3 @@ const applyClassData = (state = initialLoadState, action) => {
 		return state
 	}
 }
-
-export default applyClassData

@@ -4,7 +4,7 @@ import {
 	DISPLAY_SUBJECT_LIST,
 	GET_SINGLE_EXAM,
 	UPDATE_EXAMS_LIST
-} from '../components/exam/constants'
+} from './constants'
 
 const _ = require('lodash')
 

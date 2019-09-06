@@ -8,10 +8,10 @@ const filteredGrades = ({ studentGraphId }, grades) => {
 	const studentGrades = _.sortBy(_.filter(grades, ['studentId', studentGraphId]), [
 		'date'
 	])
-	for (let i = 0; i < studentGrades.length; i += 1) {
+	for (const studentGrade of studentGrades) {
 		data.push({
-			t: studentGrades[i].date,
-			y: studentGrades[i].grade
+			t: studentGrade.date,
+			y: studentGrade.grade
 		})
 	}
 

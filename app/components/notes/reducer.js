@@ -6,7 +6,7 @@ import {
 	UPDATE_TITLE,
 	CLEAR_NOTE_FIELDS,
 	UPDATE_NOTE
-} from '../components/notes/constants'
+} from './constants'
 
 const _ = require('lodash')
 

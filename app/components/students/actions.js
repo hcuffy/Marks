@@ -10,7 +10,7 @@ import {
 	getAllStudents,
 	deleteStudent,
 	updateStudentData
-} from '../../database/studentCollection'
+} from '../../database/student'
 
 export const addNewStudent = event => async dispatch => {
 	event.preventDefault()
