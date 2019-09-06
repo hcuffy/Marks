@@ -5,7 +5,7 @@ import {
 	OPEN_CLOSE_QUESTION_LIST,
 	UPDATE_QUESTION_SET
 } from './constants'
-import { getAllAnswers, updateAnswerData } from '../../database/capabilityCollection'
+import { getAllAnswers, updateAnswerData } from '../../database/capability'
 
 const isNull = require('lodash/isNull')
 const includes = require('lodash/includes')

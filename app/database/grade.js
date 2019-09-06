@@ -12,7 +12,7 @@ const path = require('path')
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const collectionsPath = path.join(userDataPath, 'collections')
 
-const gradeCollection = new Datastore({
+const Grade = new Datastore({
 	filename: path.join(collectionsPath, 'grade.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
@@ -21,21 +21,16 @@ const gradeCollection = new Datastore({
 
 export const updateGradeData = (data, id) => {
 	const { grade, examId, studentId, date, weight } = data
-	gradeCollection.update(
-		{ _id: id },
-		{ grade, examId, studentId, date, weight },
-		{},
-		err => {
-			if (err) {
-				updateFailed()
+	Grade.update({ _id: id }, { grade, examId, studentId, date, weight }, {}, err => {
+		if (err) {
+			updateFailed()
 
-				return err
-			}
+			return err
 		}
-	)
+	})
 }
 export const addGradeData = data => {
-	gradeCollection.insert(data, (error, doc) => {
+	Grade.insert(data, (error, doc) => {
 		if (error) {
 			saveFailed()
 
@@ -48,7 +43,7 @@ export const addGradeData = data => {
 
 export const getAllGrades = () =>
 	new Promise((resolve, reject) =>
-		gradeCollection.find({}, (err, docs) => {
+		Grade.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
 
@@ -61,13 +56,13 @@ export const getAllGrades = () =>
 
 export const deleteGradesByStudentId = id =>
 	new Promise((resolve, reject) =>
-		gradeCollection.remove({ studentId: id }, { multi: true }, err => {
+		Grade.remove({ studentId: id }, { multi: true }, err => {
 			if (err) {
 				deletionFailed()
 
 				return reject(err)
 			}
-			gradeCollection.find({}, (error, docs) => {
+			Grade.find({}, (error, docs) => {
 				if (err) {
 					return reject(err)
 				}
@@ -79,13 +74,13 @@ export const deleteGradesByStudentId = id =>
 
 export const deleteGradesByExamId = id =>
 	new Promise((resolve, reject) =>
-		gradeCollection.remove({ examId: id }, { multi: true }, err => {
+		Grade.remove({ examId: id }, { multi: true }, err => {
 			if (err) {
 				deletionFailed()
 
 				return reject(err)
 			}
-			gradeCollection.find({}, (error, docs) => {
+			Grade.find({}, (error, docs) => {
 				if (err) {
 					return reject(err)
 				}

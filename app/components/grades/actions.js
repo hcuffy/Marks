@@ -1,10 +1,6 @@
 import { DISPLAY_EXAM_TABLE, OPEN_CLASS_LIST, UPDATE_EXAM_TABLE } from './constants'
-import { getAllExams } from '../../database/examCollection'
-import {
-	getAllGrades,
-	addGradeData,
-	updateGradeData
-} from '../../database/gradeCollection'
+import { getAllExams } from '../../database/exam'
+import { getAllGrades, addGradeData, updateGradeData } from '../../database/grade'
 
 const _ = require('lodash')
 
@@ -24,8 +20,8 @@ export const openGradeClassList = event => dispatch => {
 const filterGrades = async exams => {
 	const filteredGrades = []
 	const allGrades = await getAllGrades()
-	for (let i = 0; i < exams.length; i += 1) {
-		filteredGrades.push(..._.filter(allGrades, ['examId', exams[i]._id]))
+	for (const exam of exams) {
+		filteredGrades.push(..._.filter(allGrades, ['examId', exam._id]))
 	}
 
 	return filteredGrades

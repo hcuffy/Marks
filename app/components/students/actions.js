@@ -10,7 +10,7 @@ import {
 	getAllStudents,
 	deleteStudent,
 	updateStudentData
-} from '../../database/studentCollection'
+} from '../../database/student'
 
 export const getOption = (event, propToGet) => {
 	const index = event.target[propToGet].selectedIndex

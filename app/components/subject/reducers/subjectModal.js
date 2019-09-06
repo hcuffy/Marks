@@ -1,4 +1,4 @@
-import { OPEN_CLOSE_SUBJECT_MODAL, UPDATE_SUBJECT } from '../components/subject/constants'
+import { OPEN_CLOSE_SUBJECT_MODAL, UPDATE_SUBJECT } from '../constants'
 
 const _ = require('lodash')
 
@@ -7,7 +7,7 @@ const initialLoadState = {
 	showSubjectModal: false
 }
 
-const applySubjectModal = (state = initialLoadState, action) => {
+export const applySubjectModal = (state = initialLoadState, action) => {
 	const showSubjectModal = !state.showSubjectModal
 	switch (action.type) {
 	case OPEN_CLOSE_SUBJECT_MODAL: {
@@ -20,5 +20,3 @@ const applySubjectModal = (state = initialLoadState, action) => {
 		return state
 	}
 }
-
-export default applySubjectModal

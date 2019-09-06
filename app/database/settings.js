@@ -6,7 +6,7 @@ const path = require('path')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const collectionsPath = path.join(userDataPath, 'collections')
-const settingsCollection = new Datastore({
+const Settings = new Datastore({
 	filename: path.join(collectionsPath, 'settings.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
@@ -14,7 +14,7 @@ const settingsCollection = new Datastore({
 })
 
 export const saveGradeSystem = data => {
-	settingsCollection.insert(data, error => {
+	Settings.insert(data, error => {
 		if (error) {
 			return error
 		}
@@ -23,7 +23,7 @@ export const saveGradeSystem = data => {
 
 export const getAddressData = () =>
 	new Promise((resolve, reject) =>
-		settingsCollection.find({}, (err, entry) => {
+		Settings.find({}, (err, entry) => {
 			if (err) {
 				unableToRetrieve()
 
@@ -36,7 +36,7 @@ export const getAddressData = () =>
 
 export const getSystemType = () =>
 	new Promise((resolve, reject) =>
-		settingsCollection.find({}, (err, docs) => {
+		Settings.find({}, (err, docs) => {
 			if (err) {
 				return reject(err)
 			}
@@ -47,7 +47,7 @@ export const getSystemType = () =>
 
 const updateAddress = (previous, id) => {
 	const { title, street, province, country, zip, year } = previous
-	settingsCollection.update(
+	Settings.update(
 		{ _id: id },
 		{ $set: { title, street, province, country, zip, year } },
 		{},
@@ -65,7 +65,7 @@ const updateAddress = (previous, id) => {
 const updateSystem = (previous, id) => {
 	const { note, points, percent } = previous
 	// eslint-disable-next-line max-len
-	settingsCollection.update({ _id: id }, { $set: { note, points, percent } }, {}, err => {
+	Settings.update({ _id: id }, { $set: { note, points, percent } }, {}, err => {
 		if (err) {
 			saveFailed()
 

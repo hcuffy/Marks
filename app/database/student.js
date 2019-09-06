@@ -4,9 +4,10 @@ import {
 	saveFailed,
 	unableToRetrieve,
 	deletionFailed,
-	updateSuccessful,
-	updateFailed
+	updateFailed,
+	updateSuccessful
 } from '../notifications/general'
+import { deleteGradesByStudentId } from './grade'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -14,15 +15,15 @@ const path = require('path')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const collectionsPath = path.join(userDataPath, 'collections')
-const notesCollection = new Datastore({
-	filename: path.join(collectionsPath, 'notes.db'),
+const Student = new Datastore({
+	filename: path.join(collectionsPath, 'student.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
 	timestampData: true
 })
 
-export const addNewNote = data => {
-	notesCollection.insert(data, error => {
+export const addNewStudentData = data => {
+	Student.insert(data, error => {
 		if (error) {
 			saveFailed()
 
@@ -32,9 +33,9 @@ export const addNewNote = data => {
 	})
 }
 
-export const getAllNotes = () =>
+export const getAllStudents = () =>
 	new Promise((resolve, reject) =>
-		notesCollection.find({}, (err, docs) => {
+		Student.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
 
@@ -45,30 +46,36 @@ export const getAllNotes = () =>
 		})
 	)
 
-export const deleteNote = data =>
+export const deleteStudent = data =>
 	new Promise((resolve, reject) =>
-		notesCollection.remove({ _id: data }, err => {
+		Student.remove({ _id: data }, err => {
 			if (err) {
 				deletionFailed()
 
 				return reject(err)
 			}
-			notesCollection.find({}, (error, notes) => {
+			Student.find({}, (error, students) => {
 				if (err) {
 					return reject(err)
 				}
+				deleteGradesByStudentId(data)
 
-				return resolve(notes)
+				return resolve(students)
 			})
 		})
 	)
 
-const updateSingleNote = previousData => {
-	const { note, noteId } = previousData
+const updateSingleStudent = previous => {
+	const { firstname, lastname, gender, classroom, id } = previous
 
-	notesCollection.update(
-		{ _id: noteId },
-		{ $set: { title: previousData.title, note, noteId } },
+	Student.update(
+		{ _id: id },
+		{
+			firstname,
+			lastname,
+			gender,
+			classroom
+		},
 		{},
 		err => {
 			if (err) {
@@ -81,10 +88,10 @@ const updateSingleNote = previousData => {
 	)
 }
 
-export const updateNoteData = data =>
+export const updateStudentData = data =>
 	new Promise((resolve, reject) => {
-		updateSingleNote(data)
-		notesCollection.find({}, (error, docs) => {
+		updateSingleStudent(data)
+		Student.find({}, (error, docs) => {
 			if (error) {
 				updateFailed()
 

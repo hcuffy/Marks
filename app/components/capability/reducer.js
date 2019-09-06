@@ -4,7 +4,7 @@ import {
 	GET_ALL_ANSWERS,
 	OPEN_CLOSE_QUESTION_LIST,
 	UPDATE_QUESTION_SET
-} from '../components/capability/constants'
+} from './constants'
 
 const _ = require('lodash')
 

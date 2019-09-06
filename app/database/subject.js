@@ -12,8 +12,8 @@ import {
 	getClassroomData,
 	updateSubjectArray,
 	updateClassSubjectArray
-} from './classroomCollection'
-import { getAllExams, deleteExam } from './examCollection'
+} from './classroom'
+import { getAllExams, deleteExam } from './exam'
 
 const _ = require('lodash')
 const Datastore = require('nedb')
@@ -22,7 +22,7 @@ const path = require('path')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const collectionsPath = path.join(userDataPath, 'collections')
-const subjectCollection = new Datastore({
+const Subject = new Datastore({
 	filename: path.join(collectionsPath, 'subject.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
@@ -41,7 +41,7 @@ const getSubjects = async ({ room, abbreviation }) => {
 
 export const getAllSubjects = () =>
 	new Promise((resolve, reject) =>
-		subjectCollection.find({}, (err, docs) => {
+		Subject.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
 
@@ -67,7 +67,7 @@ export const addSubjectData = async data => {
 	})
 	subjectClassroom.subjects.push(data.abbreviation)
 
-	subjectCollection.insert(newSubject, error => {
+	Subject.insert(newSubject, error => {
 		if (error) {
 			saveFailed()
 
@@ -95,14 +95,14 @@ const deleteExamsBySubject = async subjectId => {
 
 export const deleteSubject = ({ id }) =>
 	new Promise((resolve, reject) =>
-		subjectCollection.remove({ _id: id }, err => {
+		Subject.remove({ _id: id }, err => {
 			if (err) {
 				deletionFailed()
 
 				return reject(err)
 			}
 			filteredExams(id)
-			subjectCollection.find({}, (error, docs) => {
+			Subject.find({}, (error, docs) => {
 				if (err) {
 					deletionFailed()
 
@@ -137,7 +137,7 @@ const updateSinlgeSubject = (previous, current) => {
 	const subjectUpdatable = checkSubjectChanges(previous, current)
 	if (subjectUpdatable) {
 		updateClassroomSubjects(classroomId, previous.abbreviation, abbreviation)
-		subjectCollection.update(
+		Subject.update(
 			{ _id: previous._id },
 			{
 				name,
@@ -161,7 +161,7 @@ const updateSinlgeSubject = (previous, current) => {
 
 export const updateSubjectData = data =>
 	new Promise((resolve, reject) =>
-		subjectCollection.find({ _id: data.subjectId }, (err, entry) => {
+		Subject.find({ _id: data.subjectId }, (err, entry) => {
 			if (err) {
 				updateFailed()
 
@@ -169,7 +169,7 @@ export const updateSubjectData = data =>
 			}
 			if (entry.length > 0) {
 				updateSinlgeSubject(entry[0], data)
-				subjectCollection.find({ _id: data.subjectId }, (error, docs) => {
+				Subject.find({ _id: data.subjectId }, (error, docs) => {
 					if (error) {
 						updateFailed()
 
@@ -183,7 +183,7 @@ export const updateSubjectData = data =>
 	)
 
 export const addExamToSubjectArray = ({ subjectId, title }) => {
-	subjectCollection.find({ _id: subjectId }, (err, doc) => {
+	Subject.find({ _id: subjectId }, (err, doc) => {
 		if (err) {
 			unableToRetrieve()
 
@@ -194,32 +194,27 @@ export const addExamToSubjectArray = ({ subjectId, title }) => {
 		}
 
 		if (!_.includes(doc.tests, title)) {
-			subjectCollection.update(
-				{ _id: subjectId },
-				{ $push: { tests: title } },
-				{},
-				error => {
-					if (error) {
-						updateFailed()
+			Subject.update({ _id: subjectId }, { $push: { tests: title } }, {}, error => {
+				if (error) {
+					updateFailed()
 
-						return error
-					}
+					return error
 				}
-			)
+			})
 		}
 	})
 }
 
-export const updateSubjecTestsArray = (subjectId, examTitle) =>
+export const updateSubjectTestArray = (subjectId, examTitle) =>
 	new Promise((resolve, reject) =>
-		subjectCollection.find({ _id: subjectId }, (err, entry) => {
+		Subject.find({ _id: subjectId }, (err, entry) => {
 			if (err) {
 				updateFailed()
 
 				return err
 			}
 			if (entry.length > 0) {
-				subjectCollection.update(
+				Subject.update(
 					{ _id: subjectId },
 					{ $pull: { tests: examTitle } },
 					{},

@@ -1,8 +1,4 @@
-import {
-	DISPLAY_EXAM_TABLE,
-	OPEN_CLASS_LIST,
-	UPDATE_EXAM_TABLE
-} from '../components/grades/constants'
+import { DISPLAY_EXAM_TABLE, OPEN_CLASS_LIST, UPDATE_EXAM_TABLE } from './constants'
 
 const _ = require('lodash')
 

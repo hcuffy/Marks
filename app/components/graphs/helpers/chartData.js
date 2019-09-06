@@ -32,10 +32,10 @@ const computePercentGrades = (grades, { start, limit, step }) => {
 	const chartLabels = xAxisLabels(start, limit, step)
 	const computedGrades = []
 
-	for (let i = 0; i < grades.length; i += 1) {
-		for (let j = 0; j < chartLabels.length; j += 1) {
-			if (_.inRange(grades[i].grade, chartLabels[j], chartLabels[j + 1])) {
-				computedGrades.push({ grade: chartLabels[j] })
+	for (const grade of grades) {
+		for (let i = 0; i < chartLabels.length; i += 1) {
+			if (_.inRange(grade.grade, chartLabels[i], chartLabels[i + 1])) {
+				computedGrades.push({ grade: chartLabels[i] })
 				break
 			}
 		}
@@ -63,8 +63,8 @@ const filterByClass = (allGrades, chartTitle, subjects, exams) => {
 	const filteredGrades = []
 	const filteredClass = _.filter(subjects, { room: chartTitle })
 
-	for (let i = 0; i < filteredClass.length; i += 1) {
-		const temp = filterBySubject(filteredClass[i]._id, exams, allGrades)
+	for (const selectedClass of filteredClass) {
+		const temp = filterBySubject(selectedClass._id, exams, allGrades)
 		filteredGrades.push(...temp)
 	}
 
@@ -75,8 +75,8 @@ export const filterBySubject = (subjectId, exams, grades) => {
 	const filteredGrades = []
 	const filteredExams = _.filter(exams, { subjectId })
 
-	for (let i = 0; i < filteredExams.length; i += 1) {
-		const temp = _.filter(grades, { examId: filteredExams[i]._id })
+	for (const filteredExam of filteredExams) {
+		const temp = _.filter(grades, { examId: filteredExam._id })
 		filteredGrades.push(...temp)
 	}
 

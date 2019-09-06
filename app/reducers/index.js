@@ -1,18 +1,23 @@
 import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
-import applyAddressData, { applyGradeSystem } from './settings'
-import applyTabChange from './changeTab'
-import applyClassData from './classData'
-import applyClassModal from './roomModal'
-import applySubjectModal from './subjectModal'
-import applyClassList, { applySubjectData } from './subject'
-import applyFilteredExam from './exam'
-import applyStudentData from './students'
-import applyGradeData from './gradeTable'
-import applyMenuStyling from './sidemenu'
-import applyGraphData from './graph'
-import applyNotesData from './notes'
-import applyCapabilityChanges from './capability'
+import applyAddressData, { applyGradeSystem } from '../components/settings/reducer'
+import {
+	applyTabChange,
+	applyClassData,
+	applyClassModal
+} from '../components/rooms/reducers'
+import {
+	applyClassList,
+	applySubjectData,
+	applySubjectModal
+} from '../components/subject/reducers'
+import applyFilteredExam from '../components/exam/reducer'
+import applyStudentData from '../components/students/reducer'
+import applyGradeData from '../components/grades/reducer'
+import applyMenuStyling from '../components/sidemenu/reducer'
+import applyGraphData from '../components/graphs/reducer'
+import applyNotesData from '../components/notes/reducer'
+import applyCapabilityChanges from '../components/capability/reducer'
 
 export default function createRootReducer(history: History) {
 	return combineReducers({

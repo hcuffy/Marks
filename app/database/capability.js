@@ -13,7 +13,7 @@ const path = require('path')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const collectionsPath = path.join(userDataPath, 'collections')
-const capabilityCollection = new Datastore({
+const Capability = new Datastore({
 	filename: path.join(collectionsPath, 'capability.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
@@ -22,7 +22,7 @@ const capabilityCollection = new Datastore({
 
 export const getAllAnswers = () =>
 	new Promise((resolve, reject) =>
-		capabilityCollection.find({}, (err, docs) => {
+		Capability.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
 
@@ -34,7 +34,7 @@ export const getAllAnswers = () =>
 	)
 
 export const addNewAnswer = data => {
-	capabilityCollection.insert(data, error => {
+	Capability.insert(data, error => {
 		if (error) {
 			saveFailed()
 
@@ -47,7 +47,7 @@ export const addNewAnswer = data => {
 const updateAnswer = data => {
 	const { classroomId, questionSet } = data
 
-	capabilityCollection.update({ classroomId }, { $set: { questionSet } }, {}, err => {
+	Capability.update({ classroomId }, { $set: { questionSet } }, {}, err => {
 		if (err) {
 			updateFailed()
 
@@ -61,7 +61,7 @@ export const updateAnswerData = data =>
 	new Promise((resolve, reject) => {
 		const { classroomId } = data
 
-		capabilityCollection.find({ classroomId }, (err, entry) => {
+		Capability.find({ classroomId }, (err, entry) => {
 			if (err) {
 				return err
 			}
@@ -71,7 +71,7 @@ export const updateAnswerData = data =>
 			} else {
 				addNewAnswer(data)
 			}
-			capabilityCollection.find({}, (error, docs) => {
+			Capability.find({}, (error, docs) => {
 				if (error) {
 					return reject(error)
 				}
@@ -85,9 +85,9 @@ export const updateSingleCapability = data =>
 	new Promise((resolve, reject) => {
 		const { classroomId, questionId, studentId, optionTag } = data
 
-		capabilityCollection.update(
+		Capability.update(
 			{ classroomId },
-			{ $set: { students: { : { questionId: optionTag } } } },
+			{ $set: { students: { hold: { questionId: optionTag } } } },
 			{},
 			err => {
 				if (err) {
@@ -96,7 +96,7 @@ export const updateSingleCapability = data =>
 					return err
 				}
 
-				capabilityCollection.find({}, (error, docs) => {
+				Capability.find({}, (error, docs) => {
 					if (error) {
 						return reject(error)
 					}

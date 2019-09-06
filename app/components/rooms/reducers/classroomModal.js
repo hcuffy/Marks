@@ -1,4 +1,4 @@
-import { OPEN_CLOSE_ROOM_MODAL, UPDATE_CLASSROOM } from '../components/rooms/constants'
+import { OPEN_CLOSE_ROOM_MODAL, UPDATE_CLASSROOM } from '../constants'
 
 const _ = require('lodash')
 
@@ -7,7 +7,7 @@ const initialLoadState = {
 	showModal: false
 }
 
-const applyClassModal = (state = initialLoadState, action) => {
+export const applyClassModal = (state = initialLoadState, action) => {
 	const showModal = !state.showModal
 
 	switch (action.type) {
@@ -21,5 +21,3 @@ const applyClassModal = (state = initialLoadState, action) => {
 		return state
 	}
 }
-
-export default applyClassModal
