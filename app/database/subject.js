@@ -205,7 +205,7 @@ export const addExamToSubjectArray = ({ subjectId, title }) => {
 	})
 }
 
-export const updateSubjecTestsArray = (subjectId, examTitle) =>
+export const updateSubjectTestArray = (subjectId, examTitle) =>
 	new Promise((resolve, reject) =>
 		Subject.find({ _id: subjectId }, (err, entry) => {
 			if (err) {

@@ -6,7 +6,7 @@ import {
 	updateFailed,
 	updateSuccessful
 } from '../notifications/general'
-import { addExamToSubjectArray, updateSubjecTestsArray } from './subject'
+import { addExamToSubjectArray, updateSubjectTestArray } from './subject'
 import { deleteGradesByExamId } from './grade'
 
 const Datastore = require('nedb')
@@ -70,7 +70,7 @@ const updateTestsArr = (examId, subjectId) => {
 			return err
 		}
 		const examTitle = entry[0].title
-		updateSubjecTestsArray(subjectId, examTitle)
+		updateSubjectTestArray(subjectId, examTitle)
 	})
 }
 
@@ -93,7 +93,7 @@ export const deleteExam = ({ examId, subjectId }) =>
 		})
 	})
 
-const updateSinlgeExam = (previous, current) => {
+const updateSingleExam = (previous, current) => {
 	const { title, date, weight } = current
 	const { subjectId } = previous
 
@@ -125,8 +125,8 @@ export const updateExamData = data =>
 				return err
 			}
 			if (entry.length > 0) {
-				updateSinlgeExam(entry[0], data)
-				updateSubjecTestsArray(subjectId, entry[0].title)
+				updateSingleExam(entry[0], data)
+				updateSubjectTestArray(subjectId, entry[0].title)
 				addExamToSubjectArray({ subjectId, title })
 				Exam.find({}, (error, docs) => {
 					if (error) {
