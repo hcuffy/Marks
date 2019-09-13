@@ -1,10 +1,21 @@
 import React from 'react'
-import { Table, FormGroup, Input, Label, Button } from 'reactstrap'
-import capabilityQuestions from '../../../constants/capabilityQuestions'
-import { getQuestionSet } from './helpers'
+import { FormGroup, Button, Input, Label } from 'reactstrap'
 import styles from '../styles/capability.css'
 
 const _ = require('lodash')
+
+export const getQuestionSet = (classroomId, answers) => {
+	if (_.isNull(classroomId) || _.isEmpty(answers)) {
+		return null
+	}
+
+	const questionData = _.find(answers, { classroomId })
+	if (_.isUndefined(questionData)) {
+		return null
+	}
+
+	return questionData.questionSet
+}
 
 export const changeQuestionBtn = (classroomId, { openQuestionList }) => (
 	<Button
@@ -28,16 +39,21 @@ const createKeys = (numberOfKeys, prefix) => {
 	return keys
 }
 
-const questionOptions = (
-	t,
-	subjectShort,
-	optionKey,
-	questionId,
-	studentId,
-	classroomId,
-	actions
-) => {
-	const optionsKeys = createKeys(6, 'option')
+export const getQuestionBase = (classroomId, answers) => {
+	const questionRoot = _.find(answers, { classroomId })
+
+	return questionRoot ? questionRoot.questionSet : null
+}
+
+const questionOptions = (t, data, actions) => {
+	const {
+		subjectShort,
+		optionKey,
+		questionId,
+		studentId,
+		classroomId,
+		optionsKeys
+	} = data
 
 	const options = optionsKeys.map((capabilityOption, idx) => (
 		<td key={idx} className={styles.radio_td}>
@@ -62,7 +78,7 @@ const questionOptions = (
 	return <tr>{options}</tr>
 }
 
-const createInnerBody = (
+export const createInnerBody = (
 	t,
 	questionKeys,
 	subjectHeader,
@@ -74,13 +90,10 @@ const createInnerBody = (
 ) => {
 	const question = questionKeys.map((questionKey, idx) => {
 		const questionId = `${subjectShort}${_.upperFirst(questionKey)}`
+		const optionsKeys = createKeys(6, 'option')
 		const answerOptions = questionOptions(
 			t,
-			subjectShort,
-			questionKey,
-			questionId,
-			studentId,
-			classroomId,
+			{ subjectShort, questionKey, questionId, studentId, classroomId, optionsKeys },
 			actions
 		)
 		const showHeader = _.last(questionKey) === '0' ? subjectHeader : null
@@ -99,7 +112,14 @@ const createInnerBody = (
 	return question
 }
 
-const createTableBody = (t, subjects, actualSet, studentId, classroomId, actions) => {
+export const createTableBody = (
+	t,
+	subjects,
+	actualSet,
+	studentId,
+	classroomId,
+	actions
+) => {
 	const questions = subjects.map(subject => {
 		const subjectKey = subject[_.findKey(subject)]
 		const subjectShort = subjectKey.short
@@ -126,49 +146,3 @@ const createTableBody = (t, subjects, actualSet, studentId, classroomId, actions
 
 	return questions
 }
-
-const getQuestionBase = (classroomId, answers) => {
-	const questionRoot = _.find(answers, { classroomId })
-
-	return questionRoot ? questionRoot.questionSet : null
-}
-
-const tableQuestions = (t, actualSet, studentId, classroomId, answers, actions) => {
-	const questionBase = getQuestionBase(classroomId, answers) ? 'class5' : 'class5'
-
-	const questionSet = _.find(capabilityQuestions, actualSet)[questionBase]
-	const questionArr = []
-
-	_.forIn(questionSet, (value, key) => {
-		questionArr.push({ [key]: value })
-	})
-
-	return createTableBody(t, questionArr, questionBase, studentId, classroomId, actions)
-}
-
-const tableForm = (t, { classroomId, answers, studentId }, actions) => {
-	const tableBody = tableQuestions(
-		t,
-		getQuestionSet(classroomId, answers),
-		studentId,
-		classroomId,
-		answers,
-		actions
-	)
-	const tableFields = (
-		<div className={styles.form_div}>
-			<Table>
-				<thead>
-					<tr>
-						<th colSpan="6">{t('capability.tableHeader')}</th>
-					</tr>
-				</thead>
-				{tableBody}
-			</Table>
-		</div>
-	)
-
-	return tableFields
-}
-
-export default tableForm

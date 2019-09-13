@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import { changeQuestionBtn } from './helpers/tableForm'
+import { changeQuestionBtn } from './helpers/table'
 import { sortData } from '../rooms/helpers/formHelpers'
 import {
 	getClassList,
@@ -11,7 +11,7 @@ import {
 	createDropdown
 } from '../helpers/dropdowns'
 import capabilityQuestions from '../../constants/capabilityQuestions'
-import { getQuestionSet } from './helpers/helpers'
+import { getQuestionSet } from './helpers/table'
 import { resolveLabel } from '../../utils/translationUtil'
 import styles from './styles/capability.css'
 
