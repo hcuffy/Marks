@@ -1,11 +1,11 @@
 import {
 	OPEN_CLOSE_CLASS_LIST,
 	OPEN_CLOSE_STUDENT_LIST,
-	GET_ALL_ANSWERS,
+	GET_ALL_QUESTIONS,
 	OPEN_CLOSE_QUESTION_LIST,
 	UPDATE_QUESTION_SET
 } from './constants'
-import { getAllAnswers, updateAnswerData } from '../../database/capability'
+import { getAllQuestions, updateQuestionData } from '../../database/capability'
 
 const isNull = require('lodash/isNull')
 const includes = require('lodash/includes')
@@ -30,23 +30,23 @@ export const openCapabilityStudentList = event => async dispatch => {
 		return
 	}
 
-	const answers = await getAllAnswers()
+	const questions = await getAllQuestions()
 
 	dispatch({
 		type: OPEN_CLOSE_STUDENT_LIST,
 		payload: {
 			studentName: event.target.innerText,
 			studentId: event.target.getAttribute('data-id'),
-			answers
+			questions
 		}
 	})
 }
 
 export const getAnswers = () => async dispatch => {
-	const answers = await getAllAnswers()
+	const questions = await getAllQuestions()
 	dispatch({
-		type: GET_ALL_ANSWERS,
-		payload: { answers }
+		type: GET_ALL_QUESTIONS,
+		payload: { questions }
 	})
 }
 
@@ -74,11 +74,11 @@ export const updateQuestionSet = event => async dispatch => {
 		questionSet: event.target.name
 	}
 
-	const answers = await updateAnswerData(questionSetData)
+	const questions = await updateQuestionData(questionSetData)
 
 	dispatch({
 		type: UPDATE_QUESTION_SET,
-		payload: { answers }
+		payload: { questions }
 	})
 }
 

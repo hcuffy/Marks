@@ -20,7 +20,7 @@ const Capability = new Datastore({
 	timestampData: true
 })
 
-export const getAllAnswers = () =>
+export const getAllQuestions = () =>
 	new Promise((resolve, reject) =>
 		Capability.find({}, (err, docs) => {
 			if (err) {
@@ -33,7 +33,7 @@ export const getAllAnswers = () =>
 		})
 	)
 
-export const addNewAnswer = data => {
+const addNewQuestion = data => {
 	Capability.insert(data, error => {
 		if (error) {
 			saveFailed()
@@ -44,7 +44,7 @@ export const addNewAnswer = data => {
 	})
 }
 
-const updateAnswer = data => {
+const updateQuestion = data => {
 	const { classroomId, questionSet } = data
 
 	Capability.update({ classroomId }, { $set: { questionSet } }, {}, err => {
@@ -57,7 +57,7 @@ const updateAnswer = data => {
 	})
 }
 
-export const updateAnswerData = data =>
+export const updateQuestionData = data =>
 	new Promise((resolve, reject) => {
 		const { classroomId } = data
 
@@ -67,9 +67,9 @@ export const updateAnswerData = data =>
 			}
 
 			if (entry.length > 0) {
-				updateAnswer(data)
+				updateQuestion(data)
 			} else {
-				addNewAnswer(data)
+				addNewQuestion(data)
 			}
 			Capability.find({}, (error, docs) => {
 				if (error) {

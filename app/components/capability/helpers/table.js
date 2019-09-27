@@ -4,12 +4,12 @@ import styles from '../styles/capability.css'
 
 const _ = require('lodash')
 
-export const getQuestionSet = (classroomId, answers) => {
+export const getQuestionSet = (classroomId, questions) => {
 	if (_.isNull(classroomId) || _.isEmpty(answers)) {
 		return null
 	}
 
-	const questionData = _.find(answers, { classroomId })
+	const questionData = _.find(questions, { classroomId })
 	if (_.isUndefined(questionData)) {
 		return null
 	}
@@ -39,28 +39,19 @@ const createKeys = (numberOfKeys, prefix) => {
 	return keys
 }
 
-export const getQuestionBase = (classroomId, answers) => {
-	const questionRoot = _.find(answers, { classroomId })
+export const getQuestionBase = (classroomId, questions) => {
+	const questionRoot = _.find(questions, { classroomId })
 
 	return questionRoot ? questionRoot.questionSet : null
 }
 
 const questionOptions = (t, data, actions) => {
-	const {
-		subjectShort,
-		optionKey,
-		questionId,
-		studentId,
-		classroomId,
-		optionsKeys
-	} = data
+	const { subjectShort, optionKey, questionId, studentId, classroomId, optionsKeys } = data
 
 	const options = optionsKeys.map((capabilityOption, idx) => (
 		<td key={idx} className={styles.radio_td}>
 			<FormGroup>
-				<Label className={styles.radio_label}>
-					{t(`capability.options.${capabilityOption}`)}
-				</Label>
+				<Label className={styles.radio_label}>{t(`capability.options.${capabilityOption}`)}</Label>
 				<Input
 					type="radio"
 					className={styles.radio_input}
@@ -112,14 +103,7 @@ export const createInnerBody = (
 	return question
 }
 
-export const createTableBody = (
-	t,
-	subjects,
-	actualSet,
-	studentId,
-	classroomId,
-	actions
-) => {
+export const createTableBody = (t, subjects, actualSet, studentId, classroomId, actions) => {
 	const questions = subjects.map(subject => {
 		const subjectKey = subject[_.findKey(subject)]
 		const subjectShort = subjectKey.short

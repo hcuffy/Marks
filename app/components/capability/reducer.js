@@ -1,7 +1,7 @@
 import {
 	OPEN_CLOSE_CLASS_LIST,
 	OPEN_CLOSE_STUDENT_LIST,
-	GET_ALL_ANSWERS,
+	GET_ALL_QUESTIONS,
 	OPEN_CLOSE_QUESTION_LIST,
 	UPDATE_QUESTION_SET
 } from './constants'
@@ -16,7 +16,7 @@ const initialLoadState = {
 	classroomId: null,
 	studentName: null,
 	studentId: null,
-	answers: []
+	questions: []
 }
 
 const applyCapabilityChanges = (state = initialLoadState, action) => {
@@ -33,7 +33,7 @@ const applyCapabilityChanges = (state = initialLoadState, action) => {
 
 		return _.assign({}, state, { studentDropdown, classDropdown }, action.payload)
 	}
-	case GET_ALL_ANSWERS: {
+	case GET_ALL_QUESTIONS: {
 		return _.assign({}, state, action.payload)
 	}
 	case OPEN_CLOSE_QUESTION_LIST: {

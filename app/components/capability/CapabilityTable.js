@@ -10,8 +10,8 @@ import styles from './styles/capability.css'
 
 const _ = require('lodash')
 
-const tableQuestions = (t, actualSet, { studentId, classroomId, answers }, actions) => {
-	const questionBase = getQuestionBase(classroomId, answers) ? 'class5' : 'class5'
+const tableQuestions = (t, actualSet, { studentId, classroomId, questions }, actions) => {
+	const questionBase = getQuestionBase(classroomId, questions) ? 'class5' : 'class5'
 	const questionSet = _.find(capabilityQuestions, actualSet)[questionBase]
 	const questionArr = []
 
@@ -23,8 +23,8 @@ const tableQuestions = (t, actualSet, { studentId, classroomId, answers }, actio
 }
 
 const CapabilityTable = ({ t, capabilityData, actions }) => {
-	const { classroomId, answers, studentId } = capabilityData
-	const questionSet = getQuestionSet(classroomId, answers)
+	const { classroomId, questions, studentId } = capabilityData
+	const questionSet = getQuestionSet(classroomId, questions)
 	const tableBody = tableQuestions(t, questionSet, capabilityData, actions)
 
 	return (

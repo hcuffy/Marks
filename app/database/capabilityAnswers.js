@@ -20,6 +20,19 @@ const CapabilityAnswers = new Datastore({
 	timestampData: true
 })
 
+export const getAllAnswers = () =>
+	new Promise((resolve, reject) => {
+		CapabilityAnswers.find({}, (err, docs) => {
+			if (err) {
+				unableToRetrieve()
+
+				return reject(err)
+			}
+
+			return resolve(docs)
+		})
+	})
+
 export const updateSingleAnswer = data =>
 	new Promise((resolve, reject) => {
 		const { classroomId, questionId, studentId, optionTag } = data

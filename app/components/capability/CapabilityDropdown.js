@@ -3,12 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
-import {
-	getClassList,
-	getStudentList,
-	getQuestionList,
-	createDropdown
-} from '../helpers/dropdowns'
+import { getClassList, getStudentList, getQuestionList, createDropdown } from '../helpers/dropdowns'
 import capabilityQuestions from '../../constants/capabilityQuestions'
 import { getQuestionSet, changeQuestionBtn } from './helpers/table'
 import { resolveLabel } from '../../utils/translationUtil'
@@ -26,13 +21,13 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 		questionDropdown,
 		classroom,
 		studentName,
-		answers,
+		questions,
 		classroomId
 	} = capabilityData
 	const classOptions = getClassList(sortData(classData))
 	const studentOptions = getStudentList(filterStudentsByClassId(students, classroomId))
 	const questionOptions = getQuestionList(classroomId, capabilityQuestions, actions)
-	const actualSet = getQuestionSet(classroomId, answers)
+	const actualSet = getQuestionSet(classroomId, questions)
 
 	return (
 		<div className={styles.dropdown_main_div}>
