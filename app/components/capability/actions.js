@@ -83,14 +83,14 @@ export const updateQuestionSet = event => async dispatch => {
 }
 
 export const handleCapabilityAnswers = event => dispatch => {
-	event.preventDefault()
-
 	const formData = {
 		classroomId: event.target.getAttribute('classroom-id'),
 		questionId: event.target.getAttribute('data-id'),
 		studentId: event.target.getAttribute('student-id'),
 		optionTag: event.target.getAttribute('option-tag')
 	}
+
+	console.log(formData)
 
 	if (includes(formData, null)) {
 		return

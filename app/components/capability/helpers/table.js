@@ -1,11 +1,11 @@
 import React from 'react'
 import { FormGroup, Button, Input, Label } from 'reactstrap'
-import styles from '../styles/capability.css'
+import css from '../styles/capability.css'
 
 const _ = require('lodash')
 
 export const getQuestionSet = (classroomId, questions) => {
-	if (_.isNull(classroomId) || _.isEmpty(answers)) {
+	if (_.isNull(classroomId) || _.isEmpty(questions)) {
 		return null
 	}
 
@@ -19,7 +19,7 @@ export const getQuestionSet = (classroomId, questions) => {
 
 export const changeQuestionBtn = (classroomId, { openQuestionList }) => (
 	<Button
-		className={styles.change_Btn}
+		className={css.change_Btn}
 		type="button"
 		color="danger"
 		data-check="openButton"
@@ -46,21 +46,20 @@ export const getQuestionBase = (classroomId, questions) => {
 }
 
 const questionOptions = (t, data, actions) => {
-	const { subjectShort, optionKey, questionId, studentId, classroomId, optionsKeys } = data
-
+	const { subjectShort, questionKey, questionId, studentId, classroomId, optionsKeys } = data
 	const options = optionsKeys.map((capabilityOption, idx) => (
-		<td key={idx} className={styles.radio_td}>
+		<td key={idx} className={css.radio_td}>
 			<FormGroup>
-				<Label className={styles.radio_label}>{t(`capability.options.${capabilityOption}`)}</Label>
+				<Label className={css.radio_label}>{t(`capability.options.${capabilityOption}`)}</Label>
 				<Input
 					type="radio"
-					className={styles.radio_input}
+					className={css.radio_input}
 					data-id={questionId}
 					option-tag={capabilityOption}
 					student-id={studentId}
 					classroom-id={classroomId}
 					onClick={actions.handleCapabilityAnswers}
-					name={`${subjectShort}${_.last(optionKey)}`}
+					name={`${subjectShort}${_.last(questionKey)}`}
 				/>
 			</FormGroup>
 		</td>

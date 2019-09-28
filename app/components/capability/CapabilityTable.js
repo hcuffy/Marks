@@ -6,7 +6,7 @@ import { Table } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import capabilityQuestions from '../../constants/capabilityQuestions'
 import { getQuestionSet, getQuestionBase, createTableBody } from './helpers/table'
-import styles from './styles/capability.css'
+import css from './styles/capability.css'
 
 const _ = require('lodash')
 
@@ -23,14 +23,14 @@ const tableQuestions = (t, actualSet, { studentId, classroomId, questions }, act
 }
 
 const CapabilityTable = ({ t, capabilityData, actions }) => {
-	const { classroomId, questions, studentId } = capabilityData
+	const { classroomId, questions } = capabilityData
 	const questionSet = getQuestionSet(classroomId, questions)
 	const tableBody = tableQuestions(t, questionSet, capabilityData, actions)
 
 	return (
-		<div className={styles.table_main_dev}>
+		<div className={css.table_main_dev}>
 			{' '}
-			<div className={styles.form_div}>
+			<div className={css.form_div}>
 				<Table>
 					<thead>
 						<tr>
