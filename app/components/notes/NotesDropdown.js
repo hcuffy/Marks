@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { getStudentList, getNotesList, createDropdown } from '../helpers/dropdowns'
 import { resolveLabel } from '../../utils/translationUtil'
-import styles from './styles/notes.css'
+import css from './styles/notes.css'
 
 const NotesDropdown = ({ t, studentData, notesData, actions }) => {
 	const { students } = studentData
@@ -22,9 +22,9 @@ const NotesDropdown = ({ t, studentData, notesData, actions }) => {
 	const notesOptions = getNotesList(notes, studentId)
 
 	return (
-		<div className={styles.dropdown_main_div}>
+		<div className={css.dropdown_main_div}>
 			{createDropdown(
-				styles.dropdown_one,
+				css.dropdown_one,
 				studentDropdown,
 				actions.openStudentDropdown,
 				resolveLabel(selectedStudent, t('general.selectStudent')),
@@ -33,7 +33,7 @@ const NotesDropdown = ({ t, studentData, notesData, actions }) => {
 			)}
 
 			{createDropdown(
-				styles.dropdown_two,
+				css.dropdown_two,
 				notesDropdown,
 				actions.openNotesDropdown,
 				resolveLabel(selectedNote, t('general.selectNote')),

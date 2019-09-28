@@ -12,7 +12,7 @@ import {
 	notifyIfEmpty,
 	getClassroomName
 } from '../helpers/dropdowns'
-import styles from './styles/grades.css'
+import css from './styles/grades.css'
 
 const _ = require('lodash')
 
@@ -33,9 +33,9 @@ const GradeDropdown = ({ t, classData, gradeData, subjectData, actions }) => {
 	}
 
 	return (
-		<div className={styles.dropdown_main_div}>
+		<div className={css.dropdown_main_div}>
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				classroomDropdown,
 				actions.openGradeClassList,
 				resolveLabel(classroom, t('general.selectClass')),
@@ -43,7 +43,7 @@ const GradeDropdown = ({ t, classData, gradeData, subjectData, actions }) => {
 				'classDropdown'
 			)}
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				subDrop,
 				actions.displayGradeData,
 				resolveLabel(subjectName, t('general.selectSubject')),

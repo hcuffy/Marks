@@ -5,14 +5,14 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import RoomModal from './RoomModal'
 import { sortData, classInputs } from './helpers/formHelpers'
-import styles from './styles/room.css'
+import css from './styles/room.css'
 
 const ClassList = ({ t, listData, actions }) => {
 	const cleanedData = sortData(listData)
 	const listInputs = classInputs(cleanedData, actions.roomModalDisplay)
 
 	return (
-		<div className={styles.list_div}>
+		<div className={css.list_div}>
 			<RoomModal t={t} modalData={cleanedData} />
 			<div className="list-group list-group-flush">{listInputs}</div>
 		</div>

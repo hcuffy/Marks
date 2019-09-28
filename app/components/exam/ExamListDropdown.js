@@ -11,7 +11,7 @@ import {
 	createDropdown,
 	getClassroomName
 } from '../helpers/dropdowns'
-import styles from './styles/exam.css'
+import css from './styles/exam.css'
 
 const _ = require('lodash')
 
@@ -26,9 +26,9 @@ const ExamListDropdown = ({ t, classData, examData, subjectData, actions }) => {
 	const subjectOptions = getSubjectList({ selectedRoom: classroomId }, subjectData)
 
 	return (
-		<div className={styles.dropdown_main_div}>
+		<div className={css.dropdown_main_div}>
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				openClassDropdown,
 				actions.openClassDropdownList,
 				resolveLabel(classroom, t('general.selectClass')),
@@ -36,7 +36,7 @@ const ExamListDropdown = ({ t, classData, examData, subjectData, actions }) => {
 				'classDropdown'
 			)}
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				openSubList,
 				actions.displayExamData,
 				resolveLabel(selectedSubject, t('general.selectSubject')),

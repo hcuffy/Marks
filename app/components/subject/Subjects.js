@@ -8,7 +8,7 @@ import SubjectForm from './SubjectForm'
 import SubjectList from './SubjectList'
 import { createDropdown, subjectOptions } from '../helpers/dropdowns'
 import { sortData } from '../rooms/helpers/formHelpers'
-import styles from './styles/subject.css'
+import css from './styles/subject.css'
 
 const _ = require('lodash')
 
@@ -19,9 +19,9 @@ const Subjects = ({ t, classData, classListData, actions }) => {
 	const options = subjectOptions(subjects, actions)
 
 	return (
-		<div className={styles.main_div}>
-			<div className={styles.subject_left}>
-				<h4 className={styles.subject_header}>{t('room.subjectHeader')}</h4>
+		<div className={css.main_div}>
+			<div className={css.subject_left}>
+				<h4 className={css.subject_header}>{t('room.subjectHeader')}</h4>
 				{createDropdown(
 					null,
 					openModal,
@@ -32,8 +32,8 @@ const Subjects = ({ t, classData, classListData, actions }) => {
 				)}
 				<SubjectList t={t} selectedSubject={selectedSubject} />
 			</div>
-			<div className={styles.subject_right}>
-				<h4 className={styles.add_header}>{t('room.addSubject')}</h4>
+			<div className={css.subject_right}>
+				<h4 className={css.add_header}>{t('room.addSubject')}</h4>
 				<SubjectForm t={t} classListData={classListData} subjects={subjects} />
 			</div>
 		</div>

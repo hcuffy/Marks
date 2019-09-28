@@ -7,7 +7,7 @@ import { getClassList, getStudentList, getQuestionList, createDropdown } from '.
 import capabilityQuestions from '../../constants/capabilityQuestions'
 import { getQuestionSet, changeQuestionBtn } from './helpers/table'
 import { resolveLabel } from '../../utils/translationUtil'
-import styles from './styles/capability.css'
+import css from './styles/capability.css'
 
 const _ = require('lodash')
 
@@ -30,9 +30,9 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 	const actualSet = getQuestionSet(classroomId, questions)
 
 	return (
-		<div className={styles.dropdown_main_div}>
+		<div className={css.dropdown_main_div}>
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				classDropdown,
 				actions.openCapabilityClassList,
 				resolveLabel(classroom, 'Select Class'),
@@ -40,7 +40,7 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 				'classDropdown'
 			)}
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				studentDropdown,
 				actions.openCapabilityStudentList,
 				resolveLabel(studentName, 'Select Student'),
@@ -48,7 +48,7 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 				'studentDropdown'
 			)}
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				questionDropdown,
 				actions.openQuestionList,
 				resolveLabel(actualSet, 'Question Set'),

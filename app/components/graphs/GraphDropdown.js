@@ -14,7 +14,7 @@ import {
 	notifyIfEmpty,
 	getClassroomName
 } from '../helpers/dropdowns'
-import styles from './styles/graphs.css'
+import css from './styles/graphs.css'
 
 const _ = require('lodash')
 
@@ -41,9 +41,9 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 	notifyIfEmpty(t, subjectOptions, openSubList, 'class')
 
 	return (
-		<div className={styles.dropdown_main_div}>
+		<div className={css.dropdown_main_div}>
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				classroomDropdown,
 				actions.openGraphClassList,
 				resolveLabel(classroom, t('general.selectClass')),
@@ -51,7 +51,7 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 				'classDropdown'
 			)}
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				openSubList,
 				actions.displaySubjectGraph,
 				resolveLabel(subjectName, t('general.selectSubject')),
@@ -59,7 +59,7 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 				'subjectDropdown'
 			)}
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				openExamList,
 				actions.displayExamGraph,
 				resolveLabel(examName, t('general.selectExam')),
@@ -67,7 +67,7 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 				'examDropdown'
 			)}
 			{PDFbutton(
-				styles.pdf_btn,
+				css.pdf_btn,
 				t('general.saveAs'),
 				resolveLabel(chartTitle, t('graph.schoolGrades'))
 			)}

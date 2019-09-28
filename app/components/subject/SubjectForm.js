@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import styles from './styles/subject.css'
+import css from './styles/subject.css'
 
 const _ = require('lodash')
 
 const generateInputs = (t, labels) =>
 	_.values(labels).map((data, idx) => (
-		<div key={idx} className={styles.form_div}>
-			<label className={styles.form_label} htmlFor={`${data}Sid`}>
+		<div key={idx} className={css.form_div}>
+			<label className={css.form_label} htmlFor={`${data}Sid`}>
 				{t(`room.${data}`)}:
 			</label>
 			{/* eslint-disable-next-line max-len */}
@@ -39,15 +39,15 @@ const SubjectForm = ({ t, classListData, subjects, actions }) => {
 		<div>
 			<form onSubmit={actions.addNewSubject} method="POST">
 				{formInputs}
-				<div className={styles.form_div}>
-					<label className={styles.form_label} htmlFor="cSelect">
+				<div className={css.form_div}>
+					<label className={css.form_label} htmlFor="cSelect">
 						{t('general.selectClass')}:
 					</label>
 					<select type="text" name="room" className="form-control">
 						{selectOption}
 					</select>
 				</div>
-				<div className={styles.subject_save}>
+				<div className={css.subject_save}>
 					<button type="submit" className="btn btn-success">
 						{t('general.add')}
 					</button>

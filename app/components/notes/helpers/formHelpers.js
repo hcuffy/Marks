@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap'
-import styles from '../styles/notes.css'
+import css from '../styles/notes.css'
 
 const _ = require('lodash')
 
@@ -59,7 +59,7 @@ const footerBtns = (t, noteId, studentId, actions) => (
 			<Button
 				type="button"
 				color="danger"
-				className={styles.clear_Btn}
+				className={css.clear_Btn}
 				onClick={actions.deleteSingleNote}
 				data-id={noteId}
 				disabled={!noteId}

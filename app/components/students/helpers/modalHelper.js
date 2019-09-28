@@ -1,7 +1,7 @@
 import React from 'react'
 import { genderDropdown, classroomDropdown } from './formHelper'
 import { getClassroomName } from '../../helpers/dropdowns'
-import styles from '../styles/students.css'
+import css from '../styles/students.css'
 
 const _ = require('lodash')
 
@@ -17,14 +17,14 @@ const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
 	const dropList = (
 		<div>
 			{studentFields}
-			{genderDropdown(t, gender, styles.form_div_edit, null)}
+			{genderDropdown(t, gender, css.form_div_edit, null)}
 			{classroomDropdown(
 				t,
 				classroomOptions,
 				getClassroomName(classroom, classdata),
-				styles.form_div_edit,
+				css.form_div_edit,
 				null,
-				styles.form_label_edit
+				css.form_label_edit
 			)}
 		</div>
 	)
@@ -35,14 +35,14 @@ const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
 const generateFields = (t, chosenStudent, classdata) => {
 	const studentFields = _.keys(_.pick(chosenStudent, ['firstname', 'lastname'])).map(
 		(data, idx) => (
-			<div key={idx} className={styles.form_div_edit}>
-				<label className={styles.form_label_edit} htmlFor={`${data}_Id`}>
+			<div key={idx} className={css.form_div_edit}>
+				<label className={css.form_label_edit} htmlFor={`${data}_Id`}>
 					{t(`student.${data}`)}*:
 				</label>
 				<input
 					name={data}
 					required
-					className={`${styles.form_input} form-control`}
+					className={`${css.form_input} form-control`}
 					data-id={`${data}_Id`}
 					type="text"
 					defaultValue={chosenStudent[data]}

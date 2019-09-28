@@ -1,12 +1,12 @@
 import React from 'react'
-import styles from '../styles/room.css'
+import css from '../styles/room.css'
 
 const _ = require('lodash')
 
 export const createFormInputs = (t, labels) =>
 	_.keys(labels).map((data, idx) => (
-		<div key={idx} className={styles.room_form}>
-			<label className={styles.room_form_label} htmlFor={`${data}Id`}>
+		<div key={idx} className={css.room_form}>
+			<label className={css.room_form_label} htmlFor={`${data}Id`}>
 				{t(`room.${data}`)}:
 			</label>
 			<input
@@ -21,12 +21,12 @@ export const createFormInputs = (t, labels) =>
 	))
 
 export const addRoomForm = (t, formInputs, actions) => (
-	<div className={styles.room_div}>
+	<div className={css.room_div}>
 		<form onSubmit={actions.handleClassData} method="POST">
-			<div className={styles.form_outer_div}>
-				<h4 className={styles.add_header}>{t('room.addClassHeader')}</h4>
+			<div className={css.form_outer_div}>
+				<h4 className={css.add_header}>{t('room.addClassHeader')}</h4>
 				{formInputs}
-				<div className={(styles.form_div, styles.save_btn)}>
+				<div className={(css.form_div, css.save_btn)}>
 					<button type="submit" className="btn btn-success">
 						{t('general.add')}
 					</button>
@@ -42,11 +42,11 @@ export const classInputs = (cleanData, action) =>
 			key={idx}
 			data-id={data._id}
 			type="button"
-			className={`list-group-item list-group-item-action ${styles.list_btn}`}
+			className={`list-group-item list-group-item-action ${css.list_btn}`}
 			onClick={action}
 		>
 			{data.name}
-			<span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
+			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>
 				{data.subjects.length}
 			</span>
 		</button>
@@ -57,7 +57,7 @@ export const classPill = (index, pillClass, name, action, title) => (
 		<a
 			role="button"
 			tabIndex={index}
-			className={`${styles.tab_link} nav-link ${pillClass}`}
+			className={`${css.tab_link} nav-link ${pillClass}`}
 			onClick={action}
 			data-name={name}
 		>
@@ -83,13 +83,13 @@ export const cleanAndFilterData = (objectToClean, cleanBy) => {
 
 export const createModalInputs = (t, selectedRoom) =>
 	_.keys(selectedRoom).map((data, idx) => (
-		<div key={idx} className={styles.form_div}>
-			<label className={styles.form_label} htmlFor={`${data}_Id`}>
+		<div key={idx} className={css.form_div}>
+			<label className={css.form_label} htmlFor={`${data}_Id`}>
 				{t(`room.${data}`)}:
 			</label>
 			<input
 				name={data}
-				className={`${styles.form_input} form-control`}
+				className={`${css.form_input} form-control`}
 				data-id={`${data}_Id`}
 				type="text"
 				required

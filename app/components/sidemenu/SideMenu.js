@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { actionCreators } from '../../actions/index'
 import { menuData } from './helpers/sideMenuData'
-import styles from './styles/sidemenu.css'
+import css from './styles/sidemenu.css'
 
 const _ = require('lodash')
 
 const SideMenu = ({ menuStylingData, actions }) => {
 	const menuItems = _.keys(menuData).map((data, idx) => (
-		<button key={idx} type="button" className={styles.menu_btn}>
+		<button key={idx} type="button" className={css.menu_btn}>
 			<Link onClick={actions.updateButtonStyle} to={menuData[data].linkTo}>
 				<i
 					data-id={menuData[data].dataId}
@@ -23,10 +23,10 @@ const SideMenu = ({ menuStylingData, actions }) => {
 	))
 
 	return (
-		<div className={styles.menu_div}>
+		<div className={css.menu_div}>
 			{menuItems}
 			<ToastContainer />
-			<h6 className={styles.version}>ver. 1.3.0</h6>
+			<h6 className={css.version}>ver. 1.3.0</h6>
 		</div>
 	)
 }
