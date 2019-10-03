@@ -12,6 +12,7 @@ const checkGradeId = grade => {
 
 	return grade._id
 }
+
 const getGradeInfo = (student, gradeData) => {
 	const grade = []
 	const studentId = student._id
@@ -20,16 +21,16 @@ const getGradeInfo = (student, gradeData) => {
 		return []
 	}
 
-	for (const exam of exams) {
+	for (let i = 0; i < exams.length; i += 1) {
 		const assembledInfo = {}
 		assembledInfo.studentId = studentId
 		assembledInfo.subjectName = gradeData.subjectName
 		assembledInfo.subjectId = gradeData.subjectId
-		assembledInfo.examId = exam._id
-		assembledInfo.weight = exam.weight
-		assembledInfo.date = exam.date
+		assembledInfo.examId = exams[i]._id
+		assembledInfo.weight = exams[i].weight
+		assembledInfo.date = exams[i].date
 		assembledInfo.subjectName = gradeData.subjectName
-		const score = _.filter(grades, { examId: exam._id, studentId })
+		const score = _.filter(grades, { examId: exams[i]._id, studentId })
 		assembledInfo.gradeId = checkGradeId(score[0])
 		const adjustedScore = _.isUndefined(score[0]) ? 0 : score[0].grade
 		assembledInfo.score = adjustedScore
@@ -39,7 +40,7 @@ const getGradeInfo = (student, gradeData) => {
 	return grade
 }
 
-const getAverage = grades => {
+const studentAverage = grades => {
 	const total = _.reduce(
 		grades,
 		(sum, grade) => {
@@ -50,27 +51,44 @@ const getAverage = grades => {
 		0
 	)
 
-	return { average: _.round(total / grades.length, 2) }
+	return _.round(total / grades.length, 2)
 }
 
-export const gradeInfo = (gradeData, students) => {
+const getAverage = grades => {
+	const removeZeros = _.filter(grades, grade => grade.score !== 0)
+	const average = _.isEmpty(removeZeros) ? 0 : studentAverage(removeZeros)
+
+	return { average }
+}
+
+const formulateStudentData = (students, gradeData) => {
 	const data = []
 
-	if (_.isUndefined(gradeData) || _.isUndefined(students)) {
-		return []
-	}
-
-	for (const student of students) {
-		const personalData = getPersonalInfo(student)
-		const gradesData = getGradeInfo(student, gradeData)
+	for (let i = 0; i < students.length; i += 1) {
+		const personalData = getPersonalInfo(students[i])
+		const gradesData = getGradeInfo(students[i], gradeData)
 		const average = getAverage(gradesData)
 		const studentData = _.assign({}, personalData, { grades: gradesData }, average)
 
 		data.push(studentData)
 	}
-	if (_.isUndefined(data[0]) || _.isNaN(data[0].average)) {
+
+	return data
+}
+
+export const gradeInfo = (gradeData, students) => {
+	const { classroomId } = gradeData
+
+	if (_.isUndefined(gradeData) || _.isUndefined(students)) {
 		return []
 	}
 
-	return data
+	const studentsByClassroom = _.filter(students, { classroom: classroomId })
+	const studentGradeData = formulateStudentData(studentsByClassroom, gradeData)
+
+	if (_.isUndefined(studentGradeData[0])) {
+		return []
+	}
+
+	return studentGradeData
 }
