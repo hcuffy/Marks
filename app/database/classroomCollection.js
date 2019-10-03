@@ -103,8 +103,8 @@ const checkSubject = checkingCurrent => {
 	}
 }
 
-const updateSinlgeClassroom = (previous, current) => {
-	const { name, teacher, code, substitute } = current
+const updateSingleClassroom = (previous, current) => {
+	const { name, teacher, substitute } = current
 	const { subjects } = previous
 
 	if (checkSubject(current) === true) {
@@ -116,7 +116,6 @@ const updateSinlgeClassroom = (previous, current) => {
 		{
 			name,
 			teacher,
-			code,
 			substitute,
 			subjects
 		},
@@ -139,7 +138,7 @@ export const updateRoomData = data =>
 				return err
 			}
 			if (entry.length > 0) {
-				updateSinlgeClassroom(entry[0], data)
+				updateSingleClassroom(entry[0], data)
 				classroomCollection.find({}, (error, docs) => {
 					if (error) {
 						updateFailed()
@@ -158,7 +157,7 @@ export const updateSubjectArray = data => {
 			return err
 		}
 		if (entry.length > 0) {
-			updateSinlgeClassroom(entry[0], data)
+			updateSingleClassroom(entry[0], data)
 			classroomCollection.find({}, (error, docs) => {
 				if (error) {
 					updateFailed()

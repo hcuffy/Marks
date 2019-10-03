@@ -20,7 +20,6 @@ const initialLoadState = {
 const gradingLoadState = { note: true, points: false, percent: false }
 
 export const handleSchoolReducer = (state = initialLoadState, action) => {
-	console.log(action.payload)
 	switch (action.type) {
 	case HANDLE_SCHOOL_DATA: {
 		const { title, street, province, country, zip, city, year } = action.payload
@@ -56,7 +55,6 @@ export const applyGradeSystem = (state = gradingLoadState, action) => {
 }
 
 const applyAddressData = (state = initialLoadState, action) => {
-	console.log(action.payload)
 	switch (action.type) {
 	case DISPLAY_SCHOOL_DATA: {
 		const { title, street, province, country, zip, city, year } = action.payload
