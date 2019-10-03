@@ -112,8 +112,8 @@ const checkSubject = checkingCurrent => {
 	}
 }
 
-const updateSinlgeClassroom = (previous, current) => {
-	const { name, teacher, code, substitute } = current
+const updateSingleClassroom = (previous, current) => {
+	const { name, teacher, substitute } = current
 	const { subjects } = previous
 
 	if (checkSubject(current) === true) {
@@ -125,7 +125,6 @@ const updateSinlgeClassroom = (previous, current) => {
 		{
 			name,
 			teacher,
-			code,
 			substitute,
 			subjects
 		},
@@ -150,7 +149,7 @@ export const updateRoomData = data =>
 				return err
 			}
 			if (entry.length > 0) {
-				updateSinlgeClassroom(entry[0], data)
+				updateSingleClassroom(entry[0], data)
 				Classroom.find({}, (error, docs) => {
 					if (error) {
 						updateFailed()
@@ -172,7 +171,7 @@ export const updateSubjectArray = data => {
 			return err
 		}
 		if (entry.length > 0) {
-			updateSinlgeClassroom(entry[0], data)
+			updateSingleClassroom(entry[0], data)
 			Classroom.find({}, (error, docs) => {
 				if (error) {
 					updateFailed()
@@ -187,29 +186,19 @@ export const updateSubjectArray = data => {
 }
 
 export const updateClassSubjectArray = (classroomId, oldSubject, newSubject) => {
-	Classroom.update(
-		{ _id: classroomId },
-		{ $push: { subjects: newSubject } },
-		{},
-		err => {
-			if (err) {
-				updateFailed()
+	Classroom.update({ _id: classroomId }, { $push: { subjects: newSubject } }, {}, err => {
+		if (err) {
+			updateFailed()
 
-				return err
-			}
+			return err
 		}
-	)
+	})
 
-	Classroom.update(
-		{ _id: classroomId },
-		{ $pull: { subjects: oldSubject } },
-		{},
-		err => {
-			if (err) {
-				updateFailed()
+	Classroom.update({ _id: classroomId }, { $pull: { subjects: oldSubject } }, {}, err => {
+		if (err) {
+			updateFailed()
 
-				return err
-			}
+			return err
 		}
-	)
+	})
 }

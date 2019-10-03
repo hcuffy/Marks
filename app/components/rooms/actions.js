@@ -34,7 +34,6 @@ export const handleClassData = event => async dispatch => {
 	const formData = {
 		name: event.target.name.value,
 		teacher: event.target.teacher.value,
-		code: event.target.code.value,
 		substitute: event.target.substitute.value
 	}
 	event.target.reset()
@@ -63,7 +62,6 @@ export const updateRoom = event => async dispatch => {
 	const roomData = {
 		name: event.target.name.value,
 		teacher: event.target.teacher.value,
-		code: event.target.code.value,
 		substitute: event.target.substitute.value,
 		oldName: event.target.oldName.getAttribute('data-id'),
 		id: '',
