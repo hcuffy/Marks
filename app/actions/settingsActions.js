@@ -59,6 +59,7 @@ export const saveSchoolAddress = event => dispatch => {
 		province: event.target.province.value,
 		country: event.target.country.value,
 		zip: event.target.zip.value,
+		city: event.target.city.value,
 		year: event.target.year.value
 	}
 

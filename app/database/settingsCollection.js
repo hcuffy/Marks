@@ -43,10 +43,10 @@ export const getSystemType = () =>
 	)
 
 const updateAddress = (previous, id) => {
-	const { title, street, province, country, zip, year } = previous
+	const { title, street, province, country, zip, city, year } = previous
 	settingsCollection.update(
 		{ _id: id },
-		{ $set: { title, street, province, country, zip, year } },
+		{ $set: { title, street, province, country, zip, city, year } },
 		{},
 		err => {
 			if (err) {
