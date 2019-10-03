@@ -38,7 +38,7 @@ const getGradeInfo = (student, gradeData) => {
 	return grade
 }
 
-const getAverage = grades => {
+const studentAverage = grades => {
 	const total = _.reduce(
 		grades,
 		(sum, grade) => {
@@ -47,8 +47,14 @@ const getAverage = grades => {
 		},
 		0
 	)
+	return _.round(total / grades.length, 2)
+}
 
-	return { average: _.round(total / grades.length, 2) }
+const getAverage = grades => {
+	const removeZeros = _.filter(grades, grade => grade.score !== 0)
+	const average = _.isEmpty(removeZeros) ? 0 : studentAverage(removeZeros)
+
+	return { average }
 }
 
 export const gradeInfo = (gradeData, students) => {

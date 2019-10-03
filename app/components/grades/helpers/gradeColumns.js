@@ -59,12 +59,15 @@ const customFooter = ({ data }, iterator) => {
 		grades.push(parseInt(score, 10) * parseInt(weight, 10))
 	}
 
+	const examAverage = _.round(_.mean(_.without(grades, 0)), 2)
+
 	return (
 		<span>
-			<strong>Ø:</strong> {_.round(_.mean(grades), 2)}
+			<strong>Ø:</strong> {_.isNaN(examAverage) ? 0 : examAverage}
 		</span>
 	)
 }
+
 const customColumn = (data, actions) => {
 	const columnData = []
 	if (_.isUndefined(data[0])) {
