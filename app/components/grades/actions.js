@@ -8,19 +8,19 @@ export const openGradeClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
+	const classroomId = event.target.getAttribute('data-id')
 
-	const classroom = event.target.innerText
 	dispatch({
 		type: OPEN_CLASS_LIST,
-		payload: classroom
+		payload: { classroomId }
 	})
 }
 
 const filterGrades = async exams => {
 	const filteredGrades = []
 	const allGrades = await getAllGrades()
-	for (const exam of exams) {
-		filteredGrades.push(..._.filter(allGrades, ['examId', exam._id]))
+	for (let i = 0; i < exams.length; i += 1) {
+		filteredGrades.push(..._.filter(allGrades, ['examId', exams[i]._id]))
 	}
 
 	return filteredGrades

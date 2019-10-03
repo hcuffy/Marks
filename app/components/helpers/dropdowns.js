@@ -7,7 +7,12 @@ const _ = require('lodash')
 
 export const getClassList = classlist => {
 	const items = classlist.map((data, idx) => (
-		<DropdownItem key={idx} name={data.name} data-check="classDropdown">
+		<DropdownItem
+			key={idx}
+			name={data.name}
+			data-id={data._id}
+			data-check="classDropdown"
+		>
 			{data.name}
 		</DropdownItem>
 	))
@@ -15,8 +20,10 @@ export const getClassList = classlist => {
 	return items
 }
 
-export const getSubjectList = (examData, subjectData) => {
-	const selectedSubjects = _.filter(subjectData.data, ['room', examData.selectedRoom])
+export const getSubjectList = (classroom, subjectData) => {
+	const selectedSubjects = _.filter(subjectData.data, [
+		'classroomId', classroom.selectedRoom
+	])
 	const items = selectedSubjects.map((data, idx) => (
 		<DropdownItem
 			key={idx}
@@ -127,4 +134,22 @@ export const notifyIfEmpty = (t, options, selected, section) => {
 	if (_.isEmpty(options) && selected) {
 		firstMakeSelection(t, section)
 	}
+}
+
+export const getClassroomName = (id, classData) => {
+	const classObject = _.find(classData, { _id: id })
+	if (_.isUndefined(classObject)) {
+		return ''
+	}
+
+	return classObject.name
+}
+
+export const getClassroomId = (name, classData) => {
+	const classObject = _.find(classData, { name })
+	if (_.isUndefined(classObject)) {
+		return ''
+	}
+
+	return classObject._id
 }
