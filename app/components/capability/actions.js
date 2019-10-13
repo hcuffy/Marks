@@ -5,7 +5,8 @@ import {
 	OPEN_CLOSE_QUESTION_LIST,
 	UPDATE_QUESTION_SET
 } from './constants'
-import { getAllQuestions, updateQuestionData } from '../../database/capability'
+import { getAllQuestions, updateQuestionData } from '../../collections/capability'
+import { updateSingleAnswer } from '../../collections/capabilityAnswers'
 
 const isNull = require('lodash/isNull')
 const includes = require('lodash/includes')
@@ -82,7 +83,7 @@ export const updateQuestionSet = event => async dispatch => {
 	})
 }
 
-export const handleCapabilityAnswers = event => dispatch => {
+export const handleCapabilityAnswers = event => async dispatch => {
 	const formData = {
 		classroomId: event.target.getAttribute('classroom-id'),
 		questionId: event.target.getAttribute('data-id'),
@@ -90,13 +91,11 @@ export const handleCapabilityAnswers = event => dispatch => {
 		optionTag: event.target.getAttribute('option-tag')
 	}
 
-	console.log(formData)
-
 	if (includes(formData, null)) {
 		return
 	}
-
-	console.log(formData)
+	const answers = await updateSingleAnswer(formData)
+	console.log(answers)
 
 	dispatch({
 		type: 'test',
