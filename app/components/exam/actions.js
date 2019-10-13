@@ -6,7 +6,7 @@ import {
 	GET_SINGLE_EXAM,
 	UPDATE_EXAMS_LIST
 } from './constants'
-import { addExamData, getAllExams, deleteExam, updateExamData } from '../../database/exam'
+import { addExamData, getAllExams, deleteExam, updateExamData } from '../../collections/exam'
 import { getOption } from '../students/actions'
 
 export const addNewExam = event => dispatch => {

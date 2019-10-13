@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import {
 	saveSuccessful,
 	updateSuccessful,
@@ -8,11 +7,7 @@ import {
 	deletionFailed,
 	updateFailed
 } from '../notifications/general'
-import {
-	getClassroomData,
-	updateSubjectArray,
-	updateClassSubjectArray
-} from './classroom'
+import { getClassroomData, updateSubjectArray, updateClassSubjectArray } from './classroom'
 import { getAllExams, deleteExam } from './exam'
 
 const _ = require('lodash')
@@ -214,20 +209,15 @@ export const updateSubjectTestArray = (subjectId, examTitle) =>
 				return err
 			}
 			if (entry.length > 0) {
-				Subject.update(
-					{ _id: subjectId },
-					{ $pull: { tests: examTitle } },
-					{},
-					(error, docs) => {
-						if (error) {
-							updateFailed()
+				Subject.update({ _id: subjectId }, { $pull: { tests: examTitle } }, {}, (error, docs) => {
+					if (error) {
+						updateFailed()
 
-							return reject(error)
-						}
-
-						return resolve(docs)
+						return reject(error)
 					}
-				)
+
+					return resolve(docs)
+				})
 			}
 		})
 	)

@@ -10,7 +10,7 @@ import {
 	updateGradeType,
 	addAddress,
 	getAddressData
-} from '../../database/settings'
+} from '../../collections/settings'
 
 const _ = require('lodash')
 

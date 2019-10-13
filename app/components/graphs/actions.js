@@ -5,8 +5,8 @@ import {
 	DISPLAY_EXAM_GRADES,
 	GET_ALL_EXAMS
 } from './constants'
-import { getAllGrades } from '../../database/grade'
-import { getAllExams } from '../../database/exam'
+import { getAllGrades } from '../../collections/grade'
+import { getAllExams } from '../../collections/exam'
 
 export const openGraphClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
