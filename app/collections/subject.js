@@ -119,13 +119,13 @@ const checkSubjectChanges = (prev, curr) => {
 	return true
 }
 
-const updateClassroomSubjects = (subjectId, previousSubject, currentSubject) => {
+const updateClassroomSubjects = (classroomId, previousSubject, currentSubject) => {
 	if (!_.isEqual(previousSubject, currentSubject)) {
-		updateClassSubjectArray(subjectId, previousSubject, currentSubject)
+		updateClassSubjectArray(classroomId, previousSubject, currentSubject)
 	}
 }
 
-const updateSinlgeSubject = (previous, current) => {
+const updateSingleSubject = (previous, current) => {
 	const { name, abbreviation } = current
 	const { room, tests, classroomId } = previous
 
@@ -163,7 +163,7 @@ export const updateSubjectData = data =>
 				return err
 			}
 			if (entry.length > 0) {
-				updateSinlgeSubject(entry[0], data)
+				updateSingleSubject(entry[0], data)
 				Subject.find({ _id: data.subjectId }, (error, docs) => {
 					if (error) {
 						updateFailed()

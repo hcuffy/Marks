@@ -69,8 +69,7 @@ export const getClassroomData = () =>
 		})
 	)
 
-const filteredSubjects = async classroomId =>
-	_.filter(await getAllSubjects(), { classroomId })
+const filteredSubjects = async classroomId => _.filter(await getAllSubjects(), { classroomId })
 
 const deleteSubjectByClassroom = async classroomId => {
 	const subjects = await filteredSubjects(classroomId)
@@ -113,7 +112,7 @@ const checkSubject = checkingCurrent => {
 }
 
 const updateSingleClassroom = (previous, current) => {
-	const { name, teacher, code, substitute } = current
+	const { name, teacher, substitute } = current
 	const { subjects } = previous
 
 	if (checkSubject(current) === true) {
@@ -125,7 +124,6 @@ const updateSingleClassroom = (previous, current) => {
 		{
 			name,
 			teacher,
-			code,
 			substitute,
 			subjects
 		},
@@ -186,8 +184,8 @@ export const updateSubjectArray = data => {
 	})
 }
 
-export const updateClassSubjectArray = (Id, oldSubject, newSubject) => {
-	Classroom.update({ _id: Id }, { $push: { subjects: newSubject } }, {}, err => {
+export const updateClassSubjectArray = (classroomId, oldSubject, newSubject) => {
+	Classroom.update({ _id: classroomId }, { $push: { subjects: newSubject } }, {}, err => {
 		if (err) {
 			updateFailed()
 
@@ -195,7 +193,7 @@ export const updateClassSubjectArray = (Id, oldSubject, newSubject) => {
 		}
 	})
 
-	Classroom.update({ _id: Id }, { $pull: { subjects: oldSubject } }, {}, err => {
+	Classroom.update({ _id: classroomId }, { $pull: { subjects: oldSubject } }, {}, err => {
 		if (err) {
 			updateFailed()
 

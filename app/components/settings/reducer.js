@@ -13,6 +13,7 @@ const initialLoadState = {
 	province: null,
 	country: null,
 	zip: null,
+	city: null,
 	year: null
 }
 
@@ -44,7 +45,7 @@ export const applyGradeSystem = (state = gradingLoadState, action) => {
 const applyAddressData = (state = initialLoadState, action) => {
 	switch (action.type) {
 	case DISPLAY_SCHOOL_DATA: {
-		const { title, street, province, country, zip, year } = action.payload
+		const { title, street, province, country, zip, city, year } = action.payload
 
 		return _.assign({}, state, {
 			title,
@@ -52,6 +53,7 @@ const applyAddressData = (state = initialLoadState, action) => {
 			province,
 			country,
 			zip,
+			city,
 			year
 		})
 	}

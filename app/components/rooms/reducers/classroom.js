@@ -5,7 +5,6 @@ const _ = require('lodash')
 const initialLoadState = {
 	name: '',
 	teacher: '',
-	code: '',
 	substitute: '',
 	classData: [{ name: '', subjects: [] }],
 	check: false
@@ -17,7 +16,6 @@ export const applyClassData = (state = initialLoadState, action) => {
 		return _.assign({}, state, {
 			name: '',
 			teacher: '',
-			code: '',
 			substitute: '',
 			check: true
 		})

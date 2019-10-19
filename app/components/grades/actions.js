@@ -8,7 +8,6 @@ export const openGradeClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
-
 	const classroomId = event.target.getAttribute('data-id')
 
 	dispatch({
@@ -20,15 +19,14 @@ export const openGradeClassList = event => dispatch => {
 const filterGrades = async exams => {
 	const filteredGrades = []
 	const allGrades = await getAllGrades()
-	for (const exam of exams) {
-		filteredGrades.push(..._.filter(allGrades, ['examId', exam._id]))
+	for (let i = 0; i < exams.length; i += 1) {
+		filteredGrades.push(..._.filter(allGrades, ['examId', exams[i]._id]))
 	}
 
 	return filteredGrades
 }
 
-const filterExams = async subjectData =>
-	_.filter(await getAllExams(), ['subjectId', subjectData.subjectId])
+const filterExams = async subjectData => _.filter(await getAllExams(), ['subjectId', subjectData.subjectId])
 
 export const displayGradeData = event => async dispatch => {
 	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
