@@ -1,10 +1,4 @@
-import {
-	unableToRetrieve,
-	saveFailed,
-	saveSuccessful,
-	updateFailed,
-	updateSuccessful
-} from '../notifications/general'
+import { unableToRetrieve, saveFailed, saveSuccessful, updateFailed, updateSuccessful } from '../notifications/general'
 
 const _ = require('lodash')
 const Datastore = require('nedb')
@@ -13,7 +7,7 @@ const path = require('path')
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData')
 const collectionsPath = path.join(userDataPath, 'collections')
-const CapabilityAnswers = new Datastore({
+const Answers = new Datastore({
 	filename: path.join(collectionsPath, 'answer.db'),
 	autoload: true,
 	corruptAlertThreshold: 1,
@@ -22,7 +16,7 @@ const CapabilityAnswers = new Datastore({
 
 export const getAllAnswers = () =>
 	new Promise((resolve, reject) => {
-		CapabilityAnswers.find({}, (err, docs) => {
+		Answers.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
 
@@ -38,7 +32,7 @@ export const addStudentAnswer = answerData => {
 	const capability = [{ questionId, optionTag }]
 	const adjustedData = { classroomId, studentId, capability }
 
-	CapabilityAnswers.insert(adjustedData, error => {
+	Answers.insert(adjustedData, error => {
 		if (error) {
 			saveFailed()
 
@@ -49,7 +43,8 @@ export const addStudentAnswer = answerData => {
 }
 
 const updateStudentAnswer = ({ classroomId, studentId, questionId, optionTag }) => {
-	CapabilityAnswers.find({ classroomId, studentId }, (err, answer) => {
+	const answerToUpdate = { classroomId, studentId }
+	Answers.find(answerToUpdate, (err, answer) => {
 		if (err) {
 			updateFailed()
 
@@ -58,21 +53,10 @@ const updateStudentAnswer = ({ classroomId, studentId, questionId, optionTag }) 
 		const answerExists = _.find(answer[0].capability, { questionId })
 
 		if (_.size(answerExists) > 0) {
-			console.log('pulling')
-			CapabilityAnswers.update(
-				{ classroomId, studentId },
-				{ $pull: { capability: { questionId } } },
-				{},
-				() => {}
-			)
+			Answers.update(answerToUpdate, { $pull: { capability: { questionId } } }, {}, () => {})
 		}
 
-		CapabilityAnswers.update(
-			{ classroomId, studentId },
-			{ $addToSet: { capability: { questionId, optionTag } } },
-			{},
-			() => {}
-		)
+		Answers.update(answerToUpdate, { $addToSet: { capability: { questionId, optionTag } } }, {}, () => {})
 		updateSuccessful()
 	})
 }
@@ -80,7 +64,7 @@ const updateStudentAnswer = ({ classroomId, studentId, questionId, optionTag }) 
 export const updateSingleAnswer = answerData =>
 	new Promise((resolve, reject) => {
 		const { classroomId, studentId } = answerData
-		CapabilityAnswers.count({ classroomId, studentId }, (error, count) => {
+		Answers.count({ classroomId, studentId }, (error, count) => {
 			if (error) {
 				return reject(error)
 			}
@@ -91,7 +75,7 @@ export const updateSingleAnswer = answerData =>
 			}
 		})
 
-		CapabilityAnswers.find({}, (error, docs) => {
+		Answers.find({}, (error, docs) => {
 			if (error) {
 				return reject(error)
 			}

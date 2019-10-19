@@ -47,10 +47,10 @@ export const getQuestionBase = (classroomId, questions) => {
 
 const isOptionChecked = (capabilityOption, { classroomId, questionId, studentId, answers }) => {
 	const answersToQuestion = _.find(answers, { classroomId, studentId })
-	console.log(answersToQuestion)
+
 	if (!_.isUndefined(answersToQuestion) && !_.isEmpty(answersToQuestion)) {
 		const selectedQuestionOption = _.find(answersToQuestion.capability, { questionId, optionTag: capabilityOption })
-		console.log(selectedQuestionOption)
+
 		if (selectedQuestionOption) {
 			return true
 		}

@@ -11,7 +11,7 @@ import css from './styles/capability.css'
 const _ = require('lodash')
 
 const tableQuestions = (t, actualSet, { studentId, classroomId, questions, answers }, actions) => {
-	const questionBase = getQuestionBase(classroomId, questions) ? 'class5' : 'class5'
+	const questionBase = getQuestionBase(classroomId, questions)
 	const questionSet = _.find(capabilityQuestions, actualSet)[questionBase]
 	const questionArr = []
 

@@ -106,6 +106,26 @@
         "question4": "Can you read5?",
         "question5": "Can you read6?"
       }
+    },
+    "class6": {
+      "math": {
+        "subject": "Mathematics",
+        "question0": "Can you add1?",
+        "question1": "Can you add2?",
+        "question2": "Can you add3?",
+        "question3": "Can you add4?",
+        "question4": "Can you add5?",
+        "question5": "Can you add6?"
+      },
+      "eng": {
+        "subject": "English",
+        "question0": "Can you read1?",
+        "question1": "Can you read2?",
+        "question2": "Can you read3?",
+        "question3": "Can you read4?",
+        "question4": "Can you read5?",
+        "question5": "Can you read6?"
+      }
     }
   },
   "notifications": {
