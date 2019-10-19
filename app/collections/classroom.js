@@ -69,8 +69,7 @@ export const getClassroomData = () =>
 		})
 	)
 
-const filteredSubjects = async classroomId =>
-	_.filter(await getAllSubjects(), { classroomId })
+const filteredSubjects = async classroomId => _.filter(await getAllSubjects(), { classroomId })
 
 const deleteSubjectByClassroom = async classroomId => {
 	const subjects = await filteredSubjects(classroomId)

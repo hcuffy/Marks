@@ -1,6 +1,6 @@
 import { DISPLAY_EXAM_TABLE, OPEN_CLASS_LIST, UPDATE_EXAM_TABLE } from './constants'
-import { getAllExams } from '../../database/exam'
-import { getAllGrades, addGradeData, updateGradeData } from '../../database/grade'
+import { getAllExams } from '../../collections/exam'
+import { getAllGrades, addGradeData, updateGradeData } from '../../collections/grade'
 
 const _ = require('lodash')
 
@@ -26,8 +26,7 @@ const filterGrades = async exams => {
 	return filteredGrades
 }
 
-const filterExams = async subjectData =>
-	_.filter(await getAllExams(), ['subjectId', subjectData.subjectId])
+const filterExams = async subjectData => _.filter(await getAllExams(), ['subjectId', subjectData.subjectId])
 
 export const displayGradeData = event => async dispatch => {
 	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {

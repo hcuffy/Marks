@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import {
 	saveSuccessful,
 	updateSuccessful,
@@ -8,11 +7,7 @@ import {
 	deletionFailed,
 	updateFailed
 } from '../notifications/general'
-import {
-	getClassroomData,
-	updateSubjectArray,
-	updateClassSubjectArray
-} from './classroom'
+import { getClassroomData, updateSubjectArray, updateClassSubjectArray } from './classroom'
 import { getAllExams, deleteExam } from './exam'
 
 const _ = require('lodash')
@@ -31,7 +26,7 @@ const Subject = new Datastore({
 
 const getSubjects = async ({ room, abbreviation }) => {
 	const data = await getClassroomData()
-	const selectedClass = _.find(data, ['name', room])
+	const selectedClass = _.find(data, { name: room })
 	if (_.includes(selectedClass.subjects, abbreviation)) {
 		return true
 	}
@@ -124,13 +119,13 @@ const checkSubjectChanges = (prev, curr) => {
 	return true
 }
 
-const updateClassroomSubjects = (subjectId, previousSubject, currentSubject) => {
+const updateClassroomSubjects = (classroomId, previousSubject, currentSubject) => {
 	if (!_.isEqual(previousSubject, currentSubject)) {
-		updateClassSubjectArray(subjectId, previousSubject, currentSubject)
+		updateClassSubjectArray(classroomId, previousSubject, currentSubject)
 	}
 }
 
-const updateSinlgeSubject = (previous, current) => {
+const updateSingleSubject = (previous, current) => {
 	const { name, abbreviation } = current
 	const { room, tests, classroomId } = previous
 
@@ -168,7 +163,7 @@ export const updateSubjectData = data =>
 				return err
 			}
 			if (entry.length > 0) {
-				updateSinlgeSubject(entry[0], data)
+				updateSingleSubject(entry[0], data)
 				Subject.find({ _id: data.subjectId }, (error, docs) => {
 					if (error) {
 						updateFailed()
@@ -214,20 +209,15 @@ export const updateSubjectTestArray = (subjectId, examTitle) =>
 				return err
 			}
 			if (entry.length > 0) {
-				Subject.update(
-					{ _id: subjectId },
-					{ $pull: { tests: examTitle } },
-					{},
-					(error, docs) => {
-						if (error) {
-							updateFailed()
+				Subject.update({ _id: subjectId }, { $pull: { tests: examTitle } }, {}, (error, docs) => {
+					if (error) {
+						updateFailed()
 
-							return reject(error)
-						}
-
-						return resolve(docs)
+						return reject(error)
 					}
-				)
+
+					return resolve(docs)
+				})
 			}
 		})
 	)

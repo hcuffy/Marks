@@ -7,7 +7,7 @@ import { actionCreators } from '../../actions/index'
 import GradeDropdown from './GradeDropdown'
 import { gradeColumns } from './helpers/gradeColumns'
 import { gradeInfo } from './helpers/gradeInfo'
-import styles from './styles/grades.css'
+import css from './styles/grades.css'
 
 const _ = require('lodash')
 
@@ -25,8 +25,8 @@ const GradeTable = ({ t, gradeData, students, actions }) => {
 	const data = gradeInfo(gradeData, students)
 
 	return (
-		<div className={styles.div_wrapper}>
-			<h4 className={styles.center_header}>{t('grades.gradesTitle')}</h4>
+		<div className={css.div_wrapper}>
+			<h4 className={css.center_header}>{t('grades.gradesTitle')}</h4>
 			<GradeDropdown t={t} />
 			<ReactTable
 				data={_.sortBy(data, ['name'], ['asc'])}

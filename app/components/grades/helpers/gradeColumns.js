@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/grades.css'
+import css from '../styles/grades.css'
 
 const _ = require('lodash')
 
@@ -34,10 +34,10 @@ const badgeColor = weight => {
 
 const customHeader = ({ date, weight }) => (
 	<div>
-		<span className={`badge badge-pill ${badgeColor(weight)} ${styles.badge_weight}`}>
+		<span className={`badge badge-pill ${badgeColor(weight)} ${css.badge_weight}`}>
 			<i className="fas fa-weight-hanging" /> {weight}
 		</span>
-		<span className={`badge badge-light badge-pill ${styles.badge_date}`}>
+		<span className={`badge badge-light badge-pill ${css.badge_date}`}>
 			<i className="fas fa-calendar" /> {date}
 		</span>
 	</div>

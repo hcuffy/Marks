@@ -4,11 +4,12 @@ import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
+import { getClassroomId } from '../helpers/dropdowns'
 import examForm from './helpers/formHelper'
 
 const _ = require('lodash')
 
-const getClassList = classInfo => {
+const getClassOptions = classInfo => {
 	const selectOptions = _.values(classInfo).map((data, idx) => (
 		<option className="form-control dropup" key={idx}>
 			{data.name}
@@ -18,10 +19,12 @@ const getClassList = classInfo => {
 	return selectOptions
 }
 
-const getSubjectList = (subjectData, examData, cleanedClassList) => {
-	const defaultSubject = cleanedClassList[0].name
-	const subjectInfo = examData.subject ? examData.subject : defaultSubject
-	const filteredSubject = _.filter(subjectData.data, ['room', subjectInfo])
+const getSubjectOptions = (subjectData, examData, cleanedClassList) => {
+	const { subject } = examData
+	const classroom = subject || cleanedClassList[0].name
+	const classroomId = getClassroomId(classroom, cleanedClassList)
+	const filteredSubject = _.filter(subjectData.data, ['classroomId', classroomId])
+
 	const selectedOptions = _.values(filteredSubject).map((data, idx) => (
 		<option className="form-control dropup" key={idx} data-id={data._id}>
 			{data.abbreviation}
@@ -33,8 +36,8 @@ const getSubjectList = (subjectData, examData, cleanedClassList) => {
 
 const ExamForm = ({ t, classData, subjectData, examData, actions }) => {
 	const cleanedClassList = sortData(classData)
-	const classOption = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList(subjectData, examData, cleanedClassList)
+	const classOption = getClassOptions(cleanedClassList)
+	const subjectOptions = getSubjectOptions(subjectData, examData, cleanedClassList)
 	const completeExamForm = examForm(t, subjectOptions, classOption, actions)
 
 	return <div>{completeExamForm}</div>

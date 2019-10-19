@@ -11,15 +11,18 @@ import {
 	getSubjectList,
 	createDropdown,
 	getExamList,
-	notifyIfEmpty
+	notifyIfEmpty,
+	getClassroomName
 } from '../helpers/dropdowns'
-import styles from './styles/graphs.css'
+import css from './styles/graphs.css'
+
+const _ = require('lodash')
 
 const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 	const {
 		subjectId,
 		exams,
-		classroom,
+		classroomId,
 		classroomDropdown,
 		openSubList,
 		subjectName,
@@ -28,17 +31,19 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 		chartTitle
 	} = graphData
 
-	const cleanedClassList = sortData(classData)
-	const classOptions = getClassList(cleanedClassList)
-	const subjectOptions = getSubjectList({ selectedRoom: classroom }, subjectData)
+	const classroom = _.isNull(classroomId)
+		? classroomId
+		: getClassroomName(classroomId, classData.classData)
+	const classOptions = getClassList(sortData(classData))
+	const subjectOptions = getSubjectList({ selectedRoom: classroomId }, subjectData)
 	const examOptions = getExamList(exams, subjectId)
 
 	notifyIfEmpty(t, subjectOptions, openSubList, 'class')
 
 	return (
-		<div className={styles.dropdown_main_div}>
+		<div className={css.dropdown_main_div}>
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				classroomDropdown,
 				actions.openGraphClassList,
 				resolveLabel(classroom, t('general.selectClass')),
@@ -46,7 +51,7 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 				'classDropdown'
 			)}
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				openSubList,
 				actions.displaySubjectGraph,
 				resolveLabel(subjectName, t('general.selectSubject')),
@@ -54,7 +59,7 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 				'subjectDropdown'
 			)}
 			{createDropdown(
-				styles.dropdown_div,
+				css.dropdown_div,
 				openExamList,
 				actions.displayExamGraph,
 				resolveLabel(examName, t('general.selectExam')),
@@ -62,7 +67,7 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 				'examDropdown'
 			)}
 			{PDFbutton(
-				styles.pdf_btn,
+				css.pdf_btn,
 				t('general.saveAs'),
 				resolveLabel(chartTitle, t('graph.schoolGrades'))
 			)}

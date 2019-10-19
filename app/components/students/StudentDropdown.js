@@ -11,7 +11,7 @@ import {
 	createDropdown,
 	notifyIfEmpty
 } from '../helpers/dropdowns'
-import styles from './styles/students.css'
+import css from './styles/students.css'
 
 const _ = require('lodash')
 
@@ -35,9 +35,9 @@ const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
 	}
 
 	return (
-		<div className={styles.dropdown_main_div}>
+		<div className={css.dropdown_main_div}>
 			{createDropdown(
-				styles.dropdown_one,
+				css.dropdown_one,
 				studentDropdown,
 				actions.openStudentGraph,
 				resolveLabel(studentGraphName, t('general.selectStudent')),
@@ -45,15 +45,15 @@ const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
 				'studentDropdown'
 			)}
 			{createDropdown(
-				styles.dropdown_two,
+				css.dropdown_two,
 				openIt.subjectDropdown,
-				actions.openStudenSubjectGraph,
+				actions.openStudentSubjectGraph,
 				resolveLabel(subjectGraphName, t('general.selectSubject')),
 				subjectOptions,
 				'subjectDropdown'
 			)}
 			{PDFbutton(
-				styles.pdf_btn,
+				css.pdf_btn,
 				t('general.saveAs'),
 				resolveLabel(studentGraphName, t('student.defaultHeader'))
 			)}

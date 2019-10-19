@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { modalFrame } from '../helpers/editModal'
 import { actionCreators } from '../../actions/index'
 import { cleanAndFilterData } from '../rooms/helpers/formHelpers'
-import styles from './styles/subject.css'
+import css from './styles/subject.css'
 
 const _ = require('lodash')
 
@@ -19,13 +19,13 @@ const getClassroomId = dataList => {
 
 const selectedSubject = (t, subject) =>
 	_.keys(subject).map((data, idx) => (
-		<div key={idx} className={styles.modal_form_div}>
-			<label className={styles.modal_form_label} htmlFor={`${data}_Id`}>
+		<div key={idx} className={css.modal_form_div}>
+			<label className={css.modal_form_label} htmlFor={`${data}_Id`}>
 				{t(`room.${data}`)}:
 			</label>
 			<input
 				name={data}
-				className={`${styles.badge_number} form-control`}
+				className={`${css.badge_number} form-control`}
 				data-id={`${data}_Id`}
 				type="text"
 				required

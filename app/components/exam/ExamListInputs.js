@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import styles from './styles/exam.css'
+import css from './styles/exam.css'
 
 const _ = require('lodash')
 
@@ -13,21 +13,21 @@ const ExamListInputs = ({ exams, subjectId, actions }) => {
 			key={idx}
 			data-id={data._id}
 			type="button"
-			className={`list-group-item list-group-item-action ${styles.list_btn}`}
+			className={`list-group-item list-group-item-action ${css.list_btn}`}
 			onClick={actions.showSingleExam}
 		>
 			{data.title}
-			<span className={`badge badge-light badge-pill ${styles.badge_number}`}>
+			<span className={`badge badge-light badge-pill ${css.badge_number}`}>
 				<i className="fas fa-calendar" /> {data.date}
 			</span>
-			<span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
+			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>
 				<i className="fas fa-weight-hanging" /> {data.weight}
 			</span>
 		</button>
 	))
 
 	return (
-		<div className={`list-group list-group-flush ${styles.exam_div}`}>{examList}</div>
+		<div className={`list-group list-group-flush ${css.exam_div}`}>{examList}</div>
 	)
 }
 

@@ -7,10 +7,10 @@ import { Bar } from 'react-chartjs-2'
 import { actionCreators } from '../../actions/index'
 import { chartData } from './helpers/chartData'
 import { chartOptions } from './helpers/chartOptions'
-import styles from './styles/graphs.css'
+import css from './styles/graphs.css'
 
 const Chart = ({ t, graphData, subjects, settings }) => (
-	<div className={styles.chart}>
+	<div className={css.chart}>
 		<Bar data={chartData(t, graphData, subjects, settings)} options={chartOptions()} />
 	</div>
 )

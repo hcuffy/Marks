@@ -10,7 +10,7 @@ import {
 	getAllSubjects,
 	updateSubjectData,
 	deleteSubject
-} from '../../database/subject'
+} from '../../collections/subject'
 
 export const openClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {

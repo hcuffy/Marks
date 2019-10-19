@@ -1,19 +1,19 @@
 import React from 'react'
-import styles from '../styles/exam.css'
+import css from '../styles/exam.css'
 
 const _ = require('lodash')
 
 const examTitle = (t, chosenExam) => (
-	<div className={styles.form_div_edit}>
+	<div className={css.form_div_edit}>
 		<label
-			className={styles.form_label_edit}
+			className={css.form_label_edit}
 			htmlFor={`${_.invert(chosenExam)[chosenExam.title]}_Id`}
 		>
 			{t(`exam.${_.invert(chosenExam)[chosenExam.title]}`)}:
 		</label>
 		<input
 			name={_.invert(chosenExam)[chosenExam.title]}
-			className={`${styles.form_input} ${styles.modalInput} form-control`}
+			className={`${css.form_input} ${css.modalInput} form-control`}
 			data-id={`${_.invert(chosenExam)[chosenExam.title]}_Id`}
 			type="text"
 			defaultValue={chosenExam.title}
@@ -23,16 +23,16 @@ const examTitle = (t, chosenExam) => (
 )
 
 const examWeight = (t, chosenExam) => (
-	<div className={styles.form_div_edit}>
+	<div className={css.form_div_edit}>
 		<label
-			className={styles.form_label_edit}
+			className={css.form_label_edit}
 			htmlFor={`${_.invert(chosenExam)[chosenExam.weight]}_Id`}
 		>
 			{t(`general.${_.invert(chosenExam)[chosenExam.weight]}`)}:
 		</label>
 		<input
 			name={_.invert(chosenExam)[chosenExam.weight]}
-			className={`${styles.form_input} form-control`}
+			className={`${css.form_input} form-control`}
 			data-id={`${_.invert(chosenExam)[chosenExam.weight]}_Id`}
 			type="number"
 			min="1"
@@ -45,16 +45,16 @@ const examWeight = (t, chosenExam) => (
 )
 
 const examDate = (t, chosenExam) => (
-	<div className={styles.form_div_edit}>
+	<div className={css.form_div_edit}>
 		<label
-			className={styles.form_label_edit}
+			className={css.form_label_edit}
 			htmlFor={`${_.invert(chosenExam)[chosenExam.date]}_Id`}
 		>
 			{t(`general.${_.invert(chosenExam)[chosenExam.date]}`)}:
 		</label>
 		<input
 			name={_.invert(chosenExam)[chosenExam.date]}
-			className={`${styles.form_input} form-control`}
+			className={`${css.form_input} form-control`}
 			data-id={`${_.invert(chosenExam)[chosenExam.date]}_Id`}
 			type="date"
 			defaultValue={chosenExam.date}

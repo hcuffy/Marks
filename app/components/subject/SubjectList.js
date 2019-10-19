@@ -4,7 +4,7 @@ import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import SubjectModal from './SubjectModal'
-import styles from './styles/subject.css'
+import css from './styles/subject.css'
 
 const _ = require('lodash')
 
@@ -13,23 +13,24 @@ export const filterSubjects = (subjectData, chosenClass) => {
 		return []
 	}
 	const chosenSubjects = _.chain(subjectData)
-		.filter(['room', chosenClass.name])
+		.filter(['classroomId', chosenClass._id])
 		.orderBy(['abbreviation'], [subJ => subJ.abbreviation.toLowerCase()], ['asc'])
 		.value()
 
 	return chosenSubjects
 }
+
 const listOfButtons = (filteredData, action) =>
 	filteredData.map((data, idx) => (
 		<button
 			key={idx}
 			data-id={data._id}
 			type="button"
-			className={`list-group-item list-group-item-action ${styles.list_btn}`}
+			className={`list-group-item list-group-item-action ${css.list_btn}`}
 			onClick={action}
 		>
 			{data.abbreviation}
-			<span className={`badge badge-warning badge-pill ${styles.badge_number}`}>
+			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>
 				{data.tests.length}
 			</span>
 		</button>
@@ -40,7 +41,7 @@ const SubjectList = ({ t, selectedSubject, subjectData, actions }) => {
 	const subjectList = listOfButtons(filteredData, actions.subjectModalDisplay)
 
 	return (
-		<div className={styles.list_div}>
+		<div className={css.list_div}>
 			<SubjectModal t={t} filteredData={filteredData} />
 			<div className="list-group list-group-flush">{subjectList}</div>
 		</div>

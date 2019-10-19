@@ -4,7 +4,7 @@ import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { gradeRadioButtons } from './helpers/formHelpers'
-import styles from './styles/settings.css'
+import css from './styles/settings.css'
 
 const _ = require('lodash')
 
@@ -15,7 +15,7 @@ const GradeFormat = ({ t, gradingSystem, actions }) => {
 
 	return (
 		<div>
-			<h4 className={styles.center_header}>{t('settings.gradeSystemTitle')}</h4>
+			<h4 className={css.center_header}>{t('settings.gradeSystemTitle')}</h4>
 			{gradeRadioButtons(t, gradingSystemTypes, actions)}
 		</div>
 	)

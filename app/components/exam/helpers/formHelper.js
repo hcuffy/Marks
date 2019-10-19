@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
-import styles from '../styles/exam.css'
+import css from '../styles/exam.css'
 
 const titleInput = t => (
 	<div>
-		<label className={styles.form_label} htmlFor="titleId">
+		<label className={css.form_label} htmlFor="titleId">
 			{t('exam.title')}*:
 		</label>
 		{/* eslint-disable-next-line max-len */}
@@ -13,7 +13,7 @@ const titleInput = t => (
 )
 const classInput = (t, options, action) => (
 	<div>
-		<label className={styles.form_label} htmlFor="classSelection">
+		<label className={css.form_label} htmlFor="classSelection">
 			{t('general.selectRoom')}:
 		</label>
 		<select
@@ -29,8 +29,8 @@ const classInput = (t, options, action) => (
 )
 
 const subjectInput = (t, options) => (
-	<div className={styles.subject_dropdown}>
-		<label className={styles.form_label} htmlFor="subjectSelection">
+	<div className={css.subject_dropdown}>
+		<label className={css.form_label} htmlFor="subjectSelection">
 			{t('general.selectSubject')}:
 		</label>
 		<select
@@ -48,8 +48,8 @@ const dateInput = t => {
 	const defaultDate = new Date().toISOString().substring(0, 10)
 
 	return (
-		<div className={`${styles.form_div} form-group`}>
-			<label className={styles.form_label} htmlFor="dateIn">
+		<div className={`${css.form_div} form-group`}>
+			<label className={css.form_label} htmlFor="dateIn">
 				{t('general.date')}:
 			</label>
 			<input
@@ -63,12 +63,12 @@ const dateInput = t => {
 	)
 }
 const numberInput = t => (
-	<div className={`${styles.form_div} form-group`}>
-		<label className={styles.form_label} htmlFor="number-input">
+	<div className={`${css.form_div} form-group`}>
+		<label className={css.form_label} htmlFor="number-input">
 			{t('general.weight')}:
 		</label>
 		<input
-			className={`${styles.weight_input} form-control`}
+			className={`${css.weight_input} form-control`}
 			defaultValue="1"
 			name="weight"
 			type="number"
@@ -89,7 +89,7 @@ const examForm = (t, subjectOptions, classOption, actions) => {
 				{subjectInput(t, subjectOptions)}
 				{dateInput(t)}
 				{numberInput(t)}
-				<div className={styles.form_save_btn}>
+				<div className={css.form_save_btn}>
 					<button type="submit" className="btn btn-success">
 						{t('general.add')}
 					</button>

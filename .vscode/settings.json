@@ -3,9 +3,7 @@
     ".babelrc": "jsonc",
     ".eslintrc": "jsonc",
     ".prettierrc": "jsonc",
-
     ".stylelintrc": "json",
-
     ".dockerignore": "ignore",
     ".eslintignore": "ignore",
     ".flowconfig": "ignore"
@@ -15,7 +13,7 @@
   "javascript.format.enable": false,
   "typescript.validate.enable": false,
   "typescript.format.enable": false,
-
+  "editor.rulers": [119],
   "flow.useNPMPackagedFlow": true,
   "search.exclude": {
     ".git": true,
@@ -35,9 +33,20 @@
   "cSpell.words": [
     "DROPDOWN",
     "Datastore",
+    "Fbutton",
     "autoload",
+    "camelcase",
+    "classdata",
+    "compat",
+    "dropdown",
+    "dropdowns",
+    "dropup",
     "firstname",
     "lastname",
-    "sidemenu"
+    "lifecycle",
+    "parens",
+    "reactstrap",
+    "sidemenu",
+    "textbox"
   ]
 }

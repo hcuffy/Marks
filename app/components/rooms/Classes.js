@@ -6,7 +6,7 @@ import { actionCreators } from '../../actions/index'
 import ClassList from './ClassList'
 import Subjects from '../subject/Subjects'
 import { addRoomForm, createFormInputs, checkChange } from './helpers/formHelpers'
-import styles from './styles/room.css'
+import css from './styles/room.css'
 
 const _ = require('lodash')
 
@@ -20,7 +20,7 @@ const Classes = ({ t, classData, actions }) => {
 		<div>
 			{addRoomForm(t, formInputs, actions)}
 			<div>
-				<h4 className={styles.list_header}>{t('room.listHeader')}</h4>
+				<h4 className={css.list_header}>{t('room.listHeader')}</h4>
 				<ClassList t={t} listData={classData} />
 			</div>
 			<Subjects t={t} classData={classData} />

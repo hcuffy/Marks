@@ -7,6 +7,7 @@ import * as sidemenu from '../components/sidemenu/actions'
 import * as graph from '../components/graphs/actions'
 import * as notes from '../components/notes/actions'
 import * as settings from '../components/settings/actions'
+import * as capability from '../components/capability/actions'
 
 export const actionCreators = {
 	changeClassroomTab: classroom.changeClassroomTab,
@@ -33,7 +34,7 @@ export const actionCreators = {
 	getStudents: student.getStudents,
 	showStudentModal: student.showStudentModal,
 	openStudentGraph: student.openStudentGraph,
-	openStudenSubjectGraph: student.openStudenSubjectGraph,
+	openStudentSubjectGraph: student.openStudentSubjectGraph,
 	deleteSingleStudent: student.deleteSingleStudent,
 	updateStudent: student.updateStudent,
 	displayGradeData: grade.displayGradeData,
@@ -47,7 +48,7 @@ export const actionCreators = {
 	displayExamGraph: graph.displayExamGraph,
 	saveSchoolAddress: settings.saveSchoolAddress,
 	displayAddress: settings.displayAddress,
-	updateSytemType: settings.updateGradingSystem,
+	updateSystemType: settings.updateGradingSystem,
 	getGradingSystem: settings.getGradingSystem,
 	addNote: notes.addNote,
 	openStudentDropdown: notes.openStudentDropdown,
@@ -57,5 +58,12 @@ export const actionCreators = {
 	updateTitleField: notes.updateTitleField,
 	deleteSingleNote: notes.deleteSingleNote,
 	clearNoteField: notes.clearNoteField,
-	updateNote: notes.updateNote
+	updateNote: notes.updateNote,
+	openCapabilityClassList: capability.openCapabilityClassList,
+	openCapabilityStudentList: capability.openCapabilityStudentList,
+	getQuestions: capability.getQuestions,
+	openQuestionList: capability.openQuestionList,
+	updateQuestionSet: capability.updateQuestionSet,
+	handleCapabilityAnswers: capability.handleCapabilityAnswers,
+	getAnswers: capability.getAnswers
 }

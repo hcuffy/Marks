@@ -17,6 +17,7 @@ import applyGradeData from '../components/grades/reducer'
 import applyMenuStyling from '../components/sidemenu/reducer'
 import applyGraphData from '../components/graphs/reducer'
 import applyNotesData from '../components/notes/reducer'
+import applyCapabilityChanges from '../components/capability/reducer'
 
 export default function createRootReducer(history: History) {
 	return combineReducers({
@@ -34,6 +35,7 @@ export default function createRootReducer(history: History) {
 		menuStylingData: applyMenuStyling,
 		gradeData: applyGradeData,
 		graphData: applyGraphData,
-		notesData: applyNotesData
+		notesData: applyNotesData,
+		capabilityData: applyCapabilityChanges
 	})
 }

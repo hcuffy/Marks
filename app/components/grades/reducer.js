@@ -20,7 +20,7 @@ const applyGradeData = (state = initialLoadState, action) => {
 		const classroomDropdown = !state.classroomDropdown
 		const subDrop = !classroomDropdown
 
-		return _.assign({}, state, { classroomDropdown, subDrop }, { ...action.payload })
+		return _.assign({}, state, { classroomDropdown, subDrop }, action.payload)
 	}
 	case UPDATE_EXAM_TABLE: {
 		return _.assign({}, state, action.payload)

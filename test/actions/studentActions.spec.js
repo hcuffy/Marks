@@ -112,7 +112,7 @@ describe('test the student section actions', () => {
 				subjectGraphName: 'German'
 			}
 		}
-		const fn = actions.openStudenSubjectGraph(events.subjectDropdownValid)
+		const fn = actions.openStudentSubjectGraph(events.subjectDropdownValid)
 		const dispatch = spy()
 		expect(fn).toBeInstanceOf(Function)
 		fn(dispatch)

@@ -4,10 +4,10 @@ import { Line } from 'react-chartjs-2'
 import { connect } from 'react-redux'
 import { chartData } from './helpers/chart/chartData'
 import { chartOptions } from './helpers/chart/chartOptions'
-import styles from './styles/students.css'
+import css from './styles/students.css'
 
 const StudentChart = ({ t, studentData, exams, grades, settings }) => (
-	<div className={styles.chart}>
+	<div className={css.chart}>
 		<Line
 			data={chartData(t, studentData, grades, exams)}
 			options={chartOptions(settings)}

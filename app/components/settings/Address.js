@@ -4,14 +4,14 @@ import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { addressForm, addressFields } from './helpers/formHelpers'
 import { actionCreators } from '../../actions/index'
-import styles from './styles/settings.css'
+import css from './styles/settings.css'
 
 const Address = ({ t, addressData, actions }) => {
 	const entry = addressFields(t, addressData)
 
 	return (
-		<div className={styles.address_wrapper}>
-			<h4 className={styles.address_header}>{t('settings.addressTitle')}</h4>
+		<div className={css.address_wrapper}>
+			<h4 className={css.address_header}>{t('settings.addressTitle')}</h4>
 			{addressForm(t, entry, actions)}
 		</div>
 	)

@@ -4,7 +4,7 @@ import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { classPill } from './helpers/formHelpers'
-import styles from './styles/room.css'
+import css from './styles/room.css'
 
 const _ = require('lodash')
 
@@ -12,8 +12,8 @@ const NavBar = ({ t, tabChangeData, actions }) => {
 	const { classTab, examTab } = tabChangeData
 
 	return (
-		<div className={styles.navbar_div}>
-			<h4 className={styles.center_main_header}>{t('room.title')}</h4>
+		<div className={css.navbar_div}>
+			<h4 className={css.center_main_header}>{t('room.title')}</h4>
 			<ul className="nav nav-pills justify-content-center">
 				{classPill(
 					0,

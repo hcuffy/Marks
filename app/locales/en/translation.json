@@ -77,6 +77,57 @@
     "title": "Title",
     "textbox": "Note"
   },
+  "capability": {
+    "tableHeader": "Student Capability Questions PlaceHolder",
+    "options": {
+      "option0": "Terrible",
+      "option1": "Not Good",
+      "option2": "Could do better",
+      "option3": "Satisfactory",
+      "option4": "Very Good",
+      "option5": "Excellent"
+    },
+    "class5": {
+      "math": {
+        "subject": "Mathematics",
+        "question0": "Can you add1?",
+        "question1": "Can you add2?",
+        "question2": "Can you add3?",
+        "question3": "Can you add4?",
+        "question4": "Can you add5?",
+        "question5": "Can you add6?"
+      },
+      "eng": {
+        "subject": "English",
+        "question0": "Can you read1?",
+        "question1": "Can you read2?",
+        "question2": "Can you read3?",
+        "question3": "Can you read4?",
+        "question4": "Can you read5?",
+        "question5": "Can you read6?"
+      }
+    },
+    "class6": {
+      "math": {
+        "subject": "Mathematics",
+        "question0": "Can you add1?",
+        "question1": "Can you add2?",
+        "question2": "Can you add3?",
+        "question3": "Can you add4?",
+        "question4": "Can you add5?",
+        "question5": "Can you add6?"
+      },
+      "eng": {
+        "subject": "English",
+        "question0": "Can you read1?",
+        "question1": "Can you read2?",
+        "question2": "Can you read3?",
+        "question3": "Can you read4?",
+        "question4": "Can you read5?",
+        "question5": "Can you read6?"
+      }
+    }
+  },
   "notifications": {
     "general": {
       "saveSuccess": "The data was saved successfully.",
