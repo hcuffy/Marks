@@ -3,7 +3,8 @@ import {
 	OPEN_CLOSE_STUDENT_LIST,
 	GET_ALL_QUESTIONS,
 	OPEN_CLOSE_QUESTION_LIST,
-	UPDATE_QUESTION_SET
+	UPDATE_QUESTION_SET,
+	UPDATE_ANSWERS
 } from './constants'
 
 const _ = require('lodash')
@@ -16,6 +17,7 @@ const initialLoadState = {
 	classroomId: null,
 	studentName: null,
 	studentId: null,
+	answers: [],
 	questions: []
 }
 
@@ -45,6 +47,9 @@ const applyCapabilityChanges = (state = initialLoadState, action) => {
 		const questionDropdown = false
 
 		return _.assign({}, state, { questionDropdown }, action.payload)
+	}
+	case UPDATE_ANSWERS: {
+		return _.assign({}, state, action.payload)
 	}
 	default:
 		return state

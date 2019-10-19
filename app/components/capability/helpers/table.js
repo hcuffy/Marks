@@ -45,6 +45,18 @@ export const getQuestionBase = (classroomId, questions) => {
 	return questionRoot ? questionRoot.questionSet : null
 }
 
+const isOptionChecked = (capabilityOption, { classroomId, questionId, studentId, answers }) => {
+	const answersToQuestion = _.find(answers, { classroomId, studentId })
+	console.log(answersToQuestion)
+	if (!_.isUndefined(answersToQuestion) && !_.isEmpty(answersToQuestion)) {
+		const selectedQuestionOption = _.find(answersToQuestion.capability, { questionId, optionTag: capabilityOption })
+		console.log(selectedQuestionOption)
+		if (selectedQuestionOption) {
+			return true
+		}
+	}
+}
+
 const questionOptions = (t, data, actions) => {
 	const { subjectShort, questionKey, questionId, studentId, classroomId, optionsKeys } = data
 	const options = optionsKeys.map((capabilityOption, idx) => (
@@ -60,6 +72,7 @@ const questionOptions = (t, data, actions) => {
 					classroom-id={classroomId}
 					onClick={actions.handleCapabilityAnswers}
 					name={`${subjectShort}${_.last(questionKey)}`}
+					defaultChecked={isOptionChecked(capabilityOption, data)}
 				/>
 			</FormGroup>
 		</td>
@@ -76,6 +89,7 @@ export const createInnerBody = (
 	subjectShort,
 	studentId,
 	classroomId,
+	answers,
 	actions
 ) => {
 	const question = questionKeys.map((questionKey, idx) => {
@@ -83,7 +97,7 @@ export const createInnerBody = (
 		const optionsKeys = createKeys(6, 'option')
 		const answerOptions = questionOptions(
 			t,
-			{ subjectShort, questionKey, questionId, studentId, classroomId, optionsKeys },
+			{ subjectShort, questionKey, questionId, studentId, classroomId, optionsKeys, answers },
 			actions
 		)
 		const showHeader = _.last(questionKey) === '0' ? subjectHeader : null
@@ -102,7 +116,7 @@ export const createInnerBody = (
 	return question
 }
 
-export const createTableBody = (t, subjects, actualSet, studentId, classroomId, actions) => {
+export const createTableBody = (t, subjects, actualSet, studentId, classroomId, answers, actions) => {
 	const questions = subjects.map(subject => {
 		const subjectKey = subject[_.findKey(subject)]
 		const subjectShort = subjectKey.short
@@ -121,6 +135,7 @@ export const createTableBody = (t, subjects, actualSet, studentId, classroomId, 
 			subjectShort,
 			studentId,
 			classroomId,
+			answers,
 			actions
 		)
 

@@ -8,7 +8,7 @@ import * as graph from '../components/graphs/actions'
 import * as notes from '../components/notes/actions'
 import * as settings from '../components/settings/actions'
 import * as capability from '../components/capability/actions'
- 
+
 export const actionCreators = {
 	changeClassroomTab: classroom.changeClassroomTab,
 	handleClassData: classroom.handleClassData,
@@ -61,8 +61,9 @@ export const actionCreators = {
 	updateNote: notes.updateNote,
 	openCapabilityClassList: capability.openCapabilityClassList,
 	openCapabilityStudentList: capability.openCapabilityStudentList,
-	getAnswers: capability.getAnswers,
+	getQuestions: capability.getQuestions,
 	openQuestionList: capability.openQuestionList,
 	updateQuestionSet: capability.updateQuestionSet,
-	handleCapabilityAnswers: capability.handleCapabilityAnswers
+	handleCapabilityAnswers: capability.handleCapabilityAnswers,
+	getAnswers: capability.getAnswers
 }

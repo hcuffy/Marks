@@ -49,34 +49,31 @@ export const addStudentAnswer = answerData => {
 }
 
 const updateStudentAnswer = ({ classroomId, studentId, questionId, optionTag }) => {
-	new Promise((resolve, reject) => {
-		CapabilityAnswers.find({ classroomId, studentId }, (err, answer) => {
-			if (err) {
-				unableToRetrieve()
+	CapabilityAnswers.find({ classroomId, studentId }, (err, answer) => {
+		if (err) {
+			updateFailed()
 
-				return reject(err)
-			}
-			const answerExists = _.find(answer[0].capability, { questionId })
+			return err
+		}
+		const answerExists = _.find(answer[0].capability, { questionId })
 
-			if (_.size(answerExists) > 0) {
-				console.log('pulling')
-				CapabilityAnswers.update(
-					{ classroomId, studentId },
-					{ $pull: { capability: { questionId } } },
-					{},
-					() => {}
-				)
-			}
-
+		if (_.size(answerExists) > 0) {
+			console.log('pulling')
 			CapabilityAnswers.update(
 				{ classroomId, studentId },
-				{ $addToSet: { capability: { questionId, optionTag } } },
+				{ $pull: { capability: { questionId } } },
 				{},
 				() => {}
 			)
+		}
 
-			return resolve(answer)
-		})
+		CapabilityAnswers.update(
+			{ classroomId, studentId },
+			{ $addToSet: { capability: { questionId, optionTag } } },
+			{},
+			() => {}
+		)
+		updateSuccessful()
 	})
 }
 
@@ -89,10 +86,8 @@ export const updateSingleAnswer = answerData =>
 			}
 			if (count < 1) {
 				addStudentAnswer(answerData)
-				updateSuccessful()
 			} else {
 				updateStudentAnswer(answerData)
-				updateSuccessful()
 			}
 		})
 

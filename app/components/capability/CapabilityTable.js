@@ -10,7 +10,7 @@ import css from './styles/capability.css'
 
 const _ = require('lodash')
 
-const tableQuestions = (t, actualSet, { studentId, classroomId, questions }, actions) => {
+const tableQuestions = (t, actualSet, { studentId, classroomId, questions, answers }, actions) => {
 	const questionBase = getQuestionBase(classroomId, questions) ? 'class5' : 'class5'
 	const questionSet = _.find(capabilityQuestions, actualSet)[questionBase]
 	const questionArr = []
@@ -19,7 +19,7 @@ const tableQuestions = (t, actualSet, { studentId, classroomId, questions }, act
 		questionArr.push({ [key]: value })
 	})
 
-	return createTableBody(t, questionArr, questionBase, studentId, classroomId, actions)
+	return createTableBody(t, questionArr, questionBase, studentId, classroomId, answers, actions)
 }
 
 const CapabilityTable = ({ t, capabilityData, actions }) => {
