@@ -7,12 +7,7 @@ export const genderDropdown = (t, defaultValue, styleOne, styleTwo) => (
 		<label className={css.form_label} htmlFor="gSelect">
 			{t('student.gender')}:
 		</label>
-		<select
-			type="text"
-			name="gender"
-			defaultValue={defaultValue}
-			className="form-control"
-		>
+		<select type="text" name="gender" defaultValue={defaultValue} className="form-control">
 			<option data-id="male" className="form-control dropdown">
 				{t('student.male')}
 			</option>
@@ -23,24 +18,12 @@ export const genderDropdown = (t, defaultValue, styleOne, styleTwo) => (
 	</div>
 )
 
-export const classroomDropdown = (
-	t,
-	options,
-	classroom,
-	styleOne,
-	styleTwo,
-	styleThree
-) => (
+export const classroomDropdown = (t, options, classroom, styleOne, styleTwo, styleThree) => (
 	<div className={`${styleOne} ${styleTwo}`}>
 		<label className={styleThree} htmlFor="cSelect">
 			{t('student.classroom')}:
 		</label>
-		<select
-			type="text"
-			name="classroom"
-			defaultValue={classroom}
-			className="form-control"
-		>
+		<select type="text" name="classroom" defaultValue={classroom} className="form-control">
 			{options}
 		</select>
 	</div>
@@ -55,14 +38,7 @@ const studentForm = (t, selectOption, formFields, actions) => {
 					{formFields}
 					{/* eslint-disable-next-line max-len */}
 					{genderDropdown(t, t('student.male'), css.select_dropDown, css.form_div)}
-					{classroomDropdown(
-						t,
-						selectOption,
-						null,
-						css.select_dropDown,
-						css.form_div,
-						css.form_label
-					)}
+					{classroomDropdown(t, selectOption, null, css.select_dropDown, css.form_div, css.form_label)}
 					<div className={(css.form_inner_div, css.save_btn)}>
 						<button type="submit" className="btn btn-success">
 							{t('general.add')}

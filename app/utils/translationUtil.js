@@ -5,8 +5,7 @@ export const customTranslate = translate => i18next.t(translate)
 
 const _ = require('lodash')
 
-export const resolveLabel = (current, translated) =>
-	_.isEmpty(current) ? translated : current
+export const resolveLabel = (current, translated) => (_.isEmpty(current) ? translated : current)
 
 export const currentLanguage = () => i18next.language
 

@@ -9,14 +9,7 @@ import css from './styles/notes.css'
 
 const NotesDropdown = ({ t, studentData, notesData, actions }) => {
 	const { students } = studentData
-	const {
-		studentDropdown,
-		notesDropdown,
-		selectedStudent,
-		selectedNote,
-		studentId,
-		notes
-	} = notesData
+	const { studentDropdown, notesDropdown, selectedStudent, selectedNote, studentId, notes } = notesData
 
 	const studentOptions = getStudentList(students)
 	const notesOptions = getNotesList(notes, studentId)

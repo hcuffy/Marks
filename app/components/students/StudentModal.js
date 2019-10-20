@@ -25,18 +25,7 @@ const StudentModal = ({ t, students, classdata, actions }) => {
 		closeAction: actions.showStudentModal
 	}
 
-	return (
-		<div>
-			{modalFrame(
-				t,
-				studentModal,
-				actions.updateStudent,
-				studentFields,
-				hiddenInput,
-				footerData
-			)}
-		</div>
-	)
+	return <div>{modalFrame(t, studentModal, actions.updateStudent, studentFields, hiddenInput, footerData)}</div>
 }
 
 const mapStateToProps = state => ({

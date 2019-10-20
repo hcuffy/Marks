@@ -41,12 +41,16 @@
     "dropdown",
     "dropdowns",
     "dropup",
+    "examid",
     "firstname",
     "lastname",
     "lifecycle",
     "parens",
     "reactstrap",
     "sidemenu",
+    "studentid",
+    "subjectid",
+    "subjectname",
     "textbox"
   ]
 }

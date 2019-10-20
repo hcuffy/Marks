@@ -14,13 +14,7 @@ const studentDataFields = (t, studentData) =>
 			<label className={css.form_label} htmlFor={`${data}_Id`}>
 				{t(`student.${data}`)}*:
 			</label>
-			<input
-				name={data}
-				required
-				className="form-control"
-				data-id={`${data}_Id`}
-				type="text"
-			/>
+			<input name={data} required className="form-control" data-id={`${data}_Id`} type="text" />
 		</div>
 	))
 

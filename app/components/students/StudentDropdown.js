@@ -5,25 +5,13 @@ import { bindActionCreators } from 'redux'
 import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { PDFbutton } from '../../utils/pdfUtil'
-import {
-	getStudentList,
-	getAllSubjects,
-	createDropdown,
-	notifyIfEmpty
-} from '../helpers/dropdowns'
+import { getStudentList, getAllSubjects, createDropdown, notifyIfEmpty } from '../helpers/dropdowns'
 import css from './styles/students.css'
 
 const _ = require('lodash')
 
 const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
-	const {
-		students,
-		studentDropdown,
-		subjectDropdown,
-		chartToDisplay,
-		studentGraphName,
-		subjectGraphName
-	} = studentData
+	const { students, studentDropdown, subjectDropdown, chartToDisplay, studentGraphName, subjectGraphName } = studentData
 
 	const studentOptions = getStudentList(students)
 	const subjectOptions = getAllSubjects(subjectData.data)
@@ -52,11 +40,7 @@ const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
 				subjectOptions,
 				'subjectDropdown'
 			)}
-			{PDFbutton(
-				css.pdf_btn,
-				t('general.saveAs'),
-				resolveLabel(studentGraphName, t('student.defaultHeader'))
-			)}
+			{PDFbutton(css.pdf_btn, t('general.saveAs'), resolveLabel(studentGraphName, t('student.defaultHeader')))}
 		</div>
 	)
 }

@@ -30,9 +30,7 @@ const listOfButtons = (filteredData, action) =>
 			onClick={action}
 		>
 			{data.abbreviation}
-			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>
-				{data.tests.length}
-			</span>
+			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>{data.tests.length}</span>
 		</button>
 	))
 

@@ -53,10 +53,7 @@ export const getQuestions = () => async dispatch => {
 }
 
 export const openQuestionList = event => dispatch => {
-	if (
-		event.target.getAttribute('data-check') !== 'openButton' ||
-		isNull(event.target.getAttribute('data-id'))
-	) {
+	if (event.target.getAttribute('data-check') !== 'openButton' || isNull(event.target.getAttribute('data-id'))) {
 		return
 	}
 
