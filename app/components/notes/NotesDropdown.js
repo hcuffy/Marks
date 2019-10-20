@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import { getStudentList, getNotesList, createDropdown } from '../helpers/dropdowns'
+import { getStudentList, getNotesList, createDropdown, notifyIfEmpty } from '../helpers/dropdowns'
 import { resolveLabel } from '../../utils/translationUtil'
 import css from './styles/notes.css'
 
@@ -13,6 +13,7 @@ const NotesDropdown = ({ t, studentData, notesData, actions }) => {
 
 	const studentOptions = getStudentList(students)
 	const notesOptions = getNotesList(notes, studentId)
+	notifyIfEmpty(t, notesOptions, notesDropdown, 'student')
 
 	return (
 		<div className={css.dropdown_main_div}>

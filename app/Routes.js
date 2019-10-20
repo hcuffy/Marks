@@ -1,16 +1,7 @@
 /* eslint flowtype-errors/show-errors: 0 */
 import React from 'react'
 import { Switch, Route } from 'react-router'
-import {
-	HOME,
-	CLASSROOM,
-	STUDENTS,
-	GRADES,
-	GRAPHS,
-	NOTES,
-	CAPABILITY,
-	SETTINGS
-} from './constants/routes.json'
+import { HOME, CLASSROOM, STUDENTS, GRADES, GRAPHS, NOTES, CAPABILITY, SETTINGS } from './constants/routes.json'
 import App from './containers/App'
 import Home from './containers/Home'
 import Classroom from './containers/Classroom'

@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify'
 
 export const firstMakeSelection = (t, section) => {
-	toast.warn(t(`${t('notifications.warning.makeSelection')} ${section}.`), {
+	toast.warn(t(`notifications.warning.${section}`), {
 		position: 'top-right',
 		autoClose: 4000,
 		hideProgressBar: false,
