@@ -27,17 +27,16 @@ export const openCapabilityClassList = event => dispatch => {
 }
 
 export const openCapabilityStudentList = event => async dispatch => {
-	event.persist()
 	if (event.target.getAttribute('data-check') !== 'studentDropdown') {
 		return
 	}
-
+	event.persist()
 	const questions = await getAllQuestions()
 
 	dispatch({
 		type: OPEN_CLOSE_STUDENT_LIST,
 		payload: {
-			studentName: event.target.innerText,
+			studentName: 'event.target.innerText',
 			studentId: event.target.getAttribute('data-id'),
 			questions
 		}
