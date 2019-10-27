@@ -142,7 +142,8 @@
     },
     "warning": {
       "class": "First select a class.",
-      "student": "First select a student."
+      "student": "First select a student.",
+      "subject": "First select a subject."
     }
   },
   "settings": {

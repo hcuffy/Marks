@@ -142,7 +142,8 @@
     },
     "warning": {
       "class": "Wählen Sie zuerst ein/e Student/in.",
-      "student": "Wählen Sie zuerst eine Klasse."
+      "student": "Wählen Sie zuerst eine Klasse.",
+      "subject": "Wählen Sie zuerst ein Fach."
     }
   },
   "settings": {

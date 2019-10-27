@@ -36,7 +36,7 @@ export const openCapabilityStudentList = event => async dispatch => {
 	dispatch({
 		type: OPEN_CLOSE_STUDENT_LIST,
 		payload: {
-			studentName: 'event.target.innerText',
+			studentName: event.target.innerText,
 			studentId: event.target.getAttribute('data-id'),
 			questions
 		}
