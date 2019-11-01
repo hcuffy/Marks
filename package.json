@@ -149,7 +149,7 @@
       "^.+\\.jsx?$": "babel-jest"
     },
     "setupFiles": [
-      "./internals/scripts/CheckBuiltsExist.js"
+      "./internals/scripts/CheckBuildsExist.js"
     ]
   },
   "devDependencies": {
@@ -223,6 +223,7 @@
     "opencollective-postinstall": "^2.0.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "prettier": "^1.15.3",
+    "react-hot-loader": "4.8.2",
     "react-test-renderer": "^16.7.0",
     "redux-logger": "^3.0.6",
     "rimraf": "^2.6.2",
@@ -248,6 +249,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
+    "@hot-loader/react-dom": "^16.8.6",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.7.3",
     "connected-react-router": "^5.0.1",
@@ -264,7 +266,6 @@
     "react": "^16.7.0",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.7.0",
-    "react-hot-loader": "^4.6.3",
     "react-i18next": "^9.0.10",
     "react-redux": "^5.1.1",
     "react-router": "^4.3.1",
