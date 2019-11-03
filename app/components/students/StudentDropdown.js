@@ -10,12 +10,19 @@ import css from './styles/students.css'
 
 const _ = require('lodash')
 
-const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
-	const { students, studentDropdown, subjectDropdown, chartToDisplay, studentGraphName, subjectGraphName } = studentData
+const StudentDropdown = ({ t, allStudentData, subjectData, actions }) => {
+	const { students,
+		studentDropdown,
+		subjectDropdown,
+		chartToDisplay,
+		studentGraphName,
+		subjectGraphName } = allStudentData
 
 	const studentOptions = getStudentList(students)
 	const subjectOptions = getAllSubjects(subjectData.data)
-	const openIt = { subjectDropdown }
+	const openIt = {
+		subjectDropdown
+	}
 
 	if (chartToDisplay === 'subject' && _.isNull(studentGraphName)) {
 		notifyIfEmpty(t, [], true, 'student')
@@ -46,7 +53,7 @@ const StudentDropdown = ({ t, studentData, subjectData, actions }) => {
 }
 
 const mapStateToProps = state => ({
-	studentData: state.studentData,
+	allStudentData: state.studentData,
 	subjectData: state.subjectData
 })
 
