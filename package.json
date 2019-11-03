@@ -17,6 +17,7 @@
     "lint-styles": "stylelint --ignore-path .eslintignore '**/*.*(css|scss)' --syntax scss",
     "lint-styles-fix": "yarn --silent lint-styles --fix; exit 0",
     "package": "yarn build && electron-builder build --mac --publish never",
+    "package-mac": "yarn build && electron-builder build --mac --publish always",
     "package-all": "yarn build && electron-builder build -mwl",
     "package-ci": "yarn postinstall && yarn build && electron-builder --publish always",
     "package-linux": "yarn build && electron-builder build --linux",
@@ -102,16 +103,18 @@
       "buildResources": "resources",
       "output": "release"
     },
-    "publish": {
-      "provider": "github",
-      "owner": "hcuffy",
-      "repo": "My-Marks",
-      "private": false
-    }
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "hcuffy",
+        "repo": "Marks",
+        "private": false
+      }
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hcuffy/My-Marks.git"
+    "url": "git+https://github.com/hcuffy/Marks.git"
   },
   "author": {
     "name": "Henry Cuffy",
@@ -120,7 +123,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hcuffy/My-Marks/issues"
+    "url": "https://github.com/hcuffy/Marks/issues"
   },
   "keywords": [
     "electron",
@@ -133,7 +136,7 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/hcuffy/My-Marks/blob/master/README.md",
+  "homepage": "https://github.com/hcuffy/Marks/blob/master/README.md",
   "jest": {
     "testURL": "http://localhost/",
     "moduleNameMapper": {
