@@ -1,5 +1,5 @@
 {
-  "name": "Marks",
+  "name": "marks",
   "productName": "Marks",
   "version": "1.3.0",
   "description": "This app gives teachers the ability to keep track of marks",
@@ -103,14 +103,12 @@
       "buildResources": "resources",
       "output": "release"
     },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "hcuffy",
-        "repo": "Marks",
-        "private": false
-      }
-    ]
+    "publish": {
+      "provider": "github",
+      "owner": "hcuffy",
+      "repo": "Marks",
+      "private": false
+    }
   },
   "repository": {
     "type": "git",
