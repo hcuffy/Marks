@@ -5,9 +5,10 @@ const _ = require('lodash')
 
 const filteredGrades = ({ studentGraphId }, grades) => {
 	const data = []
-	const studentGrades = _.sortBy(_.filter(grades, ['studentId', studentGraphId]), [
-		'date'
-	])
+
+	const studentGrades =_.sortBy(_.filter(grades,(grade) =>
+		grade.studentId === studentGraphId && grade.grade > 0), ['date'])
+
 	for (let i = 0; i < studentGrades.length; i += 1) {
 		data.push({
 			t: studentGrades[i].date,
