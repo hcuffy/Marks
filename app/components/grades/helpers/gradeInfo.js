@@ -38,6 +38,9 @@ const getGradeInfo = (student, gradeData) => {
 	return grade
 }
 
+const gradeAvgDenominator = grades => _.sumBy(_.filter(grades,(grade) =>
+	grade.score > 0), (grade) => parseInt(grade.weight,10))
+
 const studentAverage = grades => {
 	const total = _.reduce(
 		grades,
@@ -47,7 +50,7 @@ const studentAverage = grades => {
 		},
 		0
 	)
-	return _.round(total / grades.length, 2)
+	return _.round(total / gradeAvgDenominator(grades), 2)
 }
 
 const getAverage = grades => {
