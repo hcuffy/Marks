@@ -40,9 +40,13 @@
     "dropdown",
     "dropdowns",
     "dropup",
+    "examid",
     "firstname",
     "lastname",
     "reactstrap",
-    "sidemenu"
+    "sidemenu",
+    "studentid",
+    "subjectid",
+    "subjectname"
   ]
 }
