@@ -21,7 +21,7 @@ export const applyClassData = (state = initialLoadState, action) => {
 		})
 	}
 	case GET_CLASSROOM_DATA: {
-		return _.assign({}, state, action.payload)
+		return _.assign({}, state, { check: false }, action.payload)
 	}
 	default:
 		return state

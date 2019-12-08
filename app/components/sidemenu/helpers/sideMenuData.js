@@ -1,13 +1,4 @@
-import {
-	HOME,
-	CLASSROOM,
-	STUDENTS,
-	GRADES,
-	GRAPHS,
-	NOTES,
-	CAPABILITY,
-	SETTINGS
-} from '../../../constants/routes.json'
+import { HOME, CLASSROOM, STUDENTS, GRADES, GRAPHS, NOTES, CAPABILITY, SETTINGS } from '../../../constants/routes.json'
 
 export const menuData = {
 	home: {

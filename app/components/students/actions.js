@@ -5,12 +5,7 @@ import {
 	DISPLAY_STUDENT_GRAPH,
 	DISPLAY_STUDENT_SUBJECT_GRAPH
 } from './constants'
-import {
-	addNewStudentData,
-	getAllStudents,
-	deleteStudent,
-	updateStudentData
-} from '../../collections/student'
+import { addNewStudentData, getAllStudents, deleteStudent, updateStudentData } from '../../collections/student'
 
 export const getOption = (event, propToGet) => {
 	const index = event.target[propToGet].selectedIndex

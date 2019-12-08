@@ -51,15 +51,18 @@ const averageColumn = () => ({
 })
 
 const customFooter = ({ data }, iterator) => {
-	const grades = []
+	const gradesArray = []
 	for (let i = 0; i < data.length; i += 1) {
 		// eslint-disable-next-line no-underscore-dangle
-		const { score, weight } = data[i]._original.grades[iterator]
+		const { score } = data[i]._original.grades[iterator]
 
-		grades.push(parseInt(score, 10) * parseInt(weight, 10))
+		if(parseInt(score, 10) !== 0){
+			gradesArray.push(parseInt(score, 10))
+		}
+
 	}
-
-	const examAverage = _.round(_.mean(_.without(grades, 0)), 2)
+	console.log(gradesArray)
+	const examAverage = _.round(_.mean(gradesArray), 2)
 
 	return (
 		<span>

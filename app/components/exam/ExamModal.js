@@ -25,18 +25,7 @@ const ExamModal = ({ t, examData, actions }) => {
 		closeAction: actions.showSingleExam
 	}
 
-	return (
-		<div>
-			{modalFrame(
-				t,
-				examModal,
-				actions.updateExam,
-				examFormData,
-				hiddenInputs,
-				footerData
-			)}
-		</div>
-	)
+	return <div>{modalFrame(t, examModal, actions.updateExam, examFormData, hiddenInputs, footerData)}</div>
 }
 const mapStateToProps = state => ({
 	examData: state.examData

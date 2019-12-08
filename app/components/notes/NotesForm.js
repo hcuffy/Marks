@@ -5,9 +5,7 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import noteForm from './helpers/formHelpers'
 
-const NotesForm = ({ t, notesData, actions }) => (
-	<div>{noteForm(t, actions, notesData)}</div>
-)
+const NotesForm = ({ t, notesData, actions }) => <div>{noteForm(t, actions, notesData)}</div>
 
 const mapStateToProps = state => ({
 	notesData: state.notesData
