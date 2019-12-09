@@ -19,11 +19,7 @@ const downloadPDF = (itemToPDF, nameOfChart, saveAs) => {
 }
 
 export const PDFbutton = (styling, saveText, chartTitle) => (
-	<button
-		className={styling}
-		type="button"
-		onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
-	>
+	<button className={styling} type="button" onClick={() => downloadPDF('canvas', chartTitle, 'chart')}>
 		<i className="fas fa-file-pdf fa-2x" /> <br />
 		{saveText}
 	</button>

@@ -5,12 +5,7 @@ import {
 	UPDATE_CLASSROOM,
 	OPEN_CLOSE_ROOM_MODAL
 } from './constants'
-import {
-	addClassroomData,
-	getClassroomData,
-	deleteClassroom,
-	updateRoomData
-} from '../../collections/classroom'
+import { addClassroomData, getClassroomData, deleteClassroom, updateRoomData } from '../../collections/classroom'
 
 const _ = require('lodash')
 

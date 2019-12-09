@@ -24,13 +24,7 @@ const titleField = (t, title, studentId, actions) => (
 			{t('notes.title')}*:
 		</Label>
 		<Col sm={10}>
-			<Input
-				type="text"
-				name="title"
-				required
-				value={title}
-				onChange={actions.updateTitleField}
-			/>
+			<Input type="text" name="title" required value={title} onChange={actions.updateTitleField} />
 			<Input type="text" name="student" defaultValue={studentId} hidden />
 		</Col>
 	</FormGroup>
@@ -66,21 +60,10 @@ const footerBtns = (t, noteId, studentId, actions) => (
 			>
 				{t('general.delete')}
 			</Button>{' '}
-			<Button
-				type="button"
-				color="secondary"
-				onClick={actions.clearNoteField}
-				disabled={!noteId}
-			>
+			<Button type="button" color="secondary" onClick={actions.clearNoteField} disabled={!noteId}>
 				{t('general.clear')}
 			</Button>{' '}
-			<Button
-				type="button"
-				color="primary"
-				data-id={noteId}
-				onClick={actions.updateNote}
-				disabled={!noteId}
-			>
+			<Button type="button" color="primary" data-id={noteId} onClick={actions.updateNote} disabled={!noteId}>
 				{t('general.update')}
 			</Button>{' '}
 			{/* eslint-disable-next-line max-len */}
@@ -93,12 +76,8 @@ const footerBtns = (t, noteId, studentId, actions) => (
 
 const noteForm = (t, actions, notesData) => {
 	const { studentId, noteId, notes, textBox, textField } = notesData
-	const textBoxText = _.isNull(studentId)
-		? ''
-		: getNoteData(textBox, noteId, notes, 'note')
-	const titleText = _.isNull(studentId)
-		? ''
-		: getNoteData(textField, noteId, notes, 'title')
+	const textBoxText = _.isNull(studentId) ? '' : getNoteData(textBox, noteId, notes, 'note')
+	const titleText = _.isNull(studentId) ? '' : getNoteData(textField, noteId, notes, 'title')
 
 	return (
 		<Form onSubmit={actions.addNote} method="POST">

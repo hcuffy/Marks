@@ -5,13 +5,7 @@ import { bindActionCreators } from 'redux'
 import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
-import {
-	getClassList,
-	getSubjectList,
-	createDropdown,
-	notifyIfEmpty,
-	getClassroomName
-} from '../helpers/dropdowns'
+import { getClassList, getSubjectList, createDropdown, notifyIfEmpty, getClassroomName } from '../helpers/dropdowns'
 import css from './styles/grades.css'
 
 const _ = require('lodash')
@@ -21,9 +15,7 @@ const GradeDropdown = ({ t, classData, gradeData, subjectData, actions }) => {
 	const openIt = { subDrop }
 	const classOptions = getClassList(sortData(classData))
 
-	const classroom = _.isNull(classroomId)
-		? classroomId
-		: getClassroomName(classroomId, classData.classData)
+	const classroom = _.isNull(classroomId) ? classroomId : getClassroomName(classroomId, classData.classData)
 
 	const subjectOptions = getSubjectList({ selectedRoom: classroomId }, subjectData)
 

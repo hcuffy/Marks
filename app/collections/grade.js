@@ -1,9 +1,4 @@
-import {
-	saveFailed,
-	unableToRetrieve,
-	updateFailed,
-	deletionFailed
-} from '../notifications/general'
+import { saveFailed, unableToRetrieve, updateFailed, deletionFailed } from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')

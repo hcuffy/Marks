@@ -9,13 +9,6 @@ import './app.global.css'
 
 const store = configureStore()
 
-render(
-	<AppContainer>
-		<Root store={store} history={history} />
-	</AppContainer>,
-	document.getElementById('root')
-)
-
 if (module.hot) {
 	module.hot.accept('./containers/Root', () => {
 		// eslint-disable-next-line global-require
@@ -28,3 +21,10 @@ if (module.hot) {
 		)
 	})
 }
+
+render(
+	<AppContainer>
+		<Root store={store} history={history} />
+	</AppContainer>,
+	document.getElementById('root')
+)

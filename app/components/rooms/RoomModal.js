@@ -18,18 +18,7 @@ const RoomModal = ({ t, modalData, classModalData, actions }) => {
 		closeAction: actions.roomModalDisplay
 	}
 
-	return (
-		<div>
-			{modalFrame(
-				t,
-				classModalData.showModal,
-				actions.updateRoom,
-				clickedRoom,
-				hiddenInput,
-				footerData
-			)}
-		</div>
-	)
+	return <div>{modalFrame(t, classModalData.showModal, actions.updateRoom, clickedRoom, hiddenInput, footerData)}</div>
 }
 
 const mapStateToProps = state => ({ classModalData: state.classModalData })

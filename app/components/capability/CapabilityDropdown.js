@@ -11,8 +11,7 @@ import css from './styles/capability.css'
 
 const _ = require('lodash')
 
-const filterStudentsByClassId = (students, classroomId) =>
-	_.filter(students, ['classroom', classroomId])
+const filterStudentsByClassId = (students, classroomId) => _.filter(students, ['classroom', classroomId])
 
 const CapabilityDropdown = ({ capabilityData, classData, students, actions }) => {
 	const {

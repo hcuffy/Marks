@@ -1,16 +1,5 @@
-import {
-	UPDATE_GRADING_DATA,
-	GET_SYSTEM_TYPE,
-	HANDLE_SCHOOL_DATA,
-	DISPLAY_SCHOOL_DATA
-} from './constants'
-import {
-	saveGradeSystem,
-	getSystemType,
-	updateGradeType,
-	addAddress,
-	getAddressData
-} from '../../collections/settings'
+import { UPDATE_GRADING_DATA, GET_SYSTEM_TYPE, HANDLE_SCHOOL_DATA, DISPLAY_SCHOOL_DATA } from './constants'
+import { saveGradeSystem, getSystemType, updateGradeType, addAddress, getAddressData } from '../../collections/settings'
 
 const _ = require('lodash')
 

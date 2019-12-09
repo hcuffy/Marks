@@ -26,9 +26,7 @@ const ExamListInputs = ({ exams, subjectId, actions }) => {
 		</button>
 	))
 
-	return (
-		<div className={`list-group list-group-flush ${css.exam_div}`}>{examList}</div>
-	)
+	return <div className={`list-group list-group-flush ${css.exam_div}`}>{examList}</div>
 }
 
 const mapStateToProps = state => ({

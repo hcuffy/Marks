@@ -1,9 +1,4 @@
-import {
-	UPDATE_CLASS_LIST,
-	GET_SINGLE_SUBJECT,
-	GET_SUBJECT_LIST,
-	ADD_NEW_SUBJECT
-} from '../constants'
+import { UPDATE_CLASS_LIST, GET_SINGLE_SUBJECT, GET_SUBJECT_LIST, ADD_NEW_SUBJECT } from '../constants'
 
 const _ = require('lodash')
 

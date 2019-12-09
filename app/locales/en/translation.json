@@ -141,7 +141,9 @@
       "noUpdate": "There is nothing to update."
     },
     "warning": {
-      "makeSelection": "First select a"
+      "class": "First select a class.",
+      "student": "First select a student.",
+      "subject": "First select a subject."
     }
   },
   "settings": {

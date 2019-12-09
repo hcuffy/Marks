@@ -52,6 +52,7 @@
     "textbox",
     "studentid",
     "subjectid",
+    "textbox",
     "subjectname"
   ]
 }

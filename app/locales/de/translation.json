@@ -141,7 +141,9 @@
       "noUpdate": "Es gibt nichts zu aktualisieren."
     },
     "warning": {
-      "makeSelection": "Wählen Sie zuerst ein/e"
+      "class": "Wählen Sie zuerst ein/e Student/in.",
+      "student": "Wählen Sie zuerst eine Klasse.",
+      "subject": "Wählen Sie zuerst ein Fach."
     }
   },
   "settings": {

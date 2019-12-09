@@ -27,11 +27,10 @@ export const openCapabilityClassList = event => dispatch => {
 }
 
 export const openCapabilityStudentList = event => async dispatch => {
-	event.persist()
 	if (event.target.getAttribute('data-check') !== 'studentDropdown') {
 		return
 	}
-
+	event.persist()
 	const questions = await getAllQuestions()
 
 	dispatch({
@@ -53,10 +52,7 @@ export const getQuestions = () => async dispatch => {
 }
 
 export const openQuestionList = event => dispatch => {
-	if (
-		event.target.getAttribute('data-check') !== 'openButton' ||
-		isNull(event.target.getAttribute('data-id'))
-	) {
+	if (event.target.getAttribute('data-check') !== 'openButton' || isNull(event.target.getAttribute('data-id'))) {
 		return
 	}
 

@@ -22,13 +22,7 @@ export const addressFields = (t, addressData) =>
 			<label className={css.form_label} htmlFor={`school${data}`}>
 				{t(`settings.${data}`)}:
 			</label>
-			<input
-				name={data}
-				className="form-control"
-				id={`school${data}`}
-				type="text"
-				defaultValue={addressData[data]}
-			/>
+			<input name={data} className="form-control" id={`school${data}`} type="text" defaultValue={addressData[data]} />
 		</div>
 	))
 

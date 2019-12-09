@@ -88,13 +88,27 @@ export const subjectOptions = (subjects, actions) => {
 	return options
 }
 
+const heightModifier = {
+	setMaxHeight: {
+		enabled: true,
+		fn: data => ({
+			...data,
+			styles: {
+				...data.styles,
+				overflow: 'auto',
+				maxHeight: 300
+			}
+		})
+	}
+}
+
 export const createDropdown = (styling, openIt, action, label, options, dataId) => (
 	<div className={styling}>
 		<Dropdown isOpen={openIt} toggle={action}>
 			<DropdownToggle data-check={dataId} className={css.dropdown_color} caret>
 				{label}
 			</DropdownToggle>
-			<DropdownMenu>{options}</DropdownMenu>
+			<DropdownMenu modifiers={heightModifier}>{options}</DropdownMenu>
 		</Dropdown>
 	</div>
 )

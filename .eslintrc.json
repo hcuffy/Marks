@@ -9,19 +9,43 @@
     "browser": true,
     "node": true
   },
-  "extends": ["airbnb", "prettier", "prettier/react"],
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
   "rules": {
-    "array-element-newline": ["error", { "minItems": 3 }],
-    "arrow-parens": ["off"],
-    "camelcase": [0, { "properties": "never" }],
-    "compat/compat": "error",
+    "array-element-newline": [
+      "error",
+      {
+        "minItems": 3
+      }
+    ],
+    "arrow-parens": [
+      "off"
+    ],
+    "camelcase": [
+      0,
+      {
+        "properties": "never"
+      }
+    ],
     "consistent-return": "off",
     "comma-dangle": "off",
     "generator-star-spacing": "off",
     "import/no-unresolved": "error",
     "import/no-extraneous-dependencies": "off",
+    "import/no-cycle": [
+      0,
+      {
+        "maxDepth": 0
+      }
+    ],
     "import/prefer-default-export": "off",
-    "indent": ["error", "tab"],
+    "indent": [
+      "error",
+      "tab"
+    ],
     "max-len": [
       "error",
       {
@@ -39,16 +63,29 @@
       }
     ],
     "no-trailing-spaces": "error",
-    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "_id"
+        ]
+      }
+    ],
     "no-useless-return": "error",
     "no-unused-vars": "error",
     "no-unneeded-ternary": "error",
-    "object-curly-spacing": ["error", "always"],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
     "promise/param-names": "error",
     "promise/always-return": "error",
     "promise/catch-or-return": "error",
     "promise/no-native": "off",
-    "semi": ["error", "never"],
+    "semi": [
+      "error",
+      "never"
+    ],
     "react/sort-comp": [
       "error",
       {
@@ -67,7 +104,10 @@
     "react/jsx-filename-extension": [
       "error",
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
       }
     ],
     "react/prefer-stateless-function": "off",
@@ -78,14 +118,24 @@
       "error",
       {
         "required": {
-          "some": ["nesting", "id"]
+          "some": [
+            "nesting",
+            "id"
+          ]
         }
       }
     ]
   },
-  "plugins": ["import", "promise", "compat", "react"],
+  "plugins": [
+    "import",
+    "promise",
+    "compat",
+    "react"
+  ],
   "settings": {
-    "react": { "version": "latest" },
+    "react": {
+      "version": "latest"
+    },
     "import/resolver": {
       "webpack": {
         "config": "configs/webpack.config.eslint.js"
