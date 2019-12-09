@@ -16,13 +16,7 @@ const classInput = (t, options, action) => (
 		<label className={css.form_label} htmlFor="classSelection">
 			{t('general.selectRoom')}:
 		</label>
-		<select
-			onChange={action}
-			className="form-control"
-			name="room"
-			data-id="classSelection"
-			type="text"
-		>
+		<select onChange={action} className="form-control" name="room" data-id="classSelection" type="text">
 			{options}
 		</select>
 	</div>
@@ -33,12 +27,7 @@ const subjectInput = (t, options) => (
 		<label className={css.form_label} htmlFor="subjectSelection">
 			{t('general.selectSubject')}:
 		</label>
-		<select
-			className="form-control"
-			name="subject"
-			data-id="subjectSelection"
-			type="text"
-		>
+		<select className="form-control" name="subject" data-id="subjectSelection" type="text">
 			{options}
 		</select>
 	</div>
@@ -52,13 +41,7 @@ const dateInput = t => {
 			<label className={css.form_label} htmlFor="dateIn">
 				{t('general.date')}:
 			</label>
-			<input
-				className="form-control"
-				name="date"
-				type="date"
-				data-id="dateIn"
-				defaultValue={defaultDate}
-			/>
+			<input className="form-control" name="date" type="date" data-id="dateIn" defaultValue={defaultDate} />
 		</div>
 	)
 }

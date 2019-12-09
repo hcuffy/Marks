@@ -1,7 +1,6 @@
 import { resolveLabel } from '../../../utils/translationUtil'
 
-export const gradingSystem = settings =>
-	_.findKey(settings, gradeType => gradeType === true)
+export const gradingSystem = settings => _.findKey(settings, gradeType => gradeType === true)
 
 const _ = require('lodash')
 
@@ -89,10 +88,7 @@ const filterByExam = (examId, grades) => {
 	return filteredGrades
 }
 
-const gradesToDisplay = (
-	{ grades, chartTitle, subjectId, exams, examId, chartToDisplay },
-	subjects
-) => {
+const gradesToDisplay = ({ grades, chartTitle, subjectId, exams, examId, chartToDisplay }, subjects) => {
 	switch (chartToDisplay) {
 	case 'exam':
 		return [...filterByExam(examId, grades)]

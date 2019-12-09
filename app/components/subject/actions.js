@@ -5,12 +5,7 @@ import {
 	GET_SUBJECT_LIST,
 	OPEN_CLOSE_SUBJECT_MODAL
 } from './constants'
-import {
-	addSubjectData,
-	getAllSubjects,
-	updateSubjectData,
-	deleteSubject
-} from '../../collections/subject'
+import { addSubjectData, getAllSubjects, updateSubjectData, deleteSubject } from '../../collections/subject'
 
 export const openClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {

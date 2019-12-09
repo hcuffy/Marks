@@ -28,7 +28,7 @@ export const displaySubjectGraph = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
 		return
 	}
-
+	event.persist()
 	const data = {
 		subjectId: event.target.getAttribute('data-id'),
 		chartTitle: event.target.innerText,

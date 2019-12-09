@@ -54,18 +54,7 @@ const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
 		closeAction: actions.subjectModalDisplay
 	}
 
-	return (
-		<div>
-			{modalFrame(
-				t,
-				showSubjectModal,
-				actions.updateSubject,
-				subjectFields,
-				hiddenInputs,
-				footerData
-			)}
-		</div>
-	)
+	return <div>{modalFrame(t, showSubjectModal, actions.updateSubject, subjectFields, hiddenInputs, footerData)}</div>
 }
 
 const mapStateToProps = state => ({ subjectModalData: state.subjectModalData })

@@ -5,10 +5,7 @@ const _ = require('lodash')
 
 const examTitle = (t, chosenExam) => (
 	<div className={css.form_div_edit}>
-		<label
-			className={css.form_label_edit}
-			htmlFor={`${_.invert(chosenExam)[chosenExam.title]}_Id`}
-		>
+		<label className={css.form_label_edit} htmlFor={`${_.invert(chosenExam)[chosenExam.title]}_Id`}>
 			{t(`exam.${_.invert(chosenExam)[chosenExam.title]}`)}:
 		</label>
 		<input
@@ -24,10 +21,7 @@ const examTitle = (t, chosenExam) => (
 
 const examWeight = (t, chosenExam) => (
 	<div className={css.form_div_edit}>
-		<label
-			className={css.form_label_edit}
-			htmlFor={`${_.invert(chosenExam)[chosenExam.weight]}_Id`}
-		>
+		<label className={css.form_label_edit} htmlFor={`${_.invert(chosenExam)[chosenExam.weight]}_Id`}>
 			{t(`general.${_.invert(chosenExam)[chosenExam.weight]}`)}:
 		</label>
 		<input
@@ -46,10 +40,7 @@ const examWeight = (t, chosenExam) => (
 
 const examDate = (t, chosenExam) => (
 	<div className={css.form_div_edit}>
-		<label
-			className={css.form_label_edit}
-			htmlFor={`${_.invert(chosenExam)[chosenExam.date]}_Id`}
-		>
+		<label className={css.form_label_edit} htmlFor={`${_.invert(chosenExam)[chosenExam.date]}_Id`}>
 			{t(`general.${_.invert(chosenExam)[chosenExam.date]}`)}:
 		</label>
 		<input

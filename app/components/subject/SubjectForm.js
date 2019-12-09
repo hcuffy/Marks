@@ -15,13 +15,7 @@ const generateInputs = (t, labels) =>
 				{t(`room.${data}`)}:
 			</label>
 			{/* eslint-disable-next-line max-len */}
-			<input
-				name={data}
-				className="form-control"
-				data-id={`${data}Sid`}
-				type="text"
-				required
-			/>
+			<input name={data} className="form-control" data-id={`${data}Sid`} type="text" required />
 		</div>
 	))
 

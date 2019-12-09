@@ -2,8 +2,7 @@ import { HANDLE_MENU_CHANGE } from './constants'
 
 const _ = require('lodash')
 
-const clickedButton = (menuButtons, event) =>
-	_.set(menuButtons, event.target.getAttribute('data-id'), '#1dbb90')
+const clickedButton = (menuButtons, event) => _.set(menuButtons, event.target.getAttribute('data-id'), '#1dbb90')
 
 export const updateButtonStyle = event => dispatch => {
 	const menuButtons = {

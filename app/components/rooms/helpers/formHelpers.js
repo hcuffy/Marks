@@ -9,14 +9,7 @@ export const createFormInputs = (t, labels) =>
 			<label className={css.room_form_label} htmlFor={`${data}Id`}>
 				{t(`room.${data}`)}:
 			</label>
-			<input
-				name={data}
-				className="form-control"
-				id={`${data}Id`}
-				type="text"
-				required
-				defaultValue={labels[data]}
-			/>
+			<input name={data} className="form-control" id={`${data}Id`} type="text" required defaultValue={labels[data]} />
 		</div>
 	))
 
@@ -46,9 +39,7 @@ export const classInputs = (cleanData, action) =>
 			onClick={action}
 		>
 			{data.name}
-			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>
-				{data.subjects.length}
-			</span>
+			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>{data.subjects.length}</span>
 		</button>
 	))
 

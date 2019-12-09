@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 // @flow
 import { app, Menu, BrowserWindow } from 'electron'
 import { createWindow } from './main.dev'
@@ -16,10 +15,7 @@ export default class MenuBuilder {
 			this.setupDevelopmentEnvironment()
 		}
 
-		const template =
-			process.platform === 'darwin'
-				? this.buildDarwinTemplate()
-				: this.buildDefaultTemplate()
+		const template = process.platform === 'darwin' ? this.buildDarwinTemplate() : this.buildDefaultTemplate()
 
 		const menu = Menu.buildFromTemplate(template)
 		Menu.setApplicationMenu(menu)
@@ -141,8 +137,7 @@ export default class MenuBuilder {
 			]
 		}
 
-		const subMenuView =
-			process.env.NODE_ENV === 'development' ? subMenuViewDev : subMenuViewProd
+		const subMenuView = process.env.NODE_ENV === 'development' ? subMenuViewDev : subMenuViewProd
 
 		return [subMenuAbout,
 			subMenuView,

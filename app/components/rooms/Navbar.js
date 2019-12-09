@@ -15,20 +15,8 @@ const NavBar = ({ t, tabChangeData, actions }) => {
 		<div className={css.navbar_div}>
 			<h4 className={css.center_main_header}>{t('room.title')}</h4>
 			<ul className="nav nav-pills justify-content-center">
-				{classPill(
-					0,
-					classTab,
-					_.keys({ classTab })[0],
-					actions.changeClassroomTab,
-					t('room.classTab')
-				)}
-				{classPill(
-					-1,
-					examTab,
-					_.keys({ examTab })[0],
-					actions.changeClassroomTab,
-					t('room.examsTab')
-				)}
+				{classPill(0, classTab, _.keys({ classTab })[0], actions.changeClassroomTab, t('room.classTab'))}
+				{classPill(-1, examTab, _.keys({ examTab })[0], actions.changeClassroomTab, t('room.examsTab'))}
 			</ul>
 		</div>
 	)

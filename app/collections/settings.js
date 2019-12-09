@@ -47,19 +47,14 @@ export const getSystemType = () =>
 
 const updateAddress = (previous, id) => {
 	const { title, street, province, country, zip, city, year } = previous
-	Settings.update(
-		{ _id: id },
-		{ $set: { title, street, province, country, zip, city, year } },
-		{},
-		err => {
-			if (err) {
-				saveFailed()
+	Settings.update({ _id: id }, { $set: { title, street, province, country, zip, city, year } }, {}, err => {
+		if (err) {
+			saveFailed()
 
-				return err
-			}
-			saveSuccessful()
+			return err
 		}
-	)
+		saveSuccessful()
+	})
 }
 
 const updateSystem = (previous, id) => {

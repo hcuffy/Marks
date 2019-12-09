@@ -1,9 +1,4 @@
-import {
-	DISPLAY_SCHOOL_DATA,
-	HANDLE_SCHOOL_DATA,
-	UPDATE_GRADING_DATA,
-	GET_SYSTEM_TYPE
-} from './constants'
+import { DISPLAY_SCHOOL_DATA, HANDLE_SCHOOL_DATA, UPDATE_GRADING_DATA, GET_SYSTEM_TYPE } from './constants'
 
 const _ = require('lodash')
 

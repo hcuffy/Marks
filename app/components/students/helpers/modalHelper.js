@@ -33,23 +33,21 @@ const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
 }
 
 const generateFields = (t, chosenStudent, classdata) => {
-	const studentFields = _.keys(_.pick(chosenStudent, ['firstname', 'lastname'])).map(
-		(data, idx) => (
-			<div key={idx} className={css.form_div_edit}>
-				<label className={css.form_label_edit} htmlFor={`${data}_Id`}>
-					{t(`student.${data}`)}*:
-				</label>
-				<input
-					name={data}
-					required
-					className={`${css.form_input} form-control`}
-					data-id={`${data}_Id`}
-					type="text"
-					defaultValue={chosenStudent[data]}
-				/>
-			</div>
-		)
-	)
+	const studentFields = _.keys(_.pick(chosenStudent, ['firstname', 'lastname'])).map((data, idx) => (
+		<div key={idx} className={css.form_div_edit}>
+			<label className={css.form_label_edit} htmlFor={`${data}_Id`}>
+				{t(`student.${data}`)}*:
+			</label>
+			<input
+				name={data}
+				required
+				className={`${css.form_input} form-control`}
+				data-id={`${data}_Id`}
+				type="text"
+				defaultValue={chosenStudent[data]}
+			/>
+		</div>
+	))
 	const studentForm = dropDownFields(t, studentFields, chosenStudent, classdata)
 
 	return studentForm
