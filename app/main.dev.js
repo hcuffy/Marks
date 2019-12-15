@@ -11,92 +11,112 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron'
-import { autoUpdater } from 'electron-updater'
-import log from 'electron-log'
-import MenuBuilder from './menu'
+import { app, BrowserWindow } from 'electron';
+import { autoUpdater } from 'electron-updater';
+import log from 'electron-log';
+import MenuBuilder from './menu';
 
 export default class AppUpdater {
-	constructor() {
-		log.transports.file.level = 'info'
-		autoUpdater.logger = log
-		autoUpdater.checkForUpdatesAndNotify()
-	}
+  constructor() {
+    log.transports.file.level = 'info';
+    autoUpdater.logger = log;
+    autoUpdater.checkForUpdatesAndNotify();
+  }
 }
 
-let mainWindow = null
-// ///
-export const createWindow = () => {
-	mainWindow = new BrowserWindow({
-		show: false,
-		width: 1024,
-		height: 800
-	})
+let mainWindow = null;
 
-	mainWindow.loadURL(`file://${__dirname}/app.html`)
-
-	mainWindow.webContents.on('did-finish-load', () => {
-		if (!mainWindow) {
-			throw new Error('"mainWindow" is not defined')
-		}
-		if (process.env.START_MINIMIZED) {
-			mainWindow.minimize()
-		} else {
-			mainWindow.show()
-			mainWindow.focus()
-		}
-	})
-
-	mainWindow.on('closed', () => {
-		mainWindow = null
-	})
-}
-// //
 if (process.env.NODE_ENV === 'production') {
-	const sourceMapSupport = require('source-map-support')
-	sourceMapSupport.install()
+  const sourceMapSupport = require('source-map-support');
+  sourceMapSupport.install();
 }
 
-if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
-	require('electron-debug')()
+if (process.env.NODE_ENV === 'production') {
+  const sourceMapSupport = require('source-map-support');
+  sourceMapSupport.install();
+}
+
+if (
+  process.env.NODE_ENV === 'development' ||
+  process.env.DEBUG_PROD === 'true'
+) {
+  require('electron-debug')();
 }
 
 const installExtensions = async () => {
-	const installer = require('electron-devtools-installer')
-	const forceDownload = !!process.env.UPGRADE_EXTENSIONS
-	const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS']
+  const installer = require('electron-devtools-installer');
+  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
 
-	return Promise.all(extensions.map(name => installer.default(installer[name], forceDownload))).catch(console.log)
-}
+  return Promise.all(
+    extensions.map(name => installer.default(installer[name], forceDownload))
+  ).catch(console.log);
+};
+
+const createWindow = () => {
+  mainWindow = new BrowserWindow({
+    show: false,
+    width: 1024,
+    height: 728,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  });
+
+  mainWindow.loadURL(`file://${__dirname}/app.html`);
+
+  // @TODO: Use 'ready-to-show' event
+  //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
+  mainWindow.webContents.on('did-finish-load', () => {
+    if (!mainWindow) {
+      throw new Error('"mainWindow" is not defined');
+    }
+    if (process.env.START_MINIMIZED) {
+      mainWindow.minimize();
+    } else {
+      mainWindow.show();
+      mainWindow.focus();
+    }
+  });
+
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
+};
 
 /**
  * Add event listeners...
  */
 
 app.on('window-all-closed', () => {
-	// Respect the OSX convention of having the application in memory even
-	// after all windows have been closed
-	if (process.platform !== 'darwin') {
-		app.quit()
-	}
-})
+  // Respect the OSX convention of having the application in memory even
+  // after all windows have been closed
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
 
 app.on('ready', async () => {
-	if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
-		await installExtensions()
-	}
+  if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.DEBUG_PROD === 'true'
+  ) {
+    await installExtensions();
+  }
 
-	createWindow()
+  createWindow();
+  const menuBuilder = new MenuBuilder(mainWindow);
+  menuBuilder.buildMenu();
 
-	const menuBuilder = new MenuBuilder(mainWindow)
-	menuBuilder.buildMenu()
+  // Remove this if your app does not use auto updates
+  // eslint-disable-next-line
+  new AppUpdater();
+});
 
-	// Remove this if your app does not use auto updates
-	// eslint-disable-next-line
-	new AppUpdater()
-	app.on('activate', () => {
-		if (mainWindow === null) {
-			createWindow()
-		}
-	})
-})
+app.on('activate', () => {
+  // On macOS it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (mainWindow === null) {
+    createWindow();
+  }
+});
