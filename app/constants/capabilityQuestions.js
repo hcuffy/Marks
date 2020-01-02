@@ -1,29 +1,43 @@
-const capabilityQuestions = [
+export const capabilityQuestions = [
 	{
 		name: 'class5',
 		class5: {
-			mathematics: {
+			german: {
 				number: 6,
+				short: 'germ'
+			},
+			mathematics: {
+				number: 4,
 				short: 'math'
 			},
 			english: {
-				number: 6,
+				number: 4,
 				short: 'eng'
-			}
-		}
-	}, {
-		name: 'class6',
-		class6: {
-			mathematics: {
-				number: 6,
-				short: 'math'
 			},
-			english: {
-				number: 6,
+			science: {
+				number: 4,
+				short: 'sci'
+			},
+			art: {
+				number: 3,
+				short: 'art'
+			},
+			work: {
+				number: 4,
+				short: 'work'
+			},
+			sport: {
+				number: 4,
 				short: 'eng'
+			},
+			history: {
+				number: 4,
+				short: 'hist'
+			},
+			general: {
+				number: 14,
+				short: 'general'
 			}
 		}
 	}
 ]
-
-export default capabilityQuestions
