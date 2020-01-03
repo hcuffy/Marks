@@ -5,7 +5,12 @@ import {
 	UPDATE_CLASSROOM,
 	OPEN_CLOSE_ROOM_MODAL
 } from './constants'
-import { addClassroomData, getClassroomData, deleteClassroom, updateRoomData } from '../../collections/classroom'
+import {
+	addClassroomData,
+	getClassroomData,
+	deleteClassroom,
+	updateRoomData
+} from '../../collections/classroom'
 
 const _ = require('lodash')
 
@@ -15,7 +20,11 @@ export const changeClassroomTab = event => dispatch => {
 		examTab: ''
 	}
 
-	const tabUpdate = _.set(tabButtons, event.target.getAttribute('data-name'), 'active')
+	const tabUpdate = _.set(
+		tabButtons,
+		event.target.getAttribute('data-name'),
+		'active'
+	)
 
 	dispatch({
 		type: CHANGE_CLASSROOM_TAB,
@@ -43,7 +52,7 @@ export const handleClassData = event => async dispatch => {
 
 export const displayClassData = () => async dispatch => {
 	const data = await getClassroomData()
-
+	console.log(data)
 	if (data.length !== 0) {
 		dispatch({
 			type: GET_CLASSROOM_DATA,

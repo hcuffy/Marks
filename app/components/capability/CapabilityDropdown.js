@@ -3,17 +3,28 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
-import { getClassList, getStudentList, getQuestionList, createDropdown } from '../helpers/dropdowns'
-import capabilityQuestions from '../../constants/capabilityQuestions'
+import {
+	getClassList,
+	getStudentList,
+	getQuestionList,
+	createDropdown
+} from '../helpers/dropdowns'
+import { capabilityQuestions } from '../../constants/capabilityQuestions'
 import { getQuestionSet, changeQuestionBtn } from './helpers/table'
 import { resolveLabel } from '../../utils/translationUtil'
 import css from './styles/capability.css'
 
 const _ = require('lodash')
 
-const filterStudentsByClassId = (students, classroomId) => _.filter(students, ['classroom', classroomId])
+const filterStudentsByClassId = (students, classroomId) =>
+	_.filter(students, ['classroom', classroomId])
 
-const CapabilityDropdown = ({ capabilityData, classData, students, actions }) => {
+const CapabilityDropdown = ({
+	capabilityData,
+	classData,
+	students,
+	actions
+}) => {
 	const {
 		classDropdown,
 		studentDropdown,
@@ -24,8 +35,14 @@ const CapabilityDropdown = ({ capabilityData, classData, students, actions }) =>
 		classroomId
 	} = capabilityData
 	const classOptions = getClassList(sortData(classData))
-	const studentOptions = getStudentList(filterStudentsByClassId(students, classroomId))
-	const questionOptions = getQuestionList(classroomId, capabilityQuestions, actions)
+	const studentOptions = getStudentList(
+		filterStudentsByClassId(students, classroomId)
+	)
+	const questionOptions = getQuestionList(
+		classroomId,
+		capabilityQuestions,
+		actions
+	)
 	const actualSet = getQuestionSet(classroomId, questions)
 
 	return (
@@ -69,7 +86,4 @@ const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
 })
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(CapabilityDropdown)
+export default connect(mapStateToProps, mapDispatchToProps)(CapabilityDropdown)

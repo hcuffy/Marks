@@ -13,7 +13,7 @@
 .menu_btn {
 	width: 100px;
 	padding: 10px 10px 10px 10px;
-	border: none;
+	border: none !important;
 	background: #1e73be !important;
 	outline: none !important;
 }
@@ -26,7 +26,6 @@
 	color: #fff;
 	font-size: 10px;
 	background-color: none;
-	position: absolute;
-	bottom: 50px;
-	left: 25px;
+	position: sticky;
+	margin: 25px;
 }

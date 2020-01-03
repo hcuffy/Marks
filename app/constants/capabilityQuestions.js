@@ -18,8 +18,12 @@ export const capabilityQuestions = [
 				number: 4,
 				short: 'sci'
 			},
-			art: {
+			music: {
 				number: 3,
+				short: 'music'
+			},
+			art: {
+				number: 4,
 				short: 'art'
 			},
 			work: {
