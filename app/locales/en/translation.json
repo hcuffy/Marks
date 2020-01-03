@@ -1,165 +1,208 @@
 {
-  "home": {
-    "title": "HOMEPAGE",
-    "addressHeader": "Your School Address",
-    "resourcesHeader": "Useful Resources"
-  },
-  "general": {
-    "add": "Add",
-    "save": "Save",
-    "close": "Close",
-    "update": "Update",
-    "clear": "Clear",
-    "delete": "Delete",
-    "edit": "Edit",
-    "date": "Date",
-    "number": "Number",
-    "weight": "Weight",
-    "selectClass": "Select Class",
-    "selectSubject": "Select Subject",
-    "selectRoom": "Select Classroom",
-    "selectStudent": "Select Student",
-    "selectExam": "Select Exam",
-    "selectNote": "Select Note",
-    "saveAs": "Save As"
-  },
-  "room": {
-    "title": "CLASSES",
-    "listHeader": "List of Classes",
-    "addClassHeader": "Add a Class",
-    "name": "Name",
-    "addSubject": "Add a Subject",
-    "subjectHeader": "Subjects",
-    "teacher": "Teacher",
-    "code": "Code",
-    "substitute": "Substitute",
-    "abbreviation": "Abbreviation",
-    "examsTab": "Exams/Tests",
-    "classTab": "Classes"
-  },
-  "exam": {
-    "title": "Title",
-    "addExamHeader": "Add Exam",
-    "editExamHeader": "Edit Exam",
-    "addExam": "Add New Exam"
-  },
-  "student": {
-    "defaultHeader": "Student Grades",
-    "title": "STUDENTS",
-    "list": "List of Students",
-    "add": "Add Student",
-    "chartTitle": "Charts",
-    "firstname": "First Name",
-    "lastname": "Last Name",
-    "gender": "Gender",
-    "classroom": "Classroom",
-    "male": "male",
-    "female": "female"
-  },
-  "grades": {
-    "gradesTitle": "GRADES",
-    "noData": "No Data To Show",
-    "fullName": "Full Name",
-    "studentHeader": "Student Data",
-    "examHeader": "Exams/Tests",
-    "previousPage": "Previous",
-    "nextPage": "Next",
-    "textPage": "page",
-    "pageOf": "of",
-    "textRows": "rows"
-  },
-  "graph": {
-    "overview": "GRAPH OVERVIEW",
-    "schoolGrades": "School Grades"
-  },
-  "notes": {
-    "sectionTitle": "NOTES",
-    "title": "Title",
-    "textbox": "Note"
-  },
-  "capability": {
-    "tableHeader": "Student Capability Questions PlaceHolder",
-    "options": {
-      "option0": "Terrible",
-      "option1": "Not Good",
-      "option2": "Could do better",
-      "option3": "Satisfactory",
-      "option4": "Very Good",
-      "option5": "Excellent"
-    },
-    "class5": {
-      "math": {
-        "subject": "Mathematics",
-        "question0": "Can you add1?",
-        "question1": "Can you add2?",
-        "question2": "Can you add3?",
-        "question3": "Can you add4?",
-        "question4": "Can you add5?",
-        "question5": "Can you add6?"
-      },
-      "eng": {
-        "subject": "English",
-        "question0": "Can you read1?",
-        "question1": "Can you read2?",
-        "question2": "Can you read3?",
-        "question3": "Can you read4?",
-        "question4": "Can you read5?",
-        "question5": "Can you read6?"
-      }
-    },
-    "class6": {
-      "math": {
-        "subject": "Mathematics",
-        "question0": "Can you add1?",
-        "question1": "Can you add2?",
-        "question2": "Can you add3?",
-        "question3": "Can you add4?",
-        "question4": "Can you add5?",
-        "question5": "Can you add6?"
-      },
-      "eng": {
-        "subject": "English",
-        "question0": "Can you read1?",
-        "question1": "Can you read2?",
-        "question2": "Can you read3?",
-        "question3": "Can you read4?",
-        "question4": "Can you read5?",
-        "question5": "Can you read6?"
-      }
-    }
-  },
-  "notifications": {
-    "general": {
-      "saveSuccess": "The data was saved successfully.",
-      "saveFailed": "The data could not be saved.",
-      "retrieveFail": "It was not possible to retrieve the data.",
-      "exists": "The data already exists.",
-      "deleteSuccess": "The data was deleted successfully.",
-      "deleteFail": "Failed to delete the data.",
-      "updateSuccess": "The data was updated successfully.",
-      "updateFail": "The data could not be updated.",
-      "noUpdate": "There is nothing to update."
-    },
-    "warning": {
-      "class": "First select a class.",
-      "student": "First select a student.",
-      "subject": "First select a subject."
-    }
-  },
-  "settings": {
-    "sectionTitle": "SETTINGS",
-    "addressTitle": "School Address",
-    "title": "Title",
-    "street": "Street",
-    "province": "Province",
-    "country": "Country",
-    "zip": "Zip Code",
-    "city": "City",
-    "year": "School Year",
-    "gradeSystemTitle": "Grading System",
-    "note": "Note (1 - 6)",
-    "points": "Points (0 - 15)",
-    "percent": "Percent (0 - 100%)",
-    "supportText": "Do you like this app? Consider supporting."
-  }
+	"home": {
+		"title": "HOMEPAGE",
+		"addressHeader": "Your School Address",
+		"resourcesHeader": "Useful Resources"
+	},
+	"general": {
+		"add": "Add",
+		"save": "Save",
+		"close": "Close",
+		"update": "Update",
+		"clear": "Clear",
+		"delete": "Delete",
+		"edit": "Edit",
+		"date": "Date",
+		"number": "Number",
+		"weight": "Weight",
+		"selectClass": "Select Class",
+		"selectSubject": "Select Subject",
+		"selectRoom": "Select Classroom",
+		"selectStudent": "Select Student",
+		"selectExam": "Select Exam",
+		"selectNote": "Select Note",
+		"saveAs": "Save As"
+	},
+	"room": {
+		"title": "CLASSES",
+		"listHeader": "List of Classes",
+		"addClassHeader": "Add a Class",
+		"name": "Name",
+		"addSubject": "Add a Subject",
+		"subjectHeader": "Subjects",
+		"teacher": "Teacher",
+		"code": "Code",
+		"substitute": "Substitute",
+		"abbreviation": "Abbreviation",
+		"examsTab": "Exams/Tests",
+		"classTab": "Classes"
+	},
+	"exam": {
+		"title": "Title",
+		"addExamHeader": "Add Exam",
+		"editExamHeader": "Edit Exam",
+		"addExam": "Add New Exam"
+	},
+	"student": {
+		"defaultHeader": "Student Grades",
+		"title": "STUDENTS",
+		"list": "List of Students",
+		"add": "Add Student",
+		"chartTitle": "Charts",
+		"firstname": "First Name",
+		"lastname": "Last Name",
+		"gender": "Gender",
+		"classroom": "Classroom",
+		"male": "male",
+		"female": "female"
+	},
+	"grades": {
+		"gradesTitle": "GRADES",
+		"noData": "No Data To Show",
+		"fullName": "Full Name",
+		"studentHeader": "Student Data",
+		"examHeader": "Exams/Tests",
+		"previousPage": "Previous",
+		"nextPage": "Next",
+		"textPage": "page",
+		"pageOf": "of",
+		"textRows": "rows"
+	},
+	"graph": {
+		"overview": "GRAPH OVERVIEW",
+		"schoolGrades": "School Grades"
+	},
+	"notes": {
+		"sectionTitle": "NOTES",
+		"title": "Title",
+		"textbox": "Note"
+	},
+	"capability": {
+		"tableHeader": "Learning Development Meeting",
+		"options": {
+			"option0": "always",
+			"option1": "regularly",
+			"option2": "usually",
+			"option3": "seldom",
+			"option4": "very rare",
+			"option5": "never"
+		},
+		"class5": {
+			"german": {
+				"subject": "German",
+				"question0": "Der/die Schüler(in) meldet sich oft freiwillig zum Lesen und liest gerne Bücher aus der Klassenbibliothek.",
+				"question1": "Der/die Schüler(in) liest sehr flüssig und betont vor.",
+				"question2": "Der/die Schüler(in) beteiligt sich sehr aktiv im Rahmen von Übungen zur Rechtschreibung und wendet dabei die erlernten Strategien an.",
+				"question3": "Der/die Schüler(in) zeigt sich sicher in der Benennung von Wortarten.",
+				"question4": "Der/die Schüler(in) überarbeitet eigene Texte nach Schreibkonferenzen zuverlässig.",
+				"question5": "Der/die Schüler(in) geht planvoll beim Schreiben von Texten vor."
+			},
+			"math": {
+				"subject": "Mathematics",
+				"question0": "Der/die Schüler(in) zeigt sich sicher im Umgang mit großen natürlichen Zahlen (Millionen, Milliarden).",
+				"question1": "Der/die Schüler(in) weiß, wie man bei einer Umfrage vorgeht und die Ergebnisse in einer Grafik darstellt.",
+				"question2": "Der/die Schüler(in) macht bei den schriftlichen Rechenverfahren (+, -, : , •) einen sicheren Eindruck.",
+				"question3": "Der/die Schüler(in) beherrscht das 1x1 sehr gut."
+			},
+			"eng": {
+				"subject": "English",
+				"question0": "Der/die Schüler(in) reagiert auf englischsprachige Arbeitsanweisungen der Lehrkraft.",
+				"question1": "Der/die Schüler(in) lernt die Vokabeln regelmäßig und wiederholt diese kontinuierlich.",
+				"question2": "Der/die Schüler(in) wirkt sicher und gut vorbereitet beim Präsentieren in englischer Sprache.",
+				"question3": "Der/die Schüler(in) klärt selbstständig unbekannte Wörter und deren Aussprache mit Hilfe des Internets/Wörterbuchs."
+			},
+			"sci": {
+				"subject": "Science",
+				"question0": "Der/die Schüler(in) zeigt Interesse am naturwissenschaftlichen Arbeiten (Beobachten, Experimentieren, Forschen).",
+				"question1": "Der/die Schüler(in) wendet Fachbegriffe korrekt an.",
+				"question2": "Der/die Schüler(in) nutzt selbstständig unterschiedliche Informationsquellen und Medien.",
+				"question3": "Der/die Schüler(in) versteht den Zusammenhang zwischen der Alltagswelt und naturwissenschaftlichen Erkenntnissen."
+			},
+			"music": {
+				"subject": "Music",
+				"question0": "Der/die Schüler(in) nimmt musikalische Klänge bewusst durch aufmerksames Zuhören wahr.",
+				"question1": "Der/die Schüler(in) äußert seine Meinung zu verschiedenen Musikrichtungen und erkennt dadurch eigene Vorlieben.",
+				"question2": "Der/die Schüler(in) (re)produziert gerne musikalische Klänge (Gesang, Instrumental)."
+			},
+			"art": {
+				"subject": "Art",
+				"question0": "Der/die Schüler(in) nimmt visuelle Darstellungen genau wahr und kann diese beschreiben.",
+				"question1": "Der/die Schüler(in) ist in der Lage, Werke nach bestimmten Kriterien zu bewerten.",
+				"question2": "Der/die Schüler(in) zeigt ein hohes Maß an Kreativität und setzt diese gestalterisch um.",
+				"question3": "Der/die Schüler(in) hält sich an Abgabetermine."
+			},
+			"work": {
+				"subject": "Work and Design",
+				"question0": "Der/die Schüler(in) analysiert gestalterische Produkte bzw. nimmt diese bewusst wahr.",
+				"question1": "Der/die Schüler(in) zeigt sich kreativ in der Herstellung individueller Werkstücke.",
+				"question2": "Der/die Schüler(in) geht planvoll/überlegt bei der Gestaltung vor.",
+				"question3": "Der/die Schüler(in) schätzt eigene Leistungen sowie die Leistung anderer realistisch ein."
+			},
+			"sport": {
+				"subject": "Sports",
+				"question0": "Der/die Schüler(in) verarbeitet Erfolge und Misserfolge im Sport angemessen.",
+				"question1": "Der/die Schüler(in) zeigt Freude an Bewegung.",
+				"question2": "Der/die Schüler(in) hält sich beim Spielen an die Regeln.",
+				"question3": "Der/die Schüler(in) verhält sich innerhalb der Gruppe fair und kooperativ."
+			},
+			"history": {
+				"subject": "History",
+				"question0": "Der/die Schüler(in) zeigt Interesse an fachspezifischen Fragen.",
+				"question1": "Der/die Schüler(in) möchte weitgehend selbstständig verschiedene Themenbereiche erforschen/untersuchen.",
+				"question2": "Der/die Schüler(in) erläutert seine Meinung zu verschiedenen Themen und begründet diese.",
+				"question3": "Der/die Schüler(in) wendet sein/ihr Wissen in Leistungsnachweisen richtig an."
+			},
+			"general": {
+				"subject": "General",
+				"question0": "Der/die Schüler(in) akzeptiert seine/ihre Klassenkameraden so wie sie sind.",
+				"question1": "Der/die Schüler(in) achtet nicht nur auf eigene Interessen, sondern auch auf die anderer.",
+				"question2": "Der/die Schüler(in) biete anderen gerne Hilfe an.",
+				"question3": "Der/die Schüler(in) hält sich an wichtige Gesprächsregeln.",
+				"question4": "Der/die Schüler(in) ist in keine Streitigkeiten verwickelt.",
+				"question5": "Bei Gruppen- oder Partnerarbeiten arbeitet der/die Schüler(in) sehr engagiert mit.",
+				"question6": "Der/die Schüler(in) erledigt seine/ihre Wochenpläne zuverlässig.",
+				"question7": "Der/die Schüler(in) fragt bei Unklarheiten nochmal nach.",
+				"question8": "Der/die Schüler(in) bereitet sich angemessen auf Proben vor.",
+				"question9": "Der/die Schüler(in) arbeitet über das erforderliche Maß hinaus.",
+				"question10": "Der/die Schülerin gibt wichtige Dokumente (Elternbriefe, Proben) rechtzeitig wieder ab.",
+				"question11": "Der/die Schüler(in) gestaltet seine/ihre Hefteinträge ordentlich.",
+				"question12": "Der/die Schüler(in) achtet auf eine vollständige Heftführung. ",
+				"question13": "Die Handschrift des Schülers/der Schülerin ist gut leserlich."
+			}
+		}
+	},
+	"notifications": {
+		"general": {
+			"saveSuccess": "The data was saved successfully.",
+			"saveFailed": "The data could not be saved.",
+			"retrieveFail": "It was not possible to retrieve the data.",
+			"exists": "The data already exists.",
+			"deleteSuccess": "The data was deleted successfully.",
+			"deleteFail": "Failed to delete the data.",
+			"updateSuccess": "The data was updated successfully.",
+			"updateFail": "The data could not be updated.",
+			"noUpdate": "There is nothing to update."
+		},
+		"warning": {
+			"class": "First select a class.",
+			"student": "First select a student.",
+			"subject": "First select a subject."
+		}
+	},
+	"settings": {
+		"sectionTitle": "SETTINGS",
+		"addressTitle": "School Address",
+		"title": "Title",
+		"street": "Street",
+		"province": "Province",
+		"country": "Country",
+		"zip": "Zip Code",
+		"city": "City",
+		"year": "School Year",
+		"gradeSystemTitle": "Grading System",
+		"note": "Note (1 - 6)",
+		"points": "Points (0 - 15)",
+		"percent": "Percent (0 - 100%)",
+		"supportText": "Do you like this app? Consider supporting."
+	}
 }

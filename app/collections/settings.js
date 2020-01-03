@@ -1,4 +1,8 @@
-import { saveSuccessful, saveFailed, unableToRetrieve } from '../notifications/general'
+import {
+	saveSuccessful,
+	saveFailed,
+	unableToRetrieve
+} from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -47,14 +51,19 @@ export const getSystemType = () =>
 
 const updateAddress = (previous, id) => {
 	const { title, street, province, country, zip, city, year } = previous
-	Settings.update({ _id: id }, { $set: { title, street, province, country, zip, city, year } }, {}, err => {
-		if (err) {
-			saveFailed()
+	Settings.update(
+		{ _id: id },
+		{ $set: { title, street, province, country, zip, city, year } },
+		{},
+		err => {
+			if (err) {
+				saveFailed()
 
-			return err
+				return err
+			}
+			saveSuccessful()
 		}
-		saveSuccessful()
-	})
+	)
 }
 
 const updateSystem = (previous, id) => {

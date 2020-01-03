@@ -125,14 +125,11 @@
 	},
 	"keywords": [
 		"electron",
-		"boilerplate",
-		"react",
-		"redux",
-		"flow",
-		"sass",
-		"webpack",
-		"hot",
-		"reload"
+		"teacher",
+		"grade",
+		"school",
+		"chart",
+		"desktop"
 	],
 	"homepage": "https://github.com/hcuffy/Marks/blob/master/README.md",
 	"jest": {
