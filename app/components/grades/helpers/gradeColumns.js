@@ -73,8 +73,8 @@ const customFooter = ({ data }, iterator) => {
 		if (parseInt(score, 10) !== 0) {
 			gradesArray.push(parseInt(score, 10))
 		}
-	}
-	console.log(gradesArray)
+  }
+
 	const examAverage = _.round(_.mean(gradesArray), 2)
 
 	return (
