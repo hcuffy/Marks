@@ -1,4 +1,5 @@
 import React from 'react'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
@@ -19,7 +20,7 @@ const _ = require('lodash')
 const filterStudentsByClassId = (students, classroomId) =>
 	_.filter(students, ['classroom', classroomId])
 
-const CapabilityDropdown = ({
+const CapabilityDropdown = ({t,
 	capabilityData,
 	classData,
 	students,
@@ -38,7 +39,7 @@ const CapabilityDropdown = ({
 	const studentOptions = getStudentList(
 		filterStudentsByClassId(students, classroomId)
 	)
-	const questionOptions = getQuestionList(
+	const questionOptions = getQuestionList(t,
 		classroomId,
 		capabilityQuestions,
 		actions
@@ -51,7 +52,7 @@ const CapabilityDropdown = ({
 				css.dropdown_div,
 				classDropdown,
 				actions.openCapabilityClassList,
-				resolveLabel(classroom, 'Select Class'),
+				resolveLabel(classroom, t('general.selectClass')),
 				classOptions,
 				'classDropdown'
 			)}
@@ -59,7 +60,7 @@ const CapabilityDropdown = ({
 				css.dropdown_div,
 				studentDropdown,
 				actions.openCapabilityStudentList,
-				resolveLabel(studentName, 'Select Student'),
+				resolveLabel(studentName, t('general.selectStudent')),
 				studentOptions,
 				'studentDropdown'
 			)}
@@ -67,7 +68,7 @@ const CapabilityDropdown = ({
 				css.dropdown_div,
 				questionDropdown,
 				actions.openQuestionList,
-				resolveLabel(actualSet, 'Question Set'),
+				resolveLabel(actualSet, t('general.selectQuestions')),
 				questionOptions,
 				null
 			)}
@@ -86,4 +87,4 @@ const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CapabilityDropdown)
+export default connect(mapStateToProps, mapDispatchToProps)(withNamespaces()(CapabilityDropdown))
