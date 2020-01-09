@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'reactstrap'
 import css from '../styles/settings.css'
 
 const _ = require('lodash')
@@ -8,9 +9,9 @@ export const addressForm = (t, entry, actions) => (
 		<div className={css.form_outer_div}>
 			{entry}
 			<div className={(css.form_inner_div, css.save_btn)}>
-				<button type="submit" className="btn btn-success">
+				<Button type="submit" className="btn btn-success">
 					{t('general.save')}
-				</button>
+				</Button>
 			</div>
 		</div>
 	</form>

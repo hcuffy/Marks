@@ -4,6 +4,7 @@ import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import SubjectModal from './SubjectModal'
+import { Button } from 'reactstrap'
 import css from './styles/subject.css'
 
 const _ = require('lodash')
@@ -22,16 +23,15 @@ export const filterSubjects = (subjectData, chosenClass) => {
 
 const listOfButtons = (filteredData, action) =>
 	filteredData.map((data, idx) => (
-		<button
+		<Button
 			key={idx}
 			data-id={data._id}
-			type="button"
 			className={`list-group-item list-group-item-action ${css.list_btn}`}
 			onClick={action}
 		>
 			{data.abbreviation}
 			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>{data.tests.length}</span>
-		</button>
+		</Button>
 	))
 
 const SubjectList = ({ t, selectedSubject, subjectData, actions }) => {
