@@ -20,7 +20,8 @@
 		"selectRoom": "Select Classroom",
 		"selectStudent": "Select Student",
 		"selectExam": "Select Exam",
-		"selectNote": "Select Note",
+    "selectNote": "Select Note",
+    "selectQuestions": "Question Set",
 		"saveAs": "Save As"
 	},
 	"room": {
@@ -78,6 +79,7 @@
 		"textbox": "Note"
 	},
 	"capability": {
+    "sectionTitle": "CAPABILITY",
 		"tableHeader": "Learning Development Meeting",
 		"options": {
 			"option0": "always",
@@ -88,6 +90,7 @@
 			"option5": "never"
 		},
 		"class5": {
+      "name": "Class 5",
 			"german": {
 				"subject": "German",
 				"question0": "Der/die Schüler(in) meldet sich oft freiwillig zum Lesen und liest gerne Bücher aus der Klassenbibliothek.",
