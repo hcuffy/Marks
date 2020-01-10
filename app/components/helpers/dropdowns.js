@@ -137,7 +137,8 @@ export const getClassroomId = (name, classdata) => {
 	return classObject._id
 }
 
-export const getQuestionList = (classroomId, capabilityQuestions, { updateQuestionSet }) => {
+export const getQuestionList = (t,classroomId, capabilityQuestions, { updateQuestionSet }) => {
+
 	const items = capabilityQuestions.map((data, idx) => (
 		<DropdownItem
 			key={idx}
@@ -146,9 +147,9 @@ export const getQuestionList = (classroomId, capabilityQuestions, { updateQuesti
 			onClick={updateQuestionSet}
 			data-check="questionDropdown"
 		>
-			{data.name}
+			{t(`capability.${data.name}.name`)}
 		</DropdownItem>
-	))
+  ))
 
 	return items
 }

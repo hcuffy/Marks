@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
+import { Button } from 'reactstrap'
 import css from '../styles/students.css'
 
 export const genderDropdown = (t, defaultValue, styleOne, styleTwo) => (
@@ -40,9 +41,9 @@ const studentForm = (t, selectOption, formFields, actions) => {
 					{genderDropdown(t, t('student.male'), css.select_dropDown, css.form_div)}
 					{classroomDropdown(t, selectOption, null, css.select_dropDown, css.form_div, css.form_label)}
 					<div className={(css.form_inner_div, css.save_btn)}>
-						<button type="submit" className="btn btn-success">
+						<Button type="submit" className="btn btn-success">
 							{t('general.add')}
-						</button>
+						</Button>
 					</div>
 				</div>
 			</form>

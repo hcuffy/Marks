@@ -52,9 +52,10 @@ export const getQuestions = () => async dispatch => {
 }
 
 export const openQuestionList = event => dispatch => {
+  event.stopPropagation();
 	if (event.target.getAttribute('data-check') !== 'openButton' || isNull(event.target.getAttribute('data-id'))) {
 		return
-	}
+  }
 
 	dispatch({
 		type: OPEN_CLOSE_QUESTION_LIST,

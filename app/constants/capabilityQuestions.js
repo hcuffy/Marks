@@ -4,7 +4,7 @@ export const capabilityQuestions = [
 		class5: {
 			german: {
 				number: 6,
-				short: 'germ'
+				short: 'german'
 			},
 			mathematics: {
 				number: 4,
@@ -32,11 +32,11 @@ export const capabilityQuestions = [
 			},
 			sport: {
 				number: 4,
-				short: 'eng'
+				short: 'sport'
 			},
 			history: {
 				number: 4,
-				short: 'hist'
+				short: 'history'
 			},
 			general: {
 				number: 14,

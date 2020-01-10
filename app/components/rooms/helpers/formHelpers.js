@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'reactstrap'
 import css from '../styles/room.css'
 
 const _ = require('lodash')
@@ -20,9 +21,9 @@ export const addRoomForm = (t, formInputs, actions) => (
 				<h4 className={css.add_header}>{t('room.addClassHeader')}</h4>
 				{formInputs}
 				<div className={(css.form_div, css.save_btn)}>
-					<button type="submit" className="btn btn-success">
+					<Button type="submit" className="btn btn-success">
 						{t('general.add')}
-					</button>
+					</Button>
 				</div>
 			</div>
 		</form>
@@ -31,16 +32,15 @@ export const addRoomForm = (t, formInputs, actions) => (
 
 export const classInputs = (cleanData, action) =>
 	cleanData.map((data, idx) => (
-		<button
+		<Button
 			key={idx}
 			data-id={data._id}
-			type="button"
 			className={`list-group-item list-group-item-action ${css.list_btn}`}
 			onClick={action}
 		>
 			{data.name}
 			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>{data.subjects.length}</span>
-		</button>
+		</Button>
 	))
 
 export const classPill = (index, pillClass, name, action, title) => (

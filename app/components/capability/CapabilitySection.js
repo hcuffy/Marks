@@ -7,7 +7,7 @@ import css from './styles/capability.css'
 const CapabilitySection = ({ t }) => (
 	<div className={css.capability_wrapper}>
 		<h4 className={css.main_header}>CAPABILITY</h4>
-		<CapabilityDropdown />
+		<CapabilityDropdown t={t} />
 		<CapabilityTable t={t} />
 	</div>
 )

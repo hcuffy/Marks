@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
+import { Button } from 'reactstrap'
 import css from './styles/exam.css'
 
 const _ = require('lodash')
@@ -9,7 +10,7 @@ const _ = require('lodash')
 const ExamListInputs = ({ exams, subjectId, actions }) => {
 	const filteredExams = _.filter(exams, ['subjectId', subjectId])
 	const examList = filteredExams.map((data, idx) => (
-		<button
+		<Button
 			key={idx}
 			data-id={data._id}
 			type="button"
@@ -23,7 +24,7 @@ const ExamListInputs = ({ exams, subjectId, actions }) => {
 			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>
 				<i className="fas fa-weight-hanging" /> {data.weight}
 			</span>
-		</button>
+		</Button>
 	))
 
 	return <div className={`list-group list-group-flush ${css.exam_div}`}>{examList}</div>

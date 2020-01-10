@@ -20,7 +20,8 @@
 		"selectRoom": "Klassenzimmer auswählen",
 		"selectStudent": "Scüler/in auswählen",
 		"selectExam": "Leistungsnachweise auswählen",
-		"selectNote": "Notiz auswählen",
+    "selectNote": "Notiz auswählen",
+    "selectQuestions": "Question Set",
 		"saveAs": "speichern als"
 	},
 	"room": {
@@ -78,6 +79,7 @@
 		"textbox": "Notiz"
 	},
 	"capability": {
+    "sectionTitle": "FÄHIGKEIT",
 		"tableHeader": "Lernentwicklungsgespräch",
 		"options": {
 			"option0": "immer",
@@ -88,6 +90,7 @@
 			"option5": "nie"
 		},
 		"class5": {
+      "name": "Klassen 5",
 			"german": {
 				"subject": "DEUTSCH",
 				"question0": "Der/die Schüler(in) meldet sich oft freiwillig zum Lesen und liest gerne Bücher aus der Klassenbibliothek.",

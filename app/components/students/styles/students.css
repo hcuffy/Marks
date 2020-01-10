@@ -144,8 +144,9 @@ select {
   z-index: 1;
   left: 900px;
   margin-top: 5px;
-  background-color: Transparent;
+  background-color: Transparent !important;
   border: none;
   outline: none;
   font-size: 14px;
+  color: black;
 }
