@@ -6,7 +6,7 @@ GitHub Pages: https://hcuffy.github.io/Marks/
 First, clone the repo via git:
 
 ```bash
-git clone https://github.com/hcuffy/My-Marks
+git clone https://github.com/hcuffy/Marks
 ```
 
 And then install the dependencies with yarn.
@@ -38,11 +38,11 @@ $ yarn start
 
 ## Code of conduct
 
-Read the [code of conduct](https://github.com/hcuffy/My-Marks/blob/master/CODE_OF_CONDUCT.md)
+Read the [code of conduct](https://github.com/hcuffy/Marks/blob/master/CODE_OF_CONDUCT.md)
 
 ## Contribution Guide
 
-Read the [contribution guide](https://github.com/hcuffy/My-Marks/blob/master/CONTRIBUTING.md)
+Read the [contribution guide](https://github.com/hcuffy/Marks/blob/master/CONTRIBUTING.md)
 
 Developed using [**electron-react-boilerplate**](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
 

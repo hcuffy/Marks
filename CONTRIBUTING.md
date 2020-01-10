@@ -12,7 +12,7 @@
 3. Submit your pull request ith any comments that you feel will facilitate the review process. 
 
 ## Code of Conduct
-Please read the [**code of conduct**](https://github.com/hcuffy/My-Marks/blob/master/CODE_OF_CONDUCT.md)
+Please read the [**code of conduct**](https://github.com/hcuffy/Marks/blob/master/CODE_OF_CONDUCT.md)
 
 ###  Standards
 
