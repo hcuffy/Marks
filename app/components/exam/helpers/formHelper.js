@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
+import { Button } from 'reactstrap'
 import css from '../styles/exam.css'
 
 const titleInput = t => (
@@ -73,9 +74,9 @@ const examForm = (t, subjectOptions, classOption, actions) => {
 				{dateInput(t)}
 				{numberInput(t)}
 				<div className={css.form_save_btn}>
-					<button type="submit" className="btn btn-success">
+					<Button type="submit" className="btn btn-success">
 						{t('general.add')}
-					</button>
+					</Button>
 				</div>
 			</form>
 		</div>

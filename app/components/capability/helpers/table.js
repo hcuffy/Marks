@@ -20,7 +20,6 @@ export const getQuestionSet = (classroomId, questions) => {
 export const changeQuestionBtn = (classroomId, { openQuestionList }) => (
 	<Button
 		className={css.change_Btn}
-		type="button"
 		color="danger"
 		data-check="openButton"
 		data-id={classroomId}

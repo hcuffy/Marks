@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { Badge } from 'reactstrap'
+import { Badge, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import StudentModal from './StudentModal'
 import css from './styles/students.css'
@@ -11,10 +11,9 @@ const _ = require('lodash')
 
 const generateListBtn = (students, action) =>
 	students.map((data, idx) => (
-		<button
+		<Button
 			key={idx}
 			data-id={data._id}
-			type="button"
 			className={`list-group-item list-group-item-action ${css.list_btn}`}
 			onClick={action}
 		>
@@ -29,7 +28,7 @@ const generateListBtn = (students, action) =>
 					<i className="fas fa-venus" />
 				</Badge>
 			)}
-		</button>
+		</Button>
 	))
 
 const generateStudentList = (students, actions) => {

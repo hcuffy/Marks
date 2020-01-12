@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
+import { Button } from 'reactstrap'
 import css from './styles/subject.css'
 
 const _ = require('lodash')
@@ -42,9 +43,9 @@ const SubjectForm = ({ t, classListData, subjects, actions }) => {
 					</select>
 				</div>
 				<div className={css.subject_save}>
-					<button type="submit" className="btn btn-success">
+					<Button type="submit" className="btn btn-success">
 						{t('general.add')}
-					</button>
+					</Button>
 				</div>
 			</form>
 		</div>

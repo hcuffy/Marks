@@ -12,9 +12,7 @@
   "javascript.format.enable": false,
   "typescript.validate.enable": false,
   "typescript.format.enable": false,
-  "editor.rulers": [
-    119
-  ],
+  "editor.rulers": [119],
   "flow.useNPMPackagedFlow": true,
   "search.exclude": {
     ".git": true,
@@ -47,12 +45,13 @@
     "lastname",
     "lifecycle",
     "parens",
+    "prettierrc",
     "reactstrap",
     "sidemenu",
-    "textbox",
     "studentid",
+    "stylelintrc",
     "subjectid",
-    "textbox",
-    "subjectname"
+    "subjectname",
+    "textbox"
   ]
 }

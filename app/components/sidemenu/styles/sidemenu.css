@@ -1,32 +1,31 @@
 .menu_div {
-  background: #1e73be;
-  float: left;
-  width: 101px;
-  display: block;
-  margin: 0 5px 0 0;
-  height: 800px;
-  border-right: 1px solid #c4c1c1;
-  padding-top: 20px;
-  position: relative;
+	background: #1e73be;
+	float: left;
+	width: 101px;
+	display: block;
+	margin: 0 5px 0 0;
+	height: 800px;
+	border-right: 1px solid #c4c1c1;
+	padding-top: 20px;
+	position: relative;
 }
 
 .menu_btn {
-  width: 100px;
-  padding: 10px 10px 10px 10px;
-  border: none;
-  background: #1e73be;
-  outline: none !important;
+	width: 100px;
+	padding: 10px 10px 10px 10px;
+	border: none !important;
+	background: #1e73be !important;
+	outline: none !important;
 }
 
 .selectedButton {
-  color: #1dbb90;
+	color: #1dbb90;
 }
 
 .version {
-  color: #fff;
-  font-size: 10px;
-  background-color: none;
-  position: absolute;
-  bottom: 50px;
-  left: 25px;
+	color: #fff;
+	font-size: 10px;
+	background-color: none;
+	position: sticky;
+	margin: 25px;
 }
