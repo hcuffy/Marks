@@ -20,6 +20,7 @@ const tableQuestions = (
 	{ studentId, classroomId, questions, answers },
 	actions
 ) => {
+
 	const questionBase = getQuestionBase(classroomId, questions)
 	const questionSet = _.find(capabilityQuestions, actualSet)[questionBase]
 	const questionArr = []
@@ -40,6 +41,7 @@ const tableQuestions = (
 }
 
 const CapabilityTable = ({ t, capabilityData, actions }) => {
+
 	const { classroomId, questions } = capabilityData
 	const questionSet = getQuestionSet(classroomId, questions)
 	const tableBody = tableQuestions(t, questionSet, capabilityData, actions)

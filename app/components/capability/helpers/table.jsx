@@ -5,11 +5,13 @@ import css from '../styles/capability.css'
 const _ = require('lodash')
 
 export const getQuestionSet = (classroomId, questions) => {
+
 	if (_.isNull(classroomId) || _.isEmpty(questions)) {
 		return null
 	}
 
-	const questionData = _.find(questions, { classroomId })
+  const questionData = _.find(questions, { classroomId })
+
 	if (_.isUndefined(questionData)) {
 		return null
 	}
@@ -30,7 +32,9 @@ export const changeQuestionBtn = (classroomId, { openQuestionList }) => (
 )
 
 const createKeys = (numberOfKeys, prefix) => {
-	const keys = []
+
+  const keys = []
+
 	for (let i = 0; i < numberOfKeys; i += 1) {
 		keys.push(`${prefix}${i}`)
 	}
@@ -39,6 +43,7 @@ const createKeys = (numberOfKeys, prefix) => {
 }
 
 export const getQuestionBase = (classroomId, questions) => {
+
 	const questionRoot = _.find(questions, { classroomId })
 
 	return questionRoot ? questionRoot.questionSet : null
@@ -57,7 +62,9 @@ const isOptionChecked = (capabilityOption, { classroomId, questionId, studentId,
 }
 
 const questionOptions = (t, data, actions) => {
-	const { subjectShort, questionKey, questionId, studentId, classroomId, optionsKeys } = data
+
+  const { subjectShort, questionKey, questionId, studentId, classroomId, optionsKeys } = data
+
 	const options = optionsKeys.map((capabilityOption, idx) => (
 		<td key={idx} className={css.radio_td}>
 			<FormGroup>
@@ -91,14 +98,18 @@ export const createInnerBody = (
 	answers,
 	actions
 ) => {
+
 	const question = questionKeys.map((questionKey, idx) => {
+
 		const questionId = `${subjectShort}${_.upperFirst(questionKey)}`
-		const optionsKeys = createKeys(6, 'option')
+    const optionsKeys = createKeys(6, 'option')
+
 		const answerOptions = questionOptions(
 			t,
 			{ subjectShort, questionKey, questionId, studentId, classroomId, optionsKeys, answers },
 			actions
-		)
+    )
+
 		const showHeader = _.last(questionKey) === '0' ? subjectHeader : null
 
 		return (
@@ -116,16 +127,20 @@ export const createInnerBody = (
 }
 
 export const createTableBody = (t, subjects, actualSet, studentId, classroomId, answers, actions) => {
+
 	const questions = subjects.map(subject => {
+
 		const subjectKey = subject[_.findKey(subject)]
 		const subjectShort = subjectKey.short
 		const questionKeys = createKeys(subjectKey.number, 'question')
-		const translationStem = `capability.${actualSet}.${subjectShort}`
+    const translationStem = `capability.${actualSet}.${subjectShort}`
+
 		const subjectHeader = (
 			<tr>
 				<th colSpan="6">{t(`${translationStem}.subject`)}</th>
 			</tr>
-		)
+    )
+
 		const innerTableBody = createInnerBody(
 			t,
 			questionKeys,

@@ -18,6 +18,7 @@ import css from './styles/capability.css'
 const _ = require('lodash')
 
 const filterStudentsByClassId = (students, classroomId) =>
+
 	_.filter(students, ['classroom', classroomId])
 
 const CapabilityDropdown = ({t,
@@ -26,6 +27,7 @@ const CapabilityDropdown = ({t,
 	students,
 	actions
 }) => {
+
 	const {
 		classDropdown,
 		studentDropdown,
@@ -34,16 +36,19 @@ const CapabilityDropdown = ({t,
 		studentName,
 		questions,
 		classroomId
-	} = capabilityData
+  } = capabilityData
+
 	const classOptions = getClassList(sortData(classData))
 	const studentOptions = getStudentList(
 		filterStudentsByClassId(students, classroomId)
-	)
+  )
+
 	const questionOptions = getQuestionList(t,
 		classroomId,
 		capabilityQuestions,
 		actions
-	)
+  )
+
 	const actualSet = getQuestionSet(classroomId, questions)
 
 	return (
