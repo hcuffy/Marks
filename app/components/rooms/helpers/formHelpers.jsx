@@ -1,22 +1,22 @@
 import React from 'react'
-import { Button } from 'reactstrap'
+import { Button, Input } from 'reactstrap'
 import css from '../styles/room.css'
 
 const _ = require('lodash')
-
+const testing = true
 export const createFormInputs = (t, labels) =>
 	_.keys(labels).map((data, idx) => (
 		<div key={idx} className={css.room_form}>
 			<label className={css.room_form_label} htmlFor={`${data}Id`}>
 				{t(`room.${data}`)}:
 			</label>
-			<input name={data} className="form-control" id={`${data}Id`} type="text" required defaultValue={labels[data]} />
+      <Input name={data} className="form-control" id={`${data}Id`} type="text" defaultValue={labels[data]} />
 		</div>
 	))
 
 export const addRoomForm = (t, formInputs, actions) => (
 	<div className={css.room_div}>
-		<form onSubmit={actions.handleClassData} method="POST">
+		<form onSubmit={actions.handleClassData} method="POST" >
 			<div className={css.form_outer_div}>
 				<h4 className={css.add_header}>{t('room.addClassHeader')}</h4>
 				{formInputs}

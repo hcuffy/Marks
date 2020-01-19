@@ -35,9 +35,11 @@ const selectedSubject = (t, subject) =>
 	))
 
 const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
+
 	const requiredSubject = cleanAndFilterData(filteredData, subjectModalData)
 	const subjectFields = selectedSubject(t, requiredSubject)
-	const { id, showSubjectModal } = subjectModalData
+  const { id, showSubjectModal } = subjectModalData
+
 	const hiddenInputs = (
 		<div>
 			{/* eslint-disable-next-line max-len */}

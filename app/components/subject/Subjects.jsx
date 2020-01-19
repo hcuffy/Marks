@@ -13,6 +13,7 @@ import css from './styles/subject.css'
 const _ = require('lodash')
 
 const Subjects = ({ t, classData, classListData, actions }) => {
+
 	const subjects = sortData(classData)
 	const { subject, openModal } = classListData
 	const selectedSubject = _.find(subjects, { name: subject })
