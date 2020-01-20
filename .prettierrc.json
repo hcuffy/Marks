@@ -1,13 +1,13 @@
 {
-  "overrides": [
-    {
-      "files": [".prettierrc", ".babelrc", ".eslintrc", ".stylelintrc"],
-      "options": {
-        "parser": "json"
-      }
-    }
-  ],
-  "singleQuote": true,
-  "semi": false,
-  "useTabs": true
+	"overrides": [
+		{
+			"files": [".prettierrc", ".babelrc", ".eslintrc", ".stylelintrc"],
+			"options": {
+				"parser": "json"
+			}
+		}
+	],
+	"singleQuote": true,
+	"semi": false,
+	"useTabs": true
 }
