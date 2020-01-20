@@ -10,6 +10,7 @@ const Exam = ({ t }) => (
 			<h4>{t('exam.addExamHeader')}</h4>
 			<ExamForm t={t} />
 		</div>
+
 		<div>
 			<ExamList t={t} />
 		</div>

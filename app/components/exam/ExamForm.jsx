@@ -23,7 +23,11 @@ const getSubjectOptions = (subjectData, examData, cleanedClassList) => {
 	const { subject } = examData
 	const classroom = subject || cleanedClassList[0].name
 	const classroomId = getClassroomId(classroom, cleanedClassList)
-	const filteredSubject = _.filter(subjectData.data, ['classroomId', classroomId])
+
+	const filteredSubject = _.filter(subjectData.data, [
+		'classroomId',
+		classroomId
+	])
 
 	const selectedOptions = _.values(filteredSubject).map((data, idx) => (
 		<option className="form-control dropup" key={idx} data-id={data._id}>
@@ -37,7 +41,13 @@ const getSubjectOptions = (subjectData, examData, cleanedClassList) => {
 const ExamForm = ({ t, classData, subjectData, examData, actions }) => {
 	const cleanedClassList = sortData(classData)
 	const classOption = getClassOptions(cleanedClassList)
-	const subjectOptions = getSubjectOptions(subjectData, examData, cleanedClassList)
+
+	const subjectOptions = getSubjectOptions(
+		subjectData,
+		examData,
+		cleanedClassList
+	)
+
 	const completeExamForm = examForm(t, subjectOptions, classOption, actions)
 
 	return <div>{completeExamForm}</div>

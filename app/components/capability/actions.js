@@ -6,14 +6,19 @@ import {
 	UPDATE_QUESTION_SET,
 	UPDATE_ANSWERS
 } from './constants'
-import { getAllQuestions, updateQuestionData } from '../../collections/capability'
-import { updateSingleAnswer, getAllAnswers } from '../../collections/capabilityAnswers'
+import {
+	getAllQuestions,
+	updateQuestionData
+} from '../../collections/capability'
+import {
+	updateSingleAnswer,
+	getAllAnswers
+} from '../../collections/capabilityAnswers'
 
 const isNull = require('lodash/isNull')
 const includes = require('lodash/includes')
 
 export const openCapabilityClassList = event => dispatch => {
-
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
@@ -28,10 +33,9 @@ export const openCapabilityClassList = event => dispatch => {
 }
 
 export const openCapabilityStudentList = event => async dispatch => {
-
 	if (event.target.getAttribute('data-check') !== 'studentDropdown') {
 		return
-  }
+	}
 
 	event.persist()
 	const questions = await getAllQuestions()
@@ -47,8 +51,7 @@ export const openCapabilityStudentList = event => async dispatch => {
 }
 
 export const getQuestions = () => async dispatch => {
-
-  const questions = await getAllQuestions()
+	const questions = await getAllQuestions()
 
 	dispatch({
 		type: GET_ALL_QUESTIONS,
@@ -57,12 +60,14 @@ export const getQuestions = () => async dispatch => {
 }
 
 export const openQuestionList = event => dispatch => {
+	event.stopPropagation()
 
-  event.stopPropagation();
-
-	if (event.target.getAttribute('data-check') !== 'openButton' || isNull(event.target.getAttribute('data-id'))) {
+	if (
+		event.target.getAttribute('data-check') !== 'openButton' ||
+		isNull(event.target.getAttribute('data-id'))
+	) {
 		return
-  }
+	}
 
 	dispatch({
 		type: OPEN_CLOSE_QUESTION_LIST,
@@ -71,7 +76,6 @@ export const openQuestionList = event => dispatch => {
 }
 
 export const updateQuestionSet = event => async dispatch => {
-
 	if (event.target.getAttribute('data-check') !== 'questionDropdown') {
 		return
 	}
@@ -90,7 +94,6 @@ export const updateQuestionSet = event => async dispatch => {
 }
 
 export const handleCapabilityAnswers = event => async dispatch => {
-
 	const formData = {
 		classroomId: event.target.getAttribute('classroom-id'),
 		questionId: event.target.getAttribute('data-id'),
@@ -100,7 +103,7 @@ export const handleCapabilityAnswers = event => async dispatch => {
 
 	if (includes(formData, null)) {
 		return
-  }
+	}
 
 	const answers = await updateSingleAnswer(formData)
 
@@ -111,8 +114,7 @@ export const handleCapabilityAnswers = event => async dispatch => {
 }
 
 export const getAnswers = () => async dispatch => {
-
-  const answers = await getAllAnswers()
+	const answers = await getAllAnswers()
 
 	dispatch({
 		type: UPDATE_ANSWERS,

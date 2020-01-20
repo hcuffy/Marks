@@ -9,6 +9,7 @@ const _ = require('lodash')
 
 const ExamListInputs = ({ exams, subjectId, actions }) => {
 	const filteredExams = _.filter(exams, ['subjectId', subjectId])
+
 	const examList = filteredExams.map((data, idx) => (
 		<Button
 			key={idx}
@@ -18,16 +19,22 @@ const ExamListInputs = ({ exams, subjectId, actions }) => {
 			onClick={actions.showSingleExam}
 		>
 			{data.title}
+
 			<span className={`badge badge-light badge-pill ${css.badge_number}`}>
 				<i className="fas fa-calendar" /> {data.date}
 			</span>
+
 			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>
 				<i className="fas fa-weight-hanging" /> {data.weight}
 			</span>
 		</Button>
 	))
 
-	return <div className={`list-group list-group-flush ${css.exam_div}`}>{examList}</div>
+	return (
+		<div className={`list-group list-group-flush ${css.exam_div}`}>
+			{examList}
+		</div>
+	)
 }
 
 const mapStateToProps = state => ({
@@ -39,7 +46,4 @@ const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
 })
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ExamListInputs)
+export default connect(mapStateToProps, mapDispatchToProps)(ExamListInputs)

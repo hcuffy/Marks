@@ -5,18 +5,34 @@ import { bindActionCreators } from 'redux'
 import { resolveLabel } from '../../utils/translationUtil'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
-import { getClassList, getSubjectList, createDropdown, getClassroomName } from '../helpers/dropdowns'
+import {
+	getClassList,
+	getSubjectList,
+	createDropdown,
+	getClassroomName
+} from '../helpers/dropdowns'
 import css from './styles/exam.css'
 
 const _ = require('lodash')
 
 const ExamListDropdown = ({ t, classData, examData, subjectData, actions }) => {
-	const { classroomId, selectedSubject, openClassDropdown, openSubList } = examData
+	const {
+		classroomId,
+		selectedSubject,
+		openClassDropdown,
+		openSubList
+	} = examData
 	const cleanedClassList = sortData(classData)
 	const classOptions = getClassList(cleanedClassList)
-	const classroom = _.isNull(classroomId) ? classroomId : getClassroomName(classroomId, classData.classData)
 
-	const subjectOptions = getSubjectList({ selectedRoom: classroomId }, subjectData)
+	const classroom = _.isNull(classroomId)
+		? classroomId
+		: getClassroomName(classroomId, classData.classData)
+
+	const subjectOptions = getSubjectList(
+		{ selectedRoom: classroomId },
+		subjectData
+	)
 
 	return (
 		<div className={css.dropdown_main_div}>

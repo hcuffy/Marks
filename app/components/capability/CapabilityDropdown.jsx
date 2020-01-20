@@ -18,16 +18,15 @@ import css from './styles/capability.css'
 const _ = require('lodash')
 
 const filterStudentsByClassId = (students, classroomId) =>
-
 	_.filter(students, ['classroom', classroomId])
 
-const CapabilityDropdown = ({t,
+const CapabilityDropdown = ({
+	t,
 	capabilityData,
 	classData,
 	students,
 	actions
 }) => {
-
 	const {
 		classDropdown,
 		studentDropdown,
@@ -36,18 +35,19 @@ const CapabilityDropdown = ({t,
 		studentName,
 		questions,
 		classroomId
-  } = capabilityData
+	} = capabilityData
 
 	const classOptions = getClassList(sortData(classData))
 	const studentOptions = getStudentList(
 		filterStudentsByClassId(students, classroomId)
-  )
+	)
 
-	const questionOptions = getQuestionList(t,
+	const questionOptions = getQuestionList(
+		t,
 		classroomId,
 		capabilityQuestions,
 		actions
-  )
+	)
 
 	const actualSet = getQuestionSet(classroomId, questions)
 
@@ -92,4 +92,7 @@ const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withNamespaces()(CapabilityDropdown))
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(withNamespaces()(CapabilityDropdown))

@@ -11,12 +11,14 @@ const ExamModal = ({ t, examData, actions }) => {
 	const { examModal, examId, exams, subjectId } = examData
 	const requiredExam = cleanAndFilterData(exams, { id: examId })
 	const examFormData = generateFields(t, requiredExam)
+
 	const hiddenInputs = (
 		<div>
 			<input type="hidden" name="subjectId" data-id={subjectId} />
 			<input type="hidden" name="examId" data-id={examId} />
 		</div>
 	)
+
 	const footerData = {
 		dataId: examId,
 		nameId: subjectId,
@@ -25,7 +27,18 @@ const ExamModal = ({ t, examData, actions }) => {
 		closeAction: actions.showSingleExam
 	}
 
-	return <div>{modalFrame(t, examModal, actions.updateExam, examFormData, hiddenInputs, footerData)}</div>
+	return (
+		<div>
+			{modalFrame(
+				t,
+				examModal,
+				actions.updateExam,
+				examFormData,
+				hiddenInputs,
+				footerData
+			)}
+		</div>
+	)
 }
 const mapStateToProps = state => ({
 	examData: state.examData
