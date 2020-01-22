@@ -23,33 +23,33 @@ const initialLoadState = {
 
 const applyNotesData = (state = initialLoadState, action) => {
 	switch (action.type) {
-	case GET_ALL_NOTES: {
-		return _.assign({}, state, action.payload)
-	}
-	case OPEN_STUDENT_NOTES_DROPDOWN: {
-		const studentDropdown = !state.studentDropdown
+		case GET_ALL_NOTES: {
+			return _.assign({}, state, action.payload)
+		}
+		case OPEN_STUDENT_NOTES_DROPDOWN: {
+			const studentDropdown = !state.studentDropdown
 
-		return _.assign({}, state, { studentDropdown }, action.payload)
-	}
-	case OPEN_NOTES_DROPDOWN: {
-		const notesDropdown = !state.notesDropdown
+			return _.assign({}, state, { studentDropdown }, action.payload)
+		}
+		case OPEN_NOTES_DROPDOWN: {
+			const notesDropdown = !state.notesDropdown
 
-		return _.assign({}, state, { notesDropdown }, action.payload)
-	}
-	case UPDATE_TEXTAREA: {
-		return _.assign({}, state, action.payload)
-	}
-	case UPDATE_TITLE: {
-		return _.assign({}, state, action.payload)
-	}
-	case CLEAR_NOTE_FIELDS: {
-		return _.assign({}, state, action.payload)
-	}
-	case UPDATE_NOTE: {
-		return _.assign({}, state, action.payload)
-	}
-	default:
-		return state
+			return _.assign({}, state, { notesDropdown }, action.payload)
+		}
+		case UPDATE_TEXTAREA: {
+			return _.assign({}, state, action.payload)
+		}
+		case UPDATE_TITLE: {
+			return _.assign({}, state, action.payload)
+		}
+		case CLEAR_NOTE_FIELDS: {
+			return _.assign({}, state, action.payload)
+		}
+		case UPDATE_NOTE: {
+			return _.assign({}, state, action.payload)
+		}
+		default:
+			return state
 	}
 }
 

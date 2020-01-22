@@ -10,16 +10,25 @@ export const createFormInputs = (t, labels) =>
 			<label className={css.room_form_label} htmlFor={`${data}Id`}>
 				{t(`room.${data}`)}:
 			</label>
-      <Input name={data} className="form-control" id={`${data}Id`} type="text" defaultValue={labels[data]} />
+
+			<Input
+				name={data}
+				className="form-control"
+				id={`${data}Id`}
+				type="text"
+				defaultValue={labels[data]}
+			/>
 		</div>
 	))
 
 export const addRoomForm = (t, formInputs, actions) => (
 	<div className={css.room_div}>
-		<form onSubmit={actions.handleClassData} method="POST" >
+		<form onSubmit={actions.handleClassData} method="POST">
 			<div className={css.form_outer_div}>
 				<h4 className={css.add_header}>{t('room.addClassHeader')}</h4>
+
 				{formInputs}
+
 				<div className={(css.form_div, css.save_btn)}>
 					<Button type="submit" className="btn btn-success">
 						{t('general.add')}
@@ -39,7 +48,10 @@ export const classInputs = (cleanData, action) =>
 			onClick={action}
 		>
 			{data.name}
-			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>{data.subjects.length}</span>
+
+			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>
+				{data.subjects.length}
+			</span>
 		</Button>
 	))
 
@@ -59,6 +71,7 @@ export const classPill = (index, pillClass, name, action, title) => (
 
 export const cleanAndFilterData = (objectToClean, cleanBy) => {
 	const requiredProp = _.find(objectToClean, { _id: cleanBy.id })
+
 	const cleanedData = _.omit(requiredProp, [
 		'_id',
 		'createdAt',
@@ -78,6 +91,7 @@ export const createModalInputs = (t, selectedRoom) =>
 			<label className={css.form_label} htmlFor={`${data}_Id`}>
 				{t(`room.${data}`)}:
 			</label>
+
 			<input
 				name={data}
 				className={`${css.form_input} form-control`}

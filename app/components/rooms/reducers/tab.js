@@ -9,10 +9,10 @@ const initialLoadState = {
 
 export const applyTabChange = (state = initialLoadState, action) => {
 	switch (action.type) {
-	case CHANGE_CLASSROOM_TAB: {
-		return _.assign({}, state, action.payload)
-	}
-	default:
-		return state
+		case CHANGE_CLASSROOM_TAB: {
+			return _.assign({}, state, action.payload)
+		}
+		default:
+			return state
 	}
 }

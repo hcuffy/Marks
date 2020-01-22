@@ -7,7 +7,9 @@ import css from './styles/notes.css'
 const NotesSection = ({ t }) => (
 	<div className={css.notes_wrapper}>
 		<h4 className={css.main_header}>{t('notes.sectionTitle')}</h4>
+
 		<NotesDropdown t={t} />
+
 		<NotesForm t={t} />
 	</div>
 )

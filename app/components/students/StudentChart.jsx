@@ -8,7 +8,10 @@ import css from './styles/students.css'
 
 const StudentChart = ({ t, studentData, exams, grades, settings }) => (
 	<div className={css.chart}>
-		<Line data={chartData(t, studentData, grades, exams)} options={chartOptions(settings)} />
+		<Line
+			data={chartData(t, studentData, grades, exams)}
+			options={chartOptions(settings)}
+		/>
 	</div>
 )
 
@@ -19,7 +22,4 @@ const mapStateToProps = state => ({
 	settings: state.settingData
 })
 
-export default connect(
-	mapStateToProps,
-	null
-)(StudentChart)
+export default connect(mapStateToProps, null)(StudentChart)

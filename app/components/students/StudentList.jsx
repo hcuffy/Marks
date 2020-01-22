@@ -48,6 +48,7 @@ const StudentList = ({ t, students, actions }) => {
 			<h4 className={css.center_sub_header}>{t('student.list')}</h4>
 			<div className={css.list_div}>
 				<div className="list-group list-group-flush">{listData}</div>
+
 				<StudentModal t={t} />
 			</div>
 		</div>

@@ -23,6 +23,7 @@ const selectedSubject = (t, subject) =>
 			<label className={css.modal_form_label} htmlFor={`${data}_Id`}>
 				{t(`room.${data}`)}:
 			</label>
+
 			<input
 				name={data}
 				className={`${css.badge_number} form-control`}
@@ -35,15 +36,18 @@ const selectedSubject = (t, subject) =>
 	))
 
 const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
-
 	const requiredSubject = cleanAndFilterData(filteredData, subjectModalData)
 	const subjectFields = selectedSubject(t, requiredSubject)
-  const { id, showSubjectModal } = subjectModalData
+	const { id, showSubjectModal } = subjectModalData
 
 	const hiddenInputs = (
 		<div>
-			{/* eslint-disable-next-line max-len */}
-			<input type="hidden" name="classroomId" data-id={getClassroomId(filteredData)} />
+			<input
+				type="hidden"
+				name="classroomId"
+				data-id={getClassroomId(filteredData)}
+			/>
+
 			<input type="hidden" name="subjectId" data-id={id} />
 		</div>
 	)
@@ -56,7 +60,18 @@ const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
 		closeAction: actions.subjectModalDisplay
 	}
 
-	return <div>{modalFrame(t, showSubjectModal, actions.updateSubject, subjectFields, hiddenInputs, footerData)}</div>
+	return (
+		<div>
+			{modalFrame(
+				t,
+				showSubjectModal,
+				actions.updateSubject,
+				subjectFields,
+				hiddenInputs,
+				footerData
+			)}
+		</div>
+	)
 }
 
 const mapStateToProps = state => ({ subjectModalData: state.subjectModalData })

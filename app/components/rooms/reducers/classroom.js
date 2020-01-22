@@ -12,18 +12,18 @@ const initialLoadState = {
 
 export const applyClassData = (state = initialLoadState, action) => {
 	switch (action.type) {
-	case ADD_CLASSROOM_DATA: {
-		return _.assign({}, state, {
-			name: '',
-			teacher: '',
-			substitute: '',
-			check: true
-		})
-	}
-	case GET_CLASSROOM_DATA: {
-		return _.assign({}, state, { check: false }, action.payload)
-	}
-	default:
-		return state
+		case ADD_CLASSROOM_DATA: {
+			return _.assign({}, state, {
+				name: '',
+				teacher: '',
+				substitute: '',
+				check: true
+			})
+		}
+		case GET_CLASSROOM_DATA: {
+			return _.assign({}, state, { check: false }, action.payload)
+		}
+		default:
+			return state
 	}
 }

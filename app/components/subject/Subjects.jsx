@@ -13,7 +13,6 @@ import css from './styles/subject.css'
 const _ = require('lodash')
 
 const Subjects = ({ t, classData, classListData, actions }) => {
-
 	const subjects = sortData(classData)
 	const { subject, openModal } = classListData
 	const selectedSubject = _.find(subjects, { name: subject })
@@ -23,6 +22,7 @@ const Subjects = ({ t, classData, classListData, actions }) => {
 		<div className={css.main_div}>
 			<div className={css.subject_left}>
 				<h4 className={css.subject_header}>{t('room.subjectHeader')}</h4>
+
 				{createDropdown(
 					null,
 					openModal,
@@ -31,10 +31,12 @@ const Subjects = ({ t, classData, classListData, actions }) => {
 					options,
 					'classDropdown'
 				)}
+
 				<SubjectList t={t} selectedSubject={selectedSubject} />
 			</div>
 			<div className={css.subject_right}>
 				<h4 className={css.add_header}>{t('room.addSubject')}</h4>
+
 				<SubjectForm t={t} classListData={classListData} subjects={subjects} />
 			</div>
 		</div>

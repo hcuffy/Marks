@@ -15,7 +15,9 @@ const StudentModal = ({ t, students, classdata, actions }) => {
 	})
 	const studentFields = generateFields(t, requiredStudent, classdata)
 
-	const hiddenInput = <input type="hidden" name="studentId" data-id={studentId} />
+	const hiddenInput = (
+		<input type="hidden" name="studentId" data-id={studentId} />
+	)
 
 	const footerData = {
 		dataId: studentId,
@@ -25,7 +27,18 @@ const StudentModal = ({ t, students, classdata, actions }) => {
 		closeAction: actions.showStudentModal
 	}
 
-	return <div>{modalFrame(t, studentModal, actions.updateStudent, studentFields, hiddenInput, footerData)}</div>
+	return (
+		<div>
+			{modalFrame(
+				t,
+				studentModal,
+				actions.updateStudent,
+				studentFields,
+				hiddenInput,
+				footerData
+			)}
+		</div>
+	)
 }
 
 const mapStateToProps = state => ({

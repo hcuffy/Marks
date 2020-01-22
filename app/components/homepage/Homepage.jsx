@@ -8,7 +8,9 @@ import css from './homepage.css'
 const _ = require('lodash')
 
 const Homepage = ({ t, addressData }) => {
-	const entry = _.values(addressData).map((data, idx) => <li key={idx}>{data}</li>)
+	const entry = _.values(addressData).map((data, idx) => (
+		<li key={idx}>{data}</li>
+	))
 
 	return (
 		<div className={css.main_school_div}>
@@ -16,12 +18,15 @@ const Homepage = ({ t, addressData }) => {
 			<div className={css.school_left_div}>
 				<div>
 					<p>{t('home.addressHeader')}</p>
+
 					<span>{entry}</span>
 				</div>
 			</div>
+
 			<div className={css.school_right_div}>
 				<div>
 					<p>{t('home.resourcesHeader')}</p>
+
 					{resourceList(openResource)}
 				</div>
 			</div>
@@ -33,7 +38,4 @@ const mapStateToProps = state => ({
 	addressData: state.addressData
 })
 
-export default connect(
-	mapStateToProps,
-	null
-)(withNamespaces()(Homepage))
+export default connect(mapStateToProps, null)(withNamespaces()(Homepage))

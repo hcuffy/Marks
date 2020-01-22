@@ -15,8 +15,14 @@ const generateInputs = (t, labels) =>
 			<label className={css.form_label} htmlFor={`${data}Sid`}>
 				{t(`room.${data}`)}:
 			</label>
-			{/* eslint-disable-next-line max-len */}
-			<input name={data} className="form-control" data-id={`${data}Sid`} type="text" required />
+
+			<input
+				name={data}
+				className="form-control"
+				data-id={`${data}Sid`}
+				type="text"
+				required
+			/>
 		</div>
 	))
 
@@ -55,7 +61,4 @@ const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
 })
 
-export default connect(
-	null,
-	mapDispatchToProps
-)(withNamespaces()(SubjectForm))
+export default connect(null, mapDispatchToProps)(withNamespaces()(SubjectForm))

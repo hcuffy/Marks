@@ -14,6 +14,7 @@ const ClassList = ({ t, listData, actions }) => {
 	return (
 		<div className={css.list_div}>
 			<RoomModal t={t} modalData={cleanedData} />
+
 			<div className="list-group list-group-flush">{listInputs}</div>
 		</div>
 	)
@@ -22,7 +23,4 @@ const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(actionCreators, dispatch)
 })
 
-export default connect(
-	null,
-	mapDispatchToProps
-)(withNamespaces()(ClassList))
+export default connect(null, mapDispatchToProps)(withNamespaces()(ClassList))

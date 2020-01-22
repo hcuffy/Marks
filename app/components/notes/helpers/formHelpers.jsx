@@ -33,6 +33,7 @@ const titleField = (t, title, studentId, actions) => (
 				value={title}
 				onChange={actions.updateTitleField}
 			/>
+
 			<Input type="text" name="student" defaultValue={studentId} hidden />
 		</Col>
 	</FormGroup>
@@ -85,7 +86,6 @@ const footerButtons = (t, noteId, studentId, actions) => (
 			>
 				{t('general.update')}
 			</Button>{' '}
-			{/* eslint-disable-next-line max-len */}
 			<Button
 				type="submit"
 				color="success"
@@ -99,9 +99,11 @@ const footerButtons = (t, noteId, studentId, actions) => (
 
 const noteForm = (t, actions, notesData) => {
 	const { studentId, noteId, notes, textBox, textField } = notesData
+
 	const textBoxText = _.isNull(studentId)
 		? ''
 		: getNoteData(textBox, noteId, notes, 'note')
+
 	const titleText = _.isNull(studentId)
 		? ''
 		: getNoteData(textField, noteId, notes, 'title')
@@ -109,7 +111,9 @@ const noteForm = (t, actions, notesData) => {
 	return (
 		<Form onSubmit={actions.addNote} method="POST">
 			{titleField(t, titleText, studentId, actions)}
+
 			{textBoxArea(t, textBoxText, actions)}
+
 			{footerButtons(t, noteId, studentId, actions)}
 		</Form>
 	)

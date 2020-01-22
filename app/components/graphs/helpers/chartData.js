@@ -1,6 +1,7 @@
 import { resolveLabel } from '../../../utils/translationUtil'
 
-export const gradingSystem = settings => _.findKey(settings, gradeType => gradeType === true)
+export const gradingSystem = settings =>
+	_.findKey(settings, gradeType => gradeType === true)
 
 const _ = require('lodash')
 
@@ -47,14 +48,14 @@ const computeGradeFormat = (grades, settings) => {
 	const gradeSystem = gradingSystem(settings)
 
 	switch (gradeSystem) {
-	case 'note':
-		return computeGrades(grades, { start: 1, limit: 7, step: 1 })
-	case 'points':
-		return computeGrades(grades, { start: 0, limit: 16, step: 1 })
-	case 'percent':
-		return computePercentGrades(grades, { start: 0, limit: 110, step: 10 })
-	default:
-		return computeGrades(grades, { start: 1, limit: 7, step: 1 })
+		case 'note':
+			return computeGrades(grades, { start: 1, limit: 7, step: 1 })
+		case 'points':
+			return computeGrades(grades, { start: 0, limit: 16, step: 1 })
+		case 'percent':
+			return computePercentGrades(grades, { start: 0, limit: 110, step: 10 })
+		default:
+			return computeGrades(grades, { start: 1, limit: 7, step: 1 })
 	}
 }
 
@@ -88,21 +89,28 @@ const filterByExam = (examId, grades) => {
 	return filteredGrades
 }
 
-const gradesToDisplay = ({ grades, chartTitle, subjectId, exams, examId, chartToDisplay }, subjects) => {
+const gradesToDisplay = (
+	{ grades, chartTitle, subjectId, exams, examId, chartToDisplay },
+	subjects
+) => {
 	switch (chartToDisplay) {
-	case 'exam':
-		return [...filterByExam(examId, grades)]
-	case 'subject':
-		return [...filterBySubject(subjectId, exams, grades)]
-	case 'class':
-		return [...filterByClass(grades, chartTitle, subjects, exams)]
-	default:
-		return _.merge([], grades)
+		case 'exam':
+			return [...filterByExam(examId, grades)]
+		case 'subject':
+			return [...filterBySubject(subjectId, exams, grades)]
+		case 'class':
+			return [...filterByClass(grades, chartTitle, subjects, exams)]
+		default:
+			return _.merge([], grades)
 	}
 }
 export const chartData = (t, graphData, subjects, settings) => {
 	const filteredGrades = gradesToDisplay(graphData, subjects)
-	const { computedGrades, chartLabels } = computeGradeFormat(filteredGrades, settings)
+
+	const { computedGrades, chartLabels } = computeGradeFormat(
+		filteredGrades,
+		settings
+	)
 
 	return {
 		labels: chartLabels,

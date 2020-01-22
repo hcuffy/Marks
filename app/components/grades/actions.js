@@ -1,6 +1,14 @@
-import { DISPLAY_EXAM_TABLE, OPEN_CLASS_LIST, UPDATE_EXAM_TABLE } from './constants'
+import {
+	DISPLAY_EXAM_TABLE,
+	OPEN_CLASS_LIST,
+	UPDATE_EXAM_TABLE
+} from './constants'
 import { getAllExams } from '../../collections/exam'
-import { getAllGrades, addGradeData, updateGradeData } from '../../collections/grade'
+import {
+	getAllGrades,
+	addGradeData,
+	updateGradeData
+} from '../../collections/grade'
 
 const _ = require('lodash')
 
@@ -8,6 +16,7 @@ export const openGradeClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
+
 	const classroomId = event.target.getAttribute('data-id')
 
 	dispatch({
@@ -19,6 +28,7 @@ export const openGradeClassList = event => dispatch => {
 const filterGrades = async exams => {
 	const filteredGrades = []
 	const allGrades = await getAllGrades()
+
 	for (let i = 0; i < exams.length; i += 1) {
 		filteredGrades.push(..._.filter(allGrades, ['examId', exams[i]._id]))
 	}
@@ -26,7 +36,8 @@ const filterGrades = async exams => {
 	return filteredGrades
 }
 
-const filterExams = async subjectData => _.filter(await getAllExams(), ['subjectId', subjectData.subjectId])
+const filterExams = async subjectData =>
+	_.filter(await getAllExams(), ['subjectId', subjectData.subjectId])
 
 export const displayGradeData = event => async dispatch => {
 	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
@@ -49,6 +60,7 @@ export const displayGradeData = event => async dispatch => {
 
 export const updateGrade = event => async dispatch => {
 	const gradeId = event.target.getAttribute('data-id')
+
 	const subjectData = {
 		subjectId: event.target.getAttribute('data-subjectid'),
 		subjectName: event.target.getAttribute('data-subjectname')
@@ -70,6 +82,7 @@ export const updateGrade = event => async dispatch => {
 
 	const exams = await filterExams(subjectData)
 	const grades = await filterGrades(exams)
+
 	dispatch({
 		type: UPDATE_EXAM_TABLE,
 		payload: { exams, grades }

@@ -11,7 +11,10 @@ import css from './styles/graphs.css'
 
 const Chart = ({ t, graphData, subjects, settings }) => (
 	<div className={css.chart}>
-		<Bar data={chartData(t, graphData, subjects, settings)} options={chartOptions()} />
+		<Bar
+			data={chartData(t, graphData, subjects, settings)}
+			options={chartOptions()}
+		/>
 	</div>
 )
 

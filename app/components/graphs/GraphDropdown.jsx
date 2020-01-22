@@ -31,9 +31,17 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 		chartTitle
 	} = graphData
 
-	const classroom = _.isNull(classroomId) ? classroomId : getClassroomName(classroomId, classData.classData)
+	const classroom = _.isNull(classroomId)
+		? classroomId
+		: getClassroomName(classroomId, classData.classData)
+
 	const classOptions = getClassList(sortData(classData))
-	const subjectOptions = getSubjectList({ selectedRoom: classroomId }, subjectData)
+
+	const subjectOptions = getSubjectList(
+		{ selectedRoom: classroomId },
+		subjectData
+	)
+
 	const examOptions = getExamList(exams, subjectId)
 
 	notifyIfEmpty(t, subjectOptions, openSubList, 'class')
@@ -64,7 +72,11 @@ const GraphDropdown = ({ t, classData, graphData, subjectData, actions }) => {
 				examOptions,
 				'examDropdown'
 			)}
-			{PDFbutton(css.pdf_btn, t('general.saveAs'), resolveLabel(chartTitle, t('graph.schoolGrades')))}
+			{PDFbutton(
+				css.pdf_btn,
+				t('general.saveAs'),
+				resolveLabel(chartTitle, t('graph.schoolGrades'))
+			)}
 		</div>
 	)
 }

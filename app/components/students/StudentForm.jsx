@@ -14,12 +14,20 @@ const studentDataFields = (t, studentData) =>
 			<label className={css.form_label} htmlFor={`${data}_Id`}>
 				{t(`student.${data}`)}*:
 			</label>
-			<input name={data} required className="form-control" data-id={`${data}_Id`} type="text" />
+
+			<input
+				name={data}
+				required
+				className="form-control"
+				data-id={`${data}_Id`}
+				type="text"
+			/>
 		</div>
 	))
 
 const StudentForm = ({ t, studentData, classData, actions }) => {
 	const formFields = studentDataFields(t, studentData)
+
 	const selectOption = _.values(classData.classData).map((data, idx) => (
 		<option className="form-control dropdown" data-id={data._id} key={idx}>
 			{data.name}

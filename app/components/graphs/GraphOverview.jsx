@@ -7,7 +7,9 @@ import Chart from './Chart'
 const GraphOverview = ({ t }) => (
 	<div>
 		<h4 className={css.center_header}>{t('graph.overview')}</h4>
+
 		<GraphDropdown t={t} />
+
 		<div className={css.chart_div}>
 			<Chart t={t} />
 		</div>

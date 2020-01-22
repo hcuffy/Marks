@@ -40,8 +40,11 @@ export const handleClassData = event => async dispatch => {
 		teacher: event.target.teacher.value,
 		substitute: event.target.substitute.value
 	}
+
 	event.target.reset()
+
 	addClassroomData(formData)
+
 	const data = await getClassroomData()
 
 	dispatch({
@@ -52,6 +55,7 @@ export const handleClassData = event => async dispatch => {
 
 export const displayClassData = () => async dispatch => {
 	const data = await getClassroomData()
+
 	if (data.length !== 0) {
 		dispatch({
 			type: GET_CLASSROOM_DATA,
@@ -62,6 +66,7 @@ export const displayClassData = () => async dispatch => {
 
 export const updateRoom = event => async dispatch => {
 	event.preventDefault()
+
 	const roomData = {
 		name: event.target.name.value,
 		teacher: event.target.teacher.value,
@@ -72,6 +77,7 @@ export const updateRoom = event => async dispatch => {
 	}
 
 	const docs = await updateRoomData(roomData)
+
 	if (docs) {
 		roomData.showModal = false
 		dispatch({
@@ -109,6 +115,7 @@ export const deleteRoom = event => async dispatch => {
 
 export const roomModalDisplay = event => dispatch => {
 	event.preventDefault()
+
 	const roomId = {
 		id: event.target.getAttribute('data-id')
 	}

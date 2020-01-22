@@ -3,13 +3,25 @@ import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import { getStudentList, getNotesList, createDropdown, notifyIfEmpty } from '../helpers/dropdowns'
+import {
+	getStudentList,
+	getNotesList,
+	createDropdown,
+	notifyIfEmpty
+} from '../helpers/dropdowns'
 import { resolveLabel } from '../../utils/translationUtil'
 import css from './styles/notes.css'
 
 const NotesDropdown = ({ t, studentData, notesData, actions }) => {
 	const { students } = studentData
-	const { studentDropdown, notesDropdown, selectedStudent, selectedNote, studentId, notes } = notesData
+	const {
+		studentDropdown,
+		notesDropdown,
+		selectedStudent,
+		selectedNote,
+		studentId,
+		notes
+	} = notesData
 
 	const studentOptions = getStudentList(students)
 	const notesOptions = getNotesList(notes, studentId)

@@ -8,6 +8,7 @@ export const addressForm = (t, entry, actions) => (
 	<form onSubmit={actions.saveSchoolAddress} method="POST">
 		<div className={css.form_outer_div}>
 			{entry}
+
 			<div className={(css.form_inner_div, css.save_btn)}>
 				<Button type="submit" className="btn btn-success">
 					{t('general.save')}
@@ -23,7 +24,14 @@ export const addressFields = (t, addressData) =>
 			<label className={css.form_label} htmlFor={`school${data}`}>
 				{t(`settings.${data}`)}:
 			</label>
-			<input name={data} className="form-control" id={`school${data}`} type="text" defaultValue={addressData[data]} />
+
+			<input
+				name={data}
+				className="form-control"
+				id={`school${data}`}
+				type="text"
+				defaultValue={addressData[data]}
+			/>
 		</div>
 	))
 
@@ -33,6 +41,7 @@ export const gradeRadioButtons = (t, systemType, actions) =>
 			<label htmlFor={data} className={`form-check-label ${css.radio_label}`}>
 				{t(`settings.${data}`)}
 			</label>
+
 			<input
 				id={data}
 				type="radio"

@@ -9,7 +9,11 @@ import { cleanAndFilterData, createModalInputs } from './helpers/formHelpers'
 const RoomModal = ({ t, modalData, classModalData, actions }) => {
 	const selectedRoom = cleanAndFilterData(modalData, classModalData)
 	const clickedRoom = createModalInputs(t, selectedRoom)
-	const hiddenInput = <input type="hidden" name="oldName" data-id={selectedRoom.name} />
+
+	const hiddenInput = (
+		<input type="hidden" name="oldName" data-id={selectedRoom.name} />
+	)
+
 	const footerData = {
 		dataId: classModalData.id,
 		nameId: null,
@@ -18,7 +22,18 @@ const RoomModal = ({ t, modalData, classModalData, actions }) => {
 		closeAction: actions.roomModalDisplay
 	}
 
-	return <div>{modalFrame(t, classModalData.showModal, actions.updateRoom, clickedRoom, hiddenInput, footerData)}</div>
+	return (
+		<div>
+			{modalFrame(
+				t,
+				classModalData.showModal,
+				actions.updateRoom,
+				clickedRoom,
+				hiddenInput,
+				footerData
+			)}
+		</div>
+	)
 }
 
 const mapStateToProps = state => ({ classModalData: state.classModalData })

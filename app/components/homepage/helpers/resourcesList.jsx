@@ -7,7 +7,10 @@ import css from '../homepage.css'
 const _ = require('lodash')
 
 export const resourceList = openResource => {
-	const primaryLang = _.isUndefined(currentLanguage()) ? 'de' : currentLanguage().slice(0, 2)
+	const primaryLang = _.isUndefined(currentLanguage())
+		? 'de'
+		: currentLanguage().slice(0, 2)
+
 	const LanguageLinks = primaryLang === 'de' ? GERMAN_LINKS : ENGLISH_LINKS
 
 	const list = _.keys(LanguageLinks).map((data, idx) => (

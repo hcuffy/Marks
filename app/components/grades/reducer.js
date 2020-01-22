@@ -1,4 +1,8 @@
-import { DISPLAY_EXAM_TABLE, OPEN_CLASS_LIST, UPDATE_EXAM_TABLE } from './constants'
+import {
+	DISPLAY_EXAM_TABLE,
+	OPEN_CLASS_LIST,
+	UPDATE_EXAM_TABLE
+} from './constants'
 
 const _ = require('lodash')
 
@@ -11,22 +15,22 @@ const initialLoadState = {
 
 const applyGradeData = (state = initialLoadState, action) => {
 	switch (action.type) {
-	case DISPLAY_EXAM_TABLE: {
-		const subDrop = !state.subDrop
+		case DISPLAY_EXAM_TABLE: {
+			const subDrop = !state.subDrop
 
-		return _.assign({}, state, { subDrop }, action.payload)
-	}
-	case OPEN_CLASS_LIST: {
-		const classroomDropdown = !state.classroomDropdown
-		const subDrop = !classroomDropdown
+			return _.assign({}, state, { subDrop }, action.payload)
+		}
+		case OPEN_CLASS_LIST: {
+			const classroomDropdown = !state.classroomDropdown
+			const subDrop = !classroomDropdown
 
-		return _.assign({}, state, { classroomDropdown, subDrop }, action.payload)
-	}
-	case UPDATE_EXAM_TABLE: {
-		return _.assign({}, state, action.payload)
-	}
-	default:
-		return state
+			return _.assign({}, state, { classroomDropdown, subDrop }, action.payload)
+		}
+		case UPDATE_EXAM_TABLE: {
+			return _.assign({}, state, action.payload)
+		}
+		default:
+			return state
 	}
 }
 

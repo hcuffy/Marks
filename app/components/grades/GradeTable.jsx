@@ -27,7 +27,9 @@ const GradeTable = ({ t, gradeData, students, actions }) => {
 	return (
 		<div className={css.div_wrapper}>
 			<h4 className={css.center_header}>{t('grades.gradesTitle')}</h4>
+
 			<GradeDropdown t={t} />
+
 			<ReactTable
 				data={_.sortBy(data, ['name'], ['asc'])}
 				columns={gradeColumns({ t, newData: data, actions })}

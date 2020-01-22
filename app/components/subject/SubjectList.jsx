@@ -10,12 +10,21 @@ import css from './styles/subject.css'
 const _ = require('lodash')
 
 export const filterSubjects = (subjectData, chosenClass) => {
-	if (_.isNil(subjectData) || _.isNil(chosenClass) || chosenClass === 'Select Class') {
+	if (
+		_.isNil(subjectData) ||
+		_.isNil(chosenClass) ||
+		chosenClass === 'Select Class'
+	) {
 		return []
 	}
+
 	const chosenSubjects = _.chain(subjectData)
 		.filter(['classroomId', chosenClass._id])
-		.orderBy(['abbreviation'], [subJ => subJ.abbreviation.toLowerCase()], ['asc'])
+		.orderBy(
+			['abbreviation'],
+			[subJ => subJ.abbreviation.toLowerCase()],
+			['asc']
+		)
 		.value()
 
 	return chosenSubjects
@@ -30,7 +39,10 @@ const listOfButtons = (filteredData, action) =>
 			onClick={action}
 		>
 			{data.abbreviation}
-			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>{data.tests.length}</span>
+
+			<span className={`badge badge-warning badge-pill ${css.badge_number}`}>
+				{data.tests.length}
+			</span>
 		</Button>
 	))
 
@@ -41,6 +53,7 @@ const SubjectList = ({ t, selectedSubject, subjectData, actions }) => {
 	return (
 		<div className={css.list_div}>
 			<SubjectModal t={t} filteredData={filteredData} />
+
 			<div className="list-group list-group-flush">{subjectList}</div>
 		</div>
 	)
