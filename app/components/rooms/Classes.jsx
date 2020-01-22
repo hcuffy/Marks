@@ -15,8 +15,7 @@ import css from './styles/room.css'
 const _ = require('lodash')
 
 const Classes = ({ t, classData, actions }) => {
-	const formLabels = _.omit(classData, ['classData', 'check'])
-	const formInputs = createFormInputs(t, formLabels)
+	const formInputs = createFormInputs(t, classData)
 
 	checkChange(classData, actions)
 

@@ -7,7 +7,8 @@ const initialLoadState = {
 	teacher: '',
 	substitute: '',
 	classData: [{ name: '', subjects: [] }],
-	check: false
+	check: false,
+	isInvalid: false
 }
 
 export const applyClassData = (state = initialLoadState, action) => {
@@ -17,11 +18,17 @@ export const applyClassData = (state = initialLoadState, action) => {
 				name: '',
 				teacher: '',
 				substitute: '',
-				check: true
+				check: true,
+				isInvalid: false
 			})
 		}
 		case GET_CLASSROOM_DATA: {
-			return _.assign({}, state, { check: false }, action.payload)
+			return _.assign(
+				{},
+				state,
+				{ check: false, isInvalid: false },
+				action.payload
+			)
 		}
 		default:
 			return state

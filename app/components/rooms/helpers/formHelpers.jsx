@@ -3,9 +3,12 @@ import { Button, Input } from 'reactstrap'
 import css from '../styles/room.css'
 
 const _ = require('lodash')
-const testing = true
-export const createFormInputs = (t, labels) =>
-	_.keys(labels).map((data, idx) => (
+
+export const createFormInputs = (t, classData) => {
+	const { isInvalid } = classData
+	const formLabels = _.omit(classData, ['classData', 'check', 'isInvalid'])
+
+	return _.keys(formLabels).map((data, idx) => (
 		<div key={idx} className={css.room_form}>
 			<label className={css.room_form_label} htmlFor={`${data}Id`}>
 				{t(`room.${data}`)}:
@@ -16,11 +19,12 @@ export const createFormInputs = (t, labels) =>
 				className="form-control"
 				id={`${data}Id`}
 				type="text"
-				defaultValue={labels[data]}
+				defaultValue={formLabels[data]}
+				invalid={isInvalid}
 			/>
 		</div>
 	))
-
+}
 export const addRoomForm = (t, formInputs, actions) => (
 	<div className={css.room_div}>
 		<form onSubmit={actions.handleClassData} method="POST">
@@ -30,7 +34,7 @@ export const addRoomForm = (t, formInputs, actions) => (
 				{formInputs}
 
 				<div className={(css.form_div, css.save_btn)}>
-					<Button type="submit" className="btn btn-success">
+					<Button type="submit" formNoValidate className="btn btn-success">
 						{t('general.add')}
 					</Button>
 				</div>
