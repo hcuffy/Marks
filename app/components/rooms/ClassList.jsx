@@ -9,6 +9,7 @@ import css from './styles/room.css'
 
 const ClassList = ({ t, listData, actions }) => {
 	const cleanedData = sortData(listData)
+
 	const listInputs = classInputs(cleanedData, actions.roomModalDisplay)
 
 	return (

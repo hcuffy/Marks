@@ -3,7 +3,8 @@ import {
 	ADD_CLASSROOM_DATA,
 	GET_CLASSROOM_DATA,
 	UPDATE_CLASSROOM,
-	OPEN_CLOSE_ROOM_MODAL
+	OPEN_CLOSE_ROOM_MODAL,
+	CLASSROOM_FORM_VALIDATION
 } from './constants'
 import {
 	addClassroomData,
@@ -11,6 +12,7 @@ import {
 	deleteClassroom,
 	updateRoomData
 } from '../../collections/classroom'
+import { inputValidation } from '../helpers/formValidation'
 
 const _ = require('lodash')
 
@@ -32,6 +34,14 @@ export const changeClassroomTab = event => dispatch => {
 	})
 }
 
+const clearedForm = {
+	name: '',
+	teacher: '',
+	substitute: '',
+	check: true,
+	isInvalid: false
+}
+
 export const handleClassData = event => async dispatch => {
 	event.preventDefault()
 
@@ -41,16 +51,23 @@ export const handleClassData = event => async dispatch => {
 		substitute: event.target.substitute.value
 	}
 
-	event.target.reset()
+	if (inputValidation(formData)) {
+		dispatch({
+			type: CLASSROOM_FORM_VALIDATION,
+			payload: { formData, isInvalid: true, check: true }
+		})
+	} else {
+		event.target.reset()
 
-	addClassroomData(formData)
+		addClassroomData(formData)
 
-	const data = await getClassroomData()
+		const data = await getClassroomData()
 
-	dispatch({
-		type: ADD_CLASSROOM_DATA,
-		payload: { inputData: data }
-	})
+		dispatch({
+			type: ADD_CLASSROOM_DATA,
+			payload: { clearedForm }
+		})
+	}
 }
 
 export const displayClassData = () => async dispatch => {
@@ -59,7 +76,7 @@ export const displayClassData = () => async dispatch => {
 	if (data.length !== 0) {
 		dispatch({
 			type: GET_CLASSROOM_DATA,
-			payload: { classData: data }
+			payload: { classData: data, check: false }
 		})
 	}
 }
@@ -82,7 +99,7 @@ export const updateRoom = event => async dispatch => {
 		roomData.showModal = false
 		dispatch({
 			type: GET_CLASSROOM_DATA,
-			payload: { classData: docs }
+			payload: { classData: docs, check: false }
 		})
 	}
 

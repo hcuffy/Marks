@@ -6,7 +6,7 @@ const _ = require('lodash')
 
 export const createFormInputs = (t, classData) => {
 	const { isInvalid } = classData
-	const formLabels = _.omit(classData, ['classData', 'check', 'isInvalid'])
+	const formLabels = _.pick(classData, ['name', 'teacher', 'substitute'])
 
 	return _.keys(formLabels).map((data, idx) => (
 		<div key={idx} className={css.room_form}>
@@ -20,7 +20,7 @@ export const createFormInputs = (t, classData) => {
 				id={`${data}Id`}
 				type="text"
 				defaultValue={formLabels[data]}
-				invalid={isInvalid}
+				invalid={isInvalid && _.isEmpty(formLabels[data])}
 			/>
 		</div>
 	))
