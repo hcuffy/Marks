@@ -4,7 +4,8 @@ import {
 	GET_CLASSROOM_DATA,
 	UPDATE_CLASSROOM,
 	OPEN_CLOSE_ROOM_MODAL,
-	CLASSROOM_FORM_VALIDATION
+	CLASSROOM_FORM_VALIDATION,
+	CLASSROOM_MODAL_VALIDATION
 } from './constants'
 import {
 	addClassroomData,
@@ -81,18 +82,7 @@ export const displayClassData = () => async dispatch => {
 	}
 }
 
-export const updateRoom = event => async dispatch => {
-	event.preventDefault()
-
-	const roomData = {
-		name: event.target.name.value,
-		teacher: event.target.teacher.value,
-		substitute: event.target.substitute.value,
-		oldName: event.target.oldName.getAttribute('data-id'),
-		id: '',
-		showModal: true
-	}
-
+const updateRoomDispatcher = async (roomData, dispatch) => {
 	const docs = await updateRoomData(roomData)
 
 	if (docs) {
@@ -105,8 +95,30 @@ export const updateRoom = event => async dispatch => {
 
 	dispatch({
 		type: UPDATE_CLASSROOM,
-		payload: roomData
+		payload: { ...roomData, isInvalid: false }
 	})
+}
+
+export const updateRoom = event => async dispatch => {
+	event.preventDefault()
+
+	const roomData = {
+		name: event.target.name.value,
+		teacher: event.target.teacher.value,
+		substitute: event.target.substitute.value,
+		oldName: event.target.oldName.getAttribute('data-id'),
+		id: '',
+		showModal: true
+	}
+
+	if (inputValidation(_.omit(roomData, ['id']))) {
+		dispatch({
+			type: CLASSROOM_MODAL_VALIDATION,
+			payload: { ...roomData, isInvalid: true, check: false }
+		})
+	} else {
+		await updateRoomDispatcher(roomData, dispatch)
+	}
 }
 
 export const deleteRoom = event => async dispatch => {
@@ -139,6 +151,6 @@ export const roomModalDisplay = event => dispatch => {
 
 	dispatch({
 		type: OPEN_CLOSE_ROOM_MODAL,
-		payload: roomId
+		payload: { ...roomId, isInvalid: false }
 	})
 }

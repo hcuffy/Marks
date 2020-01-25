@@ -16,7 +16,7 @@ const modalFooter = (
 			{t('general.delete')}
 		</Button>
 
-		<Button type="submit" color="primary">
+		<Button type="submit" color="primary" formNoValidate>
 			{t('general.update')}
 		</Button>
 
@@ -30,7 +30,7 @@ export const modalFrame = (
 	t,
 	modalOpen,
 	updateAction,
-	examFormData,
+	formData,
 	extras,
 	footerData
 ) => (
@@ -38,7 +38,7 @@ export const modalFrame = (
 		<ModalHeader>{t('general.edit')}:</ModalHeader>
 		<form onSubmit={updateAction} method="POST">
 			<ModalBody>
-				{examFormData}
+				{formData}
 
 				{extras}
 			</ModalBody>

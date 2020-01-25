@@ -73,8 +73,8 @@ export const classPill = (index, pillClass, name, action, title) => (
 	</li>
 )
 
-export const cleanAndFilterData = (objectToClean, cleanBy) => {
-	const requiredProp = _.find(objectToClean, { _id: cleanBy.id })
+export const filterObjectData = (objectToClean, selectedId) => {
+	const requiredProp = _.find(objectToClean, { _id: selectedId })
 
 	const cleanedData = _.omit(requiredProp, [
 		'_id',
@@ -89,23 +89,24 @@ export const cleanAndFilterData = (objectToClean, cleanBy) => {
 	return cleanedData
 }
 
-export const createModalInputs = (t, selectedRoom) =>
-	_.keys(selectedRoom).map((data, idx) => (
+export const createModalInputs = (t, selectedRoom, isInvalid) => {
+	return _.keys(selectedRoom).map((data, idx) => (
 		<div key={idx} className={css.form_div}>
 			<label className={css.form_label} htmlFor={`${data}_Id`}>
 				{t(`room.${data}`)}:
 			</label>
 
-			<input
+			<Input
 				name={data}
 				className={`${css.form_input} form-control`}
 				data-id={`${data}_Id`}
 				type="text"
-				required
+				invalid={isInvalid && _.isEmpty(selectedRoom[data])}
 				defaultValue={selectedRoom[data]}
 			/>
 		</div>
 	))
+}
 
 export const checkChange = (classData, actions) => {
 	if (classData.check) {

@@ -4,20 +4,29 @@ import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { modalFrame } from '../helpers/editModal'
-import { cleanAndFilterData, createModalInputs } from './helpers/formHelpers'
+import { filterObjectData, createModalInputs } from './helpers/formHelpers'
+
+const getCurrentModalData = CurrentModalData => {
+	return _.pick(CurrentModalData, ['name', 'teacher', 'substitute'])
+}
 
 const RoomModal = ({ t, modalData, classModalData, actions }) => {
-	const selectedRoom = cleanAndFilterData(modalData, classModalData)
-	const clickedRoom = createModalInputs(t, selectedRoom)
+	const { id, showModal, isInvalid } = classModalData
+
+	const selectedRoom = isInvalid
+		? getCurrentModalData(classModalData)
+		: filterObjectData(modalData, id)
+
+	const roomInputs = createModalInputs(t, selectedRoom, isInvalid)
 
 	const hiddenInput = (
 		<input type="hidden" name="oldName" data-id={selectedRoom.name} />
 	)
 
 	const footerData = {
-		dataId: classModalData.id,
+		dataId: id,
 		nameId: null,
-		closeId: classModalData.id,
+		closeId: id,
 		deleteAction: actions.deleteRoom,
 		closeAction: actions.roomModalDisplay
 	}
@@ -26,9 +35,9 @@ const RoomModal = ({ t, modalData, classModalData, actions }) => {
 		<div>
 			{modalFrame(
 				t,
-				classModalData.showModal,
+				showModal,
 				actions.updateRoom,
-				clickedRoom,
+				roomInputs,
 				hiddenInput,
 				footerData
 			)}
