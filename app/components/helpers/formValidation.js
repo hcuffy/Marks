@@ -1,5 +1,5 @@
 const _ = require('lodash')
 
-export const inputValidation = formValue => {
-	return _.some(formValue, _.isEmpty)
+export const inputValidation = formValues => {
+	return _.values(formValues).some(value => value === '')
 }
