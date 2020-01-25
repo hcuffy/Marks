@@ -4,7 +4,7 @@ import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { modalFrame } from '../helpers/editModal'
 import { actionCreators } from '../../actions/index'
-import { cleanAndFilterData } from '../rooms/helpers/formHelpers'
+import { filterObjectData } from '../rooms/helpers/formHelpers'
 import css from './styles/subject.css'
 
 const _ = require('lodash')
@@ -36,7 +36,7 @@ const selectedSubject = (t, subject) =>
 	))
 
 const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
-	const requiredSubject = cleanAndFilterData(filteredData, subjectModalData)
+	const requiredSubject = filterObjectData(filteredData, subjectModalData.id)
 	const subjectFields = selectedSubject(t, requiredSubject)
 	const { id, showSubjectModal } = subjectModalData
 

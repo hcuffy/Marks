@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import { cleanAndFilterData } from '../rooms/helpers/formHelpers'
+import { filterObjectData } from '../rooms/helpers/formHelpers'
 import { modalFrame } from '../helpers/editModal'
 import generateFields from './helpers/modalHelper'
 
 const ExamModal = ({ t, examData, actions }) => {
 	const { examModal, examId, exams, subjectId } = examData
-	const requiredExam = cleanAndFilterData(exams, { id: examId })
+	const requiredExam = filterObjectData(exams, examId)
 	const examFormData = generateFields(t, requiredExam)
 
 	const hiddenInputs = (

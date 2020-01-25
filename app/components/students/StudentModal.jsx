@@ -4,15 +4,13 @@ import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { modalFrame } from '../helpers/editModal'
 import { actionCreators } from '../../actions/index'
-import { cleanAndFilterData } from '../rooms/helpers/formHelpers'
+import { filterObjectData } from '../rooms/helpers/formHelpers'
 import generateFields from './helpers/modalHelper'
 
 const StudentModal = ({ t, students, classdata, actions }) => {
 	const { studentId, studentModal } = students
 
-	const requiredStudent = cleanAndFilterData(students.students, {
-		id: studentId
-	})
+	const requiredStudent = filterObjectData(students.students, studentId)
 	const studentFields = generateFields(t, requiredStudent, classdata)
 
 	const hiddenInput = (
