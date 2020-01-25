@@ -1,5 +1,16 @@
-import { UPDATE_GRADING_DATA, GET_SYSTEM_TYPE, HANDLE_SCHOOL_DATA, DISPLAY_SCHOOL_DATA } from './constants'
-import { saveGradeSystem, getSystemType, updateGradeType, addAddress, getAddressData } from '../../collections/settings'
+import {
+	UPDATE_GRADING_DATA,
+	GET_SYSTEM_TYPE,
+	HANDLE_SCHOOL_DATA,
+	DISPLAY_SCHOOL_DATA
+} from './constants'
+import {
+	saveGradeSystem,
+	getSystemType,
+	updateGradeType,
+	addAddress,
+	getAddressData
+} from '../../collections/settings'
 
 const _ = require('lodash')
 
@@ -9,6 +20,7 @@ export const updateGradingSystem = event => async dispatch => {
 		points: false,
 		percent: false
 	}
+
 	const newSystemType = _.set(systemType, event.target.value, true)
 	const settings = await updateGradeType(newSystemType)
 
@@ -26,6 +38,7 @@ export const getGradingSystem = () => async dispatch => {
 			percent: false
 		}
 	]
+
 	const systemType = await getSystemType()
 
 	if (systemType.length === 0) {
@@ -62,6 +75,7 @@ export const saveSchoolAddress = event => dispatch => {
 
 export const displayAddress = () => async dispatch => {
 	const data = await getAddressData()
+
 	if (data.length !== 0) {
 		dispatch({
 			type: DISPLAY_SCHOOL_DATA,

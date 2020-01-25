@@ -6,7 +6,12 @@ import {
 	GET_SINGLE_EXAM,
 	UPDATE_EXAMS_LIST
 } from './constants'
-import { addExamData, getAllExams, deleteExam, updateExamData } from '../../collections/exam'
+import {
+	addExamData,
+	getAllExams,
+	deleteExam,
+	updateExamData
+} from '../../collections/exam'
 import { getOption } from '../students/actions'
 
 export const addNewExam = event => dispatch => {
@@ -18,8 +23,11 @@ export const addNewExam = event => dispatch => {
 		date: event.target.date.value,
 		weight: event.target.weight.value
 	}
+
 	addExamData(examData)
+
 	event.target.reset()
+
 	dispatch({
 		type: ADD_NEW_EXAM,
 		payload: {}
@@ -28,6 +36,7 @@ export const addNewExam = event => dispatch => {
 
 export const getSelectedSubject = event => dispatch => {
 	const subject = event.target.value
+
 	dispatch({
 		type: GET_SELECTED_CLASS,
 		payload: subject
@@ -38,6 +47,7 @@ export const openClassDropdownList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
+
 	const classroomId = event.target.getAttribute('data-id')
 
 	dispatch({
@@ -65,6 +75,7 @@ export const displayExamData = event => async dispatch => {
 
 export const showSingleExam = event => dispatch => {
 	const examId = event.target.getAttribute('data-id')
+
 	dispatch({
 		type: GET_SINGLE_EXAM,
 		payload: examId
@@ -73,6 +84,7 @@ export const showSingleExam = event => dispatch => {
 
 export const updateExam = event => async dispatch => {
 	event.preventDefault()
+
 	const examData = {
 		title: event.target.title.value,
 		date: event.target.date.value,

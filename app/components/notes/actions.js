@@ -7,7 +7,12 @@ import {
 	CLEAR_NOTE_FIELDS,
 	UPDATE_NOTE
 } from './constants'
-import { addNewNote, getAllNotes, deleteNote, updateNoteData } from '../../collections/notes'
+import {
+	addNewNote,
+	getAllNotes,
+	deleteNote,
+	updateNoteData
+} from '../../collections/notes'
 
 export const addNote = event => async dispatch => {
 	event.preventDefault()
@@ -19,7 +24,9 @@ export const addNote = event => async dispatch => {
 	}
 
 	addNewNote(formData)
+
 	event.target.reset()
+
 	const notes = await getAllNotes()
 
 	dispatch({
@@ -30,6 +37,7 @@ export const addNote = event => async dispatch => {
 
 export const getNotes = () => async dispatch => {
 	const notes = await getAllNotes()
+
 	if (notes.length !== 0) {
 		dispatch({
 			type: GET_ALL_NOTES,

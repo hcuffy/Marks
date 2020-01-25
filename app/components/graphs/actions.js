@@ -12,6 +12,7 @@ export const openGraphClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
 		return
 	}
+
 	const data = {
 		classroomId: event.target.getAttribute('data-id'),
 		chartTitle: event.target.innerText,
@@ -28,7 +29,9 @@ export const displaySubjectGraph = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
 		return
 	}
+
 	event.persist()
+
 	const data = {
 		subjectId: event.target.getAttribute('data-id'),
 		chartTitle: event.target.innerText,
@@ -71,6 +74,7 @@ export const getAllGradeData = () => async dispatch => {
 
 export const getGraphExamData = () => async dispatch => {
 	const exams = await getAllExams()
+
 	if (exams.length !== 0) {
 		dispatch({
 			type: GET_ALL_EXAMS,

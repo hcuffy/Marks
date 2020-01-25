@@ -145,8 +145,8 @@ select {
   left: 900px;
   margin-top: 5px;
   background-color: Transparent !important;
-  border: none;
+  border: none !important;
   outline: none;
   font-size: 14px;
-  color: black;
+  color: black !important;
 }

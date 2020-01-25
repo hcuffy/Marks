@@ -22,36 +22,36 @@ const initialLoadState = {
 
 const applyStudentData = (state = initialLoadState, action) => {
 	switch (action.type) {
-	case ADD_NEW_STUDENT: {
-		return _.assign({}, state, {
-			firstname: '',
-			lastname: ''
-		})
-	}
-	case GET_ALL_STUDENTS: {
-		return _.assign({}, state, action.payload)
-	}
+		case ADD_NEW_STUDENT: {
+			return _.assign({}, state, {
+				firstname: '',
+				lastname: ''
+			})
+		}
+		case GET_ALL_STUDENTS: {
+			return _.assign({}, state, action.payload)
+		}
 
-	case GET_SINGLE_STUDENT: {
-		const studentModal = !state.studentModal
-		const studentId = action.payload
+		case GET_SINGLE_STUDENT: {
+			const studentModal = !state.studentModal
+			const studentId = action.payload
 
-		return _.assign({}, state, { studentModal, studentId })
-	}
+			return _.assign({}, state, { studentModal, studentId })
+		}
 
-	case DISPLAY_STUDENT_GRAPH: {
-		const studentDropdown = !state.studentDropdown
+		case DISPLAY_STUDENT_GRAPH: {
+			const studentDropdown = !state.studentDropdown
 
-		return _.assign({}, state, { studentDropdown }, action.payload)
-	}
+			return _.assign({}, state, { studentDropdown }, action.payload)
+		}
 
-	case DISPLAY_STUDENT_SUBJECT_GRAPH: {
-		const subjectDropdown = !state.subjectDropdown
+		case DISPLAY_STUDENT_SUBJECT_GRAPH: {
+			const subjectDropdown = !state.subjectDropdown
 
-		return _.assign({}, state, { subjectDropdown }, action.payload)
-	}
-	default:
-		return state
+			return _.assign({}, state, { subjectDropdown }, action.payload)
+		}
+		default:
+			return state
 	}
 }
 

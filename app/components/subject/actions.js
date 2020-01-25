@@ -5,7 +5,12 @@ import {
 	GET_SUBJECT_LIST,
 	OPEN_CLOSE_SUBJECT_MODAL
 } from './constants'
-import { addSubjectData, getAllSubjects, updateSubjectData, deleteSubject } from '../../collections/subject'
+import {
+	addSubjectData,
+	getAllSubjects,
+	updateSubjectData,
+	deleteSubject
+} from '../../collections/subject'
 
 export const openClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
@@ -13,6 +18,7 @@ export const openClassList = event => dispatch => {
 	}
 
 	const subject = event.target.innerText
+
 	dispatch({
 		type: UPDATE_CLASS_LIST,
 		payload: subject
@@ -29,6 +35,7 @@ export const addNewSubject = event => async dispatch => {
 	}
 
 	event.target.reset()
+
 	const data = await addSubjectData(formData)
 
 	dispatch({
@@ -48,7 +55,9 @@ export const getSubjectData = () => async dispatch => {
 
 export const showSubject = event => dispatch => {
 	const subject = event.target.innerText
+
 	getSubjectData()
+
 	dispatch({
 		type: GET_SINGLE_SUBJECT,
 		payload: subject
@@ -75,6 +84,7 @@ export const deleteSingleSubject = event => async dispatch => {
 
 export const updateSubject = event => async dispatch => {
 	event.preventDefault()
+
 	const subjectData = {
 		name: event.target.name.value,
 		abbreviation: event.target.abbreviation.value,
@@ -104,6 +114,7 @@ export const updateSubject = event => async dispatch => {
 
 export const subjectModalDisplay = event => dispatch => {
 	event.preventDefault()
+
 	const subjectId = {
 		id: event.target.getAttribute('data-id')
 	}

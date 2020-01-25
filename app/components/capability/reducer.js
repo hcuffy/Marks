@@ -23,36 +23,46 @@ const initialLoadState = {
 
 const applyCapabilityChanges = (state = initialLoadState, action) => {
 	switch (action.type) {
-	case OPEN_CLOSE_CLASS_LIST: {
-		const classDropdown = !state.classDropdown
-		const studentDropdown = false
+		case OPEN_CLOSE_CLASS_LIST: {
+			const classDropdown = !state.classDropdown
+			const studentDropdown = false
 
-		return _.assign({}, state, { classDropdown, studentDropdown }, action.payload)
-	}
-	case OPEN_CLOSE_STUDENT_LIST: {
-		const studentDropdown = !state.studentDropdown
-		const classDropdown = false
+			return _.assign(
+				{},
+				state,
+				{ classDropdown, studentDropdown },
+				action.payload
+			)
+		}
+		case OPEN_CLOSE_STUDENT_LIST: {
+			const studentDropdown = !state.studentDropdown
+			const classDropdown = false
 
-		return _.assign({}, state, { studentDropdown, classDropdown }, action.payload)
-	}
-	case GET_ALL_QUESTIONS: {
-		return _.assign({}, state, action.payload)
-	}
-	case OPEN_CLOSE_QUESTION_LIST: {
-		const questionDropdown = !state.questionDropdown
+			return _.assign(
+				{},
+				state,
+				{ studentDropdown, classDropdown },
+				action.payload
+			)
+		}
+		case GET_ALL_QUESTIONS: {
+			return _.assign({}, state, action.payload)
+		}
+		case OPEN_CLOSE_QUESTION_LIST: {
+			const questionDropdown = !state.questionDropdown
 
-		return _.assign({}, state, { questionDropdown })
-	}
-	case UPDATE_QUESTION_SET: {
-		const questionDropdown = false
+			return _.assign({}, state, { questionDropdown })
+		}
+		case UPDATE_QUESTION_SET: {
+			const questionDropdown = false
 
-		return _.assign({}, state, { questionDropdown }, action.payload)
-	}
-	case UPDATE_ANSWERS: {
-		return _.assign({}, state, action.payload)
-	}
-	default:
-		return state
+			return _.assign({}, state, { questionDropdown }, action.payload)
+		}
+		case UPDATE_ANSWERS: {
+			return _.assign({}, state, action.payload)
+		}
+		default:
+			return state
 	}
 }
 

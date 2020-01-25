@@ -5,7 +5,12 @@ import {
 	DISPLAY_STUDENT_GRAPH,
 	DISPLAY_STUDENT_SUBJECT_GRAPH
 } from './constants'
-import { addNewStudentData, getAllStudents, deleteStudent, updateStudentData } from '../../collections/student'
+import {
+	addNewStudentData,
+	getAllStudents,
+	deleteStudent,
+	updateStudentData
+} from '../../collections/student'
 
 export const getOption = (event, propToGet) => {
 	const index = event.target[propToGet].selectedIndex
@@ -24,7 +29,9 @@ export const addNewStudent = event => async dispatch => {
 	}
 
 	addNewStudentData(formData)
+
 	event.target.reset()
+
 	const students = await getAllStudents()
 
 	dispatch({
@@ -40,6 +47,7 @@ export const addNewStudent = event => async dispatch => {
 
 export const getStudents = () => async dispatch => {
 	const students = await getAllStudents()
+
 	if (students.length !== 0) {
 		dispatch({
 			type: GET_ALL_STUDENTS,
@@ -50,6 +58,7 @@ export const getStudents = () => async dispatch => {
 
 export const showStudentModal = event => dispatch => {
 	const studentId = event.target.getAttribute('data-id')
+
 	dispatch({
 		type: GET_SINGLE_STUDENT,
 		payload: studentId
@@ -60,6 +69,7 @@ export const openStudentGraph = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'studentDropdown') {
 		return
 	}
+
 	const student = {
 		studentGraphId: event.target.getAttribute('data-id'),
 		studentGraphName: event.target.innerText,
@@ -76,6 +86,7 @@ export const openStudentSubjectGraph = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
 		return
 	}
+
 	const subject = {
 		subjectGraphId: event.target.getAttribute('data-id'),
 		subjectGraphName: event.target.innerText,
@@ -90,6 +101,7 @@ export const openStudentSubjectGraph = event => dispatch => {
 
 export const updateStudent = event => async dispatch => {
 	event.preventDefault()
+
 	const studentId = event.target.studentId.getAttribute('data-id')
 
 	const studentData = {

@@ -33,8 +33,8 @@
 .pdf_btn {
   margin-left: 40px;
   background-color: Transparent !important;
-  border: none;
+  border: none !important;
   outline: none;
   font-size: 14px;
-  color: black;
+  color: black !important;
 }
