@@ -4,7 +4,8 @@ import {
 	ADD_NEW_SUBJECT,
 	GET_SUBJECT_LIST,
 	OPEN_CLOSE_SUBJECT_MODAL,
-	SUBJECT_FORM_VALIDATION
+	SUBJECT_FORM_VALIDATION,
+	SUBJECT_MODAL_VALIDATION
 } from './constants'
 import {
 	addSubjectData,
@@ -48,7 +49,7 @@ export const addNewSubject = event => async dispatch => {
 
 		dispatch({
 			type: ADD_NEW_SUBJECT,
-			payload: { data }
+			payload: { data, isInvalid: false }
 		})
 	}
 }
@@ -91,16 +92,7 @@ export const deleteSingleSubject = event => async dispatch => {
 	})
 }
 
-export const updateSubject = event => async dispatch => {
-	event.preventDefault()
-
-	const subjectData = {
-		name: event.target.name.value,
-		abbreviation: event.target.abbreviation.value,
-		classroomId: event.target.classroomId.getAttribute('data-id'),
-		subjectId: event.target.subjectId.getAttribute('data-id')
-	}
-
+const updateSubjectDispatcher = async (subjectData, dispatch) => {
 	const subjectDoc = await updateSubjectData(subjectData)
 	const data = await getAllSubjects()
 
@@ -114,11 +106,41 @@ export const updateSubject = event => async dispatch => {
 			type: GET_SINGLE_SUBJECT,
 			payload: subjectDoc[0].room
 		})
+
+		dispatch({
+			type: SUBJECT_MODAL_VALIDATION,
+			payload: { name: '', abbreviation: '', isInvalid: false }
+		})
 	}
+
 	dispatch({
 		type: GET_SUBJECT_LIST,
 		payload: { data }
 	})
+
+	dispatch({
+		type: SUBJECT_MODAL_VALIDATION,
+		payload: { name: '', abbreviation: '', isInvalid: false }
+	})
+}
+
+export const updateSubject = event => async dispatch => {
+	event.preventDefault()
+
+	const subjectData = {
+		name: event.target.name.value,
+		abbreviation: event.target.abbreviation.value,
+		classroomId: event.target.classroomId.getAttribute('data-id'),
+		subjectId: event.target.subjectId.getAttribute('data-id')
+	}
+	if (inputValidation(_.omit(subjectData, ['classroomId', 'subjectId']))) {
+		dispatch({
+			type: SUBJECT_MODAL_VALIDATION,
+			payload: { ...subjectData, isInvalid: true }
+		})
+	} else {
+		await updateSubjectDispatcher(subjectData, dispatch)
+	}
 }
 
 export const subjectModalDisplay = event => dispatch => {
@@ -130,6 +152,6 @@ export const subjectModalDisplay = event => dispatch => {
 
 	dispatch({
 		type: OPEN_CLOSE_SUBJECT_MODAL,
-		payload: subjectId
+		payload: { ...subjectId, isInvalid: false }
 	})
 }

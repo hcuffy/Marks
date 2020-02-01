@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
+import { Button, Input, Label } from 'reactstrap'
 import { modalFrame } from '../helpers/editModal'
 import { actionCreators } from '../../actions/index'
 import { filterObjectData } from '../rooms/helpers/formHelpers'
@@ -17,38 +18,54 @@ const getClassroomId = dataList => {
 	return dataList[0].classroomId
 }
 
-const selectedSubject = (t, subject) =>
-	_.keys(subject).map((data, idx) => (
+const selectedSubject = (t, subject, isInvalid) => {
+	return _.keys(subject).map((data, idx) => (
 		<div key={idx} className={css.modal_form_div}>
-			<label className={css.modal_form_label} htmlFor={`${data}_Id`}>
+			<Label className={css.modal_form_label} htmlFor={`${data}_Id`}>
 				{t(`room.${data}`)}:
-			</label>
+			</Label>
 
-			<input
+			<Input
 				name={data}
 				className={`${css.badge_number} form-control`}
 				data-id={`${data}_Id`}
 				type="text"
-				required
 				defaultValue={subject[data]}
+				invalid={isInvalid && _.isEmpty(subject[data])}
 			/>
 		</div>
 	))
+}
+const determineSubjectInputs = (filteredData, id, subjectModalData) => {
+	const { name, abbreviation, isInvalid } = subjectModalData
+
+	if (isInvalid === true) {
+		return { name, abbreviation }
+	} else {
+		return filterObjectData(filteredData, id)
+	}
+}
 
 const SubjectModal = ({ t, filteredData, subjectModalData, actions }) => {
-	const requiredSubject = filterObjectData(filteredData, subjectModalData.id)
-	const subjectFields = selectedSubject(t, requiredSubject)
-	const { id, showSubjectModal } = subjectModalData
+	const { id, showSubjectModal, isInvalid } = subjectModalData
+
+	const requiredSubject = determineSubjectInputs(
+		filteredData,
+		id,
+		subjectModalData
+	)
+
+	const subjectFields = selectedSubject(t, requiredSubject, isInvalid)
 
 	const hiddenInputs = (
 		<div>
-			<input
+			<Input
 				type="hidden"
 				name="classroomId"
 				data-id={getClassroomId(filteredData)}
 			/>
 
-			<input type="hidden" name="subjectId" data-id={id} />
+			<Input type="hidden" name="subjectId" data-id={id} />
 		</div>
 	)
 
