@@ -1,34 +1,34 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
 import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import { Button } from 'reactstrap'
+import { Button, Input, Label } from 'reactstrap'
 import css from './styles/subject.css'
 
 const _ = require('lodash')
 
-const generateInputs = (t, labels) =>
-	_.values(labels).map((data, idx) => (
+const generateInputs = (t, { name, abbreviation, isInvalid }) => {
+	const formLabels = { name, abbreviation }
+	return _.keys(formLabels).map((data, idx) => (
 		<div key={idx} className={css.form_div}>
-			<label className={css.form_label} htmlFor={`${data}Sid`}>
+			<Label className={css.form_label} htmlFor={`${data}Sid`}>
 				{t(`room.${data}`)}:
-			</label>
+			</Label>
 
-			<input
+			<Input
 				name={data}
 				className="form-control"
 				data-id={`${data}Sid`}
 				type="text"
-				required
+				invalid={isInvalid && _.isEmpty(formLabels[data])}
 			/>
 		</div>
 	))
+}
 
 const SubjectForm = ({ t, classListData, subjects, actions }) => {
-	const formLabels = _.pick(classListData, ['name', 'abbreviation'])
-	const formInputs = generateInputs(t, formLabels)
+	const formInputs = generateInputs(t, classListData)
 
 	const selectOption = _.values(subjects).map((data, idx) => (
 		<option className="form-control dropup" key={idx}>
@@ -41,15 +41,15 @@ const SubjectForm = ({ t, classListData, subjects, actions }) => {
 			<form onSubmit={actions.addNewSubject} method="POST">
 				{formInputs}
 				<div className={css.form_div}>
-					<label className={css.form_label} htmlFor="cSelect">
+					<Label className={css.form_label} htmlFor="cSelect">
 						{t('general.selectClass')}:
-					</label>
+					</Label>
 					<select type="text" name="room" className="form-control">
 						{selectOption}
 					</select>
 				</div>
 				<div className={css.subject_save}>
-					<Button type="submit" className="btn btn-success">
+					<Button type="submit" formNoValidate className="btn btn-success">
 						{t('general.add')}
 					</Button>
 				</div>

@@ -3,7 +3,8 @@ import {
 	GET_SINGLE_SUBJECT,
 	ADD_NEW_SUBJECT,
 	GET_SUBJECT_LIST,
-	OPEN_CLOSE_SUBJECT_MODAL
+	OPEN_CLOSE_SUBJECT_MODAL,
+	SUBJECT_FORM_VALIDATION
 } from './constants'
 import {
 	addSubjectData,
@@ -11,6 +12,7 @@ import {
 	updateSubjectData,
 	deleteSubject
 } from '../../collections/subject'
+import { inputValidation } from '../helpers/formValidation'
 
 export const openClassList = event => dispatch => {
 	if (event.target.getAttribute('data-check') !== 'classDropdown') {
@@ -21,7 +23,7 @@ export const openClassList = event => dispatch => {
 
 	dispatch({
 		type: UPDATE_CLASS_LIST,
-		payload: subject
+		payload: { subject }
 	})
 }
 
@@ -34,14 +36,21 @@ export const addNewSubject = event => async dispatch => {
 		room: event.target.room.value
 	}
 
-	event.target.reset()
+	if (inputValidation(_.omit(formData, ['room']))) {
+		dispatch({
+			type: SUBJECT_FORM_VALIDATION,
+			payload: { ...formData, isInvalid: true }
+		})
+	} else {
+		event.target.reset()
 
-	const data = await addSubjectData(formData)
+		const data = await addSubjectData(formData)
 
-	dispatch({
-		type: ADD_NEW_SUBJECT,
-		payload: { data }
-	})
+		dispatch({
+			type: ADD_NEW_SUBJECT,
+			payload: { data }
+		})
+	}
 }
 
 export const getSubjectData = () => async dispatch => {
@@ -60,7 +69,7 @@ export const showSubject = event => dispatch => {
 
 	dispatch({
 		type: GET_SINGLE_SUBJECT,
-		payload: subject
+		payload: { subject }
 	})
 }
 

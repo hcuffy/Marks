@@ -2,7 +2,8 @@ import {
 	UPDATE_CLASS_LIST,
 	GET_SINGLE_SUBJECT,
 	GET_SUBJECT_LIST,
-	ADD_NEW_SUBJECT
+	ADD_NEW_SUBJECT,
+	SUBJECT_FORM_VALIDATION
 } from '../constants'
 
 const _ = require('lodash')
@@ -10,25 +11,23 @@ const _ = require('lodash')
 const initialLoadState = {
 	openModal: false,
 	subject: null,
-	name: 'name',
-	abbreviation: 'abbreviation'
+	name: '',
+	abbreviation: '',
+	isInvalid: false
 }
 
 export const applyClassList = (state = initialLoadState, action) => {
 	switch (action.type) {
 		case UPDATE_CLASS_LIST: {
 			const openModal = !state.openModal
-			const subject = action.payload
 
-			return _.assign({}, state, {
-				openModal,
-				subject
-			})
+			return _.assign({}, state, { openModal }, action.payload)
 		}
 		case GET_SINGLE_SUBJECT: {
-			const subject = action.payload
-
-			return _.assign({}, state, { subject })
+			return _.assign({}, state, action.payload)
+		}
+		case SUBJECT_FORM_VALIDATION: {
+			return _.assign({}, state, action.payload)
 		}
 
 		default:
