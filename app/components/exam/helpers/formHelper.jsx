@@ -1,6 +1,38 @@
 import React from 'react'
+import { getClassroomId } from '../../helpers/dropdowns'
 import { Button } from 'reactstrap'
 import css from '../styles/exam.css'
+
+const _ = require('lodash')
+
+export const getClassOptions = classInfo => {
+	const selectOptions = _.values(classInfo).map((data, idx) => (
+		<option className="form-control dropup" key={idx}>
+			{data.name}
+		</option>
+	))
+
+	return selectOptions
+}
+
+export const getSubjectOptions = (subjectData, examData, cleanedClassList) => {
+	const { subject } = examData
+	const classroom = subject || cleanedClassList[0].name
+	const classroomId = getClassroomId(classroom, cleanedClassList)
+
+	const filteredSubject = _.filter(subjectData.data, [
+		'classroomId',
+		classroomId
+	])
+
+	const selectedOptions = _.values(filteredSubject).map((data, idx) => (
+		<option className="form-control dropup" key={idx} data-id={data._id}>
+			{data.abbreviation}
+		</option>
+	))
+
+	return selectedOptions
+}
 
 const titleInput = t => (
 	<div>
@@ -90,7 +122,7 @@ const numberInput = t => (
 	</div>
 )
 
-const examForm = (
+export const examForm = (
 	t,
 	subjectOptions,
 	classOption,
@@ -116,5 +148,3 @@ const examForm = (
 
 	return examFields
 }
-
-export default examForm
