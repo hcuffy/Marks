@@ -5,19 +5,13 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { filterObjectData } from '../rooms/helpers/formHelpers'
 import { modalFrame } from '../helpers/editModal'
-import generateFields from './helpers/modalHelper'
+import { generateExamForm, resolveHiddenInputs } from './helpers/modalHelper'
 
 const ExamModal = ({ t, examData, actions }) => {
 	const { examModal, examId, exams, subjectId } = examData
 	const requiredExam = filterObjectData(exams, examId)
-	const examFormData = generateFields(t, requiredExam)
-
-	const hiddenInputs = (
-		<div>
-			<input type="hidden" name="subjectId" data-id={subjectId} />
-			<input type="hidden" name="examId" data-id={examId} />
-		</div>
-	)
+	const examFormData = generateExamForm(t, requiredExam, examData)
+	const hiddenInputs = resolveHiddenInputs(subjectId, examId)
 
 	const footerData = {
 		dataId: examId,

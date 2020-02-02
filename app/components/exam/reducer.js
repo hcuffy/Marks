@@ -5,7 +5,8 @@ import {
 	DISPLAY_SUBJECT_LIST,
 	GET_SINGLE_EXAM,
 	UPDATE_EXAMS_LIST,
-	EXAM_FORM_VALIDATION
+	EXAM_FORM_VALIDATION,
+	EXAM_MODAL_VALIDATION
 } from './constants'
 
 const _ = require('lodash')
@@ -17,7 +18,10 @@ const initialLoadState = {
 	classroomId: null,
 	selectedSubject: null,
 	examModal: false,
-	isInvalid: false
+	isInvalid: false,
+	isModalInvalid: false,
+	title: '',
+	weight: ''
 }
 
 const applyFilteredExam = (state = initialLoadState, action) => {
@@ -43,9 +47,8 @@ const applyFilteredExam = (state = initialLoadState, action) => {
 		}
 		case GET_SINGLE_EXAM: {
 			const examModal = !state.examModal
-			const examId = action.payload
 
-			return _.assign({}, state, { examModal, examId })
+			return _.assign({}, state, { examModal }, action.payload)
 		}
 		case DISPLAY_SUBJECT_LIST: {
 			const openSubList = !state.openSubList
@@ -53,11 +56,12 @@ const applyFilteredExam = (state = initialLoadState, action) => {
 			return _.assign({}, state, { openSubList }, action.payload)
 		}
 		case UPDATE_EXAMS_LIST: {
-			const exams = action.payload
-
-			return _.assign({}, state, { exams })
+			return _.assign({}, state, action.payload)
 		}
 		case EXAM_FORM_VALIDATION: {
+			return _.assign({}, state, action.payload)
+		}
+		case EXAM_MODAL_VALIDATION: {
 			return _.assign({}, state, action.payload)
 		}
 		default:

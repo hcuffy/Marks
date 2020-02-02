@@ -1,81 +1,99 @@
 import React from 'react'
+import { Input, Label } from 'reactstrap'
 import css from '../styles/exam.css'
 
 const _ = require('lodash')
 
-const examTitle = (t, chosenExam) => (
-	<div className={css.form_div_edit}>
-		<label
-			className={css.form_label_edit}
-			htmlFor={`${_.invert(chosenExam)[chosenExam.title]}_Id`}
-		>
-			{t(`exam.${_.invert(chosenExam)[chosenExam.title]}`)}:
-		</label>
+export const resolveHiddenInputs = (subjectId, examId) => (
+	<div>
+		<Input type="hidden" name="subjectId" data-id={subjectId} />
+		<Input type="hidden" name="examId" data-id={examId} />
+	</div>
+)
 
-		<input
-			name={_.invert(chosenExam)[chosenExam.title]}
+const examTitle = (t, { title, isModalInvalid }) => (
+	<div className={css.form_div_edit}>
+		<Label
+			className={css.form_label_edit}
+			htmlFor={`${_.keys({ title })[0]}_Id`}
+		>
+			{t(`exam.${_.keys({ title })[0]}`)}:
+		</Label>
+
+		<Input
+			name={_.keys({ title })[0]}
 			className={`${css.form_input} ${css.modalInput} form-control`}
-			data-id={`${_.invert(chosenExam)[chosenExam.title]}_Id`}
+			data-id={`${_.keys({ title })[0]}_Id`}
 			type="text"
-			defaultValue={chosenExam.title}
-			required
+			defaultValue={title}
+			invalid={isModalInvalid && _.isEmpty(title)}
 		/>
 	</div>
 )
 
-const examWeight = (t, chosenExam) => (
+const examWeight = (t, { weight, isModalInvalid }) => (
 	<div className={css.form_div_edit}>
-		<label
+		<Label
 			className={css.form_label_edit}
-			htmlFor={`${_.invert(chosenExam)[chosenExam.weight]}_Id`}
+			htmlFor={`${_.keys({ weight })[0]}_Id`}
 		>
-			{t(`general.${_.invert(chosenExam)[chosenExam.weight]}`)}:
-		</label>
+			{t(`general.${_.keys({ weight })[0]}`)}:
+		</Label>
 
-		<input
-			name={_.invert(chosenExam)[chosenExam.weight]}
+		<Input
+			name={_.keys({ weight })[0]}
 			className={`${css.form_input} form-control`}
-			data-id={`${_.invert(chosenExam)[chosenExam.weight]}_Id`}
+			data-id={`${_.keys({ weight })[0]}_Id`}
 			type="number"
 			min="1"
 			max="4"
 			step="0.5"
-			defaultValue={chosenExam.weight}
-			required
+			defaultValue={weight}
+			invalid={isModalInvalid && _.isEmpty(weight)}
 		/>
 	</div>
 )
 
-const examDate = (t, chosenExam) => (
+const examDate = (t, { date }) => (
 	<div className={css.form_div_edit}>
-		<label
+		<Label
 			className={css.form_label_edit}
-			htmlFor={`${_.invert(chosenExam)[chosenExam.date]}_Id`}
+			htmlFor={`${_.keys({ date })[0]}_Id`}
 		>
-			{t(`general.${_.invert(chosenExam)[chosenExam.date]}`)}:
-		</label>
+			{t(`general.${_.keys({ date })[0]}`)}:
+		</Label>
 
-		<input
-			name={_.invert(chosenExam)[chosenExam.date]}
+		<Input
+			name={_.keys({ date })[0]}
 			className={`${css.form_input} form-control`}
-			data-id={`${_.invert(chosenExam)[chosenExam.date]}_Id`}
+			data-id={`${_.keys({ date })[0]}_Id`}
 			type="date"
-			defaultValue={chosenExam.date}
-			required
+			defaultValue={date}
 		/>
 	</div>
 )
 
-const generateFields = (t, exam) => {
+export const determineExamInputs = (exam, examData) => {
+	const { title, weight, isModalInvalid } = examData
+	const { date } = exam
+
+	if (isModalInvalid === true) {
+		return { title, weight, date, isModalInvalid }
+	} else {
+		return exam
+	}
+}
+
+export const generateExamForm = (t, exam, examData) => {
+	const selectedExam = determineExamInputs(exam, examData)
+
 	const examFields = (
 		<div>
-			{examTitle(t, exam)}
-			{examWeight(t, exam)}
-			{examDate(t, exam)}
+			{examTitle(t, selectedExam)}
+			{examWeight(t, selectedExam)}
+			{examDate(t, selectedExam)}
 		</div>
 	)
 
 	return examFields
 }
-
-export default generateFields
