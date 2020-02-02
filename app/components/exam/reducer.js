@@ -1,9 +1,11 @@
 import {
 	GET_SELECTED_CLASS,
+	ADD_NEW_EXAM,
 	UPDATE_DROPDOWN_CLASS_LIST,
 	DISPLAY_SUBJECT_LIST,
 	GET_SINGLE_EXAM,
-	UPDATE_EXAMS_LIST
+	UPDATE_EXAMS_LIST,
+	EXAM_FORM_VALIDATION
 } from './constants'
 
 const _ = require('lodash')
@@ -14,11 +16,15 @@ const initialLoadState = {
 	openSubList: false,
 	classroomId: null,
 	selectedSubject: null,
-	examModal: false
+	examModal: false,
+	isInvalid: false
 }
 
 const applyFilteredExam = (state = initialLoadState, action) => {
 	switch (action.type) {
+		case ADD_NEW_EXAM: {
+			return _.assign({}, state, action.payload)
+		}
 		case GET_SELECTED_CLASS: {
 			const subject = action.payload
 
@@ -50,6 +56,9 @@ const applyFilteredExam = (state = initialLoadState, action) => {
 			const exams = action.payload
 
 			return _.assign({}, state, { exams })
+		}
+		case EXAM_FORM_VALIDATION: {
+			return _.assign({}, state, action.payload)
 		}
 		default:
 			return state

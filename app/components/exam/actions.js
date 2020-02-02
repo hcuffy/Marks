@@ -4,7 +4,8 @@ import {
 	UPDATE_DROPDOWN_CLASS_LIST,
 	DISPLAY_SUBJECT_LIST,
 	GET_SINGLE_EXAM,
-	UPDATE_EXAMS_LIST
+	UPDATE_EXAMS_LIST,
+	EXAM_FORM_VALIDATION
 } from './constants'
 import {
 	addExamData,
@@ -13,6 +14,7 @@ import {
 	updateExamData
 } from '../../collections/exam'
 import { getOption } from '../students/actions'
+import { inputValidation } from '../helpers/formValidation'
 
 export const addNewExam = event => dispatch => {
 	event.preventDefault()
@@ -24,14 +26,21 @@ export const addNewExam = event => dispatch => {
 		weight: event.target.weight.value
 	}
 
-	addExamData(examData)
+	if (inputValidation(_.pick(examData, ['title']))) {
+		dispatch({
+			type: EXAM_FORM_VALIDATION,
+			payload: { isInvalid: true }
+		})
+	} else {
+		addExamData(examData)
 
-	event.target.reset()
+		event.target.reset()
 
-	dispatch({
-		type: ADD_NEW_EXAM,
-		payload: {}
-	})
+		dispatch({
+			type: ADD_NEW_EXAM,
+			payload: { isInvalid: false }
+		})
+	}
 }
 
 export const getSelectedSubject = event => dispatch => {

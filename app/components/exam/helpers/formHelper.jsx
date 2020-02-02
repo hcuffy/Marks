@@ -1,6 +1,6 @@
 import React from 'react'
 import { getClassroomId } from '../../helpers/dropdowns'
-import { Button } from 'reactstrap'
+import { Button, Input, Label } from 'reactstrap'
 import css from '../styles/exam.css'
 
 const _ = require('lodash')
@@ -34,26 +34,26 @@ export const getSubjectOptions = (subjectData, examData, cleanedClassList) => {
 	return selectedOptions
 }
 
-const titleInput = t => (
+const titleInput = (isInvalid, t) => (
 	<div>
-		<label className={css.form_label} htmlFor="titleId">
+		<Label className={css.form_label} htmlFor="titleId">
 			{t('exam.title')}*:
-		</label>
+		</Label>
 
-		<input
+		<Input
 			name="title"
 			className="form-control"
-			required
 			data-id="titleId"
 			type="text"
+			invalid={isInvalid}
 		/>
 	</div>
 )
 const classInput = (t, options, action) => (
 	<div>
-		<label className={css.form_label} htmlFor="classSelection">
+		<Label className={css.form_label} htmlFor="classSelection">
 			{t('general.selectRoom')}:
-		</label>
+		</Label>
 
 		<select
 			onChange={action}
@@ -69,9 +69,9 @@ const classInput = (t, options, action) => (
 
 const subjectInput = (t, options) => (
 	<div className={css.subject_dropdown}>
-		<label className={css.form_label} htmlFor="subjectSelection">
+		<Label className={css.form_label} htmlFor="subjectSelection">
 			{t('general.selectSubject')}:
-		</label>
+		</Label>
 
 		<select
 			className="form-control"
@@ -89,11 +89,11 @@ const dateInput = t => {
 
 	return (
 		<div className={`${css.form_div} form-group`}>
-			<label className={css.form_label} htmlFor="dateIn">
+			<Label className={css.form_label} htmlFor="dateIn">
 				{t('general.date')}:
-			</label>
+			</Label>
 
-			<input
+			<Input
 				className="form-control"
 				name="date"
 				type="date"
@@ -105,11 +105,11 @@ const dateInput = t => {
 }
 const numberInput = t => (
 	<div className={`${css.form_div} form-group`}>
-		<label className={css.form_label} htmlFor="number-input">
+		<Label className={css.form_label} htmlFor="number-input">
 			{t('general.weight')}:
-		</label>
+		</Label>
 
-		<input
+		<Input
 			className={`${css.weight_input} form-control`}
 			defaultValue="1"
 			name="weight"
@@ -122,23 +122,24 @@ const numberInput = t => (
 	</div>
 )
 
-export const examForm = (
+export const generateExamForm = (
 	t,
 	subjectOptions,
 	classOption,
+	{ isInvalid },
 	{ addNewExam, getSelectedSubject }
 ) => {
 	const examFields = (
 		<div>
 			<form className="form-inline" onSubmit={addNewExam} method="POST">
-				{titleInput(t)}
+				{titleInput(isInvalid, t)}
 				{classInput(t, classOption, getSelectedSubject)}
 				{subjectInput(t, subjectOptions)}
 				{dateInput(t)}
 				{numberInput(t)}
 
 				<div className={css.form_save_btn}>
-					<Button type="submit" className="btn btn-success">
+					<Button type="submit" formNoValidate className="btn btn-success">
 						{t('general.add')}
 					</Button>
 				</div>

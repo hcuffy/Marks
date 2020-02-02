@@ -6,7 +6,7 @@ import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
 import { getClassroomId } from '../helpers/dropdowns'
 import {
-	examForm,
+	generateExamForm,
 	getClassOptions,
 	getSubjectOptions
 } from './helpers/formHelper'
@@ -23,9 +23,15 @@ const ExamForm = ({ t, classData, subjectData, examData, actions }) => {
 		cleanedClassList
 	)
 
-	const completeExamForm = examForm(t, subjectOptions, classOption, actions)
+	const completedExamForm = generateExamForm(
+		t,
+		subjectOptions,
+		classOption,
+		examData,
+		actions
+	)
 
-	return <div>{completeExamForm}</div>
+	return <div>{completedExamForm}</div>
 }
 
 const mapStateToProps = state => ({
