@@ -24,8 +24,6 @@ export const addNewNote = data => {
 	Notes.insert(data, error => {
 		if (error) {
 			saveFailed()
-
-			return error
 		}
 		saveSuccessful()
 	})
@@ -36,8 +34,6 @@ export const getAllNotes = () =>
 		Notes.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
-
-				return reject(err)
 			}
 
 			return resolve(docs)
@@ -49,12 +45,9 @@ export const deleteNote = data =>
 		Notes.remove({ _id: data }, err => {
 			if (err) {
 				deletionFailed()
-
-				return reject(err)
 			}
 			Notes.find({}, (error, notes) => {
 				if (err) {
-					return reject(err)
 				}
 
 				return resolve(notes)
@@ -68,8 +61,6 @@ const updateSingleNote = previousData => {
 	Notes.update({ _id: noteId }, { $set: { title, note, noteId } }, {}, err => {
 		if (err) {
 			updateFailed()
-
-			return err
 		}
 		updateSuccessful()
 	})
@@ -81,8 +72,6 @@ export const updateNoteData = data =>
 		Notes.find({}, (error, docs) => {
 			if (error) {
 				updateFailed()
-
-				return reject(error)
 			}
 
 			return resolve(docs)

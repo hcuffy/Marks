@@ -1,4 +1,9 @@
-import { saveFailed, unableToRetrieve, updateFailed, deletionFailed } from '../notifications/general'
+import {
+	saveFailed,
+	unableToRetrieve,
+	updateFailed,
+	deletionFailed
+} from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -16,20 +21,21 @@ const Grade = new Datastore({
 
 export const updateGradeData = (data, id) => {
 	const { grade, examId, studentId, date, weight } = data
-	Grade.update({ _id: id }, { grade, examId, studentId, date, weight }, {}, err => {
-		if (err) {
-			updateFailed()
-
-			return err
+	Grade.update(
+		{ _id: id },
+		{ grade, examId, studentId, date, weight },
+		{},
+		err => {
+			if (err) {
+				updateFailed()
+			}
 		}
-	})
+	)
 }
 export const addGradeData = data => {
 	Grade.insert(data, (error, doc) => {
 		if (error) {
 			saveFailed()
-
-			return error
 		}
 
 		return doc
@@ -41,8 +47,6 @@ export const getAllGrades = () =>
 		Grade.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
-
-				return reject(err)
 			}
 
 			return resolve(docs)
@@ -54,12 +58,9 @@ export const deleteGradesByStudentId = id =>
 		Grade.remove({ studentId: id }, { multi: true }, err => {
 			if (err) {
 				deletionFailed()
-
-				return reject(err)
 			}
 			Grade.find({}, (error, docs) => {
 				if (err) {
-					return reject(err)
 				}
 
 				return resolve(docs)
@@ -72,12 +73,9 @@ export const deleteGradesByExamId = id =>
 		Grade.remove({ examId: id }, { multi: true }, err => {
 			if (err) {
 				deletionFailed()
-
-				return reject(err)
 			}
 			Grade.find({}, (error, docs) => {
 				if (err) {
-					return reject(err)
 				}
 
 				return resolve(docs)

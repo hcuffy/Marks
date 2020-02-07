@@ -27,21 +27,15 @@ export const addExamData = data => {
 	Exam.find({ name: data.title }, (err, entry) => {
 		if (err) {
 			saveFailed()
-
-			return err
 		}
 		if (entry.length > 0) {
 			entryAlreadyExists()
-
-			return
 		}
 		const newData = data
 
 		Exam.insert(newData, (error, doc) => {
 			if (error) {
 				saveFailed()
-
-				return error
 			}
 			saveSuccessful()
 			addExamToSubjectArray(newData)
@@ -56,8 +50,6 @@ export const getAllExams = () =>
 		Exam.find({}, (err, entry) => {
 			if (err) {
 				unableToRetrieve()
-
-				return reject(err)
 			}
 
 			return resolve(entry)
@@ -67,7 +59,7 @@ export const getAllExams = () =>
 const updateTestsArr = (examId, subjectId) => {
 	Exam.find({ _id: examId }, (err, entry) => {
 		if (err) {
-			return err
+			updateFailed()
 		}
 		const examTitle = entry[0].title
 		updateSubjectTestArray(subjectId, examTitle)
@@ -79,12 +71,12 @@ export const deleteExam = ({ examId, subjectId }) =>
 		updateTestsArr(examId, subjectId)
 		Exam.remove({ _id: examId }, err => {
 			if (err) {
-				return reject(err)
+				deletionFailed()
 			}
 
 			Exam.find({}, (error, exams) => {
 				if (err) {
-					return reject(err)
+					deletionFailed()
 				}
 				deleteGradesByExamId(examId)
 
@@ -109,8 +101,6 @@ const updateSingleExam = (previous, current) => {
 		err => {
 			if (err) {
 				updateFailed()
-
-				return err
 			}
 			updateSuccessful()
 		}
@@ -122,7 +112,7 @@ export const updateExamData = data =>
 		const { examId, subjectId, title } = data
 		Exam.find({ _id: examId }, (err, entry) => {
 			if (err) {
-				return err
+				updateFailed()
 			}
 			if (entry.length > 0) {
 				updateSingleExam(entry[0], data)
@@ -130,7 +120,7 @@ export const updateExamData = data =>
 				addExamToSubjectArray({ subjectId, title })
 				Exam.find({}, (error, docs) => {
 					if (error) {
-						return reject(error)
+						updateFailed()
 					}
 
 					return resolve(docs)

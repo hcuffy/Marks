@@ -25,8 +25,6 @@ export const addNewStudentData = data => {
 	Student.insert(data, error => {
 		if (error) {
 			saveFailed()
-
-			return error
 		}
 		saveSuccessful()
 	})
@@ -37,8 +35,6 @@ export const getAllStudents = () =>
 		Student.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
-
-				return reject(err)
 			}
 
 			return resolve(docs)
@@ -50,12 +46,9 @@ export const deleteStudent = data =>
 		Student.remove({ _id: data }, err => {
 			if (err) {
 				deletionFailed()
-
-				return reject(err)
 			}
 			Student.find({}, (error, students) => {
 				if (err) {
-					return reject(err)
 				}
 				deleteGradesByStudentId(data)
 
@@ -79,8 +72,6 @@ const updateSingleStudent = previous => {
 		err => {
 			if (err) {
 				updateFailed()
-
-				return err
 			}
 			updateSuccessful()
 		}
@@ -93,8 +84,6 @@ export const updateStudentData = data =>
 		Student.find({}, (error, docs) => {
 			if (error) {
 				updateFailed()
-
-				return reject(error)
 			}
 
 			return resolve(docs)

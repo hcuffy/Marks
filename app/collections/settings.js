@@ -1,7 +1,8 @@
 import {
 	saveSuccessful,
 	saveFailed,
-	unableToRetrieve
+	unableToRetrieve,
+	updateFailed
 } from '../notifications/general'
 
 const Datastore = require('nedb')
@@ -20,7 +21,7 @@ const Settings = new Datastore({
 export const saveGradeSystem = data => {
 	Settings.insert(data, error => {
 		if (error) {
-			return error
+			updateFailed()
 		}
 	})
 }
@@ -30,8 +31,6 @@ export const getAddressData = () =>
 		Settings.find({}, (err, entry) => {
 			if (err) {
 				unableToRetrieve()
-
-				return reject(err)
 			}
 
 			return resolve(entry)
@@ -42,7 +41,7 @@ export const getSystemType = () =>
 	new Promise((resolve, reject) =>
 		Settings.find({}, (err, docs) => {
 			if (err) {
-				return reject(err)
+				updatedFailed()
 			}
 
 			return resolve(docs)
@@ -58,8 +57,6 @@ const updateAddress = (previous, id) => {
 		err => {
 			if (err) {
 				saveFailed()
-
-				return err
 			}
 			saveSuccessful()
 		}
@@ -68,12 +65,10 @@ const updateAddress = (previous, id) => {
 
 const updateSystem = (previous, id) => {
 	const { note, points, percent } = previous
-	// eslint-disable-next-line max-len
+
 	Settings.update({ _id: id }, { $set: { note, points, percent } }, {}, err => {
 		if (err) {
 			saveFailed()
-
-			return err
 		}
 		saveSuccessful()
 	})

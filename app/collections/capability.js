@@ -1,4 +1,10 @@
-import { unableToRetrieve, saveFailed, saveSuccessful, updateFailed, updateSuccessful } from '../notifications/general'
+import {
+	unableToRetrieve,
+	saveFailed,
+	saveSuccessful,
+	updateFailed,
+	updateSuccessful
+} from '../notifications/general'
 
 const Datastore = require('nedb')
 const electron = require('electron')
@@ -18,8 +24,6 @@ export const getAllQuestions = () =>
 		Capability.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
-
-				return reject(err)
 			}
 
 			return resolve(docs)
@@ -30,8 +34,6 @@ const addNewQuestion = data => {
 	Capability.insert(data, error => {
 		if (error) {
 			saveFailed()
-
-			return error
 		}
 		saveSuccessful()
 	})
@@ -43,8 +45,6 @@ const updateQuestion = data => {
 	Capability.update({ classroomId }, { $set: { questionSet } }, {}, err => {
 		if (err) {
 			updateFailed()
-
-			return err
 		}
 		updateSuccessful()
 	})
@@ -56,7 +56,7 @@ export const updateQuestionData = data =>
 
 		Capability.find({ classroomId }, (err, entry) => {
 			if (err) {
-				return err
+				updateFailed()
 			}
 
 			if (entry.length > 0) {
@@ -66,7 +66,7 @@ export const updateQuestionData = data =>
 			}
 			Capability.find({}, (error, docs) => {
 				if (error) {
-					return reject(error)
+					updateFailed()
 				}
 
 				return resolve(docs)

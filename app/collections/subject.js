@@ -7,7 +7,11 @@ import {
 	deletionFailed,
 	updateFailed
 } from '../notifications/general'
-import { getClassroomData, updateSubjectArray, updateClassSubjectArray } from './classroom'
+import {
+	getClassroomData,
+	updateSubjectArray,
+	updateClassSubjectArray
+} from './classroom'
 import { getAllExams, deleteExam } from './exam'
 
 const _ = require('lodash')
@@ -39,8 +43,6 @@ export const getAllSubjects = () =>
 		Subject.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
-
-				return reject(err)
 			}
 
 			return resolve(docs)
@@ -65,8 +67,6 @@ export const addSubjectData = async data => {
 	Subject.insert(newSubject, error => {
 		if (error) {
 			saveFailed()
-
-			return error
 		}
 		updateSubjectArray(subjectClassroom)
 		saveSuccessful()
@@ -76,7 +76,8 @@ export const addSubjectData = async data => {
 	return allSubjects
 }
 
-const filteredExams = async subjectId => _.filter(await getAllExams(), { subjectId })
+const filteredExams = async subjectId =>
+	_.filter(await getAllExams(), { subjectId })
 
 const deleteExamsBySubject = async subjectId => {
 	const exams = await filteredExams(subjectId)
@@ -93,15 +94,11 @@ export const deleteSubject = ({ id }) =>
 		Subject.remove({ _id: id }, err => {
 			if (err) {
 				deletionFailed()
-
-				return reject(err)
 			}
 			filteredExams(id)
 			Subject.find({}, (error, docs) => {
 				if (err) {
 					deletionFailed()
-
-					return reject(err)
 				}
 				deleteExamsBySubject(id)
 
@@ -112,14 +109,21 @@ export const deleteSubject = ({ id }) =>
 
 const checkSubjectChanges = (prev, curr) => {
 	const { name, abbreviation } = curr
-	if (_.isEqual(prev.name, name) && _.isEqual(prev.abbreviation, abbreviation)) {
+	if (
+		_.isEqual(prev.name, name) &&
+		_.isEqual(prev.abbreviation, abbreviation)
+	) {
 		return false
 	}
 
 	return true
 }
 
-const updateClassroomSubjects = (classroomId, previousSubject, currentSubject) => {
+const updateClassroomSubjects = (
+	classroomId,
+	previousSubject,
+	currentSubject
+) => {
 	if (!_.isEqual(previousSubject, currentSubject)) {
 		updateClassSubjectArray(classroomId, previousSubject, currentSubject)
 	}
@@ -145,8 +149,6 @@ const updateSingleSubject = (previous, current) => {
 			err => {
 				if (err) {
 					updateFailed()
-
-					return err
 				}
 				updateSuccessful()
 			}
@@ -159,16 +161,12 @@ export const updateSubjectData = data =>
 		Subject.find({ _id: data.subjectId }, (err, entry) => {
 			if (err) {
 				updateFailed()
-
-				return err
 			}
 			if (entry.length > 0) {
 				updateSingleSubject(entry[0], data)
 				Subject.find({ _id: data.subjectId }, (error, docs) => {
 					if (error) {
 						updateFailed()
-
-						return reject(error)
 					}
 
 					return resolve(docs)
@@ -181,21 +179,22 @@ export const addExamToSubjectArray = ({ subjectId, title }) => {
 	Subject.find({ _id: subjectId }, (err, doc) => {
 		if (err) {
 			unableToRetrieve()
-
-			return err
 		}
 		if (doc.length <= 0) {
 			return 'Exists'
 		}
 
 		if (!_.includes(doc.tests, title)) {
-			Subject.update({ _id: subjectId }, { $push: { tests: title } }, {}, error => {
-				if (error) {
-					updateFailed()
-
-					return error
+			Subject.update(
+				{ _id: subjectId },
+				{ $push: { tests: title } },
+				{},
+				error => {
+					if (error) {
+						updateFailed()
+					}
 				}
-			})
+			)
 		}
 	})
 }
@@ -205,19 +204,20 @@ export const updateSubjectTestArray = (subjectId, examTitle) =>
 		Subject.find({ _id: subjectId }, (err, entry) => {
 			if (err) {
 				updateFailed()
-
-				return err
 			}
 			if (entry.length > 0) {
-				Subject.update({ _id: subjectId }, { $pull: { tests: examTitle } }, {}, (error, docs) => {
-					if (error) {
-						updateFailed()
+				Subject.update(
+					{ _id: subjectId },
+					{ $pull: { tests: examTitle } },
+					{},
+					(error, docs) => {
+						if (error) {
+							updateFailed()
+						}
 
-						return reject(error)
+						return resolve(docs)
 					}
-
-					return resolve(docs)
-				})
+				)
 			}
 		})
 	)
