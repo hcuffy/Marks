@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
-import { Button, Label, Input } from 'reactstrap'
+import { Button, Label, Input, Badge } from 'reactstrap'
 import css from '../styles/students.css'
 
 const _ = require('lodash')
@@ -54,7 +54,6 @@ export const classroomDropdown = (
 
 export const formInputFields = (t, studentData) => {
 	const { firstname, lastname, isInvalid } = studentData
-	console.log(studentData['firstname'])
 	return _.keys({ firstname, lastname }).map((data, idx) => (
 		<div key={idx} className={css.form_inner_div}>
 			<Label className={css.form_label} htmlFor={`${data}_Id`}>
@@ -117,4 +116,35 @@ export const studentForm = (t, studentData, classData, actions) => {
 	)
 
 	return studentFields
+}
+
+const generateListBtn = (students, action) =>
+	students.map((data, idx) => (
+		<Button
+			key={idx}
+			data-id={data._id}
+			className={`list-group-item list-group-item-action ${css.list_btn}`}
+			onClick={action}
+		>
+			{`${data.firstname} ${data.lastname}`}
+
+			{data.gender === 'male' ? (
+				<Badge className={`badge-pill ${css.badge_boy}`}>
+					<i className="fas fa-mars" />
+				</Badge>
+			) : (
+				<Badge className={`badge-pill ${css.badge_girl}`}>
+					<i className="fas fa-venus" />
+				</Badge>
+			)}
+		</Button>
+	))
+
+export const generateStudentList = (students, actions) => {
+	if (_.isUndefined(students)) {
+		return []
+	}
+	const sortedStudents = _.sortBy(students, ['firstname'], ['asc'])
+
+	return generateListBtn(sortedStudents, actions.showStudentModal)
 }
