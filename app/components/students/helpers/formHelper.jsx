@@ -52,8 +52,10 @@ export const classroomDropdown = (
 	</div>
 )
 
-export const formInputFields = (t, studentData) =>
-	_.keys(_.pick(studentData, ['firstname', 'lastname'])).map((data, idx) => (
+export const formInputFields = (t, studentData) => {
+	const { firstname, lastname, isInvalid } = studentData
+	console.log(studentData['firstname'])
+	return _.keys({ firstname, lastname }).map((data, idx) => (
 		<div key={idx} className={css.form_inner_div}>
 			<Label className={css.form_label} htmlFor={`${data}_Id`}>
 				{t(`student.${data}`)}*:
@@ -61,13 +63,15 @@ export const formInputFields = (t, studentData) =>
 
 			<Input
 				name={data}
-				required
 				className="form-control"
 				data-id={`${data}_Id`}
 				type="text"
+				data-go={studentData.data}
+				invalid={isInvalid && _.isEmpty(studentData[`${data}`])}
 			/>
 		</div>
 	))
+}
 
 const selectOption = ({ classData }) => {
 	return _.values(classData).map((data, idx) => (

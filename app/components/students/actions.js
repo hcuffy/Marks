@@ -3,7 +3,8 @@ import {
 	GET_ALL_STUDENTS,
 	GET_SINGLE_STUDENT,
 	DISPLAY_STUDENT_GRAPH,
-	DISPLAY_STUDENT_SUBJECT_GRAPH
+	DISPLAY_STUDENT_SUBJECT_GRAPH,
+	STUDENT_FORM_VALIDATION
 } from './constants'
 import {
 	addNewStudentData,
@@ -11,6 +12,7 @@ import {
 	deleteStudent,
 	updateStudentData
 } from '../../collections/student'
+import { inputValidation } from '../helpers/formValidation'
 
 export const getOption = (event, propToGet) => {
 	const index = event.target[propToGet].selectedIndex
@@ -28,21 +30,28 @@ export const addNewStudent = event => async dispatch => {
 		classroom: getOption(event, 'classroom')
 	}
 
-	addNewStudentData(formData)
+	const inputsToValidate = _.pick(formData, ['firstname', 'lastname'])
 
-	event.target.reset()
+	if (inputValidation(formData)) {
+		dispatch({
+			type: STUDENT_FORM_VALIDATION,
+			payload: { ...inputsToValidate, isInvalid: true }
+		})
+	} else {
+		addNewStudentData(formData)
+		event.target.reset()
+		const students = await getAllStudents()
 
-	const students = await getAllStudents()
+		dispatch({
+			type: ADD_NEW_STUDENT,
+			payload: { firstname: '', lastname: '', isInvalid: false }
+		})
 
-	dispatch({
-		type: ADD_NEW_STUDENT,
-		payload: {}
-	})
-
-	dispatch({
-		type: GET_ALL_STUDENTS,
-		payload: { students }
-	})
+		dispatch({
+			type: GET_ALL_STUDENTS,
+			payload: { students, isInvalid: false }
+		})
+	}
 }
 
 export const getStudents = () => async dispatch => {
@@ -61,7 +70,7 @@ export const showStudentModal = event => dispatch => {
 
 	dispatch({
 		type: GET_SINGLE_STUDENT,
-		payload: studentId
+		payload: { studentId }
 	})
 }
 
