@@ -3,38 +3,11 @@ import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
-import studentForm from './helpers/formHelper'
+import { studentForm } from './helpers/formHelper'
 import css from './styles/students.css'
 
-const _ = require('lodash')
-
-const studentDataFields = (t, studentData) =>
-	_.keys(_.pick(studentData, ['firstname', 'lastname'])).map((data, idx) => (
-		<div key={idx} className={css.form_inner_div}>
-			<label className={css.form_label} htmlFor={`${data}_Id`}>
-				{t(`student.${data}`)}*:
-			</label>
-
-			<input
-				name={data}
-				required
-				className="form-control"
-				data-id={`${data}_Id`}
-				type="text"
-			/>
-		</div>
-	))
-
 const StudentForm = ({ t, studentData, classData, actions }) => {
-	const formFields = studentDataFields(t, studentData)
-
-	const selectOption = _.values(classData.classData).map((data, idx) => (
-		<option className="form-control dropdown" data-id={data._id} key={idx}>
-			{data.name}
-		</option>
-	))
-
-	const completeStudentForm = studentForm(t, selectOption, formFields, actions)
+	const completeStudentForm = studentForm(t, studentData, classData, actions)
 
 	return <div className={css.student_div}>{completeStudentForm}</div>
 }
