@@ -1,5 +1,6 @@
 import React from 'react'
 import { FormGroup, Button, Input, Label } from 'reactstrap'
+import { capabilityQuestions } from '../constants'
 import css from '../styles/capability.css'
 
 const _ = require('lodash')
@@ -144,7 +145,7 @@ export const createInnerBody = (
 	return question
 }
 
-export const createTableBody = (
+const createTableBody = (
 	t,
 	subjects,
 	actualSet,
@@ -181,4 +182,29 @@ export const createTableBody = (
 	})
 
 	return questions
+}
+
+export const tableQuestions = (
+	t,
+	actualSet,
+	{ studentId, classroomId, questions, answers },
+	actions
+) => {
+	const questionBase = getQuestionBase(classroomId, questions)
+	const questionSet = _.find(capabilityQuestions, actualSet)[questionBase]
+	const questionArr = []
+
+	_.forIn(questionSet, (value, key) => {
+		questionArr.push({ [key]: value })
+	})
+
+	return createTableBody(
+		t,
+		questionArr,
+		questionBase,
+		studentId,
+		classroomId,
+		answers,
+		actions
+	)
 }

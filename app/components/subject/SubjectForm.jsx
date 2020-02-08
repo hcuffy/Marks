@@ -3,29 +3,11 @@ import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
+import { generateInputs } from './helpers/formHelpers'
 import { Button, Input, Label } from 'reactstrap'
 import css from './styles/subject.css'
 
 const _ = require('lodash')
-
-const generateInputs = (t, { name, abbreviation, isInvalid }) => {
-	const formLabels = { name, abbreviation }
-	return _.keys(formLabels).map((data, idx) => (
-		<div key={idx} className={css.form_div}>
-			<Label className={css.form_label} htmlFor={`${data}Sid`}>
-				{t(`room.${data}`)}:
-			</Label>
-
-			<Input
-				name={data}
-				className="form-control"
-				data-id={`${data}Sid`}
-				type="text"
-				invalid={isInvalid && _.isEmpty(formLabels[data])}
-			/>
-		</div>
-	))
-}
 
 const SubjectForm = ({ t, classListData, subjects, actions }) => {
 	const formInputs = generateInputs(t, classListData)

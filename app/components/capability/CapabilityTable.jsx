@@ -4,40 +4,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Table } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
-import { capabilityQuestions } from '../../constants/capabilityQuestions'
-import {
-	getQuestionSet,
-	getQuestionBase,
-	createTableBody
-} from './helpers/table'
+import { getQuestionSet, tableQuestions } from './helpers/table'
 import css from './styles/capability.css'
-
-const _ = require('lodash')
-
-const tableQuestions = (
-	t,
-	actualSet,
-	{ studentId, classroomId, questions, answers },
-	actions
-) => {
-	const questionBase = getQuestionBase(classroomId, questions)
-	const questionSet = _.find(capabilityQuestions, actualSet)[questionBase]
-	const questionArr = []
-
-	_.forIn(questionSet, (value, key) => {
-		questionArr.push({ [key]: value })
-	})
-
-	return createTableBody(
-		t,
-		questionArr,
-		questionBase,
-		studentId,
-		classroomId,
-		answers,
-		actions
-	)
-}
 
 const CapabilityTable = ({ t, capabilityData, actions }) => {
 	const { classroomId, questions } = capabilityData

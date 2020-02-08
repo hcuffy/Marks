@@ -10,7 +10,7 @@ import {
 	getQuestionList,
 	createDropdown
 } from '../helpers/dropdowns'
-import { capabilityQuestions } from '../../constants/capabilityQuestions'
+import { capabilityQuestions } from './constants'
 import { getQuestionSet, changeQuestionBtn } from './helpers/table'
 import { resolveLabel } from '../../utils/translationUtil'
 import css from './styles/capability.css'
