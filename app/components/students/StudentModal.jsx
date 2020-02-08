@@ -5,17 +5,20 @@ import { bindActionCreators } from 'redux'
 import { modalFrame } from '../helpers/editModal'
 import { actionCreators } from '../../actions/index'
 import { filterObjectData } from '../rooms/helpers/formHelpers'
-import generateFields from './helpers/modalHelper'
+import { generateFields, resolveHiddenInput } from './helpers/modalHelper'
 
-const StudentModal = ({ t, students, classdata, actions }) => {
-	const { studentId, studentModal } = students
+const StudentModal = ({ t, studentList, classData, actions }) => {
+	const { studentId, studentModal, students, isModalInvalid } = studentList
+	const requiredStudent = filterObjectData(students, studentId)
 
-	const requiredStudent = filterObjectData(students.students, studentId)
-	const studentFields = generateFields(t, requiredStudent, classdata)
-
-	const hiddenInput = (
-		<input type="hidden" name="studentId" data-id={studentId} />
+	const studentFields = generateFields(
+		t,
+		requiredStudent,
+		classData,
+		studentList
 	)
+
+	const hiddenInput = resolveHiddenInput(studentId)
 
 	const footerData = {
 		dataId: studentId,
@@ -40,8 +43,8 @@ const StudentModal = ({ t, students, classdata, actions }) => {
 }
 
 const mapStateToProps = state => ({
-	students: state.studentData,
-	classdata: state.classData.classData
+	studentList: state.studentData,
+	classData: state.classData.classData
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -4,7 +4,8 @@ import {
 	GET_SINGLE_STUDENT,
 	DISPLAY_STUDENT_GRAPH,
 	DISPLAY_STUDENT_SUBJECT_GRAPH,
-	STUDENT_FORM_VALIDATION
+	STUDENT_FORM_VALIDATION,
+	STUDENT_MODAL_VALIDATION
 } from './constants'
 
 const _ = require('lodash')
@@ -19,7 +20,8 @@ const initialLoadState = {
 	chartToDisplay: null,
 	studentGraphName: null,
 	subjectGraphName: null,
-	isInvalid: false
+	isInvalid: false,
+	isModalInvalid: true
 }
 
 const applyStudentData = (state = initialLoadState, action) => {
