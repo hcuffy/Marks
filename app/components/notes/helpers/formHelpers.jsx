@@ -20,7 +20,7 @@ const getNoteData = (textData, noteId, notes, propToGet) => {
 	return _.isUndefined(noteData) ? '' : noteData
 }
 
-const titleField = (t, title, studentId, actions) => (
+const titleField = (t, title, studentId, isInvalid, actions) => (
 	<FormGroup row>
 		<Label for="textBox" sm={1}>
 			{t('notes.title')}*:
@@ -29,16 +29,17 @@ const titleField = (t, title, studentId, actions) => (
 			<Input
 				type="text"
 				name="title"
-				required
 				value={title}
 				onChange={actions.updateTitleField}
+				invalid={isInvalid && _.isEmpty(title)}
 			/>
 
 			<Input type="text" name="student" defaultValue={studentId} hidden />
 		</Col>
 	</FormGroup>
 )
-const textBoxArea = (t, noteInformation, actions) => (
+
+const textBoxArea = (t, noteInformation, isInvalid, actions) => (
 	<FormGroup row>
 		<Label for="textBox" sm={1}>
 			{t('notes.textbox')}:
@@ -51,6 +52,7 @@ const textBoxArea = (t, noteInformation, actions) => (
 				id="textBox"
 				value={noteInformation}
 				onChange={actions.updateTextArea}
+				invalid={isInvalid && _.isEmpty(noteInformation)}
 			/>
 		</Col>
 	</FormGroup>
@@ -89,6 +91,7 @@ const footerButtons = (t, noteId, studentId, actions) => (
 			<Button
 				type="submit"
 				color="success"
+				formNoValidate
 				disabled={!studentId || Boolean(noteId)}
 			>
 				{t('general.add')}
@@ -98,7 +101,7 @@ const footerButtons = (t, noteId, studentId, actions) => (
 )
 
 const noteForm = (t, actions, notesData) => {
-	const { studentId, noteId, notes, textBox, textField } = notesData
+	const { studentId, noteId, notes, textBox, textField, isInvalid } = notesData
 
 	const textBoxText = _.isNull(studentId)
 		? ''
@@ -110,9 +113,9 @@ const noteForm = (t, actions, notesData) => {
 
 	return (
 		<Form onSubmit={actions.addNote} method="POST">
-			{titleField(t, titleText, studentId, actions)}
+			{titleField(t, titleText, studentId, isInvalid, actions)}
 
-			{textBoxArea(t, textBoxText, actions)}
+			{textBoxArea(t, textBoxText, isInvalid, actions)}
 
 			{footerButtons(t, noteId, studentId, actions)}
 		</Form>

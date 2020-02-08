@@ -5,7 +5,8 @@ import {
 	UPDATE_TEXTAREA,
 	UPDATE_TITLE,
 	CLEAR_NOTE_FIELDS,
-	UPDATE_NOTE
+	UPDATE_NOTE,
+	NOTES_FORM_VALIDATION
 } from './constants'
 
 const _ = require('lodash')
@@ -15,10 +16,12 @@ const initialLoadState = {
 	notesDropdown: false,
 	studentId: null,
 	noteId: null,
+	notes: [],
 	selectedStudent: null,
 	selectedNote: null,
 	textBox: null,
-	textField: null
+	textField: null,
+	isInvalid: false
 }
 
 const applyNotesData = (state = initialLoadState, action) => {
@@ -46,6 +49,9 @@ const applyNotesData = (state = initialLoadState, action) => {
 			return _.assign({}, state, action.payload)
 		}
 		case UPDATE_NOTE: {
+			return _.assign({}, state, action.payload)
+		}
+		case NOTES_FORM_VALIDATION: {
 			return _.assign({}, state, action.payload)
 		}
 		default:

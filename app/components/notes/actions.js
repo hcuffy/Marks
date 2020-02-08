@@ -5,7 +5,8 @@ import {
 	UPDATE_TEXTAREA,
 	UPDATE_TITLE,
 	CLEAR_NOTE_FIELDS,
-	UPDATE_NOTE
+	UPDATE_NOTE,
+	NOTES_FORM_VALIDATION
 } from './constants'
 import {
 	addNewNote,
@@ -13,6 +14,7 @@ import {
 	deleteNote,
 	updateNoteData
 } from '../../collections/notes'
+import { inputValidation } from '../helpers/formValidation'
 
 export const addNote = event => async dispatch => {
 	event.preventDefault()
@@ -22,17 +24,27 @@ export const addNote = event => async dispatch => {
 		note: event.target.note.value,
 		studentId: event.target.student.value
 	}
+	studentId: event.target.student.value
 
-	addNewNote(formData)
+	const inputsToValidate = _.omit(formData, ['studentId'])
 
-	event.target.reset()
+	if (inputValidation(inputsToValidate)) {
+		dispatch({
+			type: NOTES_FORM_VALIDATION,
+			payload: { ...inputsToValidate, isInvalid: true }
+		})
+	} else {
+		addNewNote(formData)
 
-	const notes = await getAllNotes()
+		event.target.reset()
 
-	dispatch({
-		type: GET_ALL_NOTES,
-		payload: { notes }
-	})
+		const notes = await getAllNotes()
+
+		dispatch({
+			type: GET_ALL_NOTES,
+			payload: { notes, isInvalid: false }
+		})
+	}
 }
 
 export const getNotes = () => async dispatch => {
@@ -54,7 +66,8 @@ export const openStudentDropdown = event => dispatch => {
 	const student = {
 		studentId: event.target.getAttribute('data-id'),
 		selectedStudent: event.target.innerText,
-		notesDropdown: false
+		notesDropdown: false,
+		isInvalid: false
 	}
 
 	dispatch({
@@ -74,7 +87,8 @@ export const openNotesDropdown = event => dispatch => {
 			noteId: event.target.getAttribute('data-id'),
 			textBox: null,
 			textField: null,
-			studentDropdown: false
+			studentDropdown: false,
+			isInvalid: false
 		}
 	})
 }
@@ -111,7 +125,12 @@ export const deleteSingleNote = event => async dispatch => {
 export const clearNoteField = () => async dispatch => {
 	dispatch({
 		type: CLEAR_NOTE_FIELDS,
-		payload: { noteId: null, selectedNote: null, textBox: null }
+		payload: {
+			noteId: null,
+			selectedNote: null,
+			textBox: null,
+			isInvalid: false
+		}
 	})
 }
 
@@ -124,10 +143,19 @@ export const updateNote = event => async dispatch => {
 		note: event.target.closest('form').note.value
 	}
 
-	const notes = await updateNoteData(noteData)
+	const inputsToValidate = _.omit(noteData, ['noteId'])
 
-	dispatch({
-		type: UPDATE_NOTE,
-		payload: { notes }
-	})
+	if (inputValidation(inputsToValidate)) {
+		dispatch({
+			type: NOTES_FORM_VALIDATION,
+			payload: { ...inputsToValidate, isInvalid: true }
+		})
+	} else {
+		const notes = await updateNoteData(noteData)
+
+		dispatch({
+			type: UPDATE_NOTE,
+			payload: { notes, isInvalid: false }
+		})
+	}
 }

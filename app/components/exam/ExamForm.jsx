@@ -5,38 +5,13 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../actions/index'
 import { sortData } from '../rooms/helpers/formHelpers'
 import { getClassroomId } from '../helpers/dropdowns'
-import examForm from './helpers/formHelper'
+import {
+	generateExamForm,
+	getClassOptions,
+	getSubjectOptions
+} from './helpers/formHelper'
 
 const _ = require('lodash')
-
-const getClassOptions = classInfo => {
-	const selectOptions = _.values(classInfo).map((data, idx) => (
-		<option className="form-control dropup" key={idx}>
-			{data.name}
-		</option>
-	))
-
-	return selectOptions
-}
-
-const getSubjectOptions = (subjectData, examData, cleanedClassList) => {
-	const { subject } = examData
-	const classroom = subject || cleanedClassList[0].name
-	const classroomId = getClassroomId(classroom, cleanedClassList)
-
-	const filteredSubject = _.filter(subjectData.data, [
-		'classroomId',
-		classroomId
-	])
-
-	const selectedOptions = _.values(filteredSubject).map((data, idx) => (
-		<option className="form-control dropup" key={idx} data-id={data._id}>
-			{data.abbreviation}
-		</option>
-	))
-
-	return selectedOptions
-}
 
 const ExamForm = ({ t, classData, subjectData, examData, actions }) => {
 	const cleanedClassList = sortData(classData)
@@ -48,9 +23,15 @@ const ExamForm = ({ t, classData, subjectData, examData, actions }) => {
 		cleanedClassList
 	)
 
-	const completeExamForm = examForm(t, subjectOptions, classOption, actions)
+	const completedExamForm = generateExamForm(
+		t,
+		subjectOptions,
+		classOption,
+		examData,
+		actions
+	)
 
-	return <div>{completeExamForm}</div>
+	return <div>{completedExamForm}</div>
 }
 
 const mapStateToProps = state => ({

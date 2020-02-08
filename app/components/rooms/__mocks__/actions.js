@@ -21,7 +21,11 @@ export const changeClassroomTab = event => dispatch => {
 		examTab: ''
 	}
 
-	const tabUpdate = _.set(tabButtons, event.target.getAttribute('data-name'), 'active')
+	const tabUpdate = _.set(
+		tabButtons,
+		event.target.getAttribute('data-name'),
+		'active'
+	)
 
 	dispatch({
 		type: CHANGE_CLASSROOM_TAB,
@@ -69,6 +73,7 @@ export const updateRoom = event => async dispatch => {
 	}
 
 	const docs = await updateRoomData(roomData)
+
 	if (docs) {
 		roomData.showModal = false
 		dispatch({

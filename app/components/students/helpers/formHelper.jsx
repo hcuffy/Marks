@@ -1,13 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
-import { Button } from 'reactstrap'
+import { Button, Label, Input, Badge } from 'reactstrap'
 import css from '../styles/students.css'
+
+const _ = require('lodash')
 
 export const genderDropdown = (t, defaultValue, styleOne, styleTwo) => (
 	<div className={`${styleOne} ${styleTwo}`}>
-		<label className={css.form_label} htmlFor="gSelect">
+		<Label className={css.form_label} htmlFor="gSelect">
 			{t('student.gender')}:
-		</label>
+		</Label>
 
 		<select
 			type="text"
@@ -35,9 +37,9 @@ export const classroomDropdown = (
 	styleThree
 ) => (
 	<div className={`${styleOne} ${styleTwo}`}>
-		<label className={styleThree} htmlFor="cSelect">
+		<Label className={styleThree} htmlFor="cSelect">
 			{t('student.classroom')}:
-		</label>
+		</Label>
 
 		<select
 			type="text"
@@ -50,13 +52,41 @@ export const classroomDropdown = (
 	</div>
 )
 
-const studentForm = (t, selectOption, formFields, actions) => {
+export const formInputFields = (t, studentData) => {
+	const { firstname, lastname, isInvalid } = studentData
+	return _.keys({ firstname, lastname }).map((data, idx) => (
+		<div key={idx} className={css.form_inner_div}>
+			<Label className={css.form_label} htmlFor={`${data}_Id`}>
+				{t(`student.${data}`)}*:
+			</Label>
+
+			<Input
+				name={data}
+				className="form-control"
+				data-id={`${data}_Id`}
+				type="text"
+				data-go={studentData.data}
+				invalid={isInvalid && _.isEmpty(studentData[`${data}`])}
+			/>
+		</div>
+	))
+}
+
+const selectOption = ({ classData }) => {
+	return _.values(classData).map((data, idx) => (
+		<option className="form-control dropdown" data-id={data._id} key={idx}>
+			{data.name}
+		</option>
+	))
+}
+
+export const studentForm = (t, studentData, classData, actions) => {
 	const studentFields = (
 		<div>
 			<form onSubmit={actions.addNewStudent} method="POST">
 				<div className={css.form_outer_div}>
 					<h4 className={css.center_add_sub_header}>{t('student.add')}</h4>
-					{formFields}
+					{formInputFields(t, studentData)}
 
 					{genderDropdown(
 						t,
@@ -67,7 +97,7 @@ const studentForm = (t, selectOption, formFields, actions) => {
 
 					{classroomDropdown(
 						t,
-						selectOption,
+						selectOption(classData),
 						null,
 						css.select_dropDown,
 						css.form_div,
@@ -75,7 +105,7 @@ const studentForm = (t, selectOption, formFields, actions) => {
 					)}
 
 					<div className={(css.form_inner_div, css.save_btn)}>
-						<Button type="submit" className="btn btn-success">
+						<Button type="submit" formNoValidate className="btn btn-success">
 							{t('general.add')}
 						</Button>
 					</div>
@@ -88,4 +118,33 @@ const studentForm = (t, selectOption, formFields, actions) => {
 	return studentFields
 }
 
-export default studentForm
+const generateListBtn = (students, action) =>
+	students.map((data, idx) => (
+		<Button
+			key={idx}
+			data-id={data._id}
+			className={`list-group-item list-group-item-action ${css.list_btn}`}
+			onClick={action}
+		>
+			{`${data.firstname} ${data.lastname}`}
+
+			{data.gender === 'male' ? (
+				<Badge className={`badge-pill ${css.badge_boy}`}>
+					<i className="fas fa-mars" />
+				</Badge>
+			) : (
+				<Badge className={`badge-pill ${css.badge_girl}`}>
+					<i className="fas fa-venus" />
+				</Badge>
+			)}
+		</Button>
+	))
+
+export const generateStudentList = (students, actions) => {
+	if (_.isUndefined(students)) {
+		return []
+	}
+	const sortedStudents = _.sortBy(students, ['firstname'], ['asc'])
+
+	return generateListBtn(sortedStudents, actions.showStudentModal)
+}

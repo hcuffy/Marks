@@ -1,9 +1,14 @@
 import React from 'react'
+import { Label, Input } from 'reactstrap'
 import { genderDropdown, classroomDropdown } from './formHelper'
 import { getClassroomName } from '../../helpers/dropdowns'
 import css from '../styles/students.css'
 
 const _ = require('lodash')
+
+export const resolveHiddenInput = studentId => (
+	<input type="hidden" name="studentId" data-id={studentId} />
+)
 
 const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
 	const { gender, classroom } = chosenStudent
@@ -32,28 +37,45 @@ const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
 	return dropList
 }
 
-const generateFields = (t, chosenStudent, classdata) => {
-	const studentFields = _.keys(
-		_.pick(chosenStudent, ['firstname', 'lastname'])
-	).map((data, idx) => (
-		<div key={idx} className={css.form_div_edit}>
-			<label className={css.form_label_edit} htmlFor={`${data}_Id`}>
-				{t(`student.${data}`)}*:
-			</label>
+export const determineStudentInputs = (student, studentList) => {
+	const { firstname, lastname, isModalInvalid } = studentList
+	const { gender, classroom } = student
 
-			<input
+	if (isModalInvalid === true) {
+		return { firstname, lastname, gender, classroom }
+	} else {
+		return student
+	}
+}
+
+export const generateFields = (t, student, classdata, studentList) => {
+	const fullStudentData = determineStudentInputs(student, studentList)
+	const { isModalInvalid } = studentList
+	const studentFullName = _.pick(fullStudentData, ['firstname', 'lastname'])
+
+	const studentFields = _.keys(studentFullName).map((data, idx) => (
+		<div key={idx} className={css.form_div_edit}>
+			<Label className={css.form_label_edit} htmlFor={`${data}_Id`}>
+				{t(`student.${data}`)}*:
+			</Label>
+
+			<Input
 				name={data}
-				required
 				className={`${css.form_input} form-control`}
 				data-id={`${data}_Id`}
 				type="text"
-				defaultValue={chosenStudent[data]}
+				defaultValue={studentFullName[data]}
+				invalid={isModalInvalid && _.isEmpty(studentFullName[data])}
 			/>
 		</div>
 	))
-	const studentForm = dropDownFields(t, studentFields, chosenStudent, classdata)
+
+	const studentForm = dropDownFields(
+		t,
+		studentFields,
+		fullStudentData,
+		classdata
+	)
 
 	return studentForm
 }
-
-export default generateFields

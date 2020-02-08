@@ -1,10 +1,15 @@
-import { OPEN_CLOSE_SUBJECT_MODAL, UPDATE_SUBJECT } from '../constants'
+import {
+	OPEN_CLOSE_SUBJECT_MODAL,
+	UPDATE_SUBJECT,
+	SUBJECT_MODAL_VALIDATION
+} from '../constants'
 
 const _ = require('lodash')
 
 const initialLoadState = {
 	id: '',
-	showSubjectModal: false
+	showSubjectModal: false,
+	isInvalid: false
 }
 
 export const applySubjectModal = (state = initialLoadState, action) => {
@@ -16,6 +21,9 @@ export const applySubjectModal = (state = initialLoadState, action) => {
 		}
 		case UPDATE_SUBJECT: {
 			return _.assign({}, state, { showSubjectModal }, action.payload)
+		}
+		case SUBJECT_MODAL_VALIDATION: {
+			return _.assign({}, state, action.payload)
 		}
 		default:
 			return state

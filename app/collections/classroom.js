@@ -33,21 +33,17 @@ export const addClassroomData = data => {
 	Classroom.find({ name: data.name }, (err, entry) => {
 		if (err) {
 			saveFailed()
-
-			return err
 		}
 		if (entry.length > 0) {
 			entryAlreadyExists()
-
-			return
 		}
+
 		const newData = data
 		newData.subjects = []
+
 		Classroom.insert(newData, (error, doc) => {
 			if (error) {
 				saveFailed()
-
-				return error
 			}
 			saveSuccessful()
 
@@ -57,12 +53,10 @@ export const addClassroomData = data => {
 }
 
 export const getClassroomData = () =>
-	new Promise((resolve, reject) =>
+	new Promise(resolve =>
 		Classroom.find({}, (err, entry) => {
 			if (err) {
 				unableToRetrieve()
-
-				return reject(err)
 			}
 
 			return resolve(entry)
@@ -83,19 +77,16 @@ const deleteSubjectByClassroom = async classroomId => {
 }
 
 export const deleteClassroom = ({ id }) =>
-	new Promise((resolve, reject) =>
+	new Promise(resolve =>
 		Classroom.remove({ _id: id }, err => {
 			if (err) {
 				deletionFailed()
-
-				return reject(err)
 			}
 			Classroom.find({}, (error, docs) => {
-				if (err) {
+				if (error) {
 					deletionFailed()
-
-					return reject(err)
 				}
+
 				deleteSubjectByClassroom(id)
 
 				return resolve(docs)
@@ -132,8 +123,6 @@ const updateSingleClassroom = (previous, current) => {
 		err => {
 			if (err) {
 				updateFailed()
-
-				return err
 			}
 			updateSuccessful()
 		}
@@ -141,20 +130,16 @@ const updateSingleClassroom = (previous, current) => {
 }
 
 export const updateRoomData = data =>
-	new Promise((resolve, reject) =>
+	new Promise(resolve =>
 		Classroom.find({ name: data.oldName }, (err, entry) => {
 			if (err) {
 				updateFailed()
-
-				return err
 			}
 			if (entry.length > 0) {
 				updateSingleClassroom(entry[0], data)
 				Classroom.find({}, (error, docs) => {
 					if (error) {
 						updateFailed()
-
-						return reject(error)
 					}
 
 					return resolve(docs)
@@ -167,16 +152,12 @@ export const updateSubjectArray = data => {
 	Classroom.find({ name: data.name }, (err, entry) => {
 		if (err) {
 			updateFailed()
-
-			return err
 		}
 		if (entry.length > 0) {
 			updateSingleClassroom(entry[0], data)
 			Classroom.find({}, (error, docs) => {
 				if (error) {
 					updateFailed()
-
-					return error
 				}
 
 				return docs
@@ -197,8 +178,6 @@ export const updateClassSubjectArray = (
 		err => {
 			if (err) {
 				updateFailed()
-
-				return err
 			}
 		}
 	)
@@ -210,8 +189,7 @@ export const updateClassSubjectArray = (
 		err => {
 			if (err) {
 				updateFailed()
-
-				return err
+				return
 			}
 		}
 	)

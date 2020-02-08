@@ -1,27 +1,59 @@
 import React from 'react'
-import { Button } from 'reactstrap'
+import { getClassroomId } from '../../helpers/dropdowns'
+import { Button, Input, Label } from 'reactstrap'
 import css from '../styles/exam.css'
 
-const titleInput = t => (
-	<div>
-		<label className={css.form_label} htmlFor="titleId">
-			{t('exam.title')}*:
-		</label>
+const _ = require('lodash')
 
-		<input
+export const getClassOptions = classInfo => {
+	const selectOptions = _.values(classInfo).map((data, idx) => (
+		<option className="form-control dropup" key={idx}>
+			{data.name}
+		</option>
+	))
+
+	return selectOptions
+}
+
+export const getSubjectOptions = (subjectData, examData, cleanedClassList) => {
+	const { subject } = examData
+	const classroom = subject || cleanedClassList[0].name
+	const classroomId = getClassroomId(classroom, cleanedClassList)
+
+	const filteredSubject = _.filter(subjectData.data, [
+		'classroomId',
+		classroomId
+	])
+
+	const selectedOptions = _.values(filteredSubject).map((data, idx) => (
+		<option className="form-control dropup" key={idx} data-id={data._id}>
+			{data.abbreviation}
+		</option>
+	))
+
+	return selectedOptions
+}
+
+const titleInput = (isInvalid, t) => (
+	<div>
+		<Label className={css.form_label} htmlFor="titleId">
+			{t('exam.title')}*:
+		</Label>
+
+		<Input
 			name="title"
 			className="form-control"
-			required
 			data-id="titleId"
 			type="text"
+			invalid={isInvalid}
 		/>
 	</div>
 )
 const classInput = (t, options, action) => (
 	<div>
-		<label className={css.form_label} htmlFor="classSelection">
+		<Label className={css.form_label} htmlFor="classSelection">
 			{t('general.selectRoom')}:
-		</label>
+		</Label>
 
 		<select
 			onChange={action}
@@ -37,9 +69,9 @@ const classInput = (t, options, action) => (
 
 const subjectInput = (t, options) => (
 	<div className={css.subject_dropdown}>
-		<label className={css.form_label} htmlFor="subjectSelection">
+		<Label className={css.form_label} htmlFor="subjectSelection">
 			{t('general.selectSubject')}:
-		</label>
+		</Label>
 
 		<select
 			className="form-control"
@@ -57,11 +89,11 @@ const dateInput = t => {
 
 	return (
 		<div className={`${css.form_div} form-group`}>
-			<label className={css.form_label} htmlFor="dateIn">
+			<Label className={css.form_label} htmlFor="dateIn">
 				{t('general.date')}:
-			</label>
+			</Label>
 
-			<input
+			<Input
 				className="form-control"
 				name="date"
 				type="date"
@@ -73,11 +105,11 @@ const dateInput = t => {
 }
 const numberInput = t => (
 	<div className={`${css.form_div} form-group`}>
-		<label className={css.form_label} htmlFor="number-input">
+		<Label className={css.form_label} htmlFor="number-input">
 			{t('general.weight')}:
-		</label>
+		</Label>
 
-		<input
+		<Input
 			className={`${css.weight_input} form-control`}
 			defaultValue="1"
 			name="weight"
@@ -90,23 +122,24 @@ const numberInput = t => (
 	</div>
 )
 
-const examForm = (
+export const generateExamForm = (
 	t,
 	subjectOptions,
 	classOption,
+	{ isInvalid },
 	{ addNewExam, getSelectedSubject }
 ) => {
 	const examFields = (
 		<div>
 			<form className="form-inline" onSubmit={addNewExam} method="POST">
-				{titleInput(t)}
+				{titleInput(isInvalid, t)}
 				{classInput(t, classOption, getSelectedSubject)}
 				{subjectInput(t, subjectOptions)}
 				{dateInput(t)}
 				{numberInput(t)}
 
 				<div className={css.form_save_btn}>
-					<Button type="submit" className="btn btn-success">
+					<Button type="submit" formNoValidate className="btn btn-success">
 						{t('general.add')}
 					</Button>
 				</div>
@@ -116,5 +149,3 @@ const examForm = (
 
 	return examFields
 }
-
-export default examForm

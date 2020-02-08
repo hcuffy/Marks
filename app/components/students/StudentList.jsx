@@ -2,43 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import { bindActionCreators } from 'redux'
-import { Badge, Button } from 'reactstrap'
 import { actionCreators } from '../../actions/index'
 import StudentModal from './StudentModal'
+import { generateStudentList } from './helpers/formHelper'
 import css from './styles/students.css'
-
-const _ = require('lodash')
-
-const generateListBtn = (students, action) =>
-	students.map((data, idx) => (
-		<Button
-			key={idx}
-			data-id={data._id}
-			className={`list-group-item list-group-item-action ${css.list_btn}`}
-			onClick={action}
-		>
-			{`${data.firstname} ${data.lastname}`}
-
-			{data.gender === 'male' ? (
-				<Badge className={`badge-pill ${css.badge_boy}`}>
-					<i className="fas fa-mars" />
-				</Badge>
-			) : (
-				<Badge className={`badge-pill ${css.badge_girl}`}>
-					<i className="fas fa-venus" />
-				</Badge>
-			)}
-		</Button>
-	))
-
-const generateStudentList = (students, actions) => {
-	if (_.isUndefined(students)) {
-		return []
-	}
-	const sortedStudents = _.sortBy(students, ['firstname'], ['asc'])
-
-	return generateListBtn(sortedStudents, actions.showStudentModal)
-}
 
 const StudentList = ({ t, students, actions }) => {
 	const listData = generateStudentList(students, actions)

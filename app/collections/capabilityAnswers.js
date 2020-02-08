@@ -1,4 +1,10 @@
-import { unableToRetrieve, saveFailed, saveSuccessful, updateFailed, updateSuccessful } from '../notifications/general'
+import {
+	unableToRetrieve,
+	saveFailed,
+	saveSuccessful,
+	updateFailed,
+	updateSuccessful
+} from '../notifications/general'
 
 const _ = require('lodash')
 const Datastore = require('nedb')
@@ -19,8 +25,6 @@ export const getAllAnswers = () =>
 		Answers.find({}, (err, docs) => {
 			if (err) {
 				unableToRetrieve()
-
-				return reject(err)
 			}
 
 			return resolve(docs)
@@ -35,28 +39,39 @@ export const addStudentAnswer = answerData => {
 	Answers.insert(adjustedData, error => {
 		if (error) {
 			saveFailed()
-
-			return error
 		}
 		saveSuccessful()
 	})
 }
 
-const updateStudentAnswer = ({ classroomId, studentId, questionId, optionTag }) => {
+const updateStudentAnswer = ({
+	classroomId,
+	studentId,
+	questionId,
+	optionTag
+}) => {
 	const answerToUpdate = { classroomId, studentId }
 	Answers.find(answerToUpdate, (err, answer) => {
 		if (err) {
 			updateFailed()
-
-			return err
 		}
 		const answerExists = _.find(answer[0].capability, { questionId })
 
 		if (_.size(answerExists) > 0) {
-			Answers.update(answerToUpdate, { $pull: { capability: { questionId } } }, {}, () => {})
+			Answers.update(
+				answerToUpdate,
+				{ $pull: { capability: { questionId } } },
+				{},
+				() => {}
+			)
 		}
 
-		Answers.update(answerToUpdate, { $addToSet: { capability: { questionId, optionTag } } }, {}, () => {})
+		Answers.update(
+			answerToUpdate,
+			{ $addToSet: { capability: { questionId, optionTag } } },
+			{},
+			() => {}
+		)
 		updateSuccessful()
 	})
 }
@@ -66,7 +81,7 @@ export const updateSingleAnswer = answerData =>
 		const { classroomId, studentId } = answerData
 		Answers.count({ classroomId, studentId }, (error, count) => {
 			if (error) {
-				return reject(error)
+				updateFailed()
 			}
 			if (count < 1) {
 				addStudentAnswer(answerData)
@@ -77,7 +92,7 @@ export const updateSingleAnswer = answerData =>
 
 		Answers.find({}, (error, docs) => {
 			if (error) {
-				return reject(error)
+				updateFailed()
 			}
 
 			return resolve(docs)

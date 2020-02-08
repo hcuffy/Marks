@@ -1,6 +1,6 @@
 import React from 'react'
 import { ListGroup, ListGroupItem } from 'reactstrap'
-import { GERMAN_LINKS, ENGLISH_LINKS } from '../../../constants/externalLinks'
+import { GERMAN_LINKS, ENGLISH_LINKS } from '../constants'
 import { currentLanguage } from '../../../utils/translationUtil'
 import css from '../homepage.css'
 
