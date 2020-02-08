@@ -20,12 +20,16 @@ const NotesDropdown = ({ t, studentData, notesData, actions }) => {
 		selectedStudent,
 		selectedNote,
 		studentId,
-		notes
+		notes,
+		textField
 	} = notesData
 
 	const studentOptions = getStudentList(students)
 	const notesOptions = getNotesList(notes, studentId)
-	notifyIfEmpty(t, notesOptions, notesDropdown, 'student')
+
+	if (_.isEmpty(textField) === true) {
+		notifyIfEmpty(t, notesOptions, notesDropdown, 'student')
+	}
 
 	return (
 		<div className={css.dropdown_main_div}>
