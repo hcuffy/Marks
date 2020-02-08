@@ -1,5 +1,5 @@
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import Address from './Address'
 import GradeFormat from './GradeFormat'
 import css from './styles/settings.css'
@@ -20,4 +20,4 @@ const Settings = ({ t }) => (
 	</div>
 )
 
-export default withNamespaces()(Settings)
+export default withTranslation()(Settings)
