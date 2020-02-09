@@ -1,5 +1,5 @@
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import ExamListDropdown from './ExamListDropdown'
 import ExamListInputs from './ExamListInputs'
 import ExamModal from './ExamModal'
@@ -19,4 +19,4 @@ const ExamList = ({ t }) => (
 	</div>
 )
 
-export default withNamespaces()(ExamList)
+export default withTranslation()(ExamList)

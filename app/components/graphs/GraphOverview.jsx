@@ -1,5 +1,5 @@
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import css from './styles/graphs.css'
 import GraphDropdown from './GraphDropdown'
 import Chart from './Chart'
@@ -16,4 +16,4 @@ const GraphOverview = ({ t }) => (
 	</div>
 )
 
-export default withNamespaces()(GraphOverview)
+export default withTranslation()(GraphOverview)

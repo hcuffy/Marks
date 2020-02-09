@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react'
 import { connect } from 'react-redux'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { Bar } from 'react-chartjs-2'
 import { actionCreators } from '../../actions/index'
@@ -31,4 +31,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withNamespaces()(Chart))
+)(withTranslation()(Chart))

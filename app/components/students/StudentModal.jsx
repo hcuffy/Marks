@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { modalFrame } from '../helpers/editModal'
 import { actionCreators } from '../../actions/index'
@@ -54,4 +54,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withNamespaces()(StudentModal))
+)(withTranslation()(StudentModal))

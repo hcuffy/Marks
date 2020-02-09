@@ -1,5 +1,5 @@
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import StudentForm from './StudentForm'
 import StudentList from './StudentList'
 import StudentChart from './StudentChart'
@@ -26,4 +26,4 @@ const StudentsSection = ({ t }) => (
 	</div>
 )
 
-export default withNamespaces()(StudentsSection)
+export default withTranslation()(StudentsSection)

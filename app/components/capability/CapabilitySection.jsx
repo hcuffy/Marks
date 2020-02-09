@@ -1,5 +1,5 @@
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import CapabilityDropdown from './CapabilityDropdown'
 import CapabilityTable from './CapabilityTable'
 import css from './styles/capability.css'
@@ -12,4 +12,4 @@ const CapabilitySection = ({ t }) => (
 	</div>
 )
 
-export default withNamespaces()(CapabilitySection)
+export default withTranslation()(CapabilitySection)

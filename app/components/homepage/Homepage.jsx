@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { resourceList } from './helpers/resourcesList'
 import { openResource } from '../../utils/resourcesLinks'
 import css from './homepage.css'
@@ -38,4 +38,4 @@ const mapStateToProps = state => ({
 	addressData: state.addressData
 })
 
-export default connect(mapStateToProps, null)(withNamespaces()(Homepage))
+export default connect(mapStateToProps, null)(withTranslation()(Homepage))
