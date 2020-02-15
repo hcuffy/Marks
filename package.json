@@ -107,7 +107,8 @@
 			"provider": "github",
 			"owner": "hcuffy",
 			"repo": "Marks",
-			"private": false
+			"private": false,
+			"releaseType": "release"
 		}
 	},
 	"repository": {
