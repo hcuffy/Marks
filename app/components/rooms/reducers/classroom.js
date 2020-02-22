@@ -12,17 +12,4 @@ const initialLoadState = {
 
 export const applyClassData = (state = initialLoadState, action) => {
 	return reducerActionHandler(state, action, classroomHandlers)
-	/*switch (action.type) {
-		case ADD_CLASSROOM_DATA: {
-			return _.assign({}, state, action.payload)
-		}
-		case GET_CLASSROOM_DATA: {
-			return _.assign({}, state, action.payload)
-		}
-		case CLASSROOM_FORM_VALIDATION: {
-			return _.assign({}, state, action.payload)
-		}
-		default:
-			return state
-	}*/
 }
