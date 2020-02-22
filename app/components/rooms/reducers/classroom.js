@@ -1,10 +1,5 @@
-import {
-	ADD_CLASSROOM_DATA,
-	GET_CLASSROOM_DATA,
-	CLASSROOM_FORM_VALIDATION
-} from '../constants'
-
-const _ = require('lodash')
+import { classroomHandlers } from './reducerHandlers'
+import { reducerActionHandler } from '../../../reducers/reducerUtils.js'
 
 const initialLoadState = {
 	name: '',
@@ -16,7 +11,8 @@ const initialLoadState = {
 }
 
 export const applyClassData = (state = initialLoadState, action) => {
-	switch (action.type) {
+	return reducerActionHandler(state, action, classroomHandlers)
+	/*switch (action.type) {
 		case ADD_CLASSROOM_DATA: {
 			return _.assign({}, state, action.payload)
 		}
@@ -28,5 +24,5 @@ export const applyClassData = (state = initialLoadState, action) => {
 		}
 		default:
 			return state
-	}
+	}*/
 }

@@ -1,12 +1,4 @@
-import {
-	CHANGE_CLASSROOM_TAB,
-	ADD_CLASSROOM_DATA,
-	GET_CLASSROOM_DATA,
-	UPDATE_CLASSROOM,
-	OPEN_CLOSE_ROOM_MODAL,
-	CLASSROOM_FORM_VALIDATION,
-	CLASSROOM_MODAL_VALIDATION
-} from './constants'
+import { actions } from './constants'
 import {
 	addClassroomData,
 	getClassroomData,
@@ -30,7 +22,7 @@ export const changeClassroomTab = event => dispatch => {
 	)
 
 	dispatch({
-		type: CHANGE_CLASSROOM_TAB,
+		type: actions.CHANGE_CLASSROOM_TAB,
 		payload: tabUpdate
 	})
 }
@@ -54,7 +46,7 @@ export const handleClassData = event => async dispatch => {
 
 	if (inputValidation(formData)) {
 		dispatch({
-			type: CLASSROOM_FORM_VALIDATION,
+			type: actions.CLASSROOM_FORM_VALIDATION,
 			payload: { formData, isInvalid: true, check: true }
 		})
 	} else {
@@ -76,7 +68,7 @@ export const displayClassData = () => async dispatch => {
 
 	if (data.length !== 0) {
 		dispatch({
-			type: GET_CLASSROOM_DATA,
+			type: actions.GET_CLASSROOM_DATA,
 			payload: { classData: data, check: false }
 		})
 	}
@@ -88,13 +80,13 @@ const updateRoomDispatcher = async (roomData, dispatch) => {
 	if (docs) {
 		roomData.showModal = false
 		dispatch({
-			type: GET_CLASSROOM_DATA,
+			type: actions.GET_CLASSROOM_DATA,
 			payload: { classData: docs, check: false }
 		})
 	}
 
 	dispatch({
-		type: UPDATE_CLASSROOM,
+		type: actions.UPDATE_CLASSROOM,
 		payload: { ...roomData, isInvalid: false }
 	})
 }
@@ -113,7 +105,7 @@ export const updateRoom = event => async dispatch => {
 
 	if (inputValidation(_.omit(roomData, ['id']))) {
 		dispatch({
-			type: CLASSROOM_MODAL_VALIDATION,
+			type: actions.CLASSROOM_MODAL_VALIDATION,
 			payload: { ...roomData, isInvalid: true, check: false }
 		})
 	} else {
@@ -131,13 +123,13 @@ export const deleteRoom = event => async dispatch => {
 
 	if (docs) {
 		dispatch({
-			type: GET_CLASSROOM_DATA,
+			type: actions.GET_CLASSROOM_DATA,
 			payload: { classData: docs, check: false }
 		})
 	}
 
 	dispatch({
-		type: UPDATE_CLASSROOM,
+		type: actions.UPDATE_CLASSROOM,
 		payload: roomData
 	})
 }
@@ -150,7 +142,7 @@ export const roomModalDisplay = event => dispatch => {
 	}
 
 	dispatch({
-		type: OPEN_CLOSE_ROOM_MODAL,
+		type: actions.OPEN_CLOSE_ROOM_MODAL,
 		payload: { ...roomId, isInvalid: false }
 	})
 }

@@ -21,6 +21,6 @@ export const updateButtonStyle = event => dispatch => {
 
 	dispatch({
 		type: HANDLE_MENU_CHANGE,
-		payload: { styleUpdate }
+		payload: styleUpdate
 	})
 }

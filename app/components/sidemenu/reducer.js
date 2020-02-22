@@ -16,9 +16,7 @@ const initialLoadState = {
 const applyMenuStyling = (state = initialLoadState, action) => {
 	switch (action.type) {
 		case HANDLE_MENU_CHANGE: {
-			const { styleUpdate } = action.payload
-
-			return _.assign({}, state, styleUpdate)
+			return _.assign({}, state, action.payload)
 		}
 		default:
 			return state
