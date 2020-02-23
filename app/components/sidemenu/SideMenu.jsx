@@ -29,7 +29,7 @@ const SideMenu = ({ menuStylingData, actions }) => {
 
 			<ToastContainer />
 
-			<h6 className={css.version}>ver. 1.3.0</h6>
+			<h6 className={css.version}>ver. 1.3.1</h6>
 		</div>
 	)
 }
