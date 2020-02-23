@@ -1,12 +1,4 @@
-import {
-	ADD_NEW_STUDENT,
-	GET_ALL_STUDENTS,
-	GET_SINGLE_STUDENT,
-	DISPLAY_STUDENT_GRAPH,
-	DISPLAY_STUDENT_SUBJECT_GRAPH,
-	STUDENT_FORM_VALIDATION,
-	STUDENT_MODAL_VALIDATION
-} from './constants'
+import { actions } from './constants'
 import {
 	addNewStudentData,
 	getAllStudents,
@@ -35,7 +27,7 @@ export const addNewStudent = event => async dispatch => {
 
 	if (inputValidation(inputsToValidate)) {
 		dispatch({
-			type: STUDENT_FORM_VALIDATION,
+			type: actions.STUDENT_FORM_VALIDATION,
 			payload: { ...inputsToValidate, isInvalid: true }
 		})
 	} else {
@@ -44,12 +36,12 @@ export const addNewStudent = event => async dispatch => {
 		const students = await getAllStudents()
 
 		dispatch({
-			type: ADD_NEW_STUDENT,
+			type: actions.ADD_NEW_STUDENT,
 			payload: { firstname: '', lastname: '', isInvalid: false }
 		})
 
 		dispatch({
-			type: GET_ALL_STUDENTS,
+			type: actions.GET_ALL_STUDENTS,
 			payload: { students, isInvalid: false }
 		})
 	}
@@ -60,7 +52,7 @@ export const getStudents = () => async dispatch => {
 
 	if (students.length !== 0) {
 		dispatch({
-			type: GET_ALL_STUDENTS,
+			type: actions.GET_ALL_STUDENTS,
 			payload: { students }
 		})
 	}
@@ -70,7 +62,7 @@ export const showStudentModal = event => dispatch => {
 	const studentId = event.target.getAttribute('data-id')
 
 	dispatch({
-		type: GET_SINGLE_STUDENT,
+		type: actions.GET_SINGLE_STUDENT,
 		payload: { studentId, isModalInvalid: false }
 	})
 }
@@ -87,7 +79,7 @@ export const openStudentGraph = event => dispatch => {
 	}
 
 	dispatch({
-		type: DISPLAY_STUDENT_GRAPH,
+		type: actions.DISPLAY_STUDENT_GRAPH,
 		payload: student
 	})
 }
@@ -104,7 +96,7 @@ export const openStudentSubjectGraph = event => dispatch => {
 	}
 
 	dispatch({
-		type: DISPLAY_STUDENT_SUBJECT_GRAPH,
+		type: actions.DISPLAY_STUDENT_SUBJECT_GRAPH,
 		payload: subject
 	})
 }
@@ -125,19 +117,19 @@ export const updateStudent = event => async dispatch => {
 
 	if (inputValidation(inputsToValidate)) {
 		dispatch({
-			type: STUDENT_FORM_VALIDATION,
+			type: actions.STUDENT_FORM_VALIDATION,
 			payload: { ...inputsToValidate, isModalInvalid: true }
 		})
 	} else {
 		const students = await updateStudentData(studentData)
 
 		dispatch({
-			type: GET_SINGLE_STUDENT,
+			type: actions.GET_SINGLE_STUDENT,
 			payload: { studentId, isModalInvalid: false }
 		})
 
 		dispatch({
-			type: GET_ALL_STUDENTS,
+			type: actions.GET_ALL_STUDENTS,
 			payload: { students, isModalInvalid: false }
 		})
 	}
@@ -148,12 +140,12 @@ export const deleteSingleStudent = event => async dispatch => {
 	const students = await deleteStudent(studentId)
 
 	dispatch({
-		type: GET_SINGLE_STUDENT,
+		type: actions.GET_SINGLE_STUDENT,
 		payload: { studentId }
 	})
 
 	dispatch({
-		type: GET_ALL_STUDENTS,
+		type: actions.GET_ALL_STUDENTS,
 		payload: { students }
 	})
 }
