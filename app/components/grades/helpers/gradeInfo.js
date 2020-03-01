@@ -83,9 +83,9 @@ const studentAverage = grades => {
 }
 
 const getAverage = grades => {
-	const removeZeros = _.filter(grades, grade => grade.score !== 0)
+	const withoutZeros = _.filter(grades, grade => _.parseInt(grade.score) !== 0)
 
-	const average = _.isEmpty(removeZeros) ? 0 : studentAverage(removeZeros)
+	const average = _.isEmpty(withoutZeros) ? 0 : studentAverage(withoutZeros)
 
 	return { average }
 }
