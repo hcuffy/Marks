@@ -20,7 +20,7 @@ import { applyGradeData } from '../components/grades/reducers'
 import { applyMenuStyling } from '../components/sidemenu/reducers'
 import { applyGraphData } from '../components/graphs/reducers'
 import { applyNotesData } from '../components/notes/reducers'
-import applyCapabilityChanges from '../components/capability/reducer'
+import { applyCapabilityChanges } from '../components/capability/reducers'
 
 export default function createRootReducer(history: History) {
 	return combineReducers({
