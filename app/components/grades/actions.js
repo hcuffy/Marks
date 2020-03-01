@@ -1,8 +1,4 @@
-import {
-	DISPLAY_EXAM_TABLE,
-	OPEN_CLASS_LIST,
-	UPDATE_EXAM_TABLE
-} from './constants'
+import { actions } from './constants'
 import { getAllExams } from '../../collections/exam'
 import {
 	getAllGrades,
@@ -20,7 +16,7 @@ export const openGradeClassList = event => dispatch => {
 	const classroomId = event.target.getAttribute('data-id')
 
 	dispatch({
-		type: OPEN_CLASS_LIST,
+		type: actions.OPEN_CLASS_LIST,
 		payload: { classroomId }
 	})
 }
@@ -53,7 +49,7 @@ export const displayGradeData = event => async dispatch => {
 	const grades = await filterGrades(exams)
 
 	dispatch({
-		type: DISPLAY_EXAM_TABLE,
+		type: actions.DISPLAY_EXAM_TABLE,
 		payload: { exams, grades, ...subjectData }
 	})
 }
@@ -84,7 +80,7 @@ export const updateGrade = event => async dispatch => {
 	const grades = await filterGrades(exams)
 
 	dispatch({
-		type: UPDATE_EXAM_TABLE,
+		type: actions.UPDATE_EXAM_TABLE,
 		payload: { exams, grades }
 	})
 }
