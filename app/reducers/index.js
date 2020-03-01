@@ -14,7 +14,7 @@ import {
 	applySubjectData,
 	applySubjectModal
 } from '../components/subject/reducers'
-import applyFilteredExam from '../components/exam/reducer'
+import { applyFilteredExam } from '../components/exam/reducers'
 import { applyStudentData } from '../components/students/reducers'
 import { applyGradeData } from '../components/grades/reducers'
 import { applyMenuStyling } from '../components/sidemenu/reducers'

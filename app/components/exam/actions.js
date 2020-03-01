@@ -1,13 +1,4 @@
-import {
-	GET_SELECTED_CLASS,
-	ADD_NEW_EXAM,
-	UPDATE_DROPDOWN_CLASS_LIST,
-	DISPLAY_SUBJECT_LIST,
-	GET_SINGLE_EXAM,
-	UPDATE_EXAMS_LIST,
-	EXAM_FORM_VALIDATION,
-	EXAM_MODAL_VALIDATION
-} from './constants'
+import { actions } from './constants'
 import {
 	addExamData,
 	getAllExams,
@@ -29,7 +20,7 @@ export const addNewExam = event => dispatch => {
 
 	if (inputValidation(_.pick(examData, ['title']))) {
 		dispatch({
-			type: EXAM_FORM_VALIDATION,
+			type: actions.EXAM_FORM_VALIDATION,
 			payload: { isInvalid: true }
 		})
 	} else {
@@ -38,7 +29,7 @@ export const addNewExam = event => dispatch => {
 		event.target.reset()
 
 		dispatch({
-			type: ADD_NEW_EXAM,
+			type: actions.ADD_NEW_EXAM,
 			payload: { isInvalid: false }
 		})
 	}
@@ -48,8 +39,8 @@ export const getSelectedSubject = event => dispatch => {
 	const subject = event.target.value
 
 	dispatch({
-		type: GET_SELECTED_CLASS,
-		payload: subject
+		type: actions.GET_SELECTED_CLASS,
+		payload: { subject }
 	})
 }
 
@@ -61,7 +52,7 @@ export const openClassDropdownList = event => dispatch => {
 	const classroomId = event.target.getAttribute('data-id')
 
 	dispatch({
-		type: UPDATE_DROPDOWN_CLASS_LIST,
+		type: actions.UPDATE_DROPDOWN_CLASS_LIST,
 		payload: { classroomId }
 	})
 }
@@ -77,7 +68,7 @@ export const displayExamData = event => async dispatch => {
 	const exams = await getAllExams()
 	if (exams.length !== 0) {
 		dispatch({
-			type: DISPLAY_SUBJECT_LIST,
+			type: actions.DISPLAY_SUBJECT_LIST,
 			payload: { exams, subjectId, selectedSubject, openClassDropdown: false }
 		})
 	}
@@ -87,7 +78,7 @@ export const showSingleExam = event => dispatch => {
 	const examId = event.target.getAttribute('data-id')
 
 	dispatch({
-		type: GET_SINGLE_EXAM,
+		type: actions.GET_SINGLE_EXAM,
 		payload: { examId, isModalInvalid: true }
 	})
 }
@@ -106,20 +97,20 @@ export const updateExam = event => async dispatch => {
 
 	if (inputValidation(inputsToValidate)) {
 		dispatch({
-			type: EXAM_MODAL_VALIDATION,
+			type: actions.EXAM_MODAL_VALIDATION,
 			payload: { ...inputsToValidate, isModalInvalid: true }
 		})
 	} else {
 		const exams = await updateExamData(examData)
 
 		dispatch({
-			type: GET_SINGLE_EXAM,
+			type: actions.GET_SINGLE_EXAM,
 			payload: { examId: examData.examId, isModalInvalid: false }
 		})
 
 		if (exams.length > 0) {
 			dispatch({
-				type: UPDATE_EXAMS_LIST,
+				type: actions.UPDATE_EXAMS_LIST,
 				payload: { exams, isModalInvalid: false }
 			})
 		}
@@ -135,13 +126,13 @@ export const deleteSingleExam = event => async dispatch => {
 	const exams = await deleteExam(examData)
 
 	dispatch({
-		type: GET_SINGLE_EXAM,
+		type: actions.GET_SINGLE_EXAM,
 		payload: { examId: examData.examId }
 	})
 
 	if (exams.length > 0) {
 		dispatch({
-			type: UPDATE_EXAMS_LIST,
+			type: actions.UPDATE_EXAMS_LIST,
 			payload: { exams }
 		})
 	}
