@@ -1,10 +1,4 @@
-import {
-	OPEN_GRAPH_CLASS_LIST,
-	GET_ALL_GRADES,
-	DISPLAY_SUBJECT_GRADES,
-	DISPLAY_EXAM_GRADES,
-	GET_ALL_EXAMS
-} from './constants'
+import { actions } from './constants'
 import { getAllGrades } from '../../collections/grade'
 import { getAllExams } from '../../collections/exam'
 
@@ -20,7 +14,7 @@ export const openGraphClassList = event => dispatch => {
 	}
 
 	dispatch({
-		type: OPEN_GRAPH_CLASS_LIST,
+		type: actions.OPEN_GRAPH_CLASS_LIST,
 		payload: data
 	})
 }
@@ -40,7 +34,7 @@ export const displaySubjectGraph = event => dispatch => {
 	}
 
 	dispatch({
-		type: DISPLAY_SUBJECT_GRADES,
+		type: actions.DISPLAY_SUBJECT_GRADES,
 		payload: data
 	})
 }
@@ -58,7 +52,7 @@ export const displayExamGraph = event => dispatch => {
 	}
 
 	dispatch({
-		type: DISPLAY_EXAM_GRADES,
+		type: actions.DISPLAY_EXAM_GRADES,
 		payload: data
 	})
 }
@@ -67,7 +61,7 @@ export const getAllGradeData = () => async dispatch => {
 	const grades = await getAllGrades()
 
 	dispatch({
-		type: GET_ALL_GRADES,
+		type: actions.GET_ALL_GRADES,
 		payload: { grades }
 	})
 }
@@ -77,7 +71,7 @@ export const getGraphExamData = () => async dispatch => {
 
 	if (exams.length !== 0) {
 		dispatch({
-			type: GET_ALL_EXAMS,
+			type: actions.GET_ALL_EXAMS,
 			payload: { exams }
 		})
 	}

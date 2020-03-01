@@ -18,7 +18,7 @@ import applyFilteredExam from '../components/exam/reducer'
 import { applyStudentData } from '../components/students/reducers'
 import applyGradeData from '../components/grades/reducer'
 import { applyMenuStyling } from '../components/sidemenu/reducers'
-import applyGraphData from '../components/graphs/reducer'
+import { applyGraphData } from '../components/graphs/reducers'
 import { applyNotesData } from '../components/notes/reducers'
 import applyCapabilityChanges from '../components/capability/reducer'
 
