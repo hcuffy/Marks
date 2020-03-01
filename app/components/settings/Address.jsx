@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { addressForm, addressFields } from './helpers/formHelpers'
+import { addressElements } from '../helpers/formValidation'
 import { actionCreators } from '../../actions/index'
 import css from './styles/settings.css'
 
 const Address = ({ t, addressData, actions }) => {
-	const entry = addressFields(t, addressData)
+	const entry = addressFields(t, addressElements(addressData))
 
 	return (
 		<div className={css.address_wrapper}>

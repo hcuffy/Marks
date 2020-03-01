@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
-import applyAddressData, {
+import {
+	applyAddressData,
 	applyGradeSystem
-} from '../components/settings/reducer'
+} from '../components/settings/reducers'
 import {
 	applyTabChange,
 	applyClassData,
