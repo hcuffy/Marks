@@ -7,5 +7,5 @@ export const GERMAN_LINKS = {
 }
 
 export const ENGLISH_LINKS = {
-	DoE: 'https://www2.ed.gov/rschstat/catalog/index.html '
+	DoE: 'https://www2.ed.gov/rschstat/catalog/index.html'
 }
