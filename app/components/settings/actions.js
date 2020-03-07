@@ -1,9 +1,4 @@
-import {
-	UPDATE_GRADING_DATA,
-	GET_SYSTEM_TYPE,
-	HANDLE_SCHOOL_DATA,
-	DISPLAY_SCHOOL_DATA
-} from './constants'
+import { actions } from './constants'
 import {
 	saveGradeSystem,
 	getSystemType,
@@ -25,7 +20,7 @@ export const updateGradingSystem = event => async dispatch => {
 	const settings = await updateGradeType(newSystemType)
 
 	dispatch({
-		type: UPDATE_GRADING_DATA,
+		type: actions.UPDATE_GRADING_DATA,
 		payload: { ...settings[0] }
 	})
 }
@@ -38,7 +33,6 @@ export const getGradingSystem = () => async dispatch => {
 			percent: false
 		}
 	]
-
 	const systemType = await getSystemType()
 
 	if (systemType.length === 0) {
@@ -47,7 +41,7 @@ export const getGradingSystem = () => async dispatch => {
 	}
 
 	dispatch({
-		type: GET_SYSTEM_TYPE,
+		type: actions.GET_SYSTEM_TYPE,
 		payload: { ...systemType[0] }
 	})
 }
@@ -65,11 +59,12 @@ export const saveSchoolAddress = event => dispatch => {
 		year: event.target.year.value
 	}
 
-	addAddress(formData)
+	const addressData = addAddress(formData)
+	const { title, street, province, country, zip, city, year } = addressData
 
 	dispatch({
-		type: HANDLE_SCHOOL_DATA,
-		payload: formData
+		type: actions.HANDLE_SCHOOL_DATA,
+		payload: { title, street, province, country, zip, city, year }
 	})
 }
 
@@ -77,9 +72,10 @@ export const displayAddress = () => async dispatch => {
 	const data = await getAddressData()
 
 	if (data.length !== 0) {
+		const { title, street, province, country, zip, city, year } = data
 		dispatch({
-			type: DISPLAY_SCHOOL_DATA,
-			payload: data[0]
+			type: actions.DISPLAY_SCHOOL_DATA,
+			payload: { title, street, province, country, zip, city, year }
 		})
 	}
 }

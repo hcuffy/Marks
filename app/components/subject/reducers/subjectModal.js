@@ -1,10 +1,5 @@
-import {
-	OPEN_CLOSE_SUBJECT_MODAL,
-	UPDATE_SUBJECT,
-	SUBJECT_MODAL_VALIDATION
-} from '../constants'
-
-const _ = require('lodash')
+import { subjectModalHandlers } from './reducerHandlers'
+import { reducerActionHandler } from '../../../reducers/reducerUtils.js'
 
 const initialLoadState = {
 	id: '',
@@ -13,19 +8,5 @@ const initialLoadState = {
 }
 
 export const applySubjectModal = (state = initialLoadState, action) => {
-	const showSubjectModal = !state.showSubjectModal
-
-	switch (action.type) {
-		case OPEN_CLOSE_SUBJECT_MODAL: {
-			return _.assign({}, state, { showSubjectModal }, action.payload)
-		}
-		case UPDATE_SUBJECT: {
-			return _.assign({}, state, { showSubjectModal }, action.payload)
-		}
-		case SUBJECT_MODAL_VALIDATION: {
-			return _.assign({}, state, action.payload)
-		}
-		default:
-			return state
-	}
+	return reducerActionHandler(state, action, subjectModalHandlers)
 }

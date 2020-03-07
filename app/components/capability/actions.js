@@ -1,11 +1,4 @@
-import {
-	OPEN_CLOSE_CLASS_LIST,
-	OPEN_CLOSE_STUDENT_LIST,
-	GET_ALL_QUESTIONS,
-	OPEN_CLOSE_QUESTION_LIST,
-	UPDATE_QUESTION_SET,
-	UPDATE_ANSWERS
-} from './constants'
+import { actions } from './constants'
 import {
 	getAllQuestions,
 	updateQuestionData
@@ -24,7 +17,7 @@ export const openCapabilityClassList = event => dispatch => {
 	}
 
 	dispatch({
-		type: OPEN_CLOSE_CLASS_LIST,
+		type: actions.OPEN_CLOSE_CLASS_LIST,
 		payload: {
 			classroom: event.target.innerText,
 			classroomId: event.target.getAttribute('data-id')
@@ -41,7 +34,7 @@ export const openCapabilityStudentList = event => async dispatch => {
 	const questions = await getAllQuestions()
 
 	dispatch({
-		type: OPEN_CLOSE_STUDENT_LIST,
+		type: actions.OPEN_CLOSE_STUDENT_LIST,
 		payload: {
 			studentName: event.target.innerText,
 			studentId: event.target.getAttribute('data-id'),
@@ -54,7 +47,7 @@ export const getQuestions = () => async dispatch => {
 	const questions = await getAllQuestions()
 
 	dispatch({
-		type: GET_ALL_QUESTIONS,
+		type: actions.GET_ALL_QUESTIONS,
 		payload: { questions }
 	})
 }
@@ -70,7 +63,7 @@ export const openQuestionList = event => dispatch => {
 	}
 
 	dispatch({
-		type: OPEN_CLOSE_QUESTION_LIST,
+		type: actions.OPEN_CLOSE_QUESTION_LIST,
 		payload: {}
 	})
 }
@@ -88,7 +81,7 @@ export const updateQuestionSet = event => async dispatch => {
 	const questions = await updateQuestionData(questionSetData)
 
 	dispatch({
-		type: UPDATE_QUESTION_SET,
+		type: actions.UPDATE_QUESTION_SET,
 		payload: { questions }
 	})
 }
@@ -108,7 +101,7 @@ export const handleCapabilityAnswers = event => async dispatch => {
 	const answers = await updateSingleAnswer(formData)
 
 	dispatch({
-		type: UPDATE_ANSWERS,
+		type: actions.UPDATE_ANSWERS,
 		payload: { answers }
 	})
 }
@@ -117,7 +110,7 @@ export const getAnswers = () => async dispatch => {
 	const answers = await getAllAnswers()
 
 	dispatch({
-		type: UPDATE_ANSWERS,
+		type: actions.UPDATE_ANSWERS,
 		payload: { answers }
 	})
 }

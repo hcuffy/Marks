@@ -1,13 +1,4 @@
-import {
-	GET_ALL_NOTES,
-	OPEN_STUDENT_NOTES_DROPDOWN,
-	OPEN_NOTES_DROPDOWN,
-	UPDATE_TEXTAREA,
-	UPDATE_TITLE,
-	CLEAR_NOTE_FIELDS,
-	UPDATE_NOTE,
-	NOTES_FORM_VALIDATION
-} from './constants'
+import { actions } from './constants'
 import {
 	addNewNote,
 	getAllNotes,
@@ -30,7 +21,7 @@ export const addNote = event => async dispatch => {
 
 	if (inputValidation(inputsToValidate)) {
 		dispatch({
-			type: NOTES_FORM_VALIDATION,
+			type: actions.NOTES_FORM_VALIDATION,
 			payload: { ...inputsToValidate, isInvalid: true }
 		})
 	} else {
@@ -41,7 +32,7 @@ export const addNote = event => async dispatch => {
 		const notes = await getAllNotes()
 
 		dispatch({
-			type: GET_ALL_NOTES,
+			type: actions.GET_ALL_NOTES,
 			payload: { notes, isInvalid: false }
 		})
 	}
@@ -52,7 +43,7 @@ export const getNotes = () => async dispatch => {
 
 	if (notes.length !== 0) {
 		dispatch({
-			type: GET_ALL_NOTES,
+			type: actions.GET_ALL_NOTES,
 			payload: { notes }
 		})
 	}
@@ -71,7 +62,7 @@ export const openStudentDropdown = event => dispatch => {
 	}
 
 	dispatch({
-		type: OPEN_STUDENT_NOTES_DROPDOWN,
+		type: actions.OPEN_STUDENT_NOTES_DROPDOWN,
 		payload: student
 	})
 }
@@ -82,7 +73,7 @@ export const openNotesDropdown = event => dispatch => {
 	}
 
 	dispatch({
-		type: OPEN_NOTES_DROPDOWN,
+		type: actions.OPEN_NOTES_DROPDOWN,
 		payload: {
 			noteId: event.target.getAttribute('data-id'),
 			textBox: null,
@@ -95,14 +86,14 @@ export const openNotesDropdown = event => dispatch => {
 
 export const updateTextArea = event => dispatch => {
 	dispatch({
-		type: UPDATE_TEXTAREA,
+		type: actions.UPDATE_TEXTAREA,
 		payload: { textBox: event.target.value }
 	})
 }
 
 export const updateTitleField = event => dispatch => {
 	dispatch({
-		type: UPDATE_TITLE,
+		type: actions.UPDATE_TITLE,
 		payload: { textField: event.target.value }
 	})
 }
@@ -112,19 +103,19 @@ export const deleteSingleNote = event => async dispatch => {
 	const notes = await deleteNote(noteId)
 
 	dispatch({
-		type: CLEAR_NOTE_FIELDS,
+		type: actions.CLEAR_NOTE_FIELDS,
 		payload: { noteId: null, selectedNote: null, textBox: null }
 	})
 
 	dispatch({
-		type: GET_ALL_NOTES,
+		type: actions.GET_ALL_NOTES,
 		payload: { notes }
 	})
 }
 
 export const clearNoteField = () => async dispatch => {
 	dispatch({
-		type: CLEAR_NOTE_FIELDS,
+		type: actions.CLEAR_NOTE_FIELDS,
 		payload: {
 			noteId: null,
 			selectedNote: null,
@@ -147,14 +138,14 @@ export const updateNote = event => async dispatch => {
 
 	if (inputValidation(inputsToValidate)) {
 		dispatch({
-			type: NOTES_FORM_VALIDATION,
+			type: actions.NOTES_FORM_VALIDATION,
 			payload: { ...inputsToValidate, isInvalid: true }
 		})
 	} else {
 		const notes = await updateNoteData(noteData)
 
 		dispatch({
-			type: UPDATE_NOTE,
+			type: actions.UPDATE_NOTE,
 			payload: { notes, isInvalid: false }
 		})
 	}

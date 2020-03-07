@@ -6,6 +6,8 @@ import { ToastContainer } from 'react-toastify'
 import { actionCreators } from '../../actions/index'
 import { Button } from 'reactstrap'
 import { menuData } from './helpers/sideMenuData'
+import { openResource } from '../../utils/resourcesLinks'
+import { RELEASE_LINK } from './constants'
 import css from './styles/sidemenu.css'
 
 const _ = require('lodash')
@@ -29,7 +31,13 @@ const SideMenu = ({ menuStylingData, actions }) => {
 
 			<ToastContainer />
 
-			<h6 className={css.version}>ver. 1.3.0</h6>
+			<Button
+				onClick={openResource}
+				className={css.version}
+				data-name={RELEASE_LINK}
+			>
+				ver. 1.3.2 <i className="fas fa-external-link-square-alt"></i>
+			</Button>
 		</div>
 	)
 }

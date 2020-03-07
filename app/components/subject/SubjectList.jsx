@@ -10,6 +10,7 @@ import css from './styles/subject.css'
 
 const SubjectList = ({ t, selectedSubject, subjectData, actions }) => {
 	const filteredData = filterSubjects(selectedSubject, subjectData)
+
 	const subjectList = generateSubjectList(
 		filteredData,
 		actions.subjectModalDisplay

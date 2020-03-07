@@ -2,13 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 import { resourceList } from './helpers/resourcesList'
+import { addressElements } from '../helpers/formValidation'
 import { openResource } from '../../utils/resourcesLinks'
 import css from './homepage.css'
 
 const _ = require('lodash')
 
 const Homepage = ({ t, addressData }) => {
-	const entry = _.values(addressData).map((data, idx) => (
+	const entry = _.values(addressElements(addressData)).map((data, idx) => (
 		<li key={idx}>{data}</li>
 	))
 

@@ -54,12 +54,12 @@ export const resolveHiddenInput = (filteredData, id) => (
 	</div>
 )
 
-export const filterSubjects = (chosenClass, subjectData) => {
-	if (_.isNil(subjectData) || _.isNil(chosenClass)) {
+export const filterSubjects = (chosenClass, { data }) => {
+	if (_.isNil(data) || _.isNil(chosenClass)) {
 		return []
 	}
 
-	const chosenSubjects = _.chain(subjectData)
+	const chosenSubjects = _.chain(data)
 		.filter(['classroomId', chosenClass._id])
 		.orderBy(
 			['abbreviation'],

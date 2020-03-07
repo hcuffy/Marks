@@ -1,4 +1,4 @@
-import { HANDLE_MENU_CHANGE } from './constants'
+import { actions } from './constants'
 
 const _ = require('lodash')
 
@@ -20,7 +20,7 @@ export const updateButtonStyle = event => dispatch => {
 	const styleUpdate = clickedButton(menuButtons, event)
 
 	dispatch({
-		type: HANDLE_MENU_CHANGE,
-		payload: { styleUpdate }
+		type: actions.HANDLE_MENU_CHANGE,
+		payload: styleUpdate
 	})
 }
