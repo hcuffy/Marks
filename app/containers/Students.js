@@ -1,37 +1,37 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { actionCreators } from '../actions/index'
-import SideMenu from '../components/sidemenu/SideMenu'
-import StudentsSection from '../components/students/StudentsSection'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {actionCreators} from '../actions/index';
+import SideMenu from '../components/sidemenu/SideMenu';
+import StudentsSection from '../components/students/StudentsSection';
 
 class Students extends Component {
-	componentDidMount() {
-		this.props.actions.getStudents()
-		this.props.actions.getAllGradeData()
-		this.props.actions.getGraphExamData()
-		this.props.actions.getSubjectData()
-		this.props.actions.getGradingSystem()
-		this.props.actions.displayClassData()
-	}
+    componentDidMount() {
+        this.props.actions.getStudents();
+        this.props.actions.getAllGradeData();
+        this.props.actions.getGraphExamData();
+        this.props.actions.getSubjectData();
+        this.props.actions.getGradingSystem();
+        this.props.actions.displayClassData();
+    }
 
-	render() {
-		const { t } = this.props
+    render() {
+        const {t} = this.props;
 
-		return (
-			<div>
-				<SideMenu />
-				<StudentsSection t={t} />
-			</div>
-		)
-	}
+        return (
+            <div>
+                <SideMenu />
+                <StudentsSection t={t} />
+            </div>
+        );
+    }
 }
 
 const mapDispatchToProps = dispatch => ({
-	actions: bindActionCreators(actionCreators, dispatch)
-})
+    actions: bindActionCreators(actionCreators, dispatch)
+});
 
 export default connect(
-	null,
-	mapDispatchToProps
-)(Students)
+    null,
+    mapDispatchToProps
+)(Students);

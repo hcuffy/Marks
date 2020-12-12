@@ -2,8 +2,7 @@ module.exports = {
   root   : true,
   env    : {
     "es6": true,
-    "node": true,
-    "jest/globals": true
+    "node": true
   },
   parserOptions: {
     "ecmaVersion": 9,
@@ -12,11 +11,10 @@ module.exports = {
       "jsx": true
     }
   },
-  plugins: [ "react","jest"],
+  plugins: [ "react"],
   extends: [
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:jest/recommended"
+    "plugin:react/recommended"
   ],
   settings: {
     "react": {
@@ -24,76 +22,17 @@ module.exports = {
     }
   },
   rules: {
-    "no-extra-parens": [
-      "warn",
-      "all",
-      {
-        "nestedBinaryExpressions": false,
-        "ignoreJSX": "multi-line"
-      }
-    ],
-    "state-in-contructor": 0,
-    "require-atomic-updates": "error",
-    "no-async-promise-executor": "error",
-    "no-template-curly-in-string": "error",
-    "block-scoped-var": "error",
-    "complexity": ["error", 16],
-    "consistent-return": "error",
-    "curly": "error",
-    "dot-location": ["error", "property"],
-    "dot-notation": ["error"],
-    "eqeqeq": "error",
-    "guard-for-in": "error",
-    "no-alert": "error",
-    "no-caller": "error",
-    "no-eval": "error",
-    "no-prototype-builtins": "off",
-    "no-extend-native": "error",
-    "no-extra-bind": "error",
-    "no-extra-label": "error",
-    "no-fallthrough": "error",
-    "no-floating-decimal": "error",
-    "no-invalid-this": "error",
-    "no-iterator": "error",
-    "no-labels": "error",
-    "no-lone-blocks": "error",
-    "no-loop-func": "error",
-    "no-multi-spaces": [
-      "error",
-      {
-        "exceptions": {
-          "Property": true
-        }
-      }
-    ],
-    "no-multi-str": "error",
-    "no-new": "error",
-    "no-param-reassign": "error",
-    "no-proto": "error",
-    "no-return-assign": "error",
-    "no-return-await": "error",
-    "no-self-compare": "error",
-    "no-sequences": "error",
-    "no-unmodified-loop-condition": "error",
-    "no-useless-call": "error",
-    "no-useless-concat": "error",
-    "no-useless-return": "error",
-    "require-await": "error",
-    "no-shadow-restricted-names": "error",
-    "no-undef-init": "error",
-    "no-undefined": "error",
-    "no-unused-vars": [
-      "error",
-      {
-        "vars": "all",
-        "args": "after-used",
-        "varsIgnorePattern": "_unused"
-      }
-    ],
-    "no-sync": "error",
-    "no-process-exit": "error",
     "array-bracket-spacing": ["error", "never"],
+    "arrow-parens": ["error", "as-needed"],
+    "arrow-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
     "block-spacing": "error",
+    "block-scoped-var": "error",
     "brace-style": [
       "error",
       "1tbs",
@@ -101,11 +40,18 @@ module.exports = {
         "allowSingleLine": true
       }
     ],
+    "complexity": ["error", 16],
     "comma-dangle": "error",
     "comma-spacing": "error",
     "comma-style": ["error", "last"],
     "computed-property-spacing": ["error", "never"],
     "consistent-this": "error",
+    "consistent-return": "error",
+    "curly": "error",
+    "default-case": "error",
+    "dot-location": ["error", "property"],
+    "dot-notation": ["error"],
+    "eqeqeq": "error",
     "eol-last": "error",
     "func-call-spacing": "error",
     "func-name-matching": "error",
@@ -118,6 +64,15 @@ module.exports = {
       }
     ],
     "function-paren-newline": ["error", "consistent"],
+    "guard-for-in": "error",
+    "no-extra-parens": [
+      "warn",
+      "all",
+      {
+        "nestedBinaryExpressions": false,
+        "ignoreJSX": "multi-line"
+      }
+    ],
     "implicit-arrow-linebreak": "error",
     "indent": [
       "error",
@@ -170,9 +125,64 @@ module.exports = {
       }
     ],
     "max-nested-callbacks": ["error", 2],
-    "max-params": ["error", 3],
     "max-statements": ["error", 20],
     "new-parens": "error",
+    "no-async-promise-executor": "error",
+    "no-template-curly-in-string": "error",
+    "no-alert": "error",
+    "no-caller": "error",
+    "no-eval": "error",
+    "no-prototype-builtins": "off",
+    "no-extend-native": "error",
+    "no-extra-bind": "error",
+    "no-extra-label": "error",
+    "no-fallthrough": "error",
+    "no-floating-decimal": "error",
+    "no-invalid-this": "error",
+    "no-iterator": "error",
+    "no-labels": "error",
+    "no-lone-blocks": "error",
+    "no-loop-func": "error",
+    "no-multi-spaces": [
+      "error",
+      {
+        "exceptions": {
+          "Property": true
+        }
+      }
+    ],
+    "no-multi-str": "error",
+    "no-new": "error",
+    "no-param-reassign": "error",
+    "no-proto": "error",
+    "no-return-assign": "error",
+    "no-return-await": "error",
+    "no-self-compare": "error",
+    "no-sequences": "error",
+    "no-unmodified-loop-condition": "error",
+    "no-useless-call": "error",
+    "no-useless-concat": "error",
+    "no-useless-return": "error",
+    "no-shadow-restricted-names": "error",
+    "no-undef-init": "error",
+    "no-undefined": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "varsIgnorePattern": "_unused"
+      }
+    ],
+    "no-sync": "error",
+    "no-process-exit": "error",
+    "no-confusing-arrow": "error",
+    "no-duplicate-imports": "error",
+    "no-useless-computed-key": "error",
+    "no-useless-constructor": "error",
+    "no-useless-rename": "error",
+    "no-var": "error",
+    "no-with": "error",
     "no-array-constructor": "error",
     "no-bitwise": "error",
     "no-mixed-operators": [
@@ -198,6 +208,7 @@ module.exports = {
     "no-unneeded-ternary": "error",
     "no-whitespace-before-property": "error",
     "nonblock-statement-body-position": "error",
+    "object-shorthand": "error",
     "object-curly-spacing": "error",
     "one-var-declaration-per-line": "error",
     "operator-assignment": "error",
@@ -240,8 +251,13 @@ module.exports = {
         "next": "*"
       }
     ],
+    "prefer-spread": "error",
+    "prefer-rest-params": "error",
+    "prefer-template": "error",
     "quote-props": ["error", "as-needed"],
     "quotes": ["error", "single"],
+    "require-await": "error",
+    "rest-spread-spacing": "error",
     "semi": ["error", "always"],
     "semi-spacing": "error",
     "semi-style": "error",
@@ -254,30 +270,10 @@ module.exports = {
         "int32Hint": true
       }
     ],
-    "arrow-parens": ["error", "as-needed"],
-    "arrow-spacing": [
-      "error",
-      {
-        "before": true,
-        "after": true
-      }
-    ],
-    "no-confusing-arrow": "error",
-    "no-duplicate-imports": "error",
-    "no-useless-computed-key": "error",
-    "no-useless-constructor": "error",
-    "no-useless-rename": "error",
-    "no-var": "error",
-    "object-shorthand": "error",
-    "prefer-spread": "error",
-    "prefer-rest-params": "error",
-    "prefer-template": "error",
-    "rest-spread-spacing": "error",
-    "yoda": ["error", "never"],
+    "state-in-contructor": 0,
     "strict": ["error", "global"],
-    "default-case": "error",
-    "no-with": "error",
     "wrap-iife": ["error", "outside"],
+    "yoda": ["error", "never"],
     "react/jsx-no-undef": "error",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",

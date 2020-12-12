@@ -1,81 +1,80 @@
-import { actions } from './constants'
+import _ from 'lodash';
+import {actions} from './constants';
 import {
-	saveGradeSystem,
-	getSystemType,
-	updateGradeType,
-	addAddress,
-	getAddressData
-} from '../../collections/settings'
-
-const _ = require('lodash')
+    saveGradeSystem,
+    getSystemType,
+    updateGradeType,
+    addAddress,
+    getAddressData
+} from '../../collections/settings';
 
 export const updateGradingSystem = event => async dispatch => {
-	const systemType = {
-		note: false,
-		points: false,
-		percent: false
-	}
+    const systemType = {
+        note:    false,
+        points:  false,
+        percent: false
+    };
 
-	const newSystemType = _.set(systemType, event.target.value, true)
-	const settings = await updateGradeType(newSystemType)
+    const newSystemType = _.set(systemType, event.target.value, true);
+    const settings = await updateGradeType(newSystemType);
 
-	dispatch({
-		type: actions.UPDATE_GRADING_DATA,
-		payload: { ...settings[0] }
-	})
-}
+    dispatch({
+        type:    actions.UPDATE_GRADING_DATA,
+        payload: {...settings[0]}
+    });
+};
 
 export const getGradingSystem = () => async dispatch => {
-	const defaultSystemType = [
-		{
-			note: true,
-			points: false,
-			percent: false
-		}
-	]
-	const systemType = await getSystemType()
+    const defaultSystemType = [
+        {
+            note:    true,
+            points:  false,
+            percent: false
+        }
+    ];
+    const systemType = await getSystemType();
 
-	if (systemType.length === 0) {
-		saveGradeSystem(defaultSystemType)
-		_.assign(systemType, defaultSystemType)
-	}
+    if (systemType.length === 0) {
+        saveGradeSystem(defaultSystemType);
+        _.assign(systemType, defaultSystemType);
+    }
 
-	dispatch({
-		type: actions.GET_SYSTEM_TYPE,
-		payload: { ...systemType[0] }
-	})
-}
+    dispatch({
+        type:    actions.GET_SYSTEM_TYPE,
+        payload: {...systemType[0]}
+    });
+};
 
 export const saveSchoolAddress = event => dispatch => {
-	event.preventDefault()
+    event.preventDefault();
 
-	const formData = {
-		title: event.target.title.value,
-		street: event.target.street.value,
-		province: event.target.province.value,
-		country: event.target.country.value,
-		zip: event.target.zip.value,
-		city: event.target.city.value,
-		year: event.target.year.value
-	}
+    const formData = {
+        title:    event.target.title.value,
+        street:   event.target.street.value,
+        province: event.target.province.value,
+        country:  event.target.country.value,
+        zip:      event.target.zip.value,
+        city:     event.target.city.value,
+        year:     event.target.year.value
+    };
 
-	const addressData = addAddress(formData)
-	const { title, street, province, country, zip, city, year } = addressData
+    const addressData = addAddress(formData);
+    const {title, street, province, country, zip, city, year} = addressData;
 
-	dispatch({
-		type: actions.HANDLE_SCHOOL_DATA,
-		payload: { title, street, province, country, zip, city, year }
-	})
-}
+    dispatch({
+        type:    actions.HANDLE_SCHOOL_DATA,
+        payload: {title, street, province, country, zip, city, year}
+    });
+};
 
 export const displayAddress = () => async dispatch => {
-	const data = await getAddressData()
+    const data = await getAddressData();
 
-	if (data.length !== 0) {
-		const { title, street, province, country, zip, city, year } = data
-		dispatch({
-			type: actions.DISPLAY_SCHOOL_DATA,
-			payload: { title, street, province, country, zip, city, year }
-		})
-	}
-}
+    if (data.length !== 0) {
+        const {title, street, province, country, zip, city, year} = data;
+        dispatch({
+            type:    actions.DISPLAY_SCHOOL_DATA,
+            payload: {title, street, province, country, zip, city, year}
+        });
+    }
+};

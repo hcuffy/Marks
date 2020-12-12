@@ -1,98 +1,97 @@
-import React from 'react'
-import { withTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { actionCreators } from '../../actions/index'
-import { sortData } from '../rooms/helpers/formHelpers'
+import React from 'react';
+import {withTranslation} from 'react-i18next';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {actionCreators} from '../../actions/index';
+import {sortData} from '../rooms/helpers/formHelpers';
 import {
-	getClassList,
-	getStudentList,
-	getQuestionList,
-	createDropdown
-} from '../helpers/dropdowns'
-import { capabilityQuestions } from './constants'
-import { getQuestionSet, changeQuestionBtn } from './helpers/table'
-import { resolveLabel } from '../../utils/translationUtil'
-import css from './styles/capability.css'
+    getClassList,
+    getStudentList,
+    getQuestionList,
+    createDropdown
+} from '../helpers/dropdowns';
+import {capabilityQuestions} from './constants';
+import {getQuestionSet, changeQuestionBtn} from './helpers/table';
+import {resolveLabel} from '../../utils/translationUtil';
+import css from './styles/capability.css';
 
-const _ = require('lodash')
+const _ = require('lodash');
 
-const filterStudentsByClassId = (students, classroomId) =>
-	_.filter(students, ['classroom', classroomId])
+const filterStudentsByClassId = (students, classroomId) => _.filter(students, ['classroom', classroomId]);
 
 const CapabilityDropdown = ({
-	t,
-	capabilityData,
-	classData,
-	students,
-	actions
+    t,
+    capabilityData,
+    classData,
+    students,
+    actions
 }) => {
-	const {
-		classDropdown,
-		studentDropdown,
-		questionDropdown,
-		classroom,
-		studentName,
-		questions,
-		classroomId
-	} = capabilityData
+    const {
+        classDropdown,
+        studentDropdown,
+        questionDropdown,
+        classroom,
+        studentName,
+        questions,
+        classroomId
+    } = capabilityData;
 
-	const classOptions = getClassList(sortData(classData))
-	const studentOptions = getStudentList(
-		filterStudentsByClassId(students, classroomId)
-	)
+    const classOptions = getClassList(sortData(classData));
+    const studentOptions = getStudentList(
+        filterStudentsByClassId(students, classroomId)
+    );
 
-	const questionOptions = getQuestionList(
-		t,
-		classroomId,
-		capabilityQuestions,
-		actions
-	)
+    const questionOptions = getQuestionList(
+        t,
+        classroomId,
+        capabilityQuestions,
+        actions
+    );
 
-	const actualSet = getQuestionSet(classroomId, questions)
+    const actualSet = getQuestionSet(classroomId, questions);
 
-	return (
-		<div className={css.dropdown_main_div}>
-			{createDropdown(
-				css.dropdown_div,
-				classDropdown,
-				actions.openCapabilityClassList,
-				resolveLabel(classroom, t('general.selectClass')),
-				classOptions,
-				'classDropdown'
-			)}
-			{createDropdown(
-				css.dropdown_div,
-				studentDropdown,
-				actions.openCapabilityStudentList,
-				resolveLabel(studentName, t('general.selectStudent')),
-				studentOptions,
-				'studentDropdown'
-			)}
-			{createDropdown(
-				css.dropdown_div,
-				questionDropdown,
-				actions.openQuestionList,
-				resolveLabel(actualSet, t('general.selectQuestions')),
-				questionOptions,
-				null
-			)}
-			{changeQuestionBtn(classroomId, actions)}
-		</div>
-	)
-}
+    return (
+        <div className={css.dropdown_main_div}>
+            {createDropdown(
+                css.dropdown_div,
+                classDropdown,
+                actions.openCapabilityClassList,
+                resolveLabel(classroom, t('general.selectClass')),
+                classOptions,
+                'classDropdown'
+            )}
+            {createDropdown(
+                css.dropdown_div,
+                studentDropdown,
+                actions.openCapabilityStudentList,
+                resolveLabel(studentName, t('general.selectStudent')),
+                studentOptions,
+                'studentDropdown'
+            )}
+            {createDropdown(
+                css.dropdown_div,
+                questionDropdown,
+                actions.openQuestionList,
+                resolveLabel(actualSet, t('general.selectQuestions')),
+                questionOptions,
+                null
+            )}
+            {changeQuestionBtn(classroomId, actions)}
+        </div>
+    );
+};
 
 const mapStateToProps = state => ({
-	capabilityData: state.capabilityData,
-	classData: state.classData,
-	students: state.studentData.students
-})
+    capabilityData: state.capabilityData,
+    classData:      state.classData,
+    students:       state.studentData.students
+});
 
 const mapDispatchToProps = dispatch => ({
-	actions: bindActionCreators(actionCreators, dispatch)
-})
+    actions: bindActionCreators(actionCreators, dispatch)
+});
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withTranslation()(CapabilityDropdown))
+    mapStateToProps,
+    mapDispatchToProps
+)(withTranslation()(CapabilityDropdown));

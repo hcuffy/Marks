@@ -1,11 +1,11 @@
-import { tabHandlers } from './reducerHandlers'
-import { reducerActionHandler } from '../../../reducers/reducerUtils.js'
+import {tabHandlers} from './reducerHandlers';
+import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
-	classTab: 'active',
-	examTab: ''
-}
+    classTab: 'active',
+    examTab:  ''
+};
 
 export const applyTabChange = (state = initialLoadState, action) => {
-	return reducerActionHandler(state, action, tabHandlers)
-}
+    return reducerActionHandler(state, action, tabHandlers);
+};

@@ -1,3 +1,3 @@
-export * from './classroom'
-export * from './classroomModal'
-export * from './tab'
+export * from './classroom';
+export * from './classroomModal';
+export * from './tab';

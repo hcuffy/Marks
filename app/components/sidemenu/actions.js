@@ -1,26 +1,24 @@
-import { actions } from './constants'
+import _ from 'lodash';
+import {actions} from './constants';
 
-const _ = require('lodash')
-
-const clickedButton = (menuButtons, event) =>
-	_.set(menuButtons, event.target.getAttribute('data-id'), '#1dbb90')
+const clickedButton = (menuButtons, event) => _.set(menuButtons, event.target.getAttribute('data-id'), '#1dbb90');
 
 export const updateButtonStyle = event => dispatch => {
-	const menuButtons = {
-		home: '',
-		classroom: '',
-		students: '',
-		exams: '',
-		graphs: '',
-		notes: '',
-		capability: '',
-		settings: ''
-	}
+    const menuButtons = {
+        home:       '',
+        classroom:  '',
+        students:   '',
+        exams:      '',
+        graphs:     '',
+        notes:      '',
+        capability: '',
+        settings:   ''
+    };
 
-	const styleUpdate = clickedButton(menuButtons, event)
+    const styleUpdate = clickedButton(menuButtons, event);
 
-	dispatch({
-		type: actions.HANDLE_MENU_CHANGE,
-		payload: styleUpdate
-	})
-}
+    dispatch({
+        type:    actions.HANDLE_MENU_CHANGE,
+        payload: styleUpdate
+    });
+};
