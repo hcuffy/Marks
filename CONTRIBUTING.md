@@ -1,9 +1,7 @@
 # Contributing
 
- Contributing to this repository, first find an issue and opne a discussion on your need to fix the particular issue.
+Contributing to this repository, first find an issue and opne a discussion on your need to fix the particular issue.
  
-
-
 ## Submitting Pull Request
 
 1. Update your README.md if your changes any deployment process.

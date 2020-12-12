@@ -1,19 +1,19 @@
-import { examHandlers } from './reducerHandlers'
-import { reducerActionHandler } from '../../../reducers/reducerUtils.js'
+import { examHandlers } from './reducerHandlers';
+import { reducerActionHandler } from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
-	subject: '',
-	openClassDropdown: false,
-	openSubList: false,
-	classroomId: null,
-	selectedSubject: null,
-	examModal: false,
-	isInvalid: false,
-	isModalInvalid: false,
-	title: '',
-	weight: ''
-}
+    subject          : '',
+    openClassDropdown: false,
+    openSubList      : false,
+    classroomId      : null,
+    selectedSubject  : null,
+    examModal        : false,
+    isInvalid        : false,
+    isModalInvalid   : false,
+    title            : '',
+    weight           : ''
+};
 
 export const applyFilteredExam = (state = initialLoadState, action) => {
-	return reducerActionHandler(state, action, examHandlers)
-}
+    return reducerActionHandler(state, action, examHandlers);
+};

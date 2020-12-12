@@ -1,11 +1,9 @@
-// @flow
-import { app, Menu, BrowserWindow } from 'electron';
+import { app, Menu } from 'electron';
 import { customMenuTranslation } from './utils/translationUtil';
 
 export default class MenuBuilder {
-  mainWindow: BrowserWindow;
 
-  constructor(mainWindow: BrowserWindow) {
+  constructor(mainWindow) {
     this.mainWindow = mainWindow;
   }
 
