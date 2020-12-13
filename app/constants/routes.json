@@ -1,0 +1,10 @@
+{
+  "HOME": "/",
+  "CLASSROOM": "/classroom",
+  "STUDENTS": "/students",
+  "GRADES": "/grades",
+  "GRAPHS": "/graphs",
+  "NOTES": "/notes",
+  "CAPABILITY": "/capability",
+  "SETTINGS": "/settings"
+}

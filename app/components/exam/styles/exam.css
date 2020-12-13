@@ -1,0 +1,86 @@
+.main_div {
+  margin-top: 100px;
+  border-top: 1px solid;
+}
+
+.edit_div {
+  display: flex;
+  padding-top: 15px;
+}
+
+.header_div {
+  white-space: pre;
+  overflow: auto;
+}
+
+.edit_header {
+  float: left;
+}
+
+.form_label {
+  float: left;
+  margin: 0 5px 0 5px;
+  vertical-align: bottom;
+  line-height: 32px;
+}
+
+.form_div {
+  margin-top: 20px;
+}
+
+.form_save_btn {
+  margin: 20px 0 0 30px;
+}
+
+.dropdown_div {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.dropdown_main_div {
+  text-align: center;
+  margin-left: 160px;
+}
+
+.form_label_edit {
+  float: left;
+  margin: 0 5px 0 5px;
+  vertical-align: bottom;
+  line-height: 36px;
+}
+
+.form_input {
+  float: right;
+}
+
+.form_div_edit {
+  margin-right: 40px;
+  width: 170px;
+  display: inline-block;
+}
+
+.list_btn {
+  display: inline-flex;
+  align-items: flex-start;
+  height: 40px;
+}
+
+.badge_number {
+  float: right;
+}
+
+.exam_div {
+  margin: 10px 10px 20px 10px;
+  height: 300px;
+  scrollbar-width: none;
+  overflow-x: hidden;
+}
+
+.modalInput {
+  border: 1px solid #6c757d !important;
+  width: 170px !important;
+}
+
+.subject_dropdown {
+  padding-top: 20px;
+}

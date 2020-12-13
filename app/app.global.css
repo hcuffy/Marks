@@ -1,0 +1,55 @@
+/*
+ * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ *        See https://github.com/webpack-contrib/sass-loader#imports
+ */
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import '~react-toastify/dist/ReactToastify.min.css';
+@import '~react-table/react-table.css';
+@import 'bootstrap.css';
+
+body {
+  position: relative;
+  color: black;
+  height: 100vh;
+  background-color: #e4e5e0;
+  font-family: Century Schoolbook, Times New Roman;
+  overflow-y: hidden;
+}
+
+h2 {
+  margin: 0;
+  font-size: 2.25rem;
+  font-weight: bold;
+  letter-spacing: -0.025em;
+  color: black;
+}
+
+p {
+  font-size: 24px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: white;
+  opacity: 0.75;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #1dbb90;
+  border-color: #1dbb90;
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+  background-color: #1e73be;
+}

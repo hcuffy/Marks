@@ -1,0 +1,75 @@
+body {
+  padding: 10px;
+}
+
+.lang_btn_div {
+  float: right;
+  margin-right: 13%;
+}
+
+.heading {
+  margin-left: 240px;
+}
+.main_div {
+  text-align: center;
+}
+
+.description {
+  width: 50%;
+  margin: auto;
+}
+
+.btn_div {
+  margin: 50px auto auto auto;
+  width: 50%;
+}
+
+.left_btn {
+  width: 25%;
+  float: left;
+}
+.right_btn {
+  width: 25%;
+  float: right;
+}
+
+.img_main_div {
+  width: 75%;
+  margin: 120px auto;
+}
+
+.feature_div {
+  width: 50%;
+  text-align: left;
+}
+
+.img_inner_div {
+  margin: 50px auto;
+}
+
+img {
+  width: 450px;
+  height: 350px;
+}
+
+.left_img_div {
+  margin: auto;
+  float: left;
+}
+
+.right_img_div {
+  margin: auto;
+  float: right;
+}
+
+footer {
+  margin-left: 25%;
+  height: 50px;
+  position: absolute;
+  bottom: -900px;
+}
+
+.btn_color {
+  background-color: #1dbb90;
+  border-color: #1dbb90;
+}
