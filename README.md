@@ -9,7 +9,7 @@ First, clone the repo via git:
 git clone https://github.com/hcuffy/Marks
 ```
 
-And then install the dependencies with yarn.
+Then install the dependencies with yarn.
 
 ```bash
 $ cd marks
