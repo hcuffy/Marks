@@ -1,49 +1,32 @@
-import {
-    saveSuccessful,
-    saveFailed,
-    unableToRetrieve,
-    deletionFailed,
-    updateSuccessful,
-    updateFailed
-} from '../notifications/general';
+import connectionToDB from './connectionSetup';
+import {displayToast} from '../notifications';
 
-const Datastore = require('nedb');
-const electron = require('electron');
-const path = require('path');
-
-const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-const collectionsPath = path.join(userDataPath, 'collections');
-const Notes = new Datastore({
-    filename:              path.join(collectionsPath, 'notes.db'),
-    autoload:              true,
-    corruptAlertThreshold: 1,
-    timestampData:         true
-});
+const Notes = connectionToDB('notes');
 
 export const addNewNote = data => {
     Notes.insert(data, error => {
         if (error) {
-            saveFailed();
+            displayToast('saveFail');
         }
-        saveSuccessful();
+        displayToast('saveSuccess');
     });
 };
 
-export const getAllNotes = () => new Promise(resolve => Notes.find({}, (err, docs) => {
-    if (err) {
-        unableToRetrieve();
+export const getAllNotes = () => new Promise(resolve => Notes.find({}, (error, docs) => {
+    if (error) {
+        displayToast('retrieveFail');
     }
 
     return resolve(docs);
 }));
 
-export const deleteNote = data => new Promise(resolve => Notes.remove({_id: data}, err => {
-    if (err) {
-        deletionFailed();
+export const deleteNote = data => new Promise(resolve => Notes.remove({_id: data}, error => {
+    if (error) {
+        displayToast('deleteFail');
     }
     Notes.find({}, (error, notes) => {
-        if (err) {
-            deletionFailed();
+        if (error) {
+            displayToast('deleteFail');
         }
 
         return resolve(notes);
@@ -53,11 +36,11 @@ export const deleteNote = data => new Promise(resolve => Notes.remove({_id: data
 const updateSingleNote = previousData => {
     const {title, note, noteId} = previousData;
 
-    Notes.update({_id: noteId}, {$set: {title, note, noteId}}, {}, err => {
-        if (err) {
-            updateFailed();
+    Notes.update({_id: noteId}, {$set: {title, note, noteId}}, {}, error => {
+        if (error) {
+            displayToast('updateFail');
         }
-        updateSuccessful();
+        displayToast('updateSuccess');
     });
 };
 
@@ -65,7 +48,7 @@ export const updateNoteData = data => new Promise(resolve => {
     updateSingleNote(data);
     Notes.find({}, (error, docs) => {
         if (error) {
-            updateFailed();
+            displayToast('updateFail');
         }
 
         return resolve(docs);

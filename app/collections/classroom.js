@@ -1,42 +1,18 @@
-/* eslint no-sync: 0 */
-import {
-    saveSuccessful,
-    saveFailed,
-    unableToRetrieve,
-    entryAlreadyExists,
-    deletionFailed,
-    updateSuccessful,
-    updateFailed
-} from '../notifications/general';
+import _ from 'lodash';
+
+import connectionToDB from './connectionSetup';
+import {displayToast} from '../notifications';
 import {getAllSubjects, deleteSubject} from './subject';
 
-const _ = require('lodash');
-const Datastore = require('nedb');
-const electron = require('electron');
-const path = require('path');
-const fs = require('fs');
-
-const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-const collectionsPath = path.join(userDataPath, 'collections');
-
-if (!fs.existsSync(collectionsPath)) {
-    fs.mkdirSync(collectionsPath);
-}
-
-const Classroom = new Datastore({
-    filename:              path.join(collectionsPath, 'classroom.db'),
-    autoload:              true,
-    corruptAlertThreshold: 1,
-    timestampData:         true
-});
+const Classroom = connectionToDB('classroom');
 
 export const addClassroomData = data => {
-    Classroom.find({name: data.name}, (err, entry) => {
-        if (err) {
-            saveFailed();
+    Classroom.find({name: data.name}, (error, entry) => {
+        if (error) {
+            displayToast('saveFail');
         }
         if (entry.length > 0) {
-            entryAlreadyExists();
+            displayToast('exists');
         }
 
         const newData = data;
@@ -44,18 +20,18 @@ export const addClassroomData = data => {
 
         Classroom.insert(newData, (error, doc) => {
             if (error) {
-                saveFailed();
+                displayToast('saveFail');
             }
-            saveSuccessful();
+            displayToast('saveSuccess');
 
             return doc;
         });
     });
 };
 
-export const getClassroomData = () => new Promise(resolve => Classroom.find({}, (err, entry) => {
-    if (err) {
-        unableToRetrieve();
+export const getClassroomData = () => new Promise(resolve => Classroom.find({}, (error, entry) => {
+    if (error) {
+        displayToast('retrieveFail');
     }
 
     return resolve(entry);
@@ -73,13 +49,13 @@ const deleteSubjectByClassroom = async classroomId => {
     }
 };
 
-export const deleteClassroom = ({id}) => new Promise(resolve => Classroom.remove({_id: id}, err => {
-    if (err) {
-        deletionFailed();
+export const deleteClassroom = ({id}) => new Promise(resolve => Classroom.remove({_id: id}, error => {
+    if (error) {
+        displayToast('deleteFail');
     }
     Classroom.find({}, (error, docs) => {
         if (error) {
-            deletionFailed();
+            displayToast('deleteFail');
         }
 
         deleteSubjectByClassroom(id);
@@ -113,24 +89,24 @@ const updateSingleClassroom = (previous, current) => {
             subjects
         },
         {},
-        err => {
-            if (err) {
-                updateFailed();
+        error => {
+            if (error) {
+                displayToast('updateFail');
             }
-            updateSuccessful();
+            displayToast('updateSuccess');
         }
     );
 };
 
-export const updateRoomData = data => new Promise(resolve => Classroom.find({name: data.oldName}, (err, entry) => {
-    if (err) {
-        updateFailed();
+export const updateRoomData = data => new Promise(resolve => Classroom.find({name: data.oldName}, (error, entry) => {
+    if (error) {
+        displayToast('updateFail');
     }
     if (entry.length > 0) {
         updateSingleClassroom(entry[0], data);
         Classroom.find({}, (error, docs) => {
             if (error) {
-                updateFailed();
+                displayToast('updateFail');
             }
 
             return resolve(docs);
@@ -139,15 +115,15 @@ export const updateRoomData = data => new Promise(resolve => Classroom.find({nam
 }));
 
 export const updateSubjectArray = data => {
-    Classroom.find({name: data.name}, (err, entry) => {
-        if (err) {
-            updateFailed();
+    Classroom.find({name: data.name}, (error, entry) => {
+        if (error) {
+            displayToast('updateFail');
         }
         if (entry.length > 0) {
             updateSingleClassroom(entry[0], data);
             Classroom.find({}, (error, docs) => {
                 if (error) {
-                    updateFailed();
+                    displayToast('updateFail');
                 }
 
                 return docs;
@@ -165,9 +141,9 @@ export const updateClassSubjectArray = (
         {_id: classroomId},
         {$push: {subjects: newSubject}},
         {},
-        err => {
-            if (err) {
-                updateFailed();
+        error => {
+            if (error) {
+                displayToast('updateFail');
             }
         }
     );
@@ -176,9 +152,9 @@ export const updateClassSubjectArray = (
         {_id: classroomId},
         {$pull: {subjects: oldSubject}},
         {},
-        err => {
-            if (err) {
-                updateFailed();
+        error => {
+            if (error) {
+                displayToast('updateFail');
             }
         }
     );

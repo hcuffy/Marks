@@ -1,8 +1,6 @@
 import React from 'react';
-import JsPDF from 'jspdf';
+import _ from 'lodash';
 import {Button} from 'reactstrap';
-
-const _ = require('lodash');
 
 const downloadPDF = (itemToPDF, nameOfChart, saveAs) => {
     // eslint-disable-next-line no-undef
@@ -11,7 +9,7 @@ const downloadPDF = (itemToPDF, nameOfChart, saveAs) => {
     if (_.isNull(canvas)) {
         return;
     }
-
+    const JsPDF = require('jspdf');
     const canvasImg = canvas.toDataURL('image/png', 1.0);
     const pdfDocument = new JsPDF('landscape');
     pdfDocument.setFontSize(15);

@@ -1,89 +1,91 @@
-import {
-    saveSuccessful,
-    saveFailed,
-    unableToRetrieve,
-    updateFailed
-} from '../notifications/general';
+import connectionToDB from './connectionSetup';
+import {displayToast} from '../notifications';
 
-const Datastore = require('nedb');
-const electron = require('electron');
-const path = require('path');
+const Settings = connectionToDB('settings');
 
-const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-const collectionsPath = path.join(userDataPath, 'collections');
-const Settings = new Datastore({
-    filename:              path.join(collectionsPath, 'settings.db'),
-    autoload:              true,
-    corruptAlertThreshold: 1,
-    timestampData:         true
-});
-
-export const saveGradeSystem = data => {
-    Settings.insert(data, error => {
-        if (error) {
-            updateFailed();
-        }
-    });
-};
-
-export const getAddressData = () => new Promise(resolve => Settings.find({}, (err, entry) => {
-    if (err) {
-        unableToRetrieve();
+export async function saveGradeSystem(data) {
+    try {
+        await Settings.insert(data);
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
     }
+}
 
-    return resolve(entry);
-}));
+export async function getAddressData() {
+    try {
+        const address = await Settings.find({});
 
-export const getSystemType = () => new Promise(resolve => Settings.find({}, (err, docs) => {
-    if (err) {
-        updateFailed();
+        return address;
+    } catch (e) {
+        displayToast('retrieveFail');
+        console.log(e);
+
+        return null;
     }
+}
 
-    return resolve(docs);
-}));
+export async function getSystemType() {
+    try {
+        const results = await Settings.find({});
 
-const updateAddress = (previous, id) => {
+        return results;
+    } catch (e) {
+        displayToast('retrieveFail');
+        console.log(e);
+
+        return null;
+    }
+}
+
+async function updateAddress(previous, id) {
     const {title, street, province, country, zip, city, year} = previous;
-    Settings.update(
-        {_id: id},
-        {$set: {title, street, province, country, zip, city, year}},
-        {},
-        err => {
-            if (err) {
-                saveFailed();
-            }
-            saveSuccessful();
-        }
-    );
-};
+    try {
+        await Settings.update({_id: id}, {$set: {title, street, province, country, zip, city, year}}, {});
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+    }
+}
 
-const updateSystem = (previous, id) => {
+async function updateSystem(previous, id) {
     const {note, points, percent} = previous;
+    try {
+        await Settings.update({_id: id}, {$set: {note, points, percent}}, {});
+        displayToast('saveSuccess');
+    } catch (e) {
+        displayToast('saveFail');
+        console.log(e);
+    }
+}
 
-    Settings.update({_id: id}, {$set: {note, points, percent}}, {}, err => {
-        if (err) {
-            saveFailed();
-        }
-        saveSuccessful();
-    });
-};
+export async function updateGradeType(data) {
+    let systemType = await getSystemType();
+    try {
+        await updateSystem(data, systemType[0]._id);
+        systemType = await getSystemType();
 
-export const updateGradeType = async data => {
-    const setting = await getSystemType();
+        return systemType;
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
 
-    return new Promise(resolve => {
-        updateSystem(data, setting[0]._id);
+        return null;
+    }
+}
 
-        return resolve(getSystemType());
-    });
-};
+export async function addAddress(data) {
+    let setting = await getAddressData();
 
-export const addAddress = async data => {
-    const setting = await getAddressData();
+    try {
+        await updateAddress(data, setting[0]._id);
+        setting = await getAddressData();
 
-    return new Promise(resolve => {
-        updateAddress(data, setting[0]._id);
+        return setting;
+    } catch (e) {
+        displayToast('retrieveFail');
+        console.log(e);
 
-        return resolve(getAddressData());
-    });
-};
+        return null;
+    }
+}

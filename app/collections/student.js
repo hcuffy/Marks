@@ -1,52 +1,35 @@
-import {
-    saveSuccessful,
-    saveFailed,
-    unableToRetrieve,
-    deletionFailed,
-    updateFailed,
-    updateSuccessful
-} from '../notifications/general';
+import connectionToDB from './connectionSetup';
+import {displayToast} from '../notifications';
 import {deleteGradesByStudentId} from './grade';
 
-const Datastore = require('nedb');
-const electron = require('electron');
-const path = require('path');
-
-const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-const collectionsPath = path.join(userDataPath, 'collections');
-const Student = new Datastore({
-    filename:              path.join(collectionsPath, 'student.db'),
-    autoload:              true,
-    corruptAlertThreshold: 1,
-    timestampData:         true
-});
+const Student = connectionToDB('student');
 
 export const addNewStudentData = data => {
     Student.insert(data, error => {
         if (error) {
-            saveFailed();
+            displayToast('saveFail');
         }
-        saveSuccessful();
+        displayToast('saveSuccess');
     });
 };
 
-export const getAllStudents = () => new Promise(resolve => Student.find({}, (err, docs) => {
-    if (err) {
-        unableToRetrieve();
+export const getAllStudents = () => new Promise(resolve => Student.find({}, (error, docs) => {
+    if (error) {
+        displayToast('retrieveFail');
     }
 
     return resolve(docs);
 }));
 
-export const deleteStudent = data => new Promise(resolve => Student.remove({_id: data}, err => {
-    if (err) {
-        deletionFailed();
+export const deleteStudent = data => new Promise(resolve => Student.remove({_id: data}, error => {
+    if (error) {
+        displayToast('deleteFail');
     }
-    Student.find({}, (error, students) => {
-        if (err) {
-            deletionFailed();
+    Student.find({}, async(error, students) => {
+        if (error) {
+            displayToast('deleteFail');
         }
-        deleteGradesByStudentId(data);
+        await deleteGradesByStudentId(data);
 
         return resolve(students);
     });
@@ -64,11 +47,11 @@ const updateSingleStudent = previous => {
             classroom
         },
         {},
-        err => {
-            if (err) {
-                updateFailed();
+        error => {
+            if (error) {
+                displayToast('updateFail');
             }
-            updateSuccessful();
+            displayToast('updateSuccess');
         }
     );
 };
@@ -77,7 +60,7 @@ export const updateStudentData = data => new Promise(resolve => {
     updateSingleStudent(data);
     Student.find({}, (error, docs) => {
         if (error) {
-            updateFailed();
+            displayToast('updateFail');
         }
 
         return resolve(docs);

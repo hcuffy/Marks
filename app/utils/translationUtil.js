@@ -10,15 +10,9 @@ export const currentLanguage = () => i18next.language;
 
 export const customMenuTranslation = (locale, label) => {
     const primaryLang = locale.slice(0, 2);
-    switch (primaryLang) {
-        case 'en': {
-            return ENGLISH_LABELS[label];
-        }
-        case 'de': {
-            return GERMAN_LABELS[label];
-        }
-        default: {
-            return ENGLISH_LABELS[label];
-        }
+    if (primaryLang === 'de') {
+        return GERMAN_LABELS[label];
     }
+
+    return ENGLISH_LABELS[label];
 };

@@ -1,5 +1,5 @@
 import {app, Menu} from 'electron';
-import {customMenuTranslation} from './utils/translationUtil';
+import {customMenuTranslation} from './utils';
 
 export default class MenuBuilder {
     constructor(mainWindow) {

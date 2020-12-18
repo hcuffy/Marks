@@ -3,9 +3,8 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
-import {resolveLabel} from '../../utils/translationUtil';
 import {actionCreators} from '../../actions/index';
-import {PDFbutton} from '../../utils/pdfUtil';
+import {resolveLabel, PDFbutton} from '../../utils';
 import {
     getStudentList,
     getAllSubjects,

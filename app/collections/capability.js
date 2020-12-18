@@ -1,58 +1,44 @@
-import {
-    unableToRetrieve,
-    saveFailed,
-    saveSuccessful,
-    updateFailed,
-    updateSuccessful
-} from '../notifications/general';
+import connectionToDB from './connectionSetup';
+import {displayToast} from '../notifications';
 
-const Datastore = require('nedb');
-const electron = require('electron');
-const path = require('path');
+const Capability = connectionToDB('question');
 
-const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-const collectionsPath = path.join(userDataPath, 'collections');
-const Capability = new Datastore({
-    filename:              path.join(collectionsPath, 'question.db'),
-    autoload:              true,
-    corruptAlertThreshold: 1,
-    timestampData:         true
-});
+export async function getAllQuestions() {
+    await new Promise(resolve => Capability.find({}, (error, docs) => {
+        if (error) {
+            displayToast('retrieveFail');
+        }
 
-export const getAllQuestions = () => new Promise(resolve => Capability.find({}, (err, docs) => {
-    if (err) {
-        unableToRetrieve();
-    }
-
-    return resolve(docs);
-}));
+        return resolve(docs);
+    }));
+}
 
 const addNewQuestion = data => {
     Capability.insert(data, error => {
         if (error) {
-            saveFailed();
+            displayToast('saveFail');
         }
-        saveSuccessful();
+        displayToast('saveSuccess');
     });
 };
 
 const updateQuestion = data => {
     const {classroomId, questionSet} = data;
 
-    Capability.update({classroomId}, {$set: {questionSet}}, {}, err => {
-        if (err) {
-            updateFailed();
+    Capability.update({classroomId}, {$set: {questionSet}}, {}, error => {
+        if (error) {
+            displayToast('updateFail');
         }
-        updateSuccessful();
+        displayToast('updateSuccess');
     });
 };
 
 export const updateQuestionData = data => new Promise(resolve => {
     const {classroomId} = data;
 
-    Capability.find({classroomId}, (err, entry) => {
-        if (err) {
-            updateFailed();
+    Capability.find({classroomId}, (error, entry) => {
+        if (error) {
+            displayToast('updateFail');
         }
 
         if (entry.length > 0) {
@@ -62,7 +48,7 @@ export const updateQuestionData = data => new Promise(resolve => {
         }
         Capability.find({}, (error, docs) => {
             if (error) {
-                updateFailed();
+                displayToast('updateFail');
             }
 
             return resolve(docs);

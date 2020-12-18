@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import {withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -12,42 +13,16 @@ import {
 } from '../helpers/dropdowns';
 import {capabilityQuestions} from './constants';
 import {getQuestionSet, changeQuestionBtn} from './helpers/table';
-import {resolveLabel} from '../../utils/translationUtil';
+import {resolveLabel} from '../../utils';
 import css from './styles/capability.css';
-
-const _ = require('lodash');
 
 const filterStudentsByClassId = (students, classroomId) => _.filter(students, ['classroom', classroomId]);
 
-const CapabilityDropdown = ({
-    t,
-    capabilityData,
-    classData,
-    students,
-    actions
-}) => {
-    const {
-        classDropdown,
-        studentDropdown,
-        questionDropdown,
-        classroom,
-        studentName,
-        questions,
-        classroomId
-    } = capabilityData;
-
+const CapabilityDropdown = ({t, capabilityData, classData, students, actions}) => {
+    const {classDropdown, studentDropdown, questionDropdown, classroom, studentName, questions, classroomId} = capabilityData;
     const classOptions = getClassList(sortData(classData));
-    const studentOptions = getStudentList(
-        filterStudentsByClassId(students, classroomId)
-    );
-
-    const questionOptions = getQuestionList(
-        t,
-        classroomId,
-        capabilityQuestions,
-        actions
-    );
-
+    const studentOptions = getStudentList(filterStudentsByClassId(students, classroomId));
+    const questionOptions = getQuestionList(t, classroomId, capabilityQuestions, actions);
     const actualSet = getQuestionSet(classroomId, questions);
 
     return (

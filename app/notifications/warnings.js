@@ -1,12 +1,6 @@
 import {toast} from 'react-toastify';
+import {options} from './general';
 
-export const firstMakeSelection = (t, section) => {
-    toast.warn(t(`notifications.warning.${section}`), {
-        position:        'top-right',
-        autoClose:       4000,
-        hideProgressBar: false,
-        closeOnClick:    true,
-        pauseOnHover:    false,
-        draggable:       false
-    });
-};
+export function firstMakeSelection(t, section) {
+    toast.warn(t(`notifications.warning.${section}`), options);
+}

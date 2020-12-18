@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {resourceList} from './helpers/resourcesList';
 import {addressElements} from '../helpers/formValidation';
-import {openResource} from '../../utils/resourcesLinks';
+import {openResource} from '../../utils';
 import css from './homepage.css';
 
 const Homepage = ({t, addressData}) => {

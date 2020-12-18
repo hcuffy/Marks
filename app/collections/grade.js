@@ -1,23 +1,7 @@
-import {
-    saveFailed,
-    unableToRetrieve,
-    updateFailed,
-    deletionFailed
-} from '../notifications/general';
+import connectionToDB from './connectionSetup';
+import {displayToast} from '../notifications';
 
-const Datastore = require('nedb');
-const electron = require('electron');
-const path = require('path');
-
-const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-const collectionsPath = path.join(userDataPath, 'collections');
-
-const Grade = new Datastore({
-    filename:              path.join(collectionsPath, 'grade.db'),
-    autoload:              true,
-    corruptAlertThreshold: 1,
-    timestampData:         true
-});
+const Grade = connectionToDB('grade');
 
 export const updateGradeData = (data, id) => {
     const {grade, examId, studentId, date, weight} = data;
@@ -25,9 +9,9 @@ export const updateGradeData = (data, id) => {
         {_id: id},
         {grade, examId, studentId, date, weight},
         {},
-        err => {
-            if (err) {
-                updateFailed();
+        error => {
+            if (error) {
+                displayToast('updateFail');
             }
         }
     );
@@ -35,41 +19,41 @@ export const updateGradeData = (data, id) => {
 export const addGradeData = data => {
     Grade.insert(data, (error, doc) => {
         if (error) {
-            saveFailed();
+            displayToast('saveFail');
         }
 
         return doc;
     });
 };
 
-export const getAllGrades = () => new Promise(resolve => Grade.find({}, (err, docs) => {
-    if (err) {
-        unableToRetrieve();
+export const getAllGrades = () => new Promise(resolve => Grade.find({}, (error, docs) => {
+    if (error) {
+        displayToast('retrieveFail');
     }
 
     return resolve(docs);
 }));
 
-export const deleteGradesByStudentId = id => new Promise(resolve => Grade.remove({studentId: id}, {multi: true}, err => {
-    if (err) {
-        deletionFailed();
+export const deleteGradesByStudentId = id => new Promise(resolve => Grade.remove({studentId: id}, {multi: true}, error => {
+    if (error) {
+        displayToast('deleteFail');
     }
     Grade.find({}, (error, docs) => {
-        if (err) {
-            deletionFailed();
+        if (error) {
+            displayToast('deleteFail');
         }
 
         return resolve(docs);
     });
 }));
 
-export const deleteGradesByExamId = id => new Promise(resolve => Grade.remove({examId: id}, {multi: true}, err => {
-    if (err) {
-        deletionFailed();
+export const deleteGradesByExamId = id => new Promise(resolve => Grade.remove({examId: id}, {multi: true}, error => {
+    if (error) {
+        displayToast('deleteFail');
     }
     Grade.find({}, (error, docs) => {
-        if (err) {
-            deletionFailed();
+        if (error) {
+            displayToast('deleteFail');
         }
 
         return resolve(docs);

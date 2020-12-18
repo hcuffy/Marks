@@ -1,12 +1,7 @@
-import {
-    saveSuccessful,
-    updateSuccessful,
-    saveFailed,
-    entryAlreadyExists,
-    unableToRetrieve,
-    deletionFailed,
-    updateFailed
-} from '../notifications/general';
+import _ from 'lodash';
+
+import connectionToDB from './connectionSetup';
+import {displayToast} from '../notifications';
 import {
     getClassroomData,
     updateSubjectArray,
@@ -14,19 +9,7 @@ import {
 } from './classroom';
 import {getAllExams, deleteExam} from './exam';
 
-const _ = require('lodash');
-const Datastore = require('nedb');
-const electron = require('electron');
-const path = require('path');
-
-const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-const collectionsPath = path.join(userDataPath, 'collections');
-const Subject = new Datastore({
-    filename:              path.join(collectionsPath, 'subject.db'),
-    autoload:              true,
-    corruptAlertThreshold: 1,
-    timestampData:         true
-});
+const Subject = connectionToDB('subject');
 
 const getSubjects = async({room, abbreviation}) => {
     const data = await getClassroomData();
@@ -40,7 +23,7 @@ const getSubjects = async({room, abbreviation}) => {
 
 export const getAllSubjects = () => new Promise(resolve => Subject.find({}, (err, docs) => {
     if (err) {
-        unableToRetrieve();
+        displayToast('retrieveFail');
     }
 
     return resolve(docs);
@@ -50,7 +33,7 @@ export const addSubjectData = async data => {
     const subjectClassroom = await getSubjects(data);
 
     if (subjectClassroom === true) {
-        entryAlreadyExists();
+        displayToast('exists');
 
         return null;
     }
@@ -63,10 +46,10 @@ export const addSubjectData = async data => {
 
     Subject.insert(newSubject, error => {
         if (error) {
-            saveFailed();
+            displayToast('saveFail');
         }
         updateSubjectArray(subjectClassroom);
-        saveSuccessful();
+        displayToast('saveSuccess');
     });
     const allSubjects = await getAllSubjects();
 
@@ -87,12 +70,12 @@ const deleteExamsBySubject = async subjectId => {
 
 export const deleteSubject = ({id}) => new Promise(resolve => Subject.remove({_id: id}, err => {
     if (err) {
-        deletionFailed();
+        displayToast('deleteFail');
     }
     filteredExams(id);
     Subject.find({}, (error, docs) => {
         if (err) {
-            deletionFailed();
+            displayToast('deleteFail');
         }
         deleteExamsBySubject(id);
 
@@ -136,9 +119,9 @@ const updateSingleSubject = (previous, current) => {
             {},
             err => {
                 if (err) {
-                    updateFailed();
+                    displayToast('updateFail');
                 }
-                updateSuccessful();
+                displayToast('updateSuccess');
             }
         );
     }
@@ -146,13 +129,13 @@ const updateSingleSubject = (previous, current) => {
 
 export const updateSubjectData = data => new Promise(resolve => Subject.find({_id: data.subjectId}, (err, entry) => {
     if (err) {
-        updateFailed();
+        displayToast('updateFail');
     }
     if (entry.length > 0) {
         updateSingleSubject(entry[0], data);
         Subject.find({_id: data.subjectId}, (error, docs) => {
             if (error) {
-                updateFailed();
+                displayToast('updateFail');
             }
 
             return resolve(docs);
@@ -163,7 +146,7 @@ export const updateSubjectData = data => new Promise(resolve => Subject.find({_i
 export const addExamToSubjectArray = ({subjectId, title}) => {
     Subject.find({_id: subjectId}, (err, doc) => {
         if (err) {
-            unableToRetrieve();
+            displayToast('retrieveFail');
         }
         if (doc.length <= 0) {
             return;
@@ -176,7 +159,7 @@ export const addExamToSubjectArray = ({subjectId, title}) => {
                 {},
                 error => {
                     if (error) {
-                        updateFailed();
+                        displayToast('updateFail');
                     }
                 }
             );
@@ -186,7 +169,7 @@ export const addExamToSubjectArray = ({subjectId, title}) => {
 
 export const updateSubjectTestArray = (subjectId, examTitle) => new Promise(resolve => Subject.find({_id: subjectId}, (err, entry) => {
     if (err) {
-        updateFailed();
+        displayToast('updateFail');
     }
     if (entry.length > 0) {
         Subject.update(
@@ -195,7 +178,7 @@ export const updateSubjectTestArray = (subjectId, examTitle) => new Promise(reso
             {},
             (error, docs) => {
                 if (error) {
-                    updateFailed();
+                    displayToast('updateFail');
                 }
 
                 return resolve(docs);

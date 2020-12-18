@@ -1,8 +1,7 @@
 import React from 'react';
+import _ from 'lodash';
 import {Badge, Button, Input, Label} from 'reactstrap';
 import css from '../styles/students.css';
-
-const _ = require('lodash');
 
 export const genderDropdown = (t, defaultValue, styleOne, styleTwo) => (
     <div className={`${styleOne} ${styleTwo}`}>

@@ -1,44 +1,25 @@
-import {
-    saveSuccessful,
-    saveFailed,
-    entryAlreadyExists,
-    unableToRetrieve,
-    updateFailed,
-    updateSuccessful,
-    deletionFailed
-} from '../notifications/general';
+import connectionToDB from './connectionSetup';
+import {displayToast} from '../notifications';
 import {addExamToSubjectArray, updateSubjectTestArray} from './subject';
 import {deleteGradesByExamId} from './grade';
 
-const Datastore = require('nedb');
-const electron = require('electron');
-const path = require('path');
-
-const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-const collectionsPath = path.join(userDataPath, 'collections');
-
-const Exam = new Datastore({
-    filename:              path.join(collectionsPath, 'examinations.db'),
-    autoload:              true,
-    corruptAlertThreshold: 1,
-    timestampData:         true
-});
+const Exam = connectionToDB('examinations');
 
 export const addExamData = data => {
-    Exam.find({name: data.title}, (err, entry) => {
-        if (err) {
-            saveFailed();
+    Exam.find({name: data.title}, (error, entry) => {
+        if (error) {
+            displayToast('saveFail');
         }
         if (entry.length > 0) {
-            entryAlreadyExists();
+            displayToast('exists');
         }
         const newData = data;
 
         Exam.insert(newData, (error, doc) => {
             if (error) {
-                saveFailed();
+                displayToast('saveFail');
             }
-            saveSuccessful();
+            displayToast('saveSuccess');
             addExamToSubjectArray(newData);
 
             return doc;
@@ -46,34 +27,35 @@ export const addExamData = data => {
     });
 };
 
-export const getAllExams = () => new Promise(resolve => Exam.find({}, (err, entry) => {
-    if (err) {
-        unableToRetrieve();
+export const getAllExams = () => new Promise(resolve => Exam.find({}, (error, entry) => {
+    if (error) {
+        displayToast('retrieveFail');
     }
 
     return resolve(entry);
 }));
 
-const updateTestsArr = (examId, subjectId) => {
-    Exam.find({_id: examId}, (err, entry) => {
-        if (err) {
-            updateFailed();
+const updateTestsArr = async(examId, subjectId) => {
+    let examTitle = '';
+    Exam.find({_id: examId}, (error, entry) => {
+        if (error) {
+            displayToast('updateFail');
         }
-        const examTitle = entry[0].title;
-        updateSubjectTestArray(subjectId, examTitle);
+        examTitle = entry[0].title;
     });
+    await updateSubjectTestArray(subjectId, examTitle);
 };
 
 export const deleteExam = ({examId, subjectId}) => new Promise(resolve => {
     updateTestsArr(examId, subjectId);
-    Exam.remove({_id: examId}, err => {
-        if (err) {
-            deletionFailed();
+    Exam.remove({_id: examId}, error => {
+        if (error) {
+            displayToast('deleteFail');
         }
 
         Exam.find({}, (error, exams) => {
-            if (err) {
-                deletionFailed();
+            if (error) {
+                displayToast('deleteFail');
             }
             deleteGradesByExamId(examId);
 
@@ -95,20 +77,20 @@ const updateSingleExam = (previous, current) => {
             subjectId
         },
         {},
-        err => {
-            if (err) {
-                updateFailed();
+        error => {
+            if (error) {
+                displayToast('updateFail');
             }
-            updateSuccessful();
+            displayToast('updateSuccess');
         }
     );
 };
 
 export const updateExamData = data => new Promise(resolve => {
     const {examId, subjectId, title} = data;
-    Exam.find({_id: examId}, (err, entry) => {
-        if (err) {
-            updateFailed();
+    Exam.find({_id: examId}, (error, entry) => {
+        if (error) {
+            displayToast('updateFail');
         }
         if (entry.length > 0) {
             updateSingleExam(entry[0], data);
@@ -116,7 +98,7 @@ export const updateExamData = data => new Promise(resolve => {
             addExamToSubjectArray({subjectId, title});
             Exam.find({}, (error, docs) => {
                 if (error) {
-                    updateFailed();
+                    displayToast('updateFail');
                 }
 
                 return resolve(docs);

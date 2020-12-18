@@ -82,9 +82,9 @@ input[type='text'] {
 }
 
 .radio_input {
-  position: fixed;
   float: left;
   box-shadow: none !important;
+  width: 5% !important;
 }
 
 .support_div {

@@ -1,11 +1,11 @@
 import React from 'react';
+import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
-import {resolveLabel} from '../../utils/translationUtil';
+import {resolveLabel, PDFbutton} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import {sortData} from '../rooms/helpers/formHelpers';
-import {PDFbutton} from '../../utils/pdfUtil';
 import {
     getClassList,
     getSubjectList,
@@ -15,8 +15,6 @@ import {
     getClassroomName
 } from '../helpers/dropdowns';
 import css from './styles/graphs.css';
-
-const _ = require('lodash');
 
 const GraphDropdown = ({t, classData, graphData, subjectData, actions}) => {
     const {

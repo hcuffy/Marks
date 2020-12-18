@@ -1,4 +1,4 @@
-const _ = require('lodash');
+import _ from 'lodash';
 
 export const defaultStateUpdater = (state, action) => {
     return _.assign({}, state, action.payload);

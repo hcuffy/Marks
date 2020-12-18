@@ -1,29 +1,14 @@
-import {
-    unableToRetrieve,
-    saveFailed,
-    saveSuccessful,
-    updateFailed,
-    updateSuccessful
-} from '../notifications/general';
+import _ from 'lodash';
 
-const _ = require('lodash');
-const Datastore = require('nedb');
-const electron = require('electron');
-const path = require('path');
+import connectionToDB from './connectionSetup';
+import {displayToast} from '../notifications';
 
-const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-const collectionsPath = path.join(userDataPath, 'collections');
-const Answers = new Datastore({
-    filename:              path.join(collectionsPath, 'answer.db'),
-    autoload:              true,
-    corruptAlertThreshold: 1,
-    timestampData:         true
-});
+const Answers = connectionToDB('answer');
 
 export const getAllAnswers = () => new Promise(resolve => {
-    Answers.find({}, (err, docs) => {
-        if (err) {
-            unableToRetrieve();
+    Answers.find({}, (error, docs) => {
+        if (error) {
+            displayToast('retrieveFail');
         }
 
         return resolve(docs);
@@ -37,9 +22,9 @@ export const addStudentAnswer = answerData => {
 
     Answers.insert(adjustedData, error => {
         if (error) {
-            saveFailed();
+            displayToast('saveFail');
         }
-        saveSuccessful();
+        displayToast('saveSuccess');
     });
 };
 
@@ -50,9 +35,9 @@ const updateStudentAnswer = ({
     optionTag
 }) => {
     const answerToUpdate = {classroomId, studentId};
-    Answers.find(answerToUpdate, (err, answer) => {
-        if (err) {
-            updateFailed();
+    Answers.find(answerToUpdate, (error, answer) => {
+        if (error) {
+            displayToast('updateFail');
         }
         const answerExists = _.find(answer[0].capability, {questionId});
 
@@ -71,7 +56,7 @@ const updateStudentAnswer = ({
             {},
             () => {}
         );
-        updateSuccessful();
+        displayToast('updateSuccess');
     });
 };
 
@@ -79,7 +64,7 @@ export const updateSingleAnswer = answerData => new Promise(resolve => {
     const {classroomId, studentId} = answerData;
     Answers.count({classroomId, studentId}, (error, count) => {
         if (error) {
-            updateFailed();
+            displayToast('updateFail');
         }
         if (count < 1) {
             addStudentAnswer(answerData);
@@ -90,7 +75,7 @@ export const updateSingleAnswer = answerData => new Promise(resolve => {
 
     Answers.find({}, (error, docs) => {
         if (error) {
-            updateFailed();
+            displayToast('updateFail');
         }
 
         return resolve(docs);
