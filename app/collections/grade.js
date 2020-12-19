@@ -3,59 +3,67 @@ import {displayToast} from '../notifications';
 
 const Grade = connectionToDB('grade');
 
-export const updateGradeData = (data, id) => {
-    const {grade, examId, studentId, date, weight} = data;
-    Grade.update(
-        {_id: id},
-        {grade, examId, studentId, date, weight},
-        {},
-        error => {
-            if (error) {
-                displayToast('updateFail');
-            }
-        }
-    );
-};
-export const addGradeData = data => {
-    Grade.insert(data, (error, doc) => {
-        if (error) {
-            displayToast('saveFail');
-        }
+export async function updateGradeData(data, id) {
+    try {
+        await Grade.update({_id: id}, {...data}, {});
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+    }
+}
 
-        return doc;
-    });
-};
+export async function addGradeData(data) {
+    try {
+        const result = await Grade.insert(data);
 
-export const getAllGrades = () => new Promise(resolve => Grade.find({}, (error, docs) => {
-    if (error) {
+        return result;
+    } catch (e) {
+        displayToast('saveFail');
+        console.log(e);
+
+        return null;
+    }
+}
+
+export async function getAllGrades() {
+    try {
+        const result = await Grade.find({});
+
+        return result;
+    } catch (e) {
         displayToast('retrieveFail');
+        console.log(e);
+
+        return null;
     }
+}
 
-    return resolve(docs);
-}));
+export async function deleteGradesByStudentId(id) {
+    try {
+        await Grade.remove({studentId: id}, {multi: true});
 
-export const deleteGradesByStudentId = id => new Promise(resolve => Grade.remove({studentId: id}, {multi: true}, error => {
-    if (error) {
+        let result = await Grade.find({});
+
+        return result;
+    } catch (e) {
         displayToast('deleteFail');
+        console.log(e);
+
+        return null;
     }
-    Grade.find({}, (error, docs) => {
-        if (error) {
-            displayToast('deleteFail');
-        }
+}
 
-        return resolve(docs);
-    });
-}));
+export async function deleteGradesByExamId(id) {
+    try {
+        await Grade.remove({examId: id}, {multi: true});
 
-export const deleteGradesByExamId = id => new Promise(resolve => Grade.remove({examId: id}, {multi: true}, error => {
-    if (error) {
+        let result = await Grade.find({});
+
+        return result;
+    } catch (e) {
         displayToast('deleteFail');
-    }
-    Grade.find({}, (error, docs) => {
-        if (error) {
-            displayToast('deleteFail');
-        }
+        console.log(e);
 
-        return resolve(docs);
-    });
-}));
+        return null;
+    }
+}

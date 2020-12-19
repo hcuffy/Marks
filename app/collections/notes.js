@@ -3,54 +3,67 @@ import {displayToast} from '../notifications';
 
 const Notes = connectionToDB('notes');
 
-export const addNewNote = data => {
-    Notes.insert(data, error => {
-        if (error) {
-            displayToast('saveFail');
-        }
+export async function addNewNote(data) {
+    try {
+        await Notes.insert(data);
+
         displayToast('saveSuccess');
-    });
-};
+    } catch (e) {
+        displayToast('saveFail');
+        console.log(e);
+    }
+}
 
-export const getAllNotes = () => new Promise(resolve => Notes.find({}, (error, docs) => {
-    if (error) {
+export async function getAllNotes() {
+    try {
+        const result = await Notes.find({});
+
+        return result;
+    } catch (e) {
         displayToast('retrieveFail');
+        console.log(e);
+
+        return null;
     }
+}
 
-    return resolve(docs);
-}));
+export async function deleteNote(data) {
+    try {
+        await Notes.remove({_id: data});
 
-export const deleteNote = data => new Promise(resolve => Notes.remove({_id: data}, error => {
-    if (error) {
-        displayToast('deleteFail');
+        const result = await Notes.find({});
+
+        return result;
+    } catch (e) {
+        displayToast('retrieveFail');
+        console.log(e);
+
+        return null;
     }
-    Notes.find({}, (error, notes) => {
-        if (error) {
-            displayToast('deleteFail');
-        }
+}
 
-        return resolve(notes);
-    });
-}));
+async function updateSingleNote(previousData) {
+    try {
+        const {title, note, noteId} = previousData;
 
-const updateSingleNote = previousData => {
-    const {title, note, noteId} = previousData;
-
-    Notes.update({_id: noteId}, {$set: {title, note, noteId}}, {}, error => {
-        if (error) {
-            displayToast('updateFail');
-        }
+        await Notes.update({_id: noteId}, {$set: {title, note, noteId}}, {});
         displayToast('updateSuccess');
-    });
-};
+    } catch (e) {
+        displayToast('retrieveFail');
+        console.log(e);
+    }
+}
 
-export const updateNoteData = data => new Promise(resolve => {
-    updateSingleNote(data);
-    Notes.find({}, (error, docs) => {
-        if (error) {
-            displayToast('updateFail');
-        }
+export async function updateNoteData(data) {
+    try {
+        await updateSingleNote(data);
+        let result = Notes.find({});
 
-        return resolve(docs);
-    });
-});
+        return result;
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+
+        return null;
+    }
+}

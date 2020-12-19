@@ -14,9 +14,9 @@ export async function saveGradeSystem(data) {
 
 export async function getAddressData() {
     try {
-        const address = await Settings.find({});
+        const results = await Settings.find({});
 
-        return address;
+        return results;
     } catch (e) {
         displayToast('retrieveFail');
         console.log(e);
@@ -60,12 +60,12 @@ async function updateSystem(previous, id) {
 }
 
 export async function updateGradeType(data) {
-    let systemType = await getSystemType();
+    let results = await getSystemType();
     try {
-        await updateSystem(data, systemType[0]._id);
-        systemType = await getSystemType();
+        await updateSystem(data, results[0]._id);
+        results = await getSystemType();
 
-        return systemType;
+        return results;
     } catch (e) {
         displayToast('updateFail');
         console.log(e);
@@ -75,13 +75,13 @@ export async function updateGradeType(data) {
 }
 
 export async function addAddress(data) {
-    let setting = await getAddressData();
+    let results = await getAddressData();
 
     try {
-        await updateAddress(data, setting[0]._id);
-        setting = await getAddressData();
+        await updateAddress(data, results[0]._id);
+        results = await getAddressData();
 
-        return setting;
+        return results;
     } catch (e) {
         displayToast('retrieveFail');
         console.log(e);

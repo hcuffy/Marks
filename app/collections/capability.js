@@ -1,57 +1,61 @@
+import _ from 'lodash';
 import connectionToDB from './connectionSetup';
 import {displayToast} from '../notifications';
 
 const Capability = connectionToDB('question');
 
 export async function getAllQuestions() {
-    await new Promise(resolve => Capability.find({}, (error, docs) => {
-        if (error) {
-            displayToast('retrieveFail');
-        }
+    try {
+        const result = await Capability.find({});
 
-        return resolve(docs);
-    }));
+        return result;
+    } catch (e) {
+        displayToast('retrieveFail');
+        console.log(e);
+
+        return null;
+    }
 }
 
-const addNewQuestion = data => {
-    Capability.insert(data, error => {
-        if (error) {
-            displayToast('saveFail');
-        }
+async function addNewQuestion(data) {
+    try {
+        await Capability.insert(data);
         displayToast('saveSuccess');
-    });
-};
+    } catch (e) {
+        displayToast('saveFail');
+        console.log(e);
+    }
+}
 
-const updateQuestion = data => {
+async function updateQuestion(data) {
     const {classroomId, questionSet} = data;
+    try {
+        await Capability.update({classroomId}, {$set: {questionSet}}, {});
 
-    Capability.update({classroomId}, {$set: {questionSet}}, {}, error => {
-        if (error) {
-            displayToast('updateFail');
-        }
         displayToast('updateSuccess');
-    });
-};
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+    }
+}
 
-export const updateQuestionData = data => new Promise(resolve => {
+export async function updateQuestionData(data) {
     const {classroomId} = data;
 
-    Capability.find({classroomId}, (error, entry) => {
-        if (error) {
-            displayToast('updateFail');
-        }
-
-        if (entry.length > 0) {
-            updateQuestion(data);
+    try {
+        let result = await Capability.find({classroomId});
+        if (_.size(result)) {
+            await updateQuestion(data);
         } else {
-            addNewQuestion(data);
+            await addNewQuestion(data);
         }
-        Capability.find({}, (error, docs) => {
-            if (error) {
-                displayToast('updateFail');
-            }
+        result = await Capability.find({});
 
-            return resolve(docs);
-        });
-    });
-});
+        return result;
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+
+        return null;
+    }
+}

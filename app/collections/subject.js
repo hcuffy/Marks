@@ -11,7 +11,7 @@ import {getAllExams, deleteExam} from './exam';
 
 const Subject = connectionToDB('subject');
 
-const getSubjects = async({room, abbreviation}) => {
+async function getSubjects({room, abbreviation}) {
     const data = await getClassroomData();
     const selectedClass = _.find(data, {name: room});
     if (_.includes(selectedClass.subjects, abbreviation)) {
@@ -19,170 +19,152 @@ const getSubjects = async({room, abbreviation}) => {
     }
 
     return selectedClass;
-};
+}
 
-export const getAllSubjects = () => new Promise(resolve => Subject.find({}, (err, docs) => {
-    if (err) {
+export async function getAllSubjects() {
+    try {
+        let result = await Subject.find({});
+
+        return result;
+    } catch (e) {
         displayToast('retrieveFail');
-    }
-
-    return resolve(docs);
-}));
-
-export const addSubjectData = async data => {
-    const subjectClassroom = await getSubjects(data);
-
-    if (subjectClassroom === true) {
-        displayToast('exists');
+        console.log(e);
 
         return null;
     }
+}
 
-    const newSubject = _.merge(data, {
-        tests:       [],
-        classroomId: subjectClassroom._id
-    });
-    subjectClassroom.subjects.push(data.abbreviation);
+export async function addSubjectData(data) {
+    try {
+        const subjectClassroom = await getSubjects(data);
+        if (subjectClassroom === true) {
+            displayToast('exists');
 
-    Subject.insert(newSubject, error => {
-        if (error) {
-            displayToast('saveFail');
+            return null;
         }
-        updateSubjectArray(subjectClassroom);
+        const newSubject = _.merge(data, {tests: [], classroomId: subjectClassroom._id});
+        subjectClassroom.subjects.push(data.abbreviation);
+
+        await Subject.insert(newSubject);
+        await updateSubjectArray(subjectClassroom);
         displayToast('saveSuccess');
-    });
-    const allSubjects = await getAllSubjects();
 
-    return allSubjects;
-};
+        const results = await getAllSubjects();
 
-const filteredExams = async subjectId => _.filter(await getAllExams(), {subjectId});
+        return results;
+    } catch (e) {
+        displayToast('saveFail');
+        console.log(e);
 
-const deleteExamsBySubject = async subjectId => {
+        return null;
+    }
+}
+
+async function filteredExams(subjectId) {
+    const exams = await getAllExams();
+
+    return _.filter(exams, {subjectId});
+}
+
+async function deleteExamsBySubject(subjectId) {
     const exams = await filteredExams(subjectId);
 
     if (!_.isEmpty(exams)) {
-        _.forEach(exams, exam => {
-            deleteExam({examId: exam._id, subjectId});
+        _.forEach(exams, async exam => {
+            await deleteExam({examId: exam._id, subjectId});
         });
     }
-};
+}
 
-export const deleteSubject = ({id}) => new Promise(resolve => Subject.remove({_id: id}, err => {
-    if (err) {
+export async function deleteSubject({id}) {
+    try {
+        await Subject.remove({_id: id});
+        await filteredExams(id);
+        await deleteExamsBySubject(id);
+        const result = await Subject.find({});
+
+        return result;
+    } catch (e) {
         displayToast('deleteFail');
+        console.log(e);
+
+        return null;
     }
-    filteredExams(id);
-    Subject.find({}, (error, docs) => {
-        if (err) {
-            displayToast('deleteFail');
-        }
-        deleteExamsBySubject(id);
+}
 
-        return resolve(docs);
-    });
-}));
+function checkSubjectChanges(previous, current) {
+    const {name, abbreviation} = current;
 
-const checkSubjectChanges = (prev, curr) => {
-    const {name, abbreviation} = curr;
+    return !(_.isEqual(previous.name, name) &&
+      _.isEqual(previous.abbreviation, abbreviation));
+}
 
-    return !(_.isEqual(prev.name, name) &&
-      _.isEqual(prev.abbreviation, abbreviation));
-};
-
-const updateClassroomSubjects = (
-    classroomId,
-    previousSubject,
-    currentSubject
-) => {
+async function updateClassroomSubjects(classroomId, previousSubject, currentSubject) {
     if (!_.isEqual(previousSubject, currentSubject)) {
-        updateClassSubjectArray(classroomId, previousSubject, currentSubject);
+        await updateClassSubjectArray(classroomId, previousSubject, currentSubject);
     }
-};
+}
 
-const updateSingleSubject = (previous, current) => {
+async function updateSingleSubject(previous, current) {
     const {name, abbreviation} = current;
     const {room, tests, classroomId} = previous;
+    const shouldUpdate = checkSubjectChanges(previous, current);
 
-    const subjectUpdatable = checkSubjectChanges(previous, current);
-    if (subjectUpdatable) {
-        updateClassroomSubjects(classroomId, previous.abbreviation, abbreviation);
-        Subject.update(
-            {_id: previous._id},
-            {
-                name,
-                abbreviation,
-                room,
-                tests,
-                classroomId
-            },
-            {},
-            err => {
-                if (err) {
-                    displayToast('updateFail');
-                }
-                displayToast('updateSuccess');
-            }
-        );
-    }
-};
-
-export const updateSubjectData = data => new Promise(resolve => Subject.find({_id: data.subjectId}, (err, entry) => {
-    if (err) {
+    try {
+        if (shouldUpdate) {
+            await updateClassroomSubjects(classroomId, previous.abbreviation, abbreviation);
+            await Subject.update({_id: previous._id}, {name, abbreviation, room, tests, classroomId}, {});
+            displayToast('updateSuccess');
+        }
+    } catch (e) {
         displayToast('updateFail');
+        console.log(e);
     }
-    if (entry.length > 0) {
-        updateSingleSubject(entry[0], data);
-        Subject.find({_id: data.subjectId}, (error, docs) => {
-            if (error) {
-                displayToast('updateFail');
-            }
+}
 
-            return resolve(docs);
-        });
-    }
-}));
-
-export const addExamToSubjectArray = ({subjectId, title}) => {
-    Subject.find({_id: subjectId}, (err, doc) => {
-        if (err) {
-            displayToast('retrieveFail');
+export async function updateSubjectData(data) {
+    try {
+        const subject = await Subject.find({_id: data.subjectId});
+        if (_.size(subject)) {
+            await updateSingleSubject(subject[0], data);
         }
-        if (doc.length <= 0) {
-            return;
-        }
+        const result = await Subject.find({_id: data.subjectId});
 
-        if (!_.includes(doc.tests, title)) {
-            Subject.update(
-                {_id: subjectId},
-                {$push: {tests: title}},
-                {},
-                error => {
-                    if (error) {
-                        displayToast('updateFail');
-                    }
-                }
-            );
-        }
-    });
-};
-
-export const updateSubjectTestArray = (subjectId, examTitle) => new Promise(resolve => Subject.find({_id: subjectId}, (err, entry) => {
-    if (err) {
+        return result;
+    } catch (e) {
         displayToast('updateFail');
-    }
-    if (entry.length > 0) {
-        Subject.update(
-            {_id: subjectId},
-            {$pull: {tests: examTitle}},
-            {},
-            (error, docs) => {
-                if (error) {
-                    displayToast('updateFail');
-                }
+        console.log(e);
 
-                return resolve(docs);
-            }
-        );
+        return null;
     }
-}));
+}
+
+export async function addExamToSubjectArray({subjectId, title}) {
+    try {
+        const subject = await Subject.find({_id: subjectId});
+
+        if (_.size(subject) && !_.includes(subject.tests, title)) {
+            await Subject.update({_id: subjectId}, {$push: {tests: title}}, {});
+        }
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+    }
+}
+
+export async function updateSubjectTestArray(subjectId, examTitle) {
+    try {
+        let result = await Subject.find({_id: subjectId});
+
+        if (_.size(result)) {
+            result = await Subject.update({_id: subjectId}, {$pull: {tests: examTitle}}, {});
+        }
+
+        return result;
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+
+        return null;
+    }
+}

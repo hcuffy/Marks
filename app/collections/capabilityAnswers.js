@@ -5,79 +5,68 @@ import {displayToast} from '../notifications';
 
 const Answers = connectionToDB('answer');
 
-export const getAllAnswers = () => new Promise(resolve => {
-    Answers.find({}, (error, docs) => {
-        if (error) {
-            displayToast('retrieveFail');
-        }
+export async function getAllAnswers() {
+    try {
+        const result = await Answers.find({});
 
-        return resolve(docs);
-    });
-});
+        return result;
+    } catch (e) {
+        displayToast('retrieveFail');
+        console.log(e);
 
-export const addStudentAnswer = answerData => {
+        return null;
+    }
+}
+
+export async function addStudentAnswer(answerData) {
     const {classroomId, questionId, studentId, optionTag} = answerData;
-    const capability = [{questionId, optionTag}];
-    const adjustedData = {classroomId, studentId, capability};
+    const adjustedData = {classroomId, studentId, capability: [{questionId, optionTag}]};
 
-    Answers.insert(adjustedData, error => {
-        if (error) {
-            displayToast('saveFail');
-        }
+    try {
+        await Answers.insert(adjustedData);
         displayToast('saveSuccess');
-    });
-};
+    } catch (e) {
+        displayToast('saveFail');
+        console.log(e);
+    }
+}
 
-const updateStudentAnswer = ({
-    classroomId,
-    studentId,
-    questionId,
-    optionTag
-}) => {
+async function updateStudentAnswer({classroomId, studentId, questionId, optionTag}) {
     const answerToUpdate = {classroomId, studentId};
-    Answers.find(answerToUpdate, (error, answer) => {
-        if (error) {
-            displayToast('updateFail');
-        }
-        const answerExists = _.find(answer[0].capability, {questionId});
+    try {
+        let result = await Answers.find(answerToUpdate);
+        const answerExists = _.find(result[0].capability, {questionId});
 
-        if (_.size(answerExists) > 0) {
-            Answers.update(
-                answerToUpdate,
-                {$pull: {capability: {questionId}}},
-                {},
-                () => {}
-            );
+        if (_.size(answerExists)) {
+            await Answers.update(answerToUpdate, {$pull: {capability: {questionId}}}, {});
         }
 
-        Answers.update(
-            answerToUpdate,
-            {$addToSet: {capability: {questionId, optionTag}}},
-            {},
-            () => {}
-        );
+        await Answers.update(answerToUpdate, {$addToSet: {capability: {questionId, optionTag}}}, {});
         displayToast('updateSuccess');
-    });
-};
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+    }
+}
 
-export const updateSingleAnswer = answerData => new Promise(resolve => {
+export async function updateSingleAnswer(answerData) {
     const {classroomId, studentId} = answerData;
-    Answers.count({classroomId, studentId}, (error, count) => {
-        if (error) {
-            displayToast('updateFail');
-        }
+    try {
+        const count = await Answers.count({classroomId, studentId});
+
         if (count < 1) {
-            addStudentAnswer(answerData);
+            await addStudentAnswer(answerData);
         } else {
-            updateStudentAnswer(answerData);
-        }
-    });
-
-    Answers.find({}, (error, docs) => {
-        if (error) {
-            displayToast('updateFail');
+            await updateStudentAnswer(answerData);
         }
 
-        return resolve(docs);
-    });
-});
+        let result = await Answers.find({});
+
+        return result;
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+
+        return null;
+    }
+}

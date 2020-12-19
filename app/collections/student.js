@@ -4,65 +4,65 @@ import {deleteGradesByStudentId} from './grade';
 
 const Student = connectionToDB('student');
 
-export const addNewStudentData = data => {
-    Student.insert(data, error => {
-        if (error) {
-            displayToast('saveFail');
-        }
+export async function addNewStudentData(data) {
+    try {
+        await Student.insert(data);
         displayToast('saveSuccess');
-    });
-};
+    } catch (e) {
+        displayToast('saveFail');
+        console.log(e);
+    }
+}
 
-export const getAllStudents = () => new Promise(resolve => Student.find({}, (error, docs) => {
-    if (error) {
+export async function getAllStudents() {
+    try {
+        const result = await Student.find({});
+
+        return result;
+    } catch (e) {
         displayToast('retrieveFail');
-    }
+        console.log(e);
 
-    return resolve(docs);
-}));
-
-export const deleteStudent = data => new Promise(resolve => Student.remove({_id: data}, error => {
-    if (error) {
-        displayToast('deleteFail');
+        return null;
     }
-    Student.find({}, async(error, students) => {
-        if (error) {
-            displayToast('deleteFail');
-        }
+}
+
+export async function deleteStudent(data) {
+    try {
+        await Student.remove({_id: data});
         await deleteGradesByStudentId(data);
+        const result = await Student.find({});
 
-        return resolve(students);
-    });
-}));
+        return result;
+    } catch (e) {
+        displayToast('deleteFail');
+        console.log(e);
 
-const updateSingleStudent = previous => {
-    const {firstname, lastname, gender, classroom, id} = previous;
+        return null;
+    }
+}
 
-    Student.update(
-        {_id: id},
-        {
-            firstname,
-            lastname,
-            gender,
-            classroom
-        },
-        {},
-        error => {
-            if (error) {
-                displayToast('updateFail');
-            }
-            displayToast('updateSuccess');
-        }
-    );
-};
+async function updateSingleStudent(previous) {
+    try {
+        const {firstname, lastname, gender, classroom, id} = previous;
+        await Student.update({_id: id}, {firstname, lastname, gender, classroom}, {});
+        displayToast('updateSuccess');
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+    }
+}
 
-export const updateStudentData = data => new Promise(resolve => {
-    updateSingleStudent(data);
-    Student.find({}, (error, docs) => {
-        if (error) {
-            displayToast('updateFail');
-        }
+export async function updateStudentData(data) {
+    try {
+        await updateSingleStudent(data);
+        let result = await Student.find({});
 
-        return resolve(docs);
-    });
-});
+        return result;
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+
+        return null;
+    }
+}

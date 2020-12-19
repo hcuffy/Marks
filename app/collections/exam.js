@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import connectionToDB from './connectionSetup';
 import {displayToast} from '../notifications';
 import {addExamToSubjectArray, updateSubjectTestArray} from './subject';
@@ -5,104 +7,101 @@ import {deleteGradesByExamId} from './grade';
 
 const Exam = connectionToDB('examinations');
 
-export const addExamData = data => {
-    Exam.find({name: data.title}, (error, entry) => {
-        if (error) {
-            displayToast('saveFail');
-        }
-        if (entry.length > 0) {
+export async function addExamData(data) {
+    try {
+        let result = await Exam.find({name: data.title});
+
+        if (_.size(result)) {
             displayToast('exists');
+
+            return null;
         }
         const newData = data;
+        addExamToSubjectArray(newData);
 
-        Exam.insert(newData, (error, doc) => {
-            if (error) {
-                displayToast('saveFail');
-            }
-            displayToast('saveSuccess');
-            addExamToSubjectArray(newData);
+        result = await Exam.insert(newData);
 
-            return doc;
-        });
-    });
-};
+        displayToast('saveSuccess');
 
-export const getAllExams = () => new Promise(resolve => Exam.find({}, (error, entry) => {
-    if (error) {
-        displayToast('retrieveFail');
+        return result;
+    } catch (e) {
+        displayToast('saveFail');
+        console.log(e);
+
+        return null;
     }
+}
 
-    return resolve(entry);
-}));
+export async function getAllExams() {
+    try {
+        let result = await Exam.find({});
 
-const updateTestsArr = async(examId, subjectId) => {
-    let examTitle = '';
-    Exam.find({_id: examId}, (error, entry) => {
-        if (error) {
-            displayToast('updateFail');
-        }
-        examTitle = entry[0].title;
-    });
-    await updateSubjectTestArray(subjectId, examTitle);
-};
+        return result;
+    } catch (e) {
+        displayToast('retrieveFail');
+        console.log(e);
 
-export const deleteExam = ({examId, subjectId}) => new Promise(resolve => {
-    updateTestsArr(examId, subjectId);
-    Exam.remove({_id: examId}, error => {
-        if (error) {
-            displayToast('deleteFail');
-        }
+        return null;
+    }
+}
 
-        Exam.find({}, (error, exams) => {
-            if (error) {
-                displayToast('deleteFail');
-            }
-            deleteGradesByExamId(examId);
+async function updateTestsArr(examId, subjectId) {
+    try {
+        const result = await Exam.find({_id: examId});
 
-            return resolve(exams);
-        });
-    });
-});
+        const examTitle = result[0].title;
 
-const updateSingleExam = (previous, current) => {
+        await updateSubjectTestArray(subjectId, examTitle);
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+    }
+}
+
+export async function deleteExam({examId, subjectId}) {
+    try {
+        await updateTestsArr(examId, subjectId);
+        await Exam.remove({_id: examId});
+        await deleteGradesByExamId(examId);
+        let result = await Exam.find({});
+
+        return result;
+    } catch (e) {
+        displayToast('deleteFail');
+        console.log(e);
+
+        return null;
+    }
+}
+
+async function updateSingleExam(previous, current) {
     const {title, date, weight} = current;
     const {subjectId} = previous;
+    try {
+        await Exam.update({_id: previous._id}, {title, date, weight, subjectId}, {});
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+    }
+}
 
-    Exam.update(
-        {_id: previous._id},
-        {
-            title,
-            date,
-            weight,
-            subjectId
-        },
-        {},
-        error => {
-            if (error) {
-                displayToast('updateFail');
-            }
-            displayToast('updateSuccess');
-        }
-    );
-};
+export async function updateExamData(data) {
+    try {
+        const {examId, subjectId, title} = data;
+        let result = await Exam.find({_id: examId});
 
-export const updateExamData = data => new Promise(resolve => {
-    const {examId, subjectId, title} = data;
-    Exam.find({_id: examId}, (error, entry) => {
-        if (error) {
-            displayToast('updateFail');
+        if (_.size(result)) {
+            await updateSingleExam(result[0], data);
+            await updateSubjectTestArray(subjectId, result[0].title);
+            await addExamToSubjectArray({subjectId, title});
         }
-        if (entry.length > 0) {
-            updateSingleExam(entry[0], data);
-            updateSubjectTestArray(subjectId, entry[0].title);
-            addExamToSubjectArray({subjectId, title});
-            Exam.find({}, (error, docs) => {
-                if (error) {
-                    displayToast('updateFail');
-                }
+        result = await Exam.find({});
 
-                return resolve(docs);
-            });
-        }
-    });
-});
+        return result;
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+
+        return null;
+    }
+}

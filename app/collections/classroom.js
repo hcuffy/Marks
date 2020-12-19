@@ -6,156 +6,142 @@ import {getAllSubjects, deleteSubject} from './subject';
 
 const Classroom = connectionToDB('classroom');
 
-export const addClassroomData = data => {
-    Classroom.find({name: data.name}, (error, entry) => {
-        if (error) {
-            displayToast('saveFail');
-        }
-        if (entry.length > 0) {
-            displayToast('exists');
-        }
+export async function addClassroomData(data) {
+    try {
+        let classroom = await Classroom.find({name: data.name});
 
+        if (_.size(classroom)) {
+            displayToast('exists');
+
+            return null;
+        }
         const newData = data;
         newData.subjects = [];
 
-        Classroom.insert(newData, (error, doc) => {
-            if (error) {
-                displayToast('saveFail');
-            }
-            displayToast('saveSuccess');
+        let result = Classroom.insert(newData);
 
-            return doc;
-        });
-    });
-};
+        displayToast('saveSuccess');
 
-export const getClassroomData = () => new Promise(resolve => Classroom.find({}, (error, entry) => {
-    if (error) {
+        return result;
+    } catch (e) {
+        displayToast('saveFail');
+        console.log(e);
+
+        return null;
+    }
+}
+
+export async function getClassroomData() {
+    try {
+        let result = await Classroom.find({});
+
+        return result;
+    } catch (e) {
         displayToast('retrieveFail');
+        console.log(e);
+
+        return null;
     }
+}
 
-    return resolve(entry);
-}));
+async function filteredSubjects(classroomId) {
+    return _.filter(await getAllSubjects(), {classroomId});
+}
 
-const filteredSubjects = async classroomId => _.filter(await getAllSubjects(), {classroomId});
+async function deleteSubjectByClassroom(classroomId) {
+    try {
+        const subjects = await filteredSubjects(classroomId);
 
-const deleteSubjectByClassroom = async classroomId => {
-    const subjects = await filteredSubjects(classroomId);
-
-    if (!_.isEmpty(subjects)) {
-        _.forEach(subjects, subject => {
-            deleteSubject({classroomId: subject._id});
-        });
-    }
-};
-
-export const deleteClassroom = ({id}) => new Promise(resolve => Classroom.remove({_id: id}, error => {
-    if (error) {
-        displayToast('deleteFail');
-    }
-    Classroom.find({}, (error, docs) => {
-        if (error) {
-            displayToast('deleteFail');
+        if (!_.isEmpty(subjects)) {
+            _.forEach(subjects, subject => {
+                deleteSubject({classroomId: subject._id});
+            });
         }
+    } catch (e) {
+        console.log(e);
+    }
+}
 
-        deleteSubjectByClassroom(id);
+export async function deleteClassroom({id}) {
+    try {
+        await Classroom.remove({_id: id});
+        await deleteSubjectByClassroom(id);
+        let result = await Classroom.find({});
 
-        return resolve(docs);
-    });
-}));
+        return result;
+    } catch (e) {
+        displayToast('deleteFail');
+        console.log(e);
 
-const checkSubject = checkingCurrent => {
+        return null;
+    }
+}
+
+function checkSubject(checkingCurrent) {
     if (_.isNil(checkingCurrent.subjects)) {
         return false;
     }
 
-    return checkingCurrent.subjects.length > 0;
-};
+    return _.size(checkingCurrent.subjects) > 0;
+}
 
-const updateSingleClassroom = (previous, current) => {
+async function updateSingleClassroom(previous, current) {
     const {name, teacher, substitute} = current;
     const {subjects} = previous;
 
     if (checkSubject(current) === true) {
         subjects.push(current.subjects[0]);
     }
-
-    Classroom.update(
-        {name: previous.name},
-        {
-            name,
-            teacher,
-            substitute,
-            subjects
-        },
-        {},
-        error => {
-            if (error) {
-                displayToast('updateFail');
-            }
-            displayToast('updateSuccess');
-        }
-    );
-};
-
-export const updateRoomData = data => new Promise(resolve => Classroom.find({name: data.oldName}, (error, entry) => {
-    if (error) {
+    try {
+        await Classroom.update({name: previous.name}, {name, teacher, substitute, subjects}, {});
+        displayToast('updateSuccess');
+    } catch (e) {
         displayToast('updateFail');
+        console.log(e);
     }
-    if (entry.length > 0) {
-        updateSingleClassroom(entry[0], data);
-        Classroom.find({}, (error, docs) => {
-            if (error) {
-                displayToast('updateFail');
-            }
+}
 
-            return resolve(docs);
-        });
+export async function updateRoomData(data) {
+    try {
+        let result = await Classroom.find({name: data.oldName});
+        if (_.size(result)) {
+            await updateSingleClassroom(result[0], data);
+        }
+        result = await Classroom.find({});
+
+        return result;
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+
+        return null;
     }
-}));
+}
 
-export const updateSubjectArray = data => {
-    Classroom.find({name: data.name}, (error, entry) => {
-        if (error) {
-            displayToast('updateFail');
+export async function updateSubjectArray(data) {
+    try {
+        let result = await Classroom.find({name: data.name});
+        if (_.size(result)) {
+            await updateSingleClassroom(result[0], data);
         }
-        if (entry.length > 0) {
-            updateSingleClassroom(entry[0], data);
-            Classroom.find({}, (error, docs) => {
-                if (error) {
-                    displayToast('updateFail');
-                }
+        result = await Classroom.find({});
 
-                return docs;
-            });
-        }
-    });
-};
+        return result;
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
 
-export const updateClassSubjectArray = (
-    classroomId,
-    oldSubject,
-    newSubject
-) => {
-    Classroom.update(
-        {_id: classroomId},
-        {$push: {subjects: newSubject}},
-        {},
-        error => {
-            if (error) {
-                displayToast('updateFail');
-            }
-        }
-    );
+        return null;
+    }
+}
 
-    Classroom.update(
-        {_id: classroomId},
-        {$pull: {subjects: oldSubject}},
-        {},
-        error => {
-            if (error) {
-                displayToast('updateFail');
-            }
-        }
-    );
-};
+export async function updateClassSubjectArray(classroomId, oldSubject, newSubject) {
+    try {
+        await Classroom.update({_id: classroomId}, {$push: {subjects: newSubject}}, {});
+
+        await Classroom.update({_id: classroomId}, {$pull: {subjects: oldSubject}}, {});
+    } catch (e) {
+        displayToast('updateFail');
+        console.log(e);
+    }
+}
