@@ -14,6 +14,6 @@ const initialLoadState = {
     chartTitle:        null
 };
 
-export const applyGraphData = (state = initialLoadState, action) => {
+export function applyGraphData(state = initialLoadState, action) {
     return reducerActionHandler(state, action, graphHandlers);
-};
+}

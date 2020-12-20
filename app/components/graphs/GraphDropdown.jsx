@@ -3,6 +3,7 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
+
 import {resolveLabel, PDFbutton} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import {sortData} from '../rooms/helpers/formHelpers';
@@ -16,30 +17,11 @@ import {
 } from '../helpers/dropdowns';
 import css from './styles/graphs.css';
 
-const GraphDropdown = ({t, classData, graphData, subjectData, actions}) => {
-    const {
-        subjectId,
-        exams,
-        classroomId,
-        classroomDropdown,
-        openSubList,
-        subjectName,
-        examName,
-        openExamList,
-        chartTitle
-    } = graphData;
-
-    const classroom = _.isNull(classroomId)
-        ? classroomId
-        : getClassroomName(classroomId, classData.classData);
-
+function GraphDropdown({t, classData, graphData, subjectData, actions}) {
+    const {subjectId, exams, classroomId, classroomDropdown, openSubList, subjectName, examName, openExamList, chartTitle} = graphData;
+    const classroom = _.isNull(classroomId) ? classroomId : getClassroomName(classroomId, classData.classData);
     const classOptions = getClassList(sortData(classData));
-
-    const subjectOptions = getSubjectList(
-        {selectedRoom: classroomId},
-        subjectData
-    );
-
+    const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
     const examOptions = getExamList(exams, subjectId);
 
     notifyIfEmpty(t, subjectOptions, openSubList, 'class');
@@ -77,7 +59,7 @@ const GraphDropdown = ({t, classData, graphData, subjectData, actions}) => {
             )}
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({
     classData:   state.classData,
@@ -89,7 +71,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(GraphDropdown));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(GraphDropdown));

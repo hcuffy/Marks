@@ -1,4 +1,4 @@
-import {gradingSystem} from '../../../graphs/helpers/chartData';
+import {gradingSystem} from '../../../graphs/chartData';
 
 const yAxisTicks = settings => {
     const chosenSystem = gradingSystem(settings);

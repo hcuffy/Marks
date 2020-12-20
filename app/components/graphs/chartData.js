@@ -1,11 +1,15 @@
 import _ from 'lodash';
-import {resolveLabel} from '../../../utils/translationUtil';
+import {resolveLabel} from '../../utils';
 
-export const gradingSystem = settings => _.findKey(settings, gradeType => gradeType === true);
+export function gradingSystem(settings) {
+    return _.findKey(settings, gradeType => gradeType === true);
+}
 
-const xAxisLabels = (start, limit, step) => _.range(start, limit, step);
+function xAxisLabels(start, limit, step) {
+    return _.range(start, limit, step);
+}
 
-const computeGrades = (grades, {start, limit, step}) => {
+function computeGrades(grades, {start, limit, step}) {
     const chartLabels = xAxisLabels(start, limit, step);
     const computedGrades = [];
 
@@ -24,9 +28,9 @@ const computeGrades = (grades, {start, limit, step}) => {
     }
 
     return {computedGrades, chartLabels};
-};
+}
 
-const computePercentGrades = (grades, {start, limit, step}) => {
+function computePercentGrades(grades, {start, limit, step}) {
     const chartLabels = xAxisLabels(start, limit, step);
     const computedGrades = [];
 
@@ -40,24 +44,25 @@ const computePercentGrades = (grades, {start, limit, step}) => {
     }
 
     return computeGrades(computedGrades, {start, limit, step});
-};
+}
 
-const computeGradeFormat = (grades, settings) => {
+function computeGradeFormat(grades, settings) {
     const gradeSystem = gradingSystem(settings);
 
-    switch (gradeSystem) {
-        case 'note':
-            return computeGrades(grades, {start: 1, limit: 7, step: 1});
-        case 'points':
-            return computeGrades(grades, {start: 0, limit: 16, step: 1});
-        case 'percent':
-            return computePercentGrades(grades, {start: 0, limit: 110, step: 10});
-        default:
-            return computeGrades(grades, {start: 1, limit: 7, step: 1});
+    if (gradeSystem === 'note') {
+        return computeGrades(grades, {start: 1, limit: 7, step: 1});
     }
-};
+    if (gradeSystem === 'points') {
+        return computeGrades(grades, {start: 0, limit: 16, step: 1});
+    }
+    if (gradeSystem === 'percent') {
+        return computePercentGrades(grades, {start: 0, limit: 110, step: 10});
+    }
 
-const filterByClass = (allGrades, chartTitle, subjects, exams) => {
+    return computeGrades(grades, {start: 1, limit: 7, step: 1});
+}
+
+function filterByClass(allGrades, chartTitle, subjects, exams) {
     const filteredGrades = [];
     const filteredClass = _.filter(subjects, {room: chartTitle});
 
@@ -67,9 +72,9 @@ const filterByClass = (allGrades, chartTitle, subjects, exams) => {
     }
 
     return filteredGrades;
-};
+}
 
-export const filterBySubject = (subjectId, exams, grades) => {
+export function filterBySubject(subjectId, exams, grades) {
     const filteredGrades = [];
     const filteredExams = _.filter(exams, {subjectId});
 
@@ -79,34 +84,29 @@ export const filterBySubject = (subjectId, exams, grades) => {
     }
 
     return filteredGrades;
-};
+}
 
-const filterByExam = (examId, grades) => {
+function filterByExam(examId, grades) {
     return [..._.filter(grades, {examId})];
-};
+}
 
-const gradesToDisplay = (
-    {grades, chartTitle, subjectId, exams, examId, chartToDisplay},
-    subjects
-) => {
-    switch (chartToDisplay) {
-        case 'exam':
-            return [...filterByExam(examId, grades)];
-        case 'subject':
-            return [...filterBySubject(subjectId, exams, grades)];
-        case 'class':
-            return [...filterByClass(grades, chartTitle, subjects, exams)];
-        default:
-            return _.merge([], grades);
+function gradesToDisplay({grades, chartTitle, subjectId, exams, examId, chartToDisplay}, subjects) {
+    if (chartToDisplay === 'exam') {
+        return [...filterByExam(examId, grades)];
     }
-};
-export const chartData = (t, graphData, subjects, settings) => {
-    const filteredGrades = gradesToDisplay(graphData, subjects);
+    if (chartToDisplay === 'subject') {
+        return [...filterBySubject(subjectId, exams, grades)];
+    }
+    if (chartToDisplay === 'class') {
+        return [...filterByClass(grades, chartTitle, subjects, exams)];
+    }
 
-    const {computedGrades, chartLabels} = computeGradeFormat(
-        filteredGrades,
-        settings
-    );
+    return _.merge([], grades);
+}
+
+export function chartData(t, graphData, subjects, settings) {
+    const filteredGrades = gradesToDisplay(graphData, subjects);
+    const {computedGrades, chartLabels} = computeGradeFormat(filteredGrades, settings);
 
     return {
         labels:   chartLabels,
@@ -136,4 +136,4 @@ export const chartData = (t, graphData, subjects, settings) => {
             }
         ]
     };
-};
+}

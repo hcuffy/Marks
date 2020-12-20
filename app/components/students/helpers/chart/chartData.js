@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {filterBySubject} from '../../../graphs/helpers/chartData';
+import {filterBySubject} from '../../../graphs/chartData';
 import {resolveLabel} from '../../../../utils/translationUtil';
 
 const filteredGrades = ({studentGraphId}, grades) => {
