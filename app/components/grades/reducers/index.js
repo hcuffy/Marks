@@ -8,6 +8,6 @@ const initialLoadState = {
     subDrop:           false
 };
 
-export const applyGradeData = (state = initialLoadState, action) => {
+export function applyGradeData(state = initialLoadState, action) {
     return reducerActionHandler(state, action, gradeHandlers);
-};
+}

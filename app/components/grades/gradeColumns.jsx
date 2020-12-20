@@ -1,18 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
-import css from '../styles/grades.css';
 
-const customCell = (props, actions) => {
-    const {
-        score,
-        studentId,
-        subjectName,
-        subjectId,
-        examId,
-        date,
-        weight,
-        gradeId
-    } = props.value;
+import css from './styles/grades.css';
+
+function customCell(props, actions) {
+    const {score, studentId, subjectName, subjectId, examId, date, weight, gradeId} = props.value;
 
     return (
         <input
@@ -28,44 +20,45 @@ const customCell = (props, actions) => {
             onBlur={actions.updateGrade}
         />
     );
-};
+}
 
-const badgeColor = weight => {
-    switch (true) {
-        case weight <= 1: {
-            return 'badge-success';
-        }
-        case weight > 2: {
-            return 'badge-primary';
-        }
-        default: {
-            return 'badge-warning';
-        }
+function badgeColor(weight) {
+    if (weight <= 1) {
+        return 'badge-success';
     }
-};
+    if (weight > 2) {
+        return 'badge-primary';
+    }
 
-const customHeader = ({date, weight}) => (
-    <div>
-        <span
-            className={`badge badge-pill ${badgeColor(weight)} ${css.badge_weight}`}
-        >
-            <i className='fas fa-weight-hanging' /> {weight}
-        </span>
+    return 'badge-warning';
+}
 
-        <span className={`badge badge-light badge-pill ${css.badge_date}`}>
-            <i className='fas fa-calendar' /> {date}
-        </span>
-    </div>
-);
+function customHeader({date, weight}) {
+    return (
+        <div>
+            <span
+                className={`badge badge-pill ${badgeColor(weight)} ${css.badge_weight}`}
+            >
+                <i className='fas fa-weight-hanging' /> {weight}
+            </span>
 
-const averageColumn = () => ({
-    Header:   'Ø',
-    accessor: 'average',
-    width:    50,
-    style:    {textAlign: 'center'}
-});
+            <span className={`badge badge-light badge-pill ${css.badge_date}`}>
+                <i className='fas fa-calendar' /> {date}
+            </span>
+        </div>
+    );
+}
 
-const customFooter = ({data}, iterator) => {
+function averageColumn() {
+    return {
+        Header:   'Ø',
+        accessor: 'average',
+        width:    50,
+        style:    {textAlign: 'center'}
+    };
+}
+
+function customFooter({data}, iterator) {
     const gradesArray = [];
 
     for (let i = 0; i < data.length; i += 1) {
@@ -83,9 +76,9 @@ const customFooter = ({data}, iterator) => {
             <strong>Ø:</strong> {_.isNaN(examAverage) ? 0 : examAverage}
         </span>
     );
-};
+}
 
-const customColumn = (data, actions) => {
+function customColumn(data, actions) {
     const columnData = [];
 
     if (_.isUndefined(data[0])) {
@@ -107,9 +100,9 @@ const customColumn = (data, actions) => {
     columnData.push(averageColumn());
 
     return columnData;
-};
+}
 
-export const gradeColumns = ({t, newData, actions}) => {
+export function gradeColumns({t, newData, actions}) {
     return [
         {
             Header:  t('grades.studentHeader'),
@@ -133,4 +126,4 @@ export const gradeColumns = ({t, newData, actions}) => {
             columns: customColumn(newData, actions)
         }
     ];
-};
+}

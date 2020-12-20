@@ -4,23 +4,26 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 import ReactTable from 'react-table';
+
 import {actionCreators} from '../../actions/index';
 import GradeDropdown from './GradeDropdown';
-import {gradeColumns} from './helpers/gradeColumns';
-import {gradeInfo} from './helpers/gradeInfo';
+import {gradeColumns} from './gradeColumns';
+import {gradeInfo} from './gradeInfo';
 import css from './styles/grades.css';
 
-const tableOptions = t => ({
-    defaultPageSize: 20,
-    noDataText:      t('grades.noData'),
-    previousText:    t('grades.previousPage'),
-    nextText:        t('grades.nextPage'),
-    pageText:        t('grades.textPage'),
-    ofText:          t('grades.pageOf'),
-    rowsText:        t('grades.textRows')
-});
+function tableOptions(t) {
+    return {
+        defaultPageSize: 20,
+        noDataText:      t('grades.noData'),
+        previousText:    t('grades.previousPage'),
+        nextText:        t('grades.nextPage'),
+        pageText:        t('grades.textPage'),
+        ofText:          t('grades.pageOf'),
+        rowsText:        t('grades.textRows')
+    };
+}
 
-const GradeTable = ({t, gradeData, students, actions}) => {
+function GradeTable({t, gradeData, students, actions}) {
     const data = gradeInfo(gradeData, students);
 
     return (
@@ -38,7 +41,8 @@ const GradeTable = ({t, gradeData, students, actions}) => {
             />
         </div>
     );
-};
+}
+
 const mapStateToProps = state => ({
     gradeData: state.gradeData,
     students:  state.studentData.students
@@ -48,7 +52,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(GradeTable));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(GradeTable));

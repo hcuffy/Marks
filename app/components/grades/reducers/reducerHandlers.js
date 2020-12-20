@@ -2,18 +2,18 @@ import _ from 'lodash';
 import {actions} from '../constants';
 import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
 
-const subjectDropdownUpdater = (state, action) => {
+function subjectDropdownUpdater(state, action) {
     const subDrop = !state.subDrop;
 
     return _.assign({}, state, {subDrop}, action.payload);
-};
+}
 
-const classroomDropdownUpdater = (state, action) => {
+function classroomDropdownUpdater(state, action) {
     const classroomDropdown = !state.classroomDropdown;
     const subDrop = !classroomDropdown;
 
     return _.assign({}, state, {classroomDropdown, subDrop}, action.payload);
-};
+}
 
 export const gradeHandlers = {
     [actions.DISPLAY_EXAM_TABLE]: subjectDropdownUpdater,
