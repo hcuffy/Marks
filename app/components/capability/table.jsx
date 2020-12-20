@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 import {Button, FormGroup, Input, Label} from 'reactstrap';
-import {capabilityQuestions} from '../constants';
-import css from '../styles/capability.css';
+import {capabilityQuestions} from './constants';
+import css from './styles/capability.css';
 
-export const getQuestionSet = (classroomId, questions) => {
+export function getQuestionSet(classroomId, questions) {
     if (_.isNull(classroomId) || _.isEmpty(questions)) {
         return null;
     }
@@ -16,21 +16,23 @@ export const getQuestionSet = (classroomId, questions) => {
     }
 
     return questionData.questionSet;
-};
+}
 
-export const changeQuestionBtn = (classroomId, {openQuestionList}) => (
-    <Button
-        className={css.change_Btn}
-        color='danger'
-        data-check='openButton'
-        data-id={classroomId}
-        onClick={openQuestionList}
-    >
+export function changeQuestionBtn(classroomId, {openQuestionList}) {
+    return (
+        <Button
+            className={css.change_Btn}
+            color='danger'
+            data-check='openButton'
+            data-id={classroomId}
+            onClick={openQuestionList}
+        >
 		&#8617;
-    </Button>
-);
+        </Button>
+    );
+}
 
-const createKeys = (numberOfKeys, prefix) => {
+function createKeys(numberOfKeys, prefix) {
     const keys = [];
 
     for (let i = 0; i < numberOfKeys; i += 1) {
@@ -38,18 +40,15 @@ const createKeys = (numberOfKeys, prefix) => {
     }
 
     return keys;
-};
+}
 
-export const getQuestionBase = (classroomId, questions) => {
+export function getQuestionBase(classroomId, questions) {
     const questionRoot = _.find(questions, {classroomId});
 
     return questionRoot ? questionRoot.questionSet : null;
-};
+}
 
-const isOptionChecked = (
-    capabilityOption,
-    {classroomId, questionId, studentId, answers}
-) => {
+function isOptionChecked(capabilityOption, {classroomId, questionId, studentId, answers}) {
     const answersToQuestion = _.find(answers, {classroomId, studentId});
 
     if (!_.isUndefined(answersToQuestion) && !_.isEmpty(answersToQuestion)) {
@@ -62,19 +61,12 @@ const isOptionChecked = (
     }
 
     return false;
-};
+}
 
-const questionOptions = (t, data, actions) => {
-    const {
-        subjectShort,
-        questionKey,
-        questionId,
-        studentId,
-        classroomId,
-        optionsKeys
-    } = data;
+function questionOptions(t, data, actions) {
+    const {subjectShort, questionKey, questionId, studentId, classroomId, optionsKeys} = data;
 
-    const options = optionsKeys.map((capabilityOption, idx) => (
+    const options = _.map(optionsKeys, (capabilityOption, idx) => (
         <td key={idx} className={css.radio_td}>
             <FormGroup>
                 <Label className={css.radio_label}>
@@ -97,37 +89,13 @@ const questionOptions = (t, data, actions) => {
     ));
 
     return <tr>{options}</tr>;
-};
+}
 
-export const createInnerBody = (
-    t,
-    questionKeys,
-    subjectHeader,
-    translationStem,
-    subjectShort,
-    studentId,
-    classroomId,
-    answers,
-    actions
-) => {
-    return questionKeys.map((questionKey, idx) => {
+export function createInnerBody(t, questionKeys, subjectHeader, translationStem, subjectShort, studentId, classroomId, answers, actions) {
+    return _.map(questionKeys, (questionKey, idx) => {
         const questionId = `${subjectShort}${_.upperFirst(questionKey)}`;
         const optionsKeys = createKeys(6, 'option');
-
-        const answerOptions = questionOptions(
-            t,
-            {
-                subjectShort,
-                questionKey,
-                questionId,
-                studentId,
-                classroomId,
-                optionsKeys,
-                answers
-            },
-            actions
-        );
-
+        const answerOptions = questionOptions(t, {subjectShort, questionKey, questionId, classroomId, optionsKeys, answers}, actions);
         const showHeader = _.last(questionKey) === '0' ? subjectHeader : null;
 
         return (
@@ -140,18 +108,10 @@ export const createInnerBody = (
             </tbody>
         );
     });
-};
+}
 
-const createTableBody = (
-    t,
-    subjects,
-    actualSet,
-    studentId,
-    classroomId,
-    answers,
-    actions
-) => {
-    return subjects.map(subject => {
+function createTableBody(t, subjects, actualSet, studentId, classroomId, answers, actions) {
+    return _.map(subjects, subject => {
         const subjectKey = subject[_.findKey(subject)];
         const subjectShort = subjectKey.short;
         const questionKeys = createKeys(subjectKey.number, 'question');
@@ -163,26 +123,11 @@ const createTableBody = (
             </tr>
         );
 
-        return createInnerBody(
-            t,
-            questionKeys,
-            subjectHeader,
-            translationStem,
-            subjectShort,
-            studentId,
-            classroomId,
-            answers,
-            actions
-        );
+        return createInnerBody(t, questionKeys, subjectHeader, translationStem, subjectShort, studentId, classroomId, answers, actions);
     });
-};
+}
 
-export const tableQuestions = (
-    t,
-    actualSet,
-    {studentId, classroomId, questions, answers},
-    actions
-) => {
+export function tableQuestions(t, actualSet, {studentId, classroomId, questions, answers}, actions) {
     const questionBase = getQuestionBase(classroomId, questions);
     const questionSet = _.find(capabilityQuestions, actualSet)[questionBase];
     const questionArr = [];
@@ -191,13 +136,5 @@ export const tableQuestions = (
         questionArr.push({[key]: value});
     });
 
-    return createTableBody(
-        t,
-        questionArr,
-        questionBase,
-        studentId,
-        classroomId,
-        answers,
-        actions
-    );
-};
+    return createTableBody(t, questionArr, questionBase, studentId, classroomId, answers, actions);
+}

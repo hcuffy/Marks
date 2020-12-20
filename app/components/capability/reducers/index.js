@@ -13,6 +13,6 @@ const initialLoadState = {
     questions:        []
 };
 
-export const applyCapabilityChanges = (state = initialLoadState, action) => {
+export function applyCapabilityChanges(state = initialLoadState, action) {
     return reducerActionHandler(state, action, capabilityHandlers);
-};
+}

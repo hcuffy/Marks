@@ -1,32 +1,33 @@
-import {actions} from '../constants';
-import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
 import _ from 'lodash';
 
-const classroomDropdownUpdater = (state, action) => {
+import {actions} from '../constants';
+import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
+
+function classroomDropdownUpdater(state, action) {
     const classDropdown = !state.classDropdown;
     const studentDropdown = false;
 
     return _.assign({}, state, {classDropdown, studentDropdown}, action.payload);
-};
+}
 
-const studentDropdownUpdater = (state, action) => {
+function studentDropdownUpdater(state, action) {
     const studentDropdown = !state.studentDropdown;
     const classDropdown = false;
 
     return _.assign({}, state, {studentDropdown, classDropdown}, action.payload);
-};
+}
 
-const questionDropdownUpdater = (state, action) => {
+function questionDropdownUpdater(state, action) {
     const questionDropdown = !state.questionDropdown;
 
     return _.assign({}, state, {questionDropdown}, action.payload);
-};
+}
 
-const questionSetUpdater = (state, action) => {
+function questionSetUpdater(state, action) {
     const questionDropdown = false;
 
     return _.assign({}, state, {questionDropdown}, action.payload);
-};
+}
 
 export const capabilityHandlers = {
     [actions.OPEN_CLOSE_CLASS_LIST]:    classroomDropdownUpdater,

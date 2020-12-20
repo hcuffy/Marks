@@ -3,6 +3,7 @@ import _ from 'lodash';
 import {withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+
 import {actionCreators} from '../../actions/index';
 import {sortData} from '../rooms/helpers/formHelpers';
 import {
@@ -12,13 +13,15 @@ import {
     createDropdown
 } from '../helpers/dropdowns';
 import {capabilityQuestions} from './constants';
-import {getQuestionSet, changeQuestionBtn} from './helpers/table';
+import {getQuestionSet, changeQuestionBtn} from './table';
 import {resolveLabel} from '../../utils';
 import css from './styles/capability.css';
 
-const filterStudentsByClassId = (students, classroomId) => _.filter(students, ['classroom', classroomId]);
+function filterStudentsByClassId(students, classroomId) {
+    return _.filter(students, ['classroom', classroomId]);
+}
 
-const CapabilityDropdown = ({t, capabilityData, classData, students, actions}) => {
+function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
     const {classDropdown, studentDropdown, questionDropdown, classroom, studentName, questions, classroomId} = capabilityData;
     const classOptions = getClassList(sortData(classData));
     const studentOptions = getStudentList(filterStudentsByClassId(students, classroomId));
@@ -54,7 +57,7 @@ const CapabilityDropdown = ({t, capabilityData, classData, students, actions}) =
             {changeQuestionBtn(classroomId, actions)}
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({
     capabilityData: state.capabilityData,
@@ -66,7 +69,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(CapabilityDropdown));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(CapabilityDropdown));

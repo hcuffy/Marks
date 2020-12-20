@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
-import {firstMakeSelection} from '../../notifications/warnings';
+import {firstMakeSelection} from '../../notifications';
 import css from './styles/helpers.css';
 
 export const getClassList = classlist => {

@@ -3,11 +3,12 @@ import {withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Table} from 'reactstrap';
+
 import {actionCreators} from '../../actions/index';
-import {getQuestionSet, tableQuestions} from './helpers/table';
+import {getQuestionSet, tableQuestions} from './table';
 import css from './styles/capability.css';
 
-const CapabilityTable = ({t, capabilityData, actions}) => {
+function CapabilityTable({t, capabilityData, actions}) {
     const {classroomId, questions} = capabilityData;
     const questionSet = getQuestionSet(classroomId, questions);
     const tableBody = tableQuestions(t, questionSet, capabilityData, actions);
@@ -27,7 +28,7 @@ const CapabilityTable = ({t, capabilityData, actions}) => {
             </div>
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({
     capabilityData: state.capabilityData
@@ -37,7 +38,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(CapabilityTable));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(CapabilityTable));

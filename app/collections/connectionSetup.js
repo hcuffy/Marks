@@ -8,7 +8,6 @@ const path = require('path');
 const fs = require('fs');
 
 const userDataPath = (electron.app || electron.remote.app).getPath('userData');
-
 const collectionsPath = path.join(userDataPath, 'collections');
 
 (function createCollectionPath() {

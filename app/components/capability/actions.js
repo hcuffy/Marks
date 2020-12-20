@@ -1,116 +1,127 @@
+import _ from 'lodash';
+
 import {actions} from './constants';
 import {
     getAllQuestions,
-    updateQuestionData
-} from '../../collections/capability';
-import {
+    updateQuestionData,
     updateSingleAnswer,
     getAllAnswers
-} from '../../collections/capabilityAnswers';
+} from '../../collections';
 
-const isNull = require('lodash/isNull');
-const includes = require('lodash/includes');
-
-export const openCapabilityClassList = event => dispatch => {
-    if (event.target.getAttribute('data-check') !== 'classDropdown') {
-        return;
-    }
-
-    dispatch({
-        type:    actions.OPEN_CLOSE_CLASS_LIST,
-        payload: {
-            classroom:   event.target.innerText,
-            classroomId: event.target.getAttribute('data-id')
+export function openCapabilityClassList(event) {
+    return dispatch => {
+        if (event.target.getAttribute('data-check') !== 'classDropdown') {
+            return;
         }
-    });
-};
 
-export const openCapabilityStudentList = event => async dispatch => {
-    if (event.target.getAttribute('data-check') !== 'studentDropdown') {
-        return;
-    }
+        dispatch({
+            type:    actions.OPEN_CLOSE_CLASS_LIST,
+            payload: {
+                classroom:   event.target.innerText,
+                classroomId: event.target.getAttribute('data-id')
+            }
+        });
+    };
+}
 
-    event.persist();
-    const questions = await getAllQuestions();
-
-    dispatch({
-        type:    actions.OPEN_CLOSE_STUDENT_LIST,
-        payload: {
-            studentName: event.target.innerText,
-            studentId:   event.target.getAttribute('data-id'),
-            questions
+export function openCapabilityStudentList(event) {
+    return async dispatch => {
+        if (event.target.getAttribute('data-check') !== 'studentDropdown') {
+            return;
         }
-    });
-};
 
-export const getQuestions = () => async dispatch => {
-    const questions = await getAllQuestions();
+        event.persist();
+        const questions = await getAllQuestions();
 
-    dispatch({
-        type:    actions.GET_ALL_QUESTIONS,
-        payload: {questions}
-    });
-};
-
-export const openQuestionList = event => dispatch => {
-    event.stopPropagation();
-
-    if (
-        event.target.getAttribute('data-check') !== 'openButton' ||
-		isNull(event.target.getAttribute('data-id'))
-    ) {
-        return;
-    }
-
-    dispatch({
-        type:    actions.OPEN_CLOSE_QUESTION_LIST,
-        payload: {}
-    });
-};
-
-export const updateQuestionSet = event => async dispatch => {
-    if (event.target.getAttribute('data-check') !== 'questionDropdown') {
-        return;
-    }
-
-    const questionSetData = {
-        classroomId: event.target.getAttribute('data-id'),
-        questionSet: event.target.name
+        dispatch({
+            type:    actions.OPEN_CLOSE_STUDENT_LIST,
+            payload: {
+                studentName: event.target.innerText,
+                studentId:   event.target.getAttribute('data-id'),
+                questions
+            }
+        });
     };
+}
 
-    const questions = await updateQuestionData(questionSetData);
+export function getQuestions() {
+    return async dispatch => {
+        const questions = await getAllQuestions();
 
-    dispatch({
-        type:    actions.UPDATE_QUESTION_SET,
-        payload: {questions}
-    });
-};
-
-export const handleCapabilityAnswers = event => async dispatch => {
-    const formData = {
-        classroomId: event.target.getAttribute('classroom-id'),
-        questionId:  event.target.getAttribute('data-id'),
-        studentId:   event.target.getAttribute('student-id'),
-        optionTag:   event.target.getAttribute('option-tag')
+        dispatch({
+            type:    actions.GET_ALL_QUESTIONS,
+            payload: {questions}
+        });
     };
+}
 
-    if (includes(formData, null)) {
-        return;
-    }
+export function openQuestionList(event) {
+    return dispatch => {
+        event.stopPropagation();
 
-    const answers = await updateSingleAnswer(formData);
+        if (
+            event.target.getAttribute('data-check') !== 'openButton' ||
+          _.isNull(event.target.getAttribute('data-id'))
+        ) {
+            return;
+        }
 
-    dispatch({
-        type:    actions.UPDATE_ANSWERS,
-        payload: {answers}
-    });
-};
+        dispatch({
+            type:    actions.OPEN_CLOSE_QUESTION_LIST,
+            payload: {}
+        });
+    };
+}
 
-export const getAnswers = () => async dispatch => {
-    const answers = await getAllAnswers();
+export function updateQuestionSet(event) {
+    return async dispatch => {
+        if (event.target.getAttribute('data-check') !== 'questionDropdown') {
+            return;
+        }
 
-    dispatch({
-        type:    actions.UPDATE_ANSWERS,
-        payload: {answers}
-    });
-};
+        const questionSetData = {
+            classroomId: event.target.getAttribute('data-id'),
+            questionSet: event.target.name
+        };
+
+        const questions = await updateQuestionData(questionSetData);
+
+        dispatch({
+            type:    actions.UPDATE_QUESTION_SET,
+            payload: {questions}
+        });
+    };
+}
+
+export function handleCapabilityAnswers(event) {
+    return async dispatch => {
+        const formData = {
+            classroomId: event.target.getAttribute('classroom-id'),
+            questionId:  event.target.getAttribute('data-id'),
+            studentId:   event.target.getAttribute('student-id'),
+            optionTag:   event.target.getAttribute('option-tag')
+        };
+
+        if (_.includes(formData, null)) {
+            return;
+        }
+
+        const answers = await updateSingleAnswer(formData);
+
+        dispatch({
+            type:    actions.UPDATE_ANSWERS,
+            payload: {answers}
+        });
+    };
+}
+
+export function getAnswers() {
+    return async dispatch => {
+        const answers = await getAllAnswers();
+
+        dispatch({
+            type:    actions.UPDATE_ANSWERS,
+            payload: {answers}
+        });
+    };
+}
