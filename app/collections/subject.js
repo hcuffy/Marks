@@ -2,11 +2,7 @@ import _ from 'lodash';
 
 import connectionToDB from './connectionSetup';
 import {displayToast} from '../notifications';
-import {
-    getClassroomData,
-    updateSubjectArray,
-    updateClassSubjectArray
-} from './classroom';
+import {getClassroomData, updateSubjectArray, updateClassSubjectArray} from './classroom';
 import {getAllExams, deleteExam} from './exam';
 
 const Subject = connectionToDB('subject');

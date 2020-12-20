@@ -1,12 +1,7 @@
 import _ from 'lodash';
 
 import {actions} from './constants';
-import {
-    getAllQuestions,
-    updateQuestionData,
-    updateSingleAnswer,
-    getAllAnswers
-} from '../../collections';
+import {getAllQuestions, updateQuestionData, updateSingleAnswer, getAllAnswers} from '../../collections';
 
 export function openCapabilityClassList(event) {
     return dispatch => {

@@ -14,6 +14,6 @@ const initialLoadState = {
     isInvalid:       false
 };
 
-export const applyNotesData = (state = initialLoadState, action) => {
+export function applyNotesData(state = initialLoadState, action) {
     return reducerActionHandler(state, action, noteHandlers);
-};
+}

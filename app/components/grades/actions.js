@@ -1,12 +1,7 @@
 import _ from 'lodash';
 
 import {actions} from './constants';
-import {
-    getAllExams,
-    getAllGrades,
-    addGradeData,
-    updateGradeData
-} from '../../collections';
+import {getAllExams, getAllGrades, addGradeData, updateGradeData} from '../../collections';
 
 export function openGradeClassList(event) {
     return dispatch => {

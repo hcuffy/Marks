@@ -7,12 +7,7 @@ import {bindActionCreators} from 'redux';
 import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import {sortData} from '../rooms/helpers/formHelpers';
-import {
-    getClassList,
-    getSubjectList,
-    createDropdown,
-    getClassroomName
-} from '../helpers/dropdowns';
+import {getClassList, getSubjectList, createDropdown, getClassroomName} from '../helpers/dropdowns';
 import css from './styles/exam.css';
 
 function ExamListDropdown({t, classData, examData, subjectData, actions}) {

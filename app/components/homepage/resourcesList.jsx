@@ -1,15 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 import {ListGroup, ListGroupItem} from 'reactstrap';
-import {GERMAN_LINKS, ENGLISH_LINKS} from '../constants';
-import {currentLanguage} from '../../../utils/translationUtil';
-import css from '../homepage.css';
 
-export const resourceList = openResource => {
-    const primaryLang = _.isUndefined(currentLanguage())
-        ? 'de'
-        : currentLanguage().slice(0, 2);
+import {GERMAN_LINKS, ENGLISH_LINKS} from './constants';
+import {currentLanguage} from '../../utils';
+import css from './homepage.css';
 
+export function resourceList(openResource) {
+    const primaryLang = _.isUndefined(currentLanguage()) ? 'de' : currentLanguage().slice(0, 2);
     const LanguageLinks = primaryLang === 'de' ? GERMAN_LINKS : ENGLISH_LINKS;
 
     const list = _.keys(LanguageLinks).map((data, idx) => (
@@ -25,4 +23,4 @@ export const resourceList = openResource => {
     ));
 
     return <ListGroup>{list}</ListGroup>;
-};
+}

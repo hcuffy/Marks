@@ -5,11 +5,7 @@ import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
 import {sortData} from '../rooms/helpers/formHelpers';
-import {
-    generateExamForm,
-    getClassOptions,
-    getSubjectOptions
-} from './formHelper';
+import {generateExamForm, getClassOptions, getSubjectOptions} from './formHelper';
 
 function ExamForm({t, classData, subjectData, examData, actions}) {
     const cleanedClassList = sortData(classData);

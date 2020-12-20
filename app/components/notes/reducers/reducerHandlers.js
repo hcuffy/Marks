@@ -1,18 +1,19 @@
 import _ from 'lodash';
+
 import {actions} from '../constants';
 import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
 
-const studentDropdownUpdater = (state, action) => {
+function studentDropdownUpdater(state, action) {
     const studentDropdown = !state.studentDropdown;
 
     return _.assign({}, state, {studentDropdown}, action.payload);
-};
+}
 
-const notesDropdownUpdater = (state, action) => {
+function notesDropdownUpdater(state, action) {
     const notesDropdown = !state.notesDropdown;
 
     return _.assign({}, state, {notesDropdown}, action.payload);
-};
+}
 
 export const noteHandlers = {
     [actions.GET_ALL_NOTES]:               defaultStateUpdater,

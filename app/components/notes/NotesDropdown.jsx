@@ -3,28 +3,15 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
+
 import {actionCreators} from '../../actions/index';
-import {
-    getStudentList,
-    getNotesList,
-    createDropdown,
-    notifyIfEmpty
-} from '../helpers/dropdowns';
-import {resolveLabel} from '../../utils/translationUtil';
+import {getStudentList, getNotesList, createDropdown, notifyIfEmpty} from '../helpers/dropdowns';
+import {resolveLabel} from '../../utils';
 import css from './styles/notes.css';
 
-const NotesDropdown = ({t, studentData, notesData, actions}) => {
+function NotesDropdown({t, studentData, notesData, actions}) {
     const {students} = studentData;
-    const {
-        studentDropdown,
-        notesDropdown,
-        selectedStudent,
-        selectedNote,
-        studentId,
-        notes,
-        textField
-    } = notesData;
-
+    const {studentDropdown, notesDropdown, selectedStudent, selectedNote, studentId, notes, textField} = notesData;
     const studentOptions = getStudentList(students);
     const notesOptions = getNotesList(notes, studentId);
 
@@ -53,7 +40,7 @@ const NotesDropdown = ({t, studentData, notesData, actions}) => {
             )}
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({
     studentData: state.studentData,
@@ -64,7 +51,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(NotesDropdown));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(NotesDropdown));

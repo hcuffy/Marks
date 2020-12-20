@@ -2,12 +2,13 @@ import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {resourceList} from './helpers/resourcesList';
+
+import {resourceList} from './resourcesList';
 import {addressElements} from '../helpers/formValidation';
 import {openResource} from '../../utils';
 import css from './homepage.css';
 
-const Homepage = ({t, addressData}) => {
+function Homepage({t, addressData}) {
     const entry = _.values(addressElements(addressData)).map((data, idx) => <li key={idx}>{data}</li>);
 
     return (
@@ -30,7 +31,7 @@ const Homepage = ({t, addressData}) => {
             </div>
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({
     addressData: state.addressData

@@ -6,12 +6,7 @@ import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
 import {sortData} from '../rooms/helpers/formHelpers';
-import {
-    getClassList,
-    getStudentList,
-    getQuestionList,
-    createDropdown
-} from '../helpers/dropdowns';
+import {getClassList, getStudentList, getQuestionList, createDropdown} from '../helpers/dropdowns';
 import {capabilityQuestions} from './constants';
 import {getQuestionSet, changeQuestionBtn} from './table';
 import {resolveLabel} from '../../utils';
