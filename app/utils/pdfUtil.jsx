@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import {Button} from 'reactstrap';
 
-const downloadPDF = (itemToPDF, nameOfChart, saveAs) => {
+function downloadPDF(itemToPDF, nameOfChart, saveAs) {
     // eslint-disable-next-line no-undef
     const canvas = document.querySelector(itemToPDF);
 
@@ -16,11 +16,13 @@ const downloadPDF = (itemToPDF, nameOfChart, saveAs) => {
     pdfDocument.text(15, 15, nameOfChart);
     pdfDocument.addImage(canvasImg, 'png', 10, 10, 280, 150);
     pdfDocument.save(`${saveAs}.pdf`);
-};
+}
 
-export const PDFbutton = (styling, saveText, chartTitle) => (
-    <Button className={styling} onClick={() => downloadPDF('canvas', chartTitle, 'chart')}>
-        <i className='fas fa-file-pdf fa-2x' /> <br />
-        {saveText}
-    </Button>
-);
+export function PDFbutton(styling, saveText, chartTitle) {
+    return (
+        <Button className={styling} onClick={() => downloadPDF('canvas', chartTitle, 'chart')}>
+            <i className='fas fa-file-pdf fa-2x' /> <br />
+            {saveText}
+        </Button>
+    );
+}

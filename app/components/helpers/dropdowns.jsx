@@ -1,11 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
+
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import {firstMakeSelection} from '../../notifications';
 import css from './styles/helpers.css';
 
-export const getClassList = classlist => {
-    return classlist.map((data, idx) => (
+export function getClassList(classlist) {
+    return _.map(classlist, (data, idx) => (
         <DropdownItem
             key={idx}
             name={data.name}
@@ -15,15 +16,12 @@ export const getClassList = classlist => {
             {data.name}
         </DropdownItem>
     ));
-};
+}
 
-export const getSubjectList = (classroom, subjectData) => {
-    const selectedSubjects = _.filter(subjectData.data, [
-        'classroomId',
-        classroom.selectedRoom
-    ]);
+export function getSubjectList(classroom, subjectData) {
+    const selectedSubjects = _.filter(subjectData.data, ['classroomId', classroom.selectedRoom]);
 
-    return selectedSubjects.map((data, idx) => (
+    return _.map(selectedSubjects, (data, idx) => (
         <DropdownItem
             key={idx}
             name={data.name}
@@ -33,12 +31,12 @@ export const getSubjectList = (classroom, subjectData) => {
             {data.name}
         </DropdownItem>
     ));
-};
+}
 
-export const getAllSubjects = subjects => {
+export function getAllSubjects(subjects) {
     const checkSubject = _.isUndefined(subjects) ? [] : subjects;
 
-    return checkSubject.map((data, idx) => (
+    return _.map(checkSubject, (data, idx) => (
         <DropdownItem
             key={idx}
             name={data.name}
@@ -48,12 +46,12 @@ export const getAllSubjects = subjects => {
             {data.name}
         </DropdownItem>
     ));
-};
+}
 
-export const getExamList = (exams, subjectId) => {
+export function getExamList(exams, subjectId) {
     const selectedExams = _.filter(exams, ['subjectId', subjectId]);
 
-    return selectedExams.map((data, idx) => (
+    return _.map(selectedExams, (data, idx) => (
         <DropdownItem
             key={idx}
             name={data.subjectId}
@@ -63,30 +61,26 @@ export const getExamList = (exams, subjectId) => {
             {data.title}
         </DropdownItem>
     ));
-};
+}
 
-export const getStudentList = allStudents => {
-    const students = _.sortBy(
-        _.isUndefined(allStudents) ? [] : allStudents,
-        ['firstname'],
-        ['asc']
-    );
+export function getStudentList(allStudents) {
+    const students = _.sortBy(_.isUndefined(allStudents) ? [] : allStudents, ['firstname'], ['asc']);
 
-    return students.map((data, idx) => (
+    return _.map(students, (data, idx) => (
         <DropdownItem key={idx} data-id={data._id} data-check='studentDropdown'>
             {`${data.firstname} ${data.lastname}`}
         </DropdownItem>
     ));
-};
+}
 
-export const getNotesList = (allNotes, studentId) => {
+export function getNotesList(allNotes, studentId) {
     if (_.isNull(studentId) || allNotes.length === 0) {
         return [];
     }
 
     const notes = _.sortBy(_.filter(allNotes, {studentId}), ['title'], ['asc']);
 
-    return notes.map((data, idx) => {
+    return _.map(notes, (data, idx) => {
         const created = _.toString(data.createdAt).substring(4, 15);
 
         return (
@@ -95,10 +89,10 @@ export const getNotesList = (allNotes, studentId) => {
             </DropdownItem>
         );
     });
-};
+}
 
-export const subjectOptions = (subjects, actions) => {
-    return subjects.map((data, idx) => (
+export function subjectOptions(subjects, actions) {
+    return _.map(subjects, (data, idx) => (
         <DropdownItem
             key={idx}
             name={data.name}
@@ -108,7 +102,7 @@ export const subjectOptions = (subjects, actions) => {
             {data.name}
         </DropdownItem>
     ));
-};
+}
 
 const heightModifier = {
     setMaxHeight: {
