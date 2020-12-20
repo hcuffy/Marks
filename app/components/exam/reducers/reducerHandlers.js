@@ -2,24 +2,24 @@ import {actions} from '../constants';
 import _ from 'lodash';
 import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
 
-const classroomDropdownUpdater = (state, action) => {
+function classroomDropdownUpdater(state, action) {
     const openClassDropdown = !state.openClassDropdown;
     const openSubList = state.openClassDropdown;
 
     return _.assign({}, state, {openClassDropdown, openSubList}, action.payload);
-};
+}
 
-const singleExamUpdater = (state, action) => {
+function singleExamUpdater(state, action) {
     const examModal = !state.examModal;
 
     return _.assign({}, state, {examModal}, action.payload);
-};
+}
 
-const subjectListUpdater = (state, action) => {
+function subjectListUpdater(state, action) {
     const openSubList = !state.openSubList;
 
     return _.assign({}, state, {openSubList}, action.payload);
-};
+}
 
 export const examHandlers = {
     [actions.ADD_NEW_EXAM]:               defaultStateUpdater,

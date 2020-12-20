@@ -2,10 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
+
 import {actionCreators} from '../../actions/index';
 import {filterObjectData} from '../rooms/helpers/formHelpers';
 import {modalFrame} from '../helpers/editModal';
-import {generateExamForm, resolveHiddenInputs} from './helpers/modalHelper';
+import {generateExamForm, resolveHiddenInputs} from './modalHelper';
 
 const ExamModal = ({t, examData, actions}) => {
     const {examModal, examId, exams, subjectId} = examData;
@@ -34,6 +35,7 @@ const ExamModal = ({t, examData, actions}) => {
         </div>
     );
 };
+
 const mapStateToProps = state => ({
     examData: state.examData
 });
@@ -42,7 +44,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(ExamModal));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ExamModal));

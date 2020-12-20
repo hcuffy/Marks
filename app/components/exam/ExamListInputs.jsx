@@ -2,14 +2,15 @@ import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+
 import {actionCreators} from '../../actions/index';
 import {Button} from 'reactstrap';
 import css from './styles/exam.css';
 
-const ExamListInputs = ({exams, subjectId, actions}) => {
+function ExamListInputs({exams, subjectId, actions}) {
     const filteredExams = _.filter(exams, ['subjectId', subjectId]);
 
-    const examList = filteredExams.map((data, idx) => (
+    const examList = _.map(filteredExams, (data, idx) => (
         <Button
             key={idx}
             data-id={data._id}
@@ -34,7 +35,7 @@ const ExamListInputs = ({exams, subjectId, actions}) => {
             {examList}
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({
     exams:     state.examData.exams,

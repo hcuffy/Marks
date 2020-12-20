@@ -14,6 +14,6 @@ const initialLoadState = {
     weight:            ''
 };
 
-export const applyFilteredExam = (state = initialLoadState, action) => {
+export function applyFilteredExam(state = initialLoadState, action) {
     return reducerActionHandler(state, action, examHandlers);
-};
+}

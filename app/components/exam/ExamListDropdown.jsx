@@ -3,7 +3,8 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
-import {resolveLabel} from '../../utils/translationUtil';
+
+import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import {sortData} from '../rooms/helpers/formHelpers';
 import {
@@ -14,24 +15,12 @@ import {
 } from '../helpers/dropdowns';
 import css from './styles/exam.css';
 
-const ExamListDropdown = ({t, classData, examData, subjectData, actions}) => {
-    const {
-        classroomId,
-        selectedSubject,
-        openClassDropdown,
-        openSubList
-    } = examData;
+function ExamListDropdown({t, classData, examData, subjectData, actions}) {
+    const {classroomId, selectedSubject, openClassDropdown, openSubList} = examData;
     const cleanedClassList = sortData(classData);
     const classOptions = getClassList(cleanedClassList);
-
-    const classroom = _.isNull(classroomId)
-        ? classroomId
-        : getClassroomName(classroomId, classData.classData);
-
-    const subjectOptions = getSubjectList(
-        {selectedRoom: classroomId},
-        subjectData
-    );
+    const classroom = _.isNull(classroomId) ? classroomId : getClassroomName(classroomId, classData.classData);
+    const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
 
     return (
         <div className={css.dropdown_main_div}>
@@ -53,7 +42,7 @@ const ExamListDropdown = ({t, classData, examData, subjectData, actions}) => {
             )}
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({
     classData:   state.classData,
@@ -65,7 +54,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(ExamListDropdown));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ExamListDropdown));
