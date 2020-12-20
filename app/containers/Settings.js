@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+
 import {actionCreators} from '../actions/index';
 import SideMenu from '../components/sidemenu/SideMenu';
 import SettingsPage from '../components/settings/SettingsPage';

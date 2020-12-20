@@ -13,3 +13,7 @@ export const options = {
 export function displayToast(message) {
     toast.success(customTranslate(`'notifications.general.'${message}`), options);
 }
+
+export function firstMakeSelection(t, section) {
+    toast.warn(t(`notifications.warning.${section}`), options);
+}

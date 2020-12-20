@@ -1,16 +1,16 @@
 import _ from 'lodash';
 
-export const defaultStateUpdater = (state, action) => {
+export function defaultStateUpdater(state, action) {
     return _.assign({}, state, action.payload);
-};
+}
 
-export const modalStateUpdater = (state, action) => {
+export function modalStateUpdater(state, action) {
     const showModal = !state.showModal;
 
     return _.assign({}, state, {showModal}, action.payload);
-};
+}
 
-export const reducerActionHandler = (state, action, handlers) => {
+export function reducerActionHandler(state, action, handlers) {
     const handler = handlers[action.type];
 
     if (handler) {
@@ -18,4 +18,4 @@ export const reducerActionHandler = (state, action, handlers) => {
     } else {
         return state;
     }
-};
+}

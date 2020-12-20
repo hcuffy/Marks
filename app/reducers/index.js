@@ -1,19 +1,8 @@
 import {combineReducers} from 'redux';
 import {connectRouter} from 'connected-react-router';
-import {
-    applyAddressData,
-    applyGradeSystem
-} from '../components/settings/reducers';
-import {
-    applyTabChange,
-    applyClassData,
-    applyClassModal
-} from '../components/rooms/reducers';
-import {
-    applyClassList,
-    applySubjectData,
-    applySubjectModal
-} from '../components/subject/reducers';
+import {applyAddressData, applyGradeSystem} from '../components/settings/reducers';
+import {applyTabChange, applyClassData, applyClassModal} from '../components/rooms/reducers';
+import {applyClassList, applySubjectData, applySubjectModal} from '../components/subject/reducers';
 import {applyFilteredExam} from '../components/exam/reducers';
 import {applyStudentData} from '../components/students/reducers';
 import {applyGradeData} from '../components/grades/reducers';

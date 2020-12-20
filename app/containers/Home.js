@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+
 import {actionCreators} from '../actions/index';
 import SideMenu from '../components/sidemenu/SideMenu';
 import Homepage from '../components/homepage/Homepage';
@@ -27,7 +28,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(Home);
+export default connect(null, mapDispatchToProps)(Home);
