@@ -2,22 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
-import {
-    selectedSubject,
-    resolveHiddenInput,
-    determineSubjectInputs
-} from './helpers/formHelpers';
+
+import {selectedSubject, resolveHiddenInput, determineSubjectInputs} from './formHelpers';
 import {modalFrame} from '../helpers/editModal';
 import {actionCreators} from '../../actions/index';
 
-const SubjectModal = ({t, filteredData, subjectModalData, actions}) => {
+function SubjectModal({t, filteredData, subjectModalData, actions}) {
     const {id, showSubjectModal, isInvalid} = subjectModalData;
-
-    const requiredSubject = determineSubjectInputs(
-        filteredData,
-        id,
-        subjectModalData
-    );
+    const requiredSubject = determineSubjectInputs(filteredData, id, subjectModalData);
     const subjectFields = selectedSubject(t, requiredSubject, isInvalid);
     const hiddenInput = resolveHiddenInput(filteredData, id);
 
@@ -41,7 +33,7 @@ const SubjectModal = ({t, filteredData, subjectModalData, actions}) => {
             )}
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({subjectModalData: state.subjectModalData});
 
@@ -49,7 +41,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(SubjectModal));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SubjectModal));

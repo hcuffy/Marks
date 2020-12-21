@@ -9,10 +9,10 @@ const initialLoadState = {
     isInvalid:    false
 };
 
-export const applyClassList = (state = initialLoadState, action) => {
+export function applyClassList(state = initialLoadState, action) {
     return reducerActionHandler(state, action, classlistHandlers);
-};
+}
 
-export const applySubjectData = (state = {}, action) => {
+export function applySubjectData(state = {}, action) {
     return reducerActionHandler(state, action, subjectDataHandlers);
-};
+}

@@ -1,18 +1,19 @@
 import _ from 'lodash';
+
 import {actions} from '../constants';
 import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
 
-const classlistModalUpdater = (state, action) => {
+function classlistModalUpdater(state, action) {
     const openModal = !state.openModal;
 
     return _.assign({}, state, {openModal}, action.payload);
-};
+}
 
-const subjectModalUpdater = (state, action) => {
+function subjectModalUpdater(state, action) {
     const showSubjectModal = !state.showSubjectModal;
 
     return _.assign({}, state, {showSubjectModal}, action.payload);
-};
+}
 
 export const classlistHandlers = {
     [actions.UPDATE_CLASS_LIST]:       classlistModalUpdater,

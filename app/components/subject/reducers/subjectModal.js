@@ -7,6 +7,6 @@ const initialLoadState = {
     isInvalid:        false
 };
 
-export const applySubjectModal = (state = initialLoadState, action) => {
+export function applySubjectModal(state = initialLoadState, action) {
     return reducerActionHandler(state, action, subjectModalHandlers);
-};
+}

@@ -3,12 +3,13 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
+
 import {actionCreators} from '../../actions/index';
-import {generateInputs} from './helpers/formHelpers';
+import {generateInputs} from './formHelpers';
 import {Button, Label} from 'reactstrap';
 import css from './styles/subject.css';
 
-const SubjectForm = ({t, classListData, subjects, actions}) => {
+function SubjectForm({t, classListData, subjects, actions}) {
     const formInputs = generateInputs(t, classListData);
 
     const selectOption = _.values(subjects).map((data, idx) => (
@@ -37,7 +38,8 @@ const SubjectForm = ({t, classListData, subjects, actions}) => {
             </form>
         </div>
     );
-};
+}
+
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });

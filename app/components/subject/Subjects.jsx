@@ -3,7 +3,8 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
-import {resolveLabel} from '../../utils/translationUtil';
+
+import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import SubjectForm from './SubjectForm';
 import SubjectList from './SubjectList';
@@ -11,7 +12,7 @@ import {createDropdown, subjectOptions} from '../helpers/dropdowns';
 import {sortData} from '../classroom/formHelpers';
 import css from './styles/subject.css';
 
-const Subjects = ({t, classData, classListData, actions}) => {
+function Subjects({t, classData, classListData, actions}) {
     const subjects = sortData(classData);
     const {subject, openModal} = classListData;
     const selectedSubject = _.find(subjects, {name: subject});
@@ -40,7 +41,7 @@ const Subjects = ({t, classData, classListData, actions}) => {
             </div>
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({
     classListData: state.classListData
@@ -50,7 +51,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(Subjects));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Subjects));
