@@ -6,6 +6,6 @@ const initialLoadState = {
     examTab:  ''
 };
 
-export const applyTabChange = (state = initialLoadState, action) => {
+export function applyTabChange(state = initialLoadState, action) {
     return reducerActionHandler(state, action, tabHandlers);
-};
+}

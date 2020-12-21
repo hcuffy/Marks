@@ -3,11 +3,12 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
+
 import {actionCreators} from '../../actions/index';
-import {classPill} from './helpers/formHelpers';
+import {classPill} from './formHelpers';
 import css from './styles/room.css';
 
-const NavBar = ({t, tabChangeData, actions}) => {
+function NavBar({t, tabChangeData, actions}) {
     const {classTab, examTab} = tabChangeData;
 
     return (
@@ -32,7 +33,7 @@ const NavBar = ({t, tabChangeData, actions}) => {
             </ul>
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({tabChangeData: state.tabChangeData});
 
@@ -40,7 +41,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(NavBar));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(NavBar));

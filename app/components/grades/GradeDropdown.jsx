@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 
 import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
-import {sortData} from '../rooms/helpers/formHelpers';
+import {sortData} from '../classroom/formHelpers';
 import {getClassList, getSubjectList, createDropdown, notifyIfEmpty, getClassroomName} from '../helpers/dropdowns';
 import css from './styles/grades.css';
 

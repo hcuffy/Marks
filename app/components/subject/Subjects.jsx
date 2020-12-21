@@ -8,7 +8,7 @@ import {actionCreators} from '../../actions/index';
 import SubjectForm from './SubjectForm';
 import SubjectList from './SubjectList';
 import {createDropdown, subjectOptions} from '../helpers/dropdowns';
-import {sortData} from '../rooms/helpers/formHelpers';
+import {sortData} from '../classroom/formHelpers';
 import css from './styles/subject.css';
 
 const Subjects = ({t, classData, classListData, actions}) => {

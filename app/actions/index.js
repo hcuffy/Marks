@@ -1,4 +1,4 @@
-import * as classroom from '../components/rooms/actions';
+import * as classroom from '../components/classroom/actions';
 import * as subject from '../components/subject/actions';
 import * as exam from '../components/exam/actions';
 import * as student from '../components/students/actions';

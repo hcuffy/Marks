@@ -4,8 +4,8 @@ import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../actions/index';
 import SideMenu from '../components/sidemenu/SideMenu';
-import Navbar from '../components/rooms/Navbar';
-import Classes from '../components/rooms/Classes';
+import Navbar from '../components/classroom/Navbar';
+import Classes from '../components/classroom/Classes';
 import Exams from '../components/exam/Exams';
 
 class Classroom extends Component {

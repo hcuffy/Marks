@@ -4,7 +4,7 @@ import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
-import {sortData} from '../rooms/helpers/formHelpers';
+import {sortData} from '../classroom/formHelpers';
 import {generateExamForm, getClassOptions, getSubjectOptions} from './formHelper';
 
 function ExamForm({t, classData, subjectData, examData, actions}) {

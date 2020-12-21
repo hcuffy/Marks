@@ -7,6 +7,6 @@ const initialLoadState = {
     isInvalid: false
 };
 
-export const applyClassModal = (state = initialLoadState, action) => {
+export function applyClassModal(state = initialLoadState, action) {
     return reducerActionHandler(state, action, classroomModalHandlers);
-};
+}

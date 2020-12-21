@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {filterObjectData} from '../../rooms/helpers/formHelpers';
+import {filterObjectData} from '../../classroom/formHelpers';
 import {Button, Input, Label} from 'reactstrap';
 import css from '../styles/subject.css';
 

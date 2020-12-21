@@ -10,6 +10,6 @@ const initialLoadState = {
     isInvalid:  false
 };
 
-export const applyClassData = (state = initialLoadState, action) => {
+export function applyClassData(state = initialLoadState, action) {
     return reducerActionHandler(state, action, classroomHandlers);
-};
+}

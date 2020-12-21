@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
-import {sortData} from '../rooms/helpers/formHelpers';
+import {sortData} from '../classroom/formHelpers';
 import {getClassList, getStudentList, getQuestionList, createDropdown} from '../helpers/dropdowns';
 import {capabilityQuestions} from './constants';
 import {getQuestionSet, changeQuestionBtn} from './table';

@@ -4,7 +4,7 @@ import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
-import {filterObjectData} from '../rooms/helpers/formHelpers';
+import {filterObjectData} from '../classroom/formHelpers';
 import {modalFrame} from '../helpers/editModal';
 import {generateExamForm, resolveHiddenInputs} from './modalHelper';
 

@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next'
 import { bindActionCreators } from 'redux'
 import { modalFrame } from '../helpers/editModal'
 import { actionCreators } from '../../actions/index'
-import { filterObjectData } from '../rooms/helpers/formHelpers'
+import { filterObjectData } from '../classroom/formHelpers'
 import { generateFields, resolveHiddenInput } from './helpers/modalHelper'
 
 const StudentModal = ({ t, studentList, classData, actions }) => {
