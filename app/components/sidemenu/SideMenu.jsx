@@ -4,14 +4,15 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
-import {actionCreators} from '../../actions/index';
 import {Button} from 'reactstrap';
-import {menuData} from './helpers/sideMenuData';
-import {openResource} from '../../utils/resourcesLinks';
+
+import {actionCreators} from '../../actions/index';
+import {menuData} from './sideMenuData';
+import {openResource} from '../../utils';
 import {RELEASE_LINK} from './constants';
 import css from './styles/sidemenu.css';
 
-const SideMenu = ({menuStylingData, actions}) => {
+function SideMenu({menuStylingData, actions}) {
     const menuItems = _.keys(menuData).map((data, idx) => (
         <Button key={idx} className={css.menu_btn}>
             <Link onClick={actions.updateButtonStyle} to={menuData[data].linkTo}>
@@ -39,7 +40,7 @@ const SideMenu = ({menuStylingData, actions}) => {
             </Button>
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({menuStylingData: state.menuStylingData});
 

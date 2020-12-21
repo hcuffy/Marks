@@ -7,7 +7,7 @@ import {
     NOTES,
     CAPABILITY,
     SETTINGS
-} from '../../../constants/routes.json';
+} from '../../constants/routes.json';
 
 export const menuData = {
     home: {

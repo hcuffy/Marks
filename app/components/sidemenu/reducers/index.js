@@ -12,6 +12,6 @@ const initialLoadState = {
     settings:   ''
 };
 
-export const applyMenuStyling = (state = initialLoadState, action) => {
+export function applyMenuStyling(state = initialLoadState, action) {
     return reducerActionHandler(state, action, sidemenuHandlers);
-};
+}
