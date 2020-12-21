@@ -2,12 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
-import {addressForm, addressFields} from './helpers/formHelpers';
+
+import {addressForm, addressFields} from './formHelpers';
 import {addressElements} from '../helpers/formValidation';
 import {actionCreators} from '../../actions/index';
 import css from './styles/settings.css';
 
-const Address = ({t, addressData, actions}) => {
+function Address({t, addressData, actions}) {
     const entry = addressFields(t, addressElements(addressData));
 
     return (
@@ -17,14 +18,12 @@ const Address = ({t, addressData, actions}) => {
             {addressForm(t, entry, actions)}
         </div>
     );
-};
+}
+
 const mapStateToProps = state => ({addressData: state.addressData});
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(Address));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Address));

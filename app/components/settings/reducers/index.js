@@ -13,10 +13,10 @@ const initialLoadState = {
 
 const gradingLoadState = {note: true, points: false, percent: false};
 
-export const applyGradeSystem = (state = gradingLoadState, action) => {
+export function applyGradeSystem(state = gradingLoadState, action) {
     return reducerActionHandler(state, action, settingsHandlers);
-};
+}
 
-export const applyAddressData = (state = initialLoadState, action) => {
+export function applyAddressData(state = initialLoadState, action) {
     return reducerActionHandler(state, action, settingsHandlers);
-};
+}
