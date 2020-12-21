@@ -70,7 +70,7 @@ export function displayExamData(event) {
         const selectedSubject = event.target.innerText;
 
         const exams = await getAllExams();
-        if (!_.size(exams)) {
+        if (_.size(exams)) {
             dispatch({
                 type:    actions.DISPLAY_SUBJECT_LIST,
                 payload: {exams, subjectId, selectedSubject, openClassDropdown: false}

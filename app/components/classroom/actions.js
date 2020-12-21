@@ -62,7 +62,7 @@ export function displayClassData() {
     return async dispatch => {
         const data = await getClassroomData();
 
-        if (!_.size(data)) {
+        if (_.size(data)) {
             dispatch({
                 type:    actions.GET_CLASSROOM_DATA,
                 payload: {classData: data, check: false}

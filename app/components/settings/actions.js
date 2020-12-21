@@ -61,7 +61,7 @@ export function displayAddress() {
     return async dispatch => {
         const data = await getAddressData();
 
-        if (!_.size(data)) {
+        if (_.size(data)) {
             const {title, street, province, country, zip, city, year} = data;
             dispatch({
                 type:    actions.DISPLAY_SCHOOL_DATA,

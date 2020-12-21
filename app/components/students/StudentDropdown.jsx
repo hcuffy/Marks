@@ -3,17 +3,13 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
+
 import {actionCreators} from '../../actions/index';
 import {resolveLabel, PDFbutton} from '../../utils';
-import {
-    getStudentList,
-    getAllSubjects,
-    createDropdown,
-    notifyIfEmpty
-} from '../helpers/dropdowns';
+import {getStudentList, getAllSubjects, createDropdown, notifyIfEmpty} from '../helpers/dropdowns';
 import css from './styles/students.css';
 
-const StudentDropdown = ({t, allStudentData, subjectData, actions}) => {
+function StudentDropdown({t, allStudentData, subjectData, actions}) {
     const {
         students,
         studentDropdown,
@@ -25,10 +21,7 @@ const StudentDropdown = ({t, allStudentData, subjectData, actions}) => {
 
     const studentOptions = getStudentList(students);
     const subjectOptions = getAllSubjects(subjectData.data);
-
-    const openIt = {
-        subjectDropdown
-    };
+    const openIt = {subjectDropdown};
 
     if (chartToDisplay === 'subject' && _.isNull(studentGraphName)) {
         notifyIfEmpty(t, [], true, 'student');
@@ -60,7 +53,7 @@ const StudentDropdown = ({t, allStudentData, subjectData, actions}) => {
             )}
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({
     allStudentData: state.studentData,
@@ -71,7 +64,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withTranslation()(StudentDropdown));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(StudentDropdown));

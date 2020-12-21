@@ -79,7 +79,7 @@ export function getGraphExamData() {
     return async dispatch => {
         const exams = await getAllExams();
 
-        if (!_.size(exams)) {
+        if (_.size(exams)) {
             dispatch({
                 type:    actions.GET_ALL_EXAMS,
                 payload: {exams}

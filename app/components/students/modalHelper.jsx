@@ -1,13 +1,16 @@
 import React from 'react';
 import _ from 'lodash';
 import {Input, Label} from 'reactstrap';
+
 import {classroomDropdown, genderDropdown} from './formHelper';
-import {getClassroomName} from '../../helpers/dropdowns';
-import css from '../styles/students.css';
+import {getClassroomName} from '../helpers/dropdowns';
+import css from './styles/students.css';
 
-export const resolveHiddenInput = studentId => <input type='hidden' name='studentId' data-id={studentId} />;
+export function resolveHiddenInput(studentId) {
+    return <input type='hidden' name='studentId' data-id={studentId} />;
+}
 
-const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
+function dropDownFields(t, studentFields, chosenStudent, classdata) {
     const {gender, classroom} = chosenStudent;
 
     const classroomOptions = _.values(classdata).map((data, idx) => (
@@ -30,9 +33,9 @@ const dropDownFields = (t, studentFields, chosenStudent, classdata) => {
             )}
         </div>
     );
-};
+}
 
-export const determineStudentInputs = (student, studentList) => {
+export function determineStudentInputs(student, studentList) {
     const {firstname, lastname, isModalInvalid} = studentList;
     const {gender, classroom} = student;
 
@@ -41,9 +44,9 @@ export const determineStudentInputs = (student, studentList) => {
     } else {
         return student;
     }
-};
+}
 
-export const generateFields = (t, student, classdata, studentList) => {
+export function generateFields(t, student, classdata, studentList) {
     const fullStudentData = determineStudentInputs(student, studentList);
     const {isModalInvalid} = studentList;
     const studentFullName = _.pick(fullStudentData, ['firstname', 'lastname']);
@@ -71,4 +74,4 @@ export const generateFields = (t, student, classdata, studentList) => {
         fullStudentData,
         classdata
     );
-};
+}

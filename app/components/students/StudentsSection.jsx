@@ -1,29 +1,32 @@
-import React from 'react'
-import { withTranslation } from 'react-i18next'
-import StudentForm from './StudentForm'
-import StudentList from './StudentList'
-import StudentChart from './StudentChart'
-import StudentDropdown from './StudentDropdown'
-import css from './styles/students.css'
+import React from 'react';
+import {withTranslation} from 'react-i18next';
 
-const StudentsSection = ({ t }) => (
-	<div>
-		<div className={css.student_home_div}>
-			<h4 className={css.center_header}>{t('student.title')}</h4>
+import StudentForm from './StudentForm';
+import StudentList from './StudentList';
+import StudentChart from './StudentChart';
+import StudentDropdown from './StudentDropdown';
+import css from './styles/students.css';
 
-			<StudentForm t={t} />
+function StudentsSection({t}) {
+    return (
+        <div>
+            <div className={css.student_home_div}>
+                <h4 className={css.center_header}>{t('student.title')}</h4>
 
-			<StudentList t={t} />
-		</div>
+                <StudentForm t={t} />
 
-		<div className={css.chart_div}>
-			<h4 className={css.chart_header}>{t('student.chartTitle')}</h4>
+                <StudentList t={t} />
+            </div>
 
-			<StudentDropdown t={t} />
+            <div className={css.chart_div}>
+                <h4 className={css.chart_header}>{t('student.chartTitle')}</h4>
 
-			<StudentChart t={t} />
-		</div>
-	</div>
-)
+                <StudentDropdown t={t} />
 
-export default withTranslation()(StudentsSection)
+                <StudentChart t={t} />
+            </div>
+        </div>
+    );
+}
+
+export default withTranslation()(StudentsSection);

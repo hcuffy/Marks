@@ -15,6 +15,6 @@ const initialLoadState = {
     isModalInvalid:   true
 };
 
-export const applyStudentData = (state = initialLoadState, action) => {
+export function applyStudentData(state = initialLoadState, action) {
     return reducerActionHandler(state, action, studentHandlers);
-};
+}

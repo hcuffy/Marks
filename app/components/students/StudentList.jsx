@@ -1,35 +1,34 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
-import { bindActionCreators } from 'redux'
-import { actionCreators } from '../../actions/index'
-import StudentModal from './StudentModal'
-import { generateStudentList } from './helpers/formHelper'
-import css from './styles/students.css'
+import React from 'react';
+import {connect} from 'react-redux';
+import {withTranslation} from 'react-i18next';
+import {bindActionCreators} from 'redux';
 
-const StudentList = ({ t, students, actions }) => {
-	const listData = generateStudentList(students, actions)
+import {actionCreators} from '../../actions/index';
+import StudentModal from './StudentModal';
+import {generateStudentList} from './formHelper';
+import css from './styles/students.css';
 
-	return (
-		<div className={css.student_list}>
-			<h4 className={css.center_sub_header}>{t('student.list')}</h4>
-			<div className={css.list_div}>
-				<div className="list-group list-group-flush">{listData}</div>
+function StudentList({t, students, actions}) {
+    const listData = generateStudentList(students, actions);
 
-				<StudentModal t={t} />
-			</div>
-		</div>
-	)
+    return (
+        <div className={css.student_list}>
+            <h4 className={css.center_sub_header}>{t('student.list')}</h4>
+            <div className={css.list_div}>
+                <div className='list-group list-group-flush'>{listData}</div>
+
+                <StudentModal t={t} />
+            </div>
+        </div>
+    );
 }
+
 const mapStateToProps = state => ({
-	students: state.studentData.students
-})
+    students: state.studentData.students
+});
 
 const mapDispatchToProps = dispatch => ({
-	actions: bindActionCreators(actionCreators, dispatch)
-})
+    actions: bindActionCreators(actionCreators, dispatch)
+});
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withTranslation()(StudentList))
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(StudentList));

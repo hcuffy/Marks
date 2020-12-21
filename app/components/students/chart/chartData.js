@@ -1,16 +1,12 @@
 import _ from 'lodash';
-import {filterBySubject} from '../../../graphs/chartData';
-import {resolveLabel} from '../../../../utils/translationUtil';
 
-const filteredGrades = ({studentGraphId}, grades) => {
+import {filterBySubject} from '../../graphs/chartData';
+import {resolveLabel} from '../../../utils';
+
+function filteredGrades({studentGraphId}, grades) {
     const data = [];
-
     const studentGrades = _.sortBy(
-        _.filter(
-            grades,
-            grade => grade.studentId === studentGraphId && grade.grade > 0
-        ),
-        ['date']
+        _.filter(grades, grade => grade.studentId === studentGraphId && grade.grade > 0), ['date']
     );
 
     for (let i = 0; i < studentGrades.length; i += 1) {
@@ -21,22 +17,15 @@ const filteredGrades = ({studentGraphId}, grades) => {
     }
 
     return data;
-};
+}
 
-const filterSubjectGrades = (
-    {studentGraphId, subjectGraphId},
-    exams,
-    grades
-) => {
+function filterSubjectGrades({studentGraphId, subjectGraphId}, exams, grades) {
     const allSubjectsGrade = filterBySubject(subjectGraphId, exams, grades);
 
     return _.filter(allSubjectsGrade, ['studentId', studentGraphId]);
-};
+}
 
-export const chartHeader = (
-    t,
-    {studentGraphName, subjectGraphName, chartToDisplay}
-) => {
+export function chartHeader(t, {studentGraphName, subjectGraphName, chartToDisplay}) {
     if (chartToDisplay === null || chartToDisplay === 'student') {
         return resolveLabel(studentGraphName, t('student.defaultHeader'));
     }
@@ -46,9 +35,9 @@ export const chartHeader = (
     }
 
     return `${studentGraphName} - ${subjectGraphName}`;
-};
+}
 
-export const chartData = (t, studentData, grades, exams) => {
+export function chartData(t, studentData, grades, exams) {
     const checkedGrades = [];
     const {chartToDisplay} = studentData;
 
@@ -74,4 +63,4 @@ export const chartData = (t, studentData, grades, exams) => {
             }
         ]
     };
-};
+}
