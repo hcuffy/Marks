@@ -34,7 +34,7 @@ $ yarn start
 ## A Quick Look
 
 
-  <img alt="Example Image" src="./internals/img/app.png" />
+  <img alt="Example Image" src="./.erb/img/app.png" />
 
 
 Developed using [**electron-react-boilerplate**](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
