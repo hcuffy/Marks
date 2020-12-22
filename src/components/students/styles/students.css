@@ -1,0 +1,152 @@
+.student_div {
+  height: 290px;
+  width: 500px;
+  float: right;
+  padding-top: 15px;
+}
+.student_list {
+  padding-top: 15px;
+}
+
+.center_header {
+  height: 50px;
+  padding-top: 10px;
+  text-align: left;
+  border-bottom: 1px solid;
+  background: #fdb12e;
+}
+
+.center_sub_header {
+  text-align: left;
+  margin-left: 115px;
+}
+
+.center_add_sub_header {
+  text-align: left;
+  padding-left: 110px;
+}
+
+.form_inner_div {
+  white-space: nowrap;
+  display: flex;
+  float: right;
+  margin: 10px 0 0 0;
+  width: 300px;
+}
+
+.form_outer_div {
+  float: left;
+  position: absolute;
+  width: 400px;
+}
+
+.save_btn {
+  float: right;
+  margin: 10px 0 0 200px;
+}
+
+.form_label {
+  float: left;
+  margin-right: 5px;
+  vertical-align: bottom;
+  line-height: 32px;
+}
+
+.select_dropDown {
+  width: 300px;
+  float: right;
+  margin-top: 5px;
+}
+
+.list_btn {
+  display: inline-flex;
+  align-items: flex-start;
+  height: 40px;
+}
+
+.badge_girl {
+  float: right;
+  background-color: #fc8dcc !important;
+}
+
+.badge_boy {
+  float: right;
+  background-color: #6a9ae8 !important;
+}
+
+.list_div {
+  height: 210px;
+  position: static;
+  scrollbar-width: none;
+  overflow-x: hidden;
+}
+
+select {
+  float: right;
+  width: 200px !important;
+}
+
+.form_label_edit {
+  float: left;
+  vertical-align: bottom;
+  line-height: 36px;
+}
+
+.form_input {
+  float: right;
+}
+
+.form_div_edit {
+  width: 350px;
+  height: 50px;
+}
+
+.chart_div {
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid;
+  height: 440px;
+  background-color: #d1f74a;
+}
+
+.chart_header {
+  text-align: center;
+  margin-left: 105px;
+  width: 100px;
+  height: 30px;
+  position: absolute;
+}
+
+.chart {
+  width: 910px !important;
+  height: 350px !important;
+  position: fixed !important;
+  left: 110px !important;
+  top: 400px !important;
+}
+
+.dropdown_one {
+  float: left;
+  margin: 0 5px 0 100px;
+}
+.dropdown_two {
+  float: left;
+}
+.dropdown_main_div {
+  height: 45px;
+  width: 465px;
+  margin: auto;
+  text-align: center;
+}
+
+.pdf_btn {
+  position: fixed;
+  z-index: 1;
+  left: 900px;
+  margin-top: 5px;
+  background-color: Transparent !important;
+  border: none !important;
+  outline: none;
+  font-size: 14px;
+  color: black !important;
+}
