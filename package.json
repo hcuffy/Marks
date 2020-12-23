@@ -25,6 +25,8 @@
     "start:renderer": "cross-env NODE_ENV=development webpack serve --config ./.erb/configs/webpack.config.renderer.dev.babel.js"
   },
   "dependencies": {
+    "@blueprintjs/core": "^3.36.0",
+    "@blueprintjs/icons": "^3.23.0",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "chart.js": "^2.9.4",
     "connected-react-router": "^6.6.1",

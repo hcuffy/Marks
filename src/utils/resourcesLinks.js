@@ -1,6 +1,7 @@
 import {shell} from 'electron';
 
-export function openResource(event) {
-    const link = event.target.getAttribute('data-name');
+export function openResource({currentTarget}) {
+    const link = currentTarget.getAttribute('data-name');
+
     shell.openExternal(link);
 }
