@@ -1,3 +1,6 @@
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/hcuffy/Marks/master?style=for-the-badge)
+![GitHub all releases](https://img.shields.io/github/downloads/hcuffy/Marks/total?style=for-the-badge)
+
 GitHub Pages: https://hcuffy.github.io/Marks/
 
 
@@ -30,10 +33,8 @@ $ yarn start
 
 ## A Quick Look
 
-<div align="center">
 
-  <img src="./internals/img/app.png" />
+  <img alt="Example Image" src="./.erb/img/app.png" />
 
-</div>
 
 Developed using [**electron-react-boilerplate**](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
