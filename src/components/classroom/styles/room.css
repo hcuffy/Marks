@@ -1,0 +1,94 @@
+.form_label {
+  margin: 3px 10px 0 0;
+  vertical-align: bottom;
+  line-height: 32px;
+}
+
+.form_input {
+  float: right;
+}
+
+.form_div {
+  width: 350px;
+  height: 40px;
+  margin-right: auto;
+}
+
+.room_form {
+  width: 350px;
+  display: flex;
+  margin: 10px 0 0 30px;
+}
+
+.room_form_label {
+  margin-right: auto;
+  vertical-align: bottom;
+  line-height: 32px;
+}
+
+.add_header {
+  text-align: left;
+}
+
+.list_header {
+  text-align: left;
+  margin-left: 115px;
+}
+
+.save_btn {
+  float: right;
+  margin: 10px 30px 0 0;
+}
+
+.form_outer_div {
+  float: right;
+  height: 300px;
+  width: 500px;
+  padding-left: 90px;
+}
+
+.room_div {
+  white-space: normal;
+  padding: 0 20px 0 0;
+}
+
+.list_div {
+  height: 230px;
+  scrollbar-width: none;
+  overflow-x: hidden;
+}
+
+.list_btn {
+  display: inline-flex;
+  align-items: flex-start;
+  height: 40px;
+}
+
+.badge_number {
+  float: right;
+}
+
+.center_main_header {
+  height: 50px;
+  padding-top: 10px;
+  text-align: left;
+  border-bottom: 1px solid;
+  background: #fdb12e;
+}
+
+.modal-body {
+  height: 200px;
+}
+
+.tab_link {
+  color: #1e73be;
+  border-width: 1px !important;
+  border: solid;
+  border-color: #1e73be;
+  margin-left: 5px;
+}
+
+.tab_link:hover {
+  color: #fff;
+  background-color: #1e73be;
+}
