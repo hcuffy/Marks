@@ -1,5 +1,5 @@
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/hcuffy/Marks?color=green&style=for-the-badge)
-![GitHub all releases](https://img.shields.io/github/downloads/hcuffy/Marks/total?color=blue&style=for-the-badge)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/hcuffy/Marks/master?style=for-the-badge)
+![GitHub all releases](https://img.shields.io/github/downloads/hcuffy/Marks/total?style=for-the-badge)
 
 GitHub Pages: https://hcuffy.github.io/Marks/
 
