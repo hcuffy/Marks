@@ -175,7 +175,6 @@
 		}
 	},
 	"notifications": {
-		"general": {
 			"saveSuccess": "The data was saved successfully.",
 			"saveFailed": "The data could not be saved.",
 			"retrieveFail": "It was not possible to retrieve the data.",
@@ -184,13 +183,10 @@
 			"deleteFail": "Failed to delete the data.",
 			"updateSuccess": "The data was updated successfully.",
 			"updateFail": "The data could not be updated.",
-			"noUpdate": "There is nothing to update."
-		},
-		"warning": {
+			"noUpdate": "There is nothing to update.",
 			"class": "First select a class.",
 			"student": "First select a student.",
 			"subject": "First select a subject."
-		}
 	},
 	"settings": {
 		"sectionTitle": "SETTINGS",

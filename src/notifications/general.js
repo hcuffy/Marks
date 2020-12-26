@@ -10,10 +10,14 @@ export const options = {
     draggable:       false
 };
 
-export function displayToast(message) {
-    toast.success(customTranslate(`'notifications.general.'${message}`), options);
+export function displayToast(message, toastType = 'success') {
+    if (toastType === 'success') {
+        return toast.success(customTranslate(`'notifications.${message}`), options);
+    }
+
+    return toast.error(customTranslate(`'notifications.${message}`), options);
 }
 
 export function firstMakeSelection(t, section) {
-    toast.warn(t(`notifications.warning.${section}`), options);
+    toast.warn(t(`notifications.${section}`), options);
 }
