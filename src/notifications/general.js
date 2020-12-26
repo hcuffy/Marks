@@ -12,10 +12,10 @@ export const options = {
 
 export function displayToast(message, toastType = 'success') {
     if (toastType === 'success') {
-        return toast.success(customTranslate(`'notifications.${message}`), options);
+        return toast.success(customTranslate(`notifications.${message}`), options);
     }
 
-    return toast.error(customTranslate(`'notifications.${message}`), options);
+    return toast.error(customTranslate(`notifications.${message}`), options);
 }
 
 export function firstMakeSelection(t, section) {
