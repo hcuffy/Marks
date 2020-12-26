@@ -6,7 +6,7 @@ import {saveGradeSystem, getSystemType, updateGradeType, addAddress, getAddressD
 export function updateGradingSystem(event) {
     return async dispatch => {
         const systemType = {note: false, points: false, percent: false};
-        const newSystemType = _.set(systemType, event.target.value, true);
+        const newSystemType = _.set(systemType, event.currentTarget.value, true);
         const settings = await updateGradeType(newSystemType);
 
         dispatch({
@@ -21,7 +21,7 @@ export function getGradingSystem() {
         const defaultSystemType = [{note: true, points: false, percent: false}];
         const systemType = await getSystemType();
 
-        if (_.size(systemType)) {
+        if (!_.size(systemType)) {
             await saveGradeSystem(defaultSystemType);
             _.assign(systemType, defaultSystemType);
         }
@@ -34,7 +34,7 @@ export function getGradingSystem() {
 }
 
 export function saveSchoolAddress(event) {
-    return dispatch => {
+    return async dispatch => {
         event.preventDefault();
 
         const formData = {
@@ -47,7 +47,7 @@ export function saveSchoolAddress(event) {
             year:     event.target.year.value
         };
 
-        const addressData = addAddress(formData);
+        const addressData = await addAddress(formData);
         const {title, street, province, country, zip, city, year} = addressData;
 
         dispatch({

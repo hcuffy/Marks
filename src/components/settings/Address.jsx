@@ -4,12 +4,12 @@ import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
 import {addressForm, addressFields} from './formHelpers';
-import {addressElements} from '../helpers/formValidation';
+import {filteredAddressData} from '../helpers/formValidation';
 import {actionCreators} from '../../actions/index';
 import css from './styles/settings.css';
 
 function Address({t, addressData, actions}) {
-    const entry = addressFields(t, addressElements(addressData));
+    const entry = addressFields(t, filteredAddressData(addressData));
 
     return (
         <div className={css.address_wrapper}>

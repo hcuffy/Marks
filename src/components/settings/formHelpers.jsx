@@ -1,8 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import _ from 'lodash';
-import {Button} from 'reactstrap';
 
+import {Button} from 'reactstrap';
 import css from './styles/settings.css';
+
+import {withTranslation} from 'react-i18next';
+import {actionCreators} from '../../actions';
 
 export function addressForm(t, entry, actions) {
     return (
@@ -36,8 +41,10 @@ export const addressFields = (t, addressData) => _.keys(addressData).map((data, 
     </div>
 ));
 
-export function gradeRadioButtons(t, systemType, actions) {
-    return _.keys(systemType).map((data, idx) => (
+function RadioButtonsComponent({t, addressData, actions}) {
+    const gradeType = _.pick(addressData, ['note', 'points', 'percent']);
+
+    return _.keys(gradeType).map((data, idx) => (
         <div key={idx} className={`form-check ${css.radio_div}`}>
             <label htmlFor={data} className={`form-check-label ${css.radio_label}`}>
                 {t(`settings.${data}`)}
@@ -48,10 +55,19 @@ export function gradeRadioButtons(t, systemType, actions) {
                 type='radio'
                 className={`form-control ${css.radio_input}`}
                 name='grading'
-                onClick={actions.updateSystemType}
+                onClick={actions.updateGradingSystem}
                 defaultValue={data}
-                defaultChecked={systemType[data]}
+                defaultChecked={gradeType[data]}
             />
         </div>
     ));
 }
+
+export const GradeType = connect(
+    state => ({
+        addressData: state.addressData
+    }),
+    dispatch => ({
+        actions: bindActionCreators(actionCreators, dispatch)
+    })
+)(withTranslation()(RadioButtonsComponent));
