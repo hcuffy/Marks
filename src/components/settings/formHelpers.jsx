@@ -1,66 +1,74 @@
 import React from 'react';
+import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import _ from 'lodash';
+import {withTranslation} from 'react-i18next';
+import {Button, Intent, Radio, RadioGroup} from '@blueprintjs/core';
 
-import {Button} from 'reactstrap';
+import {filteredAddressData} from '../helpers/formValidation';
+import {actionCreators} from '../../actions';
 import css from './styles/settings.css';
 
-import {withTranslation} from 'react-i18next';
-import {actionCreators} from '../../actions';
+export function AddressFields({t, addressData}) {
+    const address = filteredAddressData(addressData);
 
-export function addressForm(t, entry, actions) {
+    return _.keys(address).map((data, idx) => (
+        <div key={idx} className={css.form_inner_div}>
+            <label className={css.form_label} htmlFor={`school${data}`}>
+                {t(`settings.${data}`)}:
+            </label>
+
+            <input
+                name={data}
+                className='form-control'
+                id={`school${data}`}
+                type='text'
+                defaultValue={address[data]}
+            />
+        </div>
+    ));
+}
+
+function AddressFormComponent({t, addressData, actions}) {
     return (
         <form onSubmit={actions.saveSchoolAddress} method='POST'>
             <div className={css.form_outer_div}>
-                {entry}
 
+                <AddressFields t={t} addressData={addressData}/>
                 <div className={(css.form_inner_div, css.save_btn)}>
-                    <Button type='submit' className='btn btn-success'>
-                        {t('general.save')}
-                    </Button>
+                    <Button type='submit' intent={Intent.SUCCESS} text={t('general.save')} />
                 </div>
             </div>
         </form>
     );
 }
 
-export const addressFields = (t, addressData) => _.keys(addressData).map((data, idx) => (
-    <div key={idx} className={css.form_inner_div}>
-        <label className={css.form_label} htmlFor={`school${data}`}>
-            {t(`settings.${data}`)}:
-        </label>
+export const AddressForm = connect(
+    state => ({
+        addressData: state.addressData
+    }),
+    dispatch => ({
+        actions: bindActionCreators(actionCreators, dispatch)
+    })
+)(withTranslation()(AddressFormComponent));
 
-        <input
-            name={data}
-            className='form-control'
-            id={`school${data}`}
-            type='text'
-            defaultValue={addressData[data]}
-        />
-    </div>
-));
+export function gradingSystem(settings) {
+    return _.findKey(settings, gradeType => gradeType === true);
+}
 
 function RadioButtonsComponent({t, addressData, actions}) {
-    const gradeType = _.pick(addressData, ['note', 'points', 'percent']);
+    const selectedValue = gradingSystem(_.pick(addressData, ['note', 'points', 'percent']));
 
-    return _.keys(gradeType).map((data, idx) => (
-        <div key={idx} className={`form-check ${css.radio_div}`}>
-            <label htmlFor={data} className={`form-check-label ${css.radio_label}`}>
-                {t(`settings.${data}`)}
-            </label>
-
-            <input
-                id={data}
-                type='radio'
-                className={`form-control ${css.radio_input}`}
-                name='grading'
-                onClick={actions.updateGradingSystem}
-                defaultValue={data}
-                defaultChecked={gradeType[data]}
-            />
-        </div>
-    ));
+    return (<RadioGroup
+        inline={false}
+        name='settings'
+        selectedValue={selectedValue}
+        onChange={actions.updateGradingSystem}
+    >
+        <Radio label={t('settings.note')} value='note' />
+        <Radio label={t('settings.points')} value='points' />
+        <Radio label={t('settings.percent')} value='percent' />
+    </RadioGroup>);
 }
 
 export const GradeType = connect(

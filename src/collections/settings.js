@@ -81,7 +81,6 @@ export async function addAddress(data) {
     try {
         await updateAddress(data, results[0]._id);
         results = await getAddressData();
-        displayToast('saveSuccess');
 
         return results;
     } catch (e) {

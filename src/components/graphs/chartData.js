@@ -1,9 +1,7 @@
 import _ from 'lodash';
-import {resolveLabel} from '../../utils';
 
-export function gradingSystem(settings) {
-    return _.findKey(settings, gradeType => gradeType === true);
-}
+import {resolveLabel} from '../../utils';
+import {gradingSystem} from '../settings/formHelpers';
 
 function xAxisLabels(start, limit, step) {
     return _.range(start, limit, step);

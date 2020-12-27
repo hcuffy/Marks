@@ -1,4 +1,4 @@
-import {gradingSystem} from '../../graphs/chartData';
+import {gradingSystem} from '../../settings/formHelpers';
 
 function yAxisTicks(settings) {
     const chosenSystem = gradingSystem(settings);
