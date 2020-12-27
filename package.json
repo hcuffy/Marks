@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@babel/eslint-parser": "^7.12.1",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-decorators": "^7.12.1",
     "@babel/plugin-proposal-do-expressions": "^7.12.1",
@@ -84,7 +85,6 @@
     "@types/react-dom": "^16.9.9",
     "@types/react-router-dom": "^5.1.6",
     "@types/webpack-env": "^1.15.2",
-    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-dev-expression": "^0.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
