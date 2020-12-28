@@ -9,17 +9,17 @@ const Exam = connectionToDB('examinations');
 
 export async function addExamData(data) {
     try {
-        let result = await Exam.find({name: data.title});
+        const count = await Exam.count({name: data.title});
 
-        if (_.size(result)) {
+        if (count) {
             displayToast('exists');
 
             return null;
         }
         const newData = data;
-        addExamToSubjectArray(newData);
+        await addExamToSubjectArray(newData);
 
-        result = await Exam.insert(newData);
+        const result = await Exam.insert(newData);
 
         displayToast('saveSuccess');
 
@@ -49,7 +49,7 @@ async function updateTestsArr(examId, subjectId) {
     try {
         const result = await Exam.find({_id: examId});
 
-        const examTitle = result[0].title;
+        const examTitle = result[0].title || {};
 
         await updateSubjectTestArray(subjectId, examTitle);
     } catch (e) {

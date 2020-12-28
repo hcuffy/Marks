@@ -14,7 +14,7 @@ function GradeDropdown({t, classData, gradeData, subjectData, actions}) {
     const {subDrop, subjectName, classroomId, classroomDropdown} = gradeData;
     const openIt = {subDrop};
     const classOptions = getClassList(sortData(classData));
-    const classroom = _.isNull(classroomId) ? classroomId : getClassroomName(classroomId, classData.classData);
+    const classroom = getClassroomName(classroomId, classData.classData);
     const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
 
     if (_.isEmpty(subjectOptions) && subDrop) {

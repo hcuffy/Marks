@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
@@ -14,7 +13,7 @@ function ExamListDropdown({t, classData, examData, subjectData, actions}) {
     const {classroomId, selectedSubject, openClassDropdown, openSubList} = examData;
     const cleanedClassList = sortData(classData);
     const classOptions = getClassList(cleanedClassList);
-    const classroom = _.isNull(classroomId) ? classroomId : getClassroomName(classroomId, classData.classData);
+    const classroom = getClassroomName(classroomId, classData.classData);
     const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
 
     return (

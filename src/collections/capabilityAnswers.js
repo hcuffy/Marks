@@ -35,7 +35,7 @@ async function updateStudentAnswer({classroomId, studentId, questionId, optionTa
     const answerToUpdate = {classroomId, studentId};
     try {
         let result = await Answers.find(answerToUpdate);
-        const answerExists = _.find(result[0].capability, {questionId});
+        const answerExists = _.find(result[0].capability, {questionId}) || {};
 
         if (_.size(answerExists)) {
             await Answers.update(answerToUpdate, {$pull: {capability: {questionId}}}, {});

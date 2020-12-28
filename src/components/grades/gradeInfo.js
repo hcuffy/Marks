@@ -3,7 +3,7 @@ import _ from 'lodash';
 function getPersonalInfo(student) {
     return {
         name:   `${student.lastname}, ${student.firstname}`,
-        gender: student.gender === 'male' ? 'M' : 'F'
+        gender: student?.gender === 'male' ? 'M' : 'F'
     };
 }
 
@@ -12,7 +12,7 @@ function checkGradeId(grade) {
         return null;
     }
 
-    return grade._id;
+    return grade?._id;
 }
 
 function assembleGradeInformation(studentId, gradeData, examData, grades) {
@@ -27,7 +27,7 @@ function assembleGradeInformation(studentId, gradeData, examData, grades) {
 
 function getGradeInfo(student, gradeData) {
     const grade = [];
-    const studentId = student._id;
+    const studentId = student?._id;
     const {exams, grades} = gradeData;
 
     if (_.isUndefined(exams) || _.isUndefined(grades)) {
@@ -49,8 +49,7 @@ function getGradeInfo(student, gradeData) {
 }
 
 function gradeAvgDenominator(grades) {
-    return _.sumBy(_.filter(grades, grade => grade.score > 0),
-                   grade => parseInt(grade.weight, 10));
+    return _.sumBy(_.filter(grades, 'score'), grade => parseInt(grade.weight, 10));
 }
 
 function studentAverage(grades) {
@@ -64,7 +63,7 @@ function studentAverage(grades) {
 }
 
 function getAverage(grades) {
-    const withoutZeros = _.filter(grades, grade => _.parseInt(grade.score) !== 0);
+    const withoutZeros = _.filter(grades, 'score');
 
     const average = _.isEmpty(withoutZeros) ? 0 : studentAverage(withoutZeros);
 

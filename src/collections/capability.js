@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import connectionToDB from './connectionSetup';
 import {displayToast} from '../notifications';
 
@@ -44,13 +42,13 @@ export async function updateQuestionData(data) {
     const {classroomId} = data;
 
     try {
-        let result = await Capability.find({classroomId});
-        if (_.size(result)) {
+        const count = await Capability.find({classroomId});
+        if (count) {
             await updateQuestion(data);
         } else {
             await addNewQuestion(data);
         }
-        result = await Capability.find({});
+        const result = await Capability.find({});
 
         return result;
     } catch (e) {

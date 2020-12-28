@@ -9,7 +9,7 @@ const Subject = connectionToDB('subject');
 
 async function getSubjects({room, abbreviation}) {
     const data = await getClassroomData();
-    const selectedClass = _.find(data, {name: room});
+    const selectedClass = _.find(data, {name: room}) || {};
     if (_.includes(selectedClass.subjects, abbreviation)) {
         return true;
     }
@@ -91,8 +91,7 @@ export async function deleteSubject({id}) {
 function checkSubjectChanges(previous, current) {
     const {name, abbreviation} = current;
 
-    return !(_.isEqual(previous.name, name) &&
-      _.isEqual(previous.abbreviation, abbreviation));
+    return !(_.isEqual(previous.name, name) && _.isEqual(previous.abbreviation, abbreviation));
 }
 
 async function updateClassroomSubjects(classroomId, previousSubject, currentSubject) {

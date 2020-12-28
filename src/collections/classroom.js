@@ -8,9 +8,9 @@ const Classroom = connectionToDB('classroom');
 
 export async function addClassroomData(data) {
     try {
-        let classroom = await Classroom.find({name: data.name});
+        const count = await Classroom.count({name: data.name});
 
-        if (_.size(classroom)) {
+        if (count) {
             displayToast('exists');
 
             return null;
@@ -103,11 +103,11 @@ async function updateSingleClassroom(previous, current) {
 
 export async function updateRoomData(data) {
     try {
-        let result = await Classroom.find({name: data.oldName});
-        if (_.size(result)) {
+        const count = await Classroom.count({name: data.oldName});
+        if (count) {
             await updateSingleClassroom(result[0], data);
         }
-        result = await Classroom.find({});
+        const result = await Classroom.find({});
 
         return result;
     } catch (e) {
@@ -120,11 +120,11 @@ export async function updateRoomData(data) {
 
 export async function updateSubjectArray(data) {
     try {
-        let result = await Classroom.find({name: data.name});
-        if (_.size(result)) {
+        const count = await Classroom.count({name: data.name});
+        if (count) {
             await updateSingleClassroom(result[0], data);
         }
-        result = await Classroom.find({});
+        const result = await Classroom.find({});
 
         return result;
     } catch (e) {
