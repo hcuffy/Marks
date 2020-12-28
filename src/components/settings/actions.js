@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import {actions} from './constants';
-import {saveGradeSystem, getSystemType, updateGradeType, addAddress, getAddressData} from '../../collections';
+import {saveGradeSystem, updateGradeType, addAddress, getSettingsData} from '../../collections';
 
 export function updateGradingSystem(event) {
     return async dispatch => {
@@ -19,7 +19,7 @@ export function updateGradingSystem(event) {
 export function getGradingSystem() {
     return async dispatch => {
         const defaultSystemType = [{note: true, points: false, percent: false}];
-        const systemType = await getSystemType();
+        const systemType = await getSettingsData();
 
         if (_.size(systemType)) {
             await saveGradeSystem(defaultSystemType);
@@ -59,7 +59,7 @@ export function saveSchoolAddress(event) {
 
 export function displayAddress() {
     return async dispatch => {
-        const data = await getAddressData();
+        const data = await getSettingsData();
 
         if (_.size(data)) {
             const {title, street, province, country, zip, city, year} = data;

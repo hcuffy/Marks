@@ -33,22 +33,20 @@ export async function addExamData(data) {
 }
 
 export async function getAllExams() {
-    try {
-        let result = await Exam.find({});
+    const result = await Exam.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 async function updateTestsArr(examId, subjectId) {
     try {
         const result = await Exam.find({_id: examId});
-
         const examTitle = result[0].title || {};
 
         await updateSubjectTestArray(subjectId, examTitle);
@@ -59,19 +57,18 @@ async function updateTestsArr(examId, subjectId) {
 }
 
 export async function deleteExam({examId, subjectId}) {
-    try {
-        await updateTestsArr(examId, subjectId);
-        await Exam.remove({_id: examId});
-        await deleteGradesByExamId(examId);
-        let result = await Exam.find({});
+    await updateTestsArr(examId, subjectId);
+    await Exam.remove({_id: examId});
+    await deleteGradesByExamId(examId);
+    let result = await Exam.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('deleteFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 async function updateSingleExam(previous, current) {

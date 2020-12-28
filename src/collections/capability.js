@@ -4,16 +4,15 @@ import {displayToast} from '../notifications';
 const Capability = connectionToDB('question');
 
 export async function getAllQuestions() {
-    try {
-        const result = await Capability.find({});
+    const result = await Capability.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 async function addNewQuestion(data) {
@@ -41,20 +40,19 @@ async function updateQuestion(data) {
 export async function updateQuestionData(data) {
     const {classroomId} = data;
 
-    try {
-        const count = await Capability.find({classroomId});
-        if (count) {
-            await updateQuestion(data);
-        } else {
-            await addNewQuestion(data);
-        }
-        const result = await Capability.find({});
+    const count = await Capability.find({classroomId});
+    if (count) {
+        await updateQuestion(data);
+    } else {
+        await addNewQuestion(data);
+    }
+    const result = await Capability.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('updateFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }

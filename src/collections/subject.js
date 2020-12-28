@@ -18,16 +18,15 @@ async function getSubjects({room, abbreviation}) {
 }
 
 export async function getAllSubjects() {
-    try {
-        let result = await Subject.find({});
+    let result = await Subject.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 export async function addSubjectData(data) {

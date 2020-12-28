@@ -7,41 +7,39 @@ import {getAllSubjects, deleteSubject} from './subject';
 const Classroom = connectionToDB('classroom');
 
 export async function addClassroomData(data) {
-    try {
-        const count = await Classroom.count({name: data.name});
+    const count = await Classroom.count({name: data.name});
 
-        if (count) {
-            displayToast('exists');
-
-            return null;
-        }
-        const newData = data;
-        newData.subjects = [];
-
-        let result = Classroom.insert(newData);
-
-        displayToast('saveSuccess');
-
-        return result;
-    } catch (e) {
-        displayToast('saveFail');
-        console.log(e);
+    if (count) {
+        displayToast('exists');
 
         return null;
     }
+    const newData = data;
+    newData.subjects = [];
+
+    const result = Classroom.insert(newData);
+
+    if (result instanceof Error) {
+        displayToast('saveFail');
+
+        return null;
+    }
+
+    displayToast('saveSuccess');
+
+    return result;
 }
 
 export async function getClassroomData() {
-    try {
-        let result = await Classroom.find({});
+    const result = await Classroom.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 async function filteredSubjects(classroomId) {
@@ -58,23 +56,23 @@ async function deleteSubjectByClassroom(classroomId) {
             });
         }
     } catch (e) {
+        displayToast('deleteFail');
         console.log(e);
     }
 }
 
 export async function deleteClassroom({id}) {
-    try {
-        await Classroom.remove({_id: id});
-        await deleteSubjectByClassroom(id);
-        let result = await Classroom.find({});
+    await Classroom.remove({_id: id});
+    await deleteSubjectByClassroom(id);
+    const result = await Classroom.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('deleteFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 function checkSubject(checkingCurrent) {
@@ -102,37 +100,35 @@ async function updateSingleClassroom(previous, current) {
 }
 
 export async function updateRoomData(data) {
-    try {
-        const count = await Classroom.count({name: data.oldName});
-        if (count) {
-            await updateSingleClassroom(result[0], data);
-        }
-        const result = await Classroom.find({});
+    const count = await Classroom.count({name: data.oldName});
+    if (count) {
+        await updateSingleClassroom(result[0], data);
+    }
+    const result = await Classroom.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('updateFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 export async function updateSubjectArray(data) {
-    try {
-        const count = await Classroom.count({name: data.name});
-        if (count) {
-            await updateSingleClassroom(result[0], data);
-        }
-        const result = await Classroom.find({});
+    const count = await Classroom.count({name: data.name});
+    if (count) {
+        await updateSingleClassroom(result[0], data);
+    }
+    const result = await Classroom.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('updateFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 export async function updateClassSubjectArray(classroomId, oldSubject, newSubject) {
