@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import connectionToDB from './connectionSetup';
 import {displayToast} from '../notifications';
 
@@ -54,7 +56,9 @@ export async function updateGradeType(data) {
         return null;
     }
 
-    await updateSystem(data, result[0]._id);
+    if (_.size(result[0])) {
+        await updateSystem(data, result[0]._id);
+    }
     result = await getSettingsData();
 
     return result;
@@ -63,15 +67,16 @@ export async function updateGradeType(data) {
 export async function addAddress(data) {
     let result = await getSettingsData();
 
-    try {
+    if (_.size(result)) {
         await updateAddress(data, result[0]._id);
-        result = await getSettingsData();
+    }
+    result = await getSettingsData();
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('updateFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }

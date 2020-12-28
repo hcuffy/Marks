@@ -5,7 +5,7 @@ const Grade = connectionToDB('grade');
 
 export async function updateGradeData(data, id) {
     try {
-        await Grade.update({_id: id}, {...data}, {});
+        await Grade.update({_id: id}, data, {});
     } catch (e) {
         displayToast('updateFail');
         console.log(e);

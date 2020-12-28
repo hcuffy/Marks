@@ -32,7 +32,7 @@ export async function getAllSubjects() {
 export async function addSubjectData(data) {
     try {
         const subjectClassroom = await getSubjects(data);
-        if (subjectClassroom === true) {
+        if (_.size(subjectClassroom)) {
             displayToast('exists');
 
             return null;
@@ -118,9 +118,9 @@ async function updateSingleSubject(previous, current) {
 
 export async function updateSubjectData(data) {
     try {
-        const subject = await Subject.find({_id: data.subjectId});
+        const subject = await Subject.findOne({_id: data.subjectId});
         if (_.size(subject)) {
-            await updateSingleSubject(subject[0], data);
+            await updateSingleSubject(subject, data);
         }
         const result = await Subject.find({_id: data.subjectId});
 

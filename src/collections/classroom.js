@@ -17,7 +17,7 @@ export async function addClassroomData(data) {
     const newData = data;
     newData.subjects = [];
 
-    const result = Classroom.insert(newData);
+    const result = await Classroom.insert(newData);
 
     if (result instanceof Error) {
         displayToast('saveFail');
@@ -80,14 +80,14 @@ function checkSubject(checkingCurrent) {
         return false;
     }
 
-    return _.size(checkingCurrent.subjects) > 0;
+    return _.size(checkingCurrent.subjects);
 }
 
 async function updateSingleClassroom(previous, current) {
     const {name, teacher, substitute} = current;
     const {subjects} = previous;
 
-    if (checkSubject(current) === true) {
+    if (checkSubject(current)) {
         subjects.push(current.subjects[0]);
     }
     try {
@@ -134,8 +134,6 @@ export async function updateSubjectArray(data) {
 export async function updateClassSubjectArray(classroomId, oldSubject, newSubject) {
     try {
         await Classroom.update({_id: classroomId}, {$push: {subjects: newSubject}}, {});
-
-        await Classroom.update({_id: classroomId}, {$pull: {subjects: oldSubject}}, {});
     } catch (e) {
         displayToast('updateFail');
         console.log(e);

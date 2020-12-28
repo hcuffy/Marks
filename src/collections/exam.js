@@ -45,14 +45,10 @@ export async function getAllExams() {
 }
 
 async function updateTestsArr(examId, subjectId) {
-    try {
-        const result = await Exam.find({_id: examId});
-        const examTitle = result[0].title || {};
-
+    const result = await Exam.findOne({_id: examId});
+    const examTitle = result[0]?.title;
+    if (examTitle) {
         await updateSubjectTestArray(subjectId, examTitle);
-    } catch (e) {
-        displayToast('updateFail');
-        console.log(e);
     }
 }
 
@@ -85,11 +81,11 @@ async function updateSingleExam(previous, current) {
 export async function updateExamData(data) {
     try {
         const {examId, subjectId, title} = data;
-        let result = await Exam.find({_id: examId});
+        let result = await Exam.findOne({_id: examId});
 
         if (_.size(result)) {
-            await updateSingleExam(result[0], data);
-            await updateSubjectTestArray(subjectId, result[0].title);
+            await updateSingleExam(result, data);
+            await updateSubjectTestArray(subjectId, result?.title);
             await addExamToSubjectArray({subjectId, title});
         }
         result = await Exam.find({});

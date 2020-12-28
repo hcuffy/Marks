@@ -33,8 +33,8 @@ export async function addStudentAnswer(answerData) {
 async function updateStudentAnswer({classroomId, studentId, questionId, optionTag}) {
     const answerToUpdate = {classroomId, studentId};
     try {
-        let result = await Answers.find(answerToUpdate);
-        const answerExists = _.find(result[0].capability, {questionId}) || {};
+        let result = await Answers.findOne(answerToUpdate);
+        const answerExists = _.find(result?.capability, {questionId}) || {};
 
         if (_.size(answerExists)) {
             await Answers.update(answerToUpdate, {$pull: {capability: {questionId}}}, {});
