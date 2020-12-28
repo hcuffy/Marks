@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
 import {filterObjectData} from '../classroom/formHelpers';
-import {ModalFrame} from '../helpers/editModal';
+import {modalFrame} from '../helpers/editModal';
 import {generateExamForm, resolveHiddenInputs} from './modalHelper';
 
 const ExamModal = ({t, examData, actions}) => {
@@ -24,7 +24,7 @@ const ExamModal = ({t, examData, actions}) => {
 
     return (
         <div>
-            {ModalFrame(
+            {modalFrame(
                 t,
                 examModal,
                 actions.updateExam,

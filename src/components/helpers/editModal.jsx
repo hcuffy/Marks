@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, ModalHeader, ModalBody, ModalFooter, Button} from 'reactstrap';
 
-function ModalFooterComponent(t, {dataId, nameId, closeId, deleteAction, closeAction}) {
+function modalFooter(t, {dataId, nameId, closeId, deleteAction, closeAction}) {
     return (
         <ModalFooter>
             <Button
@@ -25,7 +25,7 @@ function ModalFooterComponent(t, {dataId, nameId, closeId, deleteAction, closeAc
     );
 }
 
-export function ModalFrame(t, modalOpen, updateAction, formData, extras, footerData) {
+export function modalFrame(t, modalOpen, updateAction, formData, extras, footerData) {
     return (
         <Modal isOpen={modalOpen} backdrop>
             <ModalHeader>{t('general.edit')}:</ModalHeader>
@@ -35,7 +35,7 @@ export function ModalFrame(t, modalOpen, updateAction, formData, extras, footerD
 
                     {extras}
                 </ModalBody>
-                {ModalFooterComponent(t, footerData)}
+                {modalFooter(t, footerData)}
             </form>
         </Modal>
     );
