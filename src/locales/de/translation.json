@@ -175,7 +175,6 @@
 		}
 	},
 	"notifications": {
-		"general": {
 			"saveSuccess": "Die Daten wurden erfolgreich gespeichert.",
 			"saveFailed": "Die Daten konnten nicht gespeichert werden.",
 			"retrieveFail": "Die Daten konnten nicht abgerufen werden.",
@@ -184,13 +183,10 @@
 			"deleteFail": "Daten konnten nicht gelöscht werden.",
 			"updateSuccess": "Die Daten wurden erfolgreich aktualisiert.",
 			"updateFail": "Die Daten konnten nicht aktualisiert werden.",
-			"noUpdate": "Es gibt nichts zu aktualisieren."
-		},
-		"warning": {
+			"noUpdate": "Es gibt nichts zu aktualisieren.",
 			"class": "Wählen Sie zuerst ein/e Student/in.",
 			"student": "Wählen Sie zuerst eine Klasse.",
 			"subject": "Wählen Sie zuerst ein Fach."
-		}
 	},
 	"settings": {
 		"sectionTitle": "EINSTELLUNGEN",

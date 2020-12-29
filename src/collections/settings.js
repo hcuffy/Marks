@@ -9,7 +9,7 @@ export async function saveGradeSystem(data) {
     try {
         await Settings.insert(data);
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'error');
         console.log(e);
     }
 }
@@ -31,7 +31,7 @@ async function updateAddress(previous, id) {
     try {
         await Settings.update({_id: id}, {$set: {title, street, province, country, zip, city, year}}, {});
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'error');
         console.log(e);
     }
 }

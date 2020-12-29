@@ -1,15 +1,7 @@
 import {settingsHandlers} from './reducerHandlers';
 import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
-const initialLoadState = {
-    title:    null,
-    street:   null,
-    province: null,
-    country:  null,
-    zip:      null,
-    city:     null,
-    year:     null
-};
+const initialLoadState = {title: '', street: '', province: '', country: '', zip: '', city: '', year: ''};
 
 const gradingLoadState = {note: true, points: false, percent: false};
 

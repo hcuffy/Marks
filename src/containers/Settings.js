@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -10,9 +9,7 @@ import SettingsPage from '../components/settings/SettingsPage';
 class School extends Component {
     componentDidMount() {
         this.props.actions.getGradingSystem();
-        if (_.isNull(this.props.addressData.title)) {
-            this.props.actions.displayAddress();
-        }
+        this.props.actions.displayAddress();
     }
 
     render() {

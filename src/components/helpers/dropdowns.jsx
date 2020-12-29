@@ -1,8 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
-
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
-import {firstMakeSelection} from '../../notifications';
+
+import {displayToast} from '../../notifications';
 import css from './styles/helpers.css';
 
 export function getClassList(classlist) {
@@ -138,7 +138,7 @@ export const createDropdown = (
 
 export const notifyIfEmpty = (t, options, selected, section) => {
     if (_.isEmpty(options) && selected) {
-        firstMakeSelection(t, section);
+        displayToast(section, 'warn');
     }
 };
 

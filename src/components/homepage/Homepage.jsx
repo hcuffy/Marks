@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 
 import {resourceList} from './resourcesList';
-import {addressElements} from '../helpers/formValidation';
+import {filteredAddressData} from '../helpers/formValidation';
 import {openResource} from '../../utils';
 import css from './homepage.css';
 
 function Homepage({t, addressData}) {
-    const entry = _.values(addressElements(addressData)).map((data, idx) => <li key={idx}>{data}</li>);
+    const entry = _.values(filteredAddressData(addressData)).map((data, idx) => <li key={idx}>{data}</li>);
 
     return (
         <div className={css.main_school_div}>
