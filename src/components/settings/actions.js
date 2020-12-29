@@ -28,7 +28,7 @@ export function getGradingSystem() {
 
         dispatch({
             type:    actions.GET_SYSTEM_TYPE,
-            payload: {...systemType[0]}
+            payload: {...systemType}
         });
     };
 }

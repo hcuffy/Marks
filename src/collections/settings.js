@@ -27,7 +27,7 @@ export async function getAddressData() {
 
 export async function getSystemType() {
     try {
-        const results = await Settings.find({});
+        const results = await Settings.findOne({});
 
         return results;
     } catch (e) {
