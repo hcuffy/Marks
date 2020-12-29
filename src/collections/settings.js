@@ -15,7 +15,7 @@ export async function saveGradeSystem(data) {
 }
 
 export async function getSettingsData() {
-    const result = await Settings.find({});
+    const result = await Settings.findOne({});
 
     if (result instanceof Error) {
         displayToast('retrieveFail');
@@ -56,8 +56,8 @@ export async function updateGradeType(data) {
         return null;
     }
 
-    if (_.size(result[0])) {
-        await updateSystem(data, result[0]._id);
+    if (_.size(result)) {
+        await updateSystem(data, result?._id);
     }
     result = await getSettingsData();
 
@@ -68,7 +68,7 @@ export async function addAddress(data) {
     let result = await getSettingsData();
 
     if (_.size(result)) {
-        await updateAddress(data, result[0]._id);
+        await updateAddress(data, result?._id);
     }
     result = await getSettingsData();
 
