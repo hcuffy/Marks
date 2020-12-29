@@ -1,49 +1,45 @@
-import {
-    HOME,
-    CLASSROOM,
-    STUDENTS,
-    GRADES,
-    GRAPHS,
-    NOTES,
-    CAPABILITY,
-    SETTINGS
-} from '../../constants/routes.js';
+
+import {HOME, CLASSROOM, STUDENTS, GRADES, GRAPHS, NOTES, CAPABILITY, SETTINGS} from '../../constants/routes.js';
 
 export const menuData = {
     home: {
-        linkTo:    HOME,
-        dataId:    'home',
-        className: 'fa fa-home fa-3x'
+        linkTo: HOME,
+        dataId: 'home',
+        name:   'home'
     },
     classroom: {
-        linkTo:    CLASSROOM,
-        dataId:    'classroom',
-        className: 'fa fa-eraser fa-3x'
+        linkTo: CLASSROOM,
+        dataId: 'classroom',
+        name:   'edit'
     },
     students: {
-        linkTo:    STUDENTS,
-        dataId:    'students',
-        className: 'fa fa-users fa-3x'
+        linkTo: STUDENTS,
+        dataId: 'students',
+        name:   'people'
     },
-    exams:  {linkTo: GRADES, dataId: 'exams', className: 'fa fa-list-ol fa-3x'},
+    exams: {
+        linkTo: GRADES,
+        dataId: 'exams',
+        name:   'properties'
+    },
     graphs: {
-        linkTo:    GRAPHS,
-        dataId:    'graphs',
-        className: 'fa fa-chart-pie fa-3x'
+        linkTo: GRAPHS,
+        dataId: 'graphs',
+        name:   'chart'
     },
     notes: {
-        linkTo:    NOTES,
-        dataId:    'notes',
-        className: 'fas fa-sticky-note fa-3x'
+        linkTo: NOTES,
+        dataId: 'notes',
+        name:   'clipboard'
     },
     capability: {
-        linkTo:    CAPABILITY,
-        dataId:    'capability',
-        className: 'fas fa-brain fa-3x'
+        linkTo: CAPABILITY,
+        dataId: 'capability',
+        name:   'chat'
     },
     school: {
-        linkTo:    SETTINGS,
-        dataId:    'settings',
-        className: 'fa fa-cog fa-3x'
+        linkTo: SETTINGS,
+        dataId: 'settings',
+        name:   'settings'
     }
 };

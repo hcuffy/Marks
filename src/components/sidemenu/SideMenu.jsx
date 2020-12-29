@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
-import {Button} from 'reactstrap';
+import {Button, Icon} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions/index';
 import {menuData} from './sideMenuData';
@@ -14,15 +14,16 @@ import css from './styles/sidemenu.css';
 
 function SideMenu({menuStylingData, actions}) {
     const menuItems = _.keys(menuData).map((data, idx) => (
-        <Button key={idx} className={css.menu_btn}>
-            <Link onClick={actions.updateButtonStyle} to={menuData[data].linkTo}>
-                <i
-                    data-id={menuData[data].dataId}
-                    style={{color: menuStylingData[menuData[data].dataId]}}
-                    className={menuData[data].className}
+        <Link key={idx} to={menuData[data].linkTo}>
+            <Button outlined={true} className={css.menu_btn} data-id={menuData[data].dataId} onClick={actions.updateButtonStyle}>
+                <Icon
+                    icon={menuData[data].name}
+                    iconSize={40}
+                    color={menuStylingData[menuData[data].dataId]}
                 />
-            </Link>
-        </Button>
+
+            </Button>
+        </Link>
     ));
 
     return (
@@ -35,9 +36,8 @@ function SideMenu({menuStylingData, actions}) {
                 onClick={openResource}
                 className={css.version}
                 data-name={RELEASE_LINK}
-            >
-				ver. 1.3.2 <i className='fas fa-external-link-square-alt' />
-            </Button>
+                text={'ver. 1.3.2'}
+            />
         </div>
     );
 }

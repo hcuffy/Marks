@@ -25,14 +25,6 @@
   text-align: left;
 }
 
-input[type='text'] {
-  border: 0;
-  outline: 0;
-  background: transparent;
-  border-bottom: 1px solid black;
-  width: 200px;
-}
-
 .form_inner_div {
   float: right;
   white-space: nowrap;

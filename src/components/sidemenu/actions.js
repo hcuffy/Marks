@@ -1,8 +1,18 @@
 import _ from 'lodash';
 import {actions} from './constants';
 
-function clickedButton(menuButtons, event) {
-    return _.set(menuButtons, event.target.getAttribute('data-id'), '#1dbb90');
+function clickedButton(menuButtons, {currentTarget}) {
+    let selectedButton = currentTarget.getAttribute('data-id');
+    const updatedMenu = {};
+    _.forIn(menuButtons, (value, key) => {
+        if (key !== selectedButton) {
+            _.set(updatedMenu, key, '#e5e5e5');
+        } else {
+            _.set(updatedMenu, key, '#1dbb90');
+        }
+    });
+
+    return updatedMenu;
 }
 
 export function updateButtonStyle(event) {

@@ -1,21 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
+import {withTranslation} from 'react-i18next';
 
-import {addressForm, addressFields} from './formHelpers';
-import {addressElements} from '../helpers/formValidation';
-import {actionCreators} from '../../actions/index';
+import {actionCreators} from '../../actions';
+import {AddressForm} from './formHelpers';
 import css from './styles/settings.css';
 
-function Address({t, addressData, actions}) {
-    const entry = addressFields(t, addressElements(addressData));
-
+function Address({t}) {
     return (
         <div className={css.address_wrapper}>
             <h4 className={css.address_header}>{t('settings.addressTitle')}</h4>
+            <AddressForm/>
 
-            {addressForm(t, entry, actions)}
         </div>
     );
 }

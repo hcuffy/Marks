@@ -7,7 +7,7 @@ export async function saveGradeSystem(data) {
     try {
         await Settings.insert(data);
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'error');
         console.log(e);
     }
 }
@@ -18,7 +18,7 @@ export async function getAddressData() {
 
         return results;
     } catch (e) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'error');
         console.log(e);
 
         return null;
@@ -27,11 +27,11 @@ export async function getAddressData() {
 
 export async function getSystemType() {
     try {
-        const results = await Settings.find({});
+        const results = await Settings.findOne({});
 
         return results;
     } catch (e) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'error');
         console.log(e);
 
         return null;
@@ -42,8 +42,9 @@ async function updateAddress(previous, id) {
     const {title, street, province, country, zip, city, year} = previous;
     try {
         await Settings.update({_id: id}, {$set: {title, street, province, country, zip, city, year}}, {});
+        displayToast('updateSuccess');
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'error');
         console.log(e);
     }
 }
@@ -52,7 +53,6 @@ async function updateSystem(previous, id) {
     const {note, points, percent} = previous;
     try {
         await Settings.update({_id: id}, {$set: {note, points, percent}}, {});
-        displayToast('saveSuccess');
     } catch (e) {
         displayToast('saveFail');
         console.log(e);
@@ -64,10 +64,11 @@ export async function updateGradeType(data) {
     try {
         await updateSystem(data, results[0]._id);
         results = await getSystemType();
+        displayToast('updateSuccess');
 
         return results;
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'error');
         console.log(e);
 
         return null;
@@ -83,7 +84,7 @@ export async function addAddress(data) {
 
         return results;
     } catch (e) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'error');
         console.log(e);
 
         return null;
