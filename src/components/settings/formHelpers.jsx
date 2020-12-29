@@ -3,7 +3,7 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {withTranslation} from 'react-i18next';
-import {Button, Intent, Radio, RadioGroup} from '@blueprintjs/core';
+import {Button, Intent, Radio, RadioGroup, FormGroup} from '@blueprintjs/core';
 
 import {filteredAddressData} from '../helpers/formValidation';
 import {actionCreators} from '../../actions';
@@ -14,17 +14,17 @@ export function AddressFields({t, addressData}) {
 
     return _.keys(address).map((data, idx) => (
         <div key={idx} className={css.form_inner_div}>
-            <label className={css.form_label} htmlFor={`school${data}`}>
+            <label htmlFor={`school${data}`} className='bp3-label'>
                 {t(`settings.${data}`)}:
+                <input
+                    name={data}
+                    className='bp3-input bp3-fill'
+                    id={`school${data}`}
+                    type='text'
+                    defaultValue={address[data]}
+                    placeholder= {t(`settings.${data}`)}
+                />
             </label>
-
-            <input
-                name={data}
-                className='form-control'
-                id={`school${data}`}
-                type='text'
-                defaultValue={address[data]}
-            />
         </div>
     ));
 }
@@ -33,8 +33,9 @@ function AddressFormComponent({t, addressData, actions}) {
     return (
         <form onSubmit={actions.saveSchoolAddress} method='POST'>
             <div className={css.form_outer_div}>
-
-                <AddressFields t={t} addressData={addressData}/>
+                <FormGroup inline={true}>
+                    <AddressFields t={t} addressData={addressData}/>
+                </FormGroup>
                 <div className={(css.form_inner_div, css.save_btn)}>
                     <Button type='submit' intent={Intent.SUCCESS} text={t('general.save')} />
                 </div>

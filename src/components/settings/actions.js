@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import {actions} from './constants';
 import {saveGradeSystem, getSystemType, updateGradeType, addAddress, getAddressData} from '../../collections';
+import {getFormValues} from '../helpers/formValidation';
 
 export function updateGradingSystem(event) {
     return async dispatch => {
@@ -37,15 +38,7 @@ export function saveSchoolAddress(event) {
     return async dispatch => {
         event.preventDefault();
 
-        const formData = {
-            title:    event.target.title.value,
-            street:   event.target.street.value,
-            province: event.target.province.value,
-            country:  event.target.country.value,
-            zip:      event.target.zip.value,
-            city:     event.target.city.value,
-            year:     event.target.year.value
-        };
+        const formData = getFormValues(['title', 'street', 'province', 'country', 'zip', 'city', 'year'], event);
 
         const addressData = await addAddress(formData);
         const {title, street, province, country, zip, city, year} = addressData;

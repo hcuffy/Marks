@@ -17,3 +17,13 @@ export function filteredAddressData(data) {
 
     return {title, street, province, country, zip, city, year};
 }
+
+export function getFormValues(propObject, {target}) {
+    const formValues = {};
+
+    _.forEach(propObject, value => {
+        formValues[value] = target[value].value;
+    });
+
+    return formValues;
+}
