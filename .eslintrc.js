@@ -11,6 +11,7 @@ module.exports = {
             jsx: true
         }
     },
+    parser:  '@babel/eslint-parser',
     plugins: ['react'],
     extends: [
         'eslint:recommended',
