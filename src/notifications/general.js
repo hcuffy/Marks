@@ -1,23 +1,17 @@
-import {toast} from 'react-toastify';
+import {Intent, Position, Toaster} from '@blueprintjs/core';
+
 import {customTranslate} from '../utils';
 
-export const options = {
-    position:        'top-right',
-    autoClose:       4000,
-    hideProgressBar: false,
-    closeOnClick:    true,
-    pauseOnHover:    false,
-    draggable:       false
-};
+export function displayToast(message, toastType = 'warn') {
+    const AppToaster = Toaster.create({position: Position.TOP_RIGHT, maxToasts: 3, timeout: 4000});
+    let intent = Intent.SUCCESS;
 
-export function displayToast(message, toastType = 'success') {
-    if (toastType === 'success') {
-        return toast.success(customTranslate(`notifications.${message}`), options);
+    if (toastType === 'fail') {
+        intent = Intent.DANGER;
+    }
+    if (toastType === 'warn') {
+        intent = Intent.WARNING;
     }
 
-    return toast.error(customTranslate(`notifications.${message}`), options);
-}
-
-export function firstMakeSelection(t, section) {
-    toast.warn(t(`notifications.${section}`), options);
+    AppToaster.show({intent, message: customTranslate(`notifications.${message}`)});
 }
