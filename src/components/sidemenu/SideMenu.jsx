@@ -3,7 +3,6 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
-import {ToastContainer} from 'react-toastify';
 import {Button, Icon} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions/index';
@@ -29,8 +28,6 @@ function SideMenu({menuStylingData, actions}) {
     return (
         <div className={css.menu_div}>
             {menuItems}
-
-            <ToastContainer />
 
             <Button
                 onClick={openResource}
