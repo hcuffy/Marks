@@ -1,49 +1,63 @@
 import React from 'react';
 import _ from 'lodash';
-import {Button, Input} from 'reactstrap';
+import {Button, Intent, FormGroup, InputGroup} from '@blueprintjs/core';
+import {Input} from 'reactstrap';
 
 import css from './styles/room.css';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {actionCreators} from '../../actions';
+import {withTranslation} from 'react-i18next';
 
-export function createFormInputs(t, classData) {
-    const {isInvalid} = classData;
+export function FormInputs({t, classData}) {
+    //const {isInvalid} = classData;
     const formLabels = _.pick(classData, ['name', 'teacher', 'substitute']);
 
     return _.keys(formLabels).map((data, idx) => (
         <div key={idx} className={css.room_form}>
-            <label className={css.room_form_label} htmlFor={`${data}Id`}>
-                {t(`room.${data}`)}:
-            </label>
+            <FormGroup className={css.room_form_label} inline={true} labelFor={`${data}Id`} label={t(`room.${data}`)}>
 
-            <Input
-                name={data}
-                className='form-control'
-                id={`${data}Id`}
-                type='text'
-                defaultValue={formLabels[data]}
-                invalid={isInvalid && _.isEmpty(formLabels[data])}
-            />
+                <InputGroup
+                    name={data}
+                    id={`${data}Id`}
+                    type='text'
+                    defaultValue={formLabels[data]}
+
+                />
+            </FormGroup>
         </div>
     ));
 }
 
-export function addRoomForm(t, formInputs, actions) {
+export function AddClassroomFormComponent({t, classData, actions}) {
     return (
         <div className={css.room_div}>
             <form onSubmit={actions.handleClassData} method='POST'>
                 <div className={css.form_outer_div}>
                     <h4 className={css.add_header}>{t('room.addClassHeader')}</h4>
 
-                    {formInputs}
+                    <FormInputs t={t} classData={classData}/>
 
                     <div className={(css.form_div, css.save_btn)}>
-                        <Button type='submit' formNoValidate className='btn btn-success'>
-                            {t('general.add')}
-                        </Button>
+                        <Button type='submit' formNoValidate intent={Intent.SUCCESS} text={t('general.add')}/>
                     </div>
                 </div>
             </form>
         </div>
     );
+}
+
+export const AddClassroomForm = connect(
+    state => ({
+        classData: state.classData
+    }),
+    dispatch => ({
+        actions: bindActionCreators(actionCreators, dispatch)
+    })
+)(withTranslation()(AddClassroomFormComponent));
+
+export function gradingSystem(settings) {
+    return _.findKey(settings, gradeType => gradeType === true);
 }
 
 export function classInputs(cleanData, action) {

@@ -16,13 +16,11 @@
 
 .room_form {
   width: 350px;
-  display: flex;
   margin: 10px 0 0 30px;
 }
 
 .room_form_label {
-  margin-right: auto;
-  vertical-align: bottom;
+  float: right;
   line-height: 32px;
 }
 
@@ -37,7 +35,7 @@
 
 .save_btn {
   float: right;
-  margin: 10px 30px 0 0;
+  margin: 10px 30px 0 70px;
 }
 
 .form_outer_div {
