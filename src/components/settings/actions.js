@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import {actions} from './constants';
 import {saveGradeSystem, updateGradeType, addAddress, getSettingsData} from '../../collections';
-import {getFormValues} from '../helpers/formValidation';
+import {getFormValues} from '../helpers';
 
 export function updateGradingSystem(event) {
     return async dispatch => {

@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import {Button, Input, Label} from 'reactstrap';
 
-import {getClassroomId} from '../helpers/dropdowns';
+import {getClassroomProp} from '../helpers';
 import css from './styles/exam.css';
 
 export function getClassOptions(classInfo) {
@@ -16,7 +16,7 @@ export function getClassOptions(classInfo) {
 export function getSubjectOptions(subjectData, examData, cleanedClassList) {
     const {subject} = examData;
     const classroom = subject || cleanedClassList[0].name;
-    const classroomId = getClassroomId(classroom, cleanedClassList);
+    const classroomId = getClassroomProp(classroom, cleanedClassList);
     const filteredSubject = _.filter(subjectData.data, ['classroomId', classroomId]);
 
     return _.values(filteredSubject).map((data, idx) => (

@@ -3,7 +3,7 @@ import _ from 'lodash';
 import {Input, Label} from 'reactstrap';
 
 import {classroomDropdown, genderDropdown} from './formHelper';
-import {getClassroomName} from '../helpers/dropdowns';
+import {getClassroomProp} from '../helpers';
 import css from './styles/students.css';
 
 export function resolveHiddenInput(studentId) {
@@ -26,7 +26,7 @@ function dropDownFields(t, studentFields, chosenStudent, classdata) {
             {classroomDropdown(
                 t,
                 classroomOptions,
-                getClassroomName(classroom, classdata),
+                getClassroomProp(classroom, classdata),
                 css.form_div_edit,
                 null,
                 css.form_label_edit

@@ -118,54 +118,35 @@ const heightModifier = {
     }
 };
 
-export const createDropdown = (
-    styling,
-    openIt,
-    action,
-    label,
-    options,
-    dataId
-) => (
-    <div className={styling}>
-        <Dropdown isOpen={openIt} toggle={action}>
-            <DropdownToggle data-check={dataId} className={css.dropdown_color} caret>
-                {label}
-            </DropdownToggle>
-            <DropdownMenu modifiers={heightModifier}>{options}</DropdownMenu>
-        </Dropdown>
-    </div>
-);
+export function createDropdown(styling, openIt, action, label, options, dataId) {
+    return (
+        <div className={styling}>
+            <Dropdown isOpen={openIt} toggle={action}>
+                <DropdownToggle data-check={dataId} className={css.dropdown_color} caret>
+                    {label}
+                </DropdownToggle>
+                <DropdownMenu modifiers={heightModifier}>{options}</DropdownMenu>
+            </Dropdown>
+        </div>
+    );
+}
 
-export const notifyIfEmpty = (t, options, selected, section) => {
+export function notifyIfEmpty(t, options, selected, section) {
     if (_.isEmpty(options) && selected) {
         displayToast(section, 'warn');
     }
-};
+}
 
-export const getClassroomName = (id, classdata) => {
-    const classObject = _.find(classdata, {_id: id}) || {};
+export function getClassroomProp(prop, classdata) {
+    const classObject = _.find(classdata, {prop}) || {};
     if (_.isUndefined(classObject)) {
         return '';
     }
 
-    return classObject.name;
-};
+    return classObject.prop;
+}
 
-export const getClassroomId = (name, classdata) => {
-    const classObject = _.find(classdata, {name}) || {};
-    if (_.isUndefined(classObject)) {
-        return '';
-    }
-
-    return classObject._id;
-};
-
-export const getQuestionList = (
-    t,
-    classroomId,
-    capabilityQuestions,
-    {updateQuestionSet}
-) => {
+export function getQuestionList(t, classroomId, capabilityQuestions, {updateQuestionSet}) {
     return capabilityQuestions.map((data, idx) => (
         <DropdownItem
             key={idx}
@@ -177,4 +158,4 @@ export const getQuestionList = (
             {t(`capability.${data.name}.name`)}
         </DropdownItem>
     ));
-};
+}
