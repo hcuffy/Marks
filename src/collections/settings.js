@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import connectionToDB from './connectionSetup';
 import {displayToast} from '../notifications';
 
@@ -12,37 +14,22 @@ export async function saveGradeSystem(data) {
     }
 }
 
-export async function getAddressData() {
-    try {
-        const results = await Settings.find({});
+export async function getSettingsData() {
+    const result = await Settings.findOne({});
 
-        return results;
-    } catch (e) {
-        displayToast('retrieveFail', 'error');
-        console.log(e);
+    if (result instanceof Error) {
+        displayToast('retrieveFail');
 
         return null;
     }
-}
 
-export async function getSystemType() {
-    try {
-        const results = await Settings.findOne({});
-
-        return results;
-    } catch (e) {
-        displayToast('retrieveFail', 'error');
-        console.log(e);
-
-        return null;
-    }
+    return result;
 }
 
 async function updateAddress(previous, id) {
     const {title, street, province, country, zip, city, year} = previous;
     try {
         await Settings.update({_id: id}, {$set: {title, street, province, country, zip, city, year}}, {});
-        displayToast('updateSuccess');
     } catch (e) {
         displayToast('updateFail', 'error');
         console.log(e);
@@ -53,6 +40,7 @@ async function updateSystem(previous, id) {
     const {note, points, percent} = previous;
     try {
         await Settings.update({_id: id}, {$set: {note, points, percent}}, {});
+        displayToast('saveSuccess');
     } catch (e) {
         displayToast('saveFail');
         console.log(e);
@@ -60,33 +48,35 @@ async function updateSystem(previous, id) {
 }
 
 export async function updateGradeType(data) {
-    let results = await getSystemType();
-    try {
-        await updateSystem(data, results[0]._id);
-        results = await getSystemType();
-        displayToast('updateSuccess');
+    let result = await getSettingsData();
 
-        return results;
-    } catch (e) {
-        displayToast('updateFail', 'error');
-        console.log(e);
+    if (result instanceof Error) {
+        displayToast('updateFail');
 
         return null;
     }
+
+    if (_.size(result)) {
+        await updateSystem(data, result?._id);
+    }
+    result = await getSettingsData();
+
+    return result;
 }
 
 export async function addAddress(data) {
-    let results = await getAddressData();
+    let result = await getSettingsData();
 
-    try {
-        await updateAddress(data, results[0]._id);
-        results = await getAddressData();
+    if (_.size(result)) {
+        await updateAddress(data, result?._id);
+    }
+    result = await getSettingsData();
 
-        return results;
-    } catch (e) {
-        displayToast('retrieveFail', 'error');
-        console.log(e);
+    if (result instanceof Error) {
+        displayToast('updateFail');
 
         return null;
     }
+
+    return result;
 }

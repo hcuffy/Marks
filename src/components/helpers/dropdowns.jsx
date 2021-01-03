@@ -143,7 +143,7 @@ export const notifyIfEmpty = (t, options, selected, section) => {
 };
 
 export const getClassroomName = (id, classdata) => {
-    const classObject = _.find(classdata, {_id: id});
+    const classObject = _.find(classdata, {_id: id}) || {};
     if (_.isUndefined(classObject)) {
         return '';
     }
@@ -152,7 +152,7 @@ export const getClassroomName = (id, classdata) => {
 };
 
 export const getClassroomId = (name, classdata) => {
-    const classObject = _.find(classdata, {name});
+    const classObject = _.find(classdata, {name}) || {};
     if (_.isUndefined(classObject)) {
         return '';
     }

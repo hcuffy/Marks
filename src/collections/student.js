@@ -15,31 +15,28 @@ export async function addNewStudentData(data) {
 }
 
 export async function getAllStudents() {
-    try {
-        const result = await Student.find({});
-
-        return result;
-    } catch (e) {
+    const result = await Student.find({});
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 export async function deleteStudent(data) {
-    try {
-        await Student.remove({_id: data});
-        await deleteGradesByStudentId(data);
-        const result = await Student.find({});
+    await Student.remove({_id: data});
+    await deleteGradesByStudentId(data);
+    const result = await Student.find({});
 
-        return result;
-    } catch (e) {
-        displayToast('deleteFail');
-        console.log(e);
+    if (result instanceof Error) {
+        displayToast('retrieveFail');
 
         return null;
     }
+
+    return result;
 }
 
 async function updateSingleStudent(previous) {
@@ -54,15 +51,13 @@ async function updateSingleStudent(previous) {
 }
 
 export async function updateStudentData(data) {
-    try {
-        await updateSingleStudent(data);
-        let result = await Student.find({});
-
-        return result;
-    } catch (e) {
+    await updateSingleStudent(data);
+    let result = await Student.find({});
+    if (result instanceof Error) {
         displayToast('updateFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }

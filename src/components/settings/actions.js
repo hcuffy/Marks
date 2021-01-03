@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import {actions} from './constants';
-import {saveGradeSystem, getSystemType, updateGradeType, addAddress, getAddressData} from '../../collections';
+import {saveGradeSystem, updateGradeType, addAddress, getSettingsData} from '../../collections';
 import {getFormValues} from '../helpers/formValidation';
 
 export function updateGradingSystem(event) {
@@ -12,7 +12,7 @@ export function updateGradingSystem(event) {
 
         dispatch({
             type:    actions.UPDATE_GRADING_DATA,
-            payload: {...settings[0]}
+            payload: settings
         });
     };
 }
@@ -20,7 +20,7 @@ export function updateGradingSystem(event) {
 export function getGradingSystem() {
     return async dispatch => {
         const defaultSystemType = [{note: true, points: false, percent: false}];
-        const systemType = await getSystemType();
+        const systemType = await getSettingsData();
 
         if (!_.size(systemType)) {
             await saveGradeSystem(defaultSystemType);
@@ -29,7 +29,7 @@ export function getGradingSystem() {
 
         dispatch({
             type:    actions.GET_SYSTEM_TYPE,
-            payload: {...systemType}
+            payload: systemType
         });
     };
 }
@@ -52,10 +52,10 @@ export function saveSchoolAddress(event) {
 
 export function displayAddress() {
     return async dispatch => {
-        const data = await getAddressData();
+        const data = await getSettingsData();
 
         if (_.size(data)) {
-            const {title, street, province, country, zip, city, year} = data[0];
+            const {title, street, province, country, zip, city, year} = data;
 
             dispatch({
                 type:    actions.DISPLAY_SCHOOL_DATA,
