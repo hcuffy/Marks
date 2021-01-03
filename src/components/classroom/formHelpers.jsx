@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {withTranslation} from 'react-i18next';
 import _ from 'lodash';
-import {Button, Intent, FormGroup, InputGroup} from '@blueprintjs/core';
+import {Button, ButtonGroup, Intent, FormGroup, InputGroup, Alignment} from '@blueprintjs/core';
 
 import css from './styles/room.css';
 import {actionCreators} from '../../actions';
@@ -63,18 +63,20 @@ export function ClassroomListComponent({classData, actions}) {
     const cleanData = sortData(classData);
 
     return _.map(cleanData, (data, idx) => (
-        <Button
-            key={idx}
-            data-id={data._id}
-            className={`list-group-item list-group-item-action ${css.list_btn}`}
-            onClick={ actions.roomModalDisplay}
-        >
-            {data.name}
+        <div key={idx} className={css.list_buttons}>
+            <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
+                <Button
+                    onClick={ actions.roomModalDisplay}
+                    text={data.name}
+                    data-id={data._id}
+                >
 
-            <span className={`badge badge-warning badge-pill ${css.badge_number}`}>
-                {data.subjects.length}
-            </span>
-        </Button>
+                    <span className={`badge badge-warning badge-pill ${css.badge_number}`}>
+                        {data.subjects.length}
+                    </span>
+                </Button>
+            </ButtonGroup>
+        </div>
     ));
 }
 
@@ -87,20 +89,23 @@ export const ClassroomList = connect(
     })
 )(ClassroomListComponent);
 
-export function classPill(index, pillClass, name, action, title) {
-    return (
-        <li className='nav-item'>
-            <a
-                role='button'
-                tabIndex={index}
-                className={`${css.tab_link} nav-link ${pillClass}`}
-                onClick={action}
-                data-name={name}
-            >
-                {title}
-            </a>
-        </li>
-    );
+export function NavBarButton({t, navBarData, actions}) {
+    return _.map(navBarData, (data, idx) => {
+        const label = _.findKey(navBarData, key => key === data);
+
+        return (
+            <ButtonGroup key={idx} minimal={data === null} large={true}>
+                <Button role='button'
+                    outlined={data === null}
+                    intent={Intent.PRIMARY}
+                    onClick={actions.changeClassroomTab}
+                    text={ t(`room.${label}`)}
+                    data-name={label}
+                />
+
+            </ButtonGroup>
+        );
+    });
 }
 
 export function filterObjectData(objectToClean, selectedId) {

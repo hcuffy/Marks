@@ -28,7 +28,13 @@ export function getFormValues(propObject, {target}) {
     return formValues;
 }
 
-export function getAttribute(prop, {target}) {
-    return target.getAttribute(prop);
+export function getAttribute(prop, event) {
+    let value = event.target.getAttribute(prop);
+
+    if (value === null) {
+        return event.currentTarget.getAttribute(prop);
+    }
+
+    return value;
 }
 

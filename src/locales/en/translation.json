@@ -35,7 +35,7 @@
 		"code": "Code",
 		"substitute": "Substitute",
 		"abbreviation": "Abbreviation",
-		"examsTab": "Exams/Tests",
+		"examTab": "Exams/Tests",
 		"classTab": "Classes"
 	},
 	"exam": {

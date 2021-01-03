@@ -84,3 +84,11 @@
   color: #fff;
   background-color: #1e73be;
 }
+
+.navbar_div{
+  text-align: center;
+}
+
+.list_buttons{
+  height: 40px;
+}

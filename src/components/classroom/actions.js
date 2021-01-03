@@ -6,7 +6,7 @@ import {getAttribute, getFormValues, inputValidation} from '../helpers';
 
 export function changeClassroomTab(event) {
     return dispatch => {
-        const tabButtons = {classTab: '', examTab: ''};
+        const tabButtons = {classTab: null, examTab: null};
         const tabUpdate = _.set(tabButtons, getAttribute('data-name', event), 'active');
 
         dispatch({
@@ -118,9 +118,7 @@ export function roomModalDisplay(event) {
     return dispatch => {
         event.preventDefault();
 
-        const roomId = {
-            id: getAttribute('data-id', event)
-        };
+        const roomId = {id: getAttribute('data-id', event)};
 
         dispatch({
             type:    actions.OPEN_CLOSE_ROOM_MODAL,

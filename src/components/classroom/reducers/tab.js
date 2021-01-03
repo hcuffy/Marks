@@ -3,7 +3,7 @@ import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
     classTab: 'active',
-    examTab:  ''
+    examTab:  null
 };
 
 export function applyTabChange(state = initialLoadState, action) {

@@ -35,7 +35,7 @@
 		"code": "code",
 		"substitute": "Vertretungslehrer",
 		"abbreviation": "Abkürzung",
-		"examsTab": "Leistungsnachweise/Proben",
+		"examTab": "Leistungsnachweise/Proben",
 		"classTab": "Klassen"
 	},
 	"exam": {
