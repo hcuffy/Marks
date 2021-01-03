@@ -3,15 +3,14 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
+import {Button, Intent} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions/index';
-import {generateInputs} from './formHelpers';
-import {Button, Label} from 'reactstrap';
+import {SubjectFormInputs} from './formHelpers';
+import {Label} from 'reactstrap';
 import css from './styles/subject.css';
 
 function SubjectForm({t, classListData, subjects, actions}) {
-    const formInputs = generateInputs(t, classListData);
-
     const selectOption = _.values(subjects).map((data, idx) => (
         <option className='form-control dropup' key={idx}>
             {data.name}
@@ -21,7 +20,9 @@ function SubjectForm({t, classListData, subjects, actions}) {
     return (
         <div>
             <form onSubmit={actions.addNewSubject} method='POST'>
-                {formInputs}
+
+                <SubjectFormInputs t={t} classListData={classListData}/>
+
                 <div className={css.form_div}>
                     <Label className={css.form_label} htmlFor='cSelect'>
                         {t('general.selectClass')}:
@@ -31,9 +32,8 @@ function SubjectForm({t, classListData, subjects, actions}) {
                     </select>
                 </div>
                 <div className={css.subject_save}>
-                    <Button type='submit' formNoValidate className='btn btn-success'>
-                        {t('general.add')}
-                    </Button>
+                    <Button type='submit' intent={Intent.SUCCESS} formNoValidate text={t('general.add')} />
+
                 </div>
             </form>
         </div>

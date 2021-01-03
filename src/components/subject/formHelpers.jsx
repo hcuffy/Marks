@@ -2,7 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 
 import {filterObjectData} from '../classroom/formHelpers';
-import {Button, Input, Label} from 'reactstrap';
+import {Input, Label} from 'reactstrap';
+import {Button, FormGroup, InputGroup, Intent} from '@blueprintjs/core';
+
 import css from './styles/subject.css';
 
 function getClassroomId(dataList) {
@@ -86,22 +88,24 @@ export function generateSubjectList(filteredData, action) {
     ));
 }
 
-export function generateInputs(t, {name, abbreviation, isInvalid}) {
-    const formLabels = {name, abbreviation};
+export function SubjectFormInputs({t, classListData}) {
+    const {name, abbreviation, isInvalid} = classListData;
 
-    return _.keys(formLabels).map((data, idx) => (
+    function intent(data) {
+        return isInvalid && _.isEmpty({name, abbreviation}[data]) ? Intent.DANGER : Intent.NONE;
+    }
+
+    return _.keys({name, abbreviation}).map((data, idx) => (
         <div key={idx} className={css.form_div}>
-            <Label className={css.form_label} htmlFor={`${data}Sid`}>
-                {t(`room.${data}`)}:
-            </Label>
-
-            <Input
-                name={data}
-                className='form-control'
-                data-id={`${data}Sid`}
-                type='text'
-                invalid={isInvalid && _.isEmpty(formLabels[data])}
-            />
+            <FormGroup labelFor={`${data}Sid`} inline={true} label={t(`room.${data}`)}>
+                <InputGroup
+                    name={data}
+                    id={`${data}Sid`}
+                    data-id={`${data}Sid`}
+                    type='text'
+                    intent={intent(data)}
+                />
+            </FormGroup>
         </div>
     ));
 }

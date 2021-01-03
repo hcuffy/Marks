@@ -8,7 +8,7 @@ import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import SubjectForm from './SubjectForm';
 import SubjectList from './SubjectList';
-import {createDropdown, subjectOptions} from '../helpers/dropdowns';
+import {createDropdown, subjectOptions} from '../helpers';
 import {sortData} from '../classroom/formHelpers';
 import css from './styles/subject.css';
 

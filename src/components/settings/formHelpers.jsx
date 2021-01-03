@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import {withTranslation} from 'react-i18next';
 import {Button, Intent, Radio, RadioGroup, FormGroup, InputGroup} from '@blueprintjs/core';
 
-import {filteredAddressData} from '../helpers/formValidation';
+import {filteredAddressData} from '../helpers';
 import {actionCreators} from '../../actions';
 import css from './styles/settings.css';
 
