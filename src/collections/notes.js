@@ -15,31 +15,29 @@ export async function addNewNote(data) {
 }
 
 export async function getAllNotes() {
-    try {
-        const result = await Notes.find({});
+    const result = await Notes.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 export async function deleteNote(data) {
-    try {
-        await Notes.remove({_id: data});
+    await Notes.remove({_id: data});
 
-        const result = await Notes.find({});
+    const result = await Notes.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 async function updateSingleNote(previousData) {
@@ -55,15 +53,14 @@ async function updateSingleNote(previousData) {
 }
 
 export async function updateNoteData(data) {
-    try {
-        await updateSingleNote(data);
-        let result = Notes.find({});
+    await updateSingleNote(data);
+    let result = Notes.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('updateFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }

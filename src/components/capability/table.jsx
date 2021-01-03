@@ -9,7 +9,7 @@ export function getQuestionSet(classroomId, questions) {
         return null;
     }
 
-    const questionData = _.find(questions, {classroomId});
+    const questionData = _.find(questions, {classroomId}) || {};
 
     if (_.isUndefined(questionData)) {
         return null;
@@ -43,19 +43,19 @@ function createKeys(numberOfKeys, prefix) {
 }
 
 export function getQuestionBase(classroomId, questions) {
-    const questionRoot = _.find(questions, {classroomId});
+    const questionRoot = _.find(questions, {classroomId}) || {};
 
     return questionRoot ? questionRoot.questionSet : null;
 }
 
 function isOptionChecked(capabilityOption, {classroomId, questionId, studentId, answers}) {
-    const answersToQuestion = _.find(answers, {classroomId, studentId});
+    const answersToQuestion = _.find(answers, {classroomId, studentId}) || {};
 
     if (!_.isUndefined(answersToQuestion) && !_.isEmpty(answersToQuestion)) {
         const selectedQuestionOption = _.find(answersToQuestion.capability, {
             questionId,
             optionTag: capabilityOption
-        });
+        }) || {};
 
         return !!selectedQuestionOption;
     }
@@ -129,7 +129,7 @@ function createTableBody(t, subjects, actualSet, studentId, classroomId, answers
 
 export function tableQuestions(t, actualSet, {studentId, classroomId, questions, answers}, actions) {
     const questionBase = getQuestionBase(classroomId, questions);
-    const questionSet = _.find(capabilityQuestions, actualSet)[questionBase];
+    const questionSet = _.find(capabilityQuestions, actualSet)[questionBase] || {};
     const questionArr = [];
 
     _.forIn(questionSet, (value, key) => {

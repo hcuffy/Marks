@@ -9,7 +9,7 @@ const Subject = connectionToDB('subject');
 
 async function getSubjects({room, abbreviation}) {
     const data = await getClassroomData();
-    const selectedClass = _.find(data, {name: room});
+    const selectedClass = _.find(data, {name: room}) || {};
     if (_.includes(selectedClass.subjects, abbreviation)) {
         return true;
     }
@@ -18,22 +18,21 @@ async function getSubjects({room, abbreviation}) {
 }
 
 export async function getAllSubjects() {
-    try {
-        let result = await Subject.find({});
+    let result = await Subject.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 export async function addSubjectData(data) {
     try {
         const subjectClassroom = await getSubjects(data);
-        if (subjectClassroom === true) {
+        if (_.size(subjectClassroom)) {
             displayToast('exists');
 
             return null;
@@ -91,8 +90,7 @@ export async function deleteSubject({id}) {
 function checkSubjectChanges(previous, current) {
     const {name, abbreviation} = current;
 
-    return !(_.isEqual(previous.name, name) &&
-      _.isEqual(previous.abbreviation, abbreviation));
+    return !(_.isEqual(previous.name, name) && _.isEqual(previous.abbreviation, abbreviation));
 }
 
 async function updateClassroomSubjects(classroomId, previousSubject, currentSubject) {
@@ -120,9 +118,9 @@ async function updateSingleSubject(previous, current) {
 
 export async function updateSubjectData(data) {
     try {
-        const subject = await Subject.find({_id: data.subjectId});
+        const subject = await Subject.findOne({_id: data.subjectId});
         if (_.size(subject)) {
-            await updateSingleSubject(subject[0], data);
+            await updateSingleSubject(subject, data);
         }
         const result = await Subject.find({_id: data.subjectId});
 

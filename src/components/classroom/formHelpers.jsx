@@ -80,7 +80,7 @@ export function classPill(index, pillClass, name, action, title) {
 }
 
 export function filterObjectData(objectToClean, selectedId) {
-    const requiredProp = _.find(objectToClean, {_id: selectedId});
+    const requiredProp = _.find(objectToClean, {_id: selectedId}) || {};
 
     return _.omit(requiredProp, ['_id', 'createdAt', 'updatedAt', 'subjects', 'tests', 'classroomId', 'room']);
 }

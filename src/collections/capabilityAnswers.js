@@ -6,16 +6,15 @@ import {displayToast} from '../notifications';
 const Answers = connectionToDB('answer');
 
 export async function getAllAnswers() {
-    try {
-        const result = await Answers.find({});
+    const result = await Answers.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 export async function addStudentAnswer(answerData) {
@@ -34,8 +33,8 @@ export async function addStudentAnswer(answerData) {
 async function updateStudentAnswer({classroomId, studentId, questionId, optionTag}) {
     const answerToUpdate = {classroomId, studentId};
     try {
-        let result = await Answers.find(answerToUpdate);
-        const answerExists = _.find(result[0].capability, {questionId});
+        let result = await Answers.findOne(answerToUpdate);
+        const answerExists = _.find(result?.capability, {questionId}) || {};
 
         if (_.size(answerExists)) {
             await Answers.update(answerToUpdate, {$pull: {capability: {questionId}}}, {});
@@ -51,22 +50,22 @@ async function updateStudentAnswer({classroomId, studentId, questionId, optionTa
 
 export async function updateSingleAnswer(answerData) {
     const {classroomId, studentId} = answerData;
-    try {
-        const count = await Answers.count({classroomId, studentId});
 
-        if (count < 1) {
-            await addStudentAnswer(answerData);
-        } else {
-            await updateStudentAnswer(answerData);
-        }
+    const count = await Answers.count({classroomId, studentId});
 
-        let result = await Answers.find({});
+    if (count < 1) {
+        await addStudentAnswer(answerData);
+    } else {
+        await updateStudentAnswer(answerData);
+    }
 
-        return result;
-    } catch (e) {
+    const result = await Answers.find({});
+
+    if (result instanceof Error) {
         displayToast('updateFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }

@@ -9,17 +9,17 @@ const Exam = connectionToDB('examinations');
 
 export async function addExamData(data) {
     try {
-        let result = await Exam.find({name: data.title});
+        const count = await Exam.count({name: data.title});
 
-        if (_.size(result)) {
+        if (count) {
             displayToast('exists');
 
             return null;
         }
         const newData = data;
-        addExamToSubjectArray(newData);
+        await addExamToSubjectArray(newData);
 
-        result = await Exam.insert(newData);
+        const result = await Exam.insert(newData);
 
         displayToast('saveSuccess');
 
@@ -33,45 +33,38 @@ export async function addExamData(data) {
 }
 
 export async function getAllExams() {
-    try {
-        let result = await Exam.find({});
+    const result = await Exam.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 async function updateTestsArr(examId, subjectId) {
-    try {
-        const result = await Exam.find({_id: examId});
-
-        const examTitle = result[0].title;
-
+    const result = await Exam.findOne({_id: examId});
+    const examTitle = result[0]?.title;
+    if (examTitle) {
         await updateSubjectTestArray(subjectId, examTitle);
-    } catch (e) {
-        displayToast('updateFail');
-        console.log(e);
     }
 }
 
 export async function deleteExam({examId, subjectId}) {
-    try {
-        await updateTestsArr(examId, subjectId);
-        await Exam.remove({_id: examId});
-        await deleteGradesByExamId(examId);
-        let result = await Exam.find({});
+    await updateTestsArr(examId, subjectId);
+    await Exam.remove({_id: examId});
+    await deleteGradesByExamId(examId);
+    let result = await Exam.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('deleteFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 async function updateSingleExam(previous, current) {
@@ -88,11 +81,11 @@ async function updateSingleExam(previous, current) {
 export async function updateExamData(data) {
     try {
         const {examId, subjectId, title} = data;
-        let result = await Exam.find({_id: examId});
+        let result = await Exam.findOne({_id: examId});
 
         if (_.size(result)) {
-            await updateSingleExam(result[0], data);
-            await updateSubjectTestArray(subjectId, result[0].title);
+            await updateSingleExam(result, data);
+            await updateSubjectTestArray(subjectId, result?.title);
             await addExamToSubjectArray({subjectId, title});
         }
         result = await Exam.find({});

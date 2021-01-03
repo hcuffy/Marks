@@ -5,7 +5,7 @@ const Grade = connectionToDB('grade');
 
 export async function updateGradeData(data, id) {
     try {
-        await Grade.update({_id: id}, {...data}, {});
+        await Grade.update({_id: id}, data, {});
     } catch (e) {
         displayToast('updateFail');
         console.log(e);
@@ -13,57 +13,53 @@ export async function updateGradeData(data, id) {
 }
 
 export async function addGradeData(data) {
-    try {
-        const result = await Grade.insert(data);
+    const result = await Grade.insert(data);
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('saveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 export async function getAllGrades() {
-    try {
-        const result = await Grade.find({});
+    const result = await Grade.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('retrieveFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 export async function deleteGradesByStudentId(id) {
-    try {
-        await Grade.remove({studentId: id}, {multi: true});
+    await Grade.remove({studentId: id}, {multi: true});
 
-        let result = await Grade.find({});
+    const result = await Grade.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('deleteFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
 
 export async function deleteGradesByExamId(id) {
-    try {
-        await Grade.remove({examId: id}, {multi: true});
+    await Grade.remove({examId: id}, {multi: true});
 
-        let result = await Grade.find({});
+    let result = await Grade.find({});
 
-        return result;
-    } catch (e) {
+    if (result instanceof Error) {
         displayToast('deleteFail');
-        console.log(e);
 
         return null;
     }
+
+    return result;
 }
