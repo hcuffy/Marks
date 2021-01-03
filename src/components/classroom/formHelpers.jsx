@@ -1,16 +1,15 @@
 import React from 'react';
-import _ from 'lodash';
-import {Button, Intent, FormGroup, InputGroup} from '@blueprintjs/core';
-import {Input} from 'reactstrap';
-
-import css from './styles/room.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {actionCreators} from '../../actions';
 import {withTranslation} from 'react-i18next';
+import _ from 'lodash';
+import {Button, Intent, FormGroup, InputGroup} from '@blueprintjs/core';
+
+import css from './styles/room.css';
+import {actionCreators} from '../../actions';
 
 export function FormInputs({t, classData}) {
-    //const {isInvalid} = classData;
+    const intent = classData.isInvalid ? Intent.DANGER : Intent.NONE;
     const formLabels = _.pick(classData, ['name', 'teacher', 'substitute']);
 
     return _.keys(formLabels).map((data, idx) => (
@@ -22,7 +21,7 @@ export function FormInputs({t, classData}) {
                     id={`${data}Id`}
                     type='text'
                     defaultValue={formLabels[data]}
-
+                    intent={intent}
                 />
             </FormGroup>
         </div>
@@ -60,13 +59,15 @@ export function gradingSystem(settings) {
     return _.findKey(settings, gradeType => gradeType === true);
 }
 
-export function classInputs(cleanData, action) {
+export function ClassroomListComponent({classData, actions}) {
+    const cleanData = sortData(classData);
+
     return _.map(cleanData, (data, idx) => (
         <Button
             key={idx}
             data-id={data._id}
             className={`list-group-item list-group-item-action ${css.list_btn}`}
-            onClick={action}
+            onClick={ actions.roomModalDisplay}
         >
             {data.name}
 
@@ -76,6 +77,15 @@ export function classInputs(cleanData, action) {
         </Button>
     ));
 }
+
+export const ClassroomList = connect(
+    state => ({
+        classData: state.classData
+    }),
+    dispatch => ({
+        actions: bindActionCreators(actionCreators, dispatch)
+    })
+)(ClassroomListComponent);
 
 export function classPill(index, pillClass, name, action, title) {
     return (
@@ -99,29 +109,26 @@ export function filterObjectData(objectToClean, selectedId) {
     return _.omit(requiredProp, ['_id', 'createdAt', 'updatedAt', 'subjects', 'tests', 'classroomId', 'room']);
 }
 
-export function createModalInputs(t, selectedRoom, isInvalid) {
+export function DialogInputs(t, selectedRoom, isInvalid) {
+    function intent(data) {
+        return isInvalid && _.isEmpty(selectedRoom[data]) ? Intent.DANGER : Intent.NONE;
+    }
+
     return _.keys(selectedRoom).map((data, idx) => (
         <div key={idx} className={css.form_div}>
-            <label className={css.form_label} htmlFor={`${data}_Id`}>
-                {t(`room.${data}`)}:
-            </label>
+            <FormGroup className={css.form_label} inline={false} labelFor={`${data}_Id`} label={t(`room.${data}`)}>
 
-            <Input
-                name={data}
-                className={`${css.form_input} form-control`}
-                data-id={`${data}_Id`}
-                type='text'
-                invalid={isInvalid && _.isEmpty(selectedRoom[data])}
-                defaultValue={selectedRoom[data]}
-            />
+                <InputGroup
+                    name={data}
+                    id={`${data}_Id`}
+                    data-id={`${data}_Id`}
+                    type='text'
+                    intent={intent(data)}
+                    defaultValue={selectedRoom[data]}
+                />
+            </FormGroup>
         </div>
     ));
-}
-
-export function checkChange(classData, actions) {
-    if (classData.check) {
-        actions.displayClassData();
-    }
 }
 
 export function sortData(clean) {

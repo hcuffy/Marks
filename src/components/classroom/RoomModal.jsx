@@ -5,17 +5,18 @@ import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
-import {modalFrame} from '../helpers/editModal';
-import {filterObjectData, createModalInputs} from './formHelpers';
+import {DialogFrame} from '../helpers';
+import {filterObjectData, DialogInputs, sortData} from './formHelpers';
 
 function getCurrentModalData(CurrentModalData) {
     return _.pick(CurrentModalData, ['name', 'teacher', 'substitute']);
 }
 
-function RoomModal({t, modalData, classModalData, actions}) {
+function RoomModal({t, classData, classModalData, actions}) {
+    const cleanData = sortData(classData);
     const {id, showModal, isInvalid} = classModalData;
-    const selectedRoom = isInvalid ? getCurrentModalData(classModalData) : filterObjectData(modalData, id);
-    const roomInputs = createModalInputs(t, selectedRoom, isInvalid);
+    const selectedRoom = isInvalid ? getCurrentModalData(classModalData) : filterObjectData(cleanData, id);
+    const roomInputs = DialogInputs(t, selectedRoom, isInvalid);
     const hiddenInput = <input type='hidden' name='oldName' data-id={selectedRoom.name} />;
 
     const footerData = {
@@ -28,19 +29,15 @@ function RoomModal({t, modalData, classModalData, actions}) {
 
     return (
         <div>
-            {modalFrame(
-                t,
-                showModal,
-                actions.updateRoom,
-                roomInputs,
-                hiddenInput,
-                footerData
-            )}
+            {DialogFrame(t, showModal, actions.updateRoom, roomInputs, hiddenInput, footerData)}
         </div>
     );
 }
 
-const mapStateToProps = state => ({classModalData: state.classModalData});
+const mapStateToProps = state => ({
+    classModalData: state.classModalData,
+    classData:      state.classData
+});
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)

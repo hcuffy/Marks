@@ -5,18 +5,14 @@ import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
 import RoomModal from './RoomModal';
-import {sortData, classInputs} from './formHelpers';
+import {ClassroomList} from './formHelpers';
 import css from './styles/room.css';
 
-function ClassList({t, listData, actions}) {
-    const cleanedData = sortData(listData);
-    const listInputs = classInputs(cleanedData, actions.roomModalDisplay);
-
+function ClassList({t}) {
     return (
         <div className={css.list_div}>
-            <RoomModal t={t} modalData={cleanedData} />
-
-            <div className='list-group list-group-flush'>{listInputs}</div>
+            <RoomModal t={t} />
+            <ClassroomList/>
         </div>
     );
 }

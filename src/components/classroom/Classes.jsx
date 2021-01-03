@@ -6,12 +6,10 @@ import {bindActionCreators} from 'redux';
 import {actionCreators} from '../../actions/index';
 import ClassList from './ClassList';
 import Subjects from '../subject/Subjects';
-import {AddClassroomForm, checkChange} from './formHelpers';
+import {AddClassroomForm} from './formHelpers';
 import css from './styles/room.css';
 
-function Classes({t, classData, actions}) {
-    checkChange(classData, actions);
-
+function Classes({t, classData}) {
     return (
         <div>
             <AddClassroomForm/>
