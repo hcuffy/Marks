@@ -2,7 +2,7 @@ import {Intent, Position, Toaster} from '@blueprintjs/core';
 
 import {customTranslate} from '../utils';
 
-export function displayToast(message, toastType = 'warn') {
+export function displayToast(message, toastType = 'success') {
     const AppToaster = Toaster.create({position: Position.TOP_RIGHT, maxToasts: 3, timeout: 4000});
     let intent = Intent.SUCCESS;
 

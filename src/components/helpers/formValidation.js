@@ -27,3 +27,8 @@ export function getFormValues(propObject, {target}) {
 
     return formValues;
 }
+
+export function getAttribute(prop, {target}) {
+    return target.getAttribute(prop);
+}
+

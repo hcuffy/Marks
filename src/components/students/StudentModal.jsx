@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
-import {modalFrame} from '../helpers/editModal';
+import {DialogFrame} from '../helpers';
 import {actionCreators} from '../../actions/index';
 import {filterObjectData} from '../classroom/formHelpers';
 import {generateFields, resolveHiddenInput} from './modalHelper';
@@ -24,7 +24,7 @@ function StudentModal({t, studentList, classData, actions}) {
 
     return (
         <div>
-            {modalFrame(
+            {DialogFrame(
                 t,
                 studentModal,
                 actions.updateStudent,

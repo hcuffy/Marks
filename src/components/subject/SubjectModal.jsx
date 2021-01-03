@@ -4,7 +4,7 @@ import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
 import {selectedSubject, resolveHiddenInput, determineSubjectInputs} from './formHelpers';
-import {modalFrame} from '../helpers/editModal';
+import {DialogFrame} from '../helpers';
 import {actionCreators} from '../../actions/index';
 
 function SubjectModal({t, filteredData, subjectModalData, actions}) {
@@ -23,7 +23,7 @@ function SubjectModal({t, filteredData, subjectModalData, actions}) {
 
     return (
         <div>
-            {modalFrame(
+            {DialogFrame(
                 t,
                 showSubjectModal,
                 actions.updateSubject,
