@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {actions} from './constants';
 import {addSubjectData, getAllSubjects, updateSubjectData, deleteSubject} from '../../collections';
-import {inputValidation} from '../helpers/formValidation';
+import {inputValidation} from '../helpers';
 
 export function openClassList(event) {
     return dispatch => {
@@ -59,13 +59,12 @@ export function getSubjectData() {
 
 export function showSubject(event) {
     return async dispatch => {
-        const subject = event.target.innerText;
-
+        const classroom = event.name;
         await getSubjectData();
 
         dispatch({
             type:    actions.GET_SINGLE_SUBJECT,
-            payload: {subject}
+            payload: {classroom}
         });
     };
 }

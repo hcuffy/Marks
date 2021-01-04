@@ -9,8 +9,8 @@ import {actionCreators} from '../../actions/index';
 import {SubjectFormInputs} from './formHelpers';
 import css from './styles/subject.css';
 
-function SubjectForm({t, classListData, subjects, actions}) {
-    const selectOption = _.values(subjects).map((data, idx) => (
+function SubjectForm({t, classListData, classes, actions}) {
+    const selectOption = _.values(classes).map((data, idx) => (
         <option key={idx}>
             {data.name}
         </option>

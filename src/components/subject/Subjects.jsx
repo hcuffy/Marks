@@ -8,36 +8,30 @@ import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import SubjectForm from './SubjectForm';
 import SubjectList from './SubjectList';
-import {createDropdown, subjectOptions} from '../helpers';
+import {DropdownComponent, classroomItems} from '../helpers';
 import {sortData} from '../classroom/formHelpers';
 import css from './styles/subject.css';
 
 function Subjects({t, classData, classListData, actions}) {
-    const subjects = sortData(classData);
-    const {subject, openModal} = classListData;
-    const selectedSubject = _.find(subjects, {name: subject}) || {};
-    const options = subjectOptions(subjects, actions);
+    const classes = sortData(classData);
+    const {classroom} = classListData;
+    const selectedClass = _.find(classes, {name: classroom}) || {};
+    const items = classroomItems(classes);
+    const label = resolveLabel(selectedClass, t('general.selectClass'));
 
     return (
         <div className={css.main_div}>
             <div className={css.subject_left}>
                 <h4 className={css.subject_header}>{t('room.subjectHeader')}</h4>
 
-                {createDropdown(
-                    null,
-                    openModal,
-                    actions.openClassList,
-                    resolveLabel(subject, t('general.selectClass')),
-                    options,
-                    'classDropdown'
-                )}
+                <DropdownComponent items={items} action={actions.showSubject} label={label}/>
 
-                <SubjectList t={t} selectedSubject={selectedSubject} />
+                <SubjectList t={t} selectedClass={selectedClass} />
             </div>
             <div className={css.subject_right}>
                 <h4 className={css.add_header}>{t('room.addSubject')}</h4>
 
-                <SubjectForm t={t} classListData={classListData} subjects={subjects} />
+                <SubjectForm t={t} classListData={classListData} classes={classes} />
             </div>
         </div>
     );

@@ -1,5 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
+import {Select} from '@blueprintjs/select';
+import {Button, MenuItem} from '@blueprintjs/core';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
 import {displayToast} from '../../notifications';
@@ -104,6 +106,17 @@ export function subjectOptions(subjects, actions) {
     ));
 }
 
+export function classroomItems(classes) {
+    return _.map(classes, (data, idx) => (
+        {
+            key:          idx,
+            name:         data.name,
+            id:           data._id,
+            'data-check': 'classDropdown'
+        }
+    ));
+}
+
 const heightModifier = {
     setMaxHeight: {
         enabled: true,
@@ -127,6 +140,26 @@ export function createDropdown(styling, openIt, action, label, options, dataId) 
                 </DropdownToggle>
                 <DropdownMenu modifiers={heightModifier}>{options}</DropdownMenu>
             </Dropdown>
+        </div>
+    );
+}
+
+function menuItems(item, {handleClick}) {
+    return (
+        <MenuItem
+            key={item.key}
+            text={item.name}
+            onClick={handleClick}
+            shouldDismissPopover={true}
+        />);
+}
+
+export function DropdownComponent({items, action, label}) {
+    return (
+        <div>
+            <Select itemRenderer={menuItems} items={items} onItemSelect={action} filterable={false}>
+                <Button text={label} rightIcon='caret-down' />
+            </Select>
         </div>
     );
 }

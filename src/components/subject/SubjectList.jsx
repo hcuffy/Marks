@@ -8,8 +8,8 @@ import SubjectModal from './SubjectModal';
 import {generateSubjectList, filterSubjects} from './formHelpers';
 import css from './styles/subject.css';
 
-function SubjectList({t, selectedSubject, subjectData, actions}) {
-    const filteredData = filterSubjects(selectedSubject, subjectData);
+function SubjectList({t, selectedClass, subjectData, actions}) {
+    const filteredData = filterSubjects(selectedClass, subjectData);
     const subjectList = generateSubjectList(filteredData, actions.subjectModalDisplay);
 
     return (
