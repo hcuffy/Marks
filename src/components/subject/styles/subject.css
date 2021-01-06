@@ -24,8 +24,6 @@
 }
 
 .list_btn {
-  display: inline-flex;
-  align-items: flex-start;
   height: 40px;
 }
 

@@ -2,8 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import {filterObjectData} from '../classroom/formHelpers';
-import {Input, Label} from 'reactstrap';
-import {Button, FormGroup, InputGroup, Intent} from '@blueprintjs/core';
+import {Alignment, Button, ButtonGroup, FormGroup, InputGroup, Intent} from '@blueprintjs/core';
 
 import css from './styles/subject.css';
 
@@ -18,24 +17,23 @@ function getClassroomId(dataList) {
 export function selectedSubject(t, subject, isInvalid) {
     return _.keys(subject).map((data, idx) => (
         <div key={idx} className={css.modal_form_div}>
-            <Label className={css.modal_form_label} htmlFor={`${data}_Id`}>
-                {t(`room.${data}`)}:
-            </Label>
+            <FormGroup className={css.modal_form_label} inline={false} htmlFor={`${data}_Id`} label={t(`room.${data}`)}>
 
-            <Input
-                name={data}
-                className={`${css.badge_number} form-control`}
-                data-id={`${data}_Id`}
-                type='text'
-                defaultValue={subject[data]}
-                invalid={isInvalid && _.isEmpty(subject[data])}
-            />
+                <InputGroup
+                    name={data}
+                    className={`${css.badge_number} form-control`}
+                    data-id={`${data}_Id`}
+                    type='text'
+                    defaultValue={subject[data]}
+                    invalid={isInvalid && _.isEmpty(subject[data])}
+                />
+            </FormGroup>
         </div>
     ));
 }
 
-export function determineSubjectInputs(filteredData, id, subjectModalData) {
-    const {name, abbreviation, isInvalid} = subjectModalData;
+export function determineSubjectInputs(filteredData, id, subjectDialogData) {
+    const {name, abbreviation, isInvalid} = subjectDialogData;
 
     if (isInvalid === true) {
         return {name, abbreviation};
@@ -47,13 +45,13 @@ export function determineSubjectInputs(filteredData, id, subjectModalData) {
 export function resolveHiddenInput(filteredData, id) {
     return (
         <div>
-            <Input
+            <InputGroup
                 type='hidden'
                 name='classroomId'
                 data-id={getClassroomId(filteredData)}
             />
 
-            <Input type='hidden' name='subjectId' data-id={id} />
+            <InputGroup type='hidden' name='subjectId' data-id={id} />
         </div>
     );
 }
@@ -64,27 +62,26 @@ export function filterSubjects(chosenClass, {data}) {
     }
 
     return _.chain(data).filter(['classroomId', chosenClass._id])
-        .orderBy(
-            ['abbreviation'],
-            [subJ => subJ.abbreviation.toLowerCase()],
-            ['asc']
-        ).value();
+        .orderBy(['abbreviation'], [subject => subject.abbreviation.toLowerCase()], ['asc']).value();
 }
 
-export function generateSubjectList(filteredData, action) {
+export function List({filteredData, action}) {
     return _.map(filteredData, (data, idx) => (
-        <Button
-            key={idx}
-            data-id={data._id}
-            className={`list-group-item list-group-item-action ${css.list_btn}`}
-            onClick={action}
-        >
-            {data.abbreviation}
+        <div key={idx} className={css.list_btn}>
+            <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
+                <Button
 
-            <span className={`badge badge-warning badge-pill ${css.badge_number}`}>
-                {data.tests.length}
-            </span>
-        </Button>
+                    text={data.abbreviation}
+                    onClick={action}
+                    data-id={data._id}
+                >
+
+                    <span className={`badge badge-warning badge-pill ${css.badge_number}`}>
+                        {data.tests.length}
+                    </span>
+                </Button>
+            </ButtonGroup>
+        </div>
     ));
 }
 

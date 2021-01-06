@@ -143,7 +143,7 @@ export function updateSubject(event) {
     };
 }
 
-export function subjectModalDisplay(event) {
+export function displaySubjectDialog(event) {
     return dispatch => {
         event.preventDefault();
 

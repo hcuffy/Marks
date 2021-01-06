@@ -17,7 +17,7 @@ function Subjects({t, classData, classListData, actions}) {
     const {classroom} = classListData;
     const selectedClass = _.find(classes, {name: classroom}) || {};
     const items = classroomItems(classes);
-    const label = resolveLabel(selectedClass, t('general.selectClass'));
+    const label = resolveLabel(selectedClass.name, t('general.selectClass'));
 
     return (
         <div className={css.main_div}>

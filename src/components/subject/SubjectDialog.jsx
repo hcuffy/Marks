@@ -7,9 +7,9 @@ import {selectedSubject, resolveHiddenInput, determineSubjectInputs} from './for
 import {DialogFrame} from '../helpers';
 import {actionCreators} from '../../actions/index';
 
-function SubjectModal({t, filteredData, subjectModalData, actions}) {
-    const {id, showSubjectModal, isInvalid} = subjectModalData;
-    const requiredSubject = determineSubjectInputs(filteredData, id, subjectModalData);
+function SubjectDialog({t, filteredData, subjectDialogData, actions}) {
+    const {id, showSubjectModal, isInvalid} = subjectDialogData;
+    const requiredSubject = determineSubjectInputs(filteredData, id, subjectDialogData);
     const subjectFields = selectedSubject(t, requiredSubject, isInvalid);
     const hiddenInput = resolveHiddenInput(filteredData, id);
 
@@ -18,27 +18,20 @@ function SubjectModal({t, filteredData, subjectModalData, actions}) {
         nameId:       null,
         closeId:      id,
         deleteAction: actions.deleteSingleSubject,
-        closeAction:  actions.subjectModalDisplay
+        closeAction:  actions.displaySubjectDialog
     };
 
     return (
         <div>
-            {DialogFrame(
-                t,
-                showSubjectModal,
-                actions.updateSubject,
-                subjectFields,
-                hiddenInput,
-                footerData
-            )}
+            {DialogFrame(t, showSubjectModal, actions.updateSubject, subjectFields, hiddenInput, footerData)}
         </div>
     );
 }
 
-const mapStateToProps = state => ({subjectModalData: state.subjectModalData});
+const mapStateToProps = state => ({subjectDialogData: state.subjectDialogData});
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SubjectModal));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SubjectDialog));

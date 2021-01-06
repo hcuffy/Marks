@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import {Select} from '@blueprintjs/select';
-import {Button, MenuItem} from '@blueprintjs/core';
+import {Button, MenuItem, Intent} from '@blueprintjs/core';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
 import {displayToast} from '../../notifications';
@@ -92,7 +92,7 @@ export function getNotesList(allNotes, studentId) {
         );
     });
 }
-
+// TODO: Remove this function once all dropdowns have been replaced
 export function subjectOptions(subjects, actions) {
     return _.map(subjects, (data, idx) => (
         <DropdownItem
@@ -130,7 +130,7 @@ const heightModifier = {
         })
     }
 };
-
+// TODO: Remove this function once all dropdowns have been replaced
 export function createDropdown(styling, openIt, action, label, options, dataId) {
     return (
         <div className={styling}>
@@ -158,14 +158,14 @@ export function DropdownComponent({items, action, label}) {
     return (
         <div>
             <Select itemRenderer={menuItems} items={items} onItemSelect={action} filterable={false}>
-                <Button text={label} rightIcon='caret-down' />
+                <Button intent={Intent.SUCCESS} text={label} rightIcon='caret-down' />
             </Select>
         </div>
     );
 }
 
-export function notifyIfEmpty(t, options, selected, section) {
-    if (_.isEmpty(options) && selected) {
+export function notifyIfEmpty(list, isSelected, section) {
+    if (_.isEmpty(list) && isSelected) {
         displayToast(section, 'warn');
     }
 }

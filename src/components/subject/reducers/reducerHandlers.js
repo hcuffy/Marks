@@ -9,10 +9,10 @@ function classlistModalUpdater(state, action) {
     return _.assign({}, state, {openModal}, action.payload);
 }
 
-function subjectModalUpdater(state, action) {
-    const showSubjectModal = !state.showSubjectModal;
+function subjectDialogUpdater(state, action) {
+    const showSubjectDialog = !state.showSubjectDialog;
 
-    return _.assign({}, state, {showSubjectModal}, action.payload);
+    return _.assign({}, state, {showSubjectDialog}, action.payload);
 }
 
 export const classlistHandlers = {
@@ -26,8 +26,8 @@ export const subjectDataHandlers = {
     [actions.ADD_NEW_SUBJECT]:  defaultStateUpdater
 };
 
-export const subjectModalHandlers = {
-    [actions.OPEN_CLOSE_SUBJECT_MODAL]: subjectModalUpdater,
-    [actions.UPDATE_SUBJECT]:           subjectModalUpdater,
+export const subjectDialogHandlers = {
+    [actions.OPEN_CLOSE_SUBJECT_MODAL]: subjectDialogUpdater,
+    [actions.UPDATE_SUBJECT]:           subjectDialogUpdater,
     [actions.SUBJECT_MODAL_VALIDATION]: defaultStateUpdater
 };

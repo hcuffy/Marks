@@ -12,7 +12,7 @@ function getCurrentModalData(CurrentModalData) {
     return _.pick(CurrentModalData, ['name', 'teacher', 'substitute']);
 }
 
-function RoomModal({t, classData, classModalData, actions}) {
+function RoomDialog({t, classData, classModalData, actions}) {
     const cleanData = sortData(classData);
     const {id, showModal, isInvalid} = classModalData;
     const selectedRoom = isInvalid ? getCurrentModalData(classModalData) : filterObjectData(cleanData, id);
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(RoomModal));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(RoomDialog));

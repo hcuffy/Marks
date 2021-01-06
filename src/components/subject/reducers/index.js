@@ -1,2 +1,2 @@
 export * from './subject';
-export * from './subjectModal';
+export * from './subjectDialog';
