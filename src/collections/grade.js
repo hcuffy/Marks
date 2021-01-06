@@ -7,7 +7,7 @@ export async function updateGradeData(data, id) {
     try {
         await Grade.update({_id: id}, data, {});
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }
@@ -16,7 +16,7 @@ export async function addGradeData(data) {
     const result = await Grade.insert(data);
 
     if (result instanceof Error) {
-        displayToast('saveFail');
+        displayToast('saveFail', 'fail');
 
         return null;
     }
@@ -28,7 +28,7 @@ export async function getAllGrades() {
     const result = await Grade.find({});
 
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -42,7 +42,7 @@ export async function deleteGradesByStudentId(id) {
     const result = await Grade.find({});
 
     if (result instanceof Error) {
-        displayToast('deleteFail');
+        displayToast('deleteFail', 'fail');
 
         return null;
     }
@@ -56,7 +56,7 @@ export async function deleteGradesByExamId(id) {
     let result = await Grade.find({});
 
     if (result instanceof Error) {
-        displayToast('deleteFail');
+        displayToast('deleteFail', 'fail');
 
         return null;
     }

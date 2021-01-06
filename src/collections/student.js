@@ -9,7 +9,7 @@ export async function addNewStudentData(data) {
         await Student.insert(data);
         displayToast('saveSuccess');
     } catch (e) {
-        displayToast('saveFail');
+        displayToast('saveFail', 'fail');
         console.log(e);
     }
 }
@@ -17,7 +17,7 @@ export async function addNewStudentData(data) {
 export async function getAllStudents() {
     const result = await Student.find({});
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -31,7 +31,7 @@ export async function deleteStudent(data) {
     const result = await Student.find({});
 
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -45,7 +45,7 @@ async function updateSingleStudent(previous) {
         await Student.update({_id: id}, {firstname, lastname, gender, classroom}, {});
         displayToast('updateSuccess');
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }
@@ -54,7 +54,7 @@ export async function updateStudentData(data) {
     await updateSingleStudent(data);
     let result = await Student.find({});
     if (result instanceof Error) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
 
         return null;
     }

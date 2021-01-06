@@ -28,8 +28,6 @@ export async function addSubjectData(data) {
             return null;
         }
         const newSubject = _.merge(data, {tests: [], classroomId: classroom._id});
-        console.log(classroom);
-        console.log(classroom.subjects);
         classroom.subjects.push(data.abbreviation);
 
         await Subject.insert(newSubject);

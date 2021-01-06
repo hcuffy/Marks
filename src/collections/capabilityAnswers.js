@@ -9,7 +9,7 @@ export async function getAllAnswers() {
     const result = await Answers.find({});
 
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -25,7 +25,7 @@ export async function addStudentAnswer(answerData) {
         await Answers.insert(adjustedData);
         displayToast('saveSuccess');
     } catch (e) {
-        displayToast('saveFail');
+        displayToast('saveFail', 'fail');
         console.log(e);
     }
 }
@@ -43,7 +43,7 @@ async function updateStudentAnswer({classroomId, studentId, questionId, optionTa
         await Answers.update(answerToUpdate, {$addToSet: {capability: {questionId, optionTag}}}, {});
         displayToast('updateSuccess');
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }
@@ -62,7 +62,7 @@ export async function updateSingleAnswer(answerData) {
     const result = await Answers.find({});
 
     if (result instanceof Error) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
 
         return null;
     }

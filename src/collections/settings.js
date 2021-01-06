@@ -9,7 +9,7 @@ export async function saveGradeSystem(data) {
     try {
         await Settings.insert(data);
     } catch (e) {
-        displayToast('updateFail', 'error');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }
@@ -18,7 +18,7 @@ export async function getSettingsData() {
     const result = await Settings.findOne({});
 
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -31,7 +31,7 @@ async function updateAddress(previous, id) {
     try {
         await Settings.update({_id: id}, {$set: {title, street, province, country, zip, city, year}}, {});
     } catch (e) {
-        displayToast('updateFail', 'error');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }
@@ -42,7 +42,7 @@ async function updateSystem(previous, id) {
         await Settings.update({_id: id}, {$set: {note, points, percent}}, {});
         displayToast('saveSuccess');
     } catch (e) {
-        displayToast('saveFail');
+        displayToast('saveFail', 'fail');
         console.log(e);
     }
 }
@@ -51,7 +51,7 @@ export async function updateGradeType(data) {
     let result = await getSettingsData();
 
     if (result instanceof Error) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
 
         return null;
     }
@@ -73,7 +73,7 @@ export async function addAddress(data) {
     result = await getSettingsData();
 
     if (result instanceof Error) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
 
         return null;
     }
