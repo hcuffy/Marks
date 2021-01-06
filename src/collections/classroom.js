@@ -30,8 +30,8 @@ export async function addClassroomData(data) {
     return result;
 }
 
-export async function getClassroomData() {
-    const result = await Classroom.find({});
+export async function getClassroomData(data = {}) {
+    const result = await Classroom.find(data);
 
     if (result instanceof Error) {
         displayToast('retrieveFail');

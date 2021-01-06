@@ -7,21 +7,11 @@ import {getAllExams, deleteExam} from './exam';
 
 const Subject = connectionToDB('subject');
 
-async function getSubjects({room, abbreviation}) {
-    const data = await getClassroomData();
-    const selectedClass = _.find(data, {name: room}) || {};
-    if (_.includes(selectedClass.subjects, abbreviation)) {
-        return true;
-    }
-
-    return selectedClass;
-}
-
 export async function getAllSubjects() {
     let result = await Subject.find({});
 
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -31,24 +21,26 @@ export async function getAllSubjects() {
 
 export async function addSubjectData(data) {
     try {
-        const subjectClassroom = await getSubjects(data);
-        if (_.size(subjectClassroom)) {
-            displayToast('exists');
+        const classroom = await getClassroomData({name: data.room});
+        if (_.includes(classroom.subjects, data.abbreviation)) {
+            displayToast('exists', 'warn');
 
             return null;
         }
-        const newSubject = _.merge(data, {tests: [], classroomId: subjectClassroom._id});
-        subjectClassroom.subjects.push(data.abbreviation);
+        const newSubject = _.merge(data, {tests: [], classroomId: classroom._id});
+        console.log(classroom);
+        console.log(classroom.subjects);
+        classroom.subjects.push(data.abbreviation);
 
         await Subject.insert(newSubject);
-        await updateSubjectArray(subjectClassroom);
+        await updateSubjectArray(classroom);
         displayToast('saveSuccess');
 
         const results = await getAllSubjects();
 
         return results;
     } catch (e) {
-        displayToast('saveFail');
+        displayToast('saveFail', 'fail');
         console.log(e);
 
         return null;
@@ -80,7 +72,7 @@ export async function deleteSubject({id}) {
 
         return result;
     } catch (e) {
-        displayToast('deleteFail');
+        displayToast('deleteFail', 'fail');
         console.log(e);
 
         return null;
@@ -111,7 +103,7 @@ async function updateSingleSubject(previous, current) {
             displayToast('updateSuccess');
         }
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }
@@ -126,7 +118,7 @@ export async function updateSubjectData(data) {
 
         return result;
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
 
         return null;
@@ -141,7 +133,7 @@ export async function addExamToSubjectArray({subjectId, title}) {
             await Subject.update({_id: subjectId}, {$push: {tests: title}}, {});
         }
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }
@@ -156,7 +148,7 @@ export async function updateSubjectTestArray(subjectId, examTitle) {
 
         return result;
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
 
         return null;

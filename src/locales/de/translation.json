@@ -176,7 +176,7 @@
 	},
 	"notifications": {
 			"saveSuccess": "Die Daten wurden erfolgreich gespeichert.",
-			"saveFailed": "Die Daten konnten nicht gespeichert werden.",
+			"saveFail": "Die Daten konnten nicht gespeichert werden.",
 			"retrieveFail": "Die Daten konnten nicht abgerufen werden.",
 			"exists": "Die Daten sind bereits vorhanden.",
 			"deleteSuccess": "Die Daten wurden erfolgreich gelöscht.",

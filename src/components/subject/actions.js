@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {actions} from './constants';
 import {addSubjectData, getAllSubjects, updateSubjectData, deleteSubject} from '../../collections';
-import {inputValidation} from '../helpers';
+import {getFormValues, inputValidation} from '../helpers';
 
 export function openClassList(event) {
     return dispatch => {
@@ -22,11 +22,7 @@ export function addNewSubject(event) {
     return async dispatch => {
         event.preventDefault();
 
-        const formData = {
-            name:         event.target.name.value,
-            abbreviation: event.target.abbreviation.value,
-            room:         event.target.room.value
-        };
+        const formData = getFormValues(['name', 'abbreviation', 'room'], event);
 
         if (inputValidation(_.omit(formData, ['room']))) {
             dispatch({
