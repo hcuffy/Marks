@@ -19,12 +19,12 @@
 .list_div {
   height: 230px;
   margin-top: 10px;
-  scrollbar-width: none;
   overflow-x: hidden;
 }
 
 .list_btn {
   height: 40px;
+  width: 400px !important;
 }
 
 .badge_number {

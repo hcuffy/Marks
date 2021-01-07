@@ -66,7 +66,7 @@ export function ClassroomListComponent({classData, actions}) {
         <div key={idx} className={css.list_buttons}>
             <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
                 <Button
-                    onClick={ actions.roomModalDisplay}
+                    onClick={actions.roomModalDisplay}
                     text={data.name}
                     data-id={data._id}
                 >

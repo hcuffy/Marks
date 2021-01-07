@@ -14,9 +14,9 @@ function SubjectList({t, selectedClass, subjectData, actions}) {
     return (
         <div className={css.list_div}>
             <SubjectDialog t={t} filteredData={filteredData} />
-            <div>
-                <List filteredData={filteredData} action={actions.displaySubjectDialog}/>
-            </div>
+
+            <List filteredData={filteredData} action={actions.displaySubjectDialog}/>
+
         </div>
     );
 }

@@ -67,13 +67,13 @@ export function filterSubjects(chosenClass, {data}) {
 
 export function List({filteredData, action}) {
     return _.map(filteredData, (data, idx) => (
-        <div key={idx} className={css.list_btn}>
+        <div key={idx}>
             <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
                 <Button
-
                     text={data.abbreviation}
                     onClick={action}
                     data-id={data._id}
+                    className={css.list_btn}
                 >
 
                     <span className={`badge badge-warning badge-pill ${css.badge_number}`}>
