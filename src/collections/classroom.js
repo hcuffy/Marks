@@ -30,8 +30,20 @@ export async function addClassroomData(data) {
     return result;
 }
 
-export async function getClassroomData(data = {}) {
+export async function getClassrooms(data = {}) {
     const result = await Classroom.find(data);
+
+    if (result instanceof Error) {
+        displayToast('retrieveFail', 'fail');
+
+        return null;
+    }
+
+    return result;
+}
+
+export async function getSingleClassroom(data) {
+    const result = await Classroom.findOne(data);
 
     if (result instanceof Error) {
         displayToast('retrieveFail', 'fail');
@@ -116,7 +128,9 @@ export async function updateRoomData(data) {
 }
 
 export async function updateSubjectArray(data) {
+    console.log({data});
     let result = await Classroom.findOne({name: data.name});
+    console.log({result});
     if (_.size(result)) {
         await updateSingleClassroom(result, data);
     }

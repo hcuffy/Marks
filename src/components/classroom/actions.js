@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import {actions} from './constants';
-import {addClassroomData, getClassroomData, deleteClassroom, updateRoomData} from '../../collections';
+import {addClassroomData, getClassrooms, deleteClassroom, updateRoomData} from '../../collections';
 import {getAttribute, getFormValues, inputValidation} from '../helpers';
 
 export function changeClassroomTab(event) {
@@ -18,7 +18,7 @@ export function changeClassroomTab(event) {
 
 export function displayClassData() {
     return async dispatch => {
-        const classData = await getClassroomData();
+        const classData = await getClassrooms();
 
         if (_.size(classData)) {
             dispatch({
@@ -44,7 +44,7 @@ export function handleClassData(event) {
             event.target.reset();
 
             await addClassroomData(formData);
-            const classData = await getClassroomData();
+            const classData = await getClassrooms();
 
             dispatch({
                 type:    actions.GET_CLASSROOM_DATA,

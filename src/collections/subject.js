@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import connectionToDB from './connectionSetup';
 import {displayToast} from '../notifications';
-import {getClassroomData, updateSubjectArray, updateClassSubjectArray} from './classroom';
+import {getSingleClassroom, updateSubjectArray, updateClassSubjectArray} from './classroom';
 import {getAllExams, deleteExam} from './exam';
 
 const Subject = connectionToDB('subject');
@@ -21,12 +21,14 @@ export async function getAllSubjects() {
 
 export async function addSubjectData(data) {
     try {
-        const classroom = await getClassroomData({name: data.room});
+        const classroom = await getSingleClassroom({name: data.room});
+
         if (_.includes(classroom.subjects, data.abbreviation)) {
             displayToast('exists', 'warn');
 
             return null;
         }
+
         const newSubject = _.merge(data, {tests: [], classroomId: classroom._id});
         classroom.subjects.push(data.abbreviation);
 
