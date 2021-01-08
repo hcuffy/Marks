@@ -2,9 +2,9 @@ import {subjectDialogHandlers} from './reducerHandlers';
 import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
-    id:               '',
-    showSubjectModal: false,
-    isInvalid:        false
+    id:         '',
+    showDialog: false,
+    isInvalid:  false
 };
 
 export function applySubjectDialog(state = initialLoadState, action) {

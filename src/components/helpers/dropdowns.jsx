@@ -92,6 +92,11 @@ export function getNotesList(allNotes, studentId) {
         );
     });
 }
+
+export function sortByName(data) {
+    return _.sortBy(data.classData, ['name'], ['asc']);
+}
+
 // TODO: Remove this function once all dropdowns have been replaced
 export function subjectOptions(subjects, actions) {
     return _.map(subjects, (data, idx) => (
@@ -117,6 +122,7 @@ export function classroomItems(classes) {
     ));
 }
 
+// TODO: Remove this variables once all dropdowns have been replaced
 const heightModifier = {
     setMaxHeight: {
         enabled: true,
@@ -179,6 +185,7 @@ export function getClassroomProp(prop, classdata) {
     return classObject.prop;
 }
 
+// TODO: Remove this function once all dropdowns have been replaced
 export function getQuestionList(t, classroomId, capabilityQuestions, {updateQuestionSet}) {
     return capabilityQuestions.map((data, idx) => (
         <DropdownItem

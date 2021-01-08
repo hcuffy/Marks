@@ -4,16 +4,15 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
-import {resolveLabel} from '../../utils';
-import {actionCreators} from '../../actions/index';
 import SubjectForm from './SubjectForm';
 import SubjectList from './SubjectList';
-import {DropdownComponent, classroomItems} from '../helpers';
-import {sortData} from '../classroom/formHelpers';
+import {resolveLabel} from '../../utils';
+import {actionCreators} from '../../actions/index';
+import {DropdownComponent, classroomItems, sortByName} from '../helpers';
 import css from './styles/subject.css';
 
 function Subjects({t, classData, classListData, actions}) {
-    const classes = sortData(classData);
+    const classes = sortByName(classData);
     const {classroom} = classListData;
     const selectedClass = _.find(classes, {name: classroom}) || {};
     const items = classroomItems(classes);

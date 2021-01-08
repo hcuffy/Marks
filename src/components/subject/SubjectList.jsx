@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
-import {actionCreators} from '../../actions/index';
 import SubjectDialog from './SubjectDialog';
-import {List, filterSubjects} from './formHelpers';
+import {actionCreators} from '../../actions/index';
+import {List, filterSubjectByClass} from './formHelpers';
 import css from './styles/subject.css';
 
 function SubjectList({t, selectedClass, subjectData, actions}) {
-    const filteredData = filterSubjects(selectedClass, subjectData);
+    const filteredData = filterSubjectByClass(selectedClass, subjectData);
 
     return (
         <div className={css.list_div}>

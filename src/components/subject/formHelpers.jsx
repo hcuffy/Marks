@@ -14,24 +14,6 @@ function getClassroomId(dataList) {
     return dataList[0].classroomId;
 }
 
-export function selectedSubject(t, subject, isInvalid) {
-    return _.keys(subject).map((data, idx) => (
-        <div key={idx} className={css.modal_form_div}>
-            <FormGroup className={css.modal_form_label} inline={false} htmlFor={`${data}_Id`} label={t(`room.${data}`)}>
-
-                <InputGroup
-                    name={data}
-                    className={`${css.badge_number} form-control`}
-                    data-id={`${data}_Id`}
-                    type='text'
-                    defaultValue={subject[data]}
-                    invalid={isInvalid && _.isEmpty(subject[data])}
-                />
-            </FormGroup>
-        </div>
-    ));
-}
-
 export function determineSubjectInputs(filteredData, id, subjectDialogData) {
     const {name, abbreviation, isInvalid} = subjectDialogData;
 
@@ -56,7 +38,7 @@ export function resolveHiddenInput(filteredData, id) {
     );
 }
 
-export function filterSubjects(chosenClass, {data}) {
+export function filterSubjectByClass(chosenClass, {data}) {
     if (_.isNil(data) || _.isNil(chosenClass)) {
         return [];
     }

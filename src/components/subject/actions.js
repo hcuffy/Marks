@@ -1,7 +1,8 @@
 import _ from 'lodash';
+
 import {actions} from './constants';
 import {addSubjectData, getAllSubjects, updateSubjectData, deleteSubject} from '../../collections';
-import {getFormValues, inputValidation} from '../helpers';
+import {getAttribute, getFormValues, inputValidation} from '../helpers';
 
 export function openClassList(event) {
     return dispatch => {
@@ -143,9 +144,7 @@ export function displaySubjectDialog(event) {
     return dispatch => {
         event.preventDefault();
 
-        const subjectId = {
-            id: event.target.getAttribute('data-id')
-        };
+        const subjectId = {id: getAttribute('data-id', event)};
 
         dispatch({
             type:    actions.OPEN_CLOSE_SUBJECT_MODAL,
