@@ -1,8 +1,5 @@
 import {actions} from '../constants';
-import {
-    defaultStateUpdater,
-    modalStateUpdater
-} from '../../../reducers/reducerUtils.js';
+import {defaultStateUpdater, dialogStateUpdater} from '../../../reducers/reducerUtils.js';
 
 export const classroomHandlers = {
     [actions.ADD_CLASSROOM_DATA]:        defaultStateUpdater,
@@ -11,8 +8,8 @@ export const classroomHandlers = {
 };
 
 export const classroomModalHandlers = {
-    [actions.OPEN_CLOSE_ROOM_MODAL]:      modalStateUpdater,
-    [actions.UPDATE_CLASSROOM]:           modalStateUpdater,
+    [actions.OPEN_CLOSE_ROOM_MODAL]:      dialogStateUpdater,
+    [actions.UPDATE_CLASSROOM]:           dialogStateUpdater,
     [actions.CLASSROOM_MODAL_VALIDATION]: defaultStateUpdater
 };
 

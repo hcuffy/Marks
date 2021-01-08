@@ -2,9 +2,9 @@ import {classroomModalHandlers} from './reducerHandlers';
 import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
-    id:        '',
-    showModal: false,
-    isInvalid: false
+    id:         '',
+    showDialog: false,
+    isInvalid:  false
 };
 
 export function applyClassModal(state = initialLoadState, action) {

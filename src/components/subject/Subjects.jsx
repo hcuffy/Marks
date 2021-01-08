@@ -7,8 +7,9 @@ import {bindActionCreators} from 'redux';
 import SubjectForm from './SubjectForm';
 import SubjectList from './SubjectList';
 import {resolveLabel} from '../../utils';
+import {classroomItems} from '../classroom/formHelpers';
 import {actionCreators} from '../../actions/index';
-import {DropdownComponent, classroomItems, sortByName} from '../helpers';
+import {DropdownComponent, sortByName} from '../helpers';
 import css from './styles/subject.css';
 
 function Subjects({t, classData, classListData, actions}) {

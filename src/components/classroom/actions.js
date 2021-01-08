@@ -58,7 +58,7 @@ async function updateRoomDispatcher(roomData, dispatch) {
     const classData = await updateRoomData(roomData);
 
     if (classData) {
-        roomData.showModal = false;
+        roomData.showDialog = false;
         dispatch({
             type:    actions.GET_CLASSROOM_DATA,
             payload: {classData}
@@ -78,7 +78,7 @@ export function updateRoom(event) {
         const roomData = getFormValues(['name', 'teacher', 'substitute'], event);
         _.set(roomData, 'oldName', event.target.oldName.getAttribute('data-id'));
         _.set(roomData, 'id', '');
-        _.set(roomData, 'showModal', true);
+        _.set(roomData, 'showDialog', true);
 
         if (inputValidation(_.omit(roomData, ['id']))) {
             dispatch({
@@ -94,8 +94,8 @@ export function updateRoom(event) {
 export function deleteRoom(event) {
     return async dispatch => {
         const roomData = {
-            id:        getAttribute('data-id', event),
-            showModal: true
+            id:         getAttribute('data-id', event),
+            showDialog: true
         };
 
         const docs = await deleteClassroom(roomData);
@@ -114,7 +114,7 @@ export function deleteRoom(event) {
     };
 }
 
-export function roomModalDisplay(event) {
+export function showRoomDialog(event) {
     return dispatch => {
         event.preventDefault();
 

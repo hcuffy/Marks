@@ -4,9 +4,9 @@ import {Select} from '@blueprintjs/select';
 import {Button, MenuItem, Intent} from '@blueprintjs/core';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
-import {displayToast} from '../../notifications';
 import css from './styles/helpers.css';
 
+// TODO: Remove this function once all dropdowns have been replaced
 export function getClassList(classlist) {
     return _.map(classlist, (data, idx) => (
         <DropdownItem
@@ -93,10 +93,6 @@ export function getNotesList(allNotes, studentId) {
     });
 }
 
-export function sortByName(data) {
-    return _.sortBy(data.classData, ['name'], ['asc']);
-}
-
 // TODO: Remove this function once all dropdowns have been replaced
 export function subjectOptions(subjects, actions) {
     return _.map(subjects, (data, idx) => (
@@ -108,17 +104,6 @@ export function subjectOptions(subjects, actions) {
         >
             {data.name}
         </DropdownItem>
-    ));
-}
-
-export function classroomItems(classes) {
-    return _.map(classes, (data, idx) => (
-        {
-            key:          idx,
-            name:         data.name,
-            id:           data._id,
-            'data-check': 'classDropdown'
-        }
     ));
 }
 
@@ -168,21 +153,6 @@ export function DropdownComponent({items, action, label}) {
             </Select>
         </div>
     );
-}
-
-export function notifyIfEmpty(list, isSelected, section) {
-    if (_.isEmpty(list) && isSelected) {
-        displayToast(section, 'warn');
-    }
-}
-
-export function getClassroomProp(prop, classdata) {
-    const classObject = _.find(classdata, {prop}) || {};
-    if (_.isUndefined(classObject)) {
-        return '';
-    }
-
-    return classObject.prop;
 }
 
 // TODO: Remove this function once all dropdowns have been replaced

@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
-import {actionCreators} from '../../actions/index';
 import RoomDialog from './RoomDialog';
+import {actionCreators} from '../../actions/index';
 import {ClassroomList} from './formHelpers';
 import css from './styles/room.css';
 
