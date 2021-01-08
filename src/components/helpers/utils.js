@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import {displayToast} from '../../notifications';
 
 export function inputValidation(formValues) {
     return _.values(formValues).some(value => value === '');
@@ -38,3 +39,21 @@ export function getAttribute(prop, event) {
     return value;
 }
 
+export function notifyIfEmpty(list, isSelected, section) {
+    if (_.isEmpty(list) && isSelected) {
+        displayToast(section, 'warn');
+    }
+}
+
+export function sortByName(data) {
+    return _.sortBy(data.classData, ['name'], ['asc']);
+}
+
+export function getClassroomProp(prop, classdata) {
+    const classObject = _.find(classdata, {prop}) || {};
+    if (_.isUndefined(classObject)) {
+        return '';
+    }
+
+    return classObject.prop;
+}

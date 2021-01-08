@@ -5,8 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
-import {sortData} from '../classroom/formHelpers';
-import {getClassList, getStudentList, getQuestionList, createDropdown} from '../helpers/dropdowns';
+import {getClassList, getStudentList, getQuestionList, createDropdown, sortByName} from '../helpers';
 import {capabilityQuestions} from './constants';
 import {getQuestionSet, changeQuestionBtn} from './table';
 import {resolveLabel} from '../../utils';
@@ -18,7 +17,7 @@ function filterStudentsByClassId(students, classroomId) {
 
 function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
     const {classDropdown, studentDropdown, questionDropdown, classroom, studentName, questions, classroomId} = capabilityData;
-    const classOptions = getClassList(sortData(classData));
+    const classOptions = getClassList(sortByName(classData));
     const studentOptions = getStudentList(filterStudentsByClassId(students, classroomId));
     const questionOptions = getQuestionList(t, classroomId, capabilityQuestions, actions);
     const actualSet = getQuestionSet(classroomId, questions);

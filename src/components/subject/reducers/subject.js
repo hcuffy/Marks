@@ -3,7 +3,7 @@ import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
     openModal:    false,
-    subject:      null,
+    classroom:    null,
     name:         '',
     abbreviation: '',
     isInvalid:    false

@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import {Button, FormGroup, Input, Label} from 'reactstrap';
+
 import {capabilityQuestions} from './constants';
 import css from './styles/capability.css';
 

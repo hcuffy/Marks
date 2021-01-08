@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {actionCreators} from '../actions/index';
 import SideMenu from '../components/sidemenu/SideMenu';
 import GradeTable from '../components/grades/GradeTable';
+import {actionCreators} from '../actions/index';
 
 class Grades extends Component {
     componentDidMount() {

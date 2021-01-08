@@ -7,7 +7,7 @@ export async function getAllQuestions() {
     const result = await Capability.find({});
 
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -20,7 +20,7 @@ async function addNewQuestion(data) {
         await Capability.insert(data);
         displayToast('saveSuccess');
     } catch (e) {
-        displayToast('saveFail');
+        displayToast('saveFail', 'fail');
         console.log(e);
     }
 }
@@ -32,7 +32,7 @@ async function updateQuestion(data) {
 
         displayToast('updateSuccess');
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }
@@ -49,7 +49,7 @@ export async function updateQuestionData(data) {
     const result = await Capability.find({});
 
     if (result instanceof Error) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
 
         return null;
     }

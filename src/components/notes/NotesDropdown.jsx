@@ -5,7 +5,7 @@ import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
-import {getStudentList, getNotesList, createDropdown, notifyIfEmpty} from '../helpers/dropdowns';
+import {getStudentList, getNotesList, createDropdown, notifyIfEmpty} from '../helpers';
 import {resolveLabel} from '../../utils';
 import css from './styles/notes.css';
 

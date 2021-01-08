@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
-import {actionCreators} from '../../actions/index';
 import ClassList from './ClassList';
 import Subjects from '../subject/Subjects';
+import {actionCreators} from '../../actions/index';
 import {AddClassroomForm} from './formHelpers';
 import css from './styles/room.css';
 

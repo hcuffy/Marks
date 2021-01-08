@@ -1,7 +1,8 @@
 import _ from 'lodash';
+
 import {actions} from './constants';
 import {addSubjectData, getAllSubjects, updateSubjectData, deleteSubject} from '../../collections';
-import {inputValidation} from '../helpers/formValidation';
+import {getAttribute, getFormValues, inputValidation} from '../helpers';
 
 export function openClassList(event) {
     return dispatch => {
@@ -22,11 +23,7 @@ export function addNewSubject(event) {
     return async dispatch => {
         event.preventDefault();
 
-        const formData = {
-            name:         event.target.name.value,
-            abbreviation: event.target.abbreviation.value,
-            room:         event.target.room.value
-        };
+        const formData = getFormValues(['name', 'abbreviation', 'room'], event);
 
         if (inputValidation(_.omit(formData, ['room']))) {
             dispatch({
@@ -59,13 +56,12 @@ export function getSubjectData() {
 
 export function showSubject(event) {
     return async dispatch => {
-        const subject = event.target.innerText;
-
+        const classroom = event.name;
         await getSubjectData();
 
         dispatch({
             type:    actions.GET_SINGLE_SUBJECT,
-            payload: {subject}
+            payload: {classroom}
         });
     };
 }
@@ -144,13 +140,11 @@ export function updateSubject(event) {
     };
 }
 
-export function subjectModalDisplay(event) {
+export function displaySubjectDialog(event) {
     return dispatch => {
         event.preventDefault();
 
-        const subjectId = {
-            id: event.target.getAttribute('data-id')
-        };
+        const subjectId = {id: getAttribute('data-id', event)};
 
         dispatch({
             type:    actions.OPEN_CLOSE_SUBJECT_MODAL,

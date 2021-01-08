@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import {actions} from './constants';
 import {addNewNote, getAllNotes, deleteNote, updateNoteData} from '../../collections';
-import {inputValidation} from '../helpers/formValidation';
+import {inputValidation} from '../helpers';
 
 export function addNote(event) {
     return async dispatch => {
@@ -11,7 +11,7 @@ export function addNote(event) {
         const formData = {
             title:     event.target.title.value,
             note:      event.target.note.value,
-            studentId: event.target.student.value
+            studentId: event.target.studentId.value
         };
 
         const inputsToValidate = _.omit(formData, ['studentId']);

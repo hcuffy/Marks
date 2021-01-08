@@ -1,4 +1,3 @@
-
 import {HOME, CLASSROOM, STUDENTS, GRADES, GRAPHS, NOTES, CAPABILITY, SETTINGS} from '../../constants/routes.js';
 
 export const menuData = {

@@ -3,20 +3,20 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
+import SubjectDialog from './SubjectDialog';
 import {actionCreators} from '../../actions/index';
-import SubjectModal from './SubjectModal';
-import {generateSubjectList, filterSubjects} from './formHelpers';
+import {List, filterSubjectByClass} from './formHelpers';
 import css from './styles/subject.css';
 
-function SubjectList({t, selectedSubject, subjectData, actions}) {
-    const filteredData = filterSubjects(selectedSubject, subjectData);
-    const subjectList = generateSubjectList(filteredData, actions.subjectModalDisplay);
+function SubjectList({t, selectedClass, subjectData, actions}) {
+    const filteredData = filterSubjectByClass(selectedClass, subjectData);
 
     return (
         <div className={css.list_div}>
-            <SubjectModal t={t} filteredData={filteredData} />
+            <SubjectDialog t={t} filteredData={filteredData} />
 
-            <div className='list-group list-group-flush'>{subjectList}</div>
+            <List filteredData={filteredData} action={actions.displaySubjectDialog}/>
+
         </div>
     );
 }

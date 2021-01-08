@@ -1,8 +1,11 @@
 import React from 'react';
-import {Button, Dialog, Classes, Intent} from '@blueprintjs/core';
+import _ from 'lodash';
+import {Button, Dialog, Classes, Intent, FormGroup, InputGroup} from '@blueprintjs/core';
+
+import css from '../classroom/styles/room.css';
 
 function DialogFooter({t, footerData}) {
-    const {dataId, nameId, closeId, deleteAction, closeAction} = footerData;
+    const {dataId, nameId, deleteAction} = footerData;
 
     return (
         <div className={Classes.DIALOG_FOOTER}>
@@ -16,16 +19,15 @@ function DialogFooter({t, footerData}) {
                     name={nameId}
                 />
                 <Button type='submit' intent={Intent.SUCCESS} text={t('general.update')} formNoValidate/>
-                <Button type='button' intent={Intent.NONE} text={t('general.close')} onClick={closeAction} data-id={closeId} />
 
             </div>
         </div>
     );
 }
 
-export function DialogFrame(t, modalOpen, updateAction, formData, extras, footerData) {
+export function DialogFrame(t, openDialog, updateAction, formData, extras, footerData, closeAction) {
     return (
-        < Dialog isOpen={modalOpen} title={t('general.edit')}>
+        < Dialog isOpen={openDialog} onClose={closeAction} title={t('general.edit')}>
             <div className={Classes.DIALOG_BODY}>
                 <form onSubmit={updateAction} method='POST'>
                     {formData}
@@ -35,4 +37,26 @@ export function DialogFrame(t, modalOpen, updateAction, formData, extras, footer
             </div>
         </ Dialog>
     );
+}
+
+export function DialogInputs({t, selection, isInvalid, label}) {
+    function intent(data) {
+        return isInvalid && _.isEmpty(selection[data]) ? Intent.DANGER : Intent.NONE;
+    }
+
+    return _.keys(selection).map((data, idx) => (
+        <div key={idx} className={css.form_div}>
+            <FormGroup inline={false} labelFor={`${data}_Id`} label={t(`${label}.${data}`)}>
+
+                <InputGroup
+                    name={data}
+                    id={`${data}_Id`}
+                    data-id={`${data}_Id`}
+                    type='text'
+                    intent={intent(data)}
+                    defaultValue={selection[data]}
+                />
+            </FormGroup>
+        </div>
+    ));
 }

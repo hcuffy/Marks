@@ -46,7 +46,6 @@
 
 .list_div {
   height: 230px;
-  scrollbar-width: none;
   overflow-x: hidden;
 }
 

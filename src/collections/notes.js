@@ -9,7 +9,7 @@ export async function addNewNote(data) {
 
         displayToast('saveSuccess');
     } catch (e) {
-        displayToast('saveFail');
+        displayToast('saveFail', 'fail');
         console.log(e);
     }
 }
@@ -18,7 +18,7 @@ export async function getAllNotes() {
     const result = await Notes.find({});
 
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -32,7 +32,7 @@ export async function deleteNote(data) {
     const result = await Notes.find({});
 
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -47,7 +47,7 @@ async function updateSingleNote(previousData) {
         await Notes.update({_id: noteId}, {$set: {title, note, noteId}}, {});
         displayToast('updateSuccess');
     } catch (e) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
         console.log(e);
     }
 }
@@ -57,7 +57,7 @@ export async function updateNoteData(data) {
     let result = Notes.find({});
 
     if (result instanceof Error) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
 
         return null;
     }

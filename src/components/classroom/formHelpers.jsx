@@ -1,12 +1,13 @@
 import React from 'react';
+import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {withTranslation} from 'react-i18next';
-import _ from 'lodash';
 import {Button, ButtonGroup, Intent, FormGroup, InputGroup, Alignment} from '@blueprintjs/core';
 
-import css from './styles/room.css';
 import {actionCreators} from '../../actions';
+import {sortByName} from '../helpers';
+import css from './styles/room.css';
 
 export function FormInputs({t, classData}) {
     const intent = classData.isInvalid ? Intent.DANGER : Intent.NONE;
@@ -60,13 +61,13 @@ export function gradingSystem(settings) {
 }
 
 export function ClassroomListComponent({classData, actions}) {
-    const cleanData = sortData(classData);
+    const sortedData = sortByName(classData);
 
-    return _.map(cleanData, (data, idx) => (
+    return _.map(sortedData, (data, idx) => (
         <div key={idx} className={css.list_buttons}>
             <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
                 <Button
-                    onClick={ actions.roomModalDisplay}
+                    onClick={actions.showRoomDialog}
                     text={data.name}
                     data-id={data._id}
                 >
@@ -114,28 +115,13 @@ export function filterObjectData(objectToClean, selectedId) {
     return _.omit(requiredProp, ['_id', 'createdAt', 'updatedAt', 'subjects', 'tests', 'classroomId', 'room']);
 }
 
-export function DialogInputs(t, selectedRoom, isInvalid) {
-    function intent(data) {
-        return isInvalid && _.isEmpty(selectedRoom[data]) ? Intent.DANGER : Intent.NONE;
-    }
-
-    return _.keys(selectedRoom).map((data, idx) => (
-        <div key={idx} className={css.form_div}>
-            <FormGroup className={css.form_label} inline={false} labelFor={`${data}_Id`} label={t(`room.${data}`)}>
-
-                <InputGroup
-                    name={data}
-                    id={`${data}_Id`}
-                    data-id={`${data}_Id`}
-                    type='text'
-                    intent={intent(data)}
-                    defaultValue={selectedRoom[data]}
-                />
-            </FormGroup>
-        </div>
+export function classroomItems(classes) {
+    return _.map(classes, (data, idx) => (
+        {
+            key:          idx,
+            name:         data.name,
+            id:           data._id,
+            'data-check': 'classDropdown'
+        }
     ));
-}
-
-export function sortData(clean) {
-    return _.sortBy(clean.classData, ['name'], ['asc']);
 }

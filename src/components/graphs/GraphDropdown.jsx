@@ -5,18 +5,17 @@ import {bindActionCreators} from 'redux';
 
 import {resolveLabel, PDFbutton} from '../../utils';
 import {actionCreators} from '../../actions/index';
-import {sortData} from '../classroom/formHelpers';
-import {getClassList, getSubjectList, createDropdown, getExamList, notifyIfEmpty, getClassroomProp} from '../helpers';
+import {getClassList, getSubjectList, createDropdown, getExamList, notifyIfEmpty, getClassroomProp, sortByName} from '../helpers';
 import css from './styles/graphs.css';
 
 function GraphDropdown({t, classData, graphData, subjectData, actions}) {
     const {subjectId, exams, classroomId, classroomDropdown, openSubList, subjectName, examName, openExamList, chartTitle} = graphData;
     const classroom = getClassroomProp(classroomId, classData.classData);
-    const classOptions = getClassList(sortData(classData));
+    const classOptions = getClassList(sortByName(classData));
     const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
     const examOptions = getExamList(exams, subjectId);
 
-    notifyIfEmpty(t, subjectOptions, openSubList, 'class');
+    notifyIfEmpty(subjectOptions, openSubList, 'class');
 
     return (
         <div className={css.dropdown_main_div}>

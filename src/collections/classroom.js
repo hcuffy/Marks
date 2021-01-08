@@ -10,7 +10,7 @@ export async function addClassroomData(data) {
     const count = await Classroom.count({name: data.name});
 
     if (count) {
-        displayToast('exists');
+        displayToast('exists', 'warn');
 
         return null;
     }
@@ -20,7 +20,7 @@ export async function addClassroomData(data) {
     const result = await Classroom.insert(newData);
 
     if (result instanceof Error) {
-        displayToast('saveFail');
+        displayToast('saveFail', 'fail');
 
         return null;
     }
@@ -30,11 +30,23 @@ export async function addClassroomData(data) {
     return result;
 }
 
-export async function getClassroomData() {
-    const result = await Classroom.find({});
+export async function getClassrooms(data = {}) {
+    const result = await Classroom.find(data);
 
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
+
+        return null;
+    }
+
+    return result;
+}
+
+export async function getSingleClassroom(data) {
+    const result = await Classroom.findOne(data);
+
+    if (result instanceof Error) {
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -56,7 +68,7 @@ async function deleteSubjectByClassroom(classroomId) {
             });
         }
     } catch (e) {
-        displayToast('deleteFail');
+        displayToast('deleteFail', 'fail');
         console.log(e);
     }
 }
@@ -67,7 +79,7 @@ export async function deleteClassroom({id}) {
     const result = await Classroom.find({});
 
     if (result instanceof Error) {
-        displayToast('deleteFail');
+        displayToast('deleteFail', 'fail');
 
         return null;
     }
@@ -94,20 +106,20 @@ async function updateSingleClassroom(previous, current) {
         await Classroom.update({name: previous.name}, {name, teacher, substitute, subjects}, {});
         displayToast('updateSuccess');
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }
 
 export async function updateRoomData(data) {
-    const count = await Classroom.count({name: data.oldName});
-    if (count) {
-        await updateSingleClassroom(result[0], data);
+    let result = await Classroom.findOne({name: data.oldName});
+    if (_.size(result)) {
+        await updateSingleClassroom(result, data);
     }
-    const result = await Classroom.find({});
+    result = await Classroom.find({});
 
     if (result instanceof Error) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
 
         return null;
     }
@@ -116,14 +128,16 @@ export async function updateRoomData(data) {
 }
 
 export async function updateSubjectArray(data) {
-    const count = await Classroom.count({name: data.name});
-    if (count) {
-        await updateSingleClassroom(result[0], data);
+    console.log({data});
+    let result = await Classroom.findOne({name: data.name});
+    console.log({result});
+    if (_.size(result)) {
+        await updateSingleClassroom(result, data);
     }
-    const result = await Classroom.find({});
+    result = await Classroom.find({});
 
     if (result instanceof Error) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
 
         return null;
     }
@@ -135,7 +149,7 @@ export async function updateClassSubjectArray(classroomId, oldSubject, newSubjec
     try {
         await Classroom.update({_id: classroomId}, {$push: {subjects: newSubject}}, {});
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }

@@ -1,10 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
+import {Select} from '@blueprintjs/select';
+import {Button, MenuItem, Intent} from '@blueprintjs/core';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
-import {displayToast} from '../../notifications';
 import css from './styles/helpers.css';
 
+// TODO: Remove this function once all dropdowns have been replaced
 export function getClassList(classlist) {
     return _.map(classlist, (data, idx) => (
         <DropdownItem
@@ -91,6 +93,7 @@ export function getNotesList(allNotes, studentId) {
     });
 }
 
+// TODO: Remove this function once all dropdowns have been replaced
 export function subjectOptions(subjects, actions) {
     return _.map(subjects, (data, idx) => (
         <DropdownItem
@@ -104,6 +107,7 @@ export function subjectOptions(subjects, actions) {
     ));
 }
 
+// TODO: Remove this variables once all dropdowns have been replaced
 const heightModifier = {
     setMaxHeight: {
         enabled: true,
@@ -117,7 +121,7 @@ const heightModifier = {
         })
     }
 };
-
+// TODO: Remove this function once all dropdowns have been replaced
 export function createDropdown(styling, openIt, action, label, options, dataId) {
     return (
         <div className={styling}>
@@ -131,21 +135,27 @@ export function createDropdown(styling, openIt, action, label, options, dataId) 
     );
 }
 
-export function notifyIfEmpty(t, options, selected, section) {
-    if (_.isEmpty(options) && selected) {
-        displayToast(section, 'warn');
-    }
+function menuItems(item, {handleClick}) {
+    return (
+        <MenuItem
+            key={item.key}
+            text={item.name}
+            onClick={handleClick}
+            shouldDismissPopover={true}
+        />);
 }
 
-export function getClassroomProp(prop, classdata) {
-    const classObject = _.find(classdata, {prop}) || {};
-    if (_.isUndefined(classObject)) {
-        return '';
-    }
-
-    return classObject.prop;
+export function DropdownComponent({items, action, label}) {
+    return (
+        <div>
+            <Select itemRenderer={menuItems} items={items} onItemSelect={action} filterable={false}>
+                <Button intent={Intent.SUCCESS} text={label} rightIcon='caret-down' />
+            </Select>
+        </div>
+    );
 }
 
+// TODO: Remove this function once all dropdowns have been replaced
 export function getQuestionList(t, classroomId, capabilityQuestions, {updateQuestionSet}) {
     return capabilityQuestions.map((data, idx) => (
         <DropdownItem

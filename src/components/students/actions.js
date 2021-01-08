@@ -1,7 +1,8 @@
 import _ from 'lodash';
+
 import {actions} from './constants';
 import {addNewStudentData, getAllStudents, deleteStudent, updateStudentData} from '../../collections';
-import {inputValidation} from '../helpers/formValidation';
+import {inputValidation} from '../helpers';
 
 export function getOption(event, propToGet) {
     const index = event.target[propToGet].selectedIndex;

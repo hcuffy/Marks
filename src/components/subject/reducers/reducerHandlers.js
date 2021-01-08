@@ -1,22 +1,8 @@
-import _ from 'lodash';
-
 import {actions} from '../constants';
-import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
-
-function classlistModalUpdater(state, action) {
-    const openModal = !state.openModal;
-
-    return _.assign({}, state, {openModal}, action.payload);
-}
-
-function subjectModalUpdater(state, action) {
-    const showSubjectModal = !state.showSubjectModal;
-
-    return _.assign({}, state, {showSubjectModal}, action.payload);
-}
+import {defaultStateUpdater, dialogStateUpdater} from '../../../reducers/reducerUtils.js';
 
 export const classlistHandlers = {
-    [actions.UPDATE_CLASS_LIST]:       classlistModalUpdater,
+    [actions.UPDATE_CLASS_LIST]:       dialogStateUpdater,
     [actions.GET_SINGLE_SUBJECT]:      defaultStateUpdater,
     [actions.SUBJECT_FORM_VALIDATION]: defaultStateUpdater
 };
@@ -26,8 +12,8 @@ export const subjectDataHandlers = {
     [actions.ADD_NEW_SUBJECT]:  defaultStateUpdater
 };
 
-export const subjectModalHandlers = {
-    [actions.OPEN_CLOSE_SUBJECT_MODAL]: subjectModalUpdater,
-    [actions.UPDATE_SUBJECT]:           subjectModalUpdater,
+export const subjectDialogHandlers = {
+    [actions.OPEN_CLOSE_SUBJECT_MODAL]: dialogStateUpdater,
+    [actions.UPDATE_SUBJECT]:           dialogStateUpdater,
     [actions.SUBJECT_MODAL_VALIDATION]: defaultStateUpdater
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
+import ReactTable from 'react-table-6';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
-import ReactTable from 'react-table-6';
 
 import {actionCreators} from '../../actions/index';
 import GradeDropdown from './GradeDropdown';

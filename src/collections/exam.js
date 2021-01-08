@@ -12,7 +12,7 @@ export async function addExamData(data) {
         const count = await Exam.count({name: data.title});
 
         if (count) {
-            displayToast('exists');
+            displayToast('exists', 'warn');
 
             return null;
         }
@@ -36,7 +36,7 @@ export async function getAllExams() {
     const result = await Exam.find({});
 
     if (result instanceof Error) {
-        displayToast('retrieveFail');
+        displayToast('retrieveFail', 'fail');
 
         return null;
     }
@@ -59,7 +59,7 @@ export async function deleteExam({examId, subjectId}) {
     let result = await Exam.find({});
 
     if (result instanceof Error) {
-        displayToast('deleteFail');
+        displayToast('deleteFail', 'fail');
 
         return null;
     }
@@ -73,7 +73,7 @@ async function updateSingleExam(previous, current) {
     try {
         await Exam.update({_id: previous._id}, {title, date, weight, subjectId}, {});
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
     }
 }
@@ -92,7 +92,7 @@ export async function updateExamData(data) {
 
         return result;
     } catch (e) {
-        displayToast('updateFail');
+        displayToast('updateFail', 'fail');
         console.log(e);
 
         return null;

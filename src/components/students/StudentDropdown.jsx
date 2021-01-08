@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
 import {resolveLabel, PDFbutton} from '../../utils';
-import {getStudentList, getAllSubjects, createDropdown, notifyIfEmpty} from '../helpers/dropdowns';
+import {getStudentList, getAllSubjects, createDropdown, notifyIfEmpty} from '../helpers';
 import css from './styles/students.css';
 
 function StudentDropdown({t, allStudentData, subjectData, actions}) {
@@ -24,7 +24,7 @@ function StudentDropdown({t, allStudentData, subjectData, actions}) {
     const openIt = {subjectDropdown};
 
     if (chartToDisplay === 'subject' && _.isNull(studentGraphName)) {
-        notifyIfEmpty(t, [], true, 'student');
+        notifyIfEmpty([], true, 'student');
         openIt.subjectDropdown = false;
     }
 

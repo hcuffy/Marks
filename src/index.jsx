@@ -1,3 +1,4 @@
+/* eslint-disable no-undef*/
 import React from 'react';
 import {render} from 'react-dom';
 import './i18n';
@@ -7,9 +8,4 @@ import {configureStore, history} from './store';
 
 const store = configureStore();
 
-render(
-    <Root store={store} history={history} />,
-    // eslint-disable-next-line no-undef
-    document.getElementById('root')
-
-);
+render(<Root store={store} history={history} />, document.getElementById('root'));

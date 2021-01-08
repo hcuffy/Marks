@@ -20,7 +20,7 @@ function downloadPDF(itemToPDF, nameOfChart, saveAs) {
 
 export function PDFbutton(styling, saveText, chartTitle) {
     return (
-        <Button className={styling} onClick={() => downloadPDF('canvas', chartTitle, 'chart')}>
+        <Button className={styling} onClick={downloadPDF('canvas', chartTitle, 'chart')}>
             <i className='fas fa-file-pdf fa-2x' /> <br />
             {saveText}
         </Button>
