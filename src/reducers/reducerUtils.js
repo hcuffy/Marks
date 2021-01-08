@@ -4,10 +4,10 @@ export function defaultStateUpdater(state, action) {
     return _.assign({}, state, action.payload);
 }
 
-export function modalStateUpdater(state, action) {
-    const showModal = !state.showModal;
+export function dialogStateUpdater(state, action) {
+    const showDialog = !state.showDialog;
 
-    return _.assign({}, state, {showModal}, action.payload);
+    return _.assign({}, state, {showDialog}, action.payload);
 }
 
 export function reducerActionHandler(state, action, handlers) {

@@ -10,7 +10,7 @@ import css from './styles/students.css';
 function StudentsSection({t}) {
     return (
         <div>
-            <div className={css.student_home_div}>
+            <div>
                 <h4 className={css.center_header}>{t('student.title')}</h4>
 
                 <StudentForm t={t} />

@@ -4,13 +4,13 @@ import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
-import {sortData} from '../classroom/formHelpers';
 import {generateExamForm, getClassOptions, getSubjectOptions} from './formHelper';
+import {sortByName} from '../helpers';
 
 function ExamForm({t, classData, subjectData, examData, actions}) {
-    const cleanedClassList = sortData(classData);
-    const classOption = getClassOptions(cleanedClassList);
-    const subjectOptions = getSubjectOptions(subjectData, examData, cleanedClassList);
+    const sortedData = sortByName(classData);
+    const classOption = getClassOptions(sortedData);
+    const subjectOptions = getSubjectOptions(subjectData, examData, sortedData);
     const completedExamForm = generateExamForm(t, subjectOptions, classOption, examData, actions);
 
     return <div>{completedExamForm}</div>;

@@ -1,5 +1,6 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
+
 import Address from './Address';
 import GradeFormat from './GradeFormat';
 import css from './styles/settings.css';

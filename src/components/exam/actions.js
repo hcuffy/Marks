@@ -3,7 +3,7 @@ import _ from 'lodash';
 import {actions} from './constants';
 import {addExamData, getAllExams, deleteExam, updateExamData} from '../../collections';
 import {getOption} from '../students/actions';
-import {inputValidation} from '../helpers/formValidation';
+import {inputValidation} from '../helpers';
 
 export function addNewExam(event) {
     return async dispatch => {

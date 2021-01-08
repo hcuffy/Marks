@@ -6,14 +6,13 @@ import {bindActionCreators} from 'redux';
 
 import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
-import {sortData} from '../classroom/formHelpers';
-import {getClassList, getSubjectList, createDropdown, notifyIfEmpty, getClassroomProp} from '../helpers';
+import {getClassList, getSubjectList, createDropdown, notifyIfEmpty, getClassroomProp, sortByName} from '../helpers';
 import css from './styles/grades.css';
 
 function GradeDropdown({t, classData, gradeData, subjectData, actions}) {
     const {subDrop, subjectName, classroomId, classroomDropdown} = gradeData;
     const openIt = {subDrop};
-    const classOptions = getClassList(sortData(classData));
+    const classOptions = getClassList(sortByName(classData));
     const classroom = getClassroomProp(classroomId, classData.classData);
     const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
 

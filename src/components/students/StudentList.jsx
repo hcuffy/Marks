@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
-import {actionCreators} from '../../actions/index';
 import StudentModal from './StudentModal';
+import {actionCreators} from '../../actions/index';
 import {generateStudentList} from './formHelper';
 import css from './styles/students.css';
 

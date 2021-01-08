@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 
 import {resourceList} from './resourcesList';
-import {filteredAddressData} from '../helpers/formValidation';
+import {filteredAddressData} from '../helpers';
 import {openResource} from '../../utils';
 import css from './homepage.css';
 
@@ -12,7 +12,7 @@ function Homepage({t, addressData}) {
     const entry = _.values(filteredAddressData(addressData)).map((data, idx) => <li key={idx}>{data}</li>);
 
     return (
-        <div className={css.main_school_div}>
+        <div>
             <h4 className={css.main_header}> {t('home.title')}</h4>
             <div className={css.school_left_div}>
                 <div>

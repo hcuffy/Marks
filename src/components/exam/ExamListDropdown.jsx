@@ -5,14 +5,13 @@ import {bindActionCreators} from 'redux';
 
 import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
-import {sortData} from '../classroom/formHelpers';
-import {getClassList, getSubjectList, createDropdown, getClassroomProp} from '../helpers';
+import {getClassList, getSubjectList, createDropdown, getClassroomProp, sortByName} from '../helpers';
 import css from './styles/exam.css';
 
 function ExamListDropdown({t, classData, examData, subjectData, actions}) {
     const {classroomId, selectedSubject, openClassDropdown, openSubList} = examData;
-    const cleanedClassList = sortData(classData);
-    const classOptions = getClassList(cleanedClassList);
+    const sortedData = sortByName(classData);
+    const classOptions = getClassList(sortedData);
     const classroom = getClassroomProp(classroomId, classData.classData);
     const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
 
