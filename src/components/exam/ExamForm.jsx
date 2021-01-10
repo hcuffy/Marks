@@ -21,6 +21,7 @@ function TitleInput({t, isInvalid}) {
                     name='title'
                     data-id='titleId'
                     type='text'
+                    className={css.inputs_width}
                     intent={intent}
                 />
             </FormGroup>
@@ -36,6 +37,7 @@ function ClassSelect({t, options, action}) {
                     onChange={action}
                     name='room'
                     data-id='classSelection'
+                    className={css.input_space}
                     type='text'
                 >
                     {options}
@@ -52,6 +54,7 @@ function SubjectSelect({t, options}) {
                 <HTMLSelect
                     name='subject'
                     data-id='subjectSelection'
+                    className={css.input_space}
                     type='text'
                 >
                     {options}
@@ -64,12 +67,12 @@ function SubjectSelect({t, options}) {
 function DateSelect({t}) {
     return (
         <div className={css.right_inputs}>
-            <Label className={'bp3-inline'} htmlFor='dateIn'>{t('general.date')}
+            <Label className={'bp3-inline'} htmlFor='dateIn'> {t('general.date')}
                 <DateInput
-                    formatDate={date => moment(date).format('MM/DD/YYYY')}
-                    parseDate={str => new Date(Date.parse(str))}
+                    formatDate={date => moment(date).format('L')}
+                    parseDate={dateString => new Date(Date.parse(dateString))}
                     name='date'
-                    type='date'
+                    className={css.date_space}
                     data-id='dateIn'
                     defaultValue={new Date()}
                 />
@@ -81,7 +84,7 @@ function DateSelect({t}) {
 function WeightInput({t}) {
     return (
         <div className={css.right_inputs}>
-            <Label className={css.weight_label} htmlFor='number-input'>{t('general.weight')} </Label>
+            <Label className={css.weight_label} htmlFor='number-input'> {t('general.weight')} </Label>
             <NumericInput
                 defaultValue={1}
                 className={css.number_input}

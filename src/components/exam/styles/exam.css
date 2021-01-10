@@ -41,6 +41,7 @@
 }
 
 .number_input{
+  margin-left: 6px !important;
   float: left;
 }
 
@@ -99,4 +100,15 @@
 
 .subject_dropdown {
   padding-top: 20px;
+}
+
+.inputs_width {
+ width: 200px;
+}
+.date_space{
+  margin-right: 28px !important;
+}
+
+.input_space{
+  margin-left: 15px !important;
 }
