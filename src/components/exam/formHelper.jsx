@@ -1,6 +1,8 @@
 import React from 'react';
+import moment from 'moment';
 import _ from 'lodash';
-import {Button, Input, Label} from 'reactstrap';
+import {Button, Intent, FormGroup, InputGroup, HTMLSelect, Label, NumericInput} from '@blueprintjs/core';
+import {DateInput} from '@blueprintjs/datetime';
 
 import {getClassroomProp} from '../helpers';
 import css from './styles/exam.css';
@@ -26,100 +28,87 @@ export function getSubjectOptions(subjectData, examData, cleanedClassList) {
     ));
 }
 
-function titleInput(isInvalid, t) {
+function TitleInput({t, isInvalid}) {
+    const intent = isInvalid ? Intent.DANGER : Intent.NONE;
+
     return (
         <div>
-            <Label className={css.form_label} htmlFor='titleId'>
-                {t('exam.title')}*:
-            </Label>
-
-            <Input
-                name='title'
-                className='form-control'
-                data-id='titleId'
-                type='text'
-                invalid={isInvalid}
-            />
+            <FormGroup inline={true} labelFor={'titleId'} label={t('exam.title')}>
+                <InputGroup
+                    name='title'
+                    data-id='titleId'
+                    type='text'
+                    intent={intent}
+                />
+            </FormGroup>
         </div>
     );
 }
 
-function classInput(t, options, action) {
+function ClassSelect({t, options, action}) {
     return (
         <div>
-            <Label className={css.form_label} htmlFor='classSelection'>
-                {t('general.selectRoom')}:
+            <Label className={'bp3-inline'} htmlFor='classSelection'>{t('general.selectRoom')}
+                <HTMLSelect
+                    onChange={action}
+                    name='room'
+                    data-id='classSelection'
+                    type='text'
+                >
+                    {options}
+                </HTMLSelect>
             </Label>
-
-            <select
-                onChange={action}
-                className='form-control'
-                name='room'
-                data-id='classSelection'
-                type='text'
-            >
-                {options}
-            </select>
         </div>
     );
 }
 
-function subjectInput(t, options) {
+function SujectSelect({t, options}) {
     return (
-        <div className={css.subject_dropdown}>
-            <Label className={css.form_label} htmlFor='subjectSelection'>
-                {t('general.selectSubject')}:
+        <div>
+            <Label htmlFor='subjectSelection'>{t('general.selectSubject')}
+                <HTMLSelect
+                    name='subject'
+                    data-id='subjectSelection'
+                    type='text'
+                >
+                    {options}
+                </HTMLSelect>
             </Label>
-
-            <select
-                className='form-control'
-                name='subject'
-                data-id='subjectSelection'
-                type='text'
-            >
-                {options}
-            </select>
         </div>
     );
 }
 
-function dateInput(t) {
-    const defaultDate = new Date().toISOString().substring(0, 10);
-
+function DateSelect({t}) {
     return (
-        <div className={`${css.form_div} form-group`}>
-            <Label className={css.form_label} htmlFor='dateIn'>
-                {t('general.date')}:
+        <div className={css.form_div}>
+            <Label className={css.form_label} htmlFor='dateIn'>{t('general.date')}
+                <DateInput
+                    formatDate={date => moment(date).format('MM/DD/YYYY')}
+                    parseDate={str => new Date(Date.parse(str))}
+                    name='date'
+                    type='date'
+                    data-id='dateIn'
+                    defaultValue={new Date()}
+                />
             </Label>
-
-            <Input
-                className='form-control'
-                name='date'
-                type='date'
-                data-id='dateIn'
-                defaultValue={defaultDate}
-            />
         </div>
     );
 }
 
-function numberInput(t) {
+function WeightInput({t}) {
     return (
-        <div className={`${css.form_div} form-group`}>
-            <Label className={css.form_label} htmlFor='number-input'>
-                {t('general.weight')}:
+        <div className={css.form_div}>
+            <Label className={css.form_label} htmlFor='number-input'>{t('general.weight')}
+                <NumericInput
+                    className={css.weight_input}
+                    defaultValue={1}
+                    name='weight'
+                    data-id='number-input'
+                    min={1}
+                    max={4}
+                    stepSize={0.5}
+                />
             </Label>
-
-            <Input
-                className={`${css.weight_input} form-control`}
-                defaultValue='1'
-                name='weight'
-                type='number'
-                data-id='number-input'
-                min='1'
-                max='4'
-                step='0.5'
-            />
         </div>
     );
 }
@@ -128,16 +117,14 @@ export function generateExamForm(t, subjectOptions, classOption, {isInvalid}, {a
     return (
         <div>
             <form className='form-inline' onSubmit={addNewExam} method='POST'>
-                {titleInput(isInvalid, t)}
-                {classInput(t, classOption, getSelectedSubject)}
-                {subjectInput(t, subjectOptions)}
-                {dateInput(t)}
-                {numberInput(t)}
+                <TitleInput t={t } isInvalid={isInvalid}/>
+                <ClassSelect t={t } options={classOption} action={getSelectedSubject}/>
+                <SujectSelect t={t } options={subjectOptions}/>
+                <DateSelect t={t}/>
+                <WeightInput t={t}/>
 
                 <div className={css.form_save_btn}>
-                    <Button type='submit' formNoValidate className='btn btn-success'>
-                        {t('general.add')}
-                    </Button>
+                    <Button type='submit' formNoValidate intent={Intent.SUCCESS} text={t('general.add')}/>
                 </div>
             </form>
         </div>

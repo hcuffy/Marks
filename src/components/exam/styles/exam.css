@@ -17,13 +17,6 @@
   float: left;
 }
 
-.form_label {
-  float: left;
-  margin: 0 5px 0 5px;
-  vertical-align: bottom;
-  line-height: 32px;
-}
-
 .form_div {
   margin-top: 20px;
 }
