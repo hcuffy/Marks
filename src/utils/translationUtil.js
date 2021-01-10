@@ -1,5 +1,6 @@
 import i18next from 'i18next';
 import _ from 'lodash';
+import moment from 'moment';
 import {ENGLISH_LABELS, GERMAN_LABELS} from '../constants/menuLabels';
 
 export function customTranslate(translate) {
@@ -10,13 +11,14 @@ export function resolveLabel(current, translated) {
     return _.isEmpty(current) ? translated : current;
 }
 
-export function currentLanguage() {
-    return i18next.language;
+export function getUserLocale() {
+    return i18next.language.slice(0, 2) === 'en' ? 'en' : 'de';
 }
 
-export function customMenuTranslation(locale, label) {
-    const primaryLang = locale.slice(0, 2);
-    if (primaryLang === 'de') {
+moment.locale(getUserLocale());
+
+export function customMenuTranslation(label) {
+    if (getUserLocale() === 'de') {
         return GERMAN_LABELS[label];
     }
 

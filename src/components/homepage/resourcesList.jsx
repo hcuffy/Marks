@@ -3,10 +3,10 @@ import _ from 'lodash';
 import {ButtonGroup, AnchorButton, Intent} from '@blueprintjs/core';
 
 import {GERMAN_LINKS, ENGLISH_LINKS} from './constants';
-import {currentLanguage} from '../../utils';
+import {getUserLocale} from '../../utils';
 
 export function resourceList(openResource) {
-    const primaryLang = _.isUndefined(currentLanguage()) ? 'de' : currentLanguage().slice(0, 2);
+    const primaryLang = _.isUndefined(getUserLocale()) ? 'de' : getUserLocale();
     const LanguageLinks = primaryLang === 'de' ? GERMAN_LINKS : ENGLISH_LINKS;
 
     const list = _.keys(LanguageLinks).map((data, idx) => (
