@@ -95,16 +95,18 @@ export function NavBarButton({t, navBarData, actions}) {
         const label = _.findKey(navBarData, key => key === data);
 
         return (
-            <ButtonGroup key={idx} minimal={data === null} large={true}>
-                <Button role='button'
-                    outlined={data === null}
-                    intent={Intent.PRIMARY}
-                    onClick={actions.changeClassroomTab}
-                    text={ t(`room.${label}`)}
-                    data-name={label}
-                />
+            <div key={idx} className={css.nav_btn}>
+                <ButtonGroup minimal={data === null} large={true}>
+                    <Button role='button'
+                        outlined={data === null}
+                        intent={Intent.PRIMARY}
+                        onClick={actions.changeClassroomTab}
+                        text={ t(`room.${label}`)}
+                        data-name={label}
+                    />
 
-            </ButtonGroup>
+                </ButtonGroup>
+            </div>
         );
     });
 }
