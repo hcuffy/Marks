@@ -9,7 +9,7 @@ import css from './styles/exam.css';
 
 export function getClassOptions(classInfo) {
     return _.values(classInfo).map((data, idx) => (
-        <option className='form-control dropup' key={idx}>
+        <option key={idx}>
             {data.name}
         </option>
     ));
@@ -22,7 +22,7 @@ export function getSubjectOptions(subjectData, examData, cleanedClassList) {
     const filteredSubject = _.filter(subjectData.data, ['classroomId', classroomId]);
 
     return _.values(filteredSubject).map((data, idx) => (
-        <option className='form-control dropup' key={idx} data-id={data._id}>
+        <option key={idx} data-id={data._id}>
             {data.abbreviation}
         </option>
     ));
@@ -32,7 +32,7 @@ function TitleInput({t, isInvalid}) {
     const intent = isInvalid ? Intent.DANGER : Intent.NONE;
 
     return (
-        <div>
+        <div className={css.left_inputs}>
             <FormGroup inline={true} labelFor={'titleId'} label={t('exam.title')}>
                 <InputGroup
                     name='title'
@@ -47,7 +47,7 @@ function TitleInput({t, isInvalid}) {
 
 function ClassSelect({t, options, action}) {
     return (
-        <div>
+        <div className={css.left_inputs}>
             <Label className={'bp3-inline'} htmlFor='classSelection'>{t('general.selectRoom')}
                 <HTMLSelect
                     onChange={action}
@@ -62,10 +62,10 @@ function ClassSelect({t, options, action}) {
     );
 }
 
-function SujectSelect({t, options}) {
+function SubjectSelect({t, options}) {
     return (
-        <div>
-            <Label htmlFor='subjectSelection'>{t('general.selectSubject')}
+        <div className={css.left_inputs}>
+            <Label className={'bp3-inline'} htmlFor='subjectSelection'>{t('general.selectSubject')}
                 <HTMLSelect
                     name='subject'
                     data-id='subjectSelection'
@@ -80,8 +80,8 @@ function SujectSelect({t, options}) {
 
 function DateSelect({t}) {
     return (
-        <div className={css.form_div}>
-            <Label className={css.form_label} htmlFor='dateIn'>{t('general.date')}
+        <div className={css.right_inputs}>
+            <Label className={'bp3-inline'} htmlFor='dateIn'>{t('general.date')}
                 <DateInput
                     formatDate={date => moment(date).format('MM/DD/YYYY')}
                     parseDate={str => new Date(Date.parse(str))}
@@ -97,18 +97,18 @@ function DateSelect({t}) {
 
 function WeightInput({t}) {
     return (
-        <div className={css.form_div}>
-            <Label className={css.form_label} htmlFor='number-input'>{t('general.weight')}
-                <NumericInput
-                    className={css.weight_input}
-                    defaultValue={1}
-                    name='weight'
-                    data-id='number-input'
-                    min={1}
-                    max={4}
-                    stepSize={0.5}
-                />
-            </Label>
+        <div className={css.right_inputs}>
+            <Label className={css.weight_label} htmlFor='number-input'>{t('general.weight')} </Label>
+            <NumericInput
+                defaultValue={1}
+                className={css.number_input}
+                name='weight'
+                data-id='number-input'
+                min={1}
+                max={4}
+                stepSize={0.5}
+            />
+
         </div>
     );
 }
@@ -116,13 +116,16 @@ function WeightInput({t}) {
 export function generateExamForm(t, subjectOptions, classOption, {isInvalid}, {addNewExam, getSelectedSubject}) {
     return (
         <div>
-            <form className='form-inline' onSubmit={addNewExam} method='POST'>
-                <TitleInput t={t } isInvalid={isInvalid}/>
-                <ClassSelect t={t } options={classOption} action={getSelectedSubject}/>
-                <SujectSelect t={t } options={subjectOptions}/>
-                <DateSelect t={t}/>
-                <WeightInput t={t}/>
-
+            <form onSubmit={addNewExam} method='POST'>
+                <div className={css.left_elements}>
+                    <TitleInput t={t } isInvalid={isInvalid}/>
+                    <ClassSelect t={t } options={classOption} action={getSelectedSubject}/>
+                    <SubjectSelect t={t } options={subjectOptions}/>
+                </div>
+                <div className={css.right_elements}>
+                    <DateSelect t={t}/>
+                    <WeightInput t={t}/>
+                </div>
                 <div className={css.form_save_btn}>
                     <Button type='submit' formNoValidate intent={Intent.SUCCESS} text={t('general.add')}/>
                 </div>

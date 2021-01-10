@@ -1,5 +1,5 @@
 .main_div {
-  margin-top: 100px;
+  margin-top: 5px;
   border-top: 1px solid;
 }
 
@@ -17,12 +17,36 @@
   float: left;
 }
 
-.form_div {
-  margin-top: 20px;
+.left_elements{
+  float: left;
+  width: 400px;
+}
+
+.left_inputs{
+  float: right;
+}
+
+.right_elements{
+  float: right;
+  width: 400px;
+  margin-right: 60px;
+}
+
+.right_inputs{
+  float: right;
+}
+
+.weight_label{
+  float: left;
+}
+
+.number_input{
+  float: left;
 }
 
 .form_save_btn {
-  margin: 20px 0 0 30px;
+  float: right;
+  margin: 20px 60px 0 30px;
 }
 
 .dropdown_div {
@@ -65,7 +89,6 @@
 .exam_div {
   margin: 10px 10px 20px 10px;
   height: 300px;
-  scrollbar-width: none;
   overflow-x: hidden;
 }
 
