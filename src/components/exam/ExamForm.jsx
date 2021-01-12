@@ -1,10 +1,8 @@
 import React from 'react';
-import moment from 'moment';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 import {Button, FormGroup, HTMLSelect, InputGroup, Intent, Label, NumericInput} from '@blueprintjs/core';
-import {DateInput} from '@blueprintjs/datetime';
 
 import {actionCreators} from '../../actions/index';
 import {sortByName} from '../helpers';
@@ -65,16 +63,17 @@ function SubjectSelect({t, options}) {
 }
 
 function DateSelect({t}) {
+    const defaultDate = new Date().toISOString().substring(0, 10);
+
     return (
         <div className={css.right_inputs}>
             <Label className={'bp3-inline'} htmlFor='dateIn'> {t('general.date')}
-                <DateInput
-                    formatDate={date => moment(date).format('L')}
-                    parseDate={dateString => new Date(Date.parse(dateString))}
+                <InputGroup
                     name='date'
+                    type='date'
                     className={css.date_space}
-                    data-id='dateIn'
-                    defaultValue={new Date()}
+                    id='dateIn'
+                    defaultValue={defaultDate}
                 />
             </Label>
         </div>
@@ -117,7 +116,7 @@ export function AddExamForm({t, classData, subjectData, examData, actions}) {
                     <WeightInput t={t}/>
                 </div>
                 <div className={css.form_save_btn}>
-                    <Button type='submit' formNoValidate intent={Intent.SUCCESS} text={t('general.add')}/>
+                    <Button type='submit' intent={Intent.SUCCESS} text={t('general.add')}/>
                 </div>
             </form>
         </div>

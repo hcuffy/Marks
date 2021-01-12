@@ -1,8 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 
-import {getClassroomProp} from '../helpers';
-
 export function getClassOptions(classInfo) {
     return _.values(classInfo).map((data, idx) => (
         <option key={idx}>
@@ -11,11 +9,12 @@ export function getClassOptions(classInfo) {
     ));
 }
 
-export function getSubjectOptions(subjectData, examData, cleanedClassList) {
-    const {subject} = examData;
-    const classroom = subject || cleanedClassList[0].name;
-    const classroomId = getClassroomProp(classroom, cleanedClassList);
-    const filteredSubject = _.filter(subjectData.data, ['classroomId', classroomId]);
+export function getSubjectOptions(subjectData, examData, sortedData) {
+    let {classroom} = examData;
+    classroom = _.isNull(classroom) ? sortedData[0]?.name : classroom;
+
+    const classroomObject = _.find(sortedData, {name: classroom}) || {};
+    const filteredSubject = _.filter(subjectData?.data, ['classroomId', classroomObject?._id]);
 
     return _.values(filteredSubject).map((data, idx) => (
         <option key={idx} data-id={data._id}>

@@ -2,7 +2,7 @@ import {examHandlers} from './reducerHandlers';
 import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
-    subject:           '',
+    classroom:         null,
     openClassDropdown: false,
     openSubList:       false,
     classroomId:       null,

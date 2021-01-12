@@ -106,7 +106,8 @@
  width: 200px;
 }
 .date_space{
-  margin-right: 28px !important;
+  width: 200px;
+  margin-left: 6px !important;
 }
 
 .input_space{

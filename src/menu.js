@@ -37,27 +37,28 @@ export default class MenuBuilder {
     }
 
     buildDarwinTemplate() {
+        const locale = app.getLocale().slice(0, 2);
         const subMenuAbout = {
             label:   'Marks',
             submenu: [
                 {
-                    label:    customMenuTranslation('about'),
+                    label:    customMenuTranslation(locale, 'about'),
                     selector: 'orderFrontStandardAboutPanel:'
                 },
                 {type: 'separator'},
                 {
-                    label:       customMenuTranslation('hide'),
+                    label:       customMenuTranslation(locale, 'hide'),
                     accelerator: 'Command+H',
                     selector:    'hide:'
                 },
                 {
-                    label:       customMenuTranslation('others'),
+                    label:       customMenuTranslation(locale, 'others'),
                     accelerator: 'Command+Shift+H',
                     selector:    'hideOtherApplications:'
                 },
                 {type: 'separator'},
                 {
-                    label:       customMenuTranslation('quit'),
+                    label:       customMenuTranslation(locale, 'quit'),
                     accelerator: 'Command+Q',
                     click:       () => {
                         app.quit();
@@ -67,7 +68,7 @@ export default class MenuBuilder {
         };
 
         const subMenuViewDev = {
-            label:   customMenuTranslation('view'),
+            label:   customMenuTranslation(locale, 'view'),
             submenu: [
                 {
                     label:       'Reload',
@@ -77,7 +78,7 @@ export default class MenuBuilder {
                     }
                 },
                 {
-                    label:       customMenuTranslation('toggle'),
+                    label:       customMenuTranslation(locale, 'toggle'),
                     accelerator: 'Ctrl+Command+F',
                     click:       () => {
                         if (!this.mainWindow.isDestroyed()) {
@@ -95,10 +96,10 @@ export default class MenuBuilder {
             ]
         };
         const subMenuViewProd = {
-            label:   customMenuTranslation('view'),
+            label:   customMenuTranslation(locale, 'view'),
             submenu: [
                 {
-                    label:       customMenuTranslation('toggle'),
+                    label:       customMenuTranslation(locale, 'toggle'),
                     accelerator: 'Ctrl+Command+F',
                     click:       () => {
                         if (!this.mainWindow.isDestroyed()) {
@@ -109,15 +110,15 @@ export default class MenuBuilder {
             ]
         };
         const subMenuWindow = {
-            label:   customMenuTranslation('window'),
+            label:   customMenuTranslation(locale, 'window'),
             submenu: [
                 {
-                    label:       customMenuTranslation('mini'),
+                    label:       customMenuTranslation(locale, 'mini'),
                     accelerator: 'Command+M',
                     selector:    'performMiniaturize:'
                 },
                 {
-                    label:       customMenuTranslation('close'),
+                    label:       customMenuTranslation(locale, 'close'),
                     accelerator: 'Command+W',
                     selector:    'performClose:'
                 }
