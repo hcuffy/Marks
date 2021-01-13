@@ -2,19 +2,15 @@ import _ from 'lodash';
 
 import {actions} from './constants';
 import {addExamData, getAllExams, deleteExam, updateExamData} from '../../collections';
-import {getOption} from '../students/actions';
-import {inputValidation} from '../helpers';
+import {getSelectedOption, getFormValues, getTargetValue, inputValidation} from '../helpers';
 
 export function addNewExam(event) {
     return async dispatch => {
         event.preventDefault();
 
-        const examData = {
-            title:     event.target.title.value,
-            subjectId: getOption(event, 'subject'),
-            date:      event.target.date.value,
-            weight:    event.target.weight.value
-        };
+        const examData = getFormValues(['title', 'date', 'weight'], event);
+
+        _.set(examData, 'subjectId', getSelectedOption(event, 'subject'));
 
         if (inputValidation(_.pick(examData, ['title']))) {
             dispatch({
@@ -34,13 +30,13 @@ export function addNewExam(event) {
     };
 }
 
-export function getSelectedSubject(event) {
+export function getSelectedClassroom(event) {
     return dispatch => {
-        const subject = event.target.value;
+        const classroom = getTargetValue(event);
 
         dispatch({
             type:    actions.GET_SELECTED_CLASS,
-            payload: {subject}
+            payload: {classroom}
         });
     };
 }

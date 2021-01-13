@@ -61,3 +61,9 @@ export function getClassroomProp(prop, classdata) {
 
     return classObject.prop;
 }
+
+export function getSelectedOption(event, propToGet) {
+    const index = event.target[propToGet]?.selectedIndex;
+
+    return event.target[propToGet]?.options[index]?.getAttribute('data-id');
+}
