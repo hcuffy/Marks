@@ -12,7 +12,7 @@ import css from './styles/exam.css';
 function ExamListDropdown({t, classData, examData, subjectData, actions}) {
     const {classroomId, subjectId} = examData;
     const classes = classData?.classData;
-    const subjects = _.find(subjectData?.data, {classroomId}) || {};
+    const subjects = _.filter(subjectData?.data, {classroomId}) || {};
 
     const selectedClass = _.find(classes, {_id: classroomId}) || {};
     const selectedSubject = _.find(subjects, {_id: subjectId}) || {};

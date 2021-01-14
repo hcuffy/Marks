@@ -50,14 +50,10 @@
   margin: 20px 60px 0 30px;
 }
 
-.dropdown_div {
-  display: inline-block;
-  margin-left: 15px;
-}
-
 .dropdown_main_div {
   text-align: center;
-  margin-left: 160px;
+  height: 50px;
+  width: 370px;
 }
 
 .form_label_edit {
@@ -98,10 +94,6 @@
   width: 170px !important;
 }
 
-.subject_dropdown {
-  padding-top: 20px;
-}
-
 .inputs_width {
  width: 200px;
 }
@@ -112,4 +104,12 @@
 
 .input_space{
   margin-left: 15px !important;
+}
+
+.left_dropdown{
+  float: left;
+}
+
+.right_dropdown{
+float: right;
 }

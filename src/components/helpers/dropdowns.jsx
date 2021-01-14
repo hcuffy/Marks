@@ -154,7 +154,7 @@ export function DropdownComponent({items, action, label, disabled = false}) {
                 onItemSelect={action}
                 filterable={false}
                 disabled={disabled}>
-                <Button intent={Intent.SUCCESS} text={label} rightIcon='caret-down' />
+                <Button className={css.dropdown_btn} intent={Intent.SUCCESS} text={label} rightIcon='caret-down' />
             </Select>
         </div>
     );
