@@ -17,7 +17,7 @@ function filterStudentsByClassId(students, classroomId) {
 
 function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
     const {classDropdown, studentDropdown, questionDropdown, classroom, studentName, questions, classroomId} = capabilityData;
-    const classOptions = getClassList(sortByName(classData));
+    const classOptions = getClassList(sortByName(classData.classData));
     const studentOptions = getStudentList(filterStudentsByClassId(students, classroomId));
     const questionOptions = getQuestionList(t, classroomId, capabilityQuestions, actions);
     const actualSet = getQuestionSet(classroomId, questions);

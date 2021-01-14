@@ -1,6 +1,7 @@
 import {examHandlers} from './reducerHandlers';
 import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
+//TODO : remove this properties once the dropdowns are workingX
 const initialLoadState = {
     classroom:         null,
     openClassDropdown: false,

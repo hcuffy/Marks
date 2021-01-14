@@ -50,7 +50,7 @@ export function notifyIfEmpty(list, isSelected, section) {
 }
 
 export function sortByName(data) {
-    return _.sortBy(data.classData, ['name'], ['asc']);
+    return _.sortBy(data, ['name'], ['asc']);
 }
 
 export function getClassroomProp(prop, classdata) {

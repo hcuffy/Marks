@@ -87,6 +87,7 @@ function WeightInput({t}) {
             <NumericInput
                 defaultValue={1}
                 className={css.number_input}
+                leftIcon={'layers'}
                 name='weight'
                 data-id='number-input'
                 min={1}
@@ -99,7 +100,7 @@ function WeightInput({t}) {
 }
 
 export function AddExamForm({t, classData, subjectData, examData, actions}) {
-    const sortedData = sortByName(classData);
+    const sortedData = sortByName(classData.classData);
     const classOption = getClassOptions(sortedData);
     const subjectOptions = getSubjectOptions(subjectData, examData, sortedData);
 

@@ -25,7 +25,7 @@ export function customTranslate(translate) {
 }
 
 export function resolveLabel(current, translated) {
-    return _.isEmpty(current) ? translated : current;
+    return _.isUndefined(current) || _.isEmpty(current) ? translated : current;
 }
 
 export function customMenuTranslation(locale, label) {

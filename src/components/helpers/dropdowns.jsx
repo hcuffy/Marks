@@ -169,3 +169,14 @@ export function getQuestionList(t, classroomId, capabilityQuestions, {updateQues
         </DropdownItem>
     ));
 }
+
+export function createDropdownItems(dataList, dropDown) {
+    return _.map(dataList, (data, idx) => (
+        {
+            key:          idx,
+            name:         data.name,
+            id:           data._id,
+            'data-check': dropDown
+        }
+    ));
+}

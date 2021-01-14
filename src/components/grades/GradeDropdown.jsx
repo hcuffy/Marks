@@ -12,7 +12,7 @@ import css from './styles/grades.css';
 function GradeDropdown({t, classData, gradeData, subjectData, actions}) {
     const {subDrop, subjectName, classroomId, classroomDropdown} = gradeData;
     const openIt = {subDrop};
-    const classOptions = getClassList(sortByName(classData));
+    const classOptions = getClassList(sortByName(classData.classData));
     const classroom = getClassroomProp(classroomId, classData.classData);
     const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
 

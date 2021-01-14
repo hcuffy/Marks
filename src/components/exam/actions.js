@@ -41,13 +41,13 @@ export function getSelectedClassroom(event) {
     };
 }
 
-export function openClassDropdownList(event) {
+export function showClass(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'classDropdown') {
+        if (event['data-check'] !== 'classDropdown') {
             return;
         }
 
-        const classroomId = event.target.getAttribute('data-id');
+        const classroomId = event.id;
 
         dispatch({
             type:    actions.UPDATE_DROPDOWN_CLASS_LIST,
@@ -56,7 +56,7 @@ export function openClassDropdownList(event) {
     };
 }
 
-export function displayExamData(event) {
+export function showExamList(event) {
     return async dispatch => {
         if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
             return;
