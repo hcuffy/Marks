@@ -39,7 +39,7 @@ export async function getClassrooms(data = {}) {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['name']);
 }
 
 export async function getSingleClassroom(data) {
@@ -84,7 +84,7 @@ export async function deleteClassroom({id}) {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['name']);
 }
 
 function checkSubject(checkingCurrent) {
@@ -124,7 +124,7 @@ export async function updateRoomData(data) {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['name']);
 }
 
 export async function updateSubjectArray(data) {
@@ -142,7 +142,7 @@ export async function updateSubjectArray(data) {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['name']);
 }
 
 export async function updateClassSubjectArray(classroomId, oldSubject, newSubject) {
