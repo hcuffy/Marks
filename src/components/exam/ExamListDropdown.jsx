@@ -6,15 +6,17 @@ import {bindActionCreators} from 'redux';
 
 import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
-import {sortByName, DropdownComponent, createDropdownItems} from '../helpers';
+import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './styles/exam.css';
 
 function ExamListDropdown({t, classData, examData, subjectData, actions}) {
-    const {classroomId, selectedSubject} = examData;
-    const classes = sortByName(classData?.classData);
-    const subjects = sortByName(subjectData?.data);
+    const {classroomId, subjectId} = examData;
+    const classes = classData?.classData;
+    const subjects = _.find(subjectData?.data, {classroomId}) || {};
 
     const selectedClass = _.find(classes, {_id: classroomId}) || {};
+    const selectedSubject = _.find(subjects, {_id: subjectId}) || {};
+
     const items = createDropdownItems(classes, 'classDropdown');
     const label = resolveLabel(selectedClass?.name, t('general.selectClass'));
 
@@ -24,11 +26,21 @@ function ExamListDropdown({t, classData, examData, subjectData, actions}) {
     return (
         <div className={css.dropdown_main_div}>
             <div className={css.left_dropdown}>
-                <DropdownComponent items={items} action={actions.showClass} label={label}/>
+                <DropdownComponent
+                    items={items}
+                    action={actions.showClass}
+                    label={label}
+                    disabled={_.isEmpty(classes)}
+                />
             </div>
 
             <div className={css.right_dropdown}>
-                <DropdownComponent items={subjectItems} action={actions.showExamList} label={subjectLabel}/>
+                <DropdownComponent
+                    items={subjectItems}
+                    action={actions.showExamList}
+                    label={subjectLabel}
+                    disabled={_.isEmpty(subjects)}
+                />
             </div>
         </div>
     );

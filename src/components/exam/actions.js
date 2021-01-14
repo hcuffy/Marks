@@ -58,18 +58,17 @@ export function showClass(event) {
 
 export function showExamList(event) {
     return async dispatch => {
-        if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
+        if (event['data-check'] !== 'subjectDropdown') {
             return;
         }
 
-        const subjectId = event.target.getAttribute('data-id');
-        const selectedSubject = event.target.innerText;
+        const subjectId = event.id;
 
         const exams = await getAllExams();
         if (_.size(exams)) {
             dispatch({
                 type:    actions.DISPLAY_SUBJECT_LIST,
-                payload: {exams, subjectId, selectedSubject, openClassDropdown: false}
+                payload: {exams, subjectId}
             });
         }
     };

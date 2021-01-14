@@ -145,10 +145,15 @@ function menuItems(item, {handleClick}) {
         />);
 }
 
-export function DropdownComponent({items, action, label}) {
+export function DropdownComponent({items, action, label, disabled = false}) {
     return (
         <div>
-            <Select itemRenderer={menuItems} items={items} onItemSelect={action} filterable={false}>
+            <Select
+                itemRenderer={menuItems}
+                items={items}
+                onItemSelect={action}
+                filterable={false}
+                disabled={disabled}>
                 <Button intent={Intent.SUCCESS} text={label} rightIcon='caret-down' />
             </Select>
         </div>

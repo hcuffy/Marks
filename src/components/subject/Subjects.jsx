@@ -7,9 +7,8 @@ import {bindActionCreators} from 'redux';
 import SubjectForm from './SubjectForm';
 import SubjectList from './SubjectList';
 import {resolveLabel} from '../../utils';
-import {createDropdownItems} from '../classroom/formHelpers';
 import {actionCreators} from '../../actions/index';
-import {DropdownComponent, sortByName} from '../helpers';
+import {DropdownComponent, sortByName, createDropdownItems} from '../helpers';
 import css from './styles/subject.css';
 
 function Subjects({t, classData, classListData, actions}) {
@@ -24,7 +23,7 @@ function Subjects({t, classData, classListData, actions}) {
             <div className={css.subject_left}>
                 <h4 className={css.subject_header}>{t('room.subjectHeader')}</h4>
 
-                <DropdownComponent items={items} action={actions.showSubject} label={label}/>
+                <DropdownComponent items={items} action={actions.showSubject} label={label} disabled={_.isEmpty(classes)}/>
 
                 <SubjectList t={t} selectedClass={selectedClass} />
             </div>
