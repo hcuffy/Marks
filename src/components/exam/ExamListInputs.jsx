@@ -3,39 +3,37 @@ import dayjs from 'dayjs';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {Alignment, ButtonGroup, Button, Icon} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions/index';
-import {Button} from 'reactstrap';
 import css from './styles/exam.css';
 
 function ExamListInputs({exams, subjectId, actions}) {
     const filteredExams = _.filter(exams, ['subjectId', subjectId]);
 
-    const examList = _.map(filteredExams, (data, idx) => (
-        <Button
-            key={idx}
-            data-id={data._id}
-            type='button'
-            className={`list-group-item list-group-item-action ${css.list_btn}`}
-            onClick={actions.showSingleExam}
-        >
-            {data.title}
+    return _.map(filteredExams, (data, idx) => (
+        <div key={idx} className={css.list_buttons}>
+            <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
+                <Button
+                    onClick={actions.showRoomDialog}
+                    text={data.title}
+                    data-id={data._id}
+                >
 
-            <span className={`badge badge-light badge-pill ${css.badge_number}`}>
-                <i className='fas fa-calendar' /> {dayjs(data.date).format('L')}
-            </span>
+                    <span className={`badge badge-light badge-pill ${css.badge_number}`}>
+                        { <Icon icon='calendar' iconSize={13} className={css.button_icon} />}
+                        {dayjs(data.date).format('L') }
+                    </span>
 
-            <span className={`badge badge-warning badge-pill ${css.badge_number}`}>
-                <i className='fas fa-weight-hanging' /> {data.weight}
-            </span>
-        </Button>
-    ));
-
-    return (
-        <div className={`list-group list-group-flush ${css.exam_div}`}>
-            {examList}
+                    <span className={`badge badge-warning badge-pill ${css.badge_number}`}>
+                        { <Icon icon='layers' iconSize={13} className={css.button_icon} />}
+                        {data.weight}
+                    </span>
+                </Button>
+            </ButtonGroup>
         </div>
-    );
+
+    ));
 }
 
 const mapStateToProps = state => ({

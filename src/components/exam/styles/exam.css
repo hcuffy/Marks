@@ -73,20 +73,9 @@
   display: inline-block;
 }
 
-.list_btn {
-  display: inline-flex;
-  align-items: flex-start;
-  height: 40px;
-}
-
 .badge_number {
   float: right;
-}
-
-.exam_div {
-  margin: 10px 10px 20px 10px;
-  height: 300px;
-  overflow-x: hidden;
+  font-size: 0.9em ;
 }
 
 .modalInput {
@@ -112,4 +101,14 @@
 
 .right_dropdown{
 float: right;
+}
+
+.list_buttons{
+  height: 35px;
+  margin-left: 5px;
+}
+
+.button_icon{
+  margin-left: 5px !important;
+  margin-right: 5px !important;
 }

@@ -19,7 +19,7 @@ const ExamModal = ({t, examData, actions}) => {
         nameId:       subjectId,
         closeId:      null,
         deleteAction: actions.deleteSingleExam,
-        closeAction:  actions.showSingleExam
+        closeAction:  actions.showExamDialog
     };
 
     return (

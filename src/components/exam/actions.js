@@ -74,7 +74,7 @@ export function showExamList(event) {
     };
 }
 
-export function showSingleExam(event) {
+export function showExamDialog(event) {
     return dispatch => {
         const examId = event.target.getAttribute('data-id');
 
