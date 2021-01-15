@@ -34,7 +34,7 @@ export const menuData = {
     capability: {
         linkTo: CAPABILITY,
         dataId: 'capability',
-        name:   'chat'
+        name:   'predictive-analysis'
     },
     school: {
         linkTo: SETTINGS,
