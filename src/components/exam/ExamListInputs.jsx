@@ -15,7 +15,7 @@ function ExamListInputs({exams, subjectId, actions}) {
         <div key={idx} className={css.list_buttons}>
             <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
                 <Button
-                    onClick={actions.showRoomDialog}
+                    onClick={actions.showExamDialog}
                     text={data.title}
                     data-id={data._id}
                 >

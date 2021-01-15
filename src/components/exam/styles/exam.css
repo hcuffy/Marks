@@ -78,17 +78,29 @@
   font-size: 0.9em ;
 }
 
-.modalInput {
-  border: 1px solid #6c757d !important;
-  width: 170px !important;
+.dialog_div {
+  width: 300px;
+  height: 230px;
+}
+
+.dialog_input{
+  float: right;
+  width: 220px;
+
 }
 
 .inputs_width {
  width: 200px;
 }
+
 .date_space{
   width: 200px;
   margin-left: 6px !important;
+}
+
+.dialog_date{
+  float: right;
+  width: 220px;
 }
 
 .input_space{

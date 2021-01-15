@@ -5,9 +5,9 @@ const initialLoadState = {
     classroom:       null,
     classroomId:     null,
     selectedSubject: null,
-    examModal:       false,
+    showDialog:      false,
     isInvalid:       false,
-    isModalInvalid:  false,
+    isDialogInvalid: false,
     title:           '',
     weight:          ''
 };

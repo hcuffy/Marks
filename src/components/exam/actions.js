@@ -2,7 +2,14 @@ import _ from 'lodash';
 
 import {actions} from './constants';
 import {addExamData, getAllExams, deleteExam, updateExamData} from '../../collections';
-import {getSelectedOption, getFormValues, getTargetValue, inputValidation} from '../helpers';
+import {
+    getSelectedOption,
+    getFormValues,
+    getTargetValue,
+    inputValidation,
+    getAttribute,
+    getCustomAttribute
+} from '../helpers';
 
 export function addNewExam(event) {
     return async dispatch => {
@@ -76,11 +83,11 @@ export function showExamList(event) {
 
 export function showExamDialog(event) {
     return dispatch => {
-        const examId = event.target.getAttribute('data-id');
+        const examId = getAttribute('data-id', event);
 
         dispatch({
             type:    actions.GET_SINGLE_EXAM,
-            payload: {examId, isModalInvalid: true}
+            payload: {examId, isDialogInvalid: false}
         });
     };
 }
@@ -89,32 +96,29 @@ export function updateExam(event) {
     return async dispatch => {
         event.preventDefault();
 
-        const examData = {
-            title:     event.target.title.value,
-            date:      event.target.date.value,
-            weight:    event.target.weight.value,
-            subjectId: event.target.subjectId.getAttribute('data-id'),
-            examId:    event.target.examId.getAttribute('data-id')
-        };
+        const examData = getFormValues(['title', 'date', 'weight'], event);
+        _.set(examData, 'subjectId', getCustomAttribute('data-id', 'subjectId', event));
+        _.set(examData, 'examId', getCustomAttribute('data-id', 'examId', event));
+
         const inputsToValidate = _.pick(examData, ['title', 'weight']);
 
         if (inputValidation(inputsToValidate)) {
             dispatch({
                 type:    actions.EXAM_MODAL_VALIDATION,
-                payload: {...inputsToValidate, isModalInvalid: true}
+                payload: {...inputsToValidate, isDialogInvalid: true}
             });
         } else {
             const exams = await updateExamData(examData);
 
             dispatch({
                 type:    actions.GET_SINGLE_EXAM,
-                payload: {examId: examData.examId, isModalInvalid: false}
+                payload: {examId: examData.examId, isDialogInvalid: false}
             });
 
             if (_.size(exams)) {
                 dispatch({
                     type:    actions.UPDATE_EXAMS_LIST,
-                    payload: {exams, isModalInvalid: false}
+                    payload: {exams, isDialogInvalid: false}
                 });
             }
         }
@@ -124,7 +128,7 @@ export function updateExam(event) {
 export function deleteSingleExam(event) {
     return async dispatch => {
         const examData = {
-            examId:    event.target.getAttribute('data-id'),
+            examId:    getAttribute('data-id', event),
             subjectId: event.target.name
         };
 

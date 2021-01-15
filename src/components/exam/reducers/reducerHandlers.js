@@ -4,9 +4,9 @@ import {actions} from '../constants';
 import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
 
 function singleExamUpdater(state, action) {
-    const examModal = !state.examModal;
+    const showDialog = !state.showDialog;
 
-    return _.assign({}, state, {examModal}, action.payload);
+    return _.assign({}, state, {showDialog}, action.payload);
 }
 
 export const examHandlers = {

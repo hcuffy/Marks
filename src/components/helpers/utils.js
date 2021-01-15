@@ -39,6 +39,10 @@ export function getAttribute(prop, event) {
     return value;
 }
 
+export function getCustomAttribute(prop, entry, event) {
+    return event.target[entry]?.getAttribute(prop);
+}
+
 export function getTargetValue({target}) {
     return target?.value;
 }
