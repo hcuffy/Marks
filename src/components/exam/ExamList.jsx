@@ -3,7 +3,7 @@ import {withTranslation} from 'react-i18next';
 
 import ExamListDropdown from './ExamListDropdown';
 import ExamListInputs from './ExamListInputs';
-import ExamModal from './ExamModal';
+import ExamDialog from './ExamDialog';
 import css from './styles/exam.css';
 
 function ExamList({t}) {
@@ -16,7 +16,7 @@ function ExamList({t}) {
 
             <div>
                 <ExamListInputs />
-                <ExamModal t={t} />
+                <ExamDialog t={t} />
             </div>
         </div>
     );

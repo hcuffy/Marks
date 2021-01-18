@@ -16,7 +16,7 @@ export async function getAllSubjects() {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['name']);
 }
 
 export async function addSubjectData(data) {
@@ -38,7 +38,7 @@ export async function addSubjectData(data) {
 
         const results = await getAllSubjects();
 
-        return results;
+        return _.sortBy(results, ['name']);
     } catch (e) {
         displayToast('saveFail', 'fail');
         console.log(e);
@@ -70,7 +70,7 @@ export async function deleteSubject({id}) {
         await deleteExamsBySubject(id);
         const result = await Subject.find({});
 
-        return result;
+        return _.sortBy(result, ['name']);
     } catch (e) {
         displayToast('deleteFail', 'fail');
         console.log(e);
@@ -116,7 +116,7 @@ export async function updateSubjectData(data) {
         }
         const result = await Subject.find({_id: data.subjectId});
 
-        return result;
+        return _.sortBy(result, ['name']);
     } catch (e) {
         displayToast('updateFail', 'fail');
         console.log(e);
@@ -146,7 +146,7 @@ export async function updateSubjectTestArray(subjectId, examTitle) {
             result = await Subject.update({_id: subjectId}, {$pull: {tests: examTitle}}, {});
         }
 
-        return result;
+        return _.sortBy(result, ['name']);
     } catch (e) {
         displayToast('updateFail', 'fail');
         console.log(e);

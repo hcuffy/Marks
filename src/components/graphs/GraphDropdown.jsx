@@ -11,7 +11,7 @@ import css from './styles/graphs.css';
 function GraphDropdown({t, classData, graphData, subjectData, actions}) {
     const {subjectId, exams, classroomId, classroomDropdown, openSubList, subjectName, examName, openExamList, chartTitle} = graphData;
     const classroom = getClassroomProp(classroomId, classData.classData);
-    const classOptions = getClassList(sortByName(classData));
+    const classOptions = getClassList(sortByName(classData.classData));
     const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
     const examOptions = getExamList(exams, subjectId);
 

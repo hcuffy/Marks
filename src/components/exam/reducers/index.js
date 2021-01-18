@@ -2,16 +2,14 @@ import {examHandlers} from './reducerHandlers';
 import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
-    subject:           '',
-    openClassDropdown: false,
-    openSubList:       false,
-    classroomId:       null,
-    selectedSubject:   null,
-    examModal:         false,
-    isInvalid:         false,
-    isModalInvalid:    false,
-    title:             '',
-    weight:            ''
+    classroom:       null,
+    classroomId:     null,
+    selectedSubject: null,
+    showDialog:      false,
+    isInvalid:       false,
+    isDialogInvalid: false,
+    title:           '',
+    weight:          ''
 };
 
 export function applyFilteredExam(state = initialLoadState, action) {

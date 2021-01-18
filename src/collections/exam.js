@@ -23,7 +23,7 @@ export async function addExamData(data) {
 
         displayToast('saveSuccess');
 
-        return result;
+        return _.sortBy(result, ['title']);
     } catch (e) {
         displayToast('saveFail');
         console.log(e);
@@ -41,7 +41,7 @@ export async function getAllExams() {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['title']);
 }
 
 async function updateTestsArr(examId, subjectId) {
@@ -64,7 +64,7 @@ export async function deleteExam({examId, subjectId}) {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['title']);
 }
 
 async function updateSingleExam(previous, current) {
@@ -90,7 +90,7 @@ export async function updateExamData(data) {
         }
         result = await Exam.find({});
 
-        return result;
+        return _.sortBy(result, ['title']);
     } catch (e) {
         displayToast('updateFail', 'fail');
         console.log(e);

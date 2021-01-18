@@ -23,20 +23,28 @@ export function getFormValues(propObject, {target}) {
     const formValues = {};
 
     _.forEach(propObject, value => {
-        formValues[value] = target[value].value;
+        formValues[value] = target[value]?.value;
     });
 
     return formValues;
 }
 
 export function getAttribute(prop, event) {
-    let value = event.target.getAttribute(prop);
+    let value = event.target?.getAttribute(prop);
 
     if (value === null) {
-        return event.currentTarget.getAttribute(prop);
+        return event.currentTarget?.getAttribute(prop);
     }
 
     return value;
+}
+
+export function getCustomAttribute(prop, entry, event) {
+    return event.target[entry]?.getAttribute(prop);
+}
+
+export function getTargetValue({target}) {
+    return target?.value;
 }
 
 export function notifyIfEmpty(list, isSelected, section) {
@@ -46,7 +54,7 @@ export function notifyIfEmpty(list, isSelected, section) {
 }
 
 export function sortByName(data) {
-    return _.sortBy(data.classData, ['name'], ['asc']);
+    return _.sortBy(data, ['name'], ['asc']);
 }
 
 export function getClassroomProp(prop, classdata) {
@@ -56,4 +64,10 @@ export function getClassroomProp(prop, classdata) {
     }
 
     return classObject.prop;
+}
+
+export function getSelectedOption(event, propToGet) {
+    const index = event.target[propToGet]?.selectedIndex;
+
+    return event.target[propToGet]?.options[index]?.getAttribute('data-id');
 }

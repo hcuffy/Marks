@@ -7,16 +7,15 @@ import {bindActionCreators} from 'redux';
 import SubjectForm from './SubjectForm';
 import SubjectList from './SubjectList';
 import {resolveLabel} from '../../utils';
-import {classroomItems} from '../classroom/formHelpers';
 import {actionCreators} from '../../actions/index';
-import {DropdownComponent, sortByName} from '../helpers';
+import {DropdownComponent, sortByName, createDropdownItems} from '../helpers';
 import css from './styles/subject.css';
 
 function Subjects({t, classData, classListData, actions}) {
-    const classes = sortByName(classData);
+    const classes = sortByName(classData.classData);
     const {classroom} = classListData;
     const selectedClass = _.find(classes, {name: classroom}) || {};
-    const items = classroomItems(classes);
+    const items = createDropdownItems(classes, 'classDropdown');
     const label = resolveLabel(selectedClass.name, t('general.selectClass'));
 
     return (
@@ -24,7 +23,7 @@ function Subjects({t, classData, classListData, actions}) {
             <div className={css.subject_left}>
                 <h4 className={css.subject_header}>{t('room.subjectHeader')}</h4>
 
-                <DropdownComponent items={items} action={actions.showSubject} label={label}/>
+                <DropdownComponent items={items} action={actions.showSubject} label={label} disabled={_.isEmpty(classes)}/>
 
                 <SubjectList t={t} selectedClass={selectedClass} />
             </div>

@@ -90,4 +90,10 @@
 
 .list_buttons{
   height: 40px;
+  margin-left: 5px;
+}
+
+.nav_btn{
+  margin-left: 5px;
+  display: inline-block;
 }

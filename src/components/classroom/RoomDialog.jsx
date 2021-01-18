@@ -13,7 +13,7 @@ function getCurrentModalData(CurrentModalData) {
 }
 
 function RoomDialog({t, classData, classModalData, actions}) {
-    const sortedData = sortByName(classData);
+    const sortedData = sortByName(classData.classData);
     const {id, showDialog, isInvalid} = classModalData;
     const selection = isInvalid ? getCurrentModalData(classModalData) : filterObjectData(sortedData, id);
     const roomInputs = <DialogInputs t={t} selection={selection} isInvalid={isInvalid} label={'room'}/>;

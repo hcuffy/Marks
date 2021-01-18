@@ -61,7 +61,7 @@ export function gradingSystem(settings) {
 }
 
 export function ClassroomListComponent({classData, actions}) {
-    const sortedData = sortByName(classData);
+    const sortedData = sortByName(classData.classData);
 
     return _.map(sortedData, (data, idx) => (
         <div key={idx} className={css.list_buttons}>
@@ -95,16 +95,18 @@ export function NavBarButton({t, navBarData, actions}) {
         const label = _.findKey(navBarData, key => key === data);
 
         return (
-            <ButtonGroup key={idx} minimal={data === null} large={true}>
-                <Button role='button'
-                    outlined={data === null}
-                    intent={Intent.PRIMARY}
-                    onClick={actions.changeClassroomTab}
-                    text={ t(`room.${label}`)}
-                    data-name={label}
-                />
+            <div key={idx} className={css.nav_btn}>
+                <ButtonGroup minimal={data === null} large={true}>
+                    <Button role='button'
+                        outlined={data === null}
+                        intent={Intent.PRIMARY}
+                        onClick={actions.changeClassroomTab}
+                        text={ t(`room.${label}`)}
+                        data-name={label}
+                    />
 
-            </ButtonGroup>
+                </ButtonGroup>
+            </div>
         );
     });
 }
@@ -113,15 +115,4 @@ export function filterObjectData(objectToClean, selectedId) {
     const requiredProp = _.find(objectToClean, {_id: selectedId}) || {};
 
     return _.omit(requiredProp, ['_id', 'createdAt', 'updatedAt', 'subjects', 'tests', 'classroomId', 'room']);
-}
-
-export function classroomItems(classes) {
-    return _.map(classes, (data, idx) => (
-        {
-            key:          idx,
-            name:         data.name,
-            id:           data._id,
-            'data-check': 'classDropdown'
-        }
-    ));
 }

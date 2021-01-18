@@ -145,11 +145,16 @@ function menuItems(item, {handleClick}) {
         />);
 }
 
-export function DropdownComponent({items, action, label}) {
+export function DropdownComponent({items, action, label, disabled = false}) {
     return (
         <div>
-            <Select itemRenderer={menuItems} items={items} onItemSelect={action} filterable={false}>
-                <Button intent={Intent.SUCCESS} text={label} rightIcon='caret-down' />
+            <Select
+                itemRenderer={menuItems}
+                items={items}
+                onItemSelect={action}
+                filterable={false}
+                disabled={disabled}>
+                <Button className={css.dropdown_btn} intent={Intent.SUCCESS} text={label} rightIcon='caret-down' />
             </Select>
         </div>
     );
@@ -167,5 +172,16 @@ export function getQuestionList(t, classroomId, capabilityQuestions, {updateQues
         >
             {t(`capability.${data.name}.name`)}
         </DropdownItem>
+    ));
+}
+
+export function createDropdownItems(dataList, dropDown) {
+    return _.map(dataList, (data, idx) => (
+        {
+            key:          idx,
+            name:         data.name,
+            id:           data._id,
+            'data-check': dropDown
+        }
     ));
 }

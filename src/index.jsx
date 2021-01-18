@@ -1,6 +1,7 @@
 /* eslint-disable no-undef*/
 import React from 'react';
 import {render} from 'react-dom';
+
 import './i18n';
 import {Root} from './containers';
 import './App.global.css';

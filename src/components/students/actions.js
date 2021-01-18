@@ -2,13 +2,7 @@ import _ from 'lodash';
 
 import {actions} from './constants';
 import {addNewStudentData, getAllStudents, deleteStudent, updateStudentData} from '../../collections';
-import {inputValidation} from '../helpers';
-
-export function getOption(event, propToGet) {
-    const index = event.target[propToGet].selectedIndex;
-
-    return event.target[propToGet].options[index].getAttribute('data-id');
-}
+import {getSelectedOption, inputValidation} from '../helpers';
 
 export function addNewStudent(event) {
     return async dispatch => {
@@ -17,8 +11,8 @@ export function addNewStudent(event) {
         const formData = {
             firstname: event.target.firstname.value,
             lastname:  event.target.lastname.value,
-            gender:    getOption(event, 'gender'),
-            classroom: getOption(event, 'classroom')
+            gender:    getSelectedOption(event, 'gender'),
+            classroom: getSelectedOption(event, 'classroom')
         };
 
         const inputsToValidate = _.pick(formData, ['firstname', 'lastname']);
@@ -117,8 +111,8 @@ export function updateStudent(event) {
         const studentData = {
             firstname: event.target.firstname.value,
             lastname:  event.target.lastname.value,
-            gender:    getOption(event, 'gender'),
-            classroom: getOption(event, 'classroom'),
+            gender:    getSelectedOption(event, 'gender'),
+            classroom: getSelectedOption(event, 'classroom'),
             id:        studentId
         };
         const inputsToValidate = _.pick(studentData, ['firstname', 'lastname']);

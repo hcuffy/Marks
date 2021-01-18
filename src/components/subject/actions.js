@@ -2,8 +2,9 @@ import _ from 'lodash';
 
 import {actions} from './constants';
 import {addSubjectData, getAllSubjects, updateSubjectData, deleteSubject} from '../../collections';
-import {getAttribute, getFormValues, inputValidation} from '../helpers';
+import {getAttribute, getCustomAttribute, getFormValues, inputValidation} from '../helpers';
 
+//TODO: remove this function once all dropdown have between replaced
 export function openClassList(event) {
     return dispatch => {
         if (event.target.getAttribute('data-check') !== 'classDropdown') {
@@ -122,12 +123,9 @@ export function updateSubject(event) {
     return async dispatch => {
         event.preventDefault();
 
-        const subjectData = {
-            name:         event.target.name.value,
-            abbreviation: event.target.abbreviation.value,
-            classroomId:  event.target.classroomId.getAttribute('data-id'),
-            subjectId:    event.target.subjectId.getAttribute('data-id')
-        };
+        const subjectData = getFormValues(['name', 'abbreviation'], event);
+        _.set(subjectData, 'classroomId', getCustomAttribute('data-id', 'classroomId', event));
+        _.set(subjectData, 'subjectId', getCustomAttribute('data-id', 'subjectId', event));
 
         if (inputValidation(_.omit(subjectData, ['classroomId', 'subjectId']))) {
             dispatch({
