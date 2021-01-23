@@ -27,11 +27,10 @@
 }
 
 .form_inner_div {
-  white-space: nowrap;
   display: flex;
   float: right;
-  margin: 10px 0 0 0;
   width: 300px;
+  height: 30px;
 }
 
 .form_outer_div {
@@ -52,10 +51,18 @@
   line-height: 32px;
 }
 
-.select_dropDown {
+.select_outerDiv {
   width: 300px;
   float: right;
   margin-top: 5px;
+}
+
+.input_field{
+  float: right !important;
+}
+
+.dropdown_field{
+  margin-left: 8px;
 }
 
 .list_btn {
@@ -77,13 +84,7 @@
 .list_div {
   height: 210px;
   position: static;
-  scrollbar-width: none;
   overflow-x: hidden;
-}
-
-select {
-  float: right;
-  width: 200px !important;
 }
 
 .form_label_edit {

@@ -1,116 +1,59 @@
 import React from 'react';
 import _ from 'lodash';
-import {Badge, Button, Input, Label} from 'reactstrap';
+import {Button, FormGroup, HTMLSelect, InputGroup, Intent} from '@blueprintjs/core';
+import {Badge, Label} from 'reactstrap';
 
 import css from './styles/students.css';
 
-export function genderDropdown(t, defaultValue, styleOne, styleTwo) {
+export function GenderSelect({t, gender}) {
     return (
-        <div className={`${styleOne} ${styleTwo}`}>
-            <Label className={css.form_label} htmlFor='gSelect'>
-                {t('student.gender')}:
+        <div className={css.select_outerDiv}>
+            <Label className={css.input_field} htmlFor='gSelect'>{t('student.gender')}
+                <HTMLSelect className={css.dropdown_field} type='text' name='gender' id='gSelect' defaultValue={gender}>
+                    <option data-id='male'>{t('student.male')}</option>
+                    <option data-id='female'>{t('student.female')}</option>
+                </HTMLSelect>
             </Label>
-
-            <select
-                type='text'
-                name='gender'
-                defaultValue={defaultValue}
-                className='form-control'
-            >
-                <option data-id='male' className='form-control dropdown'>
-                    {t('student.male')}
-                </option>
-
-                <option data-id='female' className='form-control dropdown'>
-                    {t('student.female')}
-                </option>
-            </select>
         </div>
     );
 }
 
-export function classroomDropdown(t, options, classroom, styleOne, styleTwo, styleThree) {
-    return (
-        <div className={`${styleOne} ${styleTwo}`}>
-            <Label className={styleThree} htmlFor='cSelect'>
-                {t('student.classroom')}:
-            </Label>
-
-            <select
-                type='text'
-                name='classroom'
-                defaultValue={classroom}
-                className='form-control'
-            >
-                {options}
-            </select>
-        </div>
-    );
-}
-
-export function formInputFields(t, studentData) {
-    const {firstname, lastname, isInvalid} = studentData;
-
-    return _.keys({firstname, lastname}).map((data, idx) => (
-        <div key={idx} className={css.form_inner_div}>
-            <Label className={css.form_label} htmlFor={`${data}_Id`}>
-                {t(`student.${data}`)}*:
-            </Label>
-
-            <Input
-                name={data}
-                className='form-control'
-                data-id={`${data}_Id`}
-                type='text'
-                data-go={studentData.data}
-                invalid={isInvalid && _.isEmpty(studentData[`${data}`])}
-            />
-        </div>
-    ));
-}
-
-function selectOption({classData}) {
-    return _.values(classData).map((data, idx) => (
-        <option className='form-control dropdown' data-id={data._id} key={idx}>
+export function ClassroomSelect({t, classData, classroom}) {
+    const options = _.values(classData).map((data, idx) => (
+        <option data-id={data._id} key={idx}>
             {data.name}
         </option>
     ));
-}
 
-export function studentForm(t, studentData, classData, actions) {
     return (
-        <div>
-            <form onSubmit={actions.addNewStudent} method='POST'>
-                <div className={css.form_outer_div}>
-                    <h4 className={css.center_add_sub_header}>{t('student.add')}</h4>
-                    {formInputFields(t, studentData)}
-
-                    {genderDropdown(
-                        t,
-                        t('student.male'),
-                        css.select_dropDown,
-                        css.form_div
-                    )}
-
-                    {classroomDropdown(
-                        t,
-                        selectOption(classData),
-                        null,
-                        css.select_dropDown,
-                        css.form_div,
-                        css.form_label
-                    )}
-
-                    <div className={(css.form_inner_div, css.save_btn)}>
-                        <Button type='submit' formNoValidate className='btn btn-success'>
-                            {t('general.add')}
-                        </Button>
-                    </div>
-                </div>
-            </form>
-            <div />
+        <div className={css.select_outerDiv}>
+            <Label className={css.input_field} htmlFor='cSelect'>{t('student.classroom')}
+                <HTMLSelect className={css.dropdown_field} type='text' name='classroom' id='cSelect' defaultValue={classroom}>
+                    {options}
+                </HTMLSelect>
+            </Label>
         </div>
     );
+}
+
+export function NameInputFields({t, studentData}) {
+    const {firstname, lastname, isInvalid} = studentData;
+    const intent = isInvalid ? Intent.DANGER : Intent.NONE;
+
+    return _.keys({firstname, lastname}).map((data, idx) => (
+        <div key={idx}>
+            <FormGroup inline={true} labelFor={`${data}_Id`} className={css.input_field} label={t(`student.${data}`)}>
+                <InputGroup
+                    name='title'
+                    id={`${data}_Id`}
+                    data-id='titleId'
+                    data-go={studentData.data}
+                    type='text'
+                    intent={intent}
+                />
+            </FormGroup>
+        </div>
+    ));
 }
 
 function generateListBtn(students, action) {
@@ -142,5 +85,5 @@ export function generateStudentList(students, actions) {
     }
     const sortedStudents = _.sortBy(students, ['firstname'], ['asc']);
 
-    return generateListBtn(sortedStudents, actions.showStudentModal);
+    return generateListBtn(sortedStudents, actions.showModal);
 }

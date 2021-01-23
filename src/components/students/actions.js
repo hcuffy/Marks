@@ -53,7 +53,7 @@ export function getStudents() {
     };
 }
 
-export function showStudentModal(event) {
+export function showDialog(event) {
     return dispatch => {
         const studentId = event.target.getAttribute('data-id');
 

@@ -3,10 +3,10 @@ import _ from 'lodash';
 import {actions} from '../constants';
 import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
 
-function studentModalUpdater(state, action) {
-    const studentModal = !state.studentModal;
+function studentDialogUpdater(state, action) {
+    const studentDialog = !state.studentDialog;
 
-    return _.assign({}, state, {studentModal}, action.payload);
+    return _.assign({}, state, {studentDialog}, action.payload);
 }
 
 function studentDropdownUpdater(state, action) {
@@ -24,7 +24,7 @@ function subjectDropdownUpdater(state, action) {
 export const studentHandlers = {
     [actions.ADD_NEW_STUDENT]:               defaultStateUpdater,
     [actions.GET_ALL_STUDENTS]:              defaultStateUpdater,
-    [actions.GET_SINGLE_STUDENT]:            studentModalUpdater,
+    [actions.GET_SINGLE_STUDENT]:            studentDialogUpdater,
     [actions.DISPLAY_STUDENT_GRAPH]:         studentDropdownUpdater,
     [actions.DISPLAY_STUDENT_SUBJECT_GRAPH]: subjectDropdownUpdater,
     [actions.STUDENT_FORM_VALIDATION]:       defaultStateUpdater

@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import {Input, Label} from 'reactstrap';
 
-import {classroomDropdown, genderDropdown} from './formHelper';
+import {ClassroomSelect, GenderSelect} from './formHelper';
 import {getClassroomProp} from '../helpers';
 import css from './styles/students.css';
 
@@ -10,27 +10,17 @@ export function resolveHiddenInput(studentId) {
     return <input type='hidden' name='studentId' data-id={studentId} />;
 }
 
-function dropDownFields(t, studentFields, chosenStudent, classdata) {
+function dropDownFields(t, studentFields, chosenStudent, classData) {
     const {gender, classroom} = chosenStudent;
 
-    const classroomOptions = _.values(classdata).map((data, idx) => (
-        <option key={idx} className='form-control dropdown' data-id={data._id}>
-            {data.name}
-        </option>
-    ));
+    const selectedClassroom = getClassroomProp(classroom, classData);
+    console.log({classData});
 
     return (
         <div>
             {studentFields}
-            {genderDropdown(t, gender, css.form_div_edit, null)}
-            {classroomDropdown(
-                t,
-                classroomOptions,
-                getClassroomProp(classroom, classdata),
-                css.form_div_edit,
-                null,
-                css.form_label_edit
-            )}
+            <GenderSelect t={t} gender={gender}/>
+            <ClassroomSelect t={t} data={classData} classroom={selectedClassroom}/>
         </div>
     );
 }
@@ -46,7 +36,7 @@ export function determineStudentInputs(student, studentList) {
     }
 }
 
-export function generateFields(t, student, classdata, studentList) {
+export function generateFields(t, student, classData, studentList) {
     const fullStudentData = determineStudentInputs(student, studentList);
     const {isModalInvalid} = studentList;
     const studentFullName = _.pick(fullStudentData, ['firstname', 'lastname']);
@@ -72,6 +62,6 @@ export function generateFields(t, student, classdata, studentList) {
         t,
         studentFields,
         fullStudentData,
-        classdata
+        classData
     );
 }

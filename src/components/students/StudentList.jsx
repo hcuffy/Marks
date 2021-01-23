@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
-import StudentModal from './StudentModal';
+import StudentDialog from './StudentDialog';
 import {actionCreators} from '../../actions/index';
 import {generateStudentList} from './formHelper';
 import css from './styles/students.css';
@@ -17,7 +17,7 @@ function StudentList({t, students, actions}) {
             <div className={css.list_div}>
                 <div className='list-group list-group-flush'>{listData}</div>
 
-                <StudentModal t={t} />
+                <StudentDialog t={t} />
             </div>
         </div>
     );

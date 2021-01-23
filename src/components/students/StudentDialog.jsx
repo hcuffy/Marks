@@ -8,8 +8,8 @@ import {actionCreators} from '../../actions/index';
 import {filterObjectData} from '../classroom/formHelpers';
 import {generateFields, resolveHiddenInput} from './modalHelper';
 
-function StudentModal({t, studentList, classData, actions}) {
-    const {studentId, studentModal, students} = studentList;
+function StudentDialog({t, studentList, classData, actions}) {
+    const {studentId, studentDialog, students} = studentList;
     const requiredStudent = filterObjectData(students, studentId);
     const studentFields = generateFields(t, requiredStudent, classData, studentList);
     const hiddenInput = resolveHiddenInput(studentId);
@@ -19,14 +19,14 @@ function StudentModal({t, studentList, classData, actions}) {
         nameId:       null,
         closeId:      studentId,
         deleteAction: actions.deleteSingleStudent,
-        closeAction:  actions.showStudentModal
+        closeAction:  actions.showDialog
     };
 
     return (
         <div>
             {DialogFrame(
                 t,
-                studentModal,
+                studentDialog,
                 actions.updateStudent,
                 studentFields,
                 hiddenInput,
@@ -45,4 +45,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(StudentModal));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(StudentDialog));
