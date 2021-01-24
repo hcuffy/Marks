@@ -55,7 +55,6 @@ export function List({filteredData, action}) {
                     text={data.abbreviation}
                     onClick={action}
                     data-id={data._id}
-                    className={css.list_btn}
                 >
 
                     <span className={`badge badge-warning badge-pill ${css.badge_number}`}>

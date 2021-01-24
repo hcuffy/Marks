@@ -4,7 +4,7 @@ import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 const initialLoadState = {
     firstname:        '',
     lastname:         '',
-    studentDialog:    false,
+    showDialog:       false,
     studentDropdown:  false,
     subjectDropdown:  false,
     studentGraphId:   null,
@@ -12,7 +12,7 @@ const initialLoadState = {
     studentGraphName: null,
     subjectGraphName: null,
     isInvalid:        false,
-    isModalInvalid:   true
+    dialogInvalid:    true
 };
 
 export function applyStudentData(state = initialLoadState, action) {

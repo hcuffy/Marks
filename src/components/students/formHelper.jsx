@@ -68,7 +68,7 @@ function StudentListComponent({students, actions}) {
         <div key={idx} >
             <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
                 <Button
-                    onClick={actions.showModal}
+                    onClick={actions.showStudentDialog}
                     text= {`${data.firstname} ${data.lastname}`}
                     data-id={data._id}
                 >

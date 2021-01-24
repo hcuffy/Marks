@@ -4,9 +4,9 @@ import {actions} from '../constants';
 import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
 
 function studentDialogUpdater(state, action) {
-    const studentDialog = !state.studentDialog;
+    const showDialog = !state.showDialog;
 
-    return _.assign({}, state, {studentDialog}, action.payload);
+    return _.assign({}, state, {showDialog}, action.payload);
 }
 
 function studentDropdownUpdater(state, action) {

@@ -6,38 +6,25 @@ import {bindActionCreators} from 'redux';
 import {DialogFrame} from '../helpers';
 import {actionCreators} from '../../actions/index';
 import {filterObjectData} from '../classroom/formHelpers';
-import {generateFields, resolveHiddenInput} from './modalHelper';
+import {DialogInputs, resolveHiddenInput} from './dialogHelper';
 
-function StudentDialog({t, studentList, classData, actions}) {
-    const {studentId, studentDialog, students} = studentList;
-    const requiredStudent = filterObjectData(students, studentId);
-    const studentFields = generateFields(t, requiredStudent, classData, studentList);
+function StudentDialog({t, studentData, classData, actions}) {
+    const {studentId, showDialog, students} = studentData;
+    const student = filterObjectData(students, studentId);
+    const studentFields = <DialogInputs t={t} student={student} classData={classData} studentData={studentData}/>;
     const hiddenInput = resolveHiddenInput(studentId);
-
-    const footerData = {
-        dataId:       studentId,
-        nameId:       null,
-        closeId:      studentId,
-        deleteAction: actions.deleteSingleStudent,
-        closeAction:  actions.showDialog
-    };
+    const {deleteSingleStudent, showStudentDialog, updateStudent} = actions;
+    const footerData = {dataId: studentId, nameId: null, closeId: studentId, deleteAction: deleteSingleStudent};
 
     return (
         <div>
-            {DialogFrame(
-                t,
-                studentDialog,
-                actions.updateStudent,
-                studentFields,
-                hiddenInput,
-                footerData
-            )}
+            {DialogFrame(t, showDialog, updateStudent, studentFields, hiddenInput, footerData, showStudentDialog)}
         </div>
     );
 }
 
 const mapStateToProps = state => ({
-    studentList: state.studentData,
+    studentData: state.studentData,
     classData:   state.classData.classData
 });
 

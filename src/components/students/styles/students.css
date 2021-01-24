@@ -44,13 +44,6 @@
   margin: 10px 0 0 200px;
 }
 
-.form_label {
-  float: left;
-  margin-right: 5px;
-  vertical-align: bottom;
-  line-height: 32px;
-}
-
 .select_outerDiv {
   width: 300px;
   height: 40px;
@@ -66,12 +59,6 @@
   margin-left: 8px;
 }
 
-.list_btn {
-  display: inline-flex;
-  align-items: flex-start;
-  height: 40px;
-}
-
 .female {
   float: right;
   background-color: #fc8dcc !important;
@@ -82,26 +69,34 @@
   background-color: #6a9ae8 !important;
 }
 
+.student_dialog{
+  height: 220px;
+}
+
+.dialog_select{
+  margin-right: 20px;
+}
+
 .list_div {
   height: 210px;
   position: static;
   overflow-x: hidden;
 }
 
-.form_label_edit {
-  float: left;
-  vertical-align: bottom;
-  line-height: 36px;
-}
-
-.form_input {
-  float: right;
-}
-
 .form_div_edit {
+  float: right;
   width: 350px;
   height: 50px;
+  margin-right: 20px;
 }
+
+.edit_input_group{
+  float: right;
+}
+.edit_input{
+  width: 200px;
+}
+
 
 .chart_div {
   margin-top: 30px;

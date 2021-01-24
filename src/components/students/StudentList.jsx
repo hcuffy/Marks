@@ -9,7 +9,8 @@ function StudentList({t}) {
         <div className={css.student_list}>
             <h4 className={css.center_sub_header}>{t('student.list')}</h4>
             <div className={css.list_div}>
-                <div><ListOfStudent/>
+                <div>
+                    <ListOfStudent/>
                 </div>
 
                 <StudentDialog t={t} />
