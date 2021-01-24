@@ -1,7 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
-import {Button, FormGroup, HTMLSelect, InputGroup, Intent} from '@blueprintjs/core';
-import {Badge, Label} from 'reactstrap';
+import {connect} from 'react-redux';
+import {withTranslation} from 'react-i18next';
+import {bindActionCreators} from 'redux';
+import {actionCreators} from '../../actions';
+import {Alignment, Button, ButtonGroup, FormGroup, HTMLSelect, InputGroup, Intent, Label} from '@blueprintjs/core';
 
 import css from './styles/students.css';
 
@@ -44,7 +47,7 @@ export function NameInputFields({t, studentData}) {
         <div key={idx}>
             <FormGroup inline={true} labelFor={`${data}_Id`} className={css.input_field} label={t(`student.${data}`)}>
                 <InputGroup
-                    name='title'
+                    name={data}
                     id={`${data}_Id`}
                     data-id='titleId'
                     data-go={studentData.data}
@@ -56,34 +59,37 @@ export function NameInputFields({t, studentData}) {
     ));
 }
 
-function generateListBtn(students, action) {
-    return _.map(students, (data, idx) => (
-        <Button
-            key={idx}
-            data-id={data._id}
-            className={`list-group-item list-group-item-action ${css.list_btn}`}
-            onClick={action}
-        >
-            {`${data.firstname} ${data.lastname}`}
-
-            {data.gender === 'male' ? (
-                <Badge className={`badge-pill ${css.badge_boy}`}>
-                    <i className='fas fa-mars' />
-                </Badge>
-            ) : (
-                <Badge className={`badge-pill ${css.badge_girl}`}>
-                    <i className='fas fa-venus' />
-                </Badge>
-            )}
-        </Button>
-    ));
-}
-
-export function generateStudentList(students, actions) {
+function StudentListComponent({students, actions}) {
     if (_.isUndefined(students)) {
         return [];
     }
-    const sortedStudents = _.sortBy(students, ['firstname'], ['asc']);
 
-    return generateListBtn(sortedStudents, actions.showModal);
+    return _.map(students, (data, idx) => (
+        <div key={idx} >
+            <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
+                <Button
+                    onClick={actions.showModal}
+                    text= {`${data.firstname} ${data.lastname}`}
+                    data-id={data._id}
+                >
+                    {data.gender === 'male'
+                        ? <span className={`badge badge-warning badge-pill ${css.male}`}>&#9794;
+                        </span>
+                        : <span className={`badge badge-warning badge-pill ${css.female}`}>&#9792;
+                        </span>
+                    }
+                </Button>
+            </ButtonGroup>
+        </div>
+    ));
 }
+
+const mapStateToProps = state => ({
+    students: state.studentData.students
+});
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(actionCreators, dispatch)
+});
+
+export const ListOfStudent = connect(mapStateToProps, mapDispatchToProps)(withTranslation()(StudentListComponent));

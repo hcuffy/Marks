@@ -12,9 +12,7 @@ export function resolveHiddenInput(studentId) {
 
 function dropDownFields(t, studentFields, chosenStudent, classData) {
     const {gender, classroom} = chosenStudent;
-
     const selectedClassroom = getClassroomProp(classroom, classData);
-    console.log({classData});
 
     return (
         <div>

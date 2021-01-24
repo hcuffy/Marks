@@ -71,12 +71,12 @@
   height: 40px;
 }
 
-.badge_girl {
+.female {
   float: right;
   background-color: #fc8dcc !important;
 }
 
-.badge_boy {
+.male {
   float: right;
   background-color: #6a9ae8 !important;
 }
