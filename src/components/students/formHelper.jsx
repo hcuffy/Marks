@@ -11,7 +11,7 @@ import css from './styles/students.css';
 export function GenderSelect({t, gender}) {
     return (
         <div className={css.select_outerDiv}>
-            <Label className={css.input_field} htmlFor='gSelect'>{t('student.gender')}
+            <Label className={`bp3-inline ${css.input_field}`} htmlFor='gSelect'>{t('student.gender')}
                 <HTMLSelect className={css.dropdown_field} type='text' name='gender' id='gSelect' defaultValue={gender}>
                     <option data-id='male'>{t('student.male')}</option>
                     <option data-id='female'>{t('student.female')}</option>
@@ -30,7 +30,7 @@ export function ClassroomSelect({t, classData, classroom}) {
 
     return (
         <div className={css.select_outerDiv}>
-            <Label className={css.input_field} htmlFor='cSelect'>{t('student.classroom')}
+            <Label className={`bp3-inline ${css.input_field}`} htmlFor='cSelect'>{t('student.classroom')}
                 <HTMLSelect className={css.dropdown_field} type='text' name='classroom' id='cSelect' defaultValue={classroom}>
                     {options}
                 </HTMLSelect>
