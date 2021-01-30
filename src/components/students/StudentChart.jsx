@@ -7,8 +7,6 @@ import {chartOptions} from './chart/chartOptions';
 import css from './styles/students.css';
 
 function StudentChart({t, studentData, exams, grades, settings}) {
-    console.log(studentData);
-
     return (
         <div className={css.chart}>
             <Line

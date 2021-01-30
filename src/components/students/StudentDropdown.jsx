@@ -37,7 +37,7 @@ function StudentDropdown({t, studentData, subjectData, actions}) {
                     disabled={false}
                 />
             </div>
-            {PDFbutton(t('general.saveAs'), resolveLabel(subjectName, t('student.defaultHeader')))}
+            {PDFbutton(t('general.saveAs'), resolveLabel(subjectName, t('student.defaultHeader')), css)}
         </div>
     );
 }
