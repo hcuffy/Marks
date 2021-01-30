@@ -6,18 +6,17 @@ import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
 import {resolveLabel, PDFbutton} from '../../utils';
-import {getStudentList, getAllSubjects, createDropdown, notifyIfEmpty} from '../helpers';
+import {
+    getStudentList,
+    getAllSubjects,
+    createDropdown,
+    notifyIfEmpty
+
+} from '../helpers';
 import css from './styles/students.css';
 
 function StudentDropdown({t, allStudentData, subjectData, actions}) {
-    const {
-        students,
-        studentDropdown,
-        subjectDropdown,
-        chartToDisplay,
-        studentGraphName,
-        subjectGraphName
-    } = allStudentData;
+    const {students, studentDropdown, subjectDropdown, chartToDisplay, studentGraphName, subjectGraphName} = allStudentData;
 
     const studentOptions = getStudentList(students);
     const subjectOptions = getAllSubjects(subjectData.data);
@@ -46,11 +45,7 @@ function StudentDropdown({t, allStudentData, subjectData, actions}) {
                 subjectOptions,
                 'subjectDropdown'
             )}
-            {PDFbutton(
-                css.pdf_btn,
-                t('general.saveAs'),
-                resolveLabel(studentGraphName, t('student.defaultHeader'))
-            )}
+            {PDFbutton(t('general.saveAs'), resolveLabel(studentGraphName, t('student.defaultHeader')))}
         </div>
     );
 }

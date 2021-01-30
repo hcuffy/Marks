@@ -1,0 +1,12 @@
+.button_icon{
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+}
+
+.pdf_btn {
+  position: fixed;
+  z-index: 1;
+  left: 80%;
+  margin-top: 5px;
+  font-size: 14px;
+}
