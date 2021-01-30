@@ -34,7 +34,7 @@ export function getSubjectList(classroom, subjectData) {
         </DropdownItem>
     ));
 }
-
+// TODO: Remove this function once all dropdowns have been replaced
 export function getAllSubjects(subjects) {
     const checkSubject = _.isUndefined(subjects) ? [] : subjects;
 
@@ -65,6 +65,7 @@ export function getExamList(exams, subjectId) {
     ));
 }
 
+//TODO: remove this function once all student dropdowns have between replaced
 export function getStudentList(allStudents) {
     const students = _.sortBy(_.isUndefined(allStudents) ? [] : allStudents, ['firstname'], ['asc']);
 
@@ -175,7 +176,23 @@ export function getQuestionList(t, classroomId, capabilityQuestions, {updateQues
     ));
 }
 
+function studentItems(dataList, dropDown) {
+    return _.map(dataList, (data, idx) => (
+        {
+            key:          idx,
+            name:         `${data.firstname} ${data.lastname}`,
+            classroomId:  data?.classroom,
+            id:           data?._id,
+            'data-check': dropDown
+        }
+    ));
+}
+
 export function createDropdownItems(dataList, dropDown) {
+    if (dropDown === 'studentDropdown') {
+        return studentItems(dataList, dropDown);
+    }
+
     return _.map(dataList, (data, idx) => (
         {
             key:          idx,

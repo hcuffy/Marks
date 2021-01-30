@@ -24,7 +24,7 @@ function downloadPDF(itemToPDF, nameOfChart, saveAs) {
 export function PDFbutton(saveText, chartTitle) {
     return (
         <Button intent={Intent.PRIMARY} className={css.pdf_btn} onClick={() => downloadPDF('canvas', chartTitle, 'chart')}>
-            { <Icon icon='download' iconSize={30} className={css.button_icon} />}
+            { <Icon icon='download' iconSize={20} className={css.button_icon} />}
             {saveText}
         </Button>
     );

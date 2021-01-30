@@ -59,16 +59,17 @@ export function showStudentDialog(event) {
     };
 }
 
-export function openStudentGraph(event) {
+export function showStudent(event) {
     return dispatch => {
-        if (event('data-check') !== 'studentDropdown') {
+        if (event['data-check'] !== 'studentDropdown') {
             return;
         }
 
         const student = {
-            studentGraphId:   event.target.getAttribute('data-id'),
-            studentGraphName: event.target.innerText,
-            chartToDisplay:   'student'
+            studentId:      event.id,
+            studentName:    event.name,
+            classroomId:    event.classroomId,
+            chartToDisplay: 'student'
         };
 
         dispatch({
@@ -78,16 +79,15 @@ export function openStudentGraph(event) {
     };
 }
 
-export function openStudentSubjectGraph(event) {
+export function showSubject(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
+        if (event['data-check'] !== 'subjectDropdown') {
             return;
         }
-
         const subject = {
-            subjectGraphId:   event.target.getAttribute('data-id'),
-            subjectGraphName: event.target.innerText,
-            chartToDisplay:   'subject'
+            subjectId:      event?.id,
+            subjectName:    event?.name,
+            chartToDisplay: 'subject'
         };
 
         dispatch({

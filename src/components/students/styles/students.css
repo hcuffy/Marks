@@ -122,28 +122,18 @@
   top: 400px !important;
 }
 
-.dropdown_one {
+.left_dropdown {
   float: left;
-  margin: 0 5px 0 100px;
+  margin: 0 5px 0 5px;
 }
-.dropdown_two {
+
+.right_dropdown {
   float: left;
 }
+
 .dropdown_main_div {
-  height: 45px;
+  height: 50px;
   width: 465px;
   margin: auto;
   text-align: center;
-}
-
-.pdf_btn {
-  position: fixed;
-  z-index: 1;
-  left: 900px;
-  margin-top: 5px;
-  background-color: Transparent !important;
-  border: none !important;
-  outline: none;
-  font-size: 14px;
-  color: black !important;
 }

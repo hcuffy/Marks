@@ -6,53 +6,45 @@ import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
 import {resolveLabel, PDFbutton} from '../../utils';
-import {
-    getStudentList,
-    getAllSubjects,
-    createDropdown,
-    notifyIfEmpty
-
-} from '../helpers';
+import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './styles/students.css';
 
-function StudentDropdown({t, allStudentData, subjectData, actions}) {
-    const {students, studentDropdown, subjectDropdown, chartToDisplay, studentGraphName, subjectGraphName} = allStudentData;
+function StudentDropdown({t, studentData, subjectData, actions}) {
+    const {students, studentName, classroomId, subjectName} = studentData;
+    const subjects = _.filter(subjectData?.data, {classroomId}) || {};
 
-    const studentOptions = getStudentList(students);
-    const subjectOptions = getAllSubjects(subjectData.data);
-    const openIt = {subjectDropdown};
+    const studentItems = createDropdownItems(students, 'studentDropdown');
+    const studentLabel = resolveLabel(studentName, t('general.selectStudent'));
 
-    if (chartToDisplay === 'subject' && _.isNull(studentGraphName)) {
-        notifyIfEmpty([], true, 'student');
-        openIt.subjectDropdown = false;
-    }
+    const subjectItems = createDropdownItems(subjects, 'subjectDropdown');
+    const subjectLabel = resolveLabel(subjectName, t('general.selectSubject'));
 
     return (
         <div className={css.dropdown_main_div}>
-            {createDropdown(
-                css.dropdown_one,
-                studentDropdown,
-                actions.openStudentGraph,
-                resolveLabel(studentGraphName, t('general.selectStudent')),
-                studentOptions,
-                'studentDropdown'
-            )}
-            {createDropdown(
-                css.dropdown_two,
-                openIt.subjectDropdown,
-                actions.openStudentSubjectGraph,
-                resolveLabel(subjectGraphName, t('general.selectSubject')),
-                subjectOptions,
-                'subjectDropdown'
-            )}
-            {PDFbutton(t('general.saveAs'), resolveLabel(studentGraphName, t('student.defaultHeader')))}
+            <div className={css.left_dropdown}>
+                <DropdownComponent
+                    items={studentItems}
+                    action={actions.showStudent}
+                    label={studentLabel}
+                    disabled={_.isEmpty(students)}
+                />
+            </div>
+            <div className={css.right_dropdown}>
+                <DropdownComponent
+                    items={subjectItems}
+                    action={actions.showSubject}
+                    label={subjectLabel}
+                    disabled={false}
+                />
+            </div>
+            {PDFbutton(t('general.saveAs'), resolveLabel(subjectName, t('student.defaultHeader')))}
         </div>
     );
 }
 
 const mapStateToProps = state => ({
-    allStudentData: state.studentData,
-    subjectData:    state.subjectData
+    studentData: state.studentData,
+    subjectData: state.subjectData
 });
 
 const mapDispatchToProps = dispatch => ({

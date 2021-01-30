@@ -6,7 +6,7 @@ import {resolveLabel} from '../../../utils';
 function filteredGrades({studentGraphId}, grades) {
     const data = [];
     const studentGrades = _.sortBy(
-        _.filter(grades, grade => grade.studentId === studentGraphId && grade.grade > 0), ['date']
+        _.filter(grades, grade => grade?.studentId === studentGraphId && grade?.grade > 0), ['date']
     );
 
     for (let i = 0; i < studentGrades.length; i += 1) {
@@ -25,16 +25,16 @@ function filterSubjectGrades({studentGraphId, subjectGraphId}, exams, grades) {
     return _.filter(allSubjectsGrade, ['studentId', studentGraphId]);
 }
 
-export function chartHeader(t, {studentGraphName, subjectGraphName, chartToDisplay}) {
+export function chartHeader(t, {studentName, subjectName, chartToDisplay}) {
     if (chartToDisplay === null || chartToDisplay === 'student') {
-        return resolveLabel(studentGraphName, t('student.defaultHeader'));
+        return resolveLabel(studentName, t('student.defaultHeader'));
     }
 
-    if (_.isNull(studentGraphName)) {
+    if (_.isNull(studentName)) {
         return 'Student Grades';
     }
 
-    return `${studentGraphName} - ${subjectGraphName}`;
+    return `${studentName} - ${subjectName}`;
 }
 
 export function chartData(t, studentData, grades, exams) {
