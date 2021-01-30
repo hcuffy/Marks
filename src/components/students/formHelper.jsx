@@ -1,146 +1,95 @@
 import React from 'react';
 import _ from 'lodash';
-import {Badge, Button, Input, Label} from 'reactstrap';
+import {connect} from 'react-redux';
+import {withTranslation} from 'react-i18next';
+import {bindActionCreators} from 'redux';
+import {actionCreators} from '../../actions';
+import {Alignment, Button, ButtonGroup, FormGroup, HTMLSelect, InputGroup, Intent, Label} from '@blueprintjs/core';
 
 import css from './styles/students.css';
 
-export function genderDropdown(t, defaultValue, styleOne, styleTwo) {
+export function GenderSelect({t, gender}) {
     return (
-        <div className={`${styleOne} ${styleTwo}`}>
-            <Label className={css.form_label} htmlFor='gSelect'>
-                {t('student.gender')}:
+        <div className={css.select_outerDiv}>
+            <Label className={`bp3-inline ${css.input_field}`} htmlFor='gSelect'>{t('student.gender')}
+                <HTMLSelect className={css.dropdown_field} type='text' name='gender' id='gSelect' defaultValue={gender}>
+                    <option data-id='male'>{t('student.male')}</option>
+                    <option data-id='female'>{t('student.female')}</option>
+                </HTMLSelect>
             </Label>
-
-            <select
-                type='text'
-                name='gender'
-                defaultValue={defaultValue}
-                className='form-control'
-            >
-                <option data-id='male' className='form-control dropdown'>
-                    {t('student.male')}
-                </option>
-
-                <option data-id='female' className='form-control dropdown'>
-                    {t('student.female')}
-                </option>
-            </select>
         </div>
     );
 }
 
-export function classroomDropdown(t, options, classroom, styleOne, styleTwo, styleThree) {
-    return (
-        <div className={`${styleOne} ${styleTwo}`}>
-            <Label className={styleThree} htmlFor='cSelect'>
-                {t('student.classroom')}:
-            </Label>
-
-            <select
-                type='text'
-                name='classroom'
-                defaultValue={classroom}
-                className='form-control'
-            >
-                {options}
-            </select>
-        </div>
-    );
-}
-
-export function formInputFields(t, studentData) {
-    const {firstname, lastname, isInvalid} = studentData;
-
-    return _.keys({firstname, lastname}).map((data, idx) => (
-        <div key={idx} className={css.form_inner_div}>
-            <Label className={css.form_label} htmlFor={`${data}_Id`}>
-                {t(`student.${data}`)}*:
-            </Label>
-
-            <Input
-                name={data}
-                className='form-control'
-                data-id={`${data}_Id`}
-                type='text'
-                data-go={studentData.data}
-                invalid={isInvalid && _.isEmpty(studentData[`${data}`])}
-            />
-        </div>
-    ));
-}
-
-function selectOption({classData}) {
-    return _.values(classData).map((data, idx) => (
-        <option className='form-control dropdown' data-id={data._id} key={idx}>
+export function ClassroomSelect({t, classData, classroom}) {
+    const options = _.values(classData).map((data, idx) => (
+        <option data-id={data._id} key={idx}>
             {data.name}
         </option>
     ));
-}
 
-export function studentForm(t, studentData, classData, actions) {
     return (
-        <div>
-            <form onSubmit={actions.addNewStudent} method='POST'>
-                <div className={css.form_outer_div}>
-                    <h4 className={css.center_add_sub_header}>{t('student.add')}</h4>
-                    {formInputFields(t, studentData)}
-
-                    {genderDropdown(
-                        t,
-                        t('student.male'),
-                        css.select_dropDown,
-                        css.form_div
-                    )}
-
-                    {classroomDropdown(
-                        t,
-                        selectOption(classData),
-                        null,
-                        css.select_dropDown,
-                        css.form_div,
-                        css.form_label
-                    )}
-
-                    <div className={(css.form_inner_div, css.save_btn)}>
-                        <Button type='submit' formNoValidate className='btn btn-success'>
-                            {t('general.add')}
-                        </Button>
-                    </div>
-                </div>
-            </form>
-            <div />
+        <div className={css.select_outerDiv}>
+            <Label className={`bp3-inline ${css.input_field}`} htmlFor='cSelect'>{t('student.classroom')}
+                <HTMLSelect className={css.dropdown_field} type='text' name='classroom' id='cSelect' defaultValue={classroom}>
+                    {options}
+                </HTMLSelect>
+            </Label>
         </div>
     );
 }
 
-function generateListBtn(students, action) {
-    return _.map(students, (data, idx) => (
-        <Button
-            key={idx}
-            data-id={data._id}
-            className={`list-group-item list-group-item-action ${css.list_btn}`}
-            onClick={action}
-        >
-            {`${data.firstname} ${data.lastname}`}
+export function NameInputFields({t, studentData}) {
+    const {firstname, lastname, isInvalid} = studentData;
+    const intent = isInvalid ? Intent.DANGER : Intent.NONE;
 
-            {data.gender === 'male' ? (
-                <Badge className={`badge-pill ${css.badge_boy}`}>
-                    <i className='fas fa-mars' />
-                </Badge>
-            ) : (
-                <Badge className={`badge-pill ${css.badge_girl}`}>
-                    <i className='fas fa-venus' />
-                </Badge>
-            )}
-        </Button>
+    return _.keys({firstname, lastname}).map((data, idx) => (
+        <div key={idx}>
+            <FormGroup inline={true} labelFor={`${data}_Id`} className={css.input_field} label={t(`student.${data}`)}>
+                <InputGroup
+                    name={data}
+                    id={`${data}_Id`}
+                    data-id='titleId'
+                    data-go={studentData.data}
+                    type='text'
+                    intent={intent}
+                />
+            </FormGroup>
+        </div>
     ));
 }
 
-export function generateStudentList(students, actions) {
+function StudentListComponent({students, actions}) {
     if (_.isUndefined(students)) {
         return [];
     }
-    const sortedStudents = _.sortBy(students, ['firstname'], ['asc']);
 
-    return generateListBtn(sortedStudents, actions.showStudentModal);
+    return _.map(students, (data, idx) => (
+        <div key={idx} >
+            <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
+                <Button
+                    onClick={actions.showStudentDialog}
+                    text= {`${data.firstname} ${data.lastname}`}
+                    data-id={data._id}
+                >
+                    {data.gender === 'male'
+                        ? <span className={`badge badge-warning badge-pill ${css.male}`}>&#9794;
+                        </span>
+                        : <span className={`badge badge-warning badge-pill ${css.female}`}>&#9792;
+                        </span>
+                    }
+                </Button>
+            </ButtonGroup>
+        </div>
+    ));
 }
+
+const mapStateToProps = state => ({
+    students: state.studentData.students
+});
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(actionCreators, dispatch)
+});
+
+export const ListOfStudent = connect(mapStateToProps, mapDispatchToProps)(withTranslation()(StudentListComponent));

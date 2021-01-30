@@ -1,9 +1,7 @@
 import i18next from 'i18next';
 import _ from 'lodash';
-import dayjs from 'dayjs';
-import 'dayjs/locale/en';
-import 'dayjs/locale/de';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
+import moment from 'moment';
+import 'moment/locale/de';
 
 import {ENGLISH_LABELS, GERMAN_LABELS} from '../constants/menuLabels';
 
@@ -17,8 +15,7 @@ export function getUserLocale() {
     return locale === 'en' ? 'en' : 'de';
 }
 
-dayjs.extend(localizedFormat);
-dayjs.locale(getUserLocale());
+moment.locale(getUserLocale());
 
 export function customTranslate(translate) {
     return i18next.t(translate);

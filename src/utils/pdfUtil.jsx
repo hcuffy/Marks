@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import {jsPDF} from 'jspdf';
-import {Button} from 'reactstrap';
+import {Button, Icon, Intent} from '@blueprintjs/core';
 
 const pdfDocument = new jsPDF('landscape');
 
@@ -20,10 +20,14 @@ function downloadPDF(itemToPDF, nameOfChart, saveAs) {
     pdfDocument.save(`${saveAs}.pdf`);
 }
 
-export function PDFbutton(styling, saveText, chartTitle) {
+export function PDFbutton(saveText, chartTitle, styles) {
     return (
-        <Button className={styling} onClick={() => downloadPDF('canvas', chartTitle, 'chart')}>
-            <i className='fas fa-file-pdf fa-2x' /> <br />
+        <Button
+            intent={Intent.PRIMARY}
+            className={styles.pdf_btn}
+            onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
+        >
+            { <Icon icon='download' iconSize={20} className={styles.button_icon} />}
             {saveText}
         </Button>
     );

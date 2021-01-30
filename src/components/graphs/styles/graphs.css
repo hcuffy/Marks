@@ -30,11 +30,14 @@
   background-color: #d1f74a;
 }
 
+.button_icon {
+  margin: 3px 5px 0 0 !important;
+}
+
 .pdf_btn {
-  margin-left: 40px;
-  background-color: Transparent !important;
-  border: none !important;
-  outline: none;
+  position: fixed;
+  z-index: 1;
+  left: 80%;
+  margin-top: 5px;
   font-size: 14px;
-  color: black !important;
 }

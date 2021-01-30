@@ -43,11 +43,7 @@ function GraphDropdown({t, classData, graphData, subjectData, actions}) {
                 examOptions,
                 'examDropdown'
             )}
-            {PDFbutton(
-                css.pdf_btn,
-                t('general.saveAs'),
-                resolveLabel(chartTitle, t('graph.schoolGrades'))
-            )}
+            {PDFbutton(t('general.saveAs'), resolveLabel(chartTitle, t('graph.schoolGrades')), css)}
         </div>
     );
 }

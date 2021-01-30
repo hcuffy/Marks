@@ -2,19 +2,15 @@ import _ from 'lodash';
 
 import {actions} from './constants';
 import {addNewStudentData, getAllStudents, deleteStudent, updateStudentData} from '../../collections';
-import {getSelectedOption, inputValidation} from '../helpers';
+import {getAttribute, getCustomAttribute, getFormValues, getSelectedOption, inputValidation} from '../helpers';
 
 export function addNewStudent(event) {
     return async dispatch => {
         event.preventDefault();
 
-        const formData = {
-            firstname: event.target.firstname.value,
-            lastname:  event.target.lastname.value,
-            gender:    getSelectedOption(event, 'gender'),
-            classroom: getSelectedOption(event, 'classroom')
-        };
-
+        const formData = getFormValues(['firstname', 'lastname'], event);
+        _.set(formData, 'gender', getSelectedOption(event, 'gender'));
+        _.set(formData, 'classroom', getSelectedOption(event, 'classroom'));
         const inputsToValidate = _.pick(formData, ['firstname', 'lastname']);
 
         if (inputValidation(inputsToValidate)) {
@@ -53,27 +49,27 @@ export function getStudents() {
     };
 }
 
-export function showStudentModal(event) {
+export function showStudentDialog(event) {
     return dispatch => {
-        const studentId = event.target.getAttribute('data-id');
-
+        const studentId = getAttribute('data-id', event);
         dispatch({
             type:    actions.GET_SINGLE_STUDENT,
-            payload: {studentId, isModalInvalid: false}
+            payload: {studentId, dialogInvalid: false}
         });
     };
 }
 
-export function openStudentGraph(event) {
+export function showStudent(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'studentDropdown') {
+        if (event['data-check'] !== 'studentDropdown') {
             return;
         }
 
         const student = {
-            studentGraphId:   event.target.getAttribute('data-id'),
-            studentGraphName: event.target.innerText,
-            chartToDisplay:   'student'
+            studentId:      event.id,
+            studentName:    event.name,
+            classroomId:    event.classroomId,
+            chartToDisplay: 'student'
         };
 
         dispatch({
@@ -83,16 +79,15 @@ export function openStudentGraph(event) {
     };
 }
 
-export function openStudentSubjectGraph(event) {
+export function showSubject(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
+        if (event['data-check'] !== 'subjectDropdown') {
             return;
         }
-
         const subject = {
-            subjectGraphId:   event.target.getAttribute('data-id'),
-            subjectGraphName: event.target.innerText,
-            chartToDisplay:   'subject'
+            subjectId:      event?.id,
+            subjectName:    event?.name,
+            chartToDisplay: 'subject'
         };
 
         dispatch({
@@ -106,15 +101,12 @@ export function updateStudent(event) {
     return async dispatch => {
         event.preventDefault();
 
-        const studentId = event.target.studentId.getAttribute('data-id');
+        const studentId = getCustomAttribute('data-id', 'studentId', event);
+        const studentData = getFormValues(['firstname', 'lastname'], event);
+        _.set(studentData, 'gender', getSelectedOption(event, 'gender'));
+        _.set(studentData, 'classroom', getSelectedOption(event, 'classroom'));
+        _.set(studentData, 'id', studentId);
 
-        const studentData = {
-            firstname: event.target.firstname.value,
-            lastname:  event.target.lastname.value,
-            gender:    getSelectedOption(event, 'gender'),
-            classroom: getSelectedOption(event, 'classroom'),
-            id:        studentId
-        };
         const inputsToValidate = _.pick(studentData, ['firstname', 'lastname']);
 
         if (inputValidation(inputsToValidate)) {
@@ -140,7 +132,7 @@ export function updateStudent(event) {
 
 export function deleteSingleStudent(event) {
     return async dispatch => {
-        const studentId = event.target.getAttribute('data-id');
+        const studentId = getAttribute('data-id', event);
         const students = await deleteStudent(studentId);
 
         dispatch({

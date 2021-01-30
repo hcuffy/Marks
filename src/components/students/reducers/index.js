@@ -2,17 +2,17 @@ import {studentHandlers} from './reducerHandlers';
 import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
-    firstname:        '',
-    lastname:         '',
-    studentModal:     false,
-    studentDropdown:  false,
-    subjectDropdown:  false,
-    studentGraphId:   null,
-    chartToDisplay:   null,
-    studentGraphName: null,
-    subjectGraphName: null,
-    isInvalid:        false,
-    isModalInvalid:   true
+    firstname:      '',
+    lastname:       '',
+    showDialog:     false,
+    studentId:      null,
+    studentName:    null,
+    classroomId:    null,
+    subjectId:      null,
+    subjectName:    null,
+    chartToDisplay: null,
+    isInvalid:      false,
+    dialogInvalid:  true
 };
 
 export function applyStudentData(state = initialLoadState, action) {

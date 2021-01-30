@@ -1,5 +1,5 @@
 import React from 'react';
-import dayjs from 'dayjs';
+import moment from 'moment';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -22,7 +22,7 @@ function ExamListInputs({exams, subjectId, actions}) {
 
                     <span className={`badge badge-light badge-pill ${css.badge_number}`}>
                         { <Icon icon='calendar' iconSize={13} className={css.button_icon} />}
-                        {dayjs(data.date).format('L') }
+                        {moment(data.date).format('L') }
                     </span>
 
                     <span className={`badge badge-warning badge-pill ${css.badge_number}`}>

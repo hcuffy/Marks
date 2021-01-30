@@ -1,6 +1,7 @@
 import connectionToDB from './connectionSetup';
 import {displayToast} from '../notifications';
 import {deleteGradesByStudentId} from './grade';
+import _ from 'lodash';
 
 const Student = connectionToDB('student');
 
@@ -22,7 +23,7 @@ export async function getAllStudents() {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['firstname']);
 }
 
 export async function deleteStudent(data) {
@@ -36,7 +37,7 @@ export async function deleteStudent(data) {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['firstname']);
 }
 
 async function updateSingleStudent(previous) {
@@ -59,5 +60,5 @@ export async function updateStudentData(data) {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['firstname']);
 }
