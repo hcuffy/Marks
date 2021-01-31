@@ -34,18 +34,19 @@
   background: #fdb12e;
 }
 
-.dropdown_one {
-  float: left;
-  margin: 0 5px 0 100px;
-}
-.dropdown_two {
-  float: left;
-}
 .dropdown_main_div {
   height: 45px;
-  width: 465px;
-  margin: auto;
+  width: 500px;
   text-align: center;
+}
+
+.left_dropdown{
+  float: left;
+  margin: 0 5px 0 30px;
+}
+
+.right_dropdown{
+  float: left;
 }
 
 .clear_Btn {

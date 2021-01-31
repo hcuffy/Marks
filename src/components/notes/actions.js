@@ -2,26 +2,21 @@ import _ from 'lodash';
 
 import {actions} from './constants';
 import {addNewNote, getAllNotes, deleteNote, updateNoteData} from '../../collections';
-import {inputValidation} from '../helpers';
+import {getAttribute, getFormValues, inputValidation} from '../helpers';
 
 export function addNote(event) {
     return async dispatch => {
         event.preventDefault();
 
-        const formData = {
-            title:     event.target.title.value,
-            note:      event.target.note.value,
-            studentId: event.target.studentId.value
-        };
+        const formData = getFormValues(['title', 'note'], event);
 
-        const inputsToValidate = _.omit(formData, ['studentId']);
-
-        if (inputValidation(inputsToValidate)) {
+        if (inputValidation(formData)) {
             dispatch({
                 type:    actions.NOTES_FORM_VALIDATION,
-                payload: {...inputsToValidate, isInvalid: true}
+                payload: {...formData, isInvalid: true}
             });
         } else {
+            _.set(formData, 'studentId', event.target?.student?.value);
             await addNewNote(formData);
 
             event.target.reset();
@@ -49,18 +44,13 @@ export function getNotes() {
     };
 }
 
-export function openStudentDropdown(event) {
+export function handleStudentDropdown(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'studentDropdown') {
+        if (event['data-check'] !== 'studentDropdown') {
             return;
         }
 
-        const student = {
-            studentId:       event.target.getAttribute('data-id'),
-            selectedStudent: event.target.innerText,
-            notesDropdown:   false,
-            isInvalid:       false
-        };
+        const student = {studentId: event.id, selectedStudent: event.name, classroomId: event.classroomId, isInvalid: false};
 
         dispatch({
             type:    actions.OPEN_STUDENT_NOTES_DROPDOWN,
@@ -69,20 +59,19 @@ export function openStudentDropdown(event) {
     };
 }
 
-export function openNotesDropdown(event) {
+export function handleNotesDropdown(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'notesDropdown') {
+        if (event['data-check'] !== 'notesDropdown') {
             return;
         }
 
         dispatch({
             type:    actions.OPEN_NOTES_DROPDOWN,
             payload: {
-                noteId:          event.target.getAttribute('data-id'),
-                textBox:         null,
-                textField:       null,
-                studentDropdown: false,
-                isInvalid:       false
+                noteId:    event.id,
+                textArea:  event.note,
+                textField: event.title,
+                isInvalid: false
             }
         });
     };
@@ -108,12 +97,12 @@ export function updateTitleField(event) {
 
 export function deleteSingleNote(event) {
     return async dispatch => {
-        const noteId = event.target.getAttribute('data-id');
+        const noteId = getAttribute('data-id', event);
         const notes = await deleteNote(noteId);
 
         dispatch({
             type:    actions.CLEAR_NOTE_FIELDS,
-            payload: {noteId: null, selectedNote: null, textBox: null}
+            payload: {noteId: null, textArea: null, textField: null}
         });
 
         dispatch({
@@ -128,10 +117,10 @@ export function clearNoteField() {
         dispatch({
             type:    actions.CLEAR_NOTE_FIELDS,
             payload: {
-                noteId:       null,
-                selectedNote: null,
-                textBox:      null,
-                isInvalid:    false
+                noteId:    null,
+                textArea:  null,
+                textField: null,
+                isInvalid: false
             }
         });
     };
@@ -141,19 +130,17 @@ export function updateNote(event) {
         event.preventDefault();
 
         const noteData = {
-            noteId: event.target.getAttribute('data-id'),
-            title:  event.target.closest('form').title.value,
-            note:   event.target.closest('form').note.value
+            title: event?.target?.closest('form')?.title?.value,
+            note:  event?.target?.closest('form')?.note?.value
         };
 
-        const inputsToValidate = _.omit(noteData, ['noteId']);
-
-        if (inputValidation(inputsToValidate)) {
+        if (inputValidation(noteData)) {
             dispatch({
                 type:    actions.NOTES_FORM_VALIDATION,
-                payload: {...inputsToValidate, isInvalid: true}
+                payload: {...noteData, isInvalid: true}
             });
         } else {
+            _.set(noteData, 'noteId', getAttribute('data-id', event));
             const notes = await updateNoteData(noteData);
 
             dispatch({

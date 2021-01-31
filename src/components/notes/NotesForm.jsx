@@ -8,8 +8,8 @@ import {actionCreators} from '../../actions/index';
 import {FooterButtons, getNoteData, TextBoxArea, TitleField} from './formHelpers';
 
 function NotesForm({t, notesData, actions}) {
-    const {studentId, noteId, notes, textBox, textField, isInvalid} = notesData;
-    const textBoxText = _.isNull(studentId) ? '' : getNoteData(textBox, noteId, notes, 'note');
+    const {studentId, noteId, notes, textArea, textField, isInvalid} = notesData;
+    const textBoxText = _.isNull(studentId) ? '' : getNoteData(textArea, noteId, notes, 'note');
     const titleText = _.isNull(studentId) ? '' : getNoteData(textField, noteId, notes, 'title');
 
     return (

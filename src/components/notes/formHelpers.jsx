@@ -16,7 +16,7 @@ export function getNoteData(textData, noteId, notes, propToGet) {
     return _.isUndefined(noteData) ? '' : noteData;
 }
 
-export function TitleField({t, titleText, studentId, isInvalid, actions}) {
+export function TitleField({t, titleText, studentId, isInvalid}) {
     const intent = isInvalid && _.isEmpty(titleText) ? Intent.DANGER : Intent.NONE;
 
     return (
@@ -27,7 +27,6 @@ export function TitleField({t, titleText, studentId, isInvalid, actions}) {
                     id='title'
                     type='text'
                     className={css.note_input}
-                    onChange={actions.updateTitleField}
                     defaultValue={titleText}
                     intent={intent}
                 />
@@ -37,7 +36,7 @@ export function TitleField({t, titleText, studentId, isInvalid, actions}) {
     );
 }
 
-export function TextBoxArea({t, textBoxText, isInvalid, actions}) {
+export function TextBoxArea({t, textBoxText, isInvalid}) {
     const intent = isInvalid && _.isEmpty(textBoxText) ? Intent.DANGER : Intent.NONE;
 
     return (
@@ -52,7 +51,6 @@ export function TextBoxArea({t, textBoxText, isInvalid, actions}) {
                     growVertically={false}
                     defaultValue={textBoxText}
                     rows={15}
-                    onChange={actions.updateTextArea}
                 />
             </FormGroup>
         </div>
@@ -75,7 +73,7 @@ export function FooterButtons({t, noteId, studentId, actions}) {
                 <Button type='button'
                     large={true}
                     intent={Intent.NONE}
-                    onClick={actions.updateNote}
+                    onClick={actions.clearNoteField}
                     text={t('general.clear')}
                     disabled={!noteId}/>
 
