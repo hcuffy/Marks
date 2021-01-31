@@ -20,6 +20,7 @@ export function getClassList(classlist) {
     ));
 }
 
+//TODO : Remove this function once all dropdown have been replaced
 export function getSubjectList(classroom, subjectData) {
     const selectedSubjects = _.filter(subjectData.data, ['classroomId', classroom.selectedRoom]);
 
@@ -50,6 +51,7 @@ export function getAllSubjects(subjects) {
     ));
 }
 
+//TODO Delete this function once all dropdowns have been replaced
 export function getExamList(exams, subjectId) {
     const selectedExams = _.filter(exams, ['subjectId', subjectId]);
 

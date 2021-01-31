@@ -1,23 +1,26 @@
 import _ from 'lodash';
 import React from 'react';
+import moment from 'moment';
 
+import {NumericInput, Icon} from '@blueprintjs/core';
 import css from './styles/grades.css';
 
 function customCell(props, actions) {
     const {score, studentId, subjectName, subjectId, examId, date, weight, gradeId} = props.value;
 
     return (
-        <input
+        <NumericInput
             defaultValue={score}
-            data-studentid={studentId}
-            data-subjectname={subjectName}
-            data-subjectid={subjectId}
-            data-examid={examId}
+            studentid={studentId}
+            subjectname={subjectName}
+            subjectid={subjectId}
+            examid={examId}
             data-date={date}
-            data-weight={weight}
-            data-id={gradeId}
+            weight={weight}
+            id={gradeId}
             type='number'
-            onBlur={actions.updateGrade}
+            fill={true}
+            onChange={actions.updateStudentGrade}
         />
     );
 }
@@ -36,14 +39,12 @@ function badgeColor(weight) {
 function customHeader({date, weight}) {
     return (
         <div>
-            <span
-                className={`badge badge-pill ${badgeColor(weight)} ${css.badge_weight}`}
-            >
-                <i className='fas fa-weight-hanging' /> {weight}
+            <span className={`badge badge-pill ${badgeColor(weight)} ${css.badge_weight}`}>
+                { <Icon icon='layers' iconSize={13} />}{weight}
             </span>
 
             <span className={`badge badge-light badge-pill ${css.badge_date}`}>
-                <i className='fas fa-calendar' /> {date}
+                { <Icon icon='calendar' iconSize={13}/>}{moment(date).format('L') }
             </span>
         </div>
     );
@@ -108,7 +109,7 @@ export function gradeColumns({t, newData, actions}) {
             Header:  t('grades.studentHeader'),
             columns: [
                 {
-                    Header:   <i className='fas fa-user' />,
+                    Header:   <Icon icon='user' iconSize={18}/>,
                     accessor: 'gender',
                     width:    40,
                     style:    {textAlign: 'center'}

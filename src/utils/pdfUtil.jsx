@@ -22,13 +22,13 @@ function downloadPDF(itemToPDF, nameOfChart, saveAs) {
 
 export function PDFbutton(saveText, chartTitle, styles) {
     return (
-        <Button
-            intent={Intent.PRIMARY}
-            className={styles.pdf_btn}
-            onClick={() => downloadPDF('canvas', chartTitle, 'chart')}
-        >
-            { <Icon icon='download' iconSize={20} className={styles.button_icon} />}
-            {saveText}
-        </Button>
+        <div className={styles.pdf_btn}>
+            <Button
+                intent={Intent.PRIMARY}
+                onClick={() => downloadPDF('canvas', chartTitle, 'chart')}>
+                { <Icon icon='download' iconSize={20} className={styles.button_icon} />}
+                {saveText}
+            </Button>
+        </div>
     );
 }

@@ -6,39 +6,39 @@ import {bindActionCreators} from 'redux';
 
 import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
-import {getClassList, getSubjectList, createDropdown, notifyIfEmpty, getClassroomProp, sortByName} from '../helpers';
+import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './styles/grades.css';
 
 function GradeDropdown({t, classData, gradeData, subjectData, actions}) {
-    const {subDrop, subjectName, classroomId, classroomDropdown} = gradeData;
-    const openIt = {subDrop};
-    const classOptions = getClassList(sortByName(classData.classData));
-    const classroom = getClassroomProp(classroomId, classData.classData);
-    const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
+    const {subjectId, classroomId, classroom} = gradeData;
 
-    if (_.isEmpty(subjectOptions) && subDrop) {
-        notifyIfEmpty([], true, 'class');
-        openIt.subDrop = false;
-    }
+    const classes = classData?.classData;
+    const items = createDropdownItems(classes, 'classDropdown');
+    const label = resolveLabel(classroom, t('general.selectClass'));
+
+    const subjects = _.filter(subjectData?.data, {classroomId}) || {};
+    const selectedSubject = _.find(subjects, {_id: subjectId}) || {};
+    const subjectItems = createDropdownItems(subjects, 'subjectDropdown');
+    const subjectLabel = resolveLabel(selectedSubject?.name, t('general.selectSubject'));
 
     return (
         <div className={css.dropdown_main_div}>
-            {createDropdown(
-                css.dropdown_div,
-                classroomDropdown,
-                actions.openGradeClassList,
-                resolveLabel(classroom, t('general.selectClass')),
-                classOptions,
-                'classDropdown'
-            )}
-            {createDropdown(
-                css.dropdown_div,
-                subDrop,
-                actions.displayGradeData,
-                resolveLabel(subjectName, t('general.selectSubject')),
-                subjectOptions,
-                'subjectDropdown'
-            )}
+            <div className={css.left_dropdown}>
+                <DropdownComponent
+                    items={items}
+                    action={actions.handleGradeClassList}
+                    label={label}
+                    disabled={_.isEmpty(classes)}
+                />
+            </div>
+            <div className={css.right_dropdown}>
+                <DropdownComponent
+                    items={subjectItems}
+                    action={actions.showGradeData}
+                    label={subjectLabel}
+                    disabled={_.isEmpty(subjects)}
+                />
+            </div>
         </div>
     );
 }
