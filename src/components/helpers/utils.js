@@ -47,16 +47,18 @@ export function getTargetValue({target}) {
     return target?.value;
 }
 
+//TODO: Remove this function once all dropdowns have been replaced
 export function notifyIfEmpty(list, isSelected, section) {
     if (_.isEmpty(list) && isSelected) {
         displayToast(section, 'warn');
     }
 }
 
+//TODO Remove this function once all dropdowns have been replaced
 export function sortByName(data) {
     return _.sortBy(data, ['name'], ['asc']);
 }
-
+//TODO : Remove this function once all dropdown have been replaced
 export function getClassroomProp(prop, classdata) {
     const classObject = _.find(classdata, {prop}) || {};
     if (_.isUndefined(classObject)) {

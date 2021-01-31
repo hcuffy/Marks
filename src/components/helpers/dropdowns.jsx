@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import _ from 'lodash';
 import {Select} from '@blueprintjs/select';
 import {Button, MenuItem, Intent} from '@blueprintjs/core';
@@ -20,6 +21,7 @@ export function getClassList(classlist) {
     ));
 }
 
+//TODO : Remove this function once all dropdown have been replaced
 export function getSubjectList(classroom, subjectData) {
     const selectedSubjects = _.filter(subjectData.data, ['classroomId', classroom.selectedRoom]);
 
@@ -50,6 +52,7 @@ export function getAllSubjects(subjects) {
     ));
 }
 
+//TODO Delete this function once all dropdowns have been replaced
 export function getExamList(exams, subjectId) {
     const selectedExams = _.filter(exams, ['subjectId', subjectId]);
 
@@ -76,8 +79,9 @@ export function getStudentList(allStudents) {
     ));
 }
 
+//TODO: Replace this function once all dropdowns have been replaced
 export function getNotesList(allNotes, studentId) {
-    if (_.isNull(studentId) || allNotes.length === 0) {
+    if (_.isNull(studentId) || allNotes?.length === 0) {
         return [];
     }
 
@@ -143,7 +147,8 @@ function menuItems(item, {handleClick}) {
             text={item.name}
             onClick={handleClick}
             shouldDismissPopover={true}
-        />);
+        />
+    );
 }
 
 export function DropdownComponent({items, action, label, disabled = false}) {
@@ -154,7 +159,9 @@ export function DropdownComponent({items, action, label, disabled = false}) {
                 items={items}
                 onItemSelect={action}
                 filterable={false}
-                disabled={disabled}>
+                disabled={disabled}
+                popoverProps={{popoverClassName: css.menu_sizing, modifiers: {arrow: {enabled: false}}}}>
+
                 <Button className={css.dropdown_btn} intent={Intent.SUCCESS} text={label} rightIcon='caret-down' />
             </Select>
         </div>
@@ -188,9 +195,43 @@ function studentItems(dataList, dropDown) {
     ));
 }
 
+function examItems(dataList, dropDown) {
+    return _.map(dataList, (data, idx) => (
+        {
+            key:          idx,
+            name:         data.title,
+            subjectId:    data.subjectId,
+            id:           data?._id,
+            'data-check': dropDown
+        }
+    ));
+}
+
+function notesItems(dataList, dropDown) {
+    return _.map(dataList, (data, idx) => (
+        {
+            key:          idx,
+            name:         `${data?.title} - ${moment(data.createdAt).format('L')}`,
+            title:        data?.title,
+            studentId:    data?.studentId,
+            id:           data?._id,
+            note:         data?.note,
+            'data-check': dropDown
+        }
+    ));
+}
+
 export function createDropdownItems(dataList, dropDown) {
     if (dropDown === 'studentDropdown') {
         return studentItems(dataList, dropDown);
+    }
+
+    if (dropDown === 'examDropdown') {
+        return examItems(dataList, dropDown);
+    }
+
+    if (dropDown === 'notesDropdown') {
+        return notesItems(dataList, dropDown);
     }
 
     return _.map(dataList, (data, idx) => (

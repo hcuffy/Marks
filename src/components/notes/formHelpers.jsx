@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {Button, Form, FormGroup, Label, Input, Col} from 'reactstrap';
+import {Button, InputGroup, ButtonGroup, FormGroup, Intent, TextArea} from '@blueprintjs/core';
 
 import css from './styles/notes.css';
 
@@ -10,112 +10,89 @@ function getNoteProp(noteId, notes, prop) {
     return _.get(fullNoteData, prop);
 }
 
-function getNoteData(textData, noteId, notes, propToGet) {
+export function getNoteData(textData, noteId, notes, propToGet) {
     const noteData = _.isNull(textData) ? getNoteProp(noteId, notes, propToGet) : textData;
 
     return _.isUndefined(noteData) ? '' : noteData;
 }
 
-function titleField(t, title, studentId, isInvalid, actions) {
+export function TitleField({t, titleText, studentId, isInvalid}) {
+    const intent = isInvalid && _.isEmpty(titleText) ? Intent.DANGER : Intent.NONE;
+
     return (
-        <FormGroup row>
-            <Label for='textBox' sm={1}>
-                {t('notes.title')}*:
-            </Label>
-            <Col sm={10}>
-                <Input
-                    type='text'
+        <div >
+            <FormGroup inline={true} labelFor={'id'} label={t('notes.title')}>
+                <InputGroup
                     name='title'
-                    value={title}
-                    onChange={actions.updateTitleField}
-                    invalid={isInvalid && _.isEmpty(title)}
+                    id='title'
+                    type='text'
+                    className={css.note_input}
+                    defaultValue={titleText}
+                    intent={intent}
                 />
-
-                <Input type='text' name='student' defaultValue={studentId} hidden />
-            </Col>
-        </FormGroup>
+                <InputGroup type='text' name='student' defaultValue={studentId} hidden />
+            </FormGroup>
+        </div>
     );
 }
 
-function textBoxArea(t, noteInformation, isInvalid, actions) {
+export function TextBoxArea({t, textBoxText, isInvalid}) {
+    const intent = isInvalid && _.isEmpty(textBoxText) ? Intent.DANGER : Intent.NONE;
+
     return (
-        <FormGroup row>
-            <Label for='textBox' sm={1}>
-                {t('notes.textbox')}:
-            </Label>
-            <Col sm={10}>
-                <Input
-                    type='textarea'
+        <div className={css.note_textArea_wrapper}>
+            <FormGroup inline={true} labelFor={'textBox'} label={t('notes.textbox')}>
+                <TextArea
+                    large={true}
                     name='note'
-                    rows='20'
                     id='textBox'
-                    value={noteInformation}
-                    onChange={actions.updateTextArea}
-                    invalid={isInvalid && _.isEmpty(noteInformation)}
+                    intent={intent}
+                    className={css.note_textArea}
+                    growVertically={false}
+                    defaultValue={textBoxText}
+                    rows={15}
                 />
-            </Col>
-        </FormGroup>
+            </FormGroup>
+        </div>
     );
 }
 
-function footerButtons(t, noteId, studentId, actions) {
+export function FooterButtons({t, noteId, studentId, actions}) {
     return (
-        <FormGroup check>
-            <Col sm={{offset: 7}}>
+        <div className={css.button_footer}>
+            <ButtonGroup >
                 <Button
                     type='button'
-                    color='danger'
-                    className={css.clear_Btn}
+                    large={true}
+                    intent={Intent.DANGER}
                     onClick={actions.deleteSingleNote}
+                    text= {t('general.delete')}
                     data-id={noteId}
-                    disabled={!noteId}
-                >
-                    {t('general.delete')}
-                </Button>{' '}
-                <Button
-                    type='button'
-                    color='secondary'
+                    disabled={!noteId}/>
+
+                <Button type='button'
+                    large={true}
+                    intent={Intent.NONE}
                     onClick={actions.clearNoteField}
-                    disabled={!noteId}
-                >
-                    {t('general.clear')}
-                </Button>{' '}
+                    text={t('general.clear')}
+                    disabled={!noteId}/>
+
                 <Button
                     type='button'
-                    color='primary'
-                    data-id={noteId}
+                    large={true}
+                    intent={Intent.PRIMARY}
                     onClick={actions.updateNote}
-                    disabled={!noteId}
-                >
-                    {t('general.update')}
-                </Button>{' '}
+                    text={t('general.update')}
+                    data-id={noteId}
+                    disabled={!noteId}/>
+
                 <Button
                     type='submit'
-                    color='success'
-                    formNoValidate
-                    disabled={!studentId || Boolean(noteId)}
-                >
-                    {t('general.add')}
-                </Button>
-            </Col>
-        </FormGroup>
+                    large={true}
+                    intent={Intent.SUCCESS}
+                    text={t('general.add')}
+                    disabled={!studentId || Boolean(noteId)} />
+            </ButtonGroup>
+        </div>
     );
 }
-
-function noteForm(t, actions, notesData) {
-    const {studentId, noteId, notes, textBox, textField, isInvalid} = notesData;
-    const textBoxText = _.isNull(studentId) ? '' : getNoteData(textBox, noteId, notes, 'note');
-    const titleText = _.isNull(studentId) ? '' : getNoteData(textField, noteId, notes, 'title');
-
-    return (
-        <Form onSubmit={actions.addNote} method='POST'>
-            {titleField(t, titleText, studentId, isInvalid, actions)}
-
-            {textBoxArea(t, textBoxText, isInvalid, actions)}
-
-            {footerButtons(t, noteId, studentId, actions)}
-        </Form>
-    );
-}
-
-export default noteForm;

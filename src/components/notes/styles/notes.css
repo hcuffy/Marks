@@ -3,6 +3,29 @@
   height: 1000px;
 }
 
+.note_title {
+  width: 800px;
+}
+.note_input {
+  width: 300px;
+}
+
+.button_footer {
+  float: right;
+  height: 50px;
+  margin-right: 280px;
+}
+
+.note_textArea_wrapper {
+  width: 400px;
+  height: 400px;
+}
+
+.note_textArea {
+  width: 600px;
+
+}
+
 .main_header {
   height: 50px;
   padding-top: 10px;
@@ -11,18 +34,19 @@
   background: #fdb12e;
 }
 
-.dropdown_one {
-  float: left;
-  margin: 0 5px 0 100px;
-}
-.dropdown_two {
-  float: left;
-}
 .dropdown_main_div {
   height: 45px;
-  width: 465px;
-  margin: auto;
+  width: 500px;
   text-align: center;
+}
+
+.left_dropdown{
+  float: left;
+  margin: 0 5px 0 30px;
+}
+
+.right_dropdown{
+  float: left;
 }
 
 .clear_Btn {

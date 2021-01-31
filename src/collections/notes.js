@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import connectionToDB from './connectionSetup';
 import {displayToast} from '../notifications';
 
@@ -23,7 +25,7 @@ export async function getAllNotes() {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['title']);
 }
 
 export async function deleteNote(data) {
@@ -37,7 +39,7 @@ export async function deleteNote(data) {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['title']);
 }
 
 async function updateSingleNote(previousData) {
@@ -54,7 +56,7 @@ async function updateSingleNote(previousData) {
 
 export async function updateNoteData(data) {
     await updateSingleNote(data);
-    let result = Notes.find({});
+    let result = await Notes.find({});
 
     if (result instanceof Error) {
         displayToast('updateFail', 'fail');
@@ -62,5 +64,5 @@ export async function updateNoteData(data) {
         return null;
     }
 
-    return result;
+    return _.sortBy(result, ['title']);
 }

@@ -5,39 +5,40 @@ import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
-import {getStudentList, getNotesList, createDropdown, notifyIfEmpty} from '../helpers';
+import {DropdownComponent, createDropdownItems} from '../helpers';
 import {resolveLabel} from '../../utils';
 import css from './styles/notes.css';
 
 function NotesDropdown({t, studentData, notesData, actions}) {
     const {students} = studentData;
-    const {studentDropdown, notesDropdown, selectedStudent, selectedNote, studentId, notes, textField} = notesData;
-    const studentOptions = getStudentList(students);
-    const notesOptions = getNotesList(notes, studentId);
+    const {selectedStudent, studentId, noteId} = notesData;
 
-    if (_.isEmpty(textField) === true) {
-        notifyIfEmpty(t, notesOptions, notesDropdown, 'student');
-    }
+    const studentItems = createDropdownItems(students, 'studentDropdown');
+    const studentLabel = resolveLabel(selectedStudent, t('general.selectStudent'));
+
+    const notes = _.filter(notesData?.notes, {studentId}) || {};
+    const notesItems = createDropdownItems(notes, 'notesDropdown');
+    const selectedNote = _.find(notes, {_id: noteId}) || {};
+    const notesLabel = resolveLabel(selectedNote.Title, t('general.selectNote'));
 
     return (
         <div className={css.dropdown_main_div}>
-            {createDropdown(
-                css.dropdown_one,
-                studentDropdown,
-                actions.openStudentDropdown,
-                resolveLabel(selectedStudent, t('general.selectStudent')),
-                studentOptions,
-                'studentDropdown'
-            )}
-
-            {createDropdown(
-                css.dropdown_two,
-                notesDropdown,
-                actions.openNotesDropdown,
-                resolveLabel(selectedNote, t('general.selectNote')),
-                notesOptions,
-                'notesDropdown'
-            )}
+            <div className={css.left_dropdown}>
+                <DropdownComponent
+                    items={studentItems}
+                    action={actions.handleStudentDropdown}
+                    label={studentLabel}
+                    disabled={_.isEmpty(students)}
+                />
+            </div>
+            <div className={css.right_dropdown}>
+                <DropdownComponent
+                    items={notesItems}
+                    action={actions.handleNotesDropdown}
+                    label={notesLabel}
+                    disabled={_.isEmpty(notes)}
+                />
+            </div>
         </div>
     );
 }
