@@ -5,44 +5,54 @@ import {bindActionCreators} from 'redux';
 
 import {resolveLabel, PDFbutton} from '../../utils';
 import {actionCreators} from '../../actions/index';
-import {getClassList, getSubjectList, createDropdown, getExamList, notifyIfEmpty, getClassroomProp, sortByName} from '../helpers';
+import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './styles/graphs.css';
+import _ from 'lodash';
 
 function GraphDropdown({t, classData, graphData, subjectData, actions}) {
-    const {subjectId, exams, classroomId, classroomDropdown, openSubList, subjectName, examName, openExamList, chartTitle} = graphData;
-    const classroom = getClassroomProp(classroomId, classData.classData);
-    const classOptions = getClassList(sortByName(classData.classData));
-    const subjectOptions = getSubjectList({selectedRoom: classroomId}, subjectData);
-    const examOptions = getExamList(exams, subjectId);
+    const {subjectId, exams, classroomId, examId, chartTitle} = graphData;
 
-    notifyIfEmpty(subjectOptions, openSubList, 'class');
+    const classes = classData?.classData;
+    const items = createDropdownItems(classes, 'classDropdown');
+    const selectedClass = _.find(classes, {_id: classroomId}) || {};
+    const label = resolveLabel(selectedClass.name, t('general.selectClass'));
+
+    const subjects = _.filter(subjectData?.data, {classroomId}) || {};
+    const selectedSubject = _.find(subjects, {_id: subjectId}) || {};
+    const subjectItems = createDropdownItems(subjects, 'subjectDropdown');
+    const subjectLabel = resolveLabel(selectedSubject?.name, t('general.selectSubject'));
+
+    const subjectExams = _.filter(exams, {subjectId}) || {};
+    const selectedExam = _.find(subjectExams, {_id: examId}) || {};
+    const examItems = createDropdownItems(subjectExams, 'examDropdown');
+    const examLabel = resolveLabel(selectedExam?.name, t('general.selectExam'));
 
     return (
         <div className={css.dropdown_main_div}>
-            {createDropdown(
-                css.dropdown_div,
-                classroomDropdown,
-                actions.openGraphClassList,
-                resolveLabel(classroom, t('general.selectClass')),
-                classOptions,
-                'classDropdown'
-            )}
-            {createDropdown(
-                css.dropdown_div,
-                openSubList,
-                actions.displaySubjectGraph,
-                resolveLabel(subjectName, t('general.selectSubject')),
-                subjectOptions,
-                'subjectDropdown'
-            )}
-            {createDropdown(
-                css.dropdown_div,
-                openExamList,
-                actions.displayExamGraph,
-                resolveLabel(examName, t('general.selectExam')),
-                examOptions,
-                'examDropdown'
-            )}
+            <div className={css.left_dropdown}>
+                <DropdownComponent
+                    items={items}
+                    action={actions.handleGraphClassList}
+                    label={label}
+                    disabled={_.isEmpty(classes)}
+                />
+            </div>
+            <div className={css.middle_dropdown}>
+                <DropdownComponent
+                    items={subjectItems}
+                    action={actions.handleSubjectList}
+                    label={subjectLabel}
+                    disabled={_.isEmpty(subjects)}
+                />
+            </div>
+            <div className={css.right_dropdown}>
+                <DropdownComponent
+                    items={examItems}
+                    action={actions.displayExamGraph}
+                    label={examLabel}
+                    disabled={_.isEmpty(subjectExams)}
+                />
+            </div>
             {PDFbutton(t('general.saveAs'), resolveLabel(chartTitle, t('graph.schoolGrades')), css)}
         </div>
     );

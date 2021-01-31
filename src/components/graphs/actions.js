@@ -3,15 +3,15 @@ import _ from 'lodash';
 import {actions} from './constants';
 import {getAllGrades, getAllExams} from '../../collections';
 
-export function openGraphClassList(event) {
+export function handleGraphClassList(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'classDropdown') {
+        if (event['data-check'] !== 'classDropdown') {
             return;
         }
 
         const data = {
-            classroomId:    event.target.getAttribute('data-id'),
-            chartTitle:     event.target.innerText,
+            classroomId:    event.id,
+            chartTitle:     event.name,
             chartToDisplay: 'class'
         };
 
@@ -22,18 +22,16 @@ export function openGraphClassList(event) {
     };
 }
 
-export function displaySubjectGraph(event) {
+export function handleSubjectList(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'subjectDropdown') {
+        if (event['data-check'] !== 'subjectDropdown') {
             return;
         }
 
-        event.persist();
-
         const data = {
-            subjectId:      event.target.getAttribute('data-id'),
-            chartTitle:     event.target.innerText,
-            subjectName:    event.target.innerText,
+            subjectId:      event.id,
+            chartTitle:     event.name,
+            subjectName:    event.name,
             chartToDisplay: 'subject'
         };
 
@@ -46,16 +44,11 @@ export function displaySubjectGraph(event) {
 
 export function displayExamGraph(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'examDropdown') {
+        if (event['data-check'] !== 'examDropdown') {
             return;
         }
 
-        const data = {
-            examId:         event.target.getAttribute('data-id'),
-            chartTitle:     event.target.innerText,
-            examName:       event.target.innerText,
-            chartToDisplay: 'exam'
-        };
+        const data = {examId: event.id, chartTitle: event.name, chartToDisplay: 'exam'};
 
         dispatch({
             type:    actions.DISPLAY_EXAM_GRADES,

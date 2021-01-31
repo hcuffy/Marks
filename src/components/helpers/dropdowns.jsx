@@ -190,9 +190,25 @@ function studentItems(dataList, dropDown) {
     ));
 }
 
+function examItems(dataList, dropDown) {
+    return _.map(dataList, (data, idx) => (
+        {
+            key:          idx,
+            name:         data.title,
+            subjectId:    data.subjectId,
+            id:           data?._id,
+            'data-check': dropDown
+        }
+    ));
+}
+
 export function createDropdownItems(dataList, dropDown) {
     if (dropDown === 'studentDropdown') {
         return studentItems(dataList, dropDown);
+    }
+
+    if (dropDown === 'examDropdown') {
+        return examItems(dataList, dropDown);
     }
 
     return _.map(dataList, (data, idx) => (
