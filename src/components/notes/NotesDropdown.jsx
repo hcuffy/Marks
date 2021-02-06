@@ -11,10 +11,10 @@ import css from './styles/notes.css';
 
 function NotesDropdown({t, studentData, notesData, actions}) {
     const {students} = studentData;
-    const {selectedStudent, studentId, noteId} = notesData;
+    const {selectedName, studentId, noteId} = notesData;
 
     const studentItems = createDropdownItems(students, 'studentDropdown');
-    const studentLabel = resolveLabel(selectedStudent, t('general.selectStudent'));
+    const studentLabel = resolveLabel(selectedName, t('general.selectStudent'));
 
     const notes = _.filter(notesData?.notes, {studentId}) || {};
     const notesItems = createDropdownItems(notes, 'notesDropdown');

@@ -19,14 +19,15 @@ export function getQuestionSet(classroomId, questions) {
     return questionData.questionSet;
 }
 
-export function changeQuestionBtn(classroomId, {openQuestionList}) {
+//TODO: remove this function once all dropdown have been replaced
+export function changeQuestionBtn(classroomId, {handleQuestionList}) {
     return (
         <Button
             className={css.change_Btn}
             color='danger'
             data-check='openButton'
             data-id={classroomId}
-            onClick={openQuestionList}
+            onClick={handleQuestionList}
         >
 		&#8617;
         </Button>

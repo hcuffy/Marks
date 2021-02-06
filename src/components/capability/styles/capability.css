@@ -11,13 +11,14 @@
   background: #fdb12e;
 }
 
-.dropdown_div {
-  display: inline-block;
-  margin: 0 0 15px 15px;
+.dropdown_main_div {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 0 8px 250px;
 }
 
-.dropdown_main_div {
-  text-align: center;
+.middle_dropdown {
+  margin: 0 5px 0 5px;
 }
 
 .table_main_dev {
@@ -27,9 +28,7 @@
   position: absolute;
 }
 
-th,
-td,
-tbody {
+th, td, tbody {
   border: 1px solid black !important;
 }
 

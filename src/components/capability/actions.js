@@ -2,37 +2,37 @@ import _ from 'lodash';
 
 import {actions} from './constants';
 import {getAllQuestions, updateQuestionData, updateSingleAnswer, getAllAnswers} from '../../collections';
+import {getAttribute} from '../helpers';
 
-export function openCapabilityClassList(event) {
+export function capabilityClassList(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'classDropdown') {
+        if (event['data-check'] !== 'classDropdown') {
             return;
         }
 
         dispatch({
             type:    actions.OPEN_CLOSE_CLASS_LIST,
             payload: {
-                classroom:   event.target.innerText,
-                classroomId: event.target.getAttribute('data-id')
+                classroom:   event.name,
+                classroomId: event.id
             }
         });
     };
 }
 
-export function openCapabilityStudentList(event) {
+export function capabilityStudentList(event) {
     return async dispatch => {
-        if (event.target.getAttribute('data-check') !== 'studentDropdown') {
+        if (event['data-check'] !== 'studentDropdown') {
             return;
         }
 
-        event.persist();
         const questions = await getAllQuestions();
 
         dispatch({
             type:    actions.OPEN_CLOSE_STUDENT_LIST,
             payload: {
-                studentName: event.target.innerText,
-                studentId:   event.target.getAttribute('data-id'),
+                studentName: event.name,
+                studentId:   event.id,
                 questions
             }
         });
@@ -50,7 +50,8 @@ export function getQuestions() {
     };
 }
 
-export function openQuestionList(event) {
+//Todo: Remove this function once all dropdowns have been replaced
+export function handleQuestionList(event) {
     return dispatch => {
         event.stopPropagation();
 
@@ -70,20 +71,16 @@ export function openQuestionList(event) {
 
 export function updateQuestionSet(event) {
     return async dispatch => {
-        if (event.target.getAttribute('data-check') !== 'questionDropdown') {
+        if (event['data-check'] !== 'questionDropdown') {
             return;
         }
 
-        const questionSetData = {
-            classroomId: event.target.getAttribute('data-id'),
-            questionSet: event.target.name
-        };
-
+        const questionSetData = {classroomId: event['data-id'], questionList: event.name};
         const questions = await updateQuestionData(questionSetData);
 
         dispatch({
             type:    actions.UPDATE_QUESTION_SET,
-            payload: {questions}
+            payload: {questions, ...questionSetData}
         });
     };
 }
