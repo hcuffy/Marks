@@ -1,8 +1,8 @@
 import _ from 'lodash';
 
 import {actions} from './constants';
-import {getAllQuestions, updateQuestionData, updateSingleAnswer, getAllAnswers} from '../../collections';
-import {getAttribute} from '../helpers';
+import {getAllQuestions, updateSingleAnswer, getAllAnswers} from '../../collections';
+import {getAttribute, getTargetValue} from '../helpers';
 
 export function capabilityClassList(event) {
     return dispatch => {
@@ -21,24 +21,22 @@ export function capabilityClassList(event) {
 }
 
 export function capabilityStudentList(event) {
-    return async dispatch => {
+    return dispatch => {
         if (event['data-check'] !== 'studentDropdown') {
             return;
         }
-
-        const questions = await getAllQuestions();
 
         dispatch({
             type:    actions.OPEN_CLOSE_STUDENT_LIST,
             payload: {
                 studentName: event.name,
-                studentId:   event.id,
-                questions
+                studentId:   event.id
             }
         });
     };
 }
 
+//TODO : delete this after the capability update
 export function getQuestions() {
     return async dispatch => {
         const questions = await getAllQuestions();
@@ -70,17 +68,17 @@ export function handleQuestionList(event) {
 }
 
 export function updateQuestionSet(event) {
-    return async dispatch => {
+    return dispatch => {
         if (event['data-check'] !== 'questionDropdown') {
             return;
         }
 
         const questionSetData = {classroomId: event['data-id'], questionList: event.name};
-        const questions = await updateQuestionData(questionSetData);
+        _.set(questionSetData, 'questionBase', event.title);
 
         dispatch({
             type:    actions.UPDATE_QUESTION_SET,
-            payload: {questions, ...questionSetData}
+            payload: {...questionSetData}
         });
     };
 }
@@ -88,10 +86,11 @@ export function updateQuestionSet(event) {
 export function handleCapabilityAnswers(event) {
     return async dispatch => {
         const formData = {
-            classroomId: event.target.getAttribute('classroom-id'),
-            questionId:  event.target.getAttribute('data-id'),
-            studentId:   event.target.getAttribute('student-id'),
-            optionTag:   event.target.getAttribute('option-tag')
+            classroomId: getAttribute('classroom-id', event),
+            questionId:  getAttribute('data-id', event),
+            studentId:   getAttribute('student-id', event),
+            cardId:      getAttribute('card-id', event),
+            answer:      getTargetValue(event)
         };
 
         if (_.includes(formData, null)) {
@@ -114,6 +113,15 @@ export function getAnswers() {
         dispatch({
             type:    actions.UPDATE_ANSWERS,
             payload: {answers}
+        });
+    };
+}
+
+export function openCard(event) {
+    return dispatch => {
+        dispatch({
+            type:    actions.SHOW_CARDS,
+            payload: {cardId: getAttribute('card-id', event)}
         });
     };
 }

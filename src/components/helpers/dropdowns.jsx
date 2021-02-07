@@ -6,7 +6,6 @@ import {Button, MenuItem, Intent} from '@blueprintjs/core';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
 import css from './styles/helpers.css';
-import {capabilityQuestions} from '../capability/constants';
 
 // TODO: Remove this function once all dropdowns have been replaced
 export function getClassList(classlist) {

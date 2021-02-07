@@ -7,12 +7,11 @@ import {bindActionCreators} from 'redux';
 import {actionCreators} from '../../actions/index';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import {capabilityQuestions} from './constants';
-import {changeQuestionBtn} from './table';
 import {resolveLabel} from '../../utils';
 import css from './styles/capability.css';
 
 function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
-    const {classroom, studentName, questions, classroomId, questionList} = capabilityData;
+    const {classroom, studentName, classroomId, questionList} = capabilityData;
 
     const classItems = createDropdownItems(classData?.classData, 'classDropdown');
     const classLabel = resolveLabel(classroom, t('general.selectClass'));
@@ -24,10 +23,6 @@ function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
     const composedQuestionObject = {t, classroomId, capabilityQuestions};
     const questionItems = createDropdownItems(composedQuestionObject, 'questionDropdown');
     const questionLabel = resolveLabel(questionList, t('general.selectQuestions'));
-
-    console.log(questions);
-    /*const questionOptions = getQuestionList(t, classroomId, capabilityQuestions, actions);
-    const actualSet = getQuestionSet(classroomId, questions);*/
 
     return (
         <div className={css.dropdown_main_div}>

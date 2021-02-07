@@ -8,7 +8,10 @@ const initialLoadState = {
     studentId:    null,
     answers:      [],
     questions:    [],
-    questionList: null
+    questionList: null,
+    showCard:     false,
+    questionBase: null,
+    cardId:       null
 };
 
 export function applyCapabilityChanges(state = initialLoadState, action) {

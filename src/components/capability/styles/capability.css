@@ -21,6 +21,32 @@
   margin: 0 5px 0 5px;
 }
 
+.card_header {
+  height: 50px;
+  padding-top: 10px;
+  text-align: left;
+  border-bottom: 1px solid;
+}
+
+.card_div {
+  width: 94%;
+}
+
+.card_button {
+  width: 25%;
+  margin-bottom: 1px;
+}
+
+.cards_main_div {
+  overflow: auto;
+  height: 80%;
+  padding-bottom: 200px;
+}
+
+
+
+/*TODO Remove the classes below*/
+
 .table_main_dev {
   margin-left: 100px;
   width: 90.2%;
