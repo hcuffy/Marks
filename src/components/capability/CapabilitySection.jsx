@@ -2,7 +2,7 @@ import React from 'react';
 import {withTranslation} from 'react-i18next';
 
 import CapabilityDropdown from './CapabilityDropdown';
-import CapabilityCards from './CapabilityCards';
+import CapabilityCards from './CapabilityCollapsible';
 import css from './styles/capability.css';
 
 function CapabilitySection({t}) {
@@ -11,7 +11,6 @@ function CapabilitySection({t}) {
             <h4 className={css.main_header}>{t('capability.sectionTitle')}</h4>
             <CapabilityDropdown t={t}/>
             <CapabilityCards/>
-
         </div>
     );
 }

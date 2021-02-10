@@ -11,7 +11,7 @@ import {resolveLabel} from '../../utils';
 import css from './styles/capability.css';
 
 function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
-    const {classroom, studentName, classroomId, questionList} = capabilityData;
+    const {classroom, studentName, classroomId, questionSetName} = capabilityData;
 
     const classItems = createDropdownItems(classData?.classData, 'classDropdown');
     const classLabel = resolveLabel(classroom, t('general.selectClass'));
@@ -22,7 +22,7 @@ function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
 
     const composedQuestionObject = {t, classroomId, capabilityQuestions};
     const questionItems = createDropdownItems(composedQuestionObject, 'questionDropdown');
-    const questionLabel = resolveLabel(questionList, t('general.selectQuestions'));
+    const questionLabel = resolveLabel(questionSetName, t('general.selectQuestions'));
 
     return (
         <div className={css.dropdown_main_div}>

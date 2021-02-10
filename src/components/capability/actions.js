@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import {actions} from './constants';
-import {getAllQuestions, updateSingleAnswer, getAllAnswers} from '../../collections';
+import {updateSingleAnswer, getAllAnswers} from '../../collections';
 import {getAttribute, getTargetValue} from '../helpers';
 
 export function capabilityClassList(event) {
@@ -36,18 +36,6 @@ export function capabilityStudentList(event) {
     };
 }
 
-//TODO : delete this after the capability update
-export function getQuestions() {
-    return async dispatch => {
-        const questions = await getAllQuestions();
-
-        dispatch({
-            type:    actions.GET_ALL_QUESTIONS,
-            payload: {questions}
-        });
-    };
-}
-
 //Todo: Remove this function once all dropdowns have been replaced
 export function handleQuestionList(event) {
     return dispatch => {
@@ -72,8 +60,8 @@ export function updateQuestionSet(event) {
         if (event['data-check'] !== 'questionDropdown') {
             return;
         }
-
-        const questionSetData = {classroomId: event['data-id'], questionList: event.name};
+        console.log(event);
+        const questionSetData = {classroomId: event['data-id'], questionSetName: event.name};
         _.set(questionSetData, 'questionBase', event.title);
 
         dispatch({
@@ -92,7 +80,7 @@ export function handleCapabilityAnswers(event) {
             cardId:      getAttribute('card-id', event),
             answer:      getTargetValue(event)
         };
-
+        console.log(formData);
         if (_.includes(formData, null)) {
             return;
         }
@@ -101,7 +89,7 @@ export function handleCapabilityAnswers(event) {
 
         dispatch({
             type:    actions.UPDATE_ANSWERS,
-            payload: {answers}
+            payload: {answers, cardId: formData.cardId}
         });
     };
 }

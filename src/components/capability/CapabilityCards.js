@@ -9,12 +9,19 @@ import {actionCreators} from '../../actions/index';
 import {capabilityQuestions} from './constants';
 import css from './styles/capability.css';
 
-function detemineSelectedValue() {
+function hasNoAnswers(selectAnswer, questionId) {
+    return _.isUndefined(selectAnswer) || _.isEmpty(selectAnswer) || _.isUndefined(selectAnswer?.capability[questionId]);
+}
 
+function determineSelectedValue(capabilityData, questionId) {
+    const {classroomId, studentId, cardId, answers} = capabilityData;
+    const selectAnswer = _.find(answers, {classroomId, studentId, cardId}) || {};
+
+    return hasNoAnswers(selectAnswer, questionId) ? 'option2' : selectAnswer?.capability[questionId];
 }
 
 function CreateRadioButton({t, questionId, capabilityData, handleCapabilityAnswers}) {
-    const {studentId, classroomId, cardId, answers} = capabilityData;
+    const {studentId, classroomId, cardId} = capabilityData;
     const radioButtons = [];
     for (let i = 0; i < 6; i += 1) {
         radioButtons.push(<Radio
@@ -32,7 +39,7 @@ function CreateRadioButton({t, questionId, capabilityData, handleCapabilityAnswe
         <RadioGroup
             inline={true}
             onChange={handleCapabilityAnswers}
-            selectedValue={'Soup'}
+            selectedValue={determineSelectedValue(capabilityData, questionId)}
         >
             {radioButtons}
         </RadioGroup>

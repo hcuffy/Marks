@@ -5,17 +5,17 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Button, Collapse, Intent, Alignment} from '@blueprintjs/core';
 
-import CreateCards from './CardHelpers';
+import CreateCards from './CapabilityCards';
 import {actionCreators} from '../../actions/index';
 import {capabilityQuestions} from './constants';
 import css from './styles/capability.css';
 
-function CapabilityCards({t, capabilityData, actions}) {
+function CapabilityCollapsible({t, capabilityData, actions}) {
     const {showCard, cardId, questionBase} = capabilityData;
     const questions = _.find(capabilityQuestions, {name: questionBase}) || {};
     const questionKeys = _.keys(questions[questionBase]);
 
-    const collapseElement = _.map(questionKeys, (data, idx) => {
+    const collapsibleElement = _.map(questionKeys, (data, idx) => {
         const translationBase = `capability.${questionBase}.${questions[questionBase][data]?.short}`;
         const subject = t(`${translationBase}.subject`);
 
@@ -48,7 +48,7 @@ function CapabilityCards({t, capabilityData, actions}) {
         <div className={css.cards_main_div} >
             <h4 className={css.card_header}>{t('capability.tableHeader')}</h4>
             <div>
-                {collapseElement}
+                {collapsibleElement}
             </div>
         </div>
 
@@ -63,4 +63,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(CapabilityCards));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(CapabilityCollapsible));
