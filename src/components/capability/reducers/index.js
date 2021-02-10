@@ -2,15 +2,15 @@ import {capabilityHandlers} from './reducerHandlers';
 import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
-    classDropdown:    false,
-    studentDropdown:  false,
-    questionDropdown: false,
-    classroom:        null,
-    classroomId:      null,
-    studentName:      null,
-    studentId:        null,
-    answers:          [],
-    questions:        []
+    classroom:       null,
+    classroomId:     null,
+    studentName:     null,
+    studentId:       null,
+    answers:         [],
+    questionSetName: null,
+    showCard:        false,
+    questionBase:    null,
+    cardId:          null
 };
 
 export function applyCapabilityChanges(state = initialLoadState, action) {

@@ -221,6 +221,20 @@ function notesItems(dataList, dropDown) {
     ));
 }
 
+function questionItems(data, dropDown) {
+    const {t, classroomId, capabilityQuestions} = data;
+
+    return _.map(capabilityQuestions, (data, idx) => (
+        {
+            key:          idx,
+            name:         t(`capability.${data.name}.name`),
+            title:        data?.name,
+            'data-id':    classroomId,
+            'data-check': dropDown
+        }
+    ));
+}
+
 export function createDropdownItems(dataList, dropDown) {
     if (dropDown === 'studentDropdown') {
         return studentItems(dataList, dropDown);
@@ -232,6 +246,10 @@ export function createDropdownItems(dataList, dropDown) {
 
     if (dropDown === 'notesDropdown') {
         return notesItems(dataList, dropDown);
+    }
+
+    if (dropDown === 'questionDropdown') {
+        return questionItems(dataList, dropDown);
     }
 
     return _.map(dataList, (data, idx) => (

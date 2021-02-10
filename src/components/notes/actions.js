@@ -50,7 +50,7 @@ export function handleStudentDropdown(event) {
             return;
         }
 
-        const student = {studentId: event.id, selectedStudent: event.name, classroomId: event.classroomId, isInvalid: false};
+        const student = {studentId: event.id, selectedName: event.name, classroomId: event.classroomId, isInvalid: false};
 
         dispatch({
             type:    actions.OPEN_STUDENT_NOTES_DROPDOWN,

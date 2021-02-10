@@ -5,50 +5,53 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
-import {getClassList, getStudentList, getQuestionList, createDropdown, sortByName} from '../helpers';
+import {DropdownComponent, createDropdownItems} from '../helpers';
 import {capabilityQuestions} from './constants';
-import {getQuestionSet, changeQuestionBtn} from './table';
 import {resolveLabel} from '../../utils';
 import css from './styles/capability.css';
 
-function filterStudentsByClassId(students, classroomId) {
-    return _.filter(students, ['classroom', classroomId]);
-}
-
 function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
-    const {classDropdown, studentDropdown, questionDropdown, classroom, studentName, questions, classroomId} = capabilityData;
-    const classOptions = getClassList(sortByName(classData.classData));
-    const studentOptions = getStudentList(filterStudentsByClassId(students, classroomId));
-    const questionOptions = getQuestionList(t, classroomId, capabilityQuestions, actions);
-    const actualSet = getQuestionSet(classroomId, questions);
+    const {classroom, studentName, classroomId, questionSetName} = capabilityData;
+
+    const classItems = createDropdownItems(classData?.classData, 'classDropdown');
+    const classLabel = resolveLabel(classroom, t('general.selectClass'));
+
+    const classStudents = _.filter(students, {classroom: classroomId}) || {};
+    const studentItems = createDropdownItems(classStudents, 'studentDropdown');
+    const studentLabel = resolveLabel(studentName, t('general.selectStudent'));
+
+    const composedQuestionObject = {t, classroomId, capabilityQuestions};
+    const questionItems = createDropdownItems(composedQuestionObject, 'questionDropdown');
+    const questionLabel = resolveLabel(questionSetName, t('general.selectQuestions'));
 
     return (
         <div className={css.dropdown_main_div}>
-            {createDropdown(
-                css.dropdown_div,
-                classDropdown,
-                actions.openCapabilityClassList,
-                resolveLabel(classroom, t('general.selectClass')),
-                classOptions,
-                'classDropdown'
-            )}
-            {createDropdown(
-                css.dropdown_div,
-                studentDropdown,
-                actions.openCapabilityStudentList,
-                resolveLabel(studentName, t('general.selectStudent')),
-                studentOptions,
-                'studentDropdown'
-            )}
-            {createDropdown(
-                css.dropdown_div,
-                questionDropdown,
-                actions.openQuestionList,
-                resolveLabel(actualSet, t('general.selectQuestions')),
-                questionOptions,
-                null
-            )}
-            {changeQuestionBtn(classroomId, actions)}
+            <div>
+                <DropdownComponent
+                    items={classItems}
+                    action={actions.capabilityClassList}
+                    label={classLabel}
+                    disabled={_.isEmpty(classData?.classData) }
+                />
+            </div>
+
+            <div className={css.middle_dropdown}>
+                <DropdownComponent
+                    items={studentItems}
+                    action={actions.capabilityStudentList}
+                    label={studentLabel}
+                    disabled={_.isEmpty(students)}
+                />
+            </div>
+
+            <div>
+                <DropdownComponent
+                    items={questionItems}
+                    action={actions.updateQuestionSet}
+                    label={questionLabel}
+                    disabled={_.isEmpty(studentName) && !_.isNull(classroomId)}
+                />
+            </div>
         </div>
     );
 }

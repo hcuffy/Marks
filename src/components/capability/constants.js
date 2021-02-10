@@ -5,7 +5,8 @@ export const actions = {
     UPDATE_QUESTION_SET:      'UPDATE_QUESTION_SET',
     GET_ALL_QUESTIONS:        'GET_ALL_QUESTIONS',
     GET_ALL_ANSWERS:          'GET_ALL_ANSWERS',
-    UPDATE_ANSWERS:           'UPDATE_ANSWERS'
+    UPDATE_ANSWERS:           'UPDATE_ANSWERS',
+    SHOW_CARDS:               'SHOW_CARDS'
 };
 
 export const capabilityQuestions = [

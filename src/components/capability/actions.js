@@ -1,56 +1,43 @@
 import _ from 'lodash';
 
 import {actions} from './constants';
-import {getAllQuestions, updateQuestionData, updateSingleAnswer, getAllAnswers} from '../../collections';
+import {updateSingleAnswer, getAllAnswers} from '../../collections';
+import {getAttribute, getTargetValue} from '../helpers';
 
-export function openCapabilityClassList(event) {
+export function capabilityClassList(event) {
     return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'classDropdown') {
+        if (event['data-check'] !== 'classDropdown') {
             return;
         }
 
         dispatch({
             type:    actions.OPEN_CLOSE_CLASS_LIST,
             payload: {
-                classroom:   event.target.innerText,
-                classroomId: event.target.getAttribute('data-id')
+                classroom:   event.name,
+                classroomId: event.id
             }
         });
     };
 }
 
-export function openCapabilityStudentList(event) {
-    return async dispatch => {
-        if (event.target.getAttribute('data-check') !== 'studentDropdown') {
+export function capabilityStudentList(event) {
+    return dispatch => {
+        if (event['data-check'] !== 'studentDropdown') {
             return;
         }
-
-        event.persist();
-        const questions = await getAllQuestions();
 
         dispatch({
             type:    actions.OPEN_CLOSE_STUDENT_LIST,
             payload: {
-                studentName: event.target.innerText,
-                studentId:   event.target.getAttribute('data-id'),
-                questions
+                studentName: event.name,
+                studentId:   event.id
             }
         });
     };
 }
 
-export function getQuestions() {
-    return async dispatch => {
-        const questions = await getAllQuestions();
-
-        dispatch({
-            type:    actions.GET_ALL_QUESTIONS,
-            payload: {questions}
-        });
-    };
-}
-
-export function openQuestionList(event) {
+//Todo: Remove this function once all dropdowns have been replaced
+export function handleQuestionList(event) {
     return dispatch => {
         event.stopPropagation();
 
@@ -69,21 +56,17 @@ export function openQuestionList(event) {
 }
 
 export function updateQuestionSet(event) {
-    return async dispatch => {
-        if (event.target.getAttribute('data-check') !== 'questionDropdown') {
+    return dispatch => {
+        if (event['data-check'] !== 'questionDropdown') {
             return;
         }
-
-        const questionSetData = {
-            classroomId: event.target.getAttribute('data-id'),
-            questionSet: event.target.name
-        };
-
-        const questions = await updateQuestionData(questionSetData);
+        console.log(event);
+        const questionSetData = {classroomId: event['data-id'], questionSetName: event.name};
+        _.set(questionSetData, 'questionBase', event.title);
 
         dispatch({
             type:    actions.UPDATE_QUESTION_SET,
-            payload: {questions}
+            payload: {...questionSetData}
         });
     };
 }
@@ -91,12 +74,13 @@ export function updateQuestionSet(event) {
 export function handleCapabilityAnswers(event) {
     return async dispatch => {
         const formData = {
-            classroomId: event.target.getAttribute('classroom-id'),
-            questionId:  event.target.getAttribute('data-id'),
-            studentId:   event.target.getAttribute('student-id'),
-            optionTag:   event.target.getAttribute('option-tag')
+            classroomId: getAttribute('classroom-id', event),
+            questionId:  getAttribute('data-id', event),
+            studentId:   getAttribute('student-id', event),
+            cardId:      getAttribute('card-id', event),
+            answer:      getTargetValue(event)
         };
-
+        console.log(formData);
         if (_.includes(formData, null)) {
             return;
         }
@@ -105,7 +89,7 @@ export function handleCapabilityAnswers(event) {
 
         dispatch({
             type:    actions.UPDATE_ANSWERS,
-            payload: {answers}
+            payload: {answers, cardId: formData.cardId}
         });
     };
 }
@@ -117,6 +101,15 @@ export function getAnswers() {
         dispatch({
             type:    actions.UPDATE_ANSWERS,
             payload: {answers}
+        });
+    };
+}
+
+export function openCard(event) {
+    return dispatch => {
+        dispatch({
+            type:    actions.SHOW_CARDS,
+            payload: {cardId: getAttribute('card-id', event)}
         });
     };
 }
