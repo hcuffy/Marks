@@ -9,16 +9,16 @@
   margin-bottom: 5px;
 }
 
-.left_dropdown{
- float: left;
+.left_dropdown {
+  float: left;
 }
 
-.middle_dropdown{
+.middle_dropdown {
   margin: 0 5px 0 5px;
   float: left;
 }
 
-.right_dropdown{
+.right_dropdown {
   float: left;
 }
 

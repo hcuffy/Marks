@@ -17,30 +17,30 @@
   float: left;
 }
 
-.left_elements{
+.left_elements {
   float: left;
   width: 400px;
 }
 
-.left_inputs{
+.left_inputs {
   float: right;
 }
 
-.right_elements{
+.right_elements {
   float: right;
   width: 400px;
   margin-right: 60px;
 }
 
-.right_inputs{
+.right_inputs {
   float: right;
 }
 
-.weight_label{
+.weight_label {
   float: left;
 }
 
-.number_input{
+.number_input {
   margin-left: 6px !important;
   float: left;
 }
@@ -75,7 +75,7 @@
 
 .badge_number {
   float: right;
-  font-size: 0.9em ;
+  font-size: 0.9em;
 }
 
 .dialog_div {
@@ -83,44 +83,43 @@
   height: 230px;
 }
 
-.dialog_input{
+.dialog_input {
   float: right;
   width: 220px;
-
 }
 
 .inputs_width {
- width: 200px;
+  width: 200px;
 }
 
-.date_space{
+.date_space {
   width: 200px;
   margin-left: 6px !important;
 }
 
-.dialog_date{
+.dialog_date {
   float: right;
   width: 220px;
 }
 
-.input_space{
+.input_space {
   margin-left: 15px !important;
 }
 
-.left_dropdown{
+.left_dropdown {
   float: left;
 }
 
-.right_dropdown{
-float: right;
+.right_dropdown {
+  float: right;
 }
 
-.list_buttons{
+.list_buttons {
   height: 35px;
   margin-left: 5px;
 }
 
-.button_icon{
+.button_icon {
   margin-left: 5px !important;
   margin-right: 5px !important;
 }

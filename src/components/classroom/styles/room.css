@@ -80,20 +80,20 @@
 }
 
 .tab_link:hover {
-  color: #fff;
+  color: #ffffff;
   background-color: #1e73be;
 }
 
-.navbar_div{
+.navbar_div {
   text-align: center;
 }
 
-.list_buttons{
+.list_buttons {
   height: 40px;
   margin-left: 5px;
 }
 
-.nav_btn{
+.nav_btn {
   margin-left: 5px;
   display: inline-block;
 }

@@ -6,6 +6,7 @@
 .note_title {
   width: 800px;
 }
+
 .note_input {
   width: 300px;
 }
@@ -23,7 +24,6 @@
 
 .note_textArea {
   width: 600px;
-
 }
 
 .main_header {
@@ -40,12 +40,12 @@
   text-align: center;
 }
 
-.left_dropdown{
+.left_dropdown {
   float: left;
   margin: 0 5px 0 30px;
 }
 
-.right_dropdown{
+.right_dropdown {
   float: left;
 }
 

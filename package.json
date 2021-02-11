@@ -22,7 +22,9 @@
     "postinstall": "node -r @babel/register .erb/scripts/CheckNativeDep.js && electron-builder install-app-deps && yarn cross-env NODE_ENV=development webpack --config ./.erb/configs/webpack.config.renderer.dev.dll.babel.js && yarn-deduplicate yarn.lock",
     "start": "node -r @babel/register ./.erb/scripts/CheckPortInUse.js && cross-env yarn start:renderer",
     "start:main": "cross-env NODE_ENV=development electron -r ./.erb/scripts/BabelRegister src/main.dev.js",
-    "start:renderer": "cross-env NODE_ENV=development webpack serve --config ./.erb/configs/webpack.config.renderer.dev.babel.js"
+    "start:renderer": "cross-env NODE_ENV=development webpack serve --config ./.erb/configs/webpack.config.renderer.dev.babel.js",
+    "stylelint": "stylelint '**/*.css'",
+    "stylelint:fix": "stylelint '**/*.css' --fix"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.36.0",
@@ -48,7 +50,6 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-table-6": "^6.11.0",
-    "reactstrap": "^8.7.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "regenerator-runtime": "^0.13.5",
@@ -114,6 +115,8 @@
     "rimraf": "^3.0.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
+    "stylelint": "^13.9.0",
+    "stylelint-config-standard": "^20.0.0",
     "terser-webpack-plugin": "^5.0.3",
     "url-loader": "^4.1.0",
     "webpack": "^5.5.1",

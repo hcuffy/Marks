@@ -21,17 +21,16 @@
   margin: 0 0 5px 0;
 }
 
-.left_dropdown{
+.left_dropdown {
   position: absolute;
   margin: 0 5px 0 0;
   left: 36%;
 }
 
-.right_dropdown{
+.right_dropdown {
   position: absolute;
   left: 54%;
 }
-
 
 .badge_date {
   float: right;
@@ -39,10 +38,9 @@
 
 .badge_weight {
   float: left;
-  color: black !important;
+  color: #000000 !important;
 }
 
-input[type='number'] {
-width: 140px;
+input[type="number"] {
+  width: 140px;
 }
-

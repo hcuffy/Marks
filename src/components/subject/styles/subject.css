@@ -49,7 +49,6 @@
   width: 38%;
   height: 330px;
   position: absolute;
-  scrollbar-width: none;
   overflow-x: hidden;
   margin-left: 110px;
 }
@@ -59,7 +58,6 @@
   height: 330px;
   position: absolute;
   right: 20px;
-  scrollbar-width: none;
   overflow-x: hidden;
   padding-right: 30px;
 }
@@ -68,6 +66,7 @@
   text-align: left;
   margin-top: 15px;
 }
+
 .add_header {
   text-align: left;
   margin-top: 15px;
