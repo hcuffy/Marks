@@ -4,22 +4,6 @@ import {actions} from './constants';
 import {addSubjectData, getAllSubjects, updateSubjectData, deleteSubject} from '../../collections';
 import {getAttribute, getCustomAttribute, getFormValues, inputValidation} from '../helpers';
 
-//TODO: remove this function once all dropdown have between replaced
-export function openClassList(event) {
-    return dispatch => {
-        if (event.target.getAttribute('data-check') !== 'classDropdown') {
-            return;
-        }
-
-        const subject = event.target.innerText;
-
-        dispatch({
-            type:    actions.UPDATE_CLASS_LIST,
-            payload: {subject}
-        });
-    };
-}
-
 export function addNewSubject(event) {
     return async dispatch => {
         event.preventDefault();

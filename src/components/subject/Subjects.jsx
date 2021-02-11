@@ -8,11 +8,10 @@ import SubjectForm from './SubjectForm';
 import SubjectList from './SubjectList';
 import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
-import {DropdownComponent, sortByName, createDropdownItems} from '../helpers';
+import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './styles/subject.css';
 
-function Subjects({t, classData, classListData, actions}) {
-    const classes = sortByName(classData.classData);
+function Subjects({t, classes, classListData, actions}) {
     const {classroom} = classListData;
     const selectedClass = _.find(classes, {name: classroom}) || {};
     const items = createDropdownItems(classes, 'classDropdown');

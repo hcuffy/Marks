@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import {displayToast} from '../../notifications';
 
 export function inputValidation(formValues) {
     return _.values(formValues).some(value => value === '');
@@ -45,27 +44,6 @@ export function getCustomAttribute(prop, entry, event) {
 
 export function getTargetValue({target}) {
     return target?.value;
-}
-
-//TODO: Remove this function once all dropdowns have been replaced
-export function notifyIfEmpty(list, isSelected, section) {
-    if (_.isEmpty(list) && isSelected) {
-        displayToast(section, 'warn');
-    }
-}
-
-//TODO Remove this function once all dropdowns have been replaced
-export function sortByName(data) {
-    return _.sortBy(data, ['name'], ['asc']);
-}
-//TODO : Remove this function once all dropdown have been replaced
-export function getClassroomProp(prop, classdata) {
-    const classObject = _.find(classdata, {prop}) || {};
-    if (_.isUndefined(classObject)) {
-        return '';
-    }
-
-    return classObject.prop;
 }
 
 export function getSelectedOption(event, propToGet) {

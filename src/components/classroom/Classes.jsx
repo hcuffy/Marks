@@ -20,7 +20,7 @@ function Classes({t, classData}) {
                 <ClassList t={t} listData={classData} />
             </div>
 
-            <Subjects t={t} classData={classData} />
+            <Subjects t={t} classes={classData.classData} />
         </div>
     );
 }

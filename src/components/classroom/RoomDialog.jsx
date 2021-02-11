@@ -5,7 +5,7 @@ import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
-import {DialogFrame, DialogInputs, sortByName} from '../helpers';
+import {DialogFrame, DialogInputs} from '../helpers';
 import {filterObjectData} from './formHelpers';
 
 function getCurrentModalData(CurrentModalData) {
@@ -13,9 +13,8 @@ function getCurrentModalData(CurrentModalData) {
 }
 
 function RoomDialog({t, classData, classModalData, actions}) {
-    const sortedData = sortByName(classData.classData);
     const {id, showDialog, isInvalid} = classModalData;
-    const selection = isInvalid ? getCurrentModalData(classModalData) : filterObjectData(sortedData, id);
+    const selection = isInvalid ? getCurrentModalData(classModalData) : filterObjectData(classData, id);
     const roomInputs = <DialogInputs t={t} selection={selection} isInvalid={isInvalid} label={'room'}/>;
     const hiddenInput = <input type='hidden' name='oldName' data-id={selection.name} />;
     const {showRoomDialog, deleteRoom} = actions;
@@ -30,7 +29,7 @@ function RoomDialog({t, classData, classModalData, actions}) {
 
 const mapStateToProps = state => ({
     classModalData: state.classModalData,
-    classData:      state.classData
+    classData:      state.classData?.classData
 });
 
 const mapDispatchToProps = dispatch => ({
