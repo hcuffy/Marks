@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import SideMenu from '../components/sidemenu/SideMenu';
-import Navbar from '../components/classroom/Navbar';
-import Classes from '../components/classroom/Classes';
-import Exams from '../components/exam/Exams';
+import {SidemenuComponent, NavbarComponent, ClassroomComponent, ExamComponent} from '../components';
 import {actionCreators} from '../actions/index';
 
 class Classroom extends Component {
@@ -21,10 +18,10 @@ class Classroom extends Component {
 
         return (
             <div>
-                <SideMenu />
-                <Navbar t={t} />
-                {this.props.classesActive && <Classes t={t} />}
-                {this.props.examActive && <Exams t={t} />}
+                <SidemenuComponent />
+                <NavbarComponent t={t} />
+                {this.props.classesActive && <ClassroomComponent t={t} />}
+                {this.props.examActive && <ExamComponent t={t} />}
             </div>
         );
     }

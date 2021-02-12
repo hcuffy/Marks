@@ -11,7 +11,7 @@ import {actionCreators} from '../../actions/index';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './style.css';
 
-function Subjects({t, classes, classListData, actions}) {
+function SubjectsComponent({t, classes, classListData, actions}) {
     const {classroom} = classListData;
     const selectedClass = _.find(classes, {name: classroom}) || {};
     const items = createDropdownItems(classes, 'classDropdown');
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Subjects));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SubjectsComponent));

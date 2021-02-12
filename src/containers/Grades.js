@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import SideMenu from '../components/sidemenu/SideMenu';
-import GradeTable from '../components/grades/GradeTable';
+import {SidemenuComponent, GradeTableComponent} from '../components';
 import {actionCreators} from '../actions/index';
 
 class Grades extends Component {
@@ -20,8 +19,8 @@ class Grades extends Component {
 
         return (
             <div>
-                <SideMenu />
-                <GradeTable t={t} />
+                <SidemenuComponent />
+                <GradeTableComponent t={t} />
             </div>
         );
     }

@@ -11,7 +11,7 @@ import {openResource} from '../../utils';
 import {RELEASE_LINK} from './constants';
 import css from './style.css';
 
-function SideMenu({menuStylingData, actions}) {
+function SidemenuComponent({menuStylingData, actions}) {
     const menuItems = _.keys(menuData).map((data, idx) => (
         <Link key={idx} to={menuData[data].linkTo}>
             <Button outlined={true} className={css.menu_btn} data-id={menuData[data].dataId} onClick={actions.updateButtonStyle}>
@@ -45,4 +45,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SideMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(SidemenuComponent);

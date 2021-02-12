@@ -8,7 +8,7 @@ import {filteredAddressData} from '../helpers';
 import {openResource} from '../../utils';
 import css from './style.css';
 
-function Homepage({t, addressData}) {
+function HomeComponent({t, addressData}) {
     const entry = _.values(filteredAddressData(addressData)).map((data, idx) => <li key={idx}>{data}</li>);
 
     return (
@@ -37,4 +37,4 @@ const mapStateToProps = state => ({
     addressData: state.addressData
 });
 
-export default connect(mapStateToProps, null)(withTranslation()(Homepage));
+export default connect(mapStateToProps, null)(withTranslation()(HomeComponent));

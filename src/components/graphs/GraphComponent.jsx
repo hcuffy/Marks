@@ -5,7 +5,7 @@ import css from './style.css';
 import GraphDropdown from './GraphDropdown';
 import Chart from './Chart';
 
-function GraphOverview({t}) {
+function GraphComponent({t}) {
     return (
         <div>
             <h4 className={css.center_header}>{t('graph.overview')}</h4>
@@ -19,4 +19,4 @@ function GraphOverview({t}) {
     );
 }
 
-export default withTranslation()(GraphOverview);
+export default withTranslation()(GraphComponent);

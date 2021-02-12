@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import SideMenu from '../components/sidemenu/SideMenu';
-import NotesSection from '../components/notes/NotesSection';
+import {SidemenuComponent, NoteComponent} from '../components';
 import {actionCreators} from '../actions/index';
 
 class Notes extends Component {
@@ -17,8 +16,8 @@ class Notes extends Component {
 
         return (
             <div>
-                <SideMenu />
-                <NotesSection t={t} />
+                <SidemenuComponent />
+                <NoteComponent t={t} />
             </div>
         );
     }

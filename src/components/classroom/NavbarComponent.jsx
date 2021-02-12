@@ -7,7 +7,7 @@ import {actionCreators} from '../../actions/index';
 import {NavBarButton} from './formHelpers';
 import css from './style.css';
 
-function NavBar({t, tabChangeData, actions}) {
+function NavbarComponent({t, tabChangeData, actions}) {
     return (
         <div className={css.navbar_div}>
             <h4 className={css.center_main_header}>{t('room.title')}</h4>
@@ -24,4 +24,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(NavBar));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(NavbarComponent));

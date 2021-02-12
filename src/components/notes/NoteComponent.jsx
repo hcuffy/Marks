@@ -5,7 +5,7 @@ import NotesDropdown from './NotesDropdown';
 import NotesForm from './NotesForm';
 import css from './style.css';
 
-function NotesSection({t}) {
+function NoteComponent({t}) {
     return (
         <div className={css.notes_wrapper}>
             <h4 className={css.main_header}>{t('notes.sectionTitle')}</h4>
@@ -16,4 +16,4 @@ function NotesSection({t}) {
     );
 }
 
-export default withTranslation()(NotesSection);
+export default withTranslation()(NoteComponent);

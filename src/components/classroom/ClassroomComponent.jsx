@@ -4,12 +4,12 @@ import {withTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 
 import ClassList from './ClassList';
-import Subjects from '../subject/Subjects';
+import Subjects from '../subject/SubjectsComponent';
 import {actionCreators} from '../../actions/index';
 import {AddClassroomForm} from './formHelpers';
 import css from './style.css';
 
-function Classes({t, classData}) {
+function ClassroomComponent({t, classData}) {
     return (
         <div>
             <AddClassroomForm/>
@@ -33,4 +33,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Classes));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ClassroomComponent));

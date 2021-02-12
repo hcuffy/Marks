@@ -23,7 +23,7 @@ function tableOptions(t) {
     };
 }
 
-function GradeTable({t, gradeData, students, actions}) {
+function GradeTableComponent({t, gradeData, students, actions}) {
     const data = gradeInfo(gradeData, students);
 
     return (
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(GradeTable));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(GradeTableComponent));

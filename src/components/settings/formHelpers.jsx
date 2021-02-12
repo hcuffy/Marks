@@ -59,16 +59,12 @@ export function gradingSystem(settings) {
 function RadioButtonsComponent({t, addressData, actions}) {
     const selectedValue = gradingSystem(_.pick(addressData, ['note', 'points', 'percent']));
 
-    return (<RadioGroup
-        inline={false}
-        name='settings'
-        selectedValue={selectedValue}
-        onChange={actions.updateGradingSystem}
-    >
-        <Radio label={t('settings.note')} value='note' />
-        <Radio label={t('settings.points')} value='points' />
-        <Radio label={t('settings.percent')} value='percent' />
-    </RadioGroup>);
+    return (
+        <RadioGroup inline={false} name='settings' selectedValue={selectedValue} onChange={actions.updateGradingSystem}>
+            <Radio label={t('settings.note')} value='note' />
+            <Radio label={t('settings.points')} value='points' />
+            <Radio label={t('settings.percent')} value='percent' />
+        </RadioGroup>);
 }
 
 export const GradeType = connect(

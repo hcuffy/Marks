@@ -5,7 +5,7 @@ import CapabilityDropdown from './CapabilityDropdown';
 import CapabilityCards from './CapabilityCollapsible';
 import css from './style.css';
 
-function CapabilitySection({t}) {
+function CapabilityComponent({t}) {
     return (
         <div className={css.capability_wrapper}>
             <h4 className={css.main_header}>{t('capability.sectionTitle')}</h4>
@@ -15,4 +15,4 @@ function CapabilitySection({t}) {
     );
 }
 
-export default withTranslation()(CapabilitySection);
+export default withTranslation()(CapabilityComponent);

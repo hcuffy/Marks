@@ -7,7 +7,7 @@ import StudentChart from './StudentChart';
 import StudentDropdown from './StudentDropdown';
 import css from './style.css';
 
-function StudentsSection({t}) {
+function StudentsComponent({t}) {
     return (
         <div>
             <div>
@@ -25,4 +25,4 @@ function StudentsSection({t}) {
     );
 }
 
-export default withTranslation()(StudentsSection);
+export default withTranslation()(StudentsComponent);
