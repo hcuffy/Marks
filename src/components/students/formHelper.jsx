@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import {actionCreators} from '../../actions';
 import {Alignment, Button, ButtonGroup, FormGroup, HTMLSelect, InputGroup, Intent, Label} from '@blueprintjs/core';
 
-import css from './styles/students.css';
+import css from './style.css';
 
 export function GenderSelect({t, gender}) {
     return (

@@ -7,7 +7,7 @@ import {Button, Intent, HTMLSelect, Label} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions/index';
 import {SubjectFormInputs} from './formHelpers';
-import css from './styles/subject.css';
+import css from './style.css';
 
 function SubjectForm({t, classListData, classes, actions}) {
     const selectOption = _.values(classes).map((data, idx) => (

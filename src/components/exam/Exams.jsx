@@ -3,7 +3,7 @@ import {withTranslation} from 'react-i18next';
 
 import AddExamForm from './ExamForm';
 import ExamList from './ExamList';
-import css from './styles/exam.css';
+import css from './style.css';
 
 function Exam({t}) {
     return (

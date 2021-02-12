@@ -6,7 +6,7 @@ import {withTranslation} from 'react-i18next';
 import {Button, ButtonGroup, Intent, FormGroup, InputGroup, Alignment} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions';
-import css from './styles/room.css';
+import css from './style.css';
 
 export function FormInputs({t, classData}) {
     const intent = classData.isInvalid ? Intent.DANGER : Intent.NONE;

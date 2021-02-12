@@ -7,7 +7,7 @@ import {Bar} from 'react-chartjs-2';
 import {actionCreators} from '../../actions/index';
 import {chartData} from './chartData';
 import {chartOptions} from './chartOptions';
-import css from './styles/graphs.css';
+import css from './style.css';
 
 function Chart({t, graphData, subjects, settings}) {
     return (

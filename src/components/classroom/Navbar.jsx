@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 
 import {actionCreators} from '../../actions/index';
 import {NavBarButton} from './formHelpers';
-import css from './styles/room.css';
+import css from './style.css';
 
 function NavBar({t, tabChangeData, actions}) {
     return (

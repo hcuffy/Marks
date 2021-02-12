@@ -4,7 +4,7 @@ import _ from 'lodash';
 import {filterObjectData} from '../classroom/formHelpers';
 import {Alignment, Button, ButtonGroup, FormGroup, InputGroup, Intent} from '@blueprintjs/core';
 
-import css from './styles/subject.css';
+import css from './style.css';
 
 function getClassroomId(dataList) {
     if (_.isEmpty(dataList) || _.isNil(dataList)) {

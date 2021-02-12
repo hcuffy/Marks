@@ -7,7 +7,7 @@ import {Button, Intent, Radio, RadioGroup, FormGroup, InputGroup} from '@bluepri
 
 import {filteredAddressData} from '../helpers';
 import {actionCreators} from '../../actions';
-import css from './styles/settings.css';
+import css from './style.css';
 
 export function AddressFields({t, addressData}) {
     const address = filteredAddressData(addressData);

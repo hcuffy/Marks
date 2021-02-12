@@ -5,7 +5,7 @@ import {withTranslation} from 'react-i18next';
 
 import {actionCreators} from '../../actions';
 import {AddressForm} from './formHelpers';
-import css from './styles/settings.css';
+import css from './style.css';
 
 function Address({t}) {
     return (

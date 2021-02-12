@@ -6,7 +6,7 @@ import {Button, FormGroup, HTMLSelect, InputGroup, Intent, Label, NumericInput} 
 
 import {actionCreators} from '../../actions/index';
 import {getClassOptions, getSubjectOptions} from './formHelper';
-import css from './styles/exam.css';
+import css from './style.css';
 
 function TitleInput({t, isInvalid}) {
     const intent = isInvalid ? Intent.DANGER : Intent.NONE;

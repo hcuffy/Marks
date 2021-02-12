@@ -1,7 +1,7 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
 
-import css from './styles/graphs.css';
+import css from './style.css';
 import GraphDropdown from './GraphDropdown';
 import Chart from './Chart';
 

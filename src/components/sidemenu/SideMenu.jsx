@@ -9,7 +9,7 @@ import {actionCreators} from '../../actions/index';
 import {menuData} from './sideMenuData';
 import {openResource} from '../../utils';
 import {RELEASE_LINK} from './constants';
-import css from './styles/sidemenu.css';
+import css from './style.css';
 
 function SideMenu({menuStylingData, actions}) {
     const menuItems = _.keys(menuData).map((data, idx) => (

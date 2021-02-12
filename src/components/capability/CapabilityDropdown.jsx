@@ -8,7 +8,7 @@ import {actionCreators} from '../../actions/index';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import {capabilityQuestions} from './constants';
 import {resolveLabel} from '../../utils';
-import css from './styles/capability.css';
+import css from './style.css';
 
 function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
     const {classroom, studentName, classroomId, questionSetName} = capabilityData;

@@ -4,7 +4,7 @@ import _ from 'lodash';
 import {Select} from '@blueprintjs/select';
 import {Button, MenuItem, Intent} from '@blueprintjs/core';
 
-import css from './styles/helpers.css';
+import css from './style.css';
 
 function menuItems(item, {handleClick}) {
     return (

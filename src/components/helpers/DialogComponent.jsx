@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import {Button, Dialog, Classes, Intent, FormGroup, InputGroup} from '@blueprintjs/core';
 
-import css from '../classroom/styles/room.css';
+import css from '../classroom/style.css';
 
 function DialogFooter({t, footerData}) {
     const {dataId, nameId, deleteAction} = footerData;

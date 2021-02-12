@@ -6,7 +6,7 @@ import {withTranslation} from 'react-i18next';
 import {resourceList} from './resourcesList';
 import {filteredAddressData} from '../helpers';
 import {openResource} from '../../utils';
-import css from './homepage.css';
+import css from './style.css';
 
 function Homepage({t, addressData}) {
     const entry = _.values(filteredAddressData(addressData)).map((data, idx) => <li key={idx}>{data}</li>);

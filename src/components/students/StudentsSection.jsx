@@ -5,7 +5,7 @@ import AddStudentForm from './StudentForm';
 import StudentList from './StudentList';
 import StudentChart from './StudentChart';
 import StudentDropdown from './StudentDropdown';
-import css from './styles/students.css';
+import css from './style.css';
 
 function StudentsSection({t}) {
     return (

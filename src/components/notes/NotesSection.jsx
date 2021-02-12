@@ -3,7 +3,7 @@ import {withTranslation} from 'react-i18next';
 
 import NotesDropdown from './NotesDropdown';
 import NotesForm from './NotesForm';
-import css from './styles/notes.css';
+import css from './style.css';
 
 function NotesSection({t}) {
     return (

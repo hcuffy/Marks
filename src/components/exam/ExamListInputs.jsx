@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import {Alignment, ButtonGroup, Button, Icon} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions/index';
-import css from './styles/exam.css';
+import css from './style.css';
 
 function ExamListInputs({exams, subjectId, actions}) {
     const filteredExams = _.filter(exams, ['subjectId', subjectId]);

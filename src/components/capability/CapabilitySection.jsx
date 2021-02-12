@@ -3,7 +3,7 @@ import {withTranslation} from 'react-i18next';
 
 import CapabilityDropdown from './CapabilityDropdown';
 import CapabilityCards from './CapabilityCollapsible';
-import css from './styles/capability.css';
+import css from './style.css';
 
 function CapabilitySection({t}) {
     return (

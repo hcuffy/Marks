@@ -9,7 +9,7 @@ import SubjectList from './SubjectList';
 import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import {DropdownComponent, createDropdownItems} from '../helpers';
-import css from './styles/subject.css';
+import css from './style.css';
 
 function Subjects({t, classes, classListData, actions}) {
     const {classroom} = classListData;

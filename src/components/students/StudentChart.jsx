@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {chartData} from './chart/chartData';
 import {chartOptions} from './chart/chartOptions';
-import css from './styles/students.css';
+import css from './style.css';
 
 function StudentChart({t, studentData, exams, grades, settings}) {
     return (

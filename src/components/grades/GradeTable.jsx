@@ -9,7 +9,7 @@ import {actionCreators} from '../../actions/index';
 import GradeDropdown from './GradeDropdown';
 import {gradeColumns} from './gradeColumns';
 import {gradeInfo} from './gradeInfo';
-import css from './styles/grades.css';
+import css from './style.css';
 
 function tableOptions(t) {
     return {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import StudentDialog from './StudentDialog';
 import {ListOfStudent} from './formHelper';
-import css from './styles/students.css';
+import css from './style.css';
 
 function StudentList({t}) {
     return (

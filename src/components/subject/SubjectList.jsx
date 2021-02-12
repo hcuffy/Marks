@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import SubjectDialog from './SubjectDialog';
 import {actionCreators} from '../../actions/index';
 import {List, filterSubjectByClass} from './formHelpers';
-import css from './styles/subject.css';
+import css from './style.css';
 
 function SubjectList({t, selectedClass, subjectData, actions}) {
     const filteredData = filterSubjectByClass(selectedClass, subjectData);

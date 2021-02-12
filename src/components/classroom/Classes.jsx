@@ -7,7 +7,7 @@ import ClassList from './ClassList';
 import Subjects from '../subject/Subjects';
 import {actionCreators} from '../../actions/index';
 import {AddClassroomForm} from './formHelpers';
-import css from './styles/room.css';
+import css from './style.css';
 
 function Classes({t, classData}) {
     return (
