@@ -11,6 +11,7 @@
 		"update": "aktualisieren",
 		"clear": "räumen",
 		"delete": "löschen",
+    "reset": "zurücksetzen",
 		"edit": "bearbeiten",
 		"date": "Datum",
 		"number": "Nummer",
@@ -202,6 +203,8 @@
 		"note": "Notensystem (1 - 6)",
 		"points": "Punktesystem (0 - 15)",
 		"percent": "Prozentsystem (0 - 100%)",
+    "resetDialog": "Alle Datenbankdaten löschen.",
+    "resetLabel": "Wenn Sie sicher sind, geben Sie JA ein und senden Sie ab.",
 		"supportText": "Sie mögen diese App? Sie können mir einen Kaffee spendieren."
 	}
 }

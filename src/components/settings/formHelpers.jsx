@@ -9,7 +9,7 @@ import {filteredAddressData} from '../helpers';
 import {actionCreators} from '../../actions';
 import css from './style.css';
 
-export function AddressFields({t, addressData}) {
+function AddressFields({t, addressData}) {
     const address = filteredAddressData(addressData);
 
     return _.keys(address).map((data, idx) => (
@@ -67,7 +67,7 @@ function RadioButtonsComponent({t, addressData, actions}) {
         </RadioGroup>);
 }
 
-export const GradeType = connect(
+export const GradeSelector = connect(
     state => ({
         addressData: state.addressData
     }),

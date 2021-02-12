@@ -7,7 +7,7 @@ import {actionCreators} from '../../actions';
 import {AddressForm} from './formHelpers';
 import css from './style.css';
 
-function Address({t}) {
+function AddressComponent({t}) {
     return (
         <div className={css.address_wrapper}>
             <h4 className={css.address_header}>{t('settings.addressTitle')}</h4>
@@ -23,4 +23,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Address));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AddressComponent));

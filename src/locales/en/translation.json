@@ -11,6 +11,7 @@
 		"update": "Update",
 		"clear": "Clear",
 		"delete": "Delete",
+    "reset": "Reset",
 		"edit": "Edit",
 		"date": "Date",
 		"number": "Number",
@@ -202,6 +203,8 @@
 		"note": "Note (1 - 6)",
 		"points": "Points (0 - 15)",
 		"percent": "Percent (0 - 100%)",
+    "resetDialog": "Delete all database data.",
+    "resetLabel": "If you are sure type YES then submit.",
 		"supportText": "Do you like this app? Consider supporting."
 	}
 }

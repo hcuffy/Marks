@@ -30,7 +30,7 @@ function SubjectForm({t, classListData, classes, actions}) {
                     </Label>
                 </div>
                 <div className={css.subject_save}>
-                    <Button type='submit' intent={Intent.SUCCESS} formNoValidate text={t('general.add')} />
+                    <Button type='submit' intent={Intent.SUCCESS} text={t('general.add')} />
 
                 </div>
             </form>
