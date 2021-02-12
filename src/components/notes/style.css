@@ -36,13 +36,14 @@
 
 .dropdown_main_div {
   height: 45px;
-  width: 500px;
+  width: 50%;
   text-align: center;
+  margin: auto;
 }
 
 .left_dropdown {
   float: left;
-  margin: 0 5px 0 30px;
+  margin: 0 5px 0 90px;
 }
 
 .right_dropdown {
