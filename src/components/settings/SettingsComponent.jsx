@@ -1,11 +1,16 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {Button, Intent} from '@blueprintjs/core';
 
 import AddressComponent from './AddressComponent';
 import GradeSettingComponent from './GradeSettingComponent';
+import ResetDialog from './ClearDatabaseComponet';
+import {actionCreators} from '../../actions';
 import css from './style.css';
 
-function Settings({t}) {
+function SettingsComponent({t, actions}) {
     return (
         <div className={css.settings_wrapper}>
             <h4 className={css.main_header}>{t('settings.sectionTitle')}</h4>
@@ -17,10 +22,25 @@ function Settings({t}) {
             <div className={css.gradeFormat_div}>
                 <GradeSettingComponent t={t} />
             </div>
-
+            <div className={css.reset_button}>
+                <Button
+                    text={t('settings.resetButton')}
+                    icon='refresh'
+                    large={true}
+                    intent={Intent.DANGER}
+                    onClick={actions.showResetDialog}
+                />
+            </div>
+            <div>
+                <ResetDialog/>
+            </div>
             <div />
         </div>
     );
 }
 
-export default withTranslation()(Settings);
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(actionCreators, dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(withTranslation()(SettingsComponent));

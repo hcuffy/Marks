@@ -205,6 +205,7 @@
 		"percent": "Percent (0 - 100%)",
     "resetDialog": "Delete all database data.",
     "resetLabel": "If you are sure type YES then submit.",
+    "resetButton": "Clear Database",
 		"supportText": "Do you like this app? Consider supporting."
 	}
 }

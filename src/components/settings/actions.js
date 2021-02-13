@@ -64,3 +64,28 @@ export function displayAddress() {
         }
     };
 }
+
+export function showResetDialog() {
+    return dispatch => {
+        dispatch({
+            type:    actions.DISPLAY_DIALOG,
+            payload: {}
+        });
+    };
+}
+
+export function resetDatabase(event) {
+    event.preventDefault();
+
+    return dispatch => {
+        const confirmationText = event.currentTarget.resetInput.value;
+        const isInvalid = !_.includes(['ja', 'yes'], _.lowerCase(confirmationText));
+        const showDialog = !!isInvalid;
+
+        dispatch({
+            type:    actions.RESET_DATABASE,
+            payload: {showDialog, isInvalid, confirmationText}
+        });
+    };
+}
+
