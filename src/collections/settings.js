@@ -86,7 +86,7 @@ export function clearDatabases() {
 
     _.forEach(databases, value => {
         let database = connectionToDB(value);
-        // eslint-disable-next-line func-names
+
         database.remove({}, {multi: true}, (error, numDeleted) => {
             if (error) {
                 displayToast('deleteFail', 'fail');
