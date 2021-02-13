@@ -207,5 +207,8 @@
     "resetLabel": "Wenn Sie sicher sind, geben Sie JA ein und senden Sie ab.",
     "resetButton": "Datenbank löschen",
 		"supportText": "Sie mögen diese App? Sie können mir einen Kaffee spendieren."
-	}
+	},
+  "calendar": {
+    "sectionTitle": "KALENDER"
+  }
 }

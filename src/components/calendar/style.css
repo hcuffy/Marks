@@ -1,0 +1,19 @@
+.section_wrapper {
+  width: 100%;
+  height: 1000px;
+}
+
+.main_header {
+  height: 50px;
+  padding-top: 10px;
+  text-align: left;
+  border-bottom: 1px solid;
+  background: #fdb12e;
+}
+
+.calendar_wrapper{
+  margin-left: 100px;
+  position: absolute;
+  width: 90%;
+  height: 80%;
+}

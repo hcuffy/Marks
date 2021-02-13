@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router';
-import {HOME, CLASSROOM, STUDENTS, GRADES, GRAPHS, NOTES, CAPABILITY, SETTINGS} from './constants/routes.js';
-import {App, Capability, Classroom, Home, Grades, Graphs, Notes, Settings, Students} from './containers';
+import {HOME, CLASSROOM, STUDENTS, GRADES, GRAPHS, NOTES, CAPABILITY, SETTINGS, CALENDAR} from './constants/routes.js';
+import {App, Calendar, Capability, Classroom, Home, Grades, Graphs, Notes, Settings, Students} from './containers';
 
 // eslint-disable-next-line react/display-name
 export default () => (
@@ -15,6 +15,7 @@ export default () => (
                 <Route exact key='1' path={GRAPHS} component={Graphs} />,
                 <Route exact key='1' path={NOTES} component={Notes} />,
                 <Route exact key='1' path={CAPABILITY} component={Capability} />,
+                <Route exact key='1' path={CALENDAR} component={Calendar} />,
                 <Route exact key='1' path={SETTINGS} component={Settings} />
             ]}
         </Switch>

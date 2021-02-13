@@ -4,6 +4,7 @@
  */
 @import "~@blueprintjs/core/lib/css/blueprint.css";
 @import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import "~react-big-calendar/lib/css/react-big-calendar.css";
 @import "~normalize.css/normalize.css";
 @import "~react-table-6/react-table.css";
 @import "bootstrap.css";
