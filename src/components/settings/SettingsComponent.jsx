@@ -25,7 +25,7 @@ function SettingsComponent({t, actions}) {
             <div className={css.reset_button}>
                 <Button
                     text={t('settings.resetButton')}
-                    icon='refresh'
+                    icon='reset'
                     large={true}
                     intent={Intent.DANGER}
                     onClick={actions.showResetDialog}

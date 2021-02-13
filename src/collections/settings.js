@@ -80,3 +80,19 @@ export async function addAddress(data) {
 
     return result;
 }
+
+export function clearDatabases() {
+    //const databases = ['answer', 'classroom', 'examinations', 'grade', 'notes', 'student', 'subject'];
+    const databases = ['grade'];
+    _.forEach(databases, value => {
+        let database = connectionToDB(value);
+        // eslint-disable-next-line func-names
+        database.remove({}, {multi: true}, (error, numDeleted) => {
+            if (error) {
+                displayToast('deleteFail', 'fail');
+            }
+
+            return numDeleted;
+        });
+    });
+}
