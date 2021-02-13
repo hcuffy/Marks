@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import {resolveLabel, PDFbutton} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import {DropdownComponent, createDropdownItems} from '../helpers';
-import css from './styles/graphs.css';
+import css from './style.css';
 import _ from 'lodash';
 
 function GraphDropdown({t, classData, graphData, subjectData, actions}) {

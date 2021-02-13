@@ -5,9 +5,8 @@ import {bindActionCreators} from 'redux';
 import {Button, FormGroup, HTMLSelect, InputGroup, Intent, Label, NumericInput} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions/index';
-import {sortByName} from '../helpers';
 import {getClassOptions, getSubjectOptions} from './formHelper';
-import css from './styles/exam.css';
+import css from './style.css';
 
 function TitleInput({t, isInvalid}) {
     const intent = isInvalid ? Intent.DANGER : Intent.NONE;
@@ -100,9 +99,8 @@ function WeightInput({t}) {
 }
 
 export function AddExamForm({t, classData, subjectData, examData, actions}) {
-    const sortedData = sortByName(classData.classData);
-    const classOption = getClassOptions(sortedData);
-    const subjectOptions = getSubjectOptions(subjectData, examData, sortedData);
+    const classOption = getClassOptions(classData);
+    const subjectOptions = getSubjectOptions(subjectData, examData, classData);
 
     return (
         <div>
@@ -125,7 +123,7 @@ export function AddExamForm({t, classData, subjectData, examData, actions}) {
 }
 
 const mapStateToProps = state => ({
-    classData:   state.classData,
+    classData:   state.classData?.classData,
     subjectData: state.subjectData,
     examData:    state.examData
 });

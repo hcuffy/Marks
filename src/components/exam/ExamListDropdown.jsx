@@ -7,7 +7,7 @@ import {bindActionCreators} from 'redux';
 import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import {DropdownComponent, createDropdownItems} from '../helpers';
-import css from './styles/exam.css';
+import css from './style.css';
 
 function ExamListDropdown({t, classData, examData, subjectData, actions}) {
     const {classroomId, subjectId} = examData;

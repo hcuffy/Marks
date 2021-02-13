@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import {Button, InputGroup, ButtonGroup, FormGroup, Intent, TextArea} from '@blueprintjs/core';
 
-import css from './styles/notes.css';
+import css from './style.css';
 
 function getNoteProp(noteId, notes, prop) {
     const fullNoteData = _.chain(notes).find({_id: noteId}).value();

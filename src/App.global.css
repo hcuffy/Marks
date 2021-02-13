@@ -2,55 +2,17 @@
  * @NOTE: Prepend a `~` to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
-@import '~@blueprintjs/core/lib/css/blueprint.css';
-@import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
-@import '~normalize.css/normalize.css';
-@import '~react-table-6/react-table.css';
-@import 'bootstrap.css';
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import "~normalize.css/normalize.css";
+@import "~react-table-6/react-table.css";
+@import "bootstrap.css";
 
 body {
   position: relative;
-  color: black;
+  color: #000000;
   height: 100vh;
   background-color: #e4e5e0;
-  font-family: Century Schoolbook, Times New Roman;
+  font-family: Century Schoolbook, Times New Roman, serif;
   overflow-y: hidden;
-}
-
-h2 {
-  margin: 0;
-  font-size: 2.25rem;
-  font-weight: bold;
-  letter-spacing: -0.025em;
-  color: black;
-}
-
-p {
-  font-size: 24px;
-}
-
-li {
-  list-style: none;
-}
-
-a {
-  color: white;
-  opacity: 0.75;
-  text-decoration: none;
-}
-
-a:hover {
-  opacity: 1;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.btn-success {
-  background-color: #1dbb90;
-  border-color: #1dbb90;
-}
-
-.nav-pills .nav-link.active {
-  color: #fff;
-  background-color: #1e73be;
 }

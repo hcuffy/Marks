@@ -8,7 +8,7 @@ import {Button, Collapse, Intent, Alignment} from '@blueprintjs/core';
 import CreateCards from './CapabilityCards';
 import {actionCreators} from '../../actions/index';
 import {capabilityQuestions} from './constants';
-import css from './styles/capability.css';
+import css from './style.css';
 
 function CapabilityCollapsible({t, capabilityData, actions}) {
     const {showCard, cardId, questionBase} = capabilityData;

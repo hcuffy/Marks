@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import SideMenu from '../components/sidemenu/SideMenu';
-import SettingsPage from '../components/settings/SettingsPage';
+import {SidemenuComponent, SettingsComponent} from '../components';
 import {actionCreators} from '../actions/index';
 
 class Settings extends Component {
@@ -17,8 +16,8 @@ class Settings extends Component {
 
         return (
             <div>
-                <SideMenu />
-                <SettingsPage t={t} />
+                <SidemenuComponent />
+                <SettingsComponent t={t} />
             </div>
         );
     }

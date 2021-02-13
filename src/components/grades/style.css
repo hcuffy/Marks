@@ -1,0 +1,46 @@
+.center_header {
+  height: 50px;
+  padding-top: 10px;
+  text-align: left;
+  border-bottom: 1px solid;
+  background: #fdb12e;
+}
+
+.div_wrapper {
+  width: 100%;
+}
+
+.table_wrapper {
+  height: 200px;
+}
+
+.dropdown_main_div {
+  text-align: center;
+  height: 50px;
+  display: flex;
+  margin: 0 0 5px 0;
+}
+
+.left_dropdown {
+  position: absolute;
+  margin: 0 5px 0 0;
+  left: 36%;
+}
+
+.right_dropdown {
+  position: absolute;
+  left: 54%;
+}
+
+.badge_date {
+  float: right;
+}
+
+.badge_weight {
+  float: left;
+  color: #000000 !important;
+}
+
+input[type="number"] {
+  width: 140px;
+}

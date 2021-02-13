@@ -6,8 +6,7 @@ import {withTranslation} from 'react-i18next';
 import {Button, ButtonGroup, Intent, FormGroup, InputGroup, Alignment} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions';
-import {sortByName} from '../helpers';
-import css from './styles/room.css';
+import css from './style.css';
 
 export function FormInputs({t, classData}) {
     const intent = classData.isInvalid ? Intent.DANGER : Intent.NONE;
@@ -39,7 +38,7 @@ export function AddClassroomFormComponent({t, classData, actions}) {
                     <FormInputs t={t} classData={classData}/>
 
                     <div className={(css.form_div, css.save_btn)}>
-                        <Button type='submit' formNoValidate intent={Intent.SUCCESS} text={t('general.add')}/>
+                        <Button type='submit' intent={Intent.SUCCESS} text={t('general.add')}/>
                     </div>
                 </div>
             </form>
@@ -61,9 +60,7 @@ export function gradingSystem(settings) {
 }
 
 export function ClassroomListComponent({classData, actions}) {
-    const sortedData = sortByName(classData.classData);
-
-    return _.map(sortedData, (data, idx) => (
+    return _.map(classData, (data, idx) => (
         <div key={idx} className={css.list_buttons}>
             <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
                 <Button
@@ -83,7 +80,7 @@ export function ClassroomListComponent({classData, actions}) {
 
 export const ClassroomList = connect(
     state => ({
-        classData: state.classData
+        classData: state.classData?.classData
     }),
     dispatch => ({
         actions: bindActionCreators(actionCreators, dispatch)

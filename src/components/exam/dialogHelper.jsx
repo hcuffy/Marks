@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {FormGroup, InputGroup, Intent, Label, NumericInput} from '@blueprintjs/core';
-import css from './styles/exam.css';
+import css from './style.css';
 
 export function resolveHiddenInputs(subjectId, examId) {
     return (

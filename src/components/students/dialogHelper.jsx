@@ -3,7 +3,7 @@ import _ from 'lodash';
 import {FormGroup, InputGroup, Intent} from '@blueprintjs/core';
 
 import {ClassroomSelect, GenderSelect} from './formHelper';
-import css from './styles/students.css';
+import css from './style.css';
 
 export function resolveHiddenInput(studentId) {
     return <InputGroup type='hidden' name='studentId' data-id={studentId} />;

@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import SideMenu from '../components/sidemenu/SideMenu';
-import CapabilitySection from '../components/capability/CapabilitySection';
+import {CapabilityComponent, SidemenuComponent} from '../components';
+
 import {actionCreators} from '../actions/index';
 
 class Capability extends Component {
@@ -20,8 +20,8 @@ class Capability extends Component {
 
         return (
             <div>
-                <SideMenu />
-                <CapabilitySection t={t} />
+                <SidemenuComponent />
+                <CapabilityComponent t={t} />
             </div>
         );
     }

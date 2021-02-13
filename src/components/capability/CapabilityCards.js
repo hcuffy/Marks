@@ -7,7 +7,7 @@ import {RadioGroup, Radio, Card} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions/index';
 import {capabilityQuestions} from './constants';
-import css from './styles/capability.css';
+import css from './style.css';
 
 function hasNoAnswers(selectAnswer, questionId) {
     return _.isUndefined(selectAnswer) || _.isEmpty(selectAnswer) || _.isUndefined(selectAnswer?.capability[questionId]);

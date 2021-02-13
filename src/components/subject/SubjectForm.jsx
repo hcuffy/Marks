@@ -7,7 +7,7 @@ import {Button, Intent, HTMLSelect, Label} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions/index';
 import {SubjectFormInputs} from './formHelpers';
-import css from './styles/subject.css';
+import css from './style.css';
 
 function SubjectForm({t, classListData, classes, actions}) {
     const selectOption = _.values(classes).map((data, idx) => (
@@ -30,7 +30,7 @@ function SubjectForm({t, classListData, classes, actions}) {
                     </Label>
                 </div>
                 <div className={css.subject_save}>
-                    <Button type='submit' intent={Intent.SUCCESS} formNoValidate text={t('general.add')} />
+                    <Button type='submit' intent={Intent.SUCCESS} text={t('general.add')} />
 
                 </div>
             </form>

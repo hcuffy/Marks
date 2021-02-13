@@ -7,7 +7,7 @@ import {bindActionCreators} from 'redux';
 import {actionCreators} from '../../actions/index';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import {resolveLabel} from '../../utils';
-import css from './styles/notes.css';
+import css from './style.css';
 
 function NotesDropdown({t, studentData, notesData, actions}) {
     const {students} = studentData;

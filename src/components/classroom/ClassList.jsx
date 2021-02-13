@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import RoomDialog from './RoomDialog';
 import {actionCreators} from '../../actions/index';
 import {ClassroomList} from './formHelpers';
-import css from './styles/room.css';
+import css from './style.css';
 
 function ClassList({t}) {
     return (

@@ -7,7 +7,7 @@ import {bindActionCreators} from 'redux';
 import {resolveLabel} from '../../utils';
 import {actionCreators} from '../../actions/index';
 import {DropdownComponent, createDropdownItems} from '../helpers';
-import css from './styles/grades.css';
+import css from './style.css';
 
 function GradeDropdown({t, classData, gradeData, subjectData, actions}) {
     const {subjectId, classroomId, classroom} = gradeData;

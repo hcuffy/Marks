@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import SideMenu from '../components/sidemenu/SideMenu';
-import GraphOverview from '../components/graphs/GraphOverview';
+import {SidemenuComponent, GraphComponent} from '../components';
 import {actionCreators} from '../actions/index';
 
 class Graphs extends Component {
@@ -23,8 +22,8 @@ class Graphs extends Component {
 
         return (
             <div>
-                <SideMenu />
-                <GraphOverview t={t} />
+                <SidemenuComponent />
+                <GraphComponent t={t} />
             </div>
         );
     }

@@ -10,6 +10,7 @@ body {
 .heading {
   margin-left: 240px;
 }
+
 .main_div {
   text-align: center;
 }
@@ -28,6 +29,7 @@ body {
   width: 25%;
   float: left;
 }
+
 .right_btn {
   width: 25%;
   float: right;

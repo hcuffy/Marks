@@ -4,7 +4,7 @@ import {withTranslation} from 'react-i18next';
 import ExamListDropdown from './ExamListDropdown';
 import ExamListInputs from './ExamListInputs';
 import ExamDialog from './ExamDialog';
-import css from './styles/exam.css';
+import css from './style.css';
 
 function ExamList({t}) {
     return (

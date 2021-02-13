@@ -1,0 +1,125 @@
+.main_div {
+  margin-top: 5px;
+  border-top: 1px solid;
+}
+
+.edit_div {
+  display: flex;
+  padding-top: 15px;
+}
+
+.header_div {
+  white-space: pre;
+  overflow: auto;
+}
+
+.edit_header {
+  float: left;
+}
+
+.left_elements {
+  float: left;
+  width: 400px;
+}
+
+.left_inputs {
+  float: right;
+}
+
+.right_elements {
+  float: right;
+  width: 400px;
+  margin-right: 60px;
+}
+
+.right_inputs {
+  float: right;
+}
+
+.weight_label {
+  float: left;
+}
+
+.number_input {
+  margin-left: 6px !important;
+  float: left;
+}
+
+.form_save_btn {
+  float: right;
+  margin: 20px 60px 0 30px;
+}
+
+.dropdown_main_div {
+  text-align: center;
+  height: 50px;
+  width: 370px;
+}
+
+.form_label_edit {
+  float: left;
+  margin: 0 5px 0 5px;
+  vertical-align: bottom;
+  line-height: 36px;
+}
+
+.form_input {
+  float: right;
+}
+
+.form_div_edit {
+  margin-right: 40px;
+  width: 170px;
+  display: inline-block;
+}
+
+.badge_number {
+  float: right;
+  font-size: 0.9em;
+}
+
+.dialog_div {
+  width: 300px;
+  height: 230px;
+}
+
+.dialog_input {
+  float: right;
+  width: 220px;
+}
+
+.inputs_width {
+  width: 200px;
+}
+
+.date_space {
+  width: 200px;
+  margin-left: 6px !important;
+}
+
+.dialog_date {
+  float: right;
+  width: 220px;
+}
+
+.input_space {
+  margin-left: 15px !important;
+}
+
+.left_dropdown {
+  float: left;
+}
+
+.right_dropdown {
+  float: right;
+}
+
+.list_buttons {
+  height: 35px;
+  margin-left: 5px;
+}
+
+.button_icon {
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+}

@@ -1,0 +1,78 @@
+.form_div {
+  white-space: nowrap;
+  float: right;
+  margin: 10px 0 0 0;
+}
+
+.form_label {
+  float: left;
+  margin-right: 5px;
+  vertical-align: bottom;
+  line-height: 32px;
+}
+
+.subject_save {
+  float: right;
+  margin: 10px 0 0 230px;
+}
+
+.list_div {
+  height: 230px;
+  margin-top: 10px;
+  overflow-x: hidden;
+}
+
+.list_btn {
+  height: 40px;
+  width: 380px !important;
+}
+
+.badge_number {
+  float: right;
+}
+
+.modal_form_div {
+  white-space: nowrap;
+  display: inline-block;
+  width: 320px;
+}
+
+.modal_form_label {
+  float: left;
+  margin: 3px 10px 0 0;
+  vertical-align: bottom;
+  line-height: 32px;
+}
+
+.subject_left {
+  float: left;
+  width: 38%;
+  height: 330px;
+  position: absolute;
+  overflow-x: hidden;
+  margin-left: 110px;
+}
+
+.subject_right {
+  width: 40%;
+  height: 330px;
+  position: absolute;
+  right: 20px;
+  overflow-x: hidden;
+  padding-right: 30px;
+}
+
+.subject_header {
+  text-align: left;
+  margin-top: 15px;
+}
+
+.add_header {
+  text-align: left;
+  margin-top: 15px;
+}
+
+.main_div {
+  margin-top: 30px;
+  border-top: 1px solid;
+}

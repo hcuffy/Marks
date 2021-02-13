@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import {actions} from './constants';
-import {saveGradeSystem, updateGradeType, addAddress, getSettingsData} from '../../collections';
+import {saveGradeSystem, updateGradeType, addAddress, getSettingsData, clearDatabases} from '../../collections';
 import {getFormValues} from '../helpers';
 
 export function updateGradingSystem(event) {
@@ -64,3 +64,33 @@ export function displayAddress() {
         }
     };
 }
+
+export function showResetDialog() {
+    return dispatch => {
+        dispatch({
+            type:    actions.DISPLAY_DIALOG,
+            payload: {}
+        });
+    };
+}
+
+export function resetDatabase(event) {
+    event.preventDefault();
+
+    return dispatch => {
+        let confirmationText = event.currentTarget.resetInput.value;
+        const isInvalid = !_.includes(['ja', 'yes'], _.lowerCase(confirmationText));
+        const showDialog = !!isInvalid;
+
+        if (!isInvalid) {
+            clearDatabases();
+            confirmationText = null;
+        }
+
+        dispatch({
+            type:    actions.RESET_DATABASE,
+            payload: {showDialog, isInvalid, confirmationText}
+        });
+    };
+}
+

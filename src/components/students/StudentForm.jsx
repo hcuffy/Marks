@@ -6,7 +6,7 @@ import {Button, Intent} from '@blueprintjs/core';
 
 import {actionCreators} from '../../actions/index';
 import {ClassroomSelect, GenderSelect, NameInputFields} from './formHelper';
-import css from './styles/students.css';
+import css from './style.css';
 
 function AddStudentForm({t, studentData, classData, actions}) {
     return (<div className={css.student_div}>

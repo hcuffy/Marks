@@ -7,9 +7,9 @@ import {Button, Intent, Radio, RadioGroup, FormGroup, InputGroup} from '@bluepri
 
 import {filteredAddressData} from '../helpers';
 import {actionCreators} from '../../actions';
-import css from './styles/settings.css';
+import css from './style.css';
 
-export function AddressFields({t, addressData}) {
+function AddressFields({t, addressData}) {
     const address = filteredAddressData(addressData);
 
     return _.keys(address).map((data, idx) => (
@@ -59,19 +59,15 @@ export function gradingSystem(settings) {
 function RadioButtonsComponent({t, addressData, actions}) {
     const selectedValue = gradingSystem(_.pick(addressData, ['note', 'points', 'percent']));
 
-    return (<RadioGroup
-        inline={false}
-        name='settings'
-        selectedValue={selectedValue}
-        onChange={actions.updateGradingSystem}
-    >
-        <Radio label={t('settings.note')} value='note' />
-        <Radio label={t('settings.points')} value='points' />
-        <Radio label={t('settings.percent')} value='percent' />
-    </RadioGroup>);
+    return (
+        <RadioGroup inline={false} name='settings' selectedValue={selectedValue} onChange={actions.updateGradingSystem}>
+            <Radio label={t('settings.note')} value='note' />
+            <Radio label={t('settings.points')} value='points' />
+            <Radio label={t('settings.percent')} value='percent' />
+        </RadioGroup>);
 }
 
-export const GradeType = connect(
+export const GradeSelector = connect(
     state => ({
         addressData: state.addressData
     }),

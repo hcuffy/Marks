@@ -1,0 +1,57 @@
+.dropdown_div {
+  display: inline-block;
+  margin: 0 0 15px 15px;
+}
+
+.dropdown_main_div {
+  text-align: center;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.left_dropdown {
+  float: left;
+}
+
+.middle_dropdown {
+  margin: 0 5px 0 5px;
+  float: left;
+}
+
+.right_dropdown {
+  float: left;
+}
+
+.center_header {
+  height: 50px;
+  padding-top: 10px;
+  text-align: left;
+  border-bottom: 1px solid;
+  background: #fdb12e;
+}
+
+.chart {
+  width: 920px !important;
+  height: 500px !important;
+  position: fixed !important;
+  left: 100px !important;
+  top: 150px !important;
+}
+
+.chart_div {
+  width: 924px;
+  height: 535px;
+  margin: 20px 0 0 100px;
+  background-color: #d1f74a;
+}
+
+.button_icon {
+  margin: 3px 5px 0 0 !important;
+}
+
+.pdf_btn {
+  position: fixed;
+  z-index: 1;
+  left: 80%;
+  font-size: 14px;
+}

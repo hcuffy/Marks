@@ -36,25 +36,6 @@ export function capabilityStudentList(event) {
     };
 }
 
-//Todo: Remove this function once all dropdowns have been replaced
-export function handleQuestionList(event) {
-    return dispatch => {
-        event.stopPropagation();
-
-        if (
-            event.target.getAttribute('data-check') !== 'openButton' ||
-          _.isNull(event.target.getAttribute('data-id'))
-        ) {
-            return;
-        }
-
-        dispatch({
-            type:    actions.OPEN_CLOSE_QUESTION_LIST,
-            payload: {}
-        });
-    };
-}
-
 export function updateQuestionSet(event) {
     return dispatch => {
         if (event['data-check'] !== 'questionDropdown') {
