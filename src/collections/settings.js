@@ -82,8 +82,8 @@ export async function addAddress(data) {
 }
 
 export function clearDatabases() {
-    //const databases = ['answer', 'classroom', 'examinations', 'grade', 'notes', 'student', 'subject'];
-    const databases = ['grade'];
+    const databases = ['answer', 'classroom', 'examinations', 'grade', 'notes', 'student', 'subject'];
+
     _.forEach(databases, value => {
         let database = connectionToDB(value);
         // eslint-disable-next-line func-names
