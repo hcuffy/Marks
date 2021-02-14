@@ -5,7 +5,10 @@ const initialLoadState = {
     events:     [],
     showDialog: null,
     isInvalid:  null,
-    eventId:    null
+    eventId:    null,
+    eventText:  null,
+    eventStart: null,
+    eventEnd:   null
 };
 
 export function applyCalendarChanges(state = initialLoadState, action) {
