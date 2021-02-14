@@ -225,6 +225,10 @@
     "today": "Today",
     "agenda": "Agenda",
     "noEventsInRange": "There are no events in this range.",
-    "more": "more"
+    "more": "more",
+    "titleLabel": "Event title:",
+    "eventDialog": "The calendar event:",
+    "start": "Start",
+    "end": "End"
   }
 }

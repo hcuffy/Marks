@@ -225,6 +225,10 @@
     "today": "Heute",
     "agenda": "Tagesordnung",
     "noEventsInRange": "Es gibt keine Ereignisse in diesem Bereich.",
-    "more": "mehr"
+    "more": "mehr",
+    "titleLabel": "Titel des Ereignisses:",
+    "eventDialog": "Das Kalender-Ereignis:",
+    "start": "Start",
+    "end": "Ende"
   }
 }
