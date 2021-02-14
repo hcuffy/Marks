@@ -11,9 +11,14 @@
   background: #fdb12e;
 }
 
-.calendar_wrapper{
+.calendar_wrapper {
   margin-left: 100px;
   position: absolute;
   width: 90%;
   height: 90%;
+}
+
+.dialog_div {
+  width: 200px;
+  height: 330px;
 }

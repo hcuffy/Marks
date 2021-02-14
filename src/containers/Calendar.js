@@ -3,10 +3,13 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {CalendarComponent, SidemenuComponent} from '../components';
-
 import {actionCreators} from '../actions/index';
 
 class Calendar extends Component {
+    componentDidMount() {
+        this.props.actions.getEvents;
+    }
+
     render() {
         const {t} = this.props;
 
@@ -19,12 +22,8 @@ class Calendar extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    calendarData: state.calendarData
-});
-
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actionCreators, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+export default connect(null, mapDispatchToProps)(Calendar);

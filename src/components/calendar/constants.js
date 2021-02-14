@@ -1,2 +1,6 @@
-export const actions = {};
-
+export const actions = {
+    SHOW_ADD_DIALOG: 'OPEN_CLOSE_CLASS_LIST',
+    GET_ALL_EVENTS:  'GET_ALL_EVENTS',
+    CLOSE_DIALOG:    'CLOSE_DIALOG',
+    ADD_EVENT:       'ADD_EVENT'
+};

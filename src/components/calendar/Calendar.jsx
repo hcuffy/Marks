@@ -1,13 +1,16 @@
 import React from 'react';
 import moment from 'moment';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {Calendar, Views, momentLocalizer} from 'react-big-calendar';
 import {withTranslation} from 'react-i18next';
 
-import {formats, getMessages} from './calendarHerlpers';
+import {formats, getMessages} from './calendarHelpers';
+import {actionCreators} from '../../actions';
 //TODO remove this test data once saving and retrieval from the DB is complete
 import testData from './example';
 
-function CalendarElement({t}) {
+function CalendarElement({t, actions}) {
     const messages = getMessages(t);
 
     return (
@@ -20,10 +23,18 @@ function CalendarElement({t}) {
             events={testData}
             defaultView={Views.WEEK}
             onSelectEvent={() => {}}
-            onSelectSlot={() => {}}
+            onSelectSlot={actions.showAddEventDialog}
         />
 
     );
 }
 
-export default withTranslation()(CalendarElement);
+const mapStateToProps = state => ({
+    calendarData: state.calendarData
+});
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(actionCreators, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(CalendarElement));

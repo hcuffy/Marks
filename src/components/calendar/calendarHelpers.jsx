@@ -1,3 +1,7 @@
+import React from 'react';
+import moment from 'moment';
+
+import {FormGroup, InputGroup, Label} from '@blueprintjs/core';
 
 const timeRangeFormat = ({start, end}, culture, local) => `${local.format(start, 'HH:mm', culture)
 } - ${ local.format(end, 'HH:mm', culture)}`;
@@ -33,3 +37,37 @@ export function getMessages(t) {
         }
     };
 }
+
+export function TitleInput({t, eventText, intent, label}) {
+    return (
+        <div>  <FormGroup inline={false} labelFor={'calendar_Id'} label={t(`calendar.${label}`)}>
+            <InputGroup
+                id={'calendar_Id'}
+                name={'addInput'}
+                type='text'
+                intent={intent}
+                defaultValue={eventText}
+            />
+        </FormGroup></div>
+    );
+}
+
+export function DateTimeSelector({t, date, intent, label}) {
+    const defaultValue = moment(date).format('YYYY-MM-DDTHH:mm');
+
+    return (
+        <div>
+            <Label htmlFor={`${label}Date`}> {t(`calendar.${label}`)}
+                <InputGroup
+                    name={`${label}Date`}
+                    intent={intent}
+                    type='datetime-local'
+                    id={`${label}Date`}
+                    min='2019-01-01T00:00'
+                    defaultValue={defaultValue}
+                />
+            </Label>
+        </div>
+    );
+}
+

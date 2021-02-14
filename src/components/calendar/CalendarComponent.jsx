@@ -2,6 +2,7 @@ import React from 'react';
 import {withTranslation} from 'react-i18next';
 
 import CalendarElement from './Calendar';
+import InputDialog from './CalendarInputDialog';
 import css from './style.css';
 
 function CalendarComponent({t}) {
@@ -10,7 +11,8 @@ function CalendarComponent({t}) {
             <h4 className={css.main_header}>{t('calendar.sectionTitle')}</h4>
 
             <div className={css.calendar_wrapper}>
-                <CalendarElement t={t}/>
+                <CalendarElement />
+                <InputDialog/>
             </div>
         </div>
     );
