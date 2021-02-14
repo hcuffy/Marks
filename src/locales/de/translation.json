@@ -209,6 +209,22 @@
 		"supportText": "Sie mögen diese App? Sie können mir einen Kaffee spendieren."
 	},
   "calendar": {
-    "sectionTitle": "KALENDER"
+    "sectionTitle": "KALENDER",
+    "date": "Datum",
+    "time": "Uhrzeit",
+    "event": "Ereignis",
+    "allDay": "Ganztägig",
+    "week": "Woche",
+    "workWeek": "Arbeitswoche",
+    "day": "Tag",
+    "month": "Monat",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "yesterday": "Gestern",
+    "tomorrow": "Morgen",
+    "today": "Heute",
+    "agenda": "Tagesordnung",
+    "noEventsInRange": "Es gibt keine Ereignisse in diesem Bereich.",
+    "more": "mehr"
   }
 }
