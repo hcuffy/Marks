@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Calendar, Views, momentLocalizer} from 'react-big-calendar';
 import {withTranslation} from 'react-i18next';
+import {Calendar, Views, momentLocalizer} from 'react-big-calendar';
 
 import {formats, getMessages, mapEventsData} from './calendarHelpers';
 import {actionCreators} from '../../actions';
