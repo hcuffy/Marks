@@ -6,9 +6,9 @@ const initialLoadState = {
     showDialog: null,
     isInvalid:  null,
     eventId:    null,
-    eventText:  null,
-    eventStart: null,
-    eventEnd:   null
+    title:      null,
+    startDate:  null,
+    endDate:    null
 };
 
 export function applyCalendarChanges(state = initialLoadState, action) {

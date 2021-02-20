@@ -1,7 +1,8 @@
 import React from 'react';
 import moment from 'moment';
+import _ from 'lodash';
 
-import {FormGroup, InputGroup, Label} from '@blueprintjs/core';
+import {Button, Classes, FormGroup, InputGroup, Intent, Label} from '@blueprintjs/core';
 
 const timeRangeFormat = ({start, end}, culture, local) => `${local.format(start, 'HH:mm', culture)
 } - ${ local.format(end, 'HH:mm', culture)}`;
@@ -37,16 +38,27 @@ export function getMessages(t) {
         }
     };
 }
+export function mapEventsData({events}) {
+    return _.map(events, data => (
+        {
+            id:    data._id,
+            title: data.title,
+            start: new Date(data.startDate),
+            end:   new Date(data.endDate)
+        }
+    ));
+}
 
-export function TitleInput({t, eventText, intent, label}) {
+export function TitleInput({t, title, eventId, intent, label}) {
     return (
-        <div>  <FormGroup inline={false} labelFor={'calendar_Id'} label={t(`calendar.${label}`)}>
+        <div>  <FormGroup inline={false} labelFor={'titleId'} label={t(`calendar.${label}`)}>
             <InputGroup
-                id={'calendar_Id'}
-                name={'addInput'}
+                id={'titleId'}
+                eventid={eventId}
+                name={'title'}
                 type='text'
                 intent={intent}
-                defaultValue={eventText}
+                defaultValue={title}
             />
         </FormGroup></div>
     );
@@ -64,9 +76,27 @@ export function DateTimeSelector({t, date, intent, label}) {
                     type='datetime-local'
                     id={`${label}Date`}
                     min='2019-01-01T00:00'
+                    step={'1800'}
                     defaultValue={defaultValue}
                 />
             </Label>
+        </div>
+    );
+}
+
+export function FooterButtons({t, eventId, deleteAction}) {
+    const saveButtonLabel = _.isNull(eventId) ? t('general.add') : t('general.update');
+
+    return (
+        <div className={Classes.DIALOG_FOOTER_ACTIONS}>
+            {eventId && <Button
+                type='button'
+                intent={Intent.DANGER}
+                text={t('general.delete')}
+                onClick={deleteAction}
+                data-id={eventId}
+            />}
+            <Button type='submit' intent={Intent.SUCCESS} text={saveButtonLabel} formNoValidate />
         </div>
     );
 }

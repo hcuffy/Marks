@@ -7,7 +7,7 @@ import {actionCreators} from '../actions/index';
 
 class Calendar extends Component {
     componentDidMount() {
-        this.props.actions.getEvents;
+        this.props.actions.getEvents();
     }
 
     render() {

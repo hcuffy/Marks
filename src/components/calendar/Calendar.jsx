@@ -5,13 +5,12 @@ import {bindActionCreators} from 'redux';
 import {Calendar, Views, momentLocalizer} from 'react-big-calendar';
 import {withTranslation} from 'react-i18next';
 
-import {formats, getMessages} from './calendarHelpers';
+import {formats, getMessages, mapEventsData} from './calendarHelpers';
 import {actionCreators} from '../../actions';
-//TODO remove this test data once saving and retrieval from the DB is complete
-import testData from './example';
 
-function CalendarElement({t, actions}) {
+function CalendarElement({t, calendarData, actions}) {
     const messages = getMessages(t);
+    const eventsData = mapEventsData(calendarData);
 
     return (
         <Calendar
@@ -20,10 +19,10 @@ function CalendarElement({t, actions}) {
             formats={formats}
             messages={messages}
             popup
-            events={testData}
+            events={eventsData}
             defaultView={Views.WEEK}
-            onSelectEvent={() => {}}
-            onSelectSlot={actions.showAddEventDialog}
+            onSelectEvent={actions.handleEventDialog}
+            onSelectSlot={actions.handleEventDialog}
         />
 
     );

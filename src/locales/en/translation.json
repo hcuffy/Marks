@@ -205,7 +205,8 @@
     "percent": "Percent (0 - 100%)",
     "resetDialog": "Delete all database data.",
     "resetLabel": "If you are sure type YES then submit.",
-    "resetButton": "Clear Database",
+    "resetDatabase": "Clear All Data",
+    "resetCalendar": "Clear Calendar",
     "supportText": "Do you like this app? Consider supporting."
   },
   "calendar": {
@@ -227,7 +228,8 @@
     "noEventsInRange": "There are no events in this range.",
     "more": "more",
     "titleLabel": "Event title:",
-    "eventDialog": "The calendar event:",
+    "addDialog": "Add a new event:",
+    "editDialog": "Edit your event:",
     "start": "Start",
     "end": "End"
   }
