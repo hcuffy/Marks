@@ -1,13 +1,13 @@
 import _ from 'lodash';
 
-import {actions} from './constants';
-import {saveGradeSystem, updateGradeType, addAddress, getSettingsData, clearDatabases} from '../../collections';
-import {getFormValues} from '../helpers';
+import {actions, dangerAction} from './constants';
+import {saveGradeSystem, updateGradeType, addAddress, getSettingsData, clearDatabases, clearCalendar} from '../../collections';
+import {getAttribute, getCustomAttribute, getFormValues} from '../helpers';
 
 export function updateGradingSystem(event) {
     return async dispatch => {
         const systemType = {note: false, points: false, percent: false};
-        const newSystemType = _.set(systemType, event.currentTarget.value, true);
+        const newSystemType = _.set(systemType, event.currentTarget?.value, true);
         const settings = await updateGradeType(newSystemType);
 
         dispatch({
@@ -65,31 +65,49 @@ export function displayAddress() {
     };
 }
 
-export function showResetDialog() {
+export function showResetDialog(event) {
     return dispatch => {
+        const resetId = getAttribute('data-id', event);
+
         dispatch({
             type:    actions.DISPLAY_DIALOG,
-            payload: {}
+            payload: {resetId}
         });
     };
+}
+
+function validateData(confirmationText) {
+    const isInvalid = !_.includes(['ja', 'yes'], _.lowerCase(confirmationText));
+    const showDialog = !!isInvalid;
+
+    return {isInvalid, showDialog};
+}
+
+function clearSpecificDB(resetId) {
+    if (resetId === dangerAction.calendar) {
+        clearCalendar();
+    } else if (resetId === dangerAction.db) {
+        clearDatabases();
+    }
 }
 
 export function resetDatabase(event) {
     event.preventDefault();
 
     return dispatch => {
-        let confirmationText = event.currentTarget.resetInput.value;
-        const isInvalid = !_.includes(['ja', 'yes'], _.lowerCase(confirmationText));
-        const showDialog = !!isInvalid;
+        let confirmationText = event.currentTarget?.resetInput?.value;
+        let resetId = getCustomAttribute('resetid', 'resetInput', event);
+        let {isInvalid, showDialog} = validateData(confirmationText);
 
         if (!isInvalid) {
-            clearDatabases();
+            clearSpecificDB(resetId);
             confirmationText = null;
+            resetId = null;
         }
 
         dispatch({
             type:    actions.RESET_DATABASE,
-            payload: {showDialog, isInvalid, confirmationText}
+            payload: {showDialog, isInvalid, confirmationText, resetId}
         });
     };
 }

@@ -7,4 +7,5 @@ export {default as Grades} from './Grades';
 export {default as Graphs} from './Graphs';
 export {default as Notes} from './Notes';
 export {default as Capability} from './Capability';
+export {default as Calendar} from './Calendar';
 export {default as Root} from './Root';

@@ -9,6 +9,7 @@ const initialLoadState = {
     graphs:     '#e5e5e5',
     notes:      '#e5e5e5',
     capability: '#e5e5e5',
+    calendar:   '#e5e5e5',
     settings:   '#e5e5e5'
 };
 

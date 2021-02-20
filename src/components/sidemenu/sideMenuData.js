@@ -1,4 +1,4 @@
-import {HOME, CLASSROOM, STUDENTS, GRADES, GRAPHS, NOTES, CAPABILITY, SETTINGS} from '../../constants/routes.js';
+import {HOME, CLASSROOM, STUDENTS, GRADES, GRAPHS, NOTES, CAPABILITY, SETTINGS, CALENDAR} from '../../constants/routes.js';
 
 export const menuData = {
     home: {
@@ -36,9 +36,15 @@ export const menuData = {
         dataId: 'capability',
         name:   'predictive-analysis'
     },
+    calendar: {
+        linkTo: CALENDAR,
+        dataId: 'calendar',
+        name:   'calendar'
+    },
     school: {
         linkTo: SETTINGS,
         dataId: 'settings',
         name:   'settings'
     }
+
 };

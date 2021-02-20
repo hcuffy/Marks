@@ -204,8 +204,33 @@
 		"points": "Punktesystem (0 - 15)",
 		"percent": "Prozentsystem (0 - 100%)",
     "resetDialog": "Alle Datenbankdaten löschen.",
-    "resetLabel": "Wenn Sie sicher sind, geben Sie JA ein und senden Sie ab.",
-    "resetButton": "Datenbank löschen",
+    "resetDialogCalendar": "Alle Kalenderereignisse löschen:",
+    "resetLabel": "Wenn Sie sicher sind, geben Sie JA ein und senden Sie ab:",
+    "resetDatabase": "Alle Daten löschen",
+    "resetCalendar": "Kalender löschen",
 		"supportText": "Sie mögen diese App? Sie können mir einen Kaffee spendieren."
-	}
+	},
+  "calendar": {
+    "sectionTitle": "KALENDER",
+    "date": "Datum",
+    "time": "Uhrzeit",
+    "event": "Ereignis",
+    "allDay": "Ganztägig",
+    "week": "Woche",
+    "workWeek": "Arbeitswoche",
+    "day": "Tag",
+    "month": "Monat",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "yesterday": "Gestern",
+    "tomorrow": "Morgen",
+    "today": "Heute",
+    "agenda": "Tagesordnung",
+    "noEventsInRange": "Es gibt keine Ereignisse in diesem Bereich.",
+    "more": "mehr",
+    "addDialog": "Fügen Sie ein neues Ereignis hinzu:",
+    "editDialog": "Bearbeiten Sie Ihr EreignisZ:",
+    "start": "Start",
+    "end": "Ende"
+  }
 }

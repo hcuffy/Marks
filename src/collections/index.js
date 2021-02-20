@@ -1,3 +1,4 @@
+export * from './calendar';
 export * from './capability';
 export * from './classroom';
 export * from './exam';

@@ -8,6 +8,7 @@ import * as graph from '../components/graphs/actions';
 import * as notes from '../components/notes/actions';
 import * as settings from '../components/settings/actions';
 import * as capability from '../components/capability/actions';
+import * as calendar from '../components/calendar/actions';
 
 export const actionCreators = {
     ...classroom,
@@ -19,5 +20,6 @@ export const actionCreators = {
     ...graph,
     ...settings,
     ...notes,
-    ...capability
+    ...capability,
+    ...calendar
 };

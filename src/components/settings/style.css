@@ -64,10 +64,14 @@
   float: right;
 }
 
-.reset_button{
+.reset_button {
   float: right;
   width: 42%;
   height: 20%;
   padding: 15% 5% 0 0;
   text-align: right;
+}
+
+.reset_db {
+  margin-left: 5px;
 }

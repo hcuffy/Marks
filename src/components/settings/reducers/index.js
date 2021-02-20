@@ -8,7 +8,8 @@ const gradingLoadState = {
     percent:          false,
     isInvalid:        false,
     confirmationText: null,
-    showDialog:       false
+    showDialog:       false,
+    resetId:          null
 };
 
 export function applyGradeSystem(state = gradingLoadState, action) {

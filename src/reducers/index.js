@@ -10,6 +10,7 @@ import {applyMenuStyling} from '../components/sidemenu/reducers';
 import {applyGraphData} from '../components/graphs/reducers';
 import {applyNotesData} from '../components/notes/reducers';
 import {applyCapabilityChanges} from '../components/capability/reducers';
+import {applyCalendarChanges} from '../components/calendar/reducers';
 
 export default function createRootReducer(history) {
     return combineReducers({
@@ -28,6 +29,7 @@ export default function createRootReducer(history) {
         gradeData:         applyGradeData,
         graphData:         applyGraphData,
         notesData:         applyNotesData,
-        capabilityData:    applyCapabilityChanges
+        capabilityData:    applyCapabilityChanges,
+        calendarData:      applyCalendarChanges
     });
 }

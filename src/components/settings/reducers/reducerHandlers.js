@@ -1,11 +1,14 @@
+import _ from 'lodash';
+
 import {actions} from '../constants';
 import {defaultStateUpdater} from '../../../reducers/reducerUtils.js';
-import _ from 'lodash';
 
 function resetDialogUpdater(state, action) {
     const showDialog = !state.showDialog;
+    const confirmationText = showDialog ? state.confirmationText : null;
+    const isInvalid = showDialog ? state.isInvalid : false;
 
-    return _.assign({}, state, {showDialog}, action.payload);
+    return _.assign({}, state, {showDialog, confirmationText, isInvalid}, action.payload);
 }
 
 export const settingsHandlers = {

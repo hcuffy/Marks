@@ -1,3 +1,4 @@
+export {default as CalendarComponent} from './calendar/CalendarComponent';
 export {default as CapabilityComponent} from './capability/CapabilityComponent';
 export {default as ClassroomComponent} from './classroom/ClassroomComponent';
 export {default as NavbarComponent} from './classroom/NavbarComponent';

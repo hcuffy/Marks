@@ -25,6 +25,7 @@ export function updateButtonStyle(event) {
             graphs:     '',
             notes:      '',
             capability: '',
+            calendar:   '',
             settings:   ''
         };
 
