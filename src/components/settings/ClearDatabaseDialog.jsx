@@ -32,11 +32,13 @@ function ResetDialog({t, settingData, actions}) {
                                 defaultValue={confirmationText}
                             />
                         </FormGroup>
+
                         <div className={Classes.DIALOG_FOOTER}>
                             <div className={Classes.DIALOG_FOOTER_ACTIONS}>
                                 <Button type='submit' intent={Intent.DANGER} text={buttonText} formNoValidate />
                             </div>
                         </div>
+
                     </form>
                 </div>
             </ Dialog>

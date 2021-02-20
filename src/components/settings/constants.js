@@ -6,3 +6,5 @@ export const actions = {
     DISPLAY_DIALOG:      'DISPLAY_DIALOG',
     RESET_DATABASE:      'RESET_DATABASE'
 };
+
+export const dangerAction = {db: 'db', calendar: 'calendar'};

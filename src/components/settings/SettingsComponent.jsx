@@ -19,13 +19,15 @@ function SettingsComponent({t}) {
             <div className={css.gradeFormat_div}>
                 <GradeSettingComponent t={t} />
             </div>
+
             <div className={css.reset_button}>
                 <ResetButtonsComponent t={t}/>
             </div>
+
             <div>
                 <ResetDialog/>
             </div>
-            <div />
+
         </div>
     );
 }
