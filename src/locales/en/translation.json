@@ -204,7 +204,8 @@
     "points": "Points (0 - 15)",
     "percent": "Percent (0 - 100%)",
     "resetDialog": "Delete all database data.",
-    "resetLabel": "If you are sure type YES then submit.",
+    "resetDialogCalendar": "Clear all calendar events.",
+    "resetLabel": "If you are sure type YES then submit:",
     "resetDatabase": "Clear All Data",
     "resetCalendar": "Clear Calendar",
     "supportText": "Do you like this app? Consider supporting."

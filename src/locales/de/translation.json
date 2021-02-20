@@ -204,7 +204,8 @@
 		"points": "Punktesystem (0 - 15)",
 		"percent": "Prozentsystem (0 - 100%)",
     "resetDialog": "Alle Datenbankdaten löschen.",
-    "resetLabel": "Wenn Sie sicher sind, geben Sie JA ein und senden Sie ab.",
+    "resetDialogCalendar": "Alle Kalenderereignisse löschen:",
+    "resetLabel": "Wenn Sie sicher sind, geben Sie JA ein und senden Sie ab:",
     "resetDatabase": "Alle Daten löschen",
     "resetCalendar": "Kalender löschen",
 		"supportText": "Sie mögen diese App? Sie können mir einen Kaffee spendieren."
