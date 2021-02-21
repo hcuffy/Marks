@@ -231,6 +231,7 @@
     "titleLabel": "Event title:",
     "addDialog": "Add a new event:",
     "editDialog": "Edit your event:",
+    "weekInput" : "Number of weeks to repeat:",
     "start": "Start",
     "end": "End"
   }

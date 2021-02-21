@@ -230,6 +230,7 @@
     "more": "mehr",
     "addDialog": "Fügen Sie ein neues Ereignis hinzu:",
     "editDialog": "Bearbeiten Sie Ihr EreignisZ:",
+    "weekInput" : "Anzahl der zu wiederholenden Wochen:",
     "start": "Start",
     "end": "Ende"
   }

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import connectionToDB from './connectionSetup';
 import {displayToast} from '../notifications';
 
@@ -15,9 +17,19 @@ export async function getAllEvents() {
     return result;
 }
 
+function handleEventArray(data) {
+    return _.forEach(data, value => {
+        calendarEvents.insert(value);
+    });
+}
+
 export async function addCalendarEvent(data) {
     try {
-        await calendarEvents.insert(data);
+        if (_.isArray(data)) {
+            await handleEventArray(data);
+        } else {
+            await calendarEvents.insert(data);
+        }
         displayToast('saveSuccess');
     } catch (e) {
         displayToast('saveFail', 'fail');
@@ -49,8 +61,8 @@ export async function deleteEvents(id) {
     return result;
 }
 
-export function clearCalendar() {
-    calendarEvents.remove({}, {multi: true}, (error, numDeleted) => {
+export async function clearCalendar() {
+    await calendarEvents.remove({}, {multi: true}, (error, numDeleted) => {
         if (error) {
             displayToast('deleteFail', 'fail');
         }

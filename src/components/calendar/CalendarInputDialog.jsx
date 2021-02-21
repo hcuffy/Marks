@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import {withTranslation} from 'react-i18next';
 import {Classes, Dialog, Intent} from '@blueprintjs/core';
 
-import {DateTimeSelector, TitleInput, FooterButtons} from './calendarHelpers';
+import {DateTimeSelector, TitleInput, FooterButtons, WeekInput} from './calendarHelpers';
 import {actionCreators} from '../../actions';
 import css from './style.css';
 
@@ -22,7 +22,7 @@ function InputDialog({t, calendarData, actions}) {
                         <TitleInput t={t} title={title} eventId={eventId} intent={inputIntent} label={'titleLabel'}/>
                         <DateTimeSelector t={t} date={startDate} intent={inputIntent} label={'start'} />
                         <DateTimeSelector t={t} date={endDate} intent={inputIntent} label={'end'} />
-
+                        { _.isNull(eventId) && <WeekInput t={t} intent={inputIntent}/>}
                         <div className={Classes.DIALOG_FOOTER}>
                             <FooterButtons t={t} eventId={eventId} deleteAction={actions.deleteSingleEvent}/>
                         </div>
