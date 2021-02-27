@@ -61,13 +61,11 @@
 }
 
 .female {
-  float: right;
-  background-color: #fc8dcc !important;
+  background: #fc8dcc !important;
 }
 
 .male {
-  float: right;
-  background-color: #6a9ae8 !important;
+  background: #6a9ae8 !important;
 }
 
 .student_dialog {
