@@ -6,6 +6,7 @@
 .edit_div {
   display: flex;
   padding-top: 15px;
+  float: right;
 }
 
 .header_div {
@@ -14,7 +15,8 @@
 }
 
 .edit_header {
-  float: left;
+  position: absolute;
+  left: 105px;
 }
 
 .left_elements {
@@ -51,9 +53,9 @@
 }
 
 .dropdown_main_div {
-  text-align: center;
+  margin: 0 290px 0 10px;
   height: 50px;
-  width: 370px;
+  width: 365px;
 }
 
 .form_label_edit {
@@ -93,8 +95,8 @@
 }
 
 .date_space {
-  width: 200px;
-  margin-left: 6px !important;
+  width: 218px;
+  margin-left: 10px !important;
 }
 
 .dialog_date {
@@ -117,6 +119,13 @@
 .list_buttons {
   height: 35px;
   margin-left: 5px;
+}
+
+.list_div{
+  margin: 7% 5% 5% 15%;
+  position: absolute;
+  height: 500px;
+  width : 800px;
 }
 
 .button_icon {

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 
 export function inputValidation(formValues) {
     return _.values(formValues).some(value => value === '');
@@ -50,4 +51,12 @@ export function getSelectedOption(event, propToGet) {
     const index = event.target[propToGet]?.selectedIndex;
 
     return event.target[propToGet]?.options[index]?.getAttribute('data-id');
+}
+
+export function getMomentFormatter(format) {
+    return {
+        formatDate:  (date, locale) => moment(date).locale(locale).format(format),
+        parseDate:   (str, locale) => moment(str, format).locale(locale).toDate(),
+        placeholder: format
+    };
 }

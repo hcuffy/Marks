@@ -14,7 +14,7 @@ function ExamList({t}) {
                 <ExamListDropdown t={t} />
             </div>
 
-            <div>
+            <div className={css.list_div}>
                 <ExamListInputs />
                 <ExamDialog t={t} />
             </div>
