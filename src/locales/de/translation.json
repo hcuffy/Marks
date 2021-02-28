@@ -208,8 +208,10 @@
     "resetLabel": "Wenn Sie sicher sind, geben Sie JA ein und senden Sie ab:",
     "resetDatabase": "Alle Daten löschen",
     "resetCalendar": "Kalender löschen",
-		"supportText": "Sie mögen diese App? Sie können mir einen Kaffee spendieren."
-	},
+		"supportText": "Sie mögen diese App? Sie können mir einen Kaffee spendieren.",
+    "contact": "Kontact:",
+    "bmc": "Spenden"
+  },
   "calendar": {
     "sectionTitle": "KALENDER",
     "date": "Datum",

@@ -8,3 +8,6 @@ export const actions = {
 };
 
 export const dangerAction = {db: 'db', calendar: 'calendar'};
+
+export const BMC_Link = '';
+
