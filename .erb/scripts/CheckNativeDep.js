@@ -23,23 +23,23 @@ if (dependencies) {
       const plural = filteredRootDependencies.length > 1;
       console.log(`
  ${chalk.whiteBright.bgYellow.bold(
-   'Webpack does not work with native dependencies.'
- )}
+        'Webpack does not work with native dependencies.'
+      )}
 ${chalk.bold(filteredRootDependencies.join(', '))} ${
         plural ? 'are native dependencies' : 'is a native dependency'
-      } and should be installed inside of the "./app" folder.
+      } and should be installed inside of the "./src" folder.
  First, uninstall the packages from "./package.json":
 ${chalk.whiteBright.bgGreen.bold('yarn remove your-package')}
  ${chalk.bold(
-   'Then, instead of installing the package to the root "./package.json":'
- )}
+        'Then, instead of installing the package to the root "./package.json":'
+      )}
 ${chalk.whiteBright.bgRed.bold('yarn add your-package')}
  ${chalk.bold('Install the package to "./src/package.json"')}
-${chalk.whiteBright.bgGreen.bold('cd ./app && yarn add your-package')}
+${chalk.whiteBright.bgGreen.bold('cd ./src && yarn add your-package')}
  Read more about native dependencies at:
 ${chalk.bold(
-  'https://electron-react-boilerplate.js.org/docs/adding-dependencies/#module-structure'
-)}
+        'https://electron-react-boilerplate.js.org/docs/adding-dependencies/#module-structure'
+      )}
  `);
       process.exit(1);
     }
