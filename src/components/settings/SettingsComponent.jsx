@@ -4,6 +4,7 @@ import {withTranslation} from 'react-i18next';
 import AddressComponent from './AddressComponent';
 import GradeSettingComponent from './GradeSettingComponent';
 import ResetButtonsComponent from './ResetComponent';
+import SupportComponent from './SupportComponent';
 import ResetDialog from './ClearDatabaseDialog';
 import css from './style.css';
 
@@ -27,7 +28,9 @@ function SettingsComponent({t}) {
             <div>
                 <ResetDialog/>
             </div>
-
+            <div>
+                <SupportComponent />
+            </div>
         </div>
     );
 }

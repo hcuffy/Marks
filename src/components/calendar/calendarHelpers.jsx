@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import _ from 'lodash';
 
-import {Button, Classes, FormGroup, InputGroup, Intent, Label} from '@blueprintjs/core';
+import {Button, Classes, FormGroup, InputGroup, Intent, NumericInput, Label} from '@blueprintjs/core';
 
 const timeRangeFormat = ({start, end}, culture, local) => `${local.format(start, 'HH:mm', culture)
 } - ${ local.format(end, 'HH:mm', culture)}`;
@@ -51,16 +51,18 @@ export function mapEventsData({events}) {
 
 export function TitleInput({t, title, eventId, intent, label}) {
     return (
-        <div>  <FormGroup inline={false} labelFor={'titleId'} label={t(`calendar.${label}`)}>
-            <InputGroup
-                id={'titleId'}
-                eventid={eventId}
-                name={'title'}
-                type='text'
-                intent={intent}
-                defaultValue={title}
-            />
-        </FormGroup></div>
+        <div>
+            <FormGroup inline={false} labelFor={'titleId'} label={t(`calendar.${label}`)}>
+                <InputGroup
+                    id={'titleId'}
+                    eventid={eventId}
+                    name={'title'}
+                    type='text'
+                    intent={intent}
+                    defaultValue={title}
+                />
+            </FormGroup>
+        </div>
     );
 }
 
@@ -80,6 +82,25 @@ export function DateTimeSelector({t, date, intent, label}) {
                     defaultValue={defaultValue}
                 />
             </Label>
+        </div>
+    );
+}
+
+export function WeekInput({t, intent}) {
+    return (
+        <div>
+            <FormGroup inline={false} labelFor={'weeksId'} label={t('calendar.weekInput')}>
+                <NumericInput
+                    id={'weeksId'}
+                    name={'numOfWeeks'}
+                    type='text'
+                    intent={intent}
+                    defaultValue={0}
+                    min={0}
+                    max={52}
+                    majorStepSize={1}
+                />
+            </FormGroup>
         </div>
     );
 }

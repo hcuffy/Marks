@@ -71,14 +71,8 @@ function StudentListComponent({students, actions}) {
                     onClick={actions.showStudentDialog}
                     text= {`${data.firstname} ${data.lastname}`}
                     data-id={data._id}
-                >
-                    {data.gender === 'male'
-                        ? <span className={`badge badge-warning badge-pill ${css.male}`}>&#9794;
-                        </span>
-                        : <span className={`badge badge-warning badge-pill ${css.female}`}>&#9792;
-                        </span>
-                    }
-                </Button>
+                    className={data.gender === 'male' ? css.male : css.female}
+                />
             </ButtonGroup>
         </div>
     ));

@@ -58,13 +58,50 @@ function isValidTitle({title}) {
     return _.isEmpty(title.trim());
 }
 
+function genrateRecurringEvents(data) {
+    const eventStart = moment(data.startDate);
+    const eventEnd = moment(data.endDate);
+    const weeks = _.clamp(_.floor(data.numOfWeeks), 1, 40);
+    const allEventEnd = moment(eventEnd).add(weeks, 'weeks');
+    const events = [];
+
+    let start = eventStart.clone();
+    let end = eventEnd.clone();
+
+    for (let i = 0; i < data.numOfWeeks; i += 1) {
+        if (start.isSameOrBefore(allEventEnd)) {
+            events.push({
+                startDate: moment(start).format('YYYY-MM-DDTHH:mm'),
+                endDate:   moment(end).format('YYYY-MM-DDTHH:mm'),
+                title:     data.title
+            });
+        }
+        start = start.add(7, 'days');
+        end = end.add(7, 'days');
+    }
+    console.log(events);
+
+    return events;
+}
+
+function handleEventCreate(eventData) {
+    if (_.floor(eventData.numOfWeeks) < 1) {
+        console.log('should not be inhere');
+
+        return _.omit(eventData, 'numOfWeeks');
+    }
+
+    return genrateRecurringEvents(eventData);
+}
+
 async function addOrUpdateEvent(eventId, eventData) {
     if (eventId) {
-        await updateCalendarEvent(eventId, eventData);
+        await updateCalendarEvent(eventId, _.omit(eventData, 'numOfWeeks'));
     }
 
     if (_.isNull(eventId)) {
-        await addCalendarEvent(eventData);
+        const allEvents = handleEventCreate(eventData);
+        await addCalendarEvent(allEvents);
     }
 
     return getAllEvents();
@@ -77,7 +114,7 @@ export function handleEventCreation(event) {
         let events;
         let showDialog = true;
         let eventId = getCustomAttribute('eventid', 'titleId', event);
-        const eventData = getFormValues(['startDate', 'endDate', 'title'], event);
+        const eventData = getFormValues(['startDate', 'endDate', 'title', 'numOfWeeks'], event);
         const isInvalid = !isValidateDate(eventData) || isValidTitle(eventData);
 
         if (!isInvalid) {

@@ -3,6 +3,7 @@ import _ from 'lodash';
 import {actions, dangerAction} from './constants';
 import {saveGradeSystem, updateGradeType, addAddress, getSettingsData, clearDatabases, clearCalendar} from '../../collections';
 import {getAttribute, getCustomAttribute, getFormValues} from '../helpers';
+import {getEvents} from '../calendar/actions';
 
 export function updateGradingSystem(event) {
     return async dispatch => {
@@ -83,9 +84,10 @@ function validateData(confirmationText) {
     return {isInvalid, showDialog};
 }
 
-function clearSpecificDB(resetId) {
+async function clearSpecificDB(resetId) {
     if (resetId === dangerAction.calendar) {
-        clearCalendar();
+        await clearCalendar();
+        await getEvents();
     } else if (resetId === dangerAction.db) {
         clearDatabases();
     }

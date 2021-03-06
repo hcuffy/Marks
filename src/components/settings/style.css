@@ -9,7 +9,7 @@
 }
 
 .address_wrapper {
-  height: 330px;
+  height: 350px;
 }
 
 .main_header {
@@ -74,4 +74,15 @@
 
 .reset_db {
   margin-left: 5px;
+}
+
+.support_div {
+  padding: 10% 0 0 5%;
+  float: left;
+  height: 200px;
+  width: 50%;
+}
+
+.contact_btn {
+  margin-top: 10px;
 }

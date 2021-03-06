@@ -208,7 +208,9 @@
     "resetLabel": "If you are sure type YES then submit:",
     "resetDatabase": "Clear All Data",
     "resetCalendar": "Clear Calendar",
-    "supportText": "Do you like this app? Consider supporting."
+    "supportText": "Do you like this app? Consider supporting.",
+    "contact": "Contact:",
+    "bmc": "Donate"
   },
   "calendar": {
     "sectionTitle": "CALENDAR",
@@ -231,6 +233,7 @@
     "titleLabel": "Event title:",
     "addDialog": "Add a new event:",
     "editDialog": "Edit your event:",
+    "weekInput" : "Number of weeks to repeat:",
     "start": "Start",
     "end": "End"
   }
