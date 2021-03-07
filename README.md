@@ -15,7 +15,7 @@ git clone https://github.com/hcuffy/Marks
 Then install the dependencies with yarn.
 
 ```bash
-$ cd marks
+$ cd Marks
 $ yarn
 ```
 

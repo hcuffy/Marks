@@ -3,11 +3,11 @@ import * as NeDB from 'nedb';
 import * as thenify from 'thenify';
 import _ from 'lodash';
 
-const electron = require('electron');
+const {remote} = require('electron');
 const path = require('path');
 const fs = require('fs');
 
-const userDataPath = (electron.app || electron.remote.app).getPath('userData');
+const userDataPath = remote.app.getPath('userData');
 const collectionsPath = path.join(userDataPath, 'collections');
 
 (function createCollectionPath() {

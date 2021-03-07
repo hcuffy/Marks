@@ -1,6 +1,5 @@
 /* eslint-disable max-lines*/
 import {app, Menu, shell} from 'electron';
-import {customMenuTranslation} from './utils';
 
 export default class MenuBuilder {
     constructor(mainWindow) {
@@ -21,7 +20,6 @@ export default class MenuBuilder {
     }
 
     setupDevelopmentEnvironment() {
-        this.mainWindow.openDevTools();
         this.mainWindow.webContents.on('context-menu', (_, props) => {
             const {x, y} = props;
 
@@ -37,28 +35,30 @@ export default class MenuBuilder {
     }
 
     buildDarwinTemplate() {
-        const locale = app.getLocale().slice(0, 2);
         const subMenuAbout = {
             label:   'Marks',
             submenu: [
                 {
-                    label:    customMenuTranslation(locale, 'about'),
+                    label:    'About ElectronReact',
                     selector: 'orderFrontStandardAboutPanel:'
                 },
                 {type: 'separator'},
+                {label: 'Services', submenu: []},
+                {type: 'separator'},
                 {
-                    label:       customMenuTranslation(locale, 'hide'),
+                    label:       'Hide ElectronReact',
                     accelerator: 'Command+H',
                     selector:    'hide:'
                 },
                 {
-                    label:       customMenuTranslation(locale, 'others'),
+                    label:       'Hide Others',
                     accelerator: 'Command+Shift+H',
                     selector:    'hideOtherApplications:'
                 },
+                {label: 'Show All', selector: 'unhideAllApplications:'},
                 {type: 'separator'},
                 {
-                    label:       customMenuTranslation(locale, 'quit'),
+                    label:       'Quit',
                     accelerator: 'Command+Q',
                     click:       () => {
                         app.quit();
@@ -68,7 +68,7 @@ export default class MenuBuilder {
         };
 
         const subMenuViewDev = {
-            label:   customMenuTranslation(locale, 'view'),
+            label:   'View',
             submenu: [
                 {
                     label:       'Reload',
@@ -78,56 +78,61 @@ export default class MenuBuilder {
                     }
                 },
                 {
-                    label:       customMenuTranslation(locale, 'toggle'),
+                    label:       'Toggle Full Screen',
                     accelerator: 'Ctrl+Command+F',
                     click:       () => {
-                        if (!this.mainWindow.isDestroyed()) {
-                            this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
-                        }
+                        this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
                     }
                 },
                 {
                     label:       'Toggle Developer Tools',
                     accelerator: 'Alt+Command+I',
                     click:       () => {
-                        this.mainWindow.toggleDevTools();
+                        this.mainWindow.webContents.toggleDevTools();
                     }
                 }
             ]
         };
         const subMenuViewProd = {
-            label:   customMenuTranslation(locale, 'view'),
+            label:   'View',
             submenu: [
                 {
-                    label:       customMenuTranslation(locale, 'toggle'),
+                    label:       'Toggle Full Screen',
                     accelerator: 'Ctrl+Command+F',
                     click:       () => {
-                        if (!this.mainWindow.isDestroyed()) {
-                            this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
-                        }
+                        this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
                     }
                 }
             ]
         };
         const subMenuWindow = {
-            label:   customMenuTranslation(locale, 'window'),
+            label:   'Window',
             submenu: [
                 {
-                    label:       customMenuTranslation(locale, 'mini'),
+                    label:       'Minimize',
                     accelerator: 'Command+M',
                     selector:    'performMiniaturize:'
                 },
+                {label: 'Close', accelerator: 'Command+W', selector: 'performClose:'},
+                {type: 'separator'},
+                {label: 'Bring All to Front', selector: 'arrangeInFront:'}
+            ]
+        };
+        const subMenuHelp = {
+            label:   'Help',
+            submenu: [
                 {
-                    label:       customMenuTranslation(locale, 'close'),
-                    accelerator: 'Command+W',
-                    selector:    'performClose:'
+                    label: 'Learn More',
+                    click() {
+                        shell.openExternal('https://electronjs.org');
+                    }
                 }
             ]
         };
 
-        const subMenuView = process.env.NODE_ENV === 'development' ? subMenuViewDev : subMenuViewProd;
+        const subMenuView = process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true' ? subMenuViewDev : subMenuViewProd;
 
-        return [subMenuAbout, subMenuView, subMenuWindow];
+        return [subMenuAbout, subMenuView, subMenuWindow, subMenuHelp];
     }
 
     buildDefaultTemplate() {
@@ -151,8 +156,7 @@ export default class MenuBuilder {
             {
                 label:   '&View',
                 submenu:
-          process.env.NODE_ENV === 'development' ||
-          process.env.DEBUG_PROD === 'true'
+          process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true'
               ? [
                   {
                       label:       '&Reload',
@@ -189,37 +193,6 @@ export default class MenuBuilder {
                       }
                   }
               ]
-            },
-            {
-                label:   'Help',
-                submenu: [
-                    {
-                        label: 'Learn More',
-                        click() {
-                            shell.openExternal('https://electronjs.org');
-                        }
-                    },
-                    {
-                        label: 'Documentation',
-                        click() {
-                            shell.openExternal(
-                                'https://github.com/electron/electron/tree/master/docs#readme'
-                            );
-                        }
-                    },
-                    {
-                        label: 'Community Discussions',
-                        click() {
-                            shell.openExternal('https://www.electronjs.org/community');
-                        }
-                    },
-                    {
-                        label: 'Search Issues',
-                        click() {
-                            shell.openExternal('https://github.com/electron/electron/issues');
-                        }
-                    }
-                ]
             }
         ];
 
