@@ -48,6 +48,7 @@ export function NameInputFields({t, studentData}) {
             <FormGroup inline={true} labelFor={`${data}_Id`} className={css.input_field} label={t(`student.${data}`)}>
                 <InputGroup
                     name={data}
+                    className={css.input_width}
                     id={`${data}_Id`}
                     data-id='titleId'
                     data-go={studentData.data}

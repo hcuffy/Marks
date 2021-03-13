@@ -35,7 +35,7 @@ function AddressFormComponent({t, addressData, actions}) {
 
                 <AddressFields t={t} addressData={addressData}/>
 
-                <div className={(css.form_inner_div, css.save_btn)}>
+                <div className={`${css.form_inner_div} ${css.save_btn}`}>
                     <Button type='submit' intent={Intent.SUCCESS} text={t('general.save')} />
                 </div>
             </div>

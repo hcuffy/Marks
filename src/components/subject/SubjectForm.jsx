@@ -24,7 +24,7 @@ function SubjectForm({t, classListData, classes, actions}) {
 
                 <div className={css.form_div}>
                     <Label className={'bp3-inline'} htmlFor='cSelect'>{t('general.selectClass')}
-                        <HTMLSelect type='text' name='room' id={'cSelect'}>
+                        <HTMLSelect type='text' name='room' id={'cSelect'} className={css.dropdown_width}>
                             {selectOption}
                         </HTMLSelect>
                     </Label>
