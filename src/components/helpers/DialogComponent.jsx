@@ -18,7 +18,7 @@ function DialogFooter({t, footerData}) {
                     data-id={dataId}
                     name={nameId}
                 />
-                <Button type='submit' intent={Intent.SUCCESS} text={t('general.update')} Z/>
+                <Button type='submit' intent={Intent.SUCCESS} text={t('general.update')}/>
 
             </div>
         </div>
