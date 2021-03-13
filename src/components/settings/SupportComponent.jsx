@@ -7,7 +7,6 @@ import {openResource} from '../../utils';
 import {BMC_Link} from './constants';
 import css from './style.css';
 
-//TODO: Don't forget to add the real BMC_Link once it is created
 function SupportComponent({t}) {
     return (
         <div className={css.support_div}>

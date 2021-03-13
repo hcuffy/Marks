@@ -1,10 +1,14 @@
 import React from 'react';
+import moment from 'moment';
 import {Line} from 'react-chartjs-2';
 import {connect} from 'react-redux';
 
 import {chartData} from './chart/chartData';
 import {chartOptions} from './chart/chartOptions';
+import {getUserLocale} from '../../utils';
 import css from './style.css';
+
+moment.locale(getUserLocale());
 
 function StudentChart({t, studentData, exams, grades, settings}) {
     return (
