@@ -3,10 +3,10 @@ import _ from 'lodash';
 import {filterBySubject} from '../../graphs/chartData';
 import {resolveLabel} from '../../../utils';
 
-function filteredGrades({studentGraphId}, grades) {
+function filteredGrades({studentId}, grades) {
     const data = [];
     const studentGrades = _.sortBy(
-        _.filter(grades, grade => grade?.studentId === studentGraphId && grade?.grade > 0), ['date']
+        _.filter(grades, grade => grade?.studentId === studentId && grade?.grade > 0), ['date']
     );
 
     for (let i = 0; i < studentGrades.length; i += 1) {
@@ -19,10 +19,10 @@ function filteredGrades({studentGraphId}, grades) {
     return data;
 }
 
-function filterSubjectGrades({studentGraphId, subjectGraphId}, exams, grades) {
-    const allSubjectsGrade = filterBySubject(subjectGraphId, exams, grades);
+function filterSubjectGrades({studentId, subjectId}, exams, grades) {
+    const allSubjectsGrade = filterBySubject(subjectId, exams, grades);
 
-    return _.filter(allSubjectsGrade, ['studentId', studentGraphId]);
+    return _.filter(allSubjectsGrade, {studentId});
 }
 
 export function chartHeader(t, {studentName, subjectName, chartToDisplay}) {

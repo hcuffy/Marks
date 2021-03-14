@@ -59,7 +59,7 @@ export function showStudentDialog(event) {
     };
 }
 
-export function showStudent(event) {
+export function showStudentGraph(event) {
     return dispatch => {
         if (event['data-check'] !== 'studentDropdown') {
             return;
@@ -79,7 +79,7 @@ export function showStudent(event) {
     };
 }
 
-export function showSubject(event) {
+export function showSubjectGraph(event) {
     return dispatch => {
         if (event['data-check'] !== 'subjectDropdown') {
             return;
