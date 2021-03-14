@@ -73,7 +73,7 @@ async function deleteSubjectByClassroom(classroomId) {
     }
 }
 
-export async function deleteClassroom({id}) {
+export async function deleteClassroom(id) {
     await Classroom.remove({_id: id});
     await deleteSubjectByClassroom(id);
     const result = await Classroom.find({});
