@@ -2,14 +2,14 @@ import _ from 'lodash';
 import React from 'react';
 import moment from 'moment';
 
-import {NumericInput, Icon} from '@blueprintjs/core';
+import {InputGroup, Icon} from '@blueprintjs/core';
 import css from './style.css';
 
 function customCell(props, actions) {
     const {score, studentId, subjectName, subjectId, examId, date, weight, gradeId} = props.value;
 
     return (
-        <NumericInput
+        <InputGroup
             defaultValue={score}
             studentid={studentId}
             subjectname={subjectName}
