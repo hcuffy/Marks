@@ -128,9 +128,8 @@ export async function updateRoomData(data) {
 }
 
 export async function updateSubjectArray(data) {
-    console.log({data});
     let result = await Classroom.findOne({name: data.name});
-    console.log({result});
+
     if (_.size(result)) {
         await updateSingleClassroom(result, data);
     }
