@@ -37,7 +37,7 @@ export function AddClassroomFormComponent({t, classData, actions}) {
 
                     <FormInputs t={t} classData={classData}/>
 
-                    <div className={`${css.form_div} ${css.save_btn}`}>
+                    <div className={css.save_btn}>
                         <Button type='submit' intent={Intent.SUCCESS} text={t('general.add')}/>
                     </div>
                 </div>
