@@ -1,3 +1,3 @@
 export * from './classroom';
-export * from './classroomModal';
+export * from './classroomDialog';
 export * from './tab';

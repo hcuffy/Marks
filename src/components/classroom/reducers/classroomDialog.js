@@ -1,4 +1,4 @@
-import {classroomModalHandlers} from './reducerHandlers';
+import {classroomDialogHandlers} from './reducerHandlers';
 import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
@@ -8,5 +8,5 @@ const initialLoadState = {
 };
 
 export function applyClassDialog(state = initialLoadState, action) {
-    return reducerActionHandler(state, action, classroomModalHandlers);
+    return reducerActionHandler(state, action, classroomDialogHandlers);
 }

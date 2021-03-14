@@ -7,7 +7,7 @@ export const classroomHandlers = {
     [actions.CLASSROOM_FORM_VALIDATION]: defaultStateUpdater
 };
 
-export const classroomModalHandlers = {
+export const classroomDialogHandlers = {
     [actions.OPEN_CLOSE_ROOM_MODAL]:      dialogStateUpdater,
     [actions.UPDATE_CLASSROOM]:           dialogStateUpdater,
     [actions.CLASSROOM_MODAL_VALIDATION]: defaultStateUpdater
