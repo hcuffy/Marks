@@ -2,7 +2,6 @@ import {classlistHandlers, subjectDataHandlers} from './reducerHandlers';
 import {reducerActionHandler} from '../../../reducers/reducerUtils.js';
 
 const initialLoadState = {
-    openModal:    false,
     classroom:    null,
     name:         '',
     abbreviation: '',

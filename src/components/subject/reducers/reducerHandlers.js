@@ -13,7 +13,7 @@ export const subjectDataHandlers = {
 };
 
 export const subjectDialogHandlers = {
-    [actions.OPEN_CLOSE_SUBJECT_MODAL]: dialogStateUpdater,
-    [actions.UPDATE_SUBJECT]:           dialogStateUpdater,
-    [actions.SUBJECT_MODAL_VALIDATION]: defaultStateUpdater
+    [actions.OPEN_CLOSE_SUBJECT_DIALOG]: dialogStateUpdater,
+    [actions.UPDATE_SUBJECT]:            dialogStateUpdater,
+    [actions.SUBJECT_MODAL_VALIDATION]:  defaultStateUpdater
 };

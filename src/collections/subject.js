@@ -63,7 +63,7 @@ async function deleteExamsBySubject(subjectId) {
     }
 }
 
-export async function deleteSubject({id}) {
+export async function deleteSubject(id) {
     try {
         await Subject.remove({_id: id});
         await filteredExams(id);

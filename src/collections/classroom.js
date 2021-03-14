@@ -64,7 +64,8 @@ async function deleteSubjectByClassroom(classroomId) {
 
         if (!_.isEmpty(subjects)) {
             _.forEach(subjects, subject => {
-                deleteSubject({classroomId: subject._id});
+                const id = subject._id;
+                deleteSubject(id);
             });
         }
     } catch (e) {

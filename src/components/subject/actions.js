@@ -53,15 +53,12 @@ export function getSubject(event) {
 
 export function deleteSingleSubject(event) {
     return async dispatch => {
-        const subjectData = {
-            id: event.target.getAttribute('data-id')
-        };
-
-        const data = await deleteSubject(subjectData);
+        const id = getAttribute('data-id', event);
+        const data = await deleteSubject(id);
 
         dispatch({
-            type:    actions.OPEN_CLOSE_SUBJECT_MODAL,
-            payload: subjectData
+            type:    actions.OPEN_CLOSE_SUBJECT_DIALOG,
+            payload: {id: null, showDialog: false}
         });
 
         dispatch({
@@ -76,7 +73,7 @@ async function updateSubjectDispatcher(subjectData, dispatch) {
     const data = await getAllSubjects();
 
     dispatch({
-        type:    actions.OPEN_CLOSE_SUBJECT_MODAL,
+        type:    actions.OPEN_CLOSE_SUBJECT_DIALOG,
         payload: {id: subjectData.subjectId}
     });
 
@@ -129,7 +126,7 @@ export function displaySubjectDialog(event) {
         const subjectId = {id: getAttribute('data-id', event)};
 
         dispatch({
-            type:    actions.OPEN_CLOSE_SUBJECT_MODAL,
+            type:    actions.OPEN_CLOSE_SUBJECT_DIALOG,
             payload: {...subjectId, isInvalid: false}
         });
     };
