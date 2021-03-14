@@ -9,5 +9,5 @@ export const actions = {
 
 export const dangerAction = {db: 'db', calendar: 'calendar'};
 
-export const BMC_Link = '';
+export const BMC_Link = 'https://www.buymeacoffee.com/marksApp';
 

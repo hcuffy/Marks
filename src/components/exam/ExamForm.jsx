@@ -34,7 +34,7 @@ function ClassSelect({t, options, action}) {
                     onChange={action}
                     name='room'
                     data-id='classSelection'
-                    className={css.input_space}
+                    className={`${css.input_space} ${css.dropdown_width}`}
                     type='text'
                 >
                     {options}
@@ -51,7 +51,7 @@ function SubjectSelect({t, options}) {
                 <HTMLSelect
                     name='subject'
                     data-id='subjectSelection'
-                    className={css.input_space}
+                    className={`${css.input_space} ${css.dropdown_width}`}
                     type='text'
                 >
                     {options}

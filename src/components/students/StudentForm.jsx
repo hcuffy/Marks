@@ -17,7 +17,7 @@ function AddStudentForm({t, studentData, classData, actions}) {
                 <GenderSelect t={t} gender={'male'}/>
                 <ClassroomSelect t={t} classData={classData.classData} classroom={null}/>
 
-                <div className={(css.form_inner_div, css.save_btn)}>
+                <div className={`${css.form_inner_div} ${css.save_btn}`}>
                     <Button type='submit' intent={Intent.SUCCESS} text={t('general.add')}/>
                 </div>
             </div>

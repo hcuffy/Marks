@@ -1,24 +1,25 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import {AnchorButton, Tag, Intent} from '@blueprintjs/core';
+import {Button, Tag, Intent} from '@blueprintjs/core';
 
+import bmc from './images/bmc.svg';
 import {openResource} from '../../utils';
 import {BMC_Link} from './constants';
 import css from './style.css';
 
-//TODO: Don't forget to add the real BMC_Link once it is created
 function SupportComponent({t}) {
     return (
         <div className={css.support_div}>
             <div>
-                <AnchorButton
-                    icon='bank-account'
+                <Button
                     rightIcon='share'
-                    text={t('settings.bmc')}
                     intent={Intent.SUCCESS}
                     data-name={BMC_Link}
                     onClick={openResource}
-                />
+                >
+                    <img src={bmc} alt='Buy Me a Coffee' />
+                    {t('settings.bmc')}
+                </Button>
             </div>
 
             <div className={css.contact_btn}>
