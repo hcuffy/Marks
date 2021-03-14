@@ -39,7 +39,7 @@ export function getSubjectData() {
     };
 }
 
-export function showSubject(event) {
+export function getSubject(event) {
     return async dispatch => {
         const classroom = event.name;
         await getSubjectData();
