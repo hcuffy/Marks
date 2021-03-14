@@ -3,6 +3,7 @@
 
 GitHub Pages: https://hcuffy.github.io/Marks/
 
+Buymeacoffee: https://www.buymeacoffee.com/marksApp
 
 ## Installation
 
