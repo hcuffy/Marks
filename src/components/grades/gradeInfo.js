@@ -64,7 +64,6 @@ function studentAverage(grades) {
 
 function getAverage(grades) {
     const withoutZeros = _.filter(grades, 'score');
-
     const average = _.isEmpty(withoutZeros) ? 0 : studentAverage(withoutZeros);
 
     return {average};
