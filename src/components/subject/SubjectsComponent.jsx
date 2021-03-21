@@ -22,7 +22,7 @@ function SubjectsComponent({t, classes, classListData, actions}) {
             <div className={css.subject_left}>
                 <h4 className={css.subject_header}>{t('room.subjectHeader')}</h4>
 
-                <DropdownComponent items={items} action={actions.showSubject} label={label} disabled={_.isEmpty(classes)}/>
+                <DropdownComponent items={items} action={actions.getSubject} label={label} disabled={_.isEmpty(classes)}/>
 
                 <SubjectList t={t} selectedClass={selectedClass} />
             </div>

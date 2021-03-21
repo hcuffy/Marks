@@ -64,7 +64,8 @@ async function deleteSubjectByClassroom(classroomId) {
 
         if (!_.isEmpty(subjects)) {
             _.forEach(subjects, subject => {
-                deleteSubject({classroomId: subject._id});
+                const id = subject._id;
+                deleteSubject(id);
             });
         }
     } catch (e) {
@@ -73,7 +74,7 @@ async function deleteSubjectByClassroom(classroomId) {
     }
 }
 
-export async function deleteClassroom({id}) {
+export async function deleteClassroom(id) {
     await Classroom.remove({_id: id});
     await deleteSubjectByClassroom(id);
     const result = await Classroom.find({});
@@ -128,9 +129,8 @@ export async function updateRoomData(data) {
 }
 
 export async function updateSubjectArray(data) {
-    console.log({data});
     let result = await Classroom.findOne({name: data.name});
-    console.log({result});
+
     if (_.size(result)) {
         await updateSingleClassroom(result, data);
     }

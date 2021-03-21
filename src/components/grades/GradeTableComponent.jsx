@@ -36,7 +36,7 @@ function GradeTableComponent({t, gradeData, students, actions}) {
                 data={_.sortBy(data, ['name'], ['asc'])}
                 columns={gradeColumns({t, newData: data, actions})}
                 className='-striped -highlight'
-                style={{height: '650px'}}
+                style={{height: '630px'}}
                 {...tableOptions(t)}
             />
         </div>

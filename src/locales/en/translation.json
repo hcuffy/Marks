@@ -94,84 +94,84 @@
       "name": "Class 5",
 			"german": {
 				"subject": "German",
-				"question0": "Translation coming soon.",
-				"question1": "Translation coming soon.",
-				"question2": "Translation coming soon.",
-				"question3": "Translation coming soon.",
-				"question4": "Translation coming soon.",
-				"question5": "Translation coming soon."
+				"question0": "The student often volunteers to read and enjoys reading books from the classroom library.",
+				"question1": "The student reads very fluently and with emphasis.",
+				"question2": "The student participates very actively in spelling exercises, applying learned strategies.",
+				"question3": "The student demonstrates confidence in naming parts of speech.",
+				"question4": "The student revises his/her own texts reliably after writing conferences.",
+				"question5": "The student plans his/her writing in a planned manner."
 			},
 			"math": {
 				"subject": "Mathematics",
-				"question0": "Translation coming soon.",
-				"question1": "Translation coming soon.",
-				"question2": "Translation coming soon.",
-				"question3": "Translation coming soon."
+				"question0": "The student shows confidence in dealing with large natural numbers (millions, billions).",
+				"question1": "The student knows how to take a survey and display the results on a graph.",
+				"question2": "The student demonstrates confidence in written arithmetic procedures (+, -, : , -).",
+				"question3": "The student has a very good command of the 1x1."
 			},
 			"eng": {
 				"subject": "English",
-				"question0": "Translation coming soon.",
-				"question1": "Translation coming soon.",
-				"question2": "Translation coming soon.",
-				"question3": "Translation coming soon."
+				"question0": "The student responds to the teacher's English work instructions.",
+				"question1": "The student learns vocabulary regularly and repeats it continuously.",
+				"question2": "The student appears confident and well-prepared when presenting in English.",
+				"question3": "The student independently clarifies unknown words and their pronunciation using the Internet/dictionary."
 			},
 			"sci": {
 				"subject": "Science",
-				"question0": "Translation coming soon.",
-				"question1": "Translation coming soon.",
-				"question2": "Translation coming soon.",
-				"question3": "Translation coming soon."
+				"question0": "The student shows interest in scientific work (observation, experimentation, research).",
+				"question1": "The student uses technical terms correctly.",
+				"question2": "The student independently uses different sources of information and media.",
+				"question3": "The student understands the connection between the everyday world and scientific knowledge."
 			},
 			"music": {
 				"subject": "Music",
-				"question0": "Translation coming soon.",
-				"question1": "Translation coming soon.",
-				"question2": "Translation coming soon."
+				"question0": "The student perceives musical sounds consciously through attentive listening.",
+				"question1": "The student expresses his or her opinion on different musical genres and thereby recognizes his or her own preferences.",
+				"question2": "The student enjoys (re)producing musical sounds (singing, instrumental)."
 			},
 			"art": {
 				"subject": "Art",
-				"question0": "Translation coming soon.",
-				"question1": "Translation coming soon.",
-				"question2": "Translation coming soon.",
-				"question3": "Translation coming soon."
+				"question0": "The student perceives visual representations accurately and can describe them.",
+				"question1": "The student is able to evaluate works according to specific criteria.",
+				"question2": "The student demonstrates a high degree of creativity and implements this creativity creatively.",
+				"question3": "The student adheres to deadlines."
 			},
 			"work": {
 				"subject": "Work and Design",
-				"question0": "Translation coming soon.",
-				"question1": "Translation coming soon.",
-				"question2": "Translation coming soon.",
-				"question3": "Translation coming soon."
+				"question0": "The student analyzes and consciously perceives creative products.",
+				"question1": "The student shows creativity in the production of individual workpieces.",
+				"question2": "The student proceeds in a planned/considered manner when designing.",
+				"question3": "The student realistically evaluates his/her own performance as well as the performance of others."
 			},
 			"sport": {
 				"subject": "Sports",
-				"question0": "Translation coming soon.",
-				"question1": "Translation coming soon.",
-				"question2": "Translation coming soon.",
-				"question3": "Translation coming soon."
+				"question0": "The student processes successes and failures in sports appropriately.",
+				"question1": "The student shows enjoyment of movement.",
+				"question2": "The student follows the rules when playing.",
+				"question3": "The student behaves fairly and cooperatively within the group."
 			},
 			"history": {
 				"subject": "History",
-				"question0": "Translation coming soon.",
-				"question1": "Translation coming soon.",
-				"question2": "Translation coming soon.",
-				"question3": "Translation coming soon."
+				"question0": "The student shows interest in subject-specific questions.",
+				"question1": "The student wants to research/investigate various topics largely independently.",
+				"question2": "The student explains and gives reasons for his/her opinions on various topics.",
+				"question3": "The student applies his/her knowledge correctly in performance assessments."
 			},
 			"general": {
 				"subject": "General",
-				"question0": "Translation coming soon.",
-				"question1": "Translation coming soon.",
-				"question2": "Translation coming soon.",
-				"question3": "Translation coming soon.",
-				"question4": "Translation coming soon.",
-				"question5": "Translation coming soon.",
-				"question6": "Translation coming soon.",
-				"question7": "Translation coming soon.",
-				"question8": "Translation coming soon.",
-				"question9": "Translation coming soon.",
-				"question10": "Translation coming soon.",
-				"question11": "Translation coming soon.",
-				"question12": "Translation coming soon.",
-				"question13": "Translation coming soon."
+				"question0": "The student accepts his/her classmates.",
+				"question1": "The student looks out not only for his/her own interests but also for those of others.",
+				"question2": "The student likes to offer help to others.",
+				"question3": "The student adheres to important rules of conversation.",
+				"question4": "The student is not involved in any disputes.",
+				"question5": "The student is very involved in group or partner work.",
+				"question6": "The student reliably completes his/her weekly plans.",
+				"question7": "The student ask for clarification in case of ambiguity.",
+				"question8": "The student prepares adequately for rehearsals.",
+				"question9": "The student works beyond the required level.",
+				"question10": "The student returns important documents (parent letters, rehearsals) on time.",
+				"question11": "The student neatly organizes his/her notebook entries.",
+				"question12": "The student makes sure his/her notebook is complete.",
+				"question13": "The student's handwriting is legible."
 			}
 		}
 	},

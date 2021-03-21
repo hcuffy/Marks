@@ -22,7 +22,7 @@
 		"selectStudent": "Scüler/in auswählen",
 		"selectExam": "Leistungsnachweise auswählen",
     "selectNote": "Notiz auswählen",
-    "selectQuestions": "Question Set",
+    "selectQuestions": "Fragenkatalog",
 		"saveAs": "speichern als"
 	},
 	"room": {
@@ -227,11 +227,11 @@
     "yesterday": "Gestern",
     "tomorrow": "Morgen",
     "today": "Heute",
-    "agenda": "Tagesordnung",
+    "agenda": "Planung",
     "noEventsInRange": "Es gibt keine Ereignisse in diesem Bereich.",
     "more": "mehr",
-    "addDialog": "Fügen Sie ein neues Ereignis hinzu:",
-    "editDialog": "Bearbeiten Sie Ihr EreignisZ:",
+    "addDialog": "Fügen Sie einen neuen Termin hinzu:",
+    "editDialog": "Bearbeiten Sie Ihren Termin:",
     "weekInput" : "Anzahl der zu wiederholenden Wochen:",
     "start": "Start",
     "end": "Ende"

@@ -24,7 +24,7 @@ function StudentDropdown({t, studentData, subjectData, actions}) {
             <div className={css.left_dropdown}>
                 <DropdownComponent
                     items={studentItems}
-                    action={actions.showStudent}
+                    action={actions.showStudentGraph}
                     label={studentLabel}
                     disabled={_.isEmpty(students)}
                 />
@@ -32,7 +32,7 @@ function StudentDropdown({t, studentData, subjectData, actions}) {
             <div className={css.right_dropdown}>
                 <DropdownComponent
                     items={subjectItems}
-                    action={actions.showSubject}
+                    action={actions.showSubjectGraph}
                     label={subjectLabel}
                     disabled={false}
                 />

@@ -12,9 +12,9 @@ function getCurrentModalData(CurrentModalData) {
     return _.pick(CurrentModalData, ['name', 'teacher', 'substitute']);
 }
 
-function RoomDialog({t, classData, classModalData, actions}) {
-    const {id, showDialog, isInvalid} = classModalData;
-    const selection = isInvalid ? getCurrentModalData(classModalData) : filterObjectData(classData, id);
+function RoomDialog({t, classData, classDialogData, actions}) {
+    const {id, showDialog, isInvalid} = classDialogData;
+    const selection = isInvalid ? getCurrentModalData(classDialogData) : filterObjectData(classData, id);
     const roomInputs = <DialogInputs t={t} selection={selection} isInvalid={isInvalid} label={'room'}/>;
     const hiddenInput = <input type='hidden' name='oldName' data-id={selection.name} />;
     const {showRoomDialog, deleteRoom} = actions;
@@ -28,8 +28,8 @@ function RoomDialog({t, classData, classModalData, actions}) {
 }
 
 const mapStateToProps = state => ({
-    classModalData: state.classModalData,
-    classData:      state.classData?.classData
+    classDialogData: state.classDialogData,
+    classData:       state.classData?.classData
 });
 
 const mapDispatchToProps = dispatch => ({

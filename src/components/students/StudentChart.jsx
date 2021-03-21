@@ -8,9 +8,9 @@ import {chartOptions} from './chart/chartOptions';
 import {getUserLocale} from '../../utils';
 import css from './style.css';
 
-moment.locale(getUserLocale());
-
 function StudentChart({t, studentData, exams, grades, settings}) {
+    moment.locale(getUserLocale());
+
     return (
         <div className={css.chart}>
             <Line

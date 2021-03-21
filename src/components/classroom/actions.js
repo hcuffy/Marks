@@ -93,23 +93,19 @@ export function updateRoom(event) {
 
 export function deleteRoom(event) {
     return async dispatch => {
-        const roomData = {
-            id:         getAttribute('data-id', event),
-            showDialog: true
-        };
-
-        const docs = await deleteClassroom(roomData);
+        const id = getAttribute('data-id', event);
+        const docs = await deleteClassroom(id);
 
         if (docs) {
             dispatch({
                 type:    actions.GET_CLASSROOM_DATA,
-                payload: {classData: docs}
+                payload: {classData: docs, id: null, showDialog: false}
             });
         }
 
         dispatch({
             type:    actions.UPDATE_CLASSROOM,
-            payload: roomData
+            payload: {id: null, showDialog: false}
         });
     };
 }

@@ -38,6 +38,7 @@ if (
     require('electron-debug')();
 }
 
+// eslint-disable-next-line require-await
 const installExtensions = async() => {
     const installer = require('electron-devtools-installer');
     const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
