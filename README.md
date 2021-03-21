@@ -1,5 +1,6 @@
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/hcuffy/Marks/master?style=for-the-badge)
-![GitHub release (latest by date)](https://img.shields.io/github/downloads/hcuffy/marks/latest/total?color=neon&label=Released%20Version%20Downloads&style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/downloads/hcuffy/marks/v1.3.1/total?color=neon&style=for-the-badge)
+
 GitHub Pages: https://hcuffy.github.io/Marks/
 
 Buymeacoffee: https://www.buymeacoffee.com/marksApp
