@@ -33,7 +33,7 @@ function SidemenuComponent({menuStylingData, actions}) {
                 onClick={openResource}
                 className={css.version}
                 data-name={RELEASE_LINK}
-                text={'ver. 1.3.2'}
+                text={'ver. 1.4.0'}
             />
         </div>
     );
