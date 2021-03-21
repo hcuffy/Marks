@@ -13,6 +13,8 @@ body {
 
 .main_div {
   text-align: center;
+  height: 800px;
+  margin-bottom: 100px;
 }
 
 .description {
@@ -21,7 +23,7 @@ body {
 }
 
 .btn_div {
-  margin: 50px auto auto auto;
+  margin: 30px auto 100px auto;
   width: 50%;
 }
 
@@ -29,7 +31,6 @@ body {
   width: 25%;
   float: left;
 }
-
 .right_btn {
   width: 25%;
   float: right;
@@ -65,13 +66,30 @@ img {
 }
 
 footer {
-  margin-left: 25%;
-  height: 50px;
-  position: absolute;
-  bottom: -900px;
+  margin: auto;
+  position: relative;
+  width: 285px;
+  bottom: 0;
 }
 
 .btn_color {
   background-color: #1dbb90;
   border-color: #1dbb90;
+}
+
+.btn_caption {
+  font-size: 10px;
+}
+
+.date_div {
+  width: 15%;
+  margin: 10px auto 0 auto;
+}
+
+.footer_span {
+  height: 50px;
+}
+
+a {
+  float: right;
 }
