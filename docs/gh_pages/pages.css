@@ -23,7 +23,7 @@ body {
 }
 
 .btn_div {
-  margin: 30px auto 100px auto;
+  margin: 30px auto 110px auto;
   width: 50%;
 }
 
@@ -44,6 +44,7 @@ body {
 .feature_div {
   width: 50%;
   text-align: left;
+  padding-top: 10px;
 }
 
 .img_inner_div {
@@ -79,6 +80,9 @@ footer {
 
 .btn_caption {
   font-size: 10px;
+  text-align: center;
+  width: 200px;
+  display: inline-block;
 }
 
 .date_div {
@@ -90,6 +94,11 @@ footer {
   height: 50px;
 }
 
-a {
+.footer_link {
   float: right;
+}
+
+.download_img {
+  height: 30px;
+  width: 175px;
 }
