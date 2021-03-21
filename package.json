@@ -1,6 +1,7 @@
 {
   "name": "marks",
   "productName": "Marks",
+  "version": "1.3.2",
   "description": "This app gives teachers the ability to keep track of marks.",
   "author": {
     "name": "Henry Cuffy",
