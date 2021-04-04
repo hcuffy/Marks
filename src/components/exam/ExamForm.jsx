@@ -6,6 +6,8 @@ import {Button, FormGroup, HTMLSelect, InputGroup, Intent, Label, NumericInput} 
 
 import {actionCreators} from '../../actions/index';
 import {getClassOptions, getSubjectOptions} from './formHelper';
+import {DateInputField} from '../helpers';
+
 import css from './style.css';
 
 function TitleInput({t, isInvalid}) {
@@ -62,18 +64,10 @@ function SubjectSelect({t, options}) {
 }
 
 function DateSelect({t}) {
-    const defaultDate = new Date().toISOString().substring(0, 10);
-
     return (
         <div className={css.right_inputs}>
-            <Label className={'bp3-inline'} htmlFor='dateIn'> {t('general.date')}
-                <InputGroup
-                    name='date'
-                    type='date'
-                    className={css.date_space}
-                    id='dateIn'
-                    defaultValue={defaultDate}
-                />
+            <Label className={`bp3-inline ${css.date_space}`} htmlFor='dateIn'> {t('general.date')}
+                <DateInputField/>
             </Label>
         </div>
     );

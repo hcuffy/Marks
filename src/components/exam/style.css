@@ -95,8 +95,11 @@
 }
 
 .date_space {
-  width: 218px;
   margin-left: 10px !important;
+}
+
+.date_space input {
+  width: 220px !important;
 }
 
 .dialog_date {

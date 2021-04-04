@@ -1,7 +1,11 @@
-import React from 'react';
 import _ from 'lodash';
-import {Button, Dialog, Classes, Intent, FormGroup, InputGroup} from '@blueprintjs/core';
+import moment from 'moment';
+import React from 'react';
+import {Button, Dialog, Classes, Intent, FormGroup, InputGroup, Position} from '@blueprintjs/core';
+import {DateInput} from '@blueprintjs/datetime';
 
+import {getUserLocale} from '../../utils';
+import {getMomentFormatter} from './utils';
 import css from '../classroom/style.css';
 
 function DialogFooter({t, footerData}) {
@@ -59,4 +63,21 @@ export function DialogInputs({t, selection, isInvalid, label}) {
             </FormGroup>
         </div>
     ));
+}
+
+export function DateInputField({calendarDate}) {
+    const defaultDate = calendarDate ? new Date(calendarDate) : new Date();
+
+    return (<DateInput
+        name='date'
+        type='date'
+        id='dateIn'
+        defaultValue={defaultDate}
+        locale={getUserLocale()}
+        minDate={new Date(moment().subtract(7, 'y'))}
+        maxDate={new Date(moment().add(7, 'y'))}
+        {...getMomentFormatter('L')}
+        highlightCurrentDay={true}
+        popoverProps={{position: Position.LEFT_BOTTOM}}
+    />);
 }
