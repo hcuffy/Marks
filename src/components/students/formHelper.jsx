@@ -60,7 +60,13 @@ export function NameInputFields({t, studentData}) {
     ));
 }
 
-function StudentListComponent({students, actions}) {
+function getClassName(classData, {classroom}) {
+    const classObject = _.find(classData, {_id: classroom});
+
+    return classObject?.name ? ` - ${classObject?.name}` : '';
+}
+
+function StudentListComponent({students, classData, actions}) {
     if (_.isUndefined(students)) {
         return [];
     }
@@ -70,7 +76,7 @@ function StudentListComponent({students, actions}) {
             <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
                 <Button
                     onClick={actions.showStudentDialog}
-                    text= {`${data.firstname} ${data.lastname}`}
+                    text={`${data.firstname} ${data.lastname} ${getClassName(classData, data)}`}
                     data-id={data._id}
                     className={data.gender === 'male' ? css.male : css.female}
                 />
@@ -80,7 +86,8 @@ function StudentListComponent({students, actions}) {
 }
 
 const mapStateToProps = state => ({
-    students: state.studentData.students
+    students:  state.studentData.students,
+    classData: state.classData.classData
 });
 
 const mapDispatchToProps = dispatch => ({
