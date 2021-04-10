@@ -23,7 +23,7 @@ export async function getAllStudents() {
         return null;
     }
 
-    return _.sortBy(result, ['firstname']);
+    return _.sortBy(result, ['firstname', 'classroom']);
 }
 
 export async function deleteStudent(data) {
