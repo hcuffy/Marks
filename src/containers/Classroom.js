@@ -1,27 +1,26 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
+import {displayClassData, getSubjectData} from '../actions';
 import {SidemenuComponent, NavbarComponent, ClassroomComponent, ExamComponent} from '../components';
-import {actionCreators} from '../actions/index';
 
 class Classroom extends Component {
     componentDidMount() {
         if (this.props.classData) {
-            this.props.actions.displayClassData();
-            this.props.actions.getSubjectData();
+            this.props.displayClassData();
+            this.props.getSubjectData();
         }
     }
 
     render() {
-        const {t} = this.props;
+        const {classesActive, examActive} = this.props;
 
         return (
             <div>
                 <SidemenuComponent />
-                <NavbarComponent t={t} />
-                {this.props.classesActive && <ClassroomComponent t={t} />}
-                {this.props.examActive && <ExamComponent t={t} />}
+                <NavbarComponent />
+                {classesActive && <ClassroomComponent/>}
+                {examActive && <ExamComponent/>}
             </div>
         );
     }
@@ -33,8 +32,6 @@ const mapStateToProps = state => ({
     classData:     state.classData.classData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {displayClassData, getSubjectData};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Classroom);

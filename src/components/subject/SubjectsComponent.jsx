@@ -2,16 +2,15 @@ import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {bindActionCreators} from 'redux';
 
 import SubjectForm from './SubjectForm';
 import SubjectList from './SubjectList';
 import {resolveLabel} from '../../utils';
-import {actionCreators} from '../../actions/index';
+import {getSubject} from './actions';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './style.css';
 
-function SubjectsComponent({t, classes, classListData, actions}) {
+function SubjectsComponent({t, classes, classListData, getSubject}) {
     const {classroom} = classListData;
     const selectedClass = _.find(classes, {name: classroom}) || {};
     const items = createDropdownItems(classes, 'classDropdown');
@@ -22,7 +21,7 @@ function SubjectsComponent({t, classes, classListData, actions}) {
             <div className={css.subject_left}>
                 <h4 className={css.subject_header}>{t('room.subjectHeader')}</h4>
 
-                <DropdownComponent items={items} action={actions.getSubject} label={label} disabled={_.isEmpty(classes)}/>
+                <DropdownComponent items={items} action={getSubject} label={label} disabled={_.isEmpty(classes)}/>
 
                 <SubjectList t={t} selectedClass={selectedClass} />
             </div>
@@ -39,8 +38,6 @@ const mapStateToProps = state => ({
     classListData: state.classListData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {getSubject};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SubjectsComponent));

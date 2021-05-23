@@ -1,11 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {withTranslation} from 'react-i18next';
 import {Button, ButtonGroup, Intent, FormGroup, InputGroup, Alignment} from '@blueprintjs/core';
 
-import {actionCreators} from '../../actions';
+import {showRoomDialog, handleClassData} from './actions';
 import css from './style.css';
 
 export function FormInputs({t, classData}) {
@@ -28,10 +27,10 @@ export function FormInputs({t, classData}) {
     ));
 }
 
-export function AddClassroomFormComponent({t, classData, actions}) {
+export function AddClassroomFormComponent({t, classData, handleClassData}) {
     return (
         <div className={css.room_div}>
-            <form onSubmit={actions.handleClassData} method='POST'>
+            <form onSubmit={handleClassData} method='POST'>
                 <div className={css.form_outer_div}>
                     <h4 className={css.add_header}>{t('room.addClassHeader')}</h4>
 
@@ -49,22 +48,19 @@ export function AddClassroomFormComponent({t, classData, actions}) {
 export const AddClassroomForm = connect(
     state => ({
         classData: state.classData
-    }),
-    dispatch => ({
-        actions: bindActionCreators(actionCreators, dispatch)
-    })
+    }), {handleClassData}
 )(withTranslation()(AddClassroomFormComponent));
 
 export function gradingSystem(settings) {
     return _.findKey(settings, gradeType => gradeType === true);
 }
 
-export function ClassroomListComponent({classData, actions}) {
+export function ClassroomListComponent({classData, showRoomDialog}) {
     return _.map(classData, (data, idx) => (
         <div key={idx} className={css.list_buttons}>
             <ButtonGroup alignText={Alignment.LEFT} vertical={true} fill={true}>
                 <Button
-                    onClick={actions.showRoomDialog}
+                    onClick={showRoomDialog}
                     text={data.name}
                     data-id={data._id}
                 >
@@ -81,13 +77,10 @@ export function ClassroomListComponent({classData, actions}) {
 export const ClassroomList = connect(
     state => ({
         classData: state.classData?.classData
-    }),
-    dispatch => ({
-        actions: bindActionCreators(actionCreators, dispatch)
-    })
+    }), {showRoomDialog}
 )(ClassroomListComponent);
 
-export function NavBarButton({t, navBarData, actions}) {
+export function NavBarButton({t, navBarData, changeClassroomTab}) {
     return _.map(navBarData, (data, idx) => {
         const label = _.findKey(navBarData, key => key === data);
 
@@ -97,7 +90,7 @@ export function NavBarButton({t, navBarData, actions}) {
                     <Button role='button'
                         outlined={data === null}
                         intent={Intent.PRIMARY}
-                        onClick={actions.changeClassroomTab}
+                        onClick={changeClassroomTab}
                         text={ t(`room.${label}`)}
                         data-name={label}
                     />
