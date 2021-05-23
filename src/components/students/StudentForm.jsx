@@ -1,16 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {bindActionCreators} from 'redux';
 import {Button, Intent} from '@blueprintjs/core';
 
-import {actionCreators} from '../../actions/index';
+import {addNewStudent} from './actions';
 import {ClassroomSelect, GenderSelect, NameInputFields} from './formHelper';
 import css from './style.css';
 
-function AddStudentForm({t, studentData, classData, actions}) {
+function AddStudentForm({t, studentData, classData, addNewStudent}) {
     return (<div className={css.student_div}>
-        <form onSubmit={actions.addNewStudent} method='POST'>
+        <form onSubmit={addNewStudent} method='POST'>
             <div className={css.form_outer_div}>
                 <h4 className={css.center_add_sub_header}>{t('student.add')}</h4>
                 <NameInputFields t={t} studentData={studentData}/>
@@ -30,8 +29,6 @@ const mapStateToProps = state => ({
     classData:   state.classData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {addNewStudent};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AddStudentForm));

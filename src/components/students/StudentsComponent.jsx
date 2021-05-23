@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 
 import AddStudentForm from './StudentForm';
@@ -25,4 +26,4 @@ function StudentsComponent({t}) {
     );
 }
 
-export default withTranslation()(StudentsComponent);
+export default connect(null, null)(withTranslation()(StudentsComponent));
