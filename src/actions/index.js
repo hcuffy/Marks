@@ -10,6 +10,18 @@ import * as settings from '../components/settings/actions';
 import * as capability from '../components/capability/actions';
 import * as calendar from '../components/calendar/actions';
 
+export * from '../components/classroom/actions';
+export * from '../components/subject/actions';
+export * from '../components/exam/actions';
+export * from '../components/students/actions';
+export * from '../components/grades/actions';
+export * from '../components/sidemenu/actions';
+export * from '../components/graphs/actions';
+export * from '../components/notes/actions';
+export * from '../components/settings/actions';
+export * from '../components/capability/actions';
+export * from '../components/calendar/actions';
+
 export const actionCreators = {
     ...classroom,
     ...subject,
