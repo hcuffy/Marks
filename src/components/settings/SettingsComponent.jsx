@@ -14,7 +14,7 @@ function SettingsComponent({t}) {
             <h4 className={css.main_header}>{t('settings.sectionTitle')}</h4>
 
             <div className={css.address_div}>
-                <AddressComponent t={t} />
+                <AddressComponent/>
             </div>
 
             <div className={css.gradeFormat_div}>
