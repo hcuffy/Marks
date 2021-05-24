@@ -2,15 +2,14 @@ import React from 'react';
 import _ from 'lodash';
 import {withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {Button, Collapse, Intent, Alignment} from '@blueprintjs/core';
 
 import CreateCards from './CapabilityCards';
-import {actionCreators} from '../../actions/index';
+import {openCard} from './actions';
 import {capabilityQuestions} from './constants';
 import css from './style.css';
 
-function CapabilityCollapsible({t, capabilityData, actions}) {
+function CapabilityCollapsible({t, capabilityData, openCard}) {
     const {showCard, cardId, questionBase} = capabilityData;
     const questions = _.find(capabilityQuestions, {name: questionBase}) || {};
     const questionKeys = _.keys(questions[questionBase]);
@@ -25,7 +24,7 @@ function CapabilityCollapsible({t, capabilityData, actions}) {
                     className={css.card_button}
                     large={true}
                     alignText={Alignment.LEFT}
-                    onClick={actions.openCard}
+                    onClick={openCard}
                     text={subject}
                     intent={Intent.PRIMARY}
                     card-id={data}
@@ -59,8 +58,6 @@ const mapStateToProps = state => ({
     capabilityData: state.capabilityData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {openCard};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(CapabilityCollapsible));

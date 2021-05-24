@@ -2,15 +2,14 @@ import React from 'react';
 import _ from 'lodash';
 import {withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
-import {actionCreators} from '../../actions/index';
+import {capabilityClassList, capabilityStudentList, updateQuestionSet} from './actions';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import {capabilityQuestions} from './constants';
 import {resolveLabel} from '../../utils';
 import css from './style.css';
 
-function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
+function CapabilityDropdown({t, capabilityData, classData, students, capabilityClassList, capabilityStudentList, updateQuestionSet}) {
     const {classroom, studentName, classroomId, questionSetName} = capabilityData;
 
     const classItems = createDropdownItems(classData?.classData, 'classDropdown');
@@ -29,7 +28,7 @@ function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
             <div>
                 <DropdownComponent
                     items={classItems}
-                    action={actions.capabilityClassList}
+                    action={capabilityClassList}
                     label={classLabel}
                     disabled={_.isEmpty(classData?.classData) }
                 />
@@ -38,7 +37,7 @@ function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
             <div className={css.middle_dropdown}>
                 <DropdownComponent
                     items={studentItems}
-                    action={actions.capabilityStudentList}
+                    action={capabilityStudentList}
                     label={studentLabel}
                     disabled={_.isEmpty(students)}
                 />
@@ -47,7 +46,7 @@ function CapabilityDropdown({t, capabilityData, classData, students, actions}) {
             <div>
                 <DropdownComponent
                     items={questionItems}
-                    action={actions.updateQuestionSet}
+                    action={updateQuestionSet}
                     label={questionLabel}
                     disabled={_.isEmpty(studentName) && !_.isNull(classroomId)}
                 />
@@ -62,8 +61,6 @@ const mapStateToProps = state => ({
     students:       state.studentData.students
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {capabilityClassList, capabilityStudentList, updateQuestionSet};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(CapabilityDropdown));
