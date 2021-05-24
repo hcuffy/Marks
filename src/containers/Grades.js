@@ -1,26 +1,25 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {SidemenuComponent, GradeTableComponent} from '../components';
-import {actionCreators} from '../actions/index';
+import {getStudents} from '../components/students/actions';
+import {getSubjectData} from '../components/subject/actions';
+import {displayClassData} from '../components/classroom/actions';
 
 class Grades extends Component {
     componentDidMount() {
         if (this.props.classData) {
-            this.props.actions.displayClassData();
-            this.props.actions.getSubjectData();
-            this.props.actions.getStudents();
+            this.props.displayClassData();
+            this.props.getSubjectData();
+            this.props.getStudents();
         }
     }
 
     render() {
-        const {t} = this.props;
-
         return (
             <div>
                 <SidemenuComponent />
-                <GradeTableComponent t={t} />
+                <GradeTableComponent/>
             </div>
         );
     }
@@ -30,8 +29,6 @@ const mapStateToProps = state => ({
     classData: state.classData.classData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {displayClassData, getSubjectData, getStudents};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Grades);

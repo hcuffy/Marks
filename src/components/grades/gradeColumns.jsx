@@ -5,7 +5,7 @@ import moment from 'moment';
 import {InputGroup, Icon} from '@blueprintjs/core';
 import css from './style.css';
 
-function customCell(props, actions) {
+function customCell(props, updateStudentGrade) {
     const {score, studentId, subjectName, subjectId, examId, date, weight, gradeId} = props.value;
 
     return (
@@ -20,7 +20,7 @@ function customCell(props, actions) {
             id={gradeId}
             type='number'
             fill={true}
-            onChange={actions.updateStudentGrade}
+            onChange={updateStudentGrade}
         />
     );
 }
@@ -79,7 +79,7 @@ function customFooter({data}, iterator) {
     );
 }
 
-function customColumn(data, actions) {
+function customColumn(data, updateStudentGrade) {
     const columnData = [];
 
     if (_.isUndefined(data[0])) {
@@ -93,7 +93,7 @@ function customColumn(data, actions) {
             Header:   customHeader(gradeProps),
             accessor: `grades[${i}]`,
             width:    150,
-            Cell:     props => customCell(props, actions),
+            Cell:     props => customCell(props, updateStudentGrade),
             Footer:   props => customFooter(props, i)
         });
     }
@@ -103,7 +103,7 @@ function customColumn(data, actions) {
     return columnData;
 }
 
-export function gradeColumns({t, newData, actions}) {
+export function gradeColumns({t, newData, updateStudentGrade}) {
     return [
         {
             Header:  t('grades.studentHeader'),
@@ -124,7 +124,7 @@ export function gradeColumns({t, newData, actions}) {
         },
         {
             Header:  t('grades.examHeader'),
-            columns: customColumn(newData, actions)
+            columns: customColumn(newData, updateStudentGrade)
         }
     ];
 }
