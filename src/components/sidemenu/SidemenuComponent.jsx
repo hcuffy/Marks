@@ -1,20 +1,19 @@
 import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
 import {Button, Icon} from '@blueprintjs/core';
 
-import {actionCreators} from '../../actions/index';
+import {updateButtonStyle} from './actions';
 import {menuData} from './sideMenuData';
 import {openResource} from '../../utils';
 import {RELEASE_LINK} from './constants';
 import css from './style.css';
 
-function SidemenuComponent({menuStylingData, actions}) {
+function SidemenuComponent({menuStylingData, updateButtonStyle}) {
     const menuItems = _.keys(menuData).map((data, idx) => (
         <Link key={idx} to={menuData[data].linkTo}>
-            <Button outlined={true} className={css.menu_btn} data-id={menuData[data].dataId} onClick={actions.updateButtonStyle}>
+            <Button outlined={true} className={css.menu_btn} data-id={menuData[data].dataId} onClick={updateButtonStyle}>
                 <Icon
                     icon={menuData[data].name}
                     iconSize={40}
@@ -41,8 +40,6 @@ function SidemenuComponent({menuStylingData, actions}) {
 
 const mapStateToProps = state => ({menuStylingData: state.menuStylingData});
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {updateButtonStyle};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SidemenuComponent);

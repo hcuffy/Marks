@@ -1,14 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {withTranslation} from 'react-i18next';
 import {Calendar, Views, momentLocalizer} from 'react-big-calendar';
 
 import {formats, getMessages, mapEventsData} from './calendarHelpers';
-import {actionCreators} from '../../actions';
+import {handleEventDialog} from './actions';
 
-function CalendarElement({t, calendarData, actions}) {
+function CalendarElement({t, calendarData, handleEventDialog}) {
     const messages = getMessages(t);
     const eventsData = mapEventsData(calendarData);
 
@@ -21,8 +20,8 @@ function CalendarElement({t, calendarData, actions}) {
             popup
             events={eventsData}
             defaultView={Views.WEEK}
-            onSelectEvent={actions.handleEventDialog}
-            onSelectSlot={actions.handleEventDialog}
+            onSelectEvent={handleEventDialog}
+            onSelectSlot={handleEventDialog}
         />
 
     );
@@ -32,8 +31,6 @@ const mapStateToProps = state => ({
     calendarData: state.calendarData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {handleEventDialog};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(CalendarElement));

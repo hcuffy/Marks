@@ -1,7 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {withTranslation} from 'react-i18next';
 import _ from 'lodash';
 import {Button, InputGroup, ButtonGroup, FormGroup, Intent, TextArea} from '@blueprintjs/core';
 
+import {deleteSingleNote, clearNoteField, updateNote} from './actions';
 import css from './style.css';
 
 function getNoteProp(noteId, notes, prop) {
@@ -30,7 +33,7 @@ export function TitleField({t, titleText, studentId, isInvalid}) {
                     defaultValue={titleText}
                     intent={intent}
                 />
-                <InputGroup type='text' name='student' defaultValue={studentId} hidden />
+                <InputGroup type='text' name='student' defaultValue={studentId} hidden/>
             </FormGroup>
         </div>
     );
@@ -57,7 +60,7 @@ export function TextBoxArea({t, textBoxText, isInvalid}) {
     );
 }
 
-export function FooterButtons({t, noteId, studentId, actions}) {
+function FooterButtonsComponent({t, noteId, studentId, deleteSingleNote, clearNoteField, updateNote}) {
     return (
         <div className={css.button_footer}>
             <ButtonGroup >
@@ -65,7 +68,7 @@ export function FooterButtons({t, noteId, studentId, actions}) {
                     type='button'
                     large={true}
                     intent={Intent.DANGER}
-                    onClick={actions.deleteSingleNote}
+                    onClick={deleteSingleNote}
                     text= {t('general.delete')}
                     data-id={noteId}
                     disabled={!noteId}/>
@@ -73,7 +76,7 @@ export function FooterButtons({t, noteId, studentId, actions}) {
                 <Button type='button'
                     large={true}
                     intent={Intent.NONE}
-                    onClick={actions.clearNoteField}
+                    onClick={clearNoteField}
                     text={t('general.clear')}
                     disabled={!noteId}/>
 
@@ -81,7 +84,7 @@ export function FooterButtons({t, noteId, studentId, actions}) {
                     type='button'
                     large={true}
                     intent={Intent.PRIMARY}
-                    onClick={actions.updateNote}
+                    onClick={updateNote}
                     text={t('general.update')}
                     data-id={noteId}
                     disabled={!noteId}/>
@@ -91,8 +94,17 @@ export function FooterButtons({t, noteId, studentId, actions}) {
                     large={true}
                     intent={Intent.SUCCESS}
                     text={t('general.add')}
-                    disabled={!studentId || Boolean(noteId)} />
+                    disabled={!studentId || Boolean(noteId)}/>
             </ButtonGroup>
         </div>
     );
 }
+
+const mapStateToProps = state => ({
+    noteId:    state.notesData?.noteId,
+    studentId: state.notesData?.studentId
+});
+
+const mapDispatchToProps = {deleteSingleNote, clearNoteField, updateNote};
+
+export const FooterButtons = connect(mapStateToProps, mapDispatchToProps)(withTranslation()(FooterButtonsComponent));

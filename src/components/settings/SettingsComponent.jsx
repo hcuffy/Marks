@@ -14,11 +14,11 @@ function SettingsComponent({t}) {
             <h4 className={css.main_header}>{t('settings.sectionTitle')}</h4>
 
             <div className={css.address_div}>
-                <AddressComponent t={t} />
+                <AddressComponent/>
             </div>
 
             <div className={css.gradeFormat_div}>
-                <GradeSettingComponent t={t} />
+                <GradeSettingComponent t={t}/>
             </div>
 
             <div className={css.reset_button}>
@@ -29,7 +29,7 @@ function SettingsComponent({t}) {
                 <ResetDialog/>
             </div>
             <div>
-                <SupportComponent />
+                <SupportComponent/>
             </div>
         </div>
     );

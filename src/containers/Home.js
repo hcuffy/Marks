@@ -1,30 +1,25 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {SidemenuComponent, HomeComponent} from '../components';
-import {actionCreators} from '../actions/index';
+import {displayAddress, getGradingSystem} from '../components/settings/actions';
 
 class Home extends Component {
     componentDidMount() {
-        this.props.actions.displayAddress();
-        this.props.actions.getGradingSystem();
+        this.props.displayAddress();
+        this.props.getGradingSystem();
     }
 
     render() {
-        const {t} = this.props;
-
         return (
             <div>
-                <SidemenuComponent />
-                <HomeComponent t={t} />
+                <SidemenuComponent/>
+                <HomeComponent/>
             </div>
         );
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {displayAddress, getGradingSystem};
 
 export default connect(null, mapDispatchToProps)(Home);

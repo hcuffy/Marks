@@ -10,10 +10,10 @@ function GraphComponent({t}) {
         <div>
             <h4 className={css.center_header}>{t('graph.overview')}</h4>
 
-            <GraphDropdown t={t} />
+            <GraphDropdown t={t}/>
 
             <div className={css.chart_div}>
-                <Chart t={t} />
+                <Chart/>
             </div>
         </div>
     );

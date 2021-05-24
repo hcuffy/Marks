@@ -1,15 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {bindActionCreators} from 'redux';
 
 import {resolveLabel, PDFbutton} from '../../utils';
-import {actionCreators} from '../../actions/index';
+import {handleGraphClassList, handleSubjectList, displayExamGraph} from './actions';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './style.css';
 import _ from 'lodash';
 
-function GraphDropdown({t, classData, graphData, subjectData, actions}) {
+function GraphDropdown({t, classData, graphData, subjectData, handleGraphClassList, handleSubjectList, displayExamGraph}) {
     const {subjectId, exams, classroomId, examId, chartTitle} = graphData;
 
     const classes = classData?.classData;
@@ -32,7 +31,7 @@ function GraphDropdown({t, classData, graphData, subjectData, actions}) {
             <div className={css.left_dropdown}>
                 <DropdownComponent
                     items={items}
-                    action={actions.handleGraphClassList}
+                    action={handleGraphClassList}
                     label={label}
                     disabled={_.isEmpty(classes)}
                 />
@@ -40,7 +39,7 @@ function GraphDropdown({t, classData, graphData, subjectData, actions}) {
             <div className={css.middle_dropdown}>
                 <DropdownComponent
                     items={subjectItems}
-                    action={actions.handleSubjectList}
+                    action={handleSubjectList}
                     label={subjectLabel}
                     disabled={_.isEmpty(subjects)}
                 />
@@ -48,7 +47,7 @@ function GraphDropdown({t, classData, graphData, subjectData, actions}) {
             <div className={css.right_dropdown}>
                 <DropdownComponent
                     items={examItems}
-                    action={actions.displayExamGraph}
+                    action={displayExamGraph}
                     label={examLabel}
                     disabled={_.isEmpty(subjectExams)}
                 />
@@ -64,8 +63,6 @@ const mapStateToProps = state => ({
     graphData:   state.graphData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {handleGraphClassList, handleSubjectList, displayExamGraph};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(GraphDropdown));

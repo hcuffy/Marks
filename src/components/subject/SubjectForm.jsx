@@ -2,14 +2,13 @@ import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {bindActionCreators} from 'redux';
 import {Button, Intent, HTMLSelect, Label} from '@blueprintjs/core';
 
-import {actionCreators} from '../../actions/index';
+import {addNewSubject} from './actions';
 import {SubjectFormInputs} from './formHelpers';
 import css from './style.css';
 
-function SubjectForm({t, classListData, classes, actions}) {
+function SubjectForm({t, classListData, classes, addNewSubject}) {
     const selectOption = _.values(classes).map((data, idx) => (
         <option key={idx}>
             {data.name}
@@ -18,7 +17,7 @@ function SubjectForm({t, classListData, classes, actions}) {
 
     return (
         <div>
-            <form onSubmit={actions.addNewSubject} method='POST'>
+            <form onSubmit={addNewSubject} method='POST'>
 
                 <SubjectFormInputs t={t} classListData={classListData}/>
 
@@ -30,7 +29,7 @@ function SubjectForm({t, classListData, classes, actions}) {
                     </Label>
                 </div>
                 <div className={css.subject_save}>
-                    <Button type='submit' intent={Intent.SUCCESS} text={t('general.add')} />
+                    <Button type='submit' intent={Intent.SUCCESS} text={t('general.add')}/>
 
                 </div>
             </form>
@@ -38,8 +37,6 @@ function SubjectForm({t, classListData, classes, actions}) {
     );
 }
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {addNewSubject};
 
 export default connect(null, mapDispatchToProps)(withTranslation()(SubjectForm));

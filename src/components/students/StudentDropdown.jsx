@@ -2,14 +2,13 @@ import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {bindActionCreators} from 'redux';
 
-import {actionCreators} from '../../actions/index';
+import {showStudentGraph, showSubjectGraph} from './actions';
 import {resolveLabel, PDFbutton} from '../../utils';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './style.css';
 
-function StudentDropdown({t, studentData, subjectData, actions}) {
+function StudentDropdown({t, studentData, subjectData, showStudentGraph, showSubjectGraph}) {
     const {students, studentName, classroomId, subjectName} = studentData;
     const subjects = _.filter(subjectData?.data, {classroomId}) || {};
 
@@ -24,7 +23,7 @@ function StudentDropdown({t, studentData, subjectData, actions}) {
             <div className={css.left_dropdown}>
                 <DropdownComponent
                     items={studentItems}
-                    action={actions.showStudentGraph}
+                    action={showStudentGraph}
                     label={studentLabel}
                     disabled={_.isEmpty(students)}
                 />
@@ -32,7 +31,7 @@ function StudentDropdown({t, studentData, subjectData, actions}) {
             <div className={css.right_dropdown}>
                 <DropdownComponent
                     items={subjectItems}
-                    action={actions.showSubjectGraph}
+                    action={showSubjectGraph}
                     label={subjectLabel}
                     disabled={false}
                 />
@@ -47,8 +46,6 @@ const mapStateToProps = state => ({
     subjectData: state.subjectData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {showStudentGraph, showSubjectGraph};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(StudentDropdown));

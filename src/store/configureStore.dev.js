@@ -4,7 +4,6 @@ import {createHashHistory} from 'history';
 import {routerMiddleware, routerActions} from 'connected-react-router';
 import {createLogger} from 'redux-logger';
 import createRootReducer from '../reducers';
-import * as classroomActions from '../components/classroom/actions';
 
 const history = createHashHistory();
 const rootReducer = createRootReducer(history);
@@ -31,7 +30,6 @@ const configureStore = () => {
     const router = routerMiddleware(history);
     middleware.push(router);
     const actionCreators = {
-        ...classroomActions,
         ...routerActions
     };
 

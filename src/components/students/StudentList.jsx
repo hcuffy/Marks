@@ -13,7 +13,7 @@ function StudentList({t}) {
                     <ListOfStudent/>
                 </div>
 
-                <StudentDialog t={t} />
+                <StudentDialog/>
             </div>
         </div>
     );

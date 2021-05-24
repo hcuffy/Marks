@@ -1,10 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {bindActionCreators} from 'redux';
 import {Button, FormGroup, HTMLSelect, InputGroup, Intent, Label, NumericInput} from '@blueprintjs/core';
 
-import {actionCreators} from '../../actions/index';
+import {addNewExam, getSelectedClassroom} from './actions';
 import {getClassOptions, getSubjectOptions} from './formHelper';
 import css from './style.css';
 
@@ -26,12 +25,12 @@ function TitleInput({t, isInvalid}) {
     );
 }
 
-function ClassSelect({t, options, action}) {
+function ClassSelect({t, options, getSelectedClassroom}) {
     return (
         <div className={css.left_inputs}>
             <Label className={'bp3-inline'} htmlFor='classSelection'>{t('general.selectRoom')}
                 <HTMLSelect
-                    onChange={action}
+                    onChange={getSelectedClassroom}
                     name='room'
                     data-id='classSelection'
                     className={`${css.input_space} ${css.dropdown_width}`}
@@ -98,17 +97,17 @@ function WeightInput({t}) {
     );
 }
 
-export function AddExamForm({t, classData, subjectData, examData, actions}) {
+export function AddExamForm({t, classData, subjectData, examData, addNewExam, getSelectedClassroom}) {
     const classOption = getClassOptions(classData);
     const subjectOptions = getSubjectOptions(subjectData, examData, classData);
 
     return (
         <div>
-            <form onSubmit={actions.addNewExam} method='POST'>
+            <form onSubmit={addNewExam} method='POST'>
                 <div className={css.left_elements}>
-                    <TitleInput t={t } isInvalid={examData.isInvalid}/>
-                    <ClassSelect t={t } options={classOption} action={actions.getSelectedSubject}/>
-                    <SubjectSelect t={t } options={subjectOptions}/>
+                    <TitleInput t={t} isInvalid={examData.isInvalid}/>
+                    <ClassSelect t={t} options={classOption} getSelectedClassroom={getSelectedClassroom}/>
+                    <SubjectSelect t={t} options={subjectOptions}/>
                 </div>
                 <div className={css.right_elements}>
                     <DateSelect t={t}/>
@@ -128,8 +127,6 @@ const mapStateToProps = state => ({
     examData:    state.examData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {addNewExam, getSelectedClassroom};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AddExamForm));

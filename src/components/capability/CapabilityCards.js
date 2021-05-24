@@ -2,10 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 import {withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {RadioGroup, Radio, Card} from '@blueprintjs/core';
 
-import {actionCreators} from '../../actions/index';
+import {handleCapabilityAnswers} from './actions';
 import {capabilityQuestions} from './constants';
 import css from './style.css';
 
@@ -46,7 +45,7 @@ function CreateRadioButton({t, questionId, capabilityData, handleCapabilityAnswe
     </div>);
 }
 
-function CreateCards({t, data, translationBase, capabilityData, actions}) {
+function CreateCards({t, data, translationBase, capabilityData, handleCapabilityAnswers}) {
     const {questionBase} = capabilityData;
     const questions = _.find(capabilityQuestions, {name: questionBase}) || {};
     const {number} = questions[questionBase][data];
@@ -58,7 +57,7 @@ function CreateCards({t, data, translationBase, capabilityData, actions}) {
             <CreateRadioButton
                 t={t}
                 key={`radio${i}`}
-                handleCapabilityAnswers={actions.handleCapabilityAnswers}
+                handleCapabilityAnswers={handleCapabilityAnswers}
                 capabilityData={capabilityData}
                 questionId={`question${[i]}`}
 
@@ -78,8 +77,6 @@ const mapStateToProps = state => ({
     capabilityData: state.capabilityData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {handleCapabilityAnswers};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(CreateCards));

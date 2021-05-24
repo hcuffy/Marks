@@ -33,7 +33,7 @@ export function resolveHiddenInput(filteredData, id) {
                 data-id={getClassroomId(filteredData)}
             />
 
-            <InputGroup type='hidden' name='subjectId' data-id={id} />
+            <InputGroup type='hidden' name='subjectId' data-id={id}/>
         </div>
     );
 }

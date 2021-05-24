@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {CalendarComponent, SidemenuComponent} from '../components';
-import {actionCreators} from '../actions/index';
+import {getEvents} from '../components/calendar/actions';
 
 class Calendar extends Component {
     componentDidMount() {
-        this.props.actions.getEvents();
+        this.props.getEvents();
     }
 
     render() {
@@ -15,15 +14,13 @@ class Calendar extends Component {
 
         return (
             <div>
-                <SidemenuComponent />
-                <CalendarComponent t={t} />
+                <SidemenuComponent/>
+                <CalendarComponent t={t}/>
             </div>
         );
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {getEvents};
 
 export default connect(null, mapDispatchToProps)(Calendar);

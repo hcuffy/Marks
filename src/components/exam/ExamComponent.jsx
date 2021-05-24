@@ -10,11 +10,11 @@ function Exam({t}) {
         <div>
             <div className={css.header_div}>
                 <h4>{t('exam.addExamHeader')}</h4>
-                <AddExamForm />
+                <AddExamForm/>
             </div>
 
             <div>
-                <ExamList t={t} />
+                <ExamList t={t}/>
             </div>
         </div>
     );

@@ -17,7 +17,7 @@ function SupportComponent({t}) {
                     data-name={BMC_Link}
                     onClick={openResource}
                 >
-                    <img src={bmc} alt='Buy Me a Coffee' />
+                    <img src={bmc} alt='Buy Me a Coffee'/>
                     {t('settings.bmc')}
                 </Button>
             </div>

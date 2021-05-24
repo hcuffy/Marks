@@ -11,12 +11,12 @@ function ExamList({t}) {
         <div className={css.main_div}>
             <div className={css.edit_div}>
                 <h4 className={css.edit_header}>{t('exam.editExamHeader')}</h4>
-                <ExamListDropdown t={t} />
+                <ExamListDropdown t={t}/>
             </div>
 
             <div className={css.list_div}>
-                <ExamListInputs />
-                <ExamDialog t={t} />
+                <ExamListInputs/>
+                <ExamDialog t={t}/>
             </div>
         </div>
     );

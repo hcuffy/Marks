@@ -1,34 +1,41 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+
+import {getStudents} from '../components/students/actions';
+import {getAllGradeData, getGraphExamData} from '../components/graphs/actions';
+import {getSubjectData} from '../components/subject/actions';
+import {getGradingSystem} from '../components/settings/actions';
+import {displayClassData} from '../components/classroom/actions';
 
 import {SidemenuComponent, StudentsComponent} from '../components';
-import {actionCreators} from '../actions/index';
 
 class Students extends Component {
     componentDidMount() {
-        this.props.actions.getStudents();
-        this.props.actions.getAllGradeData();
-        this.props.actions.getGraphExamData();
-        this.props.actions.getSubjectData();
-        this.props.actions.getGradingSystem();
-        this.props.actions.displayClassData();
+        this.props.getStudents();
+        this.props.getAllGradeData();
+        this.props.getGraphExamData();
+        this.props.getSubjectData();
+        this.props.getGradingSystem();
+        this.props.displayClassData();
     }
 
     render() {
-        const {t} = this.props;
-
         return (
             <div>
-                <SidemenuComponent />
-                <StudentsComponent t={t} />
+                <SidemenuComponent/>
+                <StudentsComponent/>
             </div>
         );
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {
+    getStudents,
+    getAllGradeData,
+    getGraphExamData,
+    getSubjectData,
+    getGradingSystem,
+    displayClassData
+};
 
 export default connect(null, mapDispatchToProps)(Students);

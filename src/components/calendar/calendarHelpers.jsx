@@ -5,7 +5,7 @@ import _ from 'lodash';
 import {Button, Classes, FormGroup, InputGroup, Intent, NumericInput, Label} from '@blueprintjs/core';
 
 const timeRangeFormat = ({start, end}, culture, local) => `${local.format(start, 'HH:mm', culture)
-} - ${ local.format(end, 'HH:mm', culture)}`;
+} - ${local.format(end, 'HH:mm', culture)}`;
 
 export const formats = {
     dateFormat:            'L',
@@ -117,7 +117,7 @@ export function FooterButtons({t, eventId, deleteAction}) {
                 onClick={deleteAction}
                 data-id={eventId}
             />}
-            <Button type='submit' intent={Intent.SUCCESS} text={saveButtonLabel} formNoValidate />
+            <Button type='submit' intent={Intent.SUCCESS} text={saveButtonLabel} formNoValidate/>
         </div>
     );
 }

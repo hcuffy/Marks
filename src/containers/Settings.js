@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {SidemenuComponent, SettingsComponent} from '../components';
-import {actionCreators} from '../actions/index';
+import {getGradingSystem, displayAddress} from '../components/settings/actions';
 
 class Settings extends Component {
     componentDidMount() {
-        this.props.actions.getGradingSystem();
-        this.props.actions.displayAddress();
+        this.props.getGradingSystem();
+        this.props.displayAddress();
     }
 
     render() {
@@ -16,8 +15,8 @@ class Settings extends Component {
 
         return (
             <div>
-                <SidemenuComponent />
-                <SettingsComponent t={t} />
+                <SidemenuComponent/>
+                <SettingsComponent t={t}/>
             </div>
         );
     }
@@ -25,8 +24,6 @@ class Settings extends Component {
 
 const mapStateToProps = state => ({addressData: state.addressData});
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {getGradingSystem, displayAddress};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

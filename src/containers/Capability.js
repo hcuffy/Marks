@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {CapabilityComponent, SidemenuComponent} from '../components';
 
-import {actionCreators} from '../actions/index';
+import {displayClassData} from '../components/classroom/actions';
+import {getStudents} from '../components/students/actions';
+import {getAnswers} from '../components/capability/actions';
 
 class Capability extends Component {
     componentDidMount() {
         if (this.props.classData) {
-            this.props.actions.displayClassData();
-            this.props.actions.getStudents();
-            this.props.actions.getAnswers();
+            this.props.displayClassData();
+            this.props.getStudents();
+            this.props.getAnswers();
         }
     }
 
@@ -20,8 +21,8 @@ class Capability extends Component {
 
         return (
             <div>
-                <SidemenuComponent />
-                <CapabilityComponent t={t} />
+                <SidemenuComponent/>
+                <CapabilityComponent t={t}/>
             </div>
         );
     }
@@ -31,8 +32,6 @@ const mapStateToProps = state => ({
     classData: state.classData.classData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {displayClassData, getStudents, getAnswers};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Capability);

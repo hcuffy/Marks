@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {SidemenuComponent, NoteComponent} from '../components';
-import {actionCreators} from '../actions/index';
+import {getStudents} from '../components/students/actions';
+import {getNotes} from '../components/notes/actions';
 
 class Notes extends Component {
     componentDidMount() {
-        this.props.actions.getStudents();
-        this.props.actions.getNotes();
+        this.props.getStudents();
+        this.props.getNotes();
     }
 
     render() {
@@ -16,15 +16,13 @@ class Notes extends Component {
 
         return (
             <div>
-                <SidemenuComponent />
-                <NoteComponent t={t} />
+                <SidemenuComponent/>
+                <NoteComponent t={t}/>
             </div>
         );
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {getStudents, getNotes};
 
 export default connect(null, mapDispatchToProps)(Notes);

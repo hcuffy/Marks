@@ -1,9 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {withTranslation} from 'react-i18next';
 
-import {actionCreators} from '../../actions';
 import {AddressForm} from './formHelpers';
 import css from './style.css';
 
@@ -19,8 +17,4 @@ function AddressComponent({t}) {
 
 const mapStateToProps = state => ({addressData: state.addressData});
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AddressComponent));
+export default connect(mapStateToProps, null)(withTranslation()(AddressComponent));

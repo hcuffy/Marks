@@ -6,8 +6,8 @@ import css from './style.css';
 export function resolveHiddenInputs(subjectId, examId) {
     return (
         <div>
-            <InputGroup type='hidden' name='subjectId' data-id={subjectId} />
-            <InputGroup type='hidden' name='examId' data-id={examId} />
+            <InputGroup type='hidden' name='subjectId' data-id={subjectId}/>
+            <InputGroup type='hidden' name='examId' data-id={examId}/>
         </div>
     );
 }

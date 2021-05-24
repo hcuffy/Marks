@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
 
 import AddStudentForm from './StudentForm';
@@ -12,17 +13,17 @@ function StudentsComponent({t}) {
         <div>
             <div>
                 <h4 className={css.center_header}>{t('student.title')}</h4>
-                <AddStudentForm t={t} />
-                <StudentList t={t} />
+                <AddStudentForm/>
+                <StudentList t={t}/>
             </div>
 
             <div className={css.chart_div}>
                 <h4 className={css.chart_header}>{t('student.chartTitle')}</h4>
-                <StudentDropdown t={t} />
-                <StudentChart t={t} />
+                <StudentDropdown/>
+                <StudentChart t={t}/>
             </div>
         </div>
     );
 }
 
-export default withTranslation()(StudentsComponent);
+export default connect(null, null)(withTranslation()(StudentsComponent));

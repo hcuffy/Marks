@@ -11,8 +11,9 @@ export function getClassOptions(classInfo) {
 
 export function getSubjectOptions(subjectData, examData, sortedData) {
     let {classroom} = examData;
-    classroom = _.isNull(classroom) ? sortedData[0]?.name : classroom;
 
+    classroom = _.isNull(classroom) ? sortedData[0]?.name : classroom;
+    console.log(classroom);
     const classroomObject = _.find(sortedData, {name: classroom}) || {};
     const filteredSubject = _.filter(subjectData?.data, ['classroomId', classroomObject?._id]);
 

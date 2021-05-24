@@ -2,14 +2,13 @@ import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {bindActionCreators} from 'redux';
 
 import {resolveLabel} from '../../utils';
-import {actionCreators} from '../../actions/index';
+import {showClass, showExamList} from './actions';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './style.css';
 
-function ExamListDropdown({t, classData, examData, subjectData, actions}) {
+function ExamListDropdown({t, classData, examData, subjectData, showClass, showExamList}) {
     const {classroomId, subjectId} = examData;
     const classes = classData?.classData;
     const subjects = _.filter(subjectData?.data, {classroomId}) || {};
@@ -28,7 +27,7 @@ function ExamListDropdown({t, classData, examData, subjectData, actions}) {
             <div className={css.left_dropdown}>
                 <DropdownComponent
                     items={items}
-                    action={actions.showClass}
+                    action={showClass}
                     label={label}
                     disabled={_.isEmpty(classes)}
                 />
@@ -37,7 +36,7 @@ function ExamListDropdown({t, classData, examData, subjectData, actions}) {
             <div className={css.right_dropdown}>
                 <DropdownComponent
                     items={subjectItems}
-                    action={actions.showExamList}
+                    action={showExamList}
                     label={subjectLabel}
                     disabled={_.isEmpty(subjects)}
                 />
@@ -52,8 +51,6 @@ const mapStateToProps = state => ({
     examData:    state.examData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {showClass, showExamList};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ExamListDropdown));
