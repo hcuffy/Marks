@@ -33,7 +33,7 @@ export function TitleField({t, titleText, studentId, isInvalid}) {
                     defaultValue={titleText}
                     intent={intent}
                 />
-                <InputGroup type='text' name='student' defaultValue={studentId} hidden />
+                <InputGroup type='text' name='student' defaultValue={studentId} hidden/>
             </FormGroup>
         </div>
     );
@@ -94,7 +94,7 @@ function FooterButtonsComponent({t, noteId, studentId, deleteSingleNote, clearNo
                     large={true}
                     intent={Intent.SUCCESS}
                     text={t('general.add')}
-                    disabled={!studentId || Boolean(noteId)} />
+                    disabled={!studentId || Boolean(noteId)}/>
             </ButtonGroup>
         </div>
     );

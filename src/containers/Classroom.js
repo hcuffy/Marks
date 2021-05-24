@@ -18,8 +18,8 @@ class Classroom extends Component {
 
         return (
             <div>
-                <SidemenuComponent />
-                <NavbarComponent />
+                <SidemenuComponent/>
+                <NavbarComponent/>
                 {classesActive && <ClassroomComponent/>}
                 {examActive && <ExamComponent/>}
             </div>

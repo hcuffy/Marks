@@ -16,8 +16,8 @@ class Notes extends Component {
 
         return (
             <div>
-                <SidemenuComponent />
-                <NoteComponent t={t} />
+                <SidemenuComponent/>
+                <NoteComponent t={t}/>
             </div>
         );
     }

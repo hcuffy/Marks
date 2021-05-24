@@ -21,8 +21,8 @@ class Capability extends Component {
 
         return (
             <div>
-                <SidemenuComponent />
-                <CapabilityComponent t={t} />
+                <SidemenuComponent/>
+                <CapabilityComponent t={t}/>
             </div>
         );
     }

@@ -15,7 +15,7 @@ function CalendarComponent({t}) {
             <h4 className={css.main_header}>{t('calendar.sectionTitle')}</h4>
 
             <div className={css.calendar_wrapper}>
-                <CalendarElement />
+                <CalendarElement/>
                 <InputDialog/>
             </div>
         </div>

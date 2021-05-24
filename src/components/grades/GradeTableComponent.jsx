@@ -29,7 +29,7 @@ function GradeTableComponent({t, gradeData, students, updateStudentGrade}) {
         <div className={css.div_wrapper}>
             <h4 className={css.center_header}>{t('grades.gradesTitle')}</h4>
 
-            <GradeDropdown t={t} />
+            <GradeDropdown t={t}/>
 
             <ReactTable
                 data={_.sortBy(data, ['name'], ['asc'])}

@@ -12,7 +12,7 @@ function SubjectList({t, selectedClass, subjectData, displaySubjectDialog}) {
 
     return (
         <div className={css.list_div}>
-            <SubjectDialog t={t} filteredData={filteredData} />
+            <SubjectDialog t={t} filteredData={filteredData}/>
 
             <List filteredData={filteredData} action={displaySubjectDialog}/>
 

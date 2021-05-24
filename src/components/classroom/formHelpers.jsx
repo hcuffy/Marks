@@ -91,7 +91,7 @@ export function NavBarButton({t, navBarData, changeClassroomTab}) {
                         outlined={data === null}
                         intent={Intent.PRIMARY}
                         onClick={changeClassroomTab}
-                        text={ t(`room.${label}`)}
+                        text={t(`room.${label}`)}
                         data-name={label}
                     />
 

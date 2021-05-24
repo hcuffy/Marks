@@ -11,15 +11,15 @@ const Root = ({store, history}) => (
             <App>
                 <Switch>
                     {[
-                        <Route exact key='1' path={HOME} component={Home} />,
-                        <Route exact key='1' path={CLASSROOM} component={Classroom} />,
-                        <Route exact key='1' path={STUDENTS} component={Students} />,
-                        <Route exact key='1' path={GRADES} component={Grades} />,
-                        <Route exact key='1' path={GRAPHS} component={Graphs} />,
-                        <Route exact key='1' path={NOTES} component={Notes} />,
-                        <Route exact key='1' path={CAPABILITY} component={Capability} />,
-                        <Route exact key='1' path={CALENDAR} component={Calendar} />,
-                        <Route exact key='1' path={SETTINGS} component={Settings} />
+                        <Route exact key='1' path={HOME} component={Home}/>,
+                        <Route exact key='1' path={CLASSROOM} component={Classroom}/>,
+                        <Route exact key='1' path={STUDENTS} component={Students}/>,
+                        <Route exact key='1' path={GRADES} component={Grades}/>,
+                        <Route exact key='1' path={GRAPHS} component={Graphs}/>,
+                        <Route exact key='1' path={NOTES} component={Notes}/>,
+                        <Route exact key='1' path={CAPABILITY} component={Capability}/>,
+                        <Route exact key='1' path={CALENDAR} component={Calendar}/>,
+                        <Route exact key='1' path={SETTINGS} component={Settings}/>
                     ]}
                 </Switch>
             </App>

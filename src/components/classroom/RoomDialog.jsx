@@ -15,7 +15,7 @@ function RoomDialog({t, classData, classDialogData, updateRoom, showRoomDialog, 
     const {id, showDialog, isInvalid} = classDialogData;
     const selection = isInvalid ? getCurrentModalData(classDialogData) : filterObjectData(classData, id);
     const roomInputs = <DialogInputs t={t} selection={selection} isInvalid={isInvalid} label={'room'}/>;
-    const hiddenInput = <input type='hidden' name='oldName' data-id={selection.name} />;
+    const hiddenInput = <input type='hidden' name='oldName' data-id={selection.name}/>;
     const footerData = {dataId: id, nameId: null, closeId: id, deleteAction: deleteRoom};
 
     return (

@@ -6,7 +6,7 @@ import {ClassroomSelect, GenderSelect} from './formHelper';
 import css from './style.css';
 
 export function resolveHiddenInput(studentId) {
-    return <InputGroup type='hidden' name='studentId' data-id={studentId} />;
+    return <InputGroup type='hidden' name='studentId' data-id={studentId}/>;
 }
 
 export function determineStudentInputs(student, studentList) {

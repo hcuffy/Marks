@@ -34,7 +34,7 @@ function ResetDialog({t, settingData, showResetDialog, resetDatabase}) {
 
                         <div className={Classes.DIALOG_FOOTER}>
                             <div className={Classes.DIALOG_FOOTER_ACTIONS}>
-                                <Button type='submit' intent={Intent.DANGER} text={buttonText} formNoValidate />
+                                <Button type='submit' intent={Intent.DANGER} text={buttonText} formNoValidate/>
                             </div>
                         </div>
 

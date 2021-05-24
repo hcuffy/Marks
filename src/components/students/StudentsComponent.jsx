@@ -14,7 +14,7 @@ function StudentsComponent({t}) {
             <div>
                 <h4 className={css.center_header}>{t('student.title')}</h4>
                 <AddStudentForm/>
-                <StudentList t={t} />
+                <StudentList t={t}/>
             </div>
 
             <div className={css.chart_div}>

@@ -9,4 +9,4 @@ import './i18n';
 
 const store = configureStore();
 
-render(<Root store={store} history={history} />, document.getElementById('root'));
+render(<Root store={store} history={history}/>, document.getElementById('root'));

@@ -28,7 +28,7 @@ export function DropdownComponent({items, action, label, disabled = false}) {
                 disabled={disabled}
                 popoverProps={{popoverClassName: css.menu_sizing, modifiers: {arrow: {enabled: false}}}}>
 
-                <Button className={css.dropdown_btn} intent={Intent.SUCCESS} text={label} rightIcon='caret-down' />
+                <Button className={css.dropdown_btn} intent={Intent.SUCCESS} text={label} rightIcon='caret-down'/>
             </Select>
         </div>
     );

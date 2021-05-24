@@ -20,12 +20,12 @@ function ExamListInputs({exams, subjectId, showExamDialog}) {
                 >
 
                     <span className={`badge badge-light badge-pill ${css.badge_number}`}>
-                        { <Icon icon='calendar' iconSize={13} className={css.button_icon} />}
+                        {<Icon icon='calendar' iconSize={13} className={css.button_icon}/>}
                         {moment(data.date).format('L') }
                     </span>
 
                     <span className={`badge badge-warning badge-pill ${css.badge_number}`}>
-                        { <Icon icon='layers' iconSize={13} className={css.button_icon} />}
+                        {<Icon icon='layers' iconSize={13} className={css.button_icon}/>}
                         {data.weight}
                     </span>
                 </Button>

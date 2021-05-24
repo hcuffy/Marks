@@ -15,8 +15,8 @@ class Settings extends Component {
 
         return (
             <div>
-                <SidemenuComponent />
-                <SettingsComponent t={t} />
+                <SidemenuComponent/>
+                <SettingsComponent t={t}/>
             </div>
         );
     }

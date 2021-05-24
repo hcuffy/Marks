@@ -35,7 +35,7 @@ function AddressFormComponent({t, addressData, saveSchoolAddress}) {
                 <AddressFields t={t} addressData={addressData}/>
 
                 <div className={`${css.form_inner_div} ${css.save_btn}`}>
-                    <Button type='submit' intent={Intent.SUCCESS} text={t('general.save')} />
+                    <Button type='submit' intent={Intent.SUCCESS} text={t('general.save')}/>
                 </div>
             </div>
         </form>
@@ -57,9 +57,9 @@ function RadioButtonsComponent({t, addressData, updateGradingSystem}) {
 
     return (
         <RadioGroup inline={false} name='settings' selectedValue={selectedValue} onChange={updateGradingSystem}>
-            <Radio label={t('settings.note')} value='note' />
-            <Radio label={t('settings.points')} value='points' />
-            <Radio label={t('settings.percent')} value='percent' />
+            <Radio label={t('settings.note')} value='note'/>
+            <Radio label={t('settings.points')} value='points'/>
+            <Radio label={t('settings.percent')} value='percent'/>
         </RadioGroup>);
 }
 

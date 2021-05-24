@@ -40,11 +40,11 @@ function customHeader({date, weight}) {
     return (
         <div>
             <span className={`badge badge-pill ${badgeColor(weight)} ${css.badge_weight}`}>
-                { <Icon icon='layers' iconSize={13} />}{weight}
+                {<Icon icon='layers' iconSize={13}/>}{weight}
             </span>
 
             <span className={`badge badge-light badge-pill ${css.badge_date}`}>
-                { <Icon icon='calendar' iconSize={13}/>}{moment(date).format('L') }
+                {<Icon icon='calendar' iconSize={13}/>}{moment(date).format('L') }
             </span>
         </div>
     );

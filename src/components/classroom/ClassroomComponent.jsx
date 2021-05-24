@@ -15,10 +15,10 @@ function ClassroomComponent({t, classData}) {
             <div>
                 <h4 className={css.list_header}>{t('room.listHeader')}</h4>
 
-                <ClassList t={t} listData={classData} />
+                <ClassList t={t} listData={classData}/>
             </div>
 
-            <Subjects t={t} classes={classData.classData} />
+            <Subjects t={t} classes={classData.classData}/>
         </div>
     );
 }

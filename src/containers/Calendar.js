@@ -14,8 +14,8 @@ class Calendar extends Component {
 
         return (
             <div>
-                <SidemenuComponent />
-                <CalendarComponent t={t} />
+                <SidemenuComponent/>
+                <CalendarComponent t={t}/>
             </div>
         );
     }

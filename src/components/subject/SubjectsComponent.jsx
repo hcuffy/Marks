@@ -23,12 +23,12 @@ function SubjectsComponent({t, classes, classListData, getSubject}) {
 
                 <DropdownComponent items={items} action={getSubject} label={label} disabled={_.isEmpty(classes)}/>
 
-                <SubjectList t={t} selectedClass={selectedClass} />
+                <SubjectList t={t} selectedClass={selectedClass}/>
             </div>
             <div className={css.subject_right}>
                 <h4 className={css.add_header}>{t('room.addSubject')}</h4>
 
-                <SubjectForm t={t} classListData={classListData} classes={classes} />
+                <SubjectForm t={t} classListData={classListData} classes={classes}/>
             </div>
         </div>
     );

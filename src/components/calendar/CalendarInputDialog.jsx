@@ -19,9 +19,9 @@ function InputDialog({t, calendarData, closeEventDialog, handleEventCreation, de
                 <div className={Classes.DIALOG_BODY}>
                     <form onSubmit={handleEventCreation} method='POST'>
                         <TitleInput t={t} title={title} eventId={eventId} intent={inputIntent} label={'titleLabel'}/>
-                        <DateTimeSelector t={t} date={startDate} intent={inputIntent} label={'start'} />
-                        <DateTimeSelector t={t} date={endDate} intent={inputIntent} label={'end'} />
-                        { _.isNull(eventId) && <WeekInput t={t} intent={inputIntent}/>}
+                        <DateTimeSelector t={t} date={startDate} intent={inputIntent} label={'start'}/>
+                        <DateTimeSelector t={t} date={endDate} intent={inputIntent} label={'end'}/>
+                        {_.isNull(eventId) && <WeekInput t={t} intent={inputIntent}/>}
                         <div className={Classes.DIALOG_FOOTER}>
                             <FooterButtons t={t} eventId={eventId} deleteAction={deleteSingleEvent}/>
                         </div>
