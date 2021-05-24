@@ -27,7 +27,7 @@ export function FormInputs({t, classData}) {
     ));
 }
 
-export function AddClassroomFormComponent({t, classData, handleClassData}) {
+function AddClassroomFormComponent({t, classData, handleClassData}) {
     return (
         <div className={css.room_div}>
             <form onSubmit={handleClassData} method='POST'>

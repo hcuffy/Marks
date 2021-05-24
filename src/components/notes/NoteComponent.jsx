@@ -9,9 +9,9 @@ function NoteComponent({t}) {
     return (
         <div className={css.notes_wrapper}>
             <h4 className={css.main_header}>{t('notes.sectionTitle')}</h4>
-            <NotesDropdown t={t} />
+            <NotesDropdown/>
 
-            <NotesForm t={t} />
+            <NotesForm/>
         </div>
     );
 }

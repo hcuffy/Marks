@@ -2,14 +2,13 @@ import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {bindActionCreators} from 'redux';
 
-import {actionCreators} from '../../actions/index';
+import {handleStudentDropdown, handleNotesDropdown} from './actions';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import {resolveLabel} from '../../utils';
 import css from './style.css';
 
-function NotesDropdown({t, studentData, notesData, actions}) {
+function NotesDropdown({t, studentData, notesData, handleStudentDropdown, handleNotesDropdown}) {
     const {students} = studentData;
     const {selectedName, studentId, noteId} = notesData;
 
@@ -26,7 +25,7 @@ function NotesDropdown({t, studentData, notesData, actions}) {
             <div className={css.left_dropdown}>
                 <DropdownComponent
                     items={studentItems}
-                    action={actions.handleStudentDropdown}
+                    action={handleStudentDropdown}
                     label={studentLabel}
                     disabled={_.isEmpty(students)}
                 />
@@ -34,7 +33,7 @@ function NotesDropdown({t, studentData, notesData, actions}) {
             <div className={css.right_dropdown}>
                 <DropdownComponent
                     items={notesItems}
-                    action={actions.handleNotesDropdown}
+                    action={handleNotesDropdown}
                     label={notesLabel}
                     disabled={_.isEmpty(notes)}
                 />
@@ -48,8 +47,6 @@ const mapStateToProps = state => ({
     notesData:   state.notesData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {handleStudentDropdown, handleNotesDropdown};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(NotesDropdown));
