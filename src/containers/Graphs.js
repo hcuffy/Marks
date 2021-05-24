@@ -1,29 +1,30 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {SidemenuComponent, GraphComponent} from '../components';
-import {actionCreators} from '../actions/index';
+import {getAllGradeData, getGraphExamData} from '../components/graphs/actions';
+import {displayClassData} from '../components/classroom/actions';
+import {getSubjectData} from '../components/subject/actions';
+import {getStudents} from '../components/students/actions';
+import {getGradingSystem} from '../components/settings/actions';
 
 class Graphs extends Component {
     componentDidMount() {
         if (this.props.classData) {
-            this.props.actions.getAllGradeData();
-            this.props.actions.getGraphExamData();
-            this.props.actions.displayClassData();
-            this.props.actions.getSubjectData();
-            this.props.actions.getStudents();
-            this.props.actions.getGradingSystem();
+            this.props.getAllGradeData();
+            this.props.getGraphExamData();
+            this.props.displayClassData();
+            this.props.getSubjectData();
+            this.props.getStudents();
+            this.props.getGradingSystem();
         }
     }
 
     render() {
-        const {t} = this.props;
-
         return (
             <div>
                 <SidemenuComponent />
-                <GraphComponent t={t} />
+                <GraphComponent/>
             </div>
         );
     }
@@ -33,8 +34,13 @@ const mapStateToProps = state => ({
     classData: state.classData.classData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {
+    getAllGradeData,
+    getGraphExamData,
+    displayClassData,
+    getSubjectData,
+    getStudents,
+    getGradingSystem
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Graphs);

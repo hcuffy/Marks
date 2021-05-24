@@ -1,10 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {bindActionCreators} from 'redux';
 import {Bar} from 'react-chartjs-2';
 
-import {actionCreators} from '../../actions/index';
 import {chartData} from './chartData';
 import {chartOptions} from './chartOptions';
 import css from './style.css';
@@ -26,8 +24,4 @@ const mapStateToProps = state => ({
     settings:  state.settingData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Chart));
+export default connect(mapStateToProps, null)(withTranslation()(Chart));

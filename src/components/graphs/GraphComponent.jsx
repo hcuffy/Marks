@@ -13,7 +13,7 @@ function GraphComponent({t}) {
             <GraphDropdown t={t} />
 
             <div className={css.chart_div}>
-                <Chart t={t} />
+                <Chart/>
             </div>
         </div>
     );
