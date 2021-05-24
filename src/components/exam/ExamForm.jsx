@@ -107,7 +107,7 @@ export function AddExamForm({t, classData, subjectData, examData, actions}) {
             <form onSubmit={actions.addNewExam} method='POST'>
                 <div className={css.left_elements}>
                     <TitleInput t={t } isInvalid={examData.isInvalid}/>
-                    <ClassSelect t={t } options={classOption} action={actions.getSelectedSubject}/>
+                    <ClassSelect t={t } options={classOption} action={actions.getSelectedClassroom}/>
                     <SubjectSelect t={t } options={subjectOptions}/>
                 </div>
                 <div className={css.right_elements}>
