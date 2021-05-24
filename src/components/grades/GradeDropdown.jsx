@@ -2,14 +2,13 @@ import React from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {bindActionCreators} from 'redux';
 
 import {resolveLabel} from '../../utils';
-import {actionCreators} from '../../actions/index';
+import {handleGradeClassList, showGradeData} from './actions';
 import {DropdownComponent, createDropdownItems} from '../helpers';
 import css from './style.css';
 
-function GradeDropdown({t, classData, gradeData, subjectData, actions}) {
+function GradeDropdown({t, classData, gradeData, subjectData, handleGradeClassList, showGradeData}) {
     const {subjectId, classroomId, classroom} = gradeData;
 
     const classes = classData?.classData;
@@ -26,7 +25,7 @@ function GradeDropdown({t, classData, gradeData, subjectData, actions}) {
             <div className={css.left_dropdown}>
                 <DropdownComponent
                     items={items}
-                    action={actions.handleGradeClassList}
+                    action={handleGradeClassList}
                     label={label}
                     disabled={_.isEmpty(classes)}
                 />
@@ -34,7 +33,7 @@ function GradeDropdown({t, classData, gradeData, subjectData, actions}) {
             <div className={css.right_dropdown}>
                 <DropdownComponent
                     items={subjectItems}
-                    action={actions.showGradeData}
+                    action={showGradeData}
                     label={subjectLabel}
                     disabled={_.isEmpty(subjects)}
                 />
@@ -49,8 +48,6 @@ const mapStateToProps = state => ({
     gradeData:   state.gradeData
 });
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actionCreators, dispatch)
-});
+const mapDispatchToProps = {handleGradeClassList, showGradeData};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(GradeDropdown));

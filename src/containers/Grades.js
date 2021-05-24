@@ -18,7 +18,7 @@ class Grades extends Component {
     render() {
         return (
             <div>
-                <SidemenuComponent />
+                <SidemenuComponent/>
                 <GradeTableComponent/>
             </div>
         );

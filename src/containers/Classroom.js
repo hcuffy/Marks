@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {displayClassData, getSubjectData} from '../actions';
+import {displayClassData} from '../components/classroom/actions';
+import {getSubjectData} from '../components/subject/actions';
 import {SidemenuComponent, NavbarComponent, ClassroomComponent, ExamComponent} from '../components';
 
 class Classroom extends Component {

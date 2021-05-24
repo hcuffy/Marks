@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {getStudents} from '../actions';
+import {getStudents} from '../components/students/actions';
 import {getAllGradeData, getGraphExamData} from '../components/graphs/actions';
 import {getSubjectData} from '../components/subject/actions';
 import {getGradingSystem} from '../components/settings/actions';
@@ -22,8 +22,8 @@ class Students extends Component {
     render() {
         return (
             <div>
-                <SidemenuComponent />
-                <StudentsComponent />
+                <SidemenuComponent/>
+                <StudentsComponent/>
             </div>
         );
     }

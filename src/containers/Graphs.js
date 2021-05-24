@@ -23,7 +23,7 @@ class Graphs extends Component {
     render() {
         return (
             <div>
-                <SidemenuComponent />
+                <SidemenuComponent/>
                 <GraphComponent/>
             </div>
         );
