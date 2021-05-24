@@ -9,7 +9,7 @@ function CapabilityComponent({t}) {
     return (
         <div className={css.capability_wrapper}>
             <h4 className={css.main_header}>{t('capability.sectionTitle')}</h4>
-            <CapabilityDropdown t={t}/>
+            <CapabilityDropdown/>
             <CapabilityCards/>
         </div>
     );
